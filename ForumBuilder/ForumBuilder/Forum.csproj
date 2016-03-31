@@ -34,6 +34,25 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Controllers\Controllers.csproj">
+      <Project>{9b0ea699-a4a5-46fa-919c-12db34c302da}</Project>
+      <Name>Controllers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Users\Users.csproj">
+      <Project>{cd86dac4-dbfe-42ed-be81-e1e06acd2925}</Project>
+      <Name>Users</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IForum.cs" />
+    <Compile Include="IPost.cs" />
+    <Compile Include="ISubForum.cs" />
+    <Compile Include="IThread.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

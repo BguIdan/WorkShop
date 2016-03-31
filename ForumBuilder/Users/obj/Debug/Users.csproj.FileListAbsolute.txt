@@ -1,0 +1,8 @@
+C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\Users\obj\Debug\Users.csprojResolveAssemblyReference.cache
+C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\Users\obj\Debug\Users.Properties.Resources.resources
+C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\Users\obj\Debug\Users.csproj.GenerateResource.Cache
+C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\Users\bin\Debug\Users.dll.config
+C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\Users\bin\Debug\Users.dll
+C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\Users\bin\Debug\Users.pdb
+C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\Users\obj\Debug\Users.dll
+C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\Users\obj\Debug\Users.pdb
