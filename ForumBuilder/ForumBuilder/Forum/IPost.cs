@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ForumBuilder.Forums
+namespace ForumBuilder.Forum
 {
     interface IPost
     {

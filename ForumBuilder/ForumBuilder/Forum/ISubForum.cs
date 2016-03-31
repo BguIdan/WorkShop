@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ForumBuilder.User;
 
-namespace ForumBuilder.Forums
+namespace ForumBuilder.Forum
 {
     interface ISubForum
     {

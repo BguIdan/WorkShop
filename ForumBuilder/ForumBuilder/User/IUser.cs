@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ForumBuilder.Forums;
+using ForumBuilder.Forum;
 
 namespace ForumBuilder.User
 {

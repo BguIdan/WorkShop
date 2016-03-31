@@ -4,12 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace ForumBuilder.Forum
 {
-    interface IThread
+    class Post : IPost
     {
-        Boolean addPost(IPost newPost);
-        Boolean deleteThread(IThread toDelete);
+        public Post(){
+
+        }
+        Boolean deletePost(IPost toDelete) {
+            return true;
+        }
     }
 }
