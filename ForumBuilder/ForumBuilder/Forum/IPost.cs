@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ForumBuilder
+namespace ForumBuilder.Forums
 {
     interface IPost
     {
-        Boolean deletePsot(IPost toDelete);
+        Boolean deletePost(IPost toDelete);
     }
 }

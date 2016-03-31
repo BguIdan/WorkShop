@@ -52,9 +52,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IPosition.cs" />
     <Compile Include="IUser.cs" />
-    <Compile Include="Notifications.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

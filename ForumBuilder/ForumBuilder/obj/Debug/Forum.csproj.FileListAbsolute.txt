@@ -1,1 +1,2 @@
 C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\ForumBuilder\obj\Debug\Forum.csprojResolveAssemblyReference.cache
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\ForumBuilder\obj\Debug\Forum.csprojResolveAssemblyReference.cache

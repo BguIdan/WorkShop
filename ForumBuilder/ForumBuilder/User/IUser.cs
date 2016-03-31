@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ForumBuilder.Forums;
 
-namespace Users
+namespace ForumBuilder.User
 {
     public interface IUser
     {
@@ -15,7 +16,12 @@ namespace Users
         Boolean sendPrivateMessage(String userName, String content);
         Boolean banMember(String userName, String forumName);
         Boolean createSubForum(String subForumName, IForum forum, List<String> moderators);
-        change
+        Boolean changePolicy(String newPolicy, IForum forum);
+        Boolean isAdmin();
+        Boolean isMember();
+        Boolean createThread();
+        Boolean dismissModerator(IUser dismissedModerator);
+        Boolean deleteThread(IThread toDelete);
 
     }
 }

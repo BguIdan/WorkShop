@@ -6,3 +6,10 @@ C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\Users\bin\Debug\Users.
 C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\Users\bin\Debug\Users.pdb
 C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\Users\obj\Debug\Users.dll
 C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\Users\obj\Debug\Users.pdb
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\Users\bin\Debug\Users.dll.config
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\Users\bin\Debug\Users.dll
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\Users\bin\Debug\Users.pdb
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\Users\obj\Debug\Users.Properties.Resources.resources
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\Users\obj\Debug\Users.csproj.GenerateResource.Cache
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\Users\obj\Debug\Users.dll
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\Users\obj\Debug\Users.pdb

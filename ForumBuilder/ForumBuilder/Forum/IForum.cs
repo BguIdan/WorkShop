@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Users;
+using ForumBuilder.User;
+
 
 namespace ForumBuilder.Forums
 {
@@ -15,5 +16,8 @@ namespace ForumBuilder.Forums
         Boolean registerUser(IUser newUser);
         ISubForum createSubForum(String name, List<IUser> moderators);
         Boolean changePoliciy(String newPolicy);
+        Boolean isAdmin(String userName);
+        Boolean isMember(String userName);
+        Boolean deleteMember(String userName);
     }
 }

@@ -6,3 +6,10 @@ C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\Controllers\bin\Debug\
 C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\Controllers\bin\Debug\Controllers.pdb
 C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\Controllers\obj\Debug\Controllers.dll
 C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\Controllers\obj\Debug\Controllers.pdb
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\Controllers\bin\Debug\Controllers.dll.config
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\Controllers\bin\Debug\Controllers.dll
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\Controllers\bin\Debug\Controllers.pdb
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\Controllers\obj\Debug\Controllers.Properties.Resources.resources
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\Controllers\obj\Debug\Controllers.csproj.GenerateResource.Cache
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\Controllers\obj\Debug\Controllers.dll
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\Controllers\obj\Debug\Controllers.pdb

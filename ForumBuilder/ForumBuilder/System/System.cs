@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ForumBuilder
+namespace ForumBuilder.System
 {
-    interface Thread
+    interface System
     {
-        Boolean addPost(IPost newPost);
-        Boolean deleteThread(IThread toDelete);
+        Boolean initialize();
     }
 }

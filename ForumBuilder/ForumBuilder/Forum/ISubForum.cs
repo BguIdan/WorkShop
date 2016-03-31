@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Controllers;
+using ForumBuilder.User;
 
-namespace ForumBuilder
+namespace ForumBuilder.Forums
 {
     interface ISubForum
     {
-        Boolean dismissModerator(IModerderator dismissedModerator);
+        Boolean dismissModerator(IUser dismissedModerator);
         Boolean createThread(String headLine, String Content);
+        Boolean nominateModerator(IUser newModerator);
     }
 }
