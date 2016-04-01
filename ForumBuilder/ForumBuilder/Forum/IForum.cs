@@ -8,7 +8,7 @@ using ForumBuilder.User;
 
 namespace ForumBuilder.Forum
 {
-    interface IForum
+    public interface IForum
     {
         Boolean dismissAdmin(IUser userismissedAdmin);
         Boolean banMember(IUser bannedMember);

@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace ForumBuilder.Forum
 {
-    class Thread : IThread
+    public class Thread : IThread
     {
         public Thread()
         {
 
         }
-        Boolean addPost(IPost newPost)
+        public Boolean addPost(IPost newPost)
         {
             return true;
         }
-        Boolean deleteThread(IThread toDelete)
+        public Boolean deleteThread(IThread toDelete)
         {
             return true;
         }

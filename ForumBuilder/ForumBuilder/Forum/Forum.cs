@@ -7,46 +7,46 @@ using ForumBuilder.User;
 
 namespace ForumBuilder.Forum
 {
-    class Forum : IForum
+    public class Forum : IForum
     {
 
         public Forum()
         {
 
         }
-        Boolean dismissAdmin(IUser userismissedAdmin)
+        public Boolean dismissAdmin(IUser userismissedAdmin)
         {
             return true;
         }
-        Boolean banMember(IUser bannedMember)
+        public Boolean banMember(IUser bannedMember)
         {
             return true;
         }
-        Boolean nominateAdmin(IUser newAdmin)
+        public Boolean nominateAdmin(IUser newAdmin)
         {
             return true;
         }
-        Boolean registerUser(IUser newUser)
+        public Boolean registerUser(IUser newUser)
         {
             return true;
         }
-        ISubForum createSubForum(String name, List<IUser> moderators)
+        public ISubForum createSubForum(String name, List<IUser> moderators)
         {
             return null;
         }
-        Boolean changePoliciy(String newPolicy)
+        public Boolean changePoliciy(String newPolicy)
         {
             return true;
         }
-        Boolean isAdmin(String userName)
+        public Boolean isAdmin(String userName)
         {
             return true;
         }
-        Boolean isMember(String userName)
+        public Boolean isMember(String userName)
         {
             return true;
         }
-        Boolean deleteMember(String userName)
+        public Boolean deleteMember(String userName)
         {
             return true;
         }

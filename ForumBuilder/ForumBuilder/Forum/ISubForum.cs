@@ -7,7 +7,7 @@ using ForumBuilder.User;
 
 namespace ForumBuilder.Forum
 {
-    interface ISubForum
+    public interface ISubForum
     {
         Boolean dismissModerator(IUser dismissedModerator);
         Boolean createThread(String headLine, String Content);

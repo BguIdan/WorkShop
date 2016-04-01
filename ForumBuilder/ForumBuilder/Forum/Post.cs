@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace ForumBuilder.Forum
 {
-    class Post : IPost
+    public class Post : IPost
     {
         public Post(){
 
         }
-        Boolean deletePost(IPost toDelete) {
+        public Boolean deletePost(IPost toDelete)
+        {
             return true;
         }
     }

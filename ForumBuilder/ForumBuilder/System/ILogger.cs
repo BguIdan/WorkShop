@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ForumBuilder.System
 {
-    interface ILogger
+    public interface ILogger
     {
         Boolean addLogMessage(int code, String content);
     }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ForumBuilder.Forum
 {
-    interface IThread
+    public interface IThread
     {
         Boolean addPost(IPost newPost);
         Boolean deleteThread(IThread toDelete);

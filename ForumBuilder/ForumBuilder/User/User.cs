@@ -7,61 +7,61 @@ using ForumBuilder.Forum;
 
 namespace ForumBuilder.User
 {
-    class User : IUser
+    public class User : IUser
     {
         public User()
         {
 
         }
-        String getUserName()
+        public String getUserName()
         {
             return "";
         }
-        Boolean addFriend(IUser newFriend)
+        public Boolean addFriend(IUser newFriend)
         {
             return true;
         }
-        Boolean deleteFriend(IUser deletedFriend)
+        public Boolean deleteFriend(IUser deletedFriend)
         {
             return true;
         }
-        Boolean notifyUserViaMail()
+        public Boolean notifyUserViaMail()
         {
             return true;
         }
-        Boolean sendPrivateMessage(String userName, String content)
+        public Boolean sendPrivateMessage(String userName, String content)
         {
             return true;
         }
-        Boolean banMember(String userName, String forumName)
+        public Boolean banMember(String userName, String forumName)
         {
             return true;
         }
-        Boolean createSubForum(String subForumName, IForum forum, List<String> moderators)
+        public Boolean createSubForum(String subForumName, IForum forum, List<String> moderators)
         {
             return true;
         }
-        Boolean changePolicy(String newPolicy, IForum forum)
+        public Boolean changePolicy(String newPolicy, IForum forum)
         {
             return true;
         }
-        Boolean isAdmin()
+        public Boolean isAdmin()
         {
             return true;
         }
-        Boolean isMember()
+        public Boolean isMember()
         {
             return true;
         }
-        Boolean createThread()
+        public Boolean createThread()
         {
             return true;
         }
-        Boolean dismissModerator(IUser dismissedModerator)
+        public Boolean dismissModerator(IUser dismissedModerator)
         {
             return true;
         }
-        Boolean deleteThread(IThread toDelete)
+        public Boolean deleteThread(IThread toDelete)
         {
             return true;
         }

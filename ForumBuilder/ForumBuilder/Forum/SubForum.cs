@@ -7,22 +7,22 @@ using ForumBuilder.User;
 
 namespace ForumBuilder.Forum
 {
-    class SubForum : ISubForum
+    public class SubForum : ISubForum
     {
         public SubForum()
         {
 
         }
-        Boolean dismissModerator(IUser dismissedModerator)
+        public Boolean dismissModerator(IUser dismissedModerator)
         {
             return true;
         }
-            
-        Boolean createThread(String headLine, String Content)
+
+        public Boolean createThread(String headLine, String Content)
         {
             return true;
         }
-        Boolean nominateModerator(IUser newModerator)
+        public Boolean nominateModerator(IUser newModerator)
         {
             return true;
         }

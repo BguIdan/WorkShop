@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ForumBuilder.Forum
 {
-    interface IPost
+    public interface IPost
     {
         Boolean deletePost(IPost toDelete);
     }

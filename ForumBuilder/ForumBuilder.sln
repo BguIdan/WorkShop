@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Forum", "ForumBuilder\Forum.csproj", "{5E3130C0-D5DC-41A6-A297-28B5D4859ED4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{25185434-FB59-44F0-95DD-FEB28B45C1E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +29,16 @@ Global
 		{5E3130C0-D5DC-41A6-A297-28B5D4859ED4}.Release|ARM.ActiveCfg = Release|Any CPU
 		{5E3130C0-D5DC-41A6-A297-28B5D4859ED4}.Release|x64.ActiveCfg = Release|Any CPU
 		{5E3130C0-D5DC-41A6-A297-28B5D4859ED4}.Release|x86.ActiveCfg = Release|Any CPU
+		{25185434-FB59-44F0-95DD-FEB28B45C1E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25185434-FB59-44F0-95DD-FEB28B45C1E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25185434-FB59-44F0-95DD-FEB28B45C1E6}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{25185434-FB59-44F0-95DD-FEB28B45C1E6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{25185434-FB59-44F0-95DD-FEB28B45C1E6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{25185434-FB59-44F0-95DD-FEB28B45C1E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25185434-FB59-44F0-95DD-FEB28B45C1E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25185434-FB59-44F0-95DD-FEB28B45C1E6}.Release|ARM.ActiveCfg = Release|Any CPU
+		{25185434-FB59-44F0-95DD-FEB28B45C1E6}.Release|x64.ActiveCfg = Release|Any CPU
+		{25185434-FB59-44F0-95DD-FEB28B45C1E6}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

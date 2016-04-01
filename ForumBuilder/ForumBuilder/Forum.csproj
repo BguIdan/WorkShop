@@ -48,6 +48,7 @@
     <Compile Include="Forum\Thread.cs" />
     <Compile Include="System\ILogger.cs" />
     <Compile Include="System\ISystem.cs" />
+    <Compile Include="System\System.cs" />
     <Compile Include="User\ISuperUser.cs" />
     <Compile Include="User\IUser.cs" />
     <Compile Include="User\SuperUser.cs" />
