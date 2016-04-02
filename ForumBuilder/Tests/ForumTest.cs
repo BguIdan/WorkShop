@@ -121,8 +121,228 @@ namespace Tests
             String userNonMemberName = this.userNonMember.getUserName();
             Assert.IsFalse(this.forum.isMember(userNonMemberName), "userNonMember should not be a member");
             Assert.IsTrue(this.forum.nominateAdmin(this.userNonMember), "nomination of non member to be admin should be successful");
-            Assert.IsTrue(this.forum.isMember(userNonMemberName), "after becoming an admin the (previously) non member should be a member now")
+            Assert.IsTrue(this.forum.isMember(userNonMemberName), "after becoming an admin the (previously) non member should be a member now");
             Assert.IsTrue(this.forum.isAdmin(userNonMemberName), "the (previously) non member should be an admin now");
         }
+
+        [TestMethod]
+        public void test_nominateAdmin_on_member()
+        {
+            String userMemberName = this.userMember.getUserName();
+            Assert.IsTrue(this.forum.isMember(userMemberName), "userMember should be a member in the forum");
+            Assert.IsFalse(this.forum.isAdmin(userMemberName), "userMember should not be an admin in the forum");
+            Assert.IsTrue(this.forum.nominateAdmin(this.userMember), "the nomination of userMember should be successful");
+            Assert.IsTrue(this.forum.isMember(userMemberName), "userMember should be a member in the forum");
+            Assert.IsTrue(this.forum.isAdmin(userMemberName), "userMember should be an admin in the forum after the nomination");
+        }
+
+        [TestMethod]
+        public void test_nominateAdmin_on_admin()
+        {
+            String userAdminName = this.userAdmin.getUserName();
+            Assert.IsTrue(this.forum.isMember(userAdminName), "userAdmin should be a member in the forum");
+            Assert.IsTrue(this.forum.isAdmin(userAdminName), "userAdmin should be an admin in the forum");
+            Assert.IsTrue(this.forum.nominateAdmin(this.userAdmin), "userAdmin is already admin. the nomination should be successful");
+            Assert.IsTrue(this.forum.isMember(userAdminName), "userAdmin should still be a member in the forum");
+            Assert.IsTrue(this.forum.isAdmin(userAdminName), "userAdmin should still be an admin in the forum");
+        }
+
+        [TestMethod]
+        public void test_nominateAdmin_on_null()
+        {
+            Assert.IsFalse(this.forum.nominateAdmin(null), "nomination of null should return false");
+        }
+
+        /******************************end of nominate admin***********************************/
+
+        /******************************register user***********************************/
+        [TestMethod]
+        public void test_registerUser_on_non_member()
+        {
+            String userNonMemberName = this.userNonMember.getUserName();
+            Assert.IsFalse(this.forum.isMember(userNonMemberName), "userNonMember should not be a member");
+            Assert.IsTrue(this.forum.registerUser(this.userNonMember), "registration of a non member should be successful");
+            Assert.IsTrue(this.forum.isMember(userNonMemberName), "after registration the user should become a member");
+        }
+
+        [TestMethod]
+        public void test_registerUser_on_member()
+        {
+            String userMemberName = this.userMember.getUserName();
+            Assert.IsTrue(this.forum.isMember(userMemberName), "userMember should be a member in the forum");
+            Assert.IsTrue(this.forum.registerUser(this.userMember), "the registration of a member should be successful");
+            Assert.IsTrue(this.forum.isMember(userMemberName), "userMember should still be a member in the forum");
+        }
+
+        [TestMethod]
+        public void test_registerUser_on_admin()
+        {
+            String userAdminName = this.userAdmin.getUserName();
+            Assert.IsTrue(this.forum.isMember(userAdminName), "userAdmin should be a member in the forum");
+            Assert.IsTrue(this.forum.isAdmin(userAdminName), "userAdmin should be an admin in the forum");
+            Assert.IsTrue(this.forum.nominateAdmin(this.userAdmin), "the registration of an admin should be successful");
+            Assert.IsTrue(this.forum.isMember(userAdminName), "userAdmin should still be a member in the forum");
+        }
+
+        [TestMethod]
+        public void test_registerUser_on_null()
+        {
+            Assert.IsFalse(this.forum.nominateAdmin(null), "registration of null should return false");
+        }
+
+
+        /******************************end of register user***********************************/
+
+        /******************************change policy***********************************/
+        public void test_changePolity_valid_policy()
+        {
+            String oldPolicy = this.forum.getPolicy();
+            String newPolicy = "new policy for test";
+            Assert.AreNotEqual(oldPolicy, newPolicy, false, "the new policy should be different from the old one");
+            Assert.IsTrue(this.forum.changePoliciy(newPolicy), "policy change should be successful");
+            Assert.AreEqual(this.forum.getPolicy(), newPolicy, false, "the new policy should be return after the change");
+        }
+
+        public void test_changePolicy_with_null()
+        {
+            String oldPolicy = this.forum.getPolicy();
+            Assert.IsFalse(this.forum.changePoliciy(null), "policy change with null should not be successful");
+            Assert.AreEqual(this.forum.getPolicy(), oldPolicy, false, "after an unsuccessful change, the old policy should be returned");
+        }
+
+        public void test_changePolicy_with_empty_string()
+        {
+            String oldPolicy = this.forum.getPolicy();
+            Assert.IsFalse(this.forum.changePoliciy(""), "policy change with an empty string should not be successful");
+            Assert.AreEqual(this.forum.getPolicy(), oldPolicy, false, "after an unsuccessful change, the old policy should be returned");
+        }
+
+
+        /******************************end of change policy***********************************/
+
+        /******************************is admin***********************************/
+
+
+        [TestMethod]
+        public void test_isAdmin_on_non_member()
+        {
+            String userNonMemberName = this.userNonMember.getUserName();
+            Assert.IsFalse(this.forum.isAdmin(userNonMemberName), "is admin on non member should return false");
+        }
+
+        [TestMethod]
+        public void test_isAdmin_on_member()
+        {
+            String userMemberName = this.userMember.getUserName();
+            Assert.IsFalse(this.forum.isAdmin(userMemberName), "is admin on member (not admin) should return false");
+        }
+
+        [TestMethod]
+        public void test_isAdmin_on_admin()
+        {
+            String userAdminName = this.userAdmin.getUserName();
+            Assert.IsTrue(this.forum.isAdmin(userAdminName), "is admin on admin should return true");
+        }
+
+        [TestMethod]
+        public void test_isAdmin_on_null()
+        {
+            Assert.IsFalse(this.forum.isAdmin(null), "is admin on null should return false");
+        }
+
+        [TestMethod]
+        public void test_isAdmin_on_empty_string()
+        {
+            Assert.IsFalse(this.forum.isAdmin(""), "is admin on an empty string should return false");
+        }
+
+
+        /******************************end of is admin***********************************/
+
+        /******************************is member***********************************/
+
+
+        [TestMethod]
+        public void test_isMember_on_non_member()
+        {
+            String userNonMemberName = this.userNonMember.getUserName();
+            Assert.IsFalse(this.forum.isMember(userNonMemberName), "is member on non member should return false");
+        }
+
+        [TestMethod]
+        public void test_isMember_on_member()
+        {
+            String userMemberName = this.userMember.getUserName();
+            Assert.IsTrue(this.forum.isMember(userMemberName), "is member on member (not admin) should return true");
+        }
+
+        [TestMethod]
+        public void test_isMember_on_admin()
+        {
+            String userAdminName = this.userAdmin.getUserName();
+            Assert.IsTrue(this.forum.isMember(userAdminName), "is member on admin should return true");
+        }
+
+        [TestMethod]
+        public void test_isMember_on_null()
+        {
+            Assert.IsFalse(this.forum.isMember(null), "is member on null should return false");
+        }
+
+        [TestMethod]
+        public void test_isMember_on_empty_string()
+        {
+            Assert.IsFalse(this.forum.isMember(""), "is member on an empty string should return false");
+        }
+
+
+        /******************************end of is member***********************************/
+
+        /******************************dismiss member***********************************/
+
+        [TestMethod]
+        public void test_dismissMember_on_non_member()
+        {
+            String userNonMemberName = this.userNonMember.getUserName();
+            Assert.IsFalse(this.forum.isMember(userNonMemberName), "non member user should not be a member");
+            Assert.IsTrue(this.forum.dismissMember(this.userNonMember), "dismiss member on a non member should be successful");
+            Assert.IsFalse(this.forum.isMember(userNonMemberName), "non member user should remain as non member after his dismissal");
+        }
+
+        [TestMethod]
+        public void test_dismissMember_on_member()
+        {
+            String userMemberName = this.userMember.getUserName();
+            Assert.IsTrue(this.forum.isMember(userMemberName), "user member should be a member in the forum");
+            Assert.IsTrue(this.forum.dismissMember(this.userMember), "dismiss member on member user should be successful");
+            Assert.IsFalse(this.forum.isMember(userMemberName), "after dismissal member user should not be a member anymore");
+        }
+
+        [TestMethod]
+        public void test_dismissMember_on_admin()
+        {
+            String userAdminName = this.userAdmin.getUserName();
+            Assert.IsTrue(this.forum.isMember(userAdminName), "user admin should be a member in the forum");
+            Assert.IsTrue(this.forum.dismissMember(this.userAdmin), "dismiss member on admin user should be successful");
+            Assert.IsFalse(this.forum.isAdmin(userAdminName), "after dismissal admin user should not be an admin anymore");
+            Assert.IsFalse(this.forum.isMember(userAdminName), "after dismissal admin user should not be a member anymore");
+        }
+
+        [TestMethod]
+        public void test_dismissMember_on_null()
+        {
+            Assert.IsFalse(this.forum.dismissMember(null), "dismiss member on null should return false");
+        }
+
+
+        /******************************end of dismiss member***********************************/
+
+        /******************************create sub forum***********************************/
+
+        //TODO
+        /******************************end of create sub forum***********************************/
+
+
+
     }
 }

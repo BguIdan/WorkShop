@@ -18,6 +18,7 @@ namespace ForumBuilder.Forum
         Boolean changePoliciy(String newPolicy);
         Boolean isAdmin(String userName);
         Boolean isMember(String userName);
-        Boolean deleteMember(String userName);
+        Boolean dismissMember(IUser userName);
+        String getPolicy();
     }
 }

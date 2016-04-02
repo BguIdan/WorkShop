@@ -46,9 +46,14 @@ namespace ForumBuilder.Forum
         {
             return true;
         }
-        public Boolean deleteMember(String userName)
+        public Boolean dismissMember(IUser userName)
         {
             return true;
+        }
+
+        public String getPolicy()
+        {
+            return null;
         }
     }
 }
