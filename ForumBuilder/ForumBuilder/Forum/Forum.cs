@@ -28,6 +28,7 @@ namespace ForumBuilder.Forum
         }
         public Boolean registerUser(IUser newUser)
         {
+
             return true;
         }
         public ISubForum createSubForum(String name, List<IUser> moderators)

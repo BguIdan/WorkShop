@@ -46,13 +46,14 @@
     <Compile Include="Forum\Post.cs" />
     <Compile Include="Forum\SubForum.cs" />
     <Compile Include="Forum\Thread.cs" />
+    <Compile Include="Service\Service.cs" />
     <Compile Include="System\ILogger.cs" />
     <Compile Include="System\ISystem.cs" />
     <Compile Include="System\System.cs" />
-    <Compile Include="User\ISuperUser.cs" />
-    <Compile Include="User\IUser.cs" />
-    <Compile Include="User\SuperUser.cs" />
-    <Compile Include="User\User.cs" />
+    <Compile Include="Users\ISuperUser.cs" />
+    <Compile Include="Users\IUser.cs" />
+    <Compile Include="Users\SuperUser.cs" />
+    <Compile Include="Users\User.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
