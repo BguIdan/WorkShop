@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ForumBuilder.Forum;
+using ForumBuilder.Forums;
 
 namespace ForumBuilder.Users
 {
@@ -16,7 +16,7 @@ namespace ForumBuilder.Users
 
         public Boolean createForum(String forumName, String descrption, String forumPolicy, String forumRules, List<String> administrators)
         {
-            return true;
+            return _system.createForum(forumName, descrption, forumPolicy, forumRules, administrators);
         }
 
         public String getUserName()
