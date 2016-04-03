@@ -12,7 +12,7 @@ namespace ForumBuilder.Forum
 
         public Forum()
         {
-
+            Console.Write("");
         }
         public Boolean dismissAdmin(IUser userismissedAdmin)
         {
