@@ -8,6 +8,6 @@ namespace ForumBuilder.Forum
 {
     public interface IPost
     {
-        Boolean deletePost(IPost toDelete);
+        Boolean deletePost();
     }
 }
