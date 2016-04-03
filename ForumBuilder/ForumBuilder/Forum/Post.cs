@@ -8,16 +8,18 @@ namespace ForumBuilder.Forum
 {
     public class Post : IPost
     {
-        private string _id;
-        private string _title;
-        private string _content;
-        private string _parentId;
-        public Post(string id, string title, string content, string parentId)
+        private int id;
+        private string title;
+        private string content;
+        private int parentId;
+
+
+        public Post(int id, string title, string content, int parentId)
         {
-            _id = id;
-            _title = title;
-            _content = content;
-            _parentId = parentId;
+            this.id = id;
+            this.title = title;
+            this.content = content;
+            this.parentId = parentId;
         }
         public Boolean deletePost()
         {
@@ -28,7 +30,7 @@ namespace ForumBuilder.Forum
             {
                 Post p = undonePosts.ElementAt(0);
                 undonePosts.RemoveAt(0);
-                List<Post> related = Service.getRelatedPosts(p._id);
+                List<Post> related = Service.getRelatedPosts(p.Id);
                 while (related!=null && related.Count != 0)
                 {
                     undonePosts.Add(related.ElementAt(0));
@@ -37,6 +39,31 @@ namespace ForumBuilder.Forum
                 donePosts.Add(p);
             }
             return true;
+        }
+        public Int32 _id
+        {
+            get
+            {
+                return id;
+            }
+
+            set
+            {
+                id = value;
+            }
+        }
+
+        public Int32 _parentId
+        {
+            get
+            {
+                return parentId;
+            }
+
+            set
+            {
+                parentId = value;
+            }
         }
     }
 }
