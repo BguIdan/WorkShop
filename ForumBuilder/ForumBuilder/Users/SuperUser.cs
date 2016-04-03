@@ -5,14 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using ForumBuilder.Forum;
 
-namespace ForumBuilder.User
+namespace ForumBuilder.Users
 {
-    public class User : IUser
+    public class SuperUser : ISuperUser
     {
-        public User()
+        public SuperUser()
         {
 
         }
+
+        public Boolean createForum(String forumName, String descrption, String forumPolicy, String forumRules, List<String> administrators)
+        {
+            return true;
+        }
+
         public String getUserName()
         {
             return "";
@@ -65,5 +71,6 @@ namespace ForumBuilder.User
         {
             return true;
         }
+
     }
 }

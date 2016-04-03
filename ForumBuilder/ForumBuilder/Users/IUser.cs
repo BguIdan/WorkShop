@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ForumBuilder.Forum;
 
-namespace ForumBuilder.User
+namespace ForumBuilder.Users
 {
     public interface IUser
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ForumBuilder.User
+namespace ForumBuilder.Users
 {
     interface ISuperUser : IUser
     {
