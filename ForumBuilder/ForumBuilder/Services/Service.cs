@@ -100,5 +100,19 @@ namespace ForumBuilder.Services
             }
         }
 
+        public Boolean initialize(String userName, String password, String email)
+        {
+
+            if (userName.Equals("") || password.Equals("") || email.Equals(""))
+            {
+                Console.WriteLine("one or more of the fields is missing");
+                return false;
+            }
+            // should check if the password is strong enough
+            // should check if the the email is in a correct format
+            // should send configuration email to the super user's email
+            Console.WriteLine("the system was initialized successully");
+            return true;
+        }
     }
 }
