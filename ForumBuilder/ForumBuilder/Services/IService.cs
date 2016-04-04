@@ -15,5 +15,6 @@ namespace ForumBuilder.Services
         IUser getUser(string userName);
         List<IPost> getRelatedPosts(int postId);
         Boolean createForum(string forumName, string descrption, string forumPolicy, string forumRules, List<string> administrators);
+        Boolean initialize(string userName, string password, string email);
     }
 }

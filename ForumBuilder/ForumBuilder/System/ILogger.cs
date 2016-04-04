@@ -9,5 +9,6 @@ namespace ForumBuilder.System
     public interface ILogger
     {
         Boolean addLogMessage(int code, String content);
+
     }
 }

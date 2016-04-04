@@ -34,7 +34,7 @@ namespace ForumBuilder.System
 
         public bool initialize(string userName, string password, string email)
         {
-            throw new NotImplementedException();
+            return service.initialize(userName, password, email);
         }
 
         public bool createForum(string forumName, string descrption, string forumPolicy, string forumRules, List<string> administrators)

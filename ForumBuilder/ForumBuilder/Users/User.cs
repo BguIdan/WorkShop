@@ -39,7 +39,8 @@ namespace ForumBuilder.Users
         }
         public Boolean createSubForum(String subForumName, IForum forum, List<String> moderators)
         {
-            return true;
+            ISubForum subF = forum.createSubForum(subForumName, moderators);
+            return subF != null;
         }
         public Boolean changePolicy(String newPolicy, IForum forum)
         {
