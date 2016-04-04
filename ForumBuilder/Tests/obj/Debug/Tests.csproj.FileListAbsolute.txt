@@ -5,3 +5,4 @@ C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\Tests\bin\Debug\ForumB
 C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\Tests\obj\Debug\Tests.csprojResolveAssemblyReference.cache
 C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\Tests\obj\Debug\Tests.dll
 C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\Tests\obj\Debug\Tests.pdb
+C:\Users\User\Desktop\WorkShop\ForumBuilder\Tests\obj\Debug\Tests.csprojResolveAssemblyReference.cache
