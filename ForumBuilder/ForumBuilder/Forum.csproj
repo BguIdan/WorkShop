@@ -38,21 +38,21 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forum\Forum.cs" />
-    <Compile Include="Forum\IForum.cs" />
-    <Compile Include="Forum\IPost.cs" />
-    <Compile Include="Forum\ISubForum.cs" />
-    <Compile Include="Forum\IThread.cs" />
-    <Compile Include="Forum\Post.cs" />
-    <Compile Include="Forum\SubForum.cs" />
-    <Compile Include="Forum\Thread.cs" />
-    <Compile Include="System\ILogger.cs" />
-    <Compile Include="System\ISystem.cs" />
-    <Compile Include="System\System.cs" />
-    <Compile Include="User\ISuperUser.cs" />
-    <Compile Include="User\IUser.cs" />
-    <Compile Include="User\SuperUser.cs" />
-    <Compile Include="User\User.cs" />
+    <Compile Include="Forums\Forum.cs" />
+    <Compile Include="Forums\IForum.cs" />
+    <Compile Include="Forums\IPost.cs" />
+    <Compile Include="Forums\ISubForum.cs" />
+    <Compile Include="Forums\IThread.cs" />
+    <Compile Include="Forums\Post.cs" />
+    <Compile Include="Forums\SubForum.cs" />
+    <Compile Include="Forums\Thread.cs" />
+    <Compile Include="Systems\ILogger.cs" />
+    <Compile Include="Systems\ISystem.cs" />
+    <Compile Include="Systems\System.cs" />
+    <Compile Include="Users\ISuperUser.cs" />
+    <Compile Include="Users\IUser.cs" />
+    <Compile Include="Users\SuperUser.cs" />
+    <Compile Include="Users\User.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

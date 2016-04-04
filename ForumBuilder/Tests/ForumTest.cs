@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ForumBuilder.Forum;
-using ForumBuilder.User;
+using ForumBuilder.Forums;
+using ForumBuilder.Users;
 
 namespace Tests
 {
@@ -121,7 +121,7 @@ namespace Tests
             String userNonMemberName = this.userNonMember.getUserName();
             Assert.IsFalse(this.forum.isMember(userNonMemberName), "userNonMember should not be a member");
             Assert.IsTrue(this.forum.nominateAdmin(this.userNonMember), "nomination of non member to be admin should be successful");
-            Assert.IsTrue(this.forum.isMember(userNonMemberName), "after becoming an admin the (previously) non member should be a member now")
+            Assert.IsTrue(this.forum.isMember(userNonMemberName), "after becoming an admin the (previously) non member should be a member now");
             Assert.IsTrue(this.forum.isAdmin(userNonMemberName), "the (previously) non member should be an admin now");
         }
     }
