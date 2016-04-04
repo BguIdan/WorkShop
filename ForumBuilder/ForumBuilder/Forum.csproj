@@ -46,7 +46,8 @@
     <Compile Include="Forums\Post.cs" />
     <Compile Include="Forums\SubForum.cs" />
     <Compile Include="Forums\Thread.cs" />
-    <Compile Include="Service\Service.cs" />
+    <Compile Include="Services\IService.cs" />
+    <Compile Include="Services\Service.cs" />
     <Compile Include="System\ILogger.cs" />
     <Compile Include="System\ISystem.cs" />
     <Compile Include="System\System.cs" />
