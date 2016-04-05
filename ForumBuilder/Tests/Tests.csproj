@@ -54,9 +54,13 @@
     <Compile Include="ForumTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ForumBuilder\Forum.csproj">
+    <ProjectReference Include="..\ForumBuilder\Domain.csproj">
       <Project>{5e3130c0-d5dc-41a6-a297-28b5d4859ed4}</Project>
-      <Name>Forum</Name>
+      <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Service\Service.csproj">
+      <Project>{ec30a637-9d10-4746-ae76-4d3b64204085}</Project>
+      <Name>Service</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

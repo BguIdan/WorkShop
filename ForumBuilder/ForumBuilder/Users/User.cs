@@ -3,68 +3,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ForumBuilder.Forums;
+using ForumBuilder.BL_Back_End;
 
 namespace ForumBuilder.Users
 {
     public class User : IUser
     {
+        private String _userName;
+        private String _password;
+        private String _email;
+        private List<User> _friends; 
+
         public User()
         {
 
         }
-        public String getUserName()
+
+        public String userName
         {
-            return "";
+            get { return _userName; }
+            set { _userName = value; }
         }
-        public Boolean addFriend(IUser newFriend)
+
+        public String password
         {
-            return true;
+            get { return _password; }
+            set { _password = value; }
         }
-        public Boolean deleteFriend(IUser deletedFriend)
+
+        public String email
         {
-            return true;
+            get { return _email; }
+            set { _email = value; }
         }
-        public Boolean notifyUserViaMail()
+
+        public List<User> friends
         {
-            return true;
+            get { return _friends; }
+            set { _friends = value; }
         }
-        public Boolean sendPrivateMessage(String userName, String content)
-        {
-            return true;
-        }
-        public Boolean banMember(String userName, String forumName)
-        {
-            return true;
-        }
-        public Boolean createSubForum(String subForumName, IForum forum, List<String> moderators)
-        {
-            ISubForum subF = forum.createSubForum(subForumName, moderators);
-            return subF != null;
-        }
-        public Boolean changePolicy(String newPolicy, IForum forum)
-        {
-            return true;
-        }
-        public Boolean isAdmin()
-        {
-            return true;
-        }
-        public Boolean isMember()
-        {
-            return true;
-        }
-        public Boolean createThread()
-        {
-            return true;
-        }
-        public Boolean dismissModerator(IUser dismissedModerator)
-        {
-            return true;
-        }
-        public Boolean deleteThread(IThread toDelete)
-        {
-            return true;
-        }
+
     }
 }
