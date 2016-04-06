@@ -8,6 +8,8 @@ namespace ForumBuilder.Controllers
     {
         private static ThreadController singleton;
         DemoDB demoDB = DemoDB.getInstance;
+        SubForumController subForumController = SubForumController.getInstance;
+
 
         public static ThreadController getInstance
         {
@@ -24,16 +26,16 @@ namespace ForumBuilder.Controllers
         public Boolean addFirstPost(Post newPost, String forum, String subForum)
         {
             Thread thread = new Thread(newPost);
-            SubForumController subForumController;
             if (!demoDB.addThread(thread))
                 return false;
             return subForumController.createThread(thread, forum, subForum);
         }
 
-        // should delete first post too
-        public Boolean deleteThread(Int32 firstPostToDelete, String deleteUser)
+        // delete post from thread only and delete thread from subforum
+        public Boolean deleteThread(Int32 firstPostToDelete)
         {
-            return true;
+            return demoDB.removeThreadByfirstPostId(firstPostToDelete) && subForumController.deleteThread(firstPostToDelete);
+
         }
     }
 }

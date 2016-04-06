@@ -36,6 +36,46 @@ namespace ForumBuilder.BL_DB
             }
             return max;
         }
+
+        internal bool deleteThreadFromSubforum(int firstPostId)
+        {
+            foreach (SubForum sf in subForums)
+            {
+                if (sf.threads.Contains(firstPostId))
+                {
+                    sf.threads.Remove(firstPostId);
+                    return true;
+                }
+            }
+            return false;
+
+        }
+
+        internal Forum getforumByName(string forumName)
+        {
+            foreach(Forum f in forums)
+            {
+                if (f.forumName.Equals(forumName))
+                    return f;
+            }
+            return null;
+        }
+
+        internal bool removeThreadByfirstPostId(int firstPostToDelete)
+        {
+            Thread tr=null;
+            foreach(Thread t in threads)
+            {
+                if (t.firstPost.id == firstPostToDelete)
+                    tr = t;
+            }
+            if (tr == null)
+                return false;
+            threads.Remove(tr);
+            return true;
+
+        }
+
         public Boolean addPost(Post post) {
             foreach(Post p in posts)
             {
@@ -73,6 +113,43 @@ namespace ForumBuilder.BL_DB
             }
             threads.Add(thread);
             return true;
+        }
+
+        public void removePost(Post p)
+        {
+            posts.Remove(p);
+        }
+
+        internal Post getPost(int postId)
+        {
+            foreach (Post p in posts)
+            {
+                if (p.id == postId)
+                    return p;
+            }
+            return null;
+        }
+
+        internal SubForum getSubforumByThread(Thread t)
+        {
+            foreach(SubForum sf in subForums)
+            {
+                if (sf.threads.Contains(t.firstPost.id))
+                {
+                    return sf;
+                }
+            }
+            return null;
+        }
+
+        internal Thread getThreadByFirstPostId(int postId)
+        {
+            foreach(Thread t in threads)
+            {
+                if (t.firstPost.id == postId)
+                    return t;
+            }
+            return null;
         }
 
         public static DemoDB getInstance

@@ -41,7 +41,17 @@ namespace ForumBuilder.Controllers
             throw new NotImplementedException();
         }
 
-        public bool dismissMember(string userName, string dismissingUserName)
+        public bool dismissMember(string userName, string dismissingUserName, string forumName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool isAdmin(string userName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool isMember(string userName, string forumName)
         {
             throw new NotImplementedException();
         }
