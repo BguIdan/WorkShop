@@ -12,9 +12,6 @@ namespace ForumBuilder.BL_DB
         private List<SubForum> subForums;
         private List<Thread> threads;
         private List<Post> posts;
-
-       
-
         private List<User> users;
         private static DemoDB singleton;
 
