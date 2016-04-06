@@ -1,15 +1,29 @@
 ﻿using System;
 using ForumBuilder.BL_Back_End;
+using ForumBuilder.BL_DB;
 
 namespace ForumBuilder.Controllers
 {
     class SubForumController : ISubForumController
     {
-        private SubForum _subForum;
+        private static SubForumController singleton;
 
-        public bool createThread(string headLine, string Content, string userName)
+        DemoDB demoDB = DemoDB.getInstance;
+        public static SubForumController getInstance
         {
-            throw new NotImplementedException();
+            get
+            {
+                if (singleton == null)
+                {
+                    singleton = new SubForumController();
+                }
+                return singleton;
+            }
+
+        }
+        public bool createThread(Thread thread, String forum, String subForum)
+        {
+            return demoDB.addThreadToSubForum(thread, forum, subForum);
         }
 
         public bool deleteThread(int firstPostId, string deleteUserName)

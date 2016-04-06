@@ -6,8 +6,20 @@ namespace ForumBuilder.Controllers
 {
     class SuperUserController : UserController, ISuperUserController
     {
-        private SuperUser _superUser;
+        private static SuperUserController singleton;
 
+        public static SuperUserController getInstance
+        {
+            get
+            {
+                if (singleton == null)
+                {
+                    singleton = new SuperUserController();
+                }
+                return singleton;
+            }
+
+        }
         public Boolean createForum(String forumName, String descrption, String forumPolicy, String forumRules, List<String> administrators, String superUserName)
         {
             return true;

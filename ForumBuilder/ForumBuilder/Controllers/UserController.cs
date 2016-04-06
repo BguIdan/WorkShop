@@ -5,6 +5,19 @@ namespace ForumBuilder.Controllers
 {
     class UserController : IUserController
     {
+        private static UserController singleton;
+        public static UserController getInstance
+        {
+            get
+            {
+                if (singleton == null)
+                {
+                    singleton = new UserController();
+                }
+                return singleton;
+            }
+
+        }
         public bool addFriend(string userName, string friendToAdd)
         {
             throw new NotImplementedException();

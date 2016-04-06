@@ -6,7 +6,20 @@ namespace ForumBuilder.Controllers
 {
     class ForumController : IForumController
     {
-        private Forum _forum;
+        private static ForumController singleton;
+
+        public static ForumController getInstance
+        {
+            get
+            {
+                if (singleton == null)
+                {
+                    singleton = new ForumController();
+                }
+                return singleton;
+            }
+
+        }
 
         public bool addSubForum(string name, List<string> moderators)
         {

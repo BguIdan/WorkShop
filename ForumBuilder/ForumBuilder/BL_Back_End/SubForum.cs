@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ForumBuilder.Users;
 
 namespace ForumBuilder.BL_Back_End
 {
@@ -12,12 +8,14 @@ namespace ForumBuilder.BL_Back_End
         private String _name;
         private List<String> _moderators;
         private List<Int32> _threads;
+        private String _forum;
 
-        public SubForum(String name)
+        public SubForum(String name,String forumName)
         {
             _name = name;
             _moderators = new List<string>();
             _threads = new List<int>();
+            _forum = forumName;
         }
 
         public String name
@@ -36,6 +34,11 @@ namespace ForumBuilder.BL_Back_End
         {
             get { return _threads; }
             set { _threads = value; }
+        }
+        public String forum
+        {
+            get { return _forum; }
+            set { _forum = value; }
         }
     }
 }

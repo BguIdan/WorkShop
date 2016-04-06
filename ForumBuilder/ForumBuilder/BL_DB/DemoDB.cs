@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ForumBuilder.BL_Back_End;
 using ForumBuilder.Users;
 
@@ -14,6 +12,9 @@ namespace ForumBuilder.BL_DB
         private List<SubForum> subForums;
         private List<Thread> threads;
         private List<Post> posts;
+
+       
+
         private List<User> users;
         private static DemoDB singleton;
 
@@ -44,6 +45,36 @@ namespace ForumBuilder.BL_DB
             posts.Add(post);
             return true;
         }
+        public bool addThreadToSubForum(Thread thread, string forum, string subForum)
+        {
+
+            foreach (SubForum sf in subForums)
+            {
+                if (sf.forum.Equals(forum) && sf.name.Equals(subForums))
+                {
+                    foreach (int t in sf.threads)
+                    {
+                        if (t == thread.firstPost.id)
+                            return false;
+                    }
+                    sf.threads.Add(thread.firstPost.id);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public Boolean addThread(Thread thread)
+        {
+            foreach(Thread t in threads)
+            {
+                if (t.firstPost.id == thread.firstPost.id)
+                    return false;
+            }
+            threads.Add(thread);
+            return true;
+        }
+
         public static DemoDB getInstance
         {
             get
