@@ -7,17 +7,20 @@ using ForumBuilder.BL_Back_End;
 
 namespace ForumBuilder.Users
 {
-    public class User : IUser
+    public class User
     {
         private String _userName;
         private String _password;
         private String _email;
-        private List<User> _friends; 
+        private List<String> _friends; 
 
-        public User()
+        public User(String userName, String password, String email)
         {
-
-        }
+            _userName = userName;
+            _password = password;
+            _email = email;
+            _friends = new List<String>();
+    }
 
         public String userName
         {
@@ -37,7 +40,7 @@ namespace ForumBuilder.Users
             set { _email = value; }
         }
 
-        public List<User> friends
+        public List<String> friends
         {
             get { return _friends; }
             set { _friends = value; }

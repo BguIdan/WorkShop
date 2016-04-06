@@ -1,55 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ForumBuilder.BL_Back_End;
-using ForumBuilder.Users;
-using ForumBuilder.BL_DB;
 
 namespace ForumBuilder.Controllers
 {
-    class ForumController
+    class ForumController : IForumController
     {
         private Forum _forum;
 
-        public Boolean dismissAdmin(IUser userismissedAdmin)
+        public bool addSubForum(string name, List<string> moderators)
         {
-            return true;
+            throw new NotImplementedException();
         }
-        public Boolean banMember(IUser bannedMember)
-        {
-            return true;
-        }
-        public Boolean nominateAdmin(IUser newAdmin)
-        {
-            return true;
-        }
-        public Boolean registerUser(IUser newUser)
-        {
 
-            return true;
-        }
-        public Boolean addSubForum(SubForum subF)
+        public bool banMember(string bannedMember, string bannerUserName)
         {
-            _forum.subForums.Add(subF.Name);
-            return true;
+            throw new NotImplementedException();
         }
-        public Boolean changePoliciy(String newPolicy)
+
+        public bool changePoliciy(string newPolicy, string changerName)
         {
-            return true;
+            throw new NotImplementedException();
         }
-        public Boolean isAdmin(String userName)
+
+        public bool dismissAdmin(string adminToDismissed, string dismissingUserName)
         {
-            return true;
+            throw new NotImplementedException();
         }
-        public Boolean isMember(String userName)
+
+        public bool dismissMember(string userName, string dismissingUserName)
         {
-            return true;
+            throw new NotImplementedException();
         }
-        public Boolean dismissMember(IUser userName)
+
+        public bool nominateAdmin(string newAdmin, string nominatorName)
         {
-            return true;
+            throw new NotImplementedException();
+        }
+
+        public bool registerUser(string newUser, string password, string mail)
+        {
+            throw new NotImplementedException();
         }
     }
 }

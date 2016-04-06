@@ -1,36 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ForumBuilder.BL_Back_End;
-using ForumBuilder.Users;
-using ForumBuilder.Services;
 
 namespace ForumBuilder.Controllers
 {
-    class SubForumController
+    class SubForumController : ISubForumController
     {
         private SubForum _subForum;
 
-        public Boolean dismissModerator(IUser dismissedModerator)
-        {
-            return true;
-        }
-
-        public Boolean createThread(String headLine, String Content)
-        {
-            return true;
-        }
-        public Boolean nominateModerator(IUser newModerator)
-        {
-            return true;
-        }
-
-        public Boolean deleteThread(IThread deleteThread)
+        public bool createThread(string headLine, string Content, string userName)
         {
             throw new NotImplementedException();
         }
 
+        public bool deleteThread(int firstPostId, string deleteUserName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool dismissModerator(string dismissedModerator, string dismissByAdmin)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool nominateModerator(string newModerator, string nominatorUser)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

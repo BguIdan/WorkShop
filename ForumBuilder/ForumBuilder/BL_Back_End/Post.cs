@@ -6,37 +6,58 @@ using System.Threading.Tasks;
 
 namespace ForumBuilder.BL_Back_End
 {
-    public class Post : IPost
+    public class Post
     {
-        private int id;
-        private string title;
-        private string content;
-        private int parentId;
+        private String _writerUserName;
+        private Int32 _id;
+        private String _title;
+        private String _content;
+        private Int32 _parentId;
+        private List<Int32> _commentsIds;
+        private DateTime _timePublished;
 
-        public Post(int id, string title, string content, int parentId)
+        public Post(String writerUserName, Int32 id, String title, String content, Int32 parentId, DateTime timePublished)
         {
-            this.id = id;
-            this.title = title;
-            this.content = content;
-            this.parentId = parentId;
+            _id = id;
+            _title = title;
+            _content = content;
+            _parentId = parentId;
+            _commentsIds = new List<int>();
+            _timePublished = timePublished;
         }
         
-        public Int32 _id
+        public Int32 id
         {
-            get { return id; }
-            set { id = value; }
+            get { return _id; }
+            set { _id = value; }
         }
 
-        public Int32 _parentId
+        public Int32 parentId
         {
-            get { return parentId; }
-            set { parentId = value; }
+            get { return _parentId; }
+            set { _parentId = value; }
         }
 
-        public String _title
+        public String title
         {
-            get { return title; }
-            set { title = value; }
+            get { return _title; }
+            set { _title = value; }
+        }
+        public String writerUserName
+        {
+            get { return _writerUserName; }
+            set { _writerUserName = value; }
+        }
+        public List<Int32> commentsIds
+        {
+            get { return _commentsIds; }
+            set { _commentsIds = value; }
+        }
+
+        public DateTime timePublished
+        {
+            get{return _timePublished;}
+            set{_timePublished = value;}
         }
     }
 }

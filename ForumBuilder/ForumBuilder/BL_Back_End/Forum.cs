@@ -7,20 +7,17 @@ using ForumBuilder.Users;
 
 namespace ForumBuilder.BL_Back_End
 {
-    public class Forum : IForum
+    public class Forum
     {
-        private String forumName;
-        private String description;
-        private String forumPolicy;
-        private String forumRules;
+        private String _forumName;
+        private String _description;
+        private String _forumPolicy;
+        private String _forumRules;
         private List<string> _administrators;
         private List<string> _members;
         private List<string> _subForums;
 
-        public Forum()
-        {
-
-        }
+       
 
         public Forum(string forumName, string descrption, string forumPolicy, string forumRules, List<string> administrators)
         {
@@ -31,28 +28,28 @@ namespace ForumBuilder.BL_Back_End
             _administrators = administrators;
         }
 
-        public String _forumPolicy
+        public String forumPolicy
         {
-            get { return forumPolicy; }
-            set { forumPolicy = value; }
+            get { return _forumPolicy; }
+            set { _forumPolicy = value; }
         }
 
-        public String _forumRules
+        public String forumRules
         {
-            get { return forumRules; }
-            set { forumRules = value; }
+            get { return _forumRules; }
+            set { _forumRules = value; }
         }
 
-        public String _description
+        public String description
         {
-            get { return description; }
-            set { description = value; }
+            get { return _description; }
+            set { _description = value; }
         }
 
-        public String _forumName
+        public String forumName
         {
-            get { return forumName; }
-            set { forumName = value; }
+            get { return _forumName; }
+            set { _forumName = value; }
         }
 
         public List<String> administrators

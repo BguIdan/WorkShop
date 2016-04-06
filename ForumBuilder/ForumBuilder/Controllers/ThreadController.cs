@@ -1,24 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ForumBuilder.BL_Back_End;
-using ForumBuilder.Users;
-using ForumBuilder.Services;
 
 namespace ForumBuilder.Controllers
 {
-    class ThreadController
+    class ThreadController : IThreadController
     {
         private Thread _thread;
 
-        public Boolean createFirstPost(IPost newPost)
+        public Boolean addFirstPost(string headLine, string Content, string writerName, DateTime timePublished)
         {
             return true;
         }
+
         // should delete first post too
-        public Boolean deleteThread(IThread toDelete)
+        public Boolean deleteThread(Int32 firstPostToDelete, String deleteUser)
         {
             return true;
         }

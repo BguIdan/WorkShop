@@ -10,20 +10,20 @@ namespace ForumBuilder.BL_DB
 {
     class DemoDB 
     {
-        private List<IForum> forums;
-        private List<ISubForum> subForums;
-        private List<IThread> threads;
+        private List<Forum> forums;
+        private List<SubForum> subForums;
+        private List<Thread> threads;
         private List<Post> posts;
-        private List<IUser> users;
+        private List<User> users;
         private static DemoDB singleton;
 
         private DemoDB()
         {
-            forums = new List<IForum>();
-            subForums = new List<ISubForum>();
-            threads = new List<IThread>();
+            forums = new List<Forum>();
+            subForums = new List<SubForum>();
+            threads = new List<Thread>();
             posts = new List<Post>();
-            users = new List<IUser>();
+            users = new List<User>();
 
         }
 
@@ -40,11 +40,11 @@ namespace ForumBuilder.BL_DB
             
         }
 
-        /*public Boolean isForumExists(string name)
+        public Boolean isForumExists(string name)
         {
             for (int i = 0; i < forums.Count; i++)
             {
-                if (((Forum)(forums.ElementAt(i)))._forumName.Equals((name)))
+                if (((Forum)(forums.ElementAt(i))).forumName.Equals((name)))
                     return true;
             }
                 return false;
@@ -60,11 +60,11 @@ namespace ForumBuilder.BL_DB
             return false;
         }
 
-        public IUser getUser(string userName)
+        public User getUser(string userName)
         {
             for (int i = 0; i < users.Count; i++)
             {
-                if ((users.ElementAt(i)).getUserName().Equals(userName))
+                if ((users.ElementAt(i)).userName.Equals(userName))
                     return users.ElementAt(i);
             }
             return null;
@@ -75,14 +75,14 @@ namespace ForumBuilder.BL_DB
             List<Post> curPost = new List<Post>();
             for (int i = 0; i < posts.Count; i++)
             {
-                if ((posts.ElementAt(i)._parentId == postId))
+                if ((posts.ElementAt(i).parentId == postId))
                 {
                     curPost.Add(posts.ElementAt(i));
                 }
             }
             return curPost;
 
-        }*/
+        }
 
         public Boolean createForum(string forumName, string descrption, string forumPolicy, string forumRules, List<string> administrators)
         {
@@ -93,7 +93,7 @@ namespace ForumBuilder.BL_DB
                     Console.WriteLine("one of the fields was empty");
                     return false;
                 }
-                IForum newForum = new Forum(forumName, descrption, forumPolicy, forumRules, administrators);
+                Forum newForum = new Forum(forumName, descrption, forumPolicy, forumRules, administrators);
                 forums.Add(newForum);
                 return true;
             }
