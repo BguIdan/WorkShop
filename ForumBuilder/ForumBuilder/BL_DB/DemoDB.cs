@@ -12,9 +12,6 @@ namespace ForumBuilder.BL_DB
         private List<SubForum> subForums;
         private List<Thread> threads;
         private List<Post> posts;
-
-       
-
         private List<User> users;
         private static DemoDB singleton;
 
@@ -110,12 +107,23 @@ namespace ForumBuilder.BL_DB
 
         public User getUser(string userName)
         {
-            for (int i = 0; i < users.Count; i++)
+            foreach (User u in users)
             {
-                if ((users.ElementAt(i)).userName.Equals(userName))
-                    return users.ElementAt(i);
+                if (u.userName.Equals(userName))
+                    return u;
             }
             return null;
+        }
+
+        public Boolean addUser(User user)
+        {
+            foreach (User u in users)
+            {
+                if (u.userName.Equals(user.userName))
+                    return false;
+            }
+            users.Add(user);
+            return true;
         }
 
        public List<Post> getRelatedPosts(int postId)
@@ -166,5 +174,16 @@ namespace ForumBuilder.BL_DB
             return true;
         }
 
+
+        public Boolean addSubForum(SubForum subForum)
+        {
+            foreach(SubForum sf in subForums)
+            {
+                if (sf.name == subForum.name)
+                    return false;
+            }
+            subForums.Add(subForum);
+            return true;
+        }
     }
 }
