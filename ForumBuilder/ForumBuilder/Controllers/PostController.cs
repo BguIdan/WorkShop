@@ -1,28 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ForumBuilder.BL_Back_End;
-using ForumBuilder.Users;
-using ForumBuilder.Services;
+using ForumBuilder.BL_DB;
 
 namespace ForumBuilder.Controllers
 {
-    class PostController
+    class PostController :IPostController
     {
-        private Post _post;
         
-        public Boolean deletePost()
+        public Boolean deletePost(Int32 postId, String deletingUser)
         {
-            List<Post> donePosts = new List<Post>();
-            List<Post> undonePosts = new List<Post>();
-            undonePosts.Add(this);
+            List<int> donePosts = new List<int>();
+            List<int> undonePosts = new List<int>();
+            undonePosts.Add(postId);
             while (undonePosts.Count != 0)
             {
                 Post p = undonePosts.ElementAt(0);
                 undonePosts.RemoveAt(0);
-                List<Post> related = Services.Service.getInstance.getRelatedPosts(p._id);
+                List<Post> related = DemoDB.getInstance.getRelatedPosts(p._id);
                 while (related != null && related.Count != 0)
                 {
                     undonePosts.Add(related.ElementAt(0));
@@ -33,7 +29,7 @@ namespace ForumBuilder.Controllers
             return true;
         }
 
-        public Boolean addPost(IPost newPost)
+        public Boolean addPost(String headLine, String Content, String writerName, DateTime timePublished, Int32 commentedPost/*if new thread, -1*/)
         {
             return true;
         }

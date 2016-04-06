@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ForumBuilder.BL_Back_End
 {
-    public class Thread : IThread
+    public class Thread
     {
         private Post _firstPost;
         private String _title;
@@ -14,10 +14,10 @@ namespace ForumBuilder.BL_Back_End
         public Thread(Post post)
         {
             _firstPost = post;
-            _title = post._title;
+            _title = post.title;
         }
 
-        public Post FirstPost
+        public Post firstPost
         {
             get { return _firstPost; }
             set { _firstPost = value; }

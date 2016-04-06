@@ -1,45 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using ForumBuilder.BL_Back_End;
-using ForumBuilder.Services;
+using ForumBuilder.BL_DB;
 
 namespace ForumBuilder.Systems
 {
     class ForumSystem : ISystem
     {
-        private IService service;
+        private DemoDB demo_db;
 
         public ForumSystem()
         {
-            service = Service.getInstance;
+            demo_db = DemoDB.getInstance;
         }
 
-        private List<IForum> forums;
+        private List<IForumController> forums;
 
-        public List<IForum> _forums
+        public List<IForumController> _forums
         {
-            get
-            {
-                return forums;
-            }
-
-            set
-            {
-                forums = value;
-            }
+            get{ return forums;}
+            set{forums = value;}
         }
 
         public bool initialize(string userName, string password, string email)
         {
-            return service.initialize(userName, password, email);
+            return demo_db.initialize(userName, password, email);
         }
 
         public bool createForum(string forumName, string descrption, string forumPolicy, string forumRules, List<string> administrators)
         {
-            return service.createForum(forumName, descrption, forumPolicy, forumRules, administrators);
+            return demo_db.createForum(forumName, descrption, forumPolicy, forumRules, administrators);
         }
 
         public static int Main(string[] args)

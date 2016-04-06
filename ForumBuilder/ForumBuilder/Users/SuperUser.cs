@@ -8,20 +8,19 @@ using ForumBuilder.Systems;
 
 namespace ForumBuilder.Users
 {
-    public class SuperUser : ISuperUser
+    public class SuperUser
     {
         private ForumSystem _system;
 
         public SuperUser()
         {
-            _system = new ForumSystem();
+            forumSystem = new ForumSystem();
         }
 
-        public ForumSystem _forumSystem
+        internal ForumSystem forumSystem
         {
-            get { return _system; }
-            set { _system = value; }
+            get{ return _system;}
+            set{ _system = value;}
         }
-        
     }
 }

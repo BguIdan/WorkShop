@@ -7,7 +7,7 @@ using ForumBuilder.Users;
 
 namespace ForumBuilder.BL_Back_End
 {
-    public class SubForum : ISubForum
+    public class SubForum
     {
         private String _name;
         private List<String> _moderators;
@@ -20,19 +20,19 @@ namespace ForumBuilder.BL_Back_End
             _threads = new List<int>();
         }
 
-        public String Name
+        public String name
         {
             get { return _name; }
             set { _name = value; }
         }
 
-        public List<String> Moderators
+        public List<String> moderators
         {
             get { return _moderators; }
             set { _moderators = value; }
         }
 
-        public List<Int32> Threads
+        public List<Int32> threads
         {
             get { return _threads; }
             set { _threads = value; }

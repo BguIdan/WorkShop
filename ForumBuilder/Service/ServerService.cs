@@ -1,15 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ForumBuilder.Controllers;
-
-namespace Service
+﻿namespace Service
 {
     class ServerService
     {
-         
         
+        /// <summary>
+        /// האם צריך לשלוח את מי שביקש את הפעולה? 
+        /// ככה נוכל לתת הרשאות וכן להתאים מידע מתאים
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="forum"></param>
+        /// <returns></returns>
+
+
+       
+
     }
 }
