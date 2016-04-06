@@ -8,7 +8,7 @@ namespace ForumBuilder.Controllers
 {
     class PostController :IPostController
     {
-        
+        DemoDB demoDB = DemoDB.getInstance;
         public Boolean deletePost(Int32 postId, String deletingUser)
         {
             List<int> donePosts = new List<int>();
@@ -29,9 +29,18 @@ namespace ForumBuilder.Controllers
             return true;
         }
 
-        public Boolean addPost(String headLine, String Content, String writerName, DateTime timePublished, Int32 commentedPost/*if new thread, -1*/)
+        public Boolean addPost(String headLine, String content, String writerName, DateTime timePublished, Int32 commentedPost/*if new thread, -1*/)
         {
-            return true;
+            Post newPost = new Post(writerName, demoDB.getAvilableIntOfPost(), headLine, content, commentedPost, timePublished);
+            demoDB.addPost(newPost);
+            if (commentedPost == -1)
+            {
+
+            }
+            else
+            {
+
+            }
         }
     }
 }
