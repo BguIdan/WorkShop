@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using ForumBuilder.BL_Back_End;
 using ForumBuilder.BL_DB;
+using ForumBuilder.Users;
 
 namespace ForumBuilder.Controllers
 {
@@ -29,11 +30,11 @@ namespace ForumBuilder.Controllers
             if (user != null)
             {
                
-                if(!isAdnim(userNameAdmin, forumName)){
+                if(!isAdmin(userNameAdmin, forumName)){
                     //maybe add error message to logger?! not an admin
                         return false;
                 }
-                Forum forum = demoDB.getForumByName(forumName);
+                Forum forum = demoDB.getforumByName(forumName);
                 if (forum != null)
                 {
                     forum.subForums.Add(name);
