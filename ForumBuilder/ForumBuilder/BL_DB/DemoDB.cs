@@ -13,6 +13,7 @@ namespace ForumBuilder.BL_DB
         private List<Thread> threads;
         private List<Post> posts;
         private List<User> users;
+        private List<Message> messages;
         private static DemoDB singleton;
 
         private DemoDB()
@@ -208,21 +209,16 @@ namespace ForumBuilder.BL_DB
 
         public Boolean createForum(string forumName, string descrption, string forumPolicy, string forumRules, List<string> administrators)
         {
-            try
+            
+            if (forumName.Equals("") || descrption.Equals("") || forumPolicy.Equals("") || forumRules.Equals("") || administrators == null)
             {
-                if (forumName.Equals("") || descrption.Equals("") || forumPolicy.Equals("") || forumRules.Equals("") || administrators == null)
-                {
-                    Console.WriteLine("one of the fields was empty");
-                    return false;
-                }
-                Forum newForum = new Forum(forumName, descrption, forumPolicy, forumRules, administrators);
-                forums.Add(newForum);
-                return true;
-            }
-            catch
-            {
+                Console.WriteLine("cannot create new forum because one or more of the fields was empty");
                 return false;
             }
+            Forum newForum = new Forum(forumName, descrption, forumPolicy, forumRules, administrators);
+            forums.Add(newForum);
+            return true;
+           
         }
 
         public Boolean initialize(String userName, String password, String email)
@@ -238,6 +234,30 @@ namespace ForumBuilder.BL_DB
             // should send configuration email to the super user's email
             Console.WriteLine("the system was initialized successully");
             return true;
+        }
+
+        public Boolean setForumPreferences(String forumName ,String newDescription, String newForumPolicy, String newForumRules)
+        {
+            bool isChanged = false;
+            for (int i = 0; i < forums.Count() && !isChanged; i++)
+            {
+                if (forums[i].forumName.Equals(forumName))
+                {
+                    forums[i].description = newDescription;
+                    forums[i].forumPolicy = newForumPolicy;
+                    forums[i].forumRules = newForumRules;
+                    Console.WriteLine(forumName + "preferences had changed successfully");
+                    isChanged = true;
+                }
+                
+            }
+            if (!isChanged) Console.WriteLine("This forum" + forumName + "doesn't exist");
+            return isChanged;
+        }
+
+        public List<Message> Messages
+        {
+            get { return messages; }
         }
 
     }

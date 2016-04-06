@@ -1,5 +1,7 @@
 ﻿using System;
 using ForumBuilder.Users;
+using ForumBuilder.BL_DB;
+using ForumBuilder.BL_Back_End;
 
 namespace ForumBuilder.Controllers
 {
@@ -28,9 +30,19 @@ namespace ForumBuilder.Controllers
             throw new NotImplementedException();
         }
 
-        public bool sendPrivateMessage(string fromUserName, string toUserName, string content)
+        public bool sendPrivateMessage(string fromUserName, string toUserName, string content, Int32 id)
         {
-            throw new NotImplementedException();
+            User sender = DemoDB.getInstance.getUser(fromUserName);
+            User reciver = DemoDB.getInstance.getUser(toUserName);
+            if (sender != null && reciver != null && !content.Equals(""))
+            {
+                Message mess = new Message(id, fromUserName, toUserName, content);
+                DemoDB.getInstance.Messages.Add(mess);
+                return true;
+            }
+
+            return false;
         }
+
     }
 }
