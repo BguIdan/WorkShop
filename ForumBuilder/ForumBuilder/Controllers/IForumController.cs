@@ -15,5 +15,6 @@ namespace ForumBuilder.BL_Back_End
         //Boolean isAdmin(String userName);
         //Boolean isMember(String userName);
         Boolean dismissMember(String userName, String dismissingUserName);
+        Boolean setForumPreferences(String forumName, String newDescription, String newForumPolicy, String newForumRules);
     }
 }

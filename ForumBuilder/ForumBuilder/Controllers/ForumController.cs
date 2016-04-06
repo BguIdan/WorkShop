@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ForumBuilder.BL_Back_End;
+using ForumBuilder.BL_DB;
 
 namespace ForumBuilder.Controllers
 {
@@ -54,6 +55,12 @@ namespace ForumBuilder.Controllers
         public bool registerUser(string newUser, string password, string mail)
         {
             throw new NotImplementedException();
+        }
+
+        public Boolean setForumPreferences(String forumName, String newDescription, String newForumPolicy, String newForumRules)
+        {
+            DemoDB.getInstance.setForumPreferences(forumName, newDescription, newForumPolicy, newForumRules);
+            return true;
         }
     }
 }

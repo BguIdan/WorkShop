@@ -6,7 +6,7 @@ namespace ForumBuilder.Users
     {
         Boolean addFriend(String userName, String friendToAdd);
         Boolean deleteFriend(String userName, String deletedFriend);
-        Boolean sendPrivateMessage(String fromUserName, String toUserName, String content);
+        Boolean sendPrivateMessage(string fromUserName, string toUserName, string content, Int32 id);
 
         /*
         this should be in other controllers
