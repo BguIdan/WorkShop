@@ -26,7 +26,24 @@ namespace ForumBuilder.BL_DB
             users = new List<User>();
 
         }
-
+        public int /* the new post id*/ getAvilableIntOfPost() {
+            int max = 0;
+            foreach (Post p in posts)
+            {
+                if (p.id >= max)
+                    max=p.id+1;
+            }
+            return max;
+        }
+        public Boolean addPost(Post post) {
+            foreach(Post p in posts)
+            {
+                if (p.id == post.id)
+                    return false;
+            }
+            posts.Add(post);
+            return true;
+        }
         public static DemoDB getInstance
         {
             get
@@ -117,5 +134,6 @@ namespace ForumBuilder.BL_DB
             Console.WriteLine("the system was initialized successully");
             return true;
         }
+
     }
 }
