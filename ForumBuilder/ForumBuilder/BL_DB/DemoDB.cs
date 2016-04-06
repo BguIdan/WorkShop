@@ -193,6 +193,17 @@ namespace ForumBuilder.BL_DB
             return null;
         }
 
+        public Boolean addUser(User user)
+        {
+            foreach (User u in users)
+            {
+                if (u.userName.Equals(user.userName))
+                    return false;
+            }
+            users.Add(user);
+            return true;
+        }
+
        public List<Post> getRelatedPosts(int postId)
         {
             List<Post> curPost = new List<Post>();
@@ -236,6 +247,7 @@ namespace ForumBuilder.BL_DB
             return true;
         }
 
+<<<<<<< HEAD
         public Boolean setForumPreferences(String forumName ,String newDescription, String newForumPolicy, String newForumRules)
         {
             bool isChanged = false;
@@ -260,5 +272,18 @@ namespace ForumBuilder.BL_DB
             get { return messages; }
         }
 
+=======
+
+        public Boolean addSubForum(SubForum subForum)
+        {
+            foreach(SubForum sf in subForums)
+            {
+                if (sf.name == subForum.name)
+                    return false;
+            }
+            subForums.Add(subForum);
+            return true;
+        }
+>>>>>>> origin/registerToForum_and_createSF_nominateMod
     }
 }

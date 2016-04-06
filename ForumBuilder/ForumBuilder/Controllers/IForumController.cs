@@ -10,10 +10,11 @@ namespace ForumBuilder.BL_Back_End
         Boolean banMember(String bannedMember, String bannerUserName);
         Boolean nominateAdmin(String newAdmin, String nominatorName);
         Boolean registerUser(String newUser, String password, String mail);
-        Boolean addSubForum(String name, List<String> moderators);
+        Boolean addSubForum(String forumName, String name, List<String> moderators, String userNameAdmin);
         Boolean changePoliciy(String newPolicy, String changerName);
         Boolean isAdmin(String userName, String forumName);
         Boolean isMember(String userName,String forumName );
         Boolean dismissMember(String userName, String dismissingUserName, String forumName);
+
     }
 }
