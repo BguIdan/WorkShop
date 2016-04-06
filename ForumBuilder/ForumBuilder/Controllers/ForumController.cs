@@ -46,7 +46,7 @@ namespace ForumBuilder.Controllers
             throw new NotImplementedException();
         }
 
-        public bool isAdmin(string userName)
+        public bool isAdmin(string userName, string forumName)
         {
             throw new NotImplementedException();
         }
