@@ -170,7 +170,7 @@ namespace Tests
         {
             String userMemberName = this.userMember.getUserName();
             Assert.IsTrue(this.forum.isMember(userMemberName), "userMember should be a member in the forum");
-            Assert.IsTrue(this.forum.registerUser(this.userMember), "the registration of a member should be successful");
+            Assert.IsFalse(this.forum.registerUser(this.userMember), "the registration of a member should be unsuccessful");
             Assert.IsTrue(this.forum.isMember(userMemberName), "userMember should still be a member in the forum");
         }
 
@@ -180,7 +180,7 @@ namespace Tests
             String userAdminName = this.userAdmin.getUserName();
             Assert.IsTrue(this.forum.isMember(userAdminName), "userAdmin should be a member in the forum");
             Assert.IsTrue(this.forum.isAdmin(userAdminName), "userAdmin should be an admin in the forum");
-            Assert.IsTrue(this.forum.nominateAdmin(this.userAdmin), "the registration of an admin should be successful");
+            Assert.IsFalse(this.forum.registerUser(this.userAdmin), "the registration of an admin should be successful");
             Assert.IsTrue(this.forum.isMember(userAdminName), "userAdmin should still be a member in the forum");
         }
 
@@ -213,8 +213,8 @@ namespace Tests
         public void test_changePolicy_with_empty_string()
         {
             String oldPolicy = this.forum.getPolicy();
-            Assert.IsFalse(this.forum.changePoliciy(""), "policy change with an empty string should not be successful");
-            Assert.AreEqual(this.forum.getPolicy(), oldPolicy, false, "after an unsuccessful change, the old policy should be returned");
+            Assert.IsTrue(this.forum.changePoliciy(""), "policy change with an empty string should be successful");
+            Assert.AreEqual(this.forum.getPolicy(), "", false, "the new policy(empty string) should be return after the change");
         }
 
 
@@ -323,9 +323,9 @@ namespace Tests
         {
             String userAdminName = this.userAdmin.getUserName();
             Assert.IsTrue(this.forum.isMember(userAdminName), "user admin should be a member in the forum");
-            Assert.IsTrue(this.forum.dismissMember(this.userAdmin), "dismiss member on admin user should be successful");
-            Assert.IsFalse(this.forum.isAdmin(userAdminName), "after dismissal admin user should not be an admin anymore");
-            Assert.IsFalse(this.forum.isMember(userAdminName), "after dismissal admin user should not be a member anymore");
+            Assert.IsFalse(this.forum.dismissMember(this.userAdmin), "dismiss member on admin user should be unsuccessful");
+            Assert.IsTrue(this.forum.isAdmin(userAdminName), "after unsuccessful dismissal, admin user should still be an admin");
+            Assert.IsTrue(this.forum.isMember(userAdminName), "after unsuccessful dismissal, admin user should still not be a member");
         }
 
         [TestMethod]
