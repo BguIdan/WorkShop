@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ForumBuilder.Users
+namespace ForumBuilder.Controllers
 {
     public interface IUserController
     {

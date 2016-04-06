@@ -12,8 +12,8 @@ namespace ForumBuilder.BL_Back_End
         Boolean registerUser(String newUser, String password, String mail);
         Boolean addSubForum(String name, List<String> moderators);
         Boolean changePoliciy(String newPolicy, String changerName);
-        //Boolean isAdmin(String userName);
-        //Boolean isMember(String userName);
-        Boolean dismissMember(String userName, String dismissingUserName);
+        Boolean isAdmin(String userName);
+        Boolean isMember(String userName,String forumName );
+        Boolean dismissMember(String userName, String dismissingUserName, String forumName);
     }
 }

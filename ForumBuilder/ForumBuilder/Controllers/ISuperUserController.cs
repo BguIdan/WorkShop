@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ForumBuilder.Users
+namespace ForumBuilder.Controllers
 {
     interface ISuperUserController : IUserController
     {

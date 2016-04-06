@@ -25,10 +25,10 @@ namespace ForumBuilder.Controllers
         {
             return demoDB.addThreadToSubForum(thread, forum, subForum);
         }
-
-        public bool deleteThread(int firstPostId, string deleteUserName)
+        // delete thread from subforum
+        public bool deleteThread(int firstPostId)
         {
-            throw new NotImplementedException();
+            return demoDB.deleteThreadFromSubforum(firstPostId);
         }
 
         public bool dismissModerator(string dismissedModerator, string dismissByAdmin)
