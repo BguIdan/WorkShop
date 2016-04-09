@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BL_Back_End\Message.cs" />
+    <Compile Include="BL_DB\DemoDB.cs" />
     <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\SubForumController.cs" />
@@ -53,7 +54,6 @@
     <Compile Include="BL_Back_End\Post.cs" />
     <Compile Include="BL_Back_End\SubForum.cs" />
     <Compile Include="BL_Back_End\Thread.cs" />
-    <Compile Include="Controllers\DemoDB.cs" />
     <Compile Include="Systems\ILogger.cs" />
     <Compile Include="Systems\ISystem.cs" />
     <Compile Include="Systems\ForumSystem.cs" />
@@ -62,9 +62,7 @@
     <Compile Include="Users\SuperUser.cs" />
     <Compile Include="Users\User.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BL_DB\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
