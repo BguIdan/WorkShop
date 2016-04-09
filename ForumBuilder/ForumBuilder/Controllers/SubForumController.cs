@@ -31,14 +31,14 @@ namespace ForumBuilder.Controllers
             return demoDB.deleteThreadFromSubforum(firstPostId);
         }
 
-        public bool dismissModerator(string dismissedModerator, string dismissByAdmin)
+        public bool dismissModerator(string dismissedModerator, string dismissByAdmin, SubForum subForum)
         {
-            throw new NotImplementedException();
+            return demoDB.dismissModerator(dismissedModerator, dismissByAdmin, subForum);
         }
 
-        public bool nominateModerator(string newModerator, string nominatorUser)
+        public bool nominateModerator(string newModerator, string nominatorUser, DateTime date, SubForum subForum)
         {
-            throw new NotImplementedException();
+            return demoDB.nominateModerator(newModerator, nominatorUser, date, subForum);
         }
     }
 }
