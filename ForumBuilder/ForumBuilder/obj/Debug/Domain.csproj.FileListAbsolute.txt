@@ -5,3 +5,4 @@ D:\Idan\Workshop\WorkShop.git\ForumBuilder\ForumBuilder\bin\Debug\ForumBuilder.e
 C:\Users\Aviv\Documents\WorkShop\ForumBuilder\ForumBuilder\bin\Debug\ForumBuilder.exe.config
 C:\Users\Aviv\Documents\WorkShop\ForumBuilder\ForumBuilder\obj\Debug\Domain.csprojResolveAssemblyReference.cache
 >>>>>>> origin/registerToForum_and_createSF_nominateMod
+C:\Users\User\Desktop\git projects\ForumBuilder\ForumBuilder\obj\Debug\Domain.csprojResolveAssemblyReference.cache
