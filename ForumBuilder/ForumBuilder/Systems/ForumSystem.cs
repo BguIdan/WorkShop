@@ -24,6 +24,7 @@ namespace ForumBuilder.Systems
         public bool initialize(string userName, string password, string email)
         {
             return demo_db.initialize(userName, password, email);
+            //should present some window..
         }
 
         public bool createForum(string forumName, string descrption, string forumPolicy, string forumRules, List<string> administrators)

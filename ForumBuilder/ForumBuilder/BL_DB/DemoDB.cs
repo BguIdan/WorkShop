@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ForumBuilder.BL_Back_End;
 using ForumBuilder.Users;
+using System.Net.Mail;
 
 namespace ForumBuilder.BL_DB
 {
@@ -14,6 +15,7 @@ namespace ForumBuilder.BL_DB
         private List<Post> posts;
         private List<User> users;
         private List<Message> messages;
+        private List<SuperUser> superUsers;
         private static DemoDB singleton;
 
         private DemoDB()
@@ -241,13 +243,71 @@ namespace ForumBuilder.BL_DB
                 return false;
             }
             // should check if the password is strong enough
-            // should check if the the email is in a correct format
-            // should send configuration email to the super user's email
+            bool isNumExist = false;
+            bool isSmallKeyExist = false;
+            bool isBigKeyExist = false;
+            bool isKeyRepeting3Times = false;
+            for(int i = 0; i<password.Length; i++)
+            {
+                if(password.ElementAt(i)<='9' && password.ElementAt(i) >= '0')
+                {
+                    isNumExist = true;
+                }
+                if (password.ElementAt(i) <= 'Z' && password.ElementAt(i) >= 'A')
+                {
+                    isBigKeyExist = true;
+                }
+                if (password.ElementAt(i) <= 'z' && password.ElementAt(i) >= 'a')
+                {
+                    isSmallKeyExist = true;
+                }
+                if(i<password.Length-2 && (password.ElementAt(i).Equals(password.ElementAt(i+1)) && password.ElementAt(i).Equals(password.ElementAt(i + 2))))
+                {
+                    isKeyRepeting3Times = true;
+                }
+                if (!(isNumExist && isSmallKeyExist && isBigKeyExist && !isKeyRepeting3Times))
+                {
+                    Console.WriteLine("password isnt strong enough");
+                    return false;
+                }
+            }
+            // check if the the email is in a correct format
+            int index = email.IndexOf("@");
+            if (index < 0 || index == email.Length -1)
+            {
+                Console.WriteLine("error in email format");
+                return false;
+            }
+            //  send configuration email to the super user's 
+            sendmail(email);
+
+            //adding the user
+            SuperUser superUser = new SuperUser();
+            superUser._email = email;
+            superUser._password = password;
+            superUser._userName = userName;
+            superUsers.Add(superUser);
+
             Console.WriteLine("the system was initialized successully");
             return true;
         }
 
-<<<<<<< HEAD
+        private void sendmail(string email)
+        {
+            String ourEmail = "ourEmail@gmail.com";
+            MailMessage mail = new MailMessage(ourEmail, email);
+            SmtpClient client = new SmtpClient();
+            client.Port = 25;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.UseDefaultCredentials = false;
+            client.Host = "smtp.google.com";
+            mail.Subject = "please configure your account";
+            mail.Body = "please configure your account";
+            client.Send(mail);
+
+        }
+
+        //<<<<<<< HEAD
         public Boolean setForumPreferences(String forumName ,String newDescription, String newForumPolicy, String newForumRules)
         {
             bool isChanged = false;
@@ -272,7 +332,7 @@ namespace ForumBuilder.BL_DB
             get { return messages; }
         }
 
-=======
+//=======
 
         public Boolean addSubForum(SubForum subForum)
         {
@@ -284,6 +344,6 @@ namespace ForumBuilder.BL_DB
             subForums.Add(subForum);
             return true;
         }
->>>>>>> origin/registerToForum_and_createSF_nominateMod
+//>>>>>>> origin/registerToForum_and_createSF_nominateMod
     }
 }
