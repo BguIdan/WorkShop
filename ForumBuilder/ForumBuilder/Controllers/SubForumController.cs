@@ -31,14 +31,22 @@ namespace ForumBuilder.Controllers
             return demoDB.deleteThreadFromSubforum(firstPostId);
         }
 
-        public bool dismissModerator(string dismissedModerator, string dismissByAdmin, SubForum subForum)
+        public bool dismissModerator(string dismissedModerator, string dismissByAdmin, SubForum subForum, Forum forum)
         {
-            return demoDB.dismissModerator(dismissedModerator, dismissByAdmin, subForum);
+            if(ForumController.getInstance.isAdmin(dismissByAdmin, forum.forumName) && ForumController.getInstance.isMember(dismissedModerator, forum.forumName))
+            {
+                return demoDB.dismissModerator(dismissedModerator, dismissByAdmin, subForum);
+            }
+            return false;
         }
 
-        public bool nominateModerator(string newModerator, string nominatorUser, DateTime date, SubForum subForum)
+        public bool nominateModerator(string newModerator, string nominatorUser, DateTime date, SubForum subForum, Forum forum)
         {
-            return demoDB.nominateModerator(newModerator, nominatorUser, date, subForum);
+            if (ForumController.getInstance.isAdmin(nominatorUser, forum.forumName) && ForumController.getInstance.isMember(newModerator, forum.forumName))
+            {
+                return demoDB.nominateModerator(newModerator, nominatorUser, date, subForum);
+            }
+            return false;
         }
     }
 }
