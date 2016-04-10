@@ -89,7 +89,6 @@ namespace ForumBuilder.Controllers
                 return false;
             }
             else 
-            if (this.isMember(bannedMember, forumName) && this.isAdmin(bannerUserName, forumName))
             {
                 return demoDB.banMember(bannedMember, bannerUserName, forumName);
             }
