@@ -111,12 +111,9 @@ namespace ForumBuilder.Controllers
         public bool isMember(string userName, string forumName)
         {
             Forum forum = demoDB.getforumByName(forumName);
-            foreach (string s in forum.members)
+            if (forum.members.Contains(userName))
             {
-                if (s.Equals(userName))
-                {
-                    return true;
-                }
+                return true;
             }
             logger.logPrint("User " +userName+ "is not member in "+ forumName);      
             return false;
@@ -145,8 +142,14 @@ namespace ForumBuilder.Controllers
             
         }
 
-        public bool registerUser(string userName, string password, string mail)
+        public bool registerUser(string userName, string password, string mail, string forumName)
         {
+            Forum forum = demoDB.getforumByName(forumName);
+            if (forum == null)
+            {
+                logger.logPrint("the forum does not exist");
+                return false;
+            }
             if (userName.Length > 0 && password.Length > 0 && mail.Length > 0)
             {
                 if(demoDB.getUser(userName) !=null)
@@ -156,6 +159,8 @@ namespace ForumBuilder.Controllers
                 User newUser = new User(userName, password, mail);
                 if (demoDB.addUser(newUser))
                 {
+                
+                    forum.members.Add(newUser.userName);
                     return true;
                 }
                 return false;
