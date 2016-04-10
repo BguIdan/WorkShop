@@ -402,6 +402,21 @@ namespace ForumBuilder.BL_DB
             return isChanged;
         }
 
+        internal bool addFriendToUser(string userName, string friendToAddName)
+        {
+            User user = getUser(userName);
+            if (user.friends.Contains(friendToAddName))
+                return false;
+            user.friends.Add(friendToAddName);
+            return true;
+        }
+        internal bool removeFriendOfUser(string userName, string deletedFriendName)
+        {
+            User user = getUser(userName);
+            user.friends.Remove(deletedFriendName);
+            return true;
+        }
+
         public List<Message> Messages
         {
             get { return messages; }
