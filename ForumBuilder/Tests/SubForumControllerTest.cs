@@ -28,9 +28,9 @@ namespace Tests
             this.userMember = new User("mem", "mempass", "mem@gmail.com");
             this.userModerator = new User("mod", "modpass", "mod@gmail.com");
             this.userAdmin = new User("admin", "adminpass", "admin@gmail.com");
-            Assert.IsTrue(this.forumController.registerUser("admin", "adminpass", "admin@gmail.com"));
-            Assert.IsTrue(this.forumController.registerUser("mem", "mempass", "mem@gmail.com"));
-            Assert.IsTrue(this.forumController.registerUser("mod", "modpass", "mod@gmail.com"));
+            Assert.IsTrue(this.forumController.registerUser("admin", "adminpass", "admin@gmail.com", this.forumName));
+            Assert.IsTrue(this.forumController.registerUser("mem", "mempass", "mem@gmail.com", this.forumName));
+            Assert.IsTrue(this.forumController.registerUser("mod", "modpass", "mod@gmail.com", this.forumName));
             //Assert.IsTrue(this.forumController.nominateAdmin("admin", "adminpass", "admin@gmail.com"));
             Dictionary<String, DateTime> modList = new Dictionary<String, DateTime>();
             modList.Add(this.userModerator.userName, new DateTime(2030, 1, 1));

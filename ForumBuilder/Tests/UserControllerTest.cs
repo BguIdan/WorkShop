@@ -17,6 +17,7 @@ namespace Tests
         private User userNonMember;
         private User userMember;
         private User userAdmin;
+        private String ForumName = "testForum";
 
         [TestInitialize]
         public void setUp()
@@ -25,12 +26,12 @@ namespace Tests
             this.userNonMember = new User("nonMem", "nonmemPass", "nonmem@gmail.com");
             this.userMember = new User("mem", "mempass", "mem@gmail.com");
             this.userAdmin = new User("admin", "adminpass", "admin@gmail.com");
-            Assert.IsTrue(this.forumController.registerUser("mem", "mempass", "mem@gmail.com"));
-            Assert.IsTrue(this.forumController.registerUser("admin", "adminpass", "admin@gmail.com"));
+            Assert.IsTrue(this.forumController.registerUser("mem", "mempass", "mem@gmail.com", this.ForumName));
+            Assert.IsTrue(this.forumController.registerUser("admin", "adminpass", "admin@gmail.com", this.ForumName));
             List<string> adminList = new List<string>();
             adminList.Add("admin");
             ISuperUserController superUser = SuperUserController.getInstance;
-            superUser.createForum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "");
+            superUser.createForum(ForumName, "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "");
         }
 
         [TestCleanup]
@@ -91,7 +92,7 @@ namespace Tests
             String newMemberName = "mem2";
             List<String> friends = this.userController.getFriendList(this.userMember.userName);
             Assert.AreEqual(friends.Count, 0, "initial friend list should be empty");
-            Assert.IsTrue(this.forumController.registerUser(newMemberName, "mempass2", "mem2@gmail.com"));
+            Assert.IsTrue(this.forumController.registerUser(newMemberName, "mempass2", "mem2@gmail.com", this.ForumName));
             Assert.IsTrue(this.userController.addFriend(this.userMember.userName, newMemberName), "non member cannot add a friend");
             List<String> newFriendList = this.userController.getFriendList(this.userMember.userName);
             Assert.AreEqual(newFriendList.Count, 1, "friend list size should increase from 0 to 1");
@@ -102,7 +103,7 @@ namespace Tests
         {
             List<String> friends = this.userController.getFriendList(this.userMember.userName);
             Assert.AreEqual(friends.Count, 0, "initial friend list should be empty");
-            Assert.IsFalse(this.userController.addFriend(this.userMember.userName, this.userAdmin.userName), "non member cannot add a friend"));
+            Assert.IsFalse(this.userController.addFriend(this.userMember.userName, this.userAdmin.userName), "non member cannot add a friend");
             List<String> newFriendList = this.userController.getFriendList(this.userMember.userName);
             Assert.AreEqual(newFriendList.Count, 1, "friend list size should increase from 0 to 1");
         }
