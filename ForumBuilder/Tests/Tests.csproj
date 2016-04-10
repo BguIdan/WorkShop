@@ -52,7 +52,7 @@
   <ItemGroup>
     <Compile Include="ForumControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SubForumTest.cs" />
+    <Compile Include="SubForumControllerTest.cs" />
     <Compile Include="UserTest.cs" />
   </ItemGroup>
   <ItemGroup>

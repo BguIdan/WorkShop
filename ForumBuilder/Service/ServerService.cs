@@ -23,7 +23,12 @@ namespace Service
                 return singleton;
             }
 
-        }  
+        }
+
+        public static int Main(string[] args)
+        {
+            return -1;
+        }
 
     }
 }

@@ -4,7 +4,7 @@ using ForumBuilder.BL_DB;
 
 namespace ForumBuilder.Controllers
 {
-    class ThreadController : IThreadController
+    class ThreadController
     {
         private static ThreadController singleton;
         DemoDB demoDB = DemoDB.getInstance;
