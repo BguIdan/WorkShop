@@ -41,5 +41,10 @@ namespace ForumBuilder.Controllers
             }
             return false;
         }
+
+        internal bool addSuperUser(string email, string password, string userName)
+        {
+            return demoDB.addSuperUser(email, password, userName);
+        }
     }
 }

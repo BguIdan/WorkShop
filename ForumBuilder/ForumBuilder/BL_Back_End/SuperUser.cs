@@ -10,8 +10,11 @@ namespace ForumBuilder.BL_Back_End
         private String password;
         private String email;
 
-        public SuperUser()
+        public SuperUser(string email, string password, string userName)
         {
+            _email = email;
+            _password = password;
+            _userName = userName;
             forumSystem = new ForumSystem();
         }
 

@@ -169,22 +169,20 @@ namespace ForumBuilder.Controllers
 
         public Boolean setForumPreferences(String forumName, String newDescription, String newForumPolicy, String newForumRules, string setterUserName)
         {
+            bool hasSucceed = false;
             if (demoDB.getforumByName(forumName) != null)
             {
                 logger.logPrint("Forum" + forumName + "do not exist");
-                return false;
             }
-            if (demoDB.setForumPreferences(forumName, newDescription, newForumPolicy, newForumRules)) {
-                logger.logPrint(forumName + "preferences had changed successfully");
-                return true;
-            }
-            return false;
-            if(isAdmin(setterUserName, forumName))
+            else if (!isAdmin(setterUserName, forumName))
             {
-                DemoDB.getInstance.setForumPreferences(forumName, newDescription, newForumPolicy, newForumRules);
-                return true;
+                logger.logPrint("Set forum preferences failed, " + setterUserName + " is not an admin");
             }
-            return false;
+            else if (demoDB.setForumPreferences(forumName, newDescription, newForumPolicy, newForumRules)) {
+                logger.logPrint(forumName + "preferences had changed successfully");
+                hasSucceed = true;
+            }
+            return hasSucceed;
         }
 
         public String getForumPolicy(String forumName)
