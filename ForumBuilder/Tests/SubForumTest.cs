@@ -1,24 +1,27 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ForumBuilder.Controllers;
 using System.Collections.Generic;
 using System.Linq;
+using ForumBuilder.BL_Back_End;
 
 namespace Tests
 {
     [TestClass]
     public class SubForumTest
-    {
-        private ISubForum subForum;
-        private IUser memberUser;
-        private IUser moderatorUser;
+    {/*
+        private ISubForumController subForum;
+        private User memberUser;
+        private User moderatorUser;
 
         [TestInitialize]
         public void setUp()
         {
-            this.subForum = new SubForum();
-            this.memberUser = new User();
-            this.moderatorUser = new User();
-            Assert.IsTrue(this.subForum.nominateModerator(moderatorUser.getUserName()));
+            this.subForum = new SubForumController();
+            this.memberUser = new User("memberUser", "mempass", "mem@gmail.com");
+            this.moderatorUser = new User("moderMem", "moderpass", "moder@gmail.com");
+            Assert.IsTrue(this.subForum.nominateModerator(moderatorUser.userName, ""));
+            //TODO update the nominator to be valid user
         }
 
         [TestCleanup]
@@ -27,12 +30,12 @@ namespace Tests
             this.subForum = null;
         }
 
-        /******************************dismiss moderator***************************************/
+        /******************************dismiss moderator***************************************
 
         [TestMethod]
         public void test_dismissModerator_on_valid_moderator()
         {
-            String userModeratorName = this.moderatorUser.getUserName();
+            String userModeratorName = this.moderatorUser.userName;
             List<String> moderatorList = this.subForum.getModerators();
             Assert.IsTrue(moderatorList.Contains(userModeratorName), "the moderatorList list should contain the moderator");
             Assert.IsTrue(this.subForum.dismissModerator(userModeratorName), "the dismissal of user moderator should be successful");
@@ -42,7 +45,7 @@ namespace Tests
         [TestMethod]
         public void test_dismissModerator_on_non_moderator()
         {
-            String memberUserName = this.memberUser.getUserName();
+            String memberUserName = this.memberUser.userName;
             List<String> moderatorList = this.subForum.getModerators();
             Assert.IsFalse(moderatorList.Contains(memberUserName), "the moderatorList list should not contain the non moderator member");
             Assert.IsFalse(subForum.dismissModerator(memberUserName), "dismiss moderator on non moderator should return false");
@@ -71,11 +74,11 @@ namespace Tests
         }
 
 
-        /******************************end of dismiss moderator***************************************/
+        /******************************end of dismiss moderator***************************************
 
 
 
-        /******************************create thread***************************************/
+        /******************************create thread***************************************
 
         [TestMethod]
         public void test_createThread_on_valid_input()
@@ -151,12 +154,12 @@ namespace Tests
         /******************************end of create thread***************************************/
 
 
-        /******************************nominate moderator***************************************/
+        /******************************nominate moderator***************************************
 
         [TestMethod]
         public void test_nominateModerator_on_member()
         {
-            String memberName = this.memberUser.getUserName();
+            String memberName = this.memberUser.userName;
             List<String> moderatorListPriorNomination = this.subForum.getModerators();
             Assert.IsTrue(this.subForum.nominateModerator(memberName), "nomination of member user should be successful");
             List<String> moderatorListAfterNomination = this.subForum.getModerators();
@@ -167,7 +170,7 @@ namespace Tests
         [TestMethod]
         public void test_nominateModerator_on_moderator()
         {
-            String moderatorName = this.moderatorUser.getUserName();
+            String moderatorName = this.moderatorUser.userName;
             List<String> moderatorListPriorNomination = this.subForum.getModerators();
             Assert.IsFalse(this.subForum.nominateModerator(moderatorName), "nomination of moderator user should not be successful");
             List<String> moderatorListAfterNomination = this.subForum.getModerators();
@@ -200,7 +203,7 @@ namespace Tests
         //TODO
         /******************************end of delete thread***************************************/
 
-        /******************************get moderators***************************************/
+        /******************************get moderators***************************************
 
         [TestMethod]
         public void test_getModerators_check_different_list_instances()
@@ -235,7 +238,7 @@ namespace Tests
 
         /******************************end of get moderators***************************************/
 
-        /******************************get threads***************************************/
+        /******************************get threads***************************************
 
         [TestMethod]
         public void test_getThreads_check_different_list_instances()

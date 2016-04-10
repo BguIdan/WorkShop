@@ -1,18 +1,18 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ForumBuilder.User;
+using ForumBuilder.BL_Back_End;
 
 namespace Tests
 {
     [TestClass]
     public class UserTest
     {
-        private IUser user;
+        private User user;
 
         [TestInitialize]
         public void setUp()
         {
-            this.user = new User();
+            this.user = new User("testUser", "testpass", "test@user.com");
         }
 
         [TestCleanup]
@@ -25,7 +25,7 @@ namespace Tests
         [TestMethod]
         public void test_getUserName_valid_return()
         {
-            String userName = this.user.getUserName();
+            String userName = this.user.userName;
             Assert.IsNotNull(userName, "returned user name should not be null");
             Assert.IsTrue(userName.Length > 0, "user name should be greater than 0");
         }

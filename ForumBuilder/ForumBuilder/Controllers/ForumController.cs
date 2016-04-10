@@ -5,7 +5,7 @@ using ForumBuilder.BL_DB;
 
 namespace ForumBuilder.Controllers
 {
-    class ForumController : IForumController
+    public class ForumController : IForumController
     {
         private static ForumController singleton;
         DemoDB demoDB = DemoDB.getInstance;
@@ -86,15 +86,6 @@ namespace ForumBuilder.Controllers
             return false;
         }
 
-        public bool changePoliciy(string newPolicy, string changerName, string forumName)
-        {
-            if (this.isAdmin(changerName, forumName))
-            {
-                return demoDB.changePolicy(newPolicy, forumName);
-            }
-            return false;
-        }
-
         public bool dismissAdmin(string adminToDismissed, string dismissingUserName, string forumName)
         {
             if (this.isAdmin(dismissingUserName, forumName) && this.isMember(adminToDismissed, forumName))
@@ -103,7 +94,6 @@ namespace ForumBuilder.Controllers
             }
             return false;
         }
-
 
         public bool isAdmin(string userName, string forumName)
         {
@@ -172,7 +162,7 @@ namespace ForumBuilder.Controllers
             }
         }
 
-        public Boolean setForumPreferences(String forumName, String newDescription, String newForumPolicy, String newForumRules)
+        public Boolean setForumPreferences(String forumName, String newDescription, String newForumPolicy, String newForumRules, string setterUserName)
         {
             if (demoDB.getforumByName(forumName) != null)
             {
@@ -184,6 +174,28 @@ namespace ForumBuilder.Controllers
                 return true;
             }
             return false;
+=======
+            if(isAdmin(setterUserName, forumName))
+            {
+                DemoDB.getInstance.setForumPreferences(forumName, newDescription, newForumPolicy, newForumRules);
+                return true;
+            }
+            return false;
+        }
+
+        public String getForumPolicy(String forumName)
+        {
+            return demoDB.getforumByName(forumName).forumPolicy;
+        }
+
+        public String getForumDescription(String forumName)
+        {
+            return demoDB.getforumByName(forumName).description;
+        }
+
+        public String getForumRules(String forumName)
+        {
+            return demoDB.getforumByName(forumName).forumRules;
         }
     }
 }

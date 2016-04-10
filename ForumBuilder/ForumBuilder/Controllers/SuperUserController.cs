@@ -4,7 +4,7 @@ using ForumBuilder.BL_DB;
 
 namespace ForumBuilder.Controllers
 {
-    class SuperUserController : UserController, ISuperUserController
+    public class SuperUserController : UserController, ISuperUserController
     {
         private static SuperUserController singleton;
         DemoDB demoDB = DemoDB.getInstance;
@@ -36,6 +36,11 @@ namespace ForumBuilder.Controllers
                 return true;
             }
 
+            if (DemoDB.getInstance.isSuperUser(superUserName))
+            {
+                return DemoDB.getInstance.createForum(forumName, descrption, forumPolicy, forumRules, administrators);
+            }
+            return false;
         }
     }
 }

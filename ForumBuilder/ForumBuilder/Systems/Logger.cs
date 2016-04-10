@@ -10,7 +10,12 @@ namespace ForumBuilder.Systems
     class Logger : ILogger
     {
         private static Logger _singleton;
-        private static StreamWriter _sw; 
+        private StreamWriter _sw;
+
+        private Logger(String fullPath)
+        {
+            _sw = new StreamWriter(fullPath);
+        }
 
         public static Logger getInstance
         {
@@ -19,8 +24,7 @@ namespace ForumBuilder.Systems
                 if (_singleton == null)
                 {
                     String fullPath = Path.GetFullPath("log.txt");
-                    _singleton = new Logger();
-                    _sw = new StreamWriter(fullPath);
+                    _singleton = new Logger(fullPath); 
                 }
                 return _singleton;
             }

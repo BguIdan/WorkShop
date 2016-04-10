@@ -7,7 +7,7 @@ using ForumBuilder.BL_Back_End;
 
 namespace ForumBuilder.BL_DB
 {
-    class DemoDB
+    public class DemoDB
     {
         private List<Forum> forums;
         private List<SubForum> subForums;
@@ -418,6 +418,23 @@ namespace ForumBuilder.BL_DB
             }
             subForums.Add(subForum);
             return true;
+        }
+
+
+        public void clear()
+        {
+            if (this.forums != null)
+                this.forums.Clear();
+            if (this.subForums != null)
+                this.subForums.Clear();
+            if (this.threads != null)
+                this.threads.Clear();
+            if (this.posts != null)
+                this.posts.Clear();
+            if (this.users != null)
+                this.users.Clear();
+            if (this.messages != null)
+                this.messages.Clear();
         }
     }
 }
