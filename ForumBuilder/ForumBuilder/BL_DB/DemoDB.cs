@@ -52,6 +52,8 @@ namespace ForumBuilder.BL_DB
 
         internal bool dismissModerator(string dismissedModerator, string dismissByAdmin, SubForum subForum)
         {
+            if (!subForum.moderators.ContainsKey(dismissedModerator))
+                return false;
             subForum.moderators.Remove(dismissedModerator);
             return true;
         }
