@@ -17,7 +17,7 @@ namespace ForumBuilder.BL_Back_End
         private List<string> _members;
         private List<string> _subForums;
 
-       
+
 
         public Forum(string forumName, string descrption, string forumPolicy, string forumRules, List<string> administrators)
         {
@@ -64,5 +64,17 @@ namespace ForumBuilder.BL_Back_End
             set { _subForums = value; }
         }
 
+        public List<string> members
+        {
+            get
+            {
+                return _members;
+            }
+
+            set
+            {
+                _members = value;
+            }
+        }
     }
 }

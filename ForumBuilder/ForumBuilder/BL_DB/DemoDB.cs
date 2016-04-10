@@ -105,6 +105,21 @@ namespace ForumBuilder.BL_DB
             posts.Add(post);
             return true;
         }
+
+        internal bool banMember(string bannedMember, string bannerUserName, string forumName)
+        {
+            Forum forum = this.getforumByName(forumName);
+            forum.members.Remove(bannedMember);
+            return true;
+        }
+
+        internal bool changePolicy(string newPolicy, string forumName)
+        {
+            Forum forum = this.getforumByName(forumName);
+            forum.forumPolicy = newPolicy;
+            return true;
+        }
+
         public bool addThreadToSubForum(Thread thread, string forum, string subForum)
         {
 
@@ -123,6 +138,46 @@ namespace ForumBuilder.BL_DB
             }
             return false;
         }
+
+        internal bool nominateAdmin(string newAdmin, string nominatorName, string forumName)
+        {
+            if (isSuperUser(nominatorName))
+            {
+                Forum forum = getforumByName(forumName);
+                string adminNameIfExist = "";
+                foreach (String s in forum.administrators)
+                {
+                    if (s.Equals(newAdmin))
+                    {
+                        adminNameIfExist = s;
+                    }
+                }
+                if (adminNameIfExist.Equals(""))
+                {
+                    forum.administrators.Add(newAdmin);
+                }
+                return true;
+            }
+            return false;
+        }
+        public bool isSuperUser(string userName)
+        {
+            foreach (SuperUser superUser in superUsers)
+            {
+                if (superUser._userName.Equals(userName))
+                    return true;
+            }
+            return false;
+        }
+
+        internal bool dismissAdmin(string adminToDismissed, string forumName)
+        {
+            Forum forum = getforumByName(forumName);
+            forum.administrators.Remove(adminToDismissed);
+            return true;
+        }
+
+
 
         public Boolean addThread(Thread thread)
         {
