@@ -59,6 +59,7 @@
     <Compile Include="Systems\ForumSystem.cs" />
     <Compile Include="Controllers\ISuperUserController.cs" />
     <Compile Include="Controllers\IUserController.cs" />
+    <Compile Include="Systems\Logger.cs" />
     <Compile Include="Users\SuperUser.cs" />
     <Compile Include="Users\User.cs" />
   </ItemGroup>
