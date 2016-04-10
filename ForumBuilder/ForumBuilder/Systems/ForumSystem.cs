@@ -12,7 +12,7 @@ namespace ForumBuilder.Systems
     {
         private static ForumSystem singleton;
         private DemoDB demo_db = DemoDB.getInstance;
-
+        Logger logger = Logger.getInstance;
         private static ForumSystem getInstance
         {
             get
@@ -30,62 +30,20 @@ namespace ForumBuilder.Systems
         {
             if (singleton == null)
             {
-
-                if (userName.Equals("") || password.Equals("") || email.Equals(""))
-                {
-                    Console.WriteLine("one or more of the fields is missing");
-                    //return false;
-                }
-                // should check if the password is strong enough
-                bool isNumExist = false;
-                bool isSmallKeyExist = false;
-                bool isBigKeyExist = false;
-                bool isKeyRepeting3Times = false;
-                for (int i = 0; i < password.Length; i++)
-                {
-                    if (password.ElementAt(i) <= '9' && password.ElementAt(i) >= '0')
-                    {
-                        isNumExist = true;
-                    }
-                    if (password.ElementAt(i) <= 'Z' && password.ElementAt(i) >= 'A')
-                    {
-                        isBigKeyExist = true;
-                    }
-                    if (password.ElementAt(i) <= 'z' && password.ElementAt(i) >= 'a')
-                    {
-                        isSmallKeyExist = true;
-                    }
-                    if (i < password.Length - 2 && (password.ElementAt(i).Equals(password.ElementAt(i + 1)) && password.ElementAt(i).Equals(password.ElementAt(i + 2))))
-                    {
-                        isKeyRepeting3Times = true;
-                    }
-                    if (!(isNumExist && isSmallKeyExist && isBigKeyExist && !isKeyRepeting3Times))
-                    {
-                        Console.WriteLine("password isnt strong enough");
-                        //return false;
-                    }
-                }
-                // check if the the email is in a correct format
-                int index = email.IndexOf("@");
-                if (index < 0 || index == email.Length - 1)
-                {
-                    Console.WriteLine("error in email format");
-                    //return false;
-                }
-                //  send configuration email to the super user's 
-                //sendmail(email);
-
                 //adding the user
-                SuperUserController.getInstance.addSuperUser(email, password, userName);
+                if (SuperUserController.getInstance.addSuperUser(email, password, userName))
+                {
+                    //  send configuration email to the super user's 
+                    sendmail(email);
+                }
+                else
+                    return null;
 
-                Console.WriteLine("the system was initialized successully");
-                //return true;
+                Logger.getInstance.logPrint("the system was initialized successully");
             }
-            else
-                return getInstance;
-            return null;
+            return getInstance;
         }
-        private void sendmail(string email)
+        private static void sendmail(string email)
         {
             String ourEmail = "ourEmail@gmail.com";
             MailMessage mail = new MailMessage(ourEmail, email);
