@@ -42,6 +42,11 @@ namespace ForumBuilder.Controllers
             return false;
         }
 
+        public bool isModerator(string name, string subForumName, string forumName)
+        {
+            return getSubForum(subForumName, forumName).moderators.ContainsKey(name);
+        }
+
         public bool nominateModerator(string newModerator, string nominatorUser, DateTime date, string subForumName, string forumName)
         {
             SubForum subForum = getSubForum(subForumName, forumName);
