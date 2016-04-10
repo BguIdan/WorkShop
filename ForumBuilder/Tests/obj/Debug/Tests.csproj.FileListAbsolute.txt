@@ -2,12 +2,12 @@ C:\Users\User\Desktop\WorkShop\ForumBuilder\Tests\obj\Debug\Tests.csprojResolveA
 C:\Users\User\Documents\sadna\ForumBuilder\Tests\obj\Debug\Tests.csprojResolveAssemblyReference.cache
 C:\Users\Aviv\Documents\WorkShop\ForumBuilder\Tests\obj\Debug\Tests.csprojResolveAssemblyReference.cache
 C:\Users\User\Desktop\git projects\ForumBuilder\Tests\obj\Debug\Tests.csprojResolveAssemblyReference.cache
-D:\Idan\Workshop\WorkShop.git\ForumBuilder\Tests\obj\Debug\Tests.csprojResolveAssemblyReference.cache
 D:\Idan\Workshop\WorkShop.git\ForumBuilder\Tests\bin\Debug\Tests.dll
 D:\Idan\Workshop\WorkShop.git\ForumBuilder\Tests\bin\Debug\Tests.pdb
 D:\Idan\Workshop\WorkShop.git\ForumBuilder\Tests\bin\Debug\ForumBuilder.exe
 D:\Idan\Workshop\WorkShop.git\ForumBuilder\Tests\bin\Debug\Service.exe
 D:\Idan\Workshop\WorkShop.git\ForumBuilder\Tests\bin\Debug\ForumBuilder.pdb
 D:\Idan\Workshop\WorkShop.git\ForumBuilder\Tests\bin\Debug\Service.pdb
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\Tests\obj\Debug\Tests.csprojResolveAssemblyReference.cache
 D:\Idan\Workshop\WorkShop.git\ForumBuilder\Tests\obj\Debug\Tests.dll
 D:\Idan\Workshop\WorkShop.git\ForumBuilder\Tests\obj\Debug\Tests.pdb

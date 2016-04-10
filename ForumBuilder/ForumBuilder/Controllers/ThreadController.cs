@@ -5,7 +5,6 @@ using ForumBuilder.BL_DB;
 namespace ForumBuilder.Controllers
 {
     public class ThreadController
-    class ThreadController
     {
         private static ThreadController singleton;
         DemoDB demoDB = DemoDB.getInstance;
