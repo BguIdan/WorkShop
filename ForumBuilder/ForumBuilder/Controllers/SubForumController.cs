@@ -60,6 +60,10 @@ namespace ForumBuilder.Controllers
                     logger.logPrint("the date in nominate moderator already past");
                     return false;
                 }
+                if (subForum.moderators.ContainsKey(newModerator))
+                {
+                    return false;
+                }
                 if (demoDB.nominateModerator(newModerator, nominatorUser, date, subForum))
                 {
                     logger.logPrint("nominate moderator " + newModerator + "success");
