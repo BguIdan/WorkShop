@@ -95,7 +95,6 @@ namespace ForumBuilder.Controllers
             return false;
         }
 
-
         public bool isAdmin(string userName, string forumName)
         {
             Forum forum = demoDB.getforumByName(forumName);
@@ -149,28 +148,29 @@ namespace ForumBuilder.Controllers
             }
         }
 
-        public Boolean setForumPreferences(String forumName, String newDescription, String newForumPolicy, String newForumRules)
+        public Boolean setForumPreferences(String forumName, String newDescription, String newForumPolicy, String newForumRules, string setterUserName)
         {
-            DemoDB.getInstance.setForumPreferences(forumName, newDescription, newForumPolicy, newForumRules);
-            return true;
+            if(isAdmin(setterUserName, forumName))
+            {
+                DemoDB.getInstance.setForumPreferences(forumName, newDescription, newForumPolicy, newForumRules);
+                return true;
+            }
+            return false;
         }
 
         public String getForumPolicy(String forumName)
         {
-            throw new NotImplementedException();
-            //TODO add implementation
+            return demoDB.getforumByName(forumName).forumPolicy;
         }
 
         public String getForumDescription(String forumName)
         {
-            throw new NotImplementedException();
-            //TODO add implementation
+            return demoDB.getforumByName(forumName).description;
         }
 
         public String getForumRules(String forumName)
         {
-            throw new NotImplementedException();
-            //TODO add implementation
+            return demoDB.getforumByName(forumName).forumRules;
         }
     }
 }
