@@ -31,18 +31,20 @@ namespace ForumBuilder.Controllers
             return demoDB.deleteThreadFromSubforum(firstPostId);
         }
 
-        public bool dismissModerator(string dismissedModerator, string dismissByAdmin, SubForum subForum, Forum forum)
+        public bool dismissModerator(string dismissedModerator, string dismissByAdmin, string subForumName, string forumName)
         {
-            if(ForumController.getInstance.isAdmin(dismissByAdmin, forum.forumName) && ForumController.getInstance.isMember(dismissedModerator, forum.forumName))
+            SubForum subFourm = ForumController.getInstance.getSubForum(subForumName, forumName);
+            if (ForumController.getInstance.isAdmin(dismissByAdmin, forumName) && ForumController.getInstance.isMember(dismissedModerator, forumName))
             {
                 return demoDB.dismissModerator(dismissedModerator, dismissByAdmin, subForum);
             }
             return false;
         }
 
-        public bool nominateModerator(string newModerator, string nominatorUser, DateTime date, SubForum subForum, Forum forum)
+        public bool nominateModerator(string newModerator, string nominatorUser, DateTime date, string subForumName, string forumName)
         {
-            if (ForumController.getInstance.isAdmin(nominatorUser, forum.forumName) && ForumController.getInstance.isMember(newModerator, forum.forumName))
+            SubForum subFourm = ForumController.getInstance.getSubForum(subForumName, forumName);
+            if (ForumController.getInstance.isAdmin(nominatorUser, forumName) && ForumController.getInstance.isMember(newModerator, forumName))
             {
                 return demoDB.nominateModerator(newModerator, nominatorUser, date, subForum);
             }
