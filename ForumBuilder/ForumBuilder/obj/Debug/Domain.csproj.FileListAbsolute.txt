@@ -1,9 +1,12 @@
 C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\obj\Debug\Domain.csprojResolveAssemblyReference.cache
-<<<<<<< HEAD
 D:\Idan\Workshop\WorkShop.git\ForumBuilder\ForumBuilder\bin\Debug\ForumBuilder.exe.config
-=======
 C:\Users\Aviv\Documents\WorkShop\ForumBuilder\ForumBuilder\bin\Debug\ForumBuilder.exe.config
 C:\Users\Aviv\Documents\WorkShop\ForumBuilder\ForumBuilder\obj\Debug\Domain.csprojResolveAssemblyReference.cache
->>>>>>> origin/registerToForum_and_createSF_nominateMod
 C:\Users\User\Desktop\git projects\ForumBuilder\ForumBuilder\obj\Debug\Domain.csprojResolveAssemblyReference.cache
 C:\Users\User\Desktop\WorkShop\ForumBuilder\ForumBuilder\obj\Debug\Domain.csprojResolveAssemblyReference.cache
+C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\ForumBuilder\bin\Debug\ForumBuilder.exe.config
+C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\ForumBuilder\obj\Debug\ForumBuilder.exe
+C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\ForumBuilder\obj\Debug\ForumBuilder.pdb
+C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\ForumBuilder\obj\Debug\Domain.csprojResolveAssemblyReference.cache
+C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\ForumBuilder\bin\Debug\ForumBuilder.exe
+C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\ForumBuilder\bin\Debug\ForumBuilder.pdb

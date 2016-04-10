@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ForumBuilder.BL_Back_End
 {
-    class Message
+    public class Message
     {
         private Int32 _id;
         private String _sender;

@@ -50,7 +50,6 @@
     <Compile Include="Controllers\IForumController.cs" />
     <Compile Include="Controllers\IPostController.cs" />
     <Compile Include="Controllers\ISubForumController.cs" />
-    <Compile Include="Controllers\IThreadController.cs" />
     <Compile Include="BL_Back_End\Post.cs" />
     <Compile Include="BL_Back_End\SubForum.cs" />
     <Compile Include="BL_Back_End\Thread.cs" />

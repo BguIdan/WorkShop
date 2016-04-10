@@ -1,7 +1,6 @@
 ﻿using System;
-using ForumBuilder.Controllers;
-using ForumBuilder.BL_Back_End;
 using ForumBuilder.BL_DB;
+
 
 namespace ForumBuilder.Controllers
 {
@@ -9,6 +8,7 @@ namespace ForumBuilder.Controllers
     {
         private static ThreadController singleton;
         DemoDB demoDB = DemoDB.getInstance;
+        Systems.Logger logger = Systems.Logger.getInstance;
         SubForumController subForumController = SubForumController.getInstance;
 
 

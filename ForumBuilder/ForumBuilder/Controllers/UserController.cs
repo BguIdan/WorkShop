@@ -4,10 +4,11 @@ using ForumBuilder.BL_Back_End;
 
 namespace ForumBuilder.Controllers
 {
-    class UserController : IUserController
+    public class UserController : IUserController
     {
         private static UserController singleton;
         DemoDB demoDB = DemoDB.getInstance;
+        Systems.Logger logger = Systems.Logger.getInstance;
         public static UserController getInstance
         {
             get
@@ -48,12 +49,12 @@ namespace ForumBuilder.Controllers
 
         public bool sendPrivateMessage(string fromUserName, string toUserName, string content, Int32 id)
         {
-            User sender = DemoDB.getInstance.getUser(fromUserName);
-            User reciver = DemoDB.getInstance.getUser(toUserName);
+            User sender = demoDB.getUser(fromUserName);
+            User reciver = demoDB.getUser(toUserName);
             if (sender != null && reciver != null && !content.Equals(""))
             {
                 Message mess = new Message(id, fromUserName, toUserName, content);
-                DemoDB.getInstance.Messages.Add(mess);
+                demoDB.Messages.Add(mess);
                 return true;
             }
 
