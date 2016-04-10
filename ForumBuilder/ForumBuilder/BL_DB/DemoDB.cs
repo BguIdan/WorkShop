@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using ForumBuilder.Controllers;
-using ForumBuilder.Users;
 using System.Net.Mail;
 using ForumBuilder.BL_Back_End;
 
@@ -417,7 +416,21 @@ namespace ForumBuilder.BL_DB
             user.friends.Remove(deletedFriendName);
             return true;
         }
-
+        internal SubForum getSubForum(string subForumName, string forumName)
+        {
+            foreach (Forum f in forums)
+            {
+                if (f.forumName.Equals(forumName))
+                {
+                    foreach (SubForum sf in subForums)
+                    {
+                        if (sf.name.Equals(subForumName))
+                            return sf;
+                    }
+                }
+            }
+            return null;
+        }
         public List<Message> Messages
         {
             get { return messages; }

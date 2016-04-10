@@ -28,7 +28,7 @@ namespace ForumBuilder.Controllers
             SubForum sf= getSubforumByPost(postId);
             Forum f = demoDB.getforumByName(sf.forum);
             if (sf==null || f==null ||( !getPost(postId).writerUserName.Equals(deletingUser)
-                && !sf.moderators.Contains(deletingUser) && !f.administrators.Contains(deletingUser)))
+                && !sf.moderators.Keys.Contains(deletingUser) && !f.administrators.Contains(deletingUser)))
                 return false;
             //find the posts that have to delete
             List<Post> donePosts = new List<Post>();

@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using ForumBuilder.BL_Back_End;
 using ForumBuilder.BL_DB;
-using ForumBuilder.Users;
-using ForumBuilder.Controllers;
 
 namespace ForumBuilder.Controllers
 {

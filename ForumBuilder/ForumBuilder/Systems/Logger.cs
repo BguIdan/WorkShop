@@ -27,7 +27,7 @@ namespace ForumBuilder.Systems
 
         }
 
-        public static void logPrint(String name, String contentToPrint)
+        public void logPrint(String name, String contentToPrint)
         {
             _sw.WriteLine("Log Entry : " , DateTime.Now.ToLongTimeString());
             _sw.WriteLine(name + ": " + contentToPrint);

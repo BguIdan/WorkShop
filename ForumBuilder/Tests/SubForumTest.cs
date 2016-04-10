@@ -1,7 +1,5 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ForumBuilder.Forum;
-using ForumBuilder.User;
 using System.Collections.Generic;
 using System.Linq;
 
