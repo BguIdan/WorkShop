@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ForumBuilder.BL_DB;
 using ForumBuilder.BL_Back_End;
 
@@ -59,6 +60,12 @@ namespace ForumBuilder.Controllers
             }
 
             return false;
+        }
+
+        public List<String> getFriendList(String userName)
+        {
+            throw new NotImplementedException();
+            //TODO add implementation
         }
 
     }
