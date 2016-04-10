@@ -25,20 +25,30 @@ namespace ForumBuilder.Controllers
         {
             return demoDB.addThreadToSubForum(thread, forum, subForum);
         }
-
-        public bool deleteThread(int firstPostId, string deleteUserName)
+        // delete thread from subforum
+        public bool deleteThread(int firstPostId)
         {
-            throw new NotImplementedException();
+            return demoDB.deleteThreadFromSubforum(firstPostId);
         }
 
-        public bool dismissModerator(string dismissedModerator, string dismissByAdmin)
+        public bool dismissModerator(string dismissedModerator, string dismissByAdmin, string subForumName, string forumName)
         {
-            throw new NotImplementedException();
+            SubForum subFourm = ForumController.getInstance.getSubForum(subForumName, forumName);
+            if (ForumController.getInstance.isAdmin(dismissByAdmin, forumName) && ForumController.getInstance.isMember(dismissedModerator, forumName))
+            {
+                return demoDB.dismissModerator(dismissedModerator, dismissByAdmin, subForum);
+            }
+            return false;
         }
 
-        public bool nominateModerator(string newModerator, string nominatorUser)
+        public bool nominateModerator(string newModerator, string nominatorUser, DateTime date, string subForumName, string forumName)
         {
-            throw new NotImplementedException();
+            SubForum subFourm = ForumController.getInstance.getSubForum(subForumName, forumName);
+            if (ForumController.getInstance.isAdmin(nominatorUser, forumName) && ForumController.getInstance.isMember(newModerator, forumName))
+            {
+                return demoDB.nominateModerator(newModerator, nominatorUser, date, subForum);
+            }
+            return false;
         }
     }
 }

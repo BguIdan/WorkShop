@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using ForumBuilder.BL_Back_End;
 using ForumBuilder.Users;
+using System.Net.Mail;
 
 namespace ForumBuilder.BL_DB
 {
-    class DemoDB 
+    class DemoDB
     {
         private List<Forum> forums;
         private List<SubForum> subForums;
         private List<Thread> threads;
         private List<Post> posts;
-
-       
-
         private List<User> users;
+        private List<Message> messages;
+        private List<SuperUser> superUsers;
         private static DemoDB singleton;
 
         private DemoDB()
@@ -27,17 +27,77 @@ namespace ForumBuilder.BL_DB
             users = new List<User>();
 
         }
-        public int /* the new post id*/ getAvilableIntOfPost() {
+        public int /* the new post id*/ getAvilableIntOfPost()
+        {
             int max = 0;
             foreach (Post p in posts)
             {
                 if (p.id >= max)
-                    max=p.id+1;
+                    max = p.id + 1;
             }
             return max;
         }
-        public Boolean addPost(Post post) {
-            foreach(Post p in posts)
+
+        internal bool dismissModerator(string dismissedModerator, string dismissByAdmin, SubForum subForum)
+        {
+            subForum.moderators.Remove(dismissedModerator);
+            return true;
+        }
+
+        internal bool deleteThreadFromSubforum(int firstPostId)
+        {
+            foreach (SubForum sf in subForums)
+            {
+                if (sf.threads.Contains(firstPostId))
+                {
+                    sf.threads.Remove(firstPostId);
+                    return true;
+                }
+            }
+            return false;
+
+        }
+
+        internal bool nominateModerator(string newModerator, string nominatorUser, DateTime date, SubForum subForum)
+        {
+            if (DateTime.Now.CompareTo(date) > 0)
+            {
+                Console.WriteLine("the date already past");
+                return false;
+            }
+            subForum.moderators.Remove(newModerator);
+            subForum.moderators.Add(newModerator, date);
+            return true;
+        }
+
+        internal Forum getforumByName(string forumName)
+        {
+            foreach (Forum f in forums)
+            {
+                if (f.forumName.Equals(forumName))
+                    return f;
+            }
+            return null;
+        }
+
+        internal bool removeThreadByfirstPostId(int firstPostToDelete)
+        {
+            Thread tr = null;
+            foreach (Thread t in threads)
+            {
+                if (t.firstPost.id == firstPostToDelete)
+                    tr = t;
+            }
+            if (tr == null)
+                return false;
+            threads.Remove(tr);
+            return true;
+
+        }
+
+        public Boolean addPost(Post post)
+        {
+            foreach (Post p in posts)
             {
                 if (p.id == post.id)
                     return false;
@@ -66,13 +126,50 @@ namespace ForumBuilder.BL_DB
 
         public Boolean addThread(Thread thread)
         {
-            foreach(Thread t in threads)
+            foreach (Thread t in threads)
             {
                 if (t.firstPost.id == thread.firstPost.id)
                     return false;
             }
             threads.Add(thread);
             return true;
+        }
+
+        public void removePost(Post p)
+        {
+            posts.Remove(p);
+        }
+
+        internal Post getPost(int postId)
+        {
+            foreach (Post p in posts)
+            {
+                if (p.id == postId)
+                    return p;
+            }
+            return null;
+        }
+
+        internal SubForum getSubforumByThread(Thread t)
+        {
+            foreach (SubForum sf in subForums)
+            {
+                if (sf.threads.Contains(t.firstPost.id))
+                {
+                    return sf;
+                }
+            }
+            return null;
+        }
+
+        internal Thread getThreadByFirstPostId(int postId)
+        {
+            foreach (Thread t in threads)
+            {
+                if (t.firstPost.id == postId)
+                    return t;
+            }
+            return null;
         }
 
         public static DemoDB getInstance
@@ -85,7 +182,7 @@ namespace ForumBuilder.BL_DB
                 }
                 return singleton;
             }
-            
+
         }
 
         public Boolean isForumExists(string name)
@@ -95,15 +192,15 @@ namespace ForumBuilder.BL_DB
                 if (((Forum)(forums.ElementAt(i))).forumName.Equals((name)))
                     return true;
             }
-                return false;
+            return false;
         }
 
         public Boolean isSubForumExists(string forumName, string subForumName)
         {
             for (int i = 0; i < subForums.Count; i++)
             {
-            //    if ((subForums.ElementAt(i))._name == subForumName && (subForums.ElementAt(i))._forumName == forumName)
-                    return true;
+                //    if ((subForums.ElementAt(i))._name == subForumName && (subForums.ElementAt(i))._forumName == forumName)
+                return true;
             }
             return false;
         }
@@ -118,7 +215,18 @@ namespace ForumBuilder.BL_DB
             return null;
         }
 
-       public List<Post> getRelatedPosts(int postId)
+        public Boolean addUser(User user)
+        {
+            foreach (User u in users)
+            {
+                if (u.userName.Equals(user.userName))
+                    return false;
+            }
+            users.Add(user);
+            return true;
+        }
+
+        public List<Post> getRelatedPosts(int postId)
         {
             List<Post> curPost = new List<Post>();
             for (int i = 0; i < posts.Count; i++)
@@ -134,21 +242,16 @@ namespace ForumBuilder.BL_DB
 
         public Boolean createForum(string forumName, string descrption, string forumPolicy, string forumRules, List<string> administrators)
         {
-            try
+
+            if (forumName.Equals("") || descrption.Equals("") || forumPolicy.Equals("") || forumRules.Equals("") || administrators == null)
             {
-                if (forumName.Equals("") || descrption.Equals("") || forumPolicy.Equals("") || forumRules.Equals("") || administrators == null)
-                {
-                    Console.WriteLine("one of the fields was empty");
-                    return false;
-                }
-                Forum newForum = new Forum(forumName, descrption, forumPolicy, forumRules, administrators);
-                forums.Add(newForum);
-                return true;
-            }
-            catch
-            {
+                Console.WriteLine("cannot create new forum because one or more of the fields was empty");
                 return false;
             }
+            Forum newForum = new Forum(forumName, descrption, forumPolicy, forumRules, administrators);
+            forums.Add(newForum);
+            return true;
+
         }
 
         public Boolean initialize(String userName, String password, String email)
@@ -160,11 +263,107 @@ namespace ForumBuilder.BL_DB
                 return false;
             }
             // should check if the password is strong enough
-            // should check if the the email is in a correct format
-            // should send configuration email to the super user's email
+            bool isNumExist = false;
+            bool isSmallKeyExist = false;
+            bool isBigKeyExist = false;
+            bool isKeyRepeting3Times = false;
+            for (int i = 0; i < password.Length; i++)
+            {
+                if (password.ElementAt(i) <= '9' && password.ElementAt(i) >= '0')
+                {
+                    isNumExist = true;
+                }
+                if (password.ElementAt(i) <= 'Z' && password.ElementAt(i) >= 'A')
+                {
+                    isBigKeyExist = true;
+                }
+                if (password.ElementAt(i) <= 'z' && password.ElementAt(i) >= 'a')
+                {
+                    isSmallKeyExist = true;
+                }
+                if (i < password.Length - 2 && (password.ElementAt(i).Equals(password.ElementAt(i + 1)) && password.ElementAt(i).Equals(password.ElementAt(i + 2))))
+                {
+                    isKeyRepeting3Times = true;
+                }
+                if (!(isNumExist && isSmallKeyExist && isBigKeyExist && !isKeyRepeting3Times))
+                {
+                    Console.WriteLine("password isnt strong enough");
+                    return false;
+                }
+            }
+            // check if the the email is in a correct format
+            int index = email.IndexOf("@");
+            if (index < 0 || index == email.Length - 1)
+            {
+                Console.WriteLine("error in email format");
+                return false;
+            }
+            //  send configuration email to the super user's 
+            sendmail(email);
+
+            //adding the user
+            SuperUser superUser = new SuperUser();
+            superUser._email = email;
+            superUser._password = password;
+            superUser._userName = userName;
+            superUsers.Add(superUser);
+
             Console.WriteLine("the system was initialized successully");
             return true;
         }
 
+        private void sendmail(string email)
+        {
+            String ourEmail = "ourEmail@gmail.com";
+            MailMessage mail = new MailMessage(ourEmail, email);
+            SmtpClient client = new SmtpClient();
+            client.Port = 25;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.UseDefaultCredentials = false;
+            client.Host = "smtp.google.com";
+            mail.Subject = "please configure your account";
+            mail.Body = "please configure your account";
+            client.Send(mail);
+
+        }
+
+        //<<<<<<< HEAD
+        public Boolean setForumPreferences(String forumName, String newDescription, String newForumPolicy, String newForumRules)
+        {
+            bool isChanged = false;
+            for (int i = 0; i < forums.Count() && !isChanged; i++)
+            {
+                if (forums[i].forumName.Equals(forumName))
+                {
+                    forums[i].description = newDescription;
+                    forums[i].forumPolicy = newForumPolicy;
+                    forums[i].forumRules = newForumRules;
+                    Console.WriteLine(forumName + "preferences had changed successfully");
+                    isChanged = true;
+                }
+
+            }
+            if (!isChanged) Console.WriteLine("This forum" + forumName + "doesn't exist");
+            return isChanged;
+        }
+
+        public List<Message> Messages
+        {
+            get { return messages; }
+        }
+
+        //=======
+
+        public Boolean addSubForum(SubForum subForum)
+        {
+            foreach (SubForum sf in subForums)
+            {
+                if (sf.name == subForum.name)
+                    return false;
+            }
+            subForums.Add(subForum);
+            return true;
+        }
+        //>>>>>>> origin/registerToForum_and_createSF_nominateMod
     }
 }

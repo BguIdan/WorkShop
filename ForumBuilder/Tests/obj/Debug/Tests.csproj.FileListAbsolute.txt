@@ -7,3 +7,5 @@ C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\Tests\obj\Debug\Tests.
 C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\Tests\obj\Debug\Tests.pdb
 C:\Users\User\Desktop\WorkShop\ForumBuilder\Tests\obj\Debug\Tests.csprojResolveAssemblyReference.cache
 C:\Users\User\Documents\sadna\ForumBuilder\Tests\obj\Debug\Tests.csprojResolveAssemblyReference.cache
+C:\Users\Aviv\Documents\WorkShop\ForumBuilder\Tests\obj\Debug\Tests.csprojResolveAssemblyReference.cache
+C:\Users\User\Desktop\git projects\ForumBuilder\Tests\obj\Debug\Tests.csprojResolveAssemblyReference.cache
