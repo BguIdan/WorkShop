@@ -27,18 +27,17 @@ namespace ForumBuilder.Controllers
             if (forumName.Equals("") || descrption.Equals("") || forumPolicy.Equals("") || forumRules.Equals("") || administrators == null)
             {
                 logger.logPrint("cannot create new forum because one or more of the fields is empty");
-                return true;
+                return false;
             }
-            else
+            if (demoDB.getSuperUser(superUserName) == null)
             {
-                demoDB.createForum(forumName, descrption, forumPolicy, forumRules, administrators);
-                logger.logPrint("Forum "+forumName+" creation success");
+                logger.logPrint("create forum fail " + superUserName + " is not super user");
+                return false;
+            }                
+            else if (demoDB.createForum(forumName, descrption, forumPolicy, forumRules, administrators))
+            {
+                logger.logPrint("Forum " + forumName + " creation success");
                 return true;
-            }
-
-            if (DemoDB.getInstance.isSuperUser(superUserName))
-            {
-                return DemoDB.getInstance.createForum(forumName, descrption, forumPolicy, forumRules, administrators);
             }
             return false;
         }

@@ -151,15 +151,15 @@ namespace ForumBuilder.BL_DB
             forum.administrators.Add(newAdmin);
             return true;
         }
-        //לעשות את זה getsuper ולבדוק אם null בsuperconntroller
-        public bool isSuperUser(string userName)
+        
+        public SuperUser getSuperUser(string userName)
         {
             foreach (SuperUser superUser in superUsers)
             {
                 if (superUser._userName.Equals(userName))
-                    return true;
+                    return superUser;
             }
-            return false;
+            return null;
         }
 
         internal bool dismissAdmin(string adminToDismissed, string forumName)
@@ -168,8 +168,6 @@ namespace ForumBuilder.BL_DB
             forum.administrators.Remove(adminToDismissed);
             return true;
         }
-
-
 
         public Boolean addThread(Thread thread)
         {
@@ -219,28 +217,6 @@ namespace ForumBuilder.BL_DB
             return null;
         }
 
-        
-
-        public Boolean isForumExists(string name)
-        {
-            for (int i = 0; i < forums.Count; i++)
-            {
-                if (((Forum)(forums.ElementAt(i))).forumName.Equals((name)))
-                    return true;
-            }
-            return false;
-        }
-
-        public Boolean isSubForumExists(string forumName, string subForumName)
-        {
-            for (int i = 0; i < subForums.Count; i++)
-            {
-                if ((subForums.ElementAt(i)).name == subForumName && (subForums.ElementAt(i)).name == forumName)
-                    return true;
-            }
-            return false;
-        }
-
         public User getUser(string userName)
         {
             for (int i = 0; i < users.Count; i++)
@@ -250,7 +226,7 @@ namespace ForumBuilder.BL_DB
             }
             return null;
         }
-        //move logic to controller
+
         public Boolean addUser(User user)
         {
             foreach (User u in users)
@@ -261,7 +237,7 @@ namespace ForumBuilder.BL_DB
             users.Add(user);
             return true;
         }
-        //move all function to controller
+
         public List<Post> getRelatedPosts(int postId)
         {
             List<Post> curPost = new List<Post>();
@@ -286,7 +262,6 @@ namespace ForumBuilder.BL_DB
         //move all logic to controller
         public Boolean initialize(String userName, String password, String email)
         {
-
             if (userName.Equals("") || password.Equals("") || email.Equals(""))
             {
                 Console.WriteLine("one or more of the fields is missing");
@@ -369,7 +344,6 @@ namespace ForumBuilder.BL_DB
                     forums[i].forumRules = newForumRules;
                     isChanged = true;
                 }
-
             }
             return isChanged;
         }
@@ -408,7 +382,6 @@ namespace ForumBuilder.BL_DB
             get { return messages; }
         }
 
-
         public Boolean addSubForum(SubForum subForum)
         {
             foreach (SubForum sf in subForums)
@@ -419,7 +392,6 @@ namespace ForumBuilder.BL_DB
             subForums.Add(subForum);
             return true;
         }
-
 
         public void clear()
         {

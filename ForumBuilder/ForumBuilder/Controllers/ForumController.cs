@@ -20,7 +20,6 @@ namespace ForumBuilder.Controllers
                 }
                 return singleton;
             }
-
         }
 
         public bool addSubForum(string forumName, string name, Dictionary<String, DateTime> moderators, string userNameAdmin)
@@ -125,7 +124,7 @@ namespace ForumBuilder.Controllers
 
         public bool nominateAdmin(string newAdmin, string nominatorName, string forumName)
         {
-            if (demoDB.isSuperUser(nominatorName))
+            if (demoDB.getSuperUser(nominatorName)!=null)
             {
                 if (this.isMember(newAdmin, forumName))
                 {
@@ -150,10 +149,16 @@ namespace ForumBuilder.Controllers
         {
             if (userName.Length > 0 && password.Length > 0 && mail.Length > 0)
             {
-                User newUser = new User(userName, password, mail);
-                if (!demoDB.addUser(newUser))
+                if(demoDB.getUser(userName) !=null)
+                {
                     return false;
-                return true;
+                }
+                User newUser = new User(userName, password, mail);
+                if (demoDB.addUser(newUser))
+                {
+                    return true;
+                }
+                return false;
             }
             else
             {

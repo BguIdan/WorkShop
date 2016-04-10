@@ -35,8 +35,9 @@ namespace ForumBuilder.Controllers
         // delete post from thread only and delete thread from subforum
         public Boolean deleteThread(Int32 firstPostToDelete)
         {
-            return demoDB.removeThreadByfirstPostId(firstPostToDelete) && subForumController.deleteThread(firstPostToDelete);
-
+            if(demoDB.getThreadByFirstPostId(firstPostToDelete)!=null)
+                return demoDB.removeThreadByfirstPostId(firstPostToDelete) && subForumController.deleteThread(firstPostToDelete);
+            return false;
         }
     }
 }
