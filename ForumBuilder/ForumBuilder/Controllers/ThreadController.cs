@@ -1,14 +1,15 @@
 ﻿using System;
-using ForumBuilder.Controllers;
-using ForumBuilder.BL_Back_End;
 using ForumBuilder.BL_DB;
+
 
 namespace ForumBuilder.Controllers
 {
     public class ThreadController
+    class ThreadController
     {
         private static ThreadController singleton;
         DemoDB demoDB = DemoDB.getInstance;
+        Systems.Logger logger = Systems.Logger.getInstance;
         SubForumController subForumController = SubForumController.getInstance;
 
 
@@ -35,8 +36,9 @@ namespace ForumBuilder.Controllers
         // delete post from thread only and delete thread from subforum
         public Boolean deleteThread(Int32 firstPostToDelete)
         {
-            return demoDB.removeThreadByfirstPostId(firstPostToDelete) && subForumController.deleteThread(firstPostToDelete);
-
+            if(demoDB.getThreadByFirstPostId(firstPostToDelete)!=null)
+                return demoDB.removeThreadByfirstPostId(firstPostToDelete) && subForumController.deleteThread(firstPostToDelete);
+            return false;
         }
     }
 }

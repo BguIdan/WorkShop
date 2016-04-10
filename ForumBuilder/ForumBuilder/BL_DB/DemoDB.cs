@@ -27,7 +27,19 @@ namespace ForumBuilder.BL_DB
             users = new List<User>();
 
         }
-        public int /* the new post id*/ getAvilableIntOfPost()
+        public static DemoDB getInstance
+        {
+            get
+            {
+                if (singleton == null)
+                {
+                    singleton = new DemoDB();
+                }
+                return singleton;
+            }
+
+        }
+        public int getAvilableIntOfPost()
         {
             int max = 0;
             foreach (Post p in posts)
@@ -60,11 +72,6 @@ namespace ForumBuilder.BL_DB
 
         internal bool nominateModerator(string newModerator, string nominatorUser, DateTime date, SubForum subForum)
         {
-            if (DateTime.Now.CompareTo(date) > 0)
-            {
-                Console.WriteLine("the date already past");
-                return false;
-            }
             subForum.moderators.Remove(newModerator);
             subForum.moderators.Add(newModerator, date);
             return true;
@@ -79,7 +86,7 @@ namespace ForumBuilder.BL_DB
             }
             return null;
         }
-
+        //remove logic to controller
         internal bool removeThreadByfirstPostId(int firstPostToDelete)
         {
             Thread tr = null;
@@ -122,7 +129,6 @@ namespace ForumBuilder.BL_DB
 
         public bool addThreadToSubForum(Thread thread, string forum, string subForum)
         {
-
             foreach (SubForum sf in subForums)
             {
                 if (sf.forum.Equals(forum) && sf.name.Equals(subForums))
@@ -141,33 +147,19 @@ namespace ForumBuilder.BL_DB
 
         internal bool nominateAdmin(string newAdmin, string nominatorName, string forumName)
         {
-            if (isSuperUser(nominatorName))
-            {
-                Forum forum = getforumByName(forumName);
-                string adminNameIfExist = "";
-                foreach (String s in forum.administrators)
-                {
-                    if (s.Equals(newAdmin))
-                    {
-                        adminNameIfExist = s;
-                    }
-                }
-                if (adminNameIfExist.Equals(""))
-                {
-                    forum.administrators.Add(newAdmin);
-                }
-                return true;
-            }
-            return false;
+            Forum forum = getforumByName(forumName);
+            forum.administrators.Add(newAdmin);
+            return true;
         }
-        public bool isSuperUser(string userName)
+        
+        public SuperUser getSuperUser(string userName)
         {
             foreach (SuperUser superUser in superUsers)
             {
                 if (superUser._userName.Equals(userName))
-                    return true;
+                    return superUser;
             }
-            return false;
+            return null;
         }
 
         internal bool dismissAdmin(string adminToDismissed, string forumName)
@@ -176,8 +168,6 @@ namespace ForumBuilder.BL_DB
             forum.administrators.Remove(adminToDismissed);
             return true;
         }
-
-
 
         public Boolean addThread(Thread thread)
         {
@@ -227,39 +217,6 @@ namespace ForumBuilder.BL_DB
             return null;
         }
 
-        public static DemoDB getInstance
-        {
-            get
-            {
-                if (singleton == null)
-                {
-                    singleton = new DemoDB();
-                }
-                return singleton;
-            }
-
-        }
-
-        public Boolean isForumExists(string name)
-        {
-            for (int i = 0; i < forums.Count; i++)
-            {
-                if (((Forum)(forums.ElementAt(i))).forumName.Equals((name)))
-                    return true;
-            }
-            return false;
-        }
-
-        public Boolean isSubForumExists(string forumName, string subForumName)
-        {
-            for (int i = 0; i < subForums.Count; i++)
-            {
-                //    if ((subForums.ElementAt(i))._name == subForumName && (subForums.ElementAt(i))._forumName == forumName)
-                return true;
-            }
-            return false;
-        }
-
         public User getUser(string userName)
         {
             for (int i = 0; i < users.Count; i++)
@@ -297,21 +254,14 @@ namespace ForumBuilder.BL_DB
 
         public Boolean createForum(string forumName, string descrption, string forumPolicy, string forumRules, List<string> administrators)
         {
-
-            if (forumName.Equals("") || descrption.Equals("") || forumPolicy.Equals("") || forumRules.Equals("") || administrators == null)
-            {
-                Console.WriteLine("cannot create new forum because one or more of the fields was empty");
-                return false;
-            }
             Forum newForum = new Forum(forumName, descrption, forumPolicy, forumRules, administrators);
             forums.Add(newForum);
             return true;
 
         }
-
+        //move all logic to controller
         public Boolean initialize(String userName, String password, String email)
         {
-
             if (userName.Equals("") || password.Equals("") || email.Equals(""))
             {
                 Console.WriteLine("one or more of the fields is missing");
@@ -392,12 +342,9 @@ namespace ForumBuilder.BL_DB
                     forums[i].description = newDescription;
                     forums[i].forumPolicy = newForumPolicy;
                     forums[i].forumRules = newForumRules;
-                    Console.WriteLine(forumName + "preferences had changed successfully");
                     isChanged = true;
                 }
-
             }
-            if (!isChanged) Console.WriteLine("This forum" + forumName + "doesn't exist");
             return isChanged;
         }
 
@@ -435,7 +382,6 @@ namespace ForumBuilder.BL_DB
             get { return messages; }
         }
 
-
         public Boolean addSubForum(SubForum subForum)
         {
             foreach (SubForum sf in subForums)
@@ -449,12 +395,18 @@ namespace ForumBuilder.BL_DB
 
         public void clear()
         {
-            this.forums.Clear();
-            this.subForums.Clear();
-            this.threads.Clear();
-            this.posts.Clear();
-            this.users.Clear();
-            this.messages.Clear();
+            if (this.forums != null)
+                this.forums.Clear();
+            if (this.subForums != null)
+                this.subForums.Clear();
+            if (this.threads != null)
+                this.threads.Clear();
+            if (this.posts != null)
+                this.posts.Clear();
+            if (this.users != null)
+                this.users.Clear();
+            if (this.messages != null)
+                this.messages.Clear();
         }
     }
 }

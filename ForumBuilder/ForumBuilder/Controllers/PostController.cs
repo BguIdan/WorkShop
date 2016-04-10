@@ -11,6 +11,7 @@ namespace ForumBuilder.Controllers
         private static PostController singleton;
         ThreadController threadController = ThreadController.getInstance;
         DemoDB demoDB = DemoDB.getInstance;
+        Systems.Logger logger = Systems.Logger.getInstance;
         public static PostController getInstance
         {
             get
@@ -38,7 +39,7 @@ namespace ForumBuilder.Controllers
             {
                 Post post = undonePosts.ElementAt(0);
                 undonePosts.RemoveAt(0);
-                List<Post> related = DemoDB.getInstance.getRelatedPosts(post.id);
+                List<Post> related =demoDB.getRelatedPosts(post.id);
                 while (related != null && related.Count != 0)
                 {
                     undonePosts.Add(related.ElementAt(0));
@@ -86,6 +87,7 @@ namespace ForumBuilder.Controllers
             if (headLine.Length <= 0 && content.Length <= 0)
                 return false;
             Post newPost = new Post(writerName, demoDB.getAvilableIntOfPost(), headLine, content, commentedPost, timePublished);
+            //check if post not exist (done up but do formaly)
             if (!demoDB.addPost(newPost))
                 return false;
             if (commentedPost == -1)

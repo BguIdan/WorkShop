@@ -8,7 +8,7 @@ using ForumBuilder.BL_Back_End;
 namespace Tests
 {
     [TestClass]
-    public class SubForumTest
+    public class SubForumControllerTest
     {/*
         private ISubForumController subForum;
         private User memberUser;

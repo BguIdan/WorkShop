@@ -14,25 +14,19 @@ namespace ForumBuilder.Systems
             demo_db = DemoDB.getInstance;
         }
 
-        private List<IForumController> forums;
-
-        public List<IForumController> _forums
-        {
-            get{ return forums;}
-            set{forums = value;}
-        }
-
+        
         public bool initialize(string userName, string password, string email)
         {
             return demo_db.initialize(userName, password, email);
             //should present some window..
         }
 
+        /*
         public bool createForum(string forumName, string descrption, string forumPolicy, string forumRules, List<string> administrators)
         {
             return demo_db.createForum(forumName, descrption, forumPolicy, forumRules, administrators);
         }
-
+        */
         public static int Main(string[] args)
         {
             return -1;
