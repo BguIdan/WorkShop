@@ -33,7 +33,7 @@ namespace ForumBuilder.Controllers
 
         public bool dismissModerator(string dismissedModerator, string dismissByAdmin, string subForumName, string forumName)
         {
-            SubForum subFourm = ForumController.getInstance.getSubForum(subForumName, forumName);
+            SubForum subForum = getSubForum(subForumName, forumName);
             if (ForumController.getInstance.isAdmin(dismissByAdmin, forumName) && ForumController.getInstance.isMember(dismissedModerator, forumName))
             {
                 return demoDB.dismissModerator(dismissedModerator, dismissByAdmin, subForum);
@@ -43,12 +43,17 @@ namespace ForumBuilder.Controllers
 
         public bool nominateModerator(string newModerator, string nominatorUser, DateTime date, string subForumName, string forumName)
         {
-            SubForum subFourm = ForumController.getInstance.getSubForum(subForumName, forumName);
+            SubForum subForum =getSubForum(subForumName, forumName);
             if (ForumController.getInstance.isAdmin(nominatorUser, forumName) && ForumController.getInstance.isMember(newModerator, forumName))
             {
                 return demoDB.nominateModerator(newModerator, nominatorUser, date, subForum);
             }
             return false;
+        }
+
+        private SubForum getSubForum(string subForumName, string forumName)
+        {
+            return demoDB.getSubForum(subForumName, forumName);
         }
     }
 }

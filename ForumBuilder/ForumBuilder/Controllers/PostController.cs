@@ -81,6 +81,7 @@ namespace ForumBuilder.Controllers
             return demoDB.getPost(postId);
         }
 
+        //add send message to all freinds
         public Boolean addPost(String headLine, String content, String writerName, DateTime timePublished, Int32 commentedPost/*if new thread, -1*/, String forum, String subForum)
         {
             if (headLine.Length <= 0 && content.Length <= 0)

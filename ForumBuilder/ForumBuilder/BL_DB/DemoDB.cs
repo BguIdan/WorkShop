@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using ForumBuilder.BL_Back_End;
-using ForumBuilder.Users;
 using System.Net.Mail;
 
 namespace ForumBuilder.BL_DB
@@ -38,9 +37,25 @@ namespace ForumBuilder.BL_DB
             return max;
         }
 
+        internal bool addFriendToUser(string userName, string friendToAddName)
+        {
+            User user = getUser(userName);
+            if (user.friends.Contains(friendToAddName))
+                return false;
+            user.friends.Add(friendToAddName);
+            return true;
+        }
+
         internal bool dismissModerator(string dismissedModerator, string dismissByAdmin, SubForum subForum)
         {
             subForum.moderators.Remove(dismissedModerator);
+            return true;
+        }
+
+        internal bool removeFriendOfUser(string userName, string deletedFriendName)
+        {
+            User user= getUser(userName);
+            user.friends.Remove(deletedFriendName);
             return true;
         }
 
@@ -68,6 +83,22 @@ namespace ForumBuilder.BL_DB
             subForum.moderators.Remove(newModerator);
             subForum.moderators.Add(newModerator, date);
             return true;
+        }
+
+        internal SubForum getSubForum(string subForumName, string forumName)
+        {
+            foreach (Forum f in forums)
+            {
+                if (f.forumName.Equals(forumName))
+                {
+                    foreach (SubForum sf in subForums)
+                    {
+                        if (sf.name.Equals(subForumName))
+                            return sf;
+                    }
+                }
+            }
+            return null;
         }
 
         internal Forum getforumByName(string forumName)
