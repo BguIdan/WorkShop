@@ -48,7 +48,7 @@ namespace Tests
 
 
         /**********************add friend*********************/
-
+        [TestMethod]
         public void test_addFriend_nonMember_with_nonMember()
         {
             List<String> friends = this.userController.getFriendList(this.userNonMember.userName);
@@ -58,7 +58,7 @@ namespace Tests
             Assert.AreEqual(newFriendList.Count, 0, "unsuccessful friend addition should not change the friend list");
         }
 
-
+        [TestMethod]
         public void test_addFriend_nonMember_with_member()
         {
             List<String> friends = this.userController.getFriendList(this.userNonMember.userName);
@@ -68,6 +68,7 @@ namespace Tests
             Assert.AreEqual(newFriendList.Count, 0, "unsuccessful friend addition should not change the friend list");
         }
 
+        [TestMethod]
         public void test_addFriend_nonMember_with_admin()
         {
             List<String> friends = this.userController.getFriendList(this.userNonMember.userName);
@@ -77,6 +78,7 @@ namespace Tests
             Assert.AreEqual(newFriendList.Count, 0, "unsuccessful friend addition should not change the friend list");
         }
 
+        [TestMethod]
         public void test_addFriend_member_with_nonMember()
         {
             List<String> friends = this.userController.getFriendList(this.userMember.userName);
@@ -86,7 +88,7 @@ namespace Tests
             Assert.AreEqual(newFriendList.Count, 0, "unsuccessful friend addition should not change the friend list");
         }
 
-
+        [TestMethod]
         public void test_addFriend_member_with_member()
         {
             String newMemberName = "mem2";
@@ -99,6 +101,7 @@ namespace Tests
             Assert.IsTrue(newFriendList.Contains(newMemberName));
         }
 
+        [TestMethod]
         public void test_addFriend_member_with_admin()
         {
             List<String> friends = this.userController.getFriendList(this.userMember.userName);
@@ -109,6 +112,7 @@ namespace Tests
             Assert.IsTrue(newFriendList.Contains(this.userAdmin.userName));
         }
 
+        [TestMethod]
         public void test_addFriend_admin_with_nonMember()
         {
             List<String> friends = this.userController.getFriendList(this.userAdmin.userName);
@@ -118,7 +122,7 @@ namespace Tests
             Assert.AreEqual(newFriendList.Count, 0, "unsuccessful friend addition should not change the friend list");
         }
 
-
+        [TestMethod]
         public void test_addFriend_admin_with_member()
         {
             String newMemberName = "mem2";
@@ -131,6 +135,7 @@ namespace Tests
             Assert.IsTrue(newFriendList.Contains(newMemberName));
         }
 
+        [TestMethod]
         public void test_addFriend_admin_with_admin()
         {
             String adminName = "admin2";
@@ -144,6 +149,7 @@ namespace Tests
             Assert.IsTrue(newFriendList.Contains(adminName));
         }
 
+        [TestMethod]
         public void test_addFriend_admin_with_null()
         {
             List<String> friends = this.userController.getFriendList(this.userAdmin.userName);
@@ -157,6 +163,7 @@ namespace Tests
 
         /**********************delete friend*********************/
 
+        [TestMethod]
         public void test_deleteFriend_member_with_member()
         {
             String newMemberName = "mem2";
@@ -172,6 +179,7 @@ namespace Tests
             Assert.IsFalse(newFriendList.Contains(newMemberName));
         }
 
+        [TestMethod]
         public void test_deleteFriend_member_with_admin()
         {
             List<String> friends = this.userController.getFriendList(this.userMember.userName);
@@ -185,7 +193,7 @@ namespace Tests
             Assert.IsFalse(newFriendList.Contains(this.userAdmin.userName));
         }
 
-
+        [TestMethod]
         public void test_deleteFriend_admin_with_member()
         {
             String newMemberName = "mem2";
@@ -201,6 +209,7 @@ namespace Tests
             Assert.IsFalse(newFriendList.Contains(newMemberName));
         }
 
+        [TestMethod]
         public void test_deleteFriend_admin_with_admin()
         {
             String adminName = "admin2";
@@ -217,6 +226,7 @@ namespace Tests
             Assert.IsFalse(newFriendList.Contains(adminName));
         }
 
+        [TestMethod]
         public void test_deleteFriend_admin_with_null()
         {
             List<String> friends = this.userController.getFriendList(this.userAdmin.userName);
