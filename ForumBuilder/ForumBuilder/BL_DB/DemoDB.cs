@@ -24,6 +24,7 @@ namespace ForumBuilder.BL_DB
             threads = new List<Thread>();
             posts = new List<Post>();
             users = new List<User>();
+            superUsers = new List<SuperUser>();
 
         }
         public static DemoDB getInstance

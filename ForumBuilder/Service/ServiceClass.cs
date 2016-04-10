@@ -50,9 +50,9 @@ namespace Service
         {
             return forumController.nominateAdmin(newAdmin, nominatorName, forumName);
         }
-        public Boolean registerUser(String newUser, String password, String mail)
+        public Boolean registerUser(String newUser, String password, String mail, string forumName)
         {
-            return forumController.registerUser(newUser, password, mail);
+            return forumController.registerUser(newUser, password, mail, forumName);
         }
         public Boolean addSubForum(String forumName, String name, Dictionary<String, DateTime> moderators, String userNameAdmin)
         {
