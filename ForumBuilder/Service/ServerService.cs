@@ -1,21 +1,29 @@
-﻿namespace Service
+﻿using ForumBuilder.Controllers;
+
+namespace Service
 {
     class ServerService
     {
+        private static ServerService singleton;
         
-        /// <summary>
-        /// האם צריך לשלוח את מי שביקש את הפעולה? 
-        /// ככה נוכל לתת הרשאות וכן להתאים מידע מתאים
-        /// </summary>
-        /// <param name="userName"></param>
-        /// <param name="forum"></param>
-        /// <returns></returns>
-        public static int Main(string[] args)
+
+        private ServerService()
         {
-            return -1;
+
         }
 
-       
+        public static ServerService getInstance
+        {
+            get
+            {
+                if (singleton == null)
+                {
+                    singleton = new ServerService();
+                }
+                return singleton;
+            }
+
+        }  
 
     }
 }
