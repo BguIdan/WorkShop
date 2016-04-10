@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using ForumBuilder.BL_Back_End;
 using ForumBuilder.BL_DB;
 using ForumBuilder.Users;
+using ForumBuilder.Controllers;
 
 namespace ForumBuilder.Controllers
 {
@@ -29,10 +30,11 @@ namespace ForumBuilder.Controllers
             User user = demoDB.getUser(userNameAdmin);
             if (user != null)
             {
-               
-                if(!isAdmin(userNameAdmin, forumName)){
+
+                if (!isAdmin(userNameAdmin, forumName))
+                {
                     //maybe add error message to logger?! not an admin
-                        return false;
+                    return false;
                 }
                 Forum forum = demoDB.getforumByName(forumName);
                 if (forum != null)
@@ -40,21 +42,23 @@ namespace ForumBuilder.Controllers
                     forum.subForums.Add(name);
                     SubForum subForum = new SubForum(name, forumName);
                     demoDB.addSubForum(subForum);
-                    
-                    foreach(string s in moderators.Keys){
-                        User mod= demoDB.getUser(s);
+
+                    foreach (string s in moderators.Keys)
+                    {
+                        User mod = demoDB.getUser(s);
                         if (mod == null)
                         {
                             // maybe add error message to logger?! moderator not register to the forum
                             return false;
                         }
                     }
-                    foreach(string s in moderators.Keys)
+                    foreach (string s in moderators.Keys)
                     {
                         User mod = demoDB.getUser(s);
                         DateTime date;
                         moderators.TryGetValue(s, out date);
-                        if (date > DateTime.Now) {
+                        if (date > DateTime.Now)
+                        {
                             subForum.moderators.Add(s, date);
                         }
                         else
@@ -62,52 +66,82 @@ namespace ForumBuilder.Controllers
                             // maybe add error message to logger?! date is allready passe
                             return false;
                         }
-                            
+
                     }
-                }    
+                }
             }
             else
             {
                 // maybe add error message to logger?! not an admin
                 return false;
             }
-    
+
             return true;
         }
 
-        public bool banMember(string bannedMember, string bannerUserName)
+        public bool banMember(string bannedMember, string bannerUserName, string forumName)
         {
-            throw new NotImplementedException();
+            if (this.isMember(bannerUserName, forumName) && this.isMember(bannerUserName, forumName))
+            {
+                return demoDB.banMember(bannedMember, bannerUserName, forumName);
+            }
+            return false;
         }
 
-        public bool changePoliciy(string newPolicy, string changerName)
+        public bool changePoliciy(string newPolicy, string changerName, string forumName)
         {
-            throw new NotImplementedException();
+            if (this.isAdmin(changerName, forumName))
+            {
+                return demoDB.changePolicy(newPolicy, forumName);
+            }
+            return false;
         }
 
-        public bool dismissAdmin(string adminToDismissed, string dismissingUserName)
+        public bool dismissAdmin(string adminToDismissed, string dismissingUserName, string forumName)
         {
-            throw new NotImplementedException();
+            if (this.isAdmin(dismissingUserName, forumName) && this.isMember(adminToDismissed, forumName))
+            {
+                return demoDB.dismissAdmin(adminToDismissed, forumName);
+            }
+            return false;
         }
 
-        public bool dismissMember(string userName, string dismissingUserName, string forumName)
-        {
-            throw new NotImplementedException();
-        }
 
         public bool isAdmin(string userName, string forumName)
         {
-            throw new NotImplementedException();
+            Forum forum = demoDB.getforumByName(forumName);
+            foreach (string s in forum.administrators)
+            {
+                if (s.Equals(userName))
+                {
+                    return true;
+                }
+            }
+            //Console.WriteLine("User " +userName+ "is not administrator in "+ forumName);      
+            return false;
         }
 
         public bool isMember(string userName, string forumName)
         {
-            throw new NotImplementedException();
+            Forum forum = demoDB.getforumByName(forumName);
+            foreach (string s in forum.members)
+            {
+                if (s.Equals(userName))
+                {
+                    return true;
+                }
+            }
+            //Console.WriteLine("User " +userName+ "is not member in "+ forumName);      
+            return false;
         }
 
-        public bool nominateAdmin(string newAdmin, string nominatorName)
+        public bool nominateAdmin(string newAdmin, string nominatorName, string forumName)
         {
-            throw new NotImplementedException();
+            if (this.isMember(newAdmin, forumName))
+            {
+                return demoDB.nominateAdmin(newAdmin, nominatorName, forumName);
+            }
+            return false;
         }
 
         public bool registerUser(string userName, string password, string mail)

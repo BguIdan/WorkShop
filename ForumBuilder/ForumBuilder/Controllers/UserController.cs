@@ -1,5 +1,4 @@
 ﻿using System;
-using ForumBuilder.Users;
 using ForumBuilder.BL_DB;
 using ForumBuilder.BL_Back_End;
 
@@ -8,6 +7,7 @@ namespace ForumBuilder.Controllers
     class UserController : IUserController
     {
         private static UserController singleton;
+        DemoDB demoDB = DemoDB.getInstance;
         public static UserController getInstance
         {
             get
@@ -20,14 +20,30 @@ namespace ForumBuilder.Controllers
             }
 
         }
-        public bool addFriend(string userName, string friendToAdd)
+        public bool addFriend(string userName, string friendToAddName)
         {
-            throw new NotImplementedException();
+            User user = demoDB.getUser(userName);
+            User friendToAdd = demoDB.getUser(friendToAddName);
+            if (user == null)
+                return false;
+            if (friendToAdd == null)
+                return false;
+            if (demoDB.addFriendToUser(userName, friendToAddName) == false)
+                return false;
+            return true;
         }
 
-        public bool deleteFriend(string userName, string deletedFriend)
+        public bool deleteFriend(string userName, string deletedFriendName)
         {
-            throw new NotImplementedException();
+            User user = demoDB.getUser(userName);
+            User friendToAdd = demoDB.getUser(deletedFriendName);
+            if (user == null)
+                return false;
+            if (friendToAdd == null)
+                return false;
+            if (demoDB.removeFriendOfUser(userName, deletedFriendName) == false)
+                return false;
+            return true;
         }
 
         public bool sendPrivateMessage(string fromUserName, string toUserName, string content, Int32 id)
