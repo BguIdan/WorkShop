@@ -1,6 +1,7 @@
 ﻿using ForumBuilder.Controllers;
 using System;
 using System.Collections.Generic;
+using ForumBuilder.Systems;
 
 namespace Service
 {
@@ -125,7 +126,7 @@ namespace Service
 
         public static int Main(string[] args)
         {
-            
+            ForumSystem.initialize("name", "pass", "email");
             return -1;
         }
     }
