@@ -4,7 +4,7 @@ using ForumBuilder.BL_Back_End;
 
 namespace ForumBuilder.Controllers
 {
-    class UserController : IUserController
+    public class UserController : IUserController
     {
         private static UserController singleton;
         DemoDB demoDB = DemoDB.getInstance;

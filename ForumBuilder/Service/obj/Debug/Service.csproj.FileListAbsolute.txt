@@ -1,1 +1,9 @@
 C:\Users\User\Documents\sadna\ForumBuilder\Service\obj\Debug\Service.csprojResolveAssemblyReference.cache
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\Service\obj\Debug\Service.csprojResolveAssemblyReference.cache
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\Service\bin\Debug\Service.exe.config
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\Service\bin\Debug\Service.exe
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\Service\bin\Debug\Service.pdb
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\Service\bin\Debug\ForumBuilder.exe
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\Service\bin\Debug\ForumBuilder.pdb
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\Service\obj\Debug\Service.exe
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\Service\obj\Debug\Service.pdb

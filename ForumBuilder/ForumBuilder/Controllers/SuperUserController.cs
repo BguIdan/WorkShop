@@ -4,7 +4,7 @@ using ForumBuilder.BL_DB;
 
 namespace ForumBuilder.Controllers
 {
-    class SuperUserController : UserController, ISuperUserController
+    public class SuperUserController : UserController, ISuperUserController
     {
         private static SuperUserController singleton;
         
