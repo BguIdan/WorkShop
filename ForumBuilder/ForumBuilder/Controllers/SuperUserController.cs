@@ -23,7 +23,11 @@ namespace ForumBuilder.Controllers
         }
         public Boolean createForum(String forumName, String descrption, String forumPolicy, String forumRules, List<String> administrators, String superUserName)
         {
-            return DemoDB.getInstance.createForum(forumName, descrption, forumPolicy, forumRules, administrators);
+            if (DemoDB.getInstance.isSuperUser(superUserName))
+            {
+                return DemoDB.getInstance.createForum(forumName, descrption, forumPolicy, forumRules, administrators);
+            }
+            return false;
         }
     }
 }
