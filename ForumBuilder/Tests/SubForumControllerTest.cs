@@ -39,8 +39,8 @@ namespace Tests
             this.forum = new Forum(this.forumName, "descr", "policy", "the first rule is that you do not talk about fight club", adminList);
             ISuperUserController superUser = SuperUserController.getInstance;
             superUser1 = new SuperUser("fkfkf@wkk.com", "1qW", "tomer");
-            SuperUserController.getInstance.addSuperUser(superUser1._email, superUser1._password, superUser1._userName);
-            superUser.createForum(forum.forumName, forum.description, forum.forumPolicy, forum.forumRules, forum.administrators, superUser1._userName);
+            SuperUserController.getInstance.addSuperUser(superUser1.email, superUser1.password, superUser1.userName);
+            superUser.createForum(forum.forumName, forum.description, forum.forumPolicy, forum.forumRules, forum.administrators, superUser1.userName);
             Assert.IsTrue(this.forumController.registerUser("admin", "adminpass", "admin@gmail.com", this.forumName));
             Assert.IsTrue(this.forumController.registerUser("mem", "mempass", "mem@gmail.com", this.forumName));
             Assert.IsTrue(this.forumController.registerUser("mod", "modpass", "mod@gmail.com", this.forumName));

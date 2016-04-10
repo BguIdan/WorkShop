@@ -31,7 +31,7 @@ namespace Tests
             this.forum = new Forum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList);
             ISuperUserController superUser = SuperUserController.getInstance;
             superUser1 = new SuperUser("fkfkf@wkk.com", "1qW", "tomer");
-            SuperUserController.getInstance.addSuperUser(superUser1._email, superUser1._password, superUser1._userName);
+            SuperUserController.getInstance.addSuperUser(superUser1.email, superUser1.password, superUser1.userName);
             superUser.createForum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "tomer");
             Assert.IsTrue(this.forumController.registerUser("mem", "mempass", "mem@gmail.com", this.forum.forumName));
             Assert.IsTrue(this.forumController.registerUser("admin", "adminpass", "admin@gmail.com", this.forum.forumName));
@@ -175,7 +175,7 @@ namespace Tests
             String forumName = this.forum.forumName;
             Assert.IsTrue(this.forumController.isMember(userMemberName, forumName), "userMember should be a member in the forum");
             Assert.IsFalse(this.forumController.isAdmin(userMemberName, forumName), "userMember should not be an admin in the forum");
-            Assert.IsTrue(this.forumController.nominateAdmin(userMemberName, this.superUser1._userName, forumName), "the nomination of userMember should be successful");
+            Assert.IsTrue(this.forumController.nominateAdmin(userMemberName, this.superUser1.userName, forumName), "the nomination of userMember should be successful");
             Assert.IsTrue(this.forumController.isMember(userMemberName, forumName), "userMember should be a member in the forum");
             Assert.IsTrue(this.forumController.isAdmin(userMemberName, forumName), "userMember should be an admin in the forum after the nomination");
         }
