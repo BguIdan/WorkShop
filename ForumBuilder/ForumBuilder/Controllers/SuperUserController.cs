@@ -74,11 +74,11 @@ namespace ForumBuilder.Controllers
                 {
                     isKeyRepeting3Times = true;
                 }
-                if (!(isNumExist && isSmallKeyExist && isBigKeyExist && !isKeyRepeting3Times))
-                {
-                    logger.logPrint("password isnt strong enough");
-                    return false;
-                }
+            }
+            if (!(isNumExist && isSmallKeyExist && isBigKeyExist && !isKeyRepeting3Times))
+            {
+                logger.logPrint("password isnt strong enough");
+                return false;
             }
             // check if the the email is in a correct format
             int index = email.IndexOf("@");

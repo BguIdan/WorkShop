@@ -114,7 +114,7 @@ namespace Tests
             String AdminName = this.userAdmin.userName;
             String forumName = this.forum.forumName;
             Assert.IsFalse(this.forumController.isMember(NonMemberName, forumName), "userNonMember should not be a member");
-            Assert.IsTrue(this.forumController.banMember(NonMemberName, AdminName, forumName), "ban of userNonMember should be successful");
+            Assert.IsFalse(this.forumController.banMember(NonMemberName, AdminName, forumName), "ban of userNonMember should Not be successful");
             Assert.IsFalse(this.forumController.isMember(NonMemberName, forumName), "userNonMember should not be a member");
             ///TODO
             //Assert.IsFalse(this.forumController.registerUser(this.userNonMember.userName, this.userNonMember.password, this.userNonMember.email, forumName), "userNonMember should not be able to become a member since he is banned");
