@@ -174,7 +174,6 @@ namespace ForumBuilder.Controllers
                 return true;
             }
             return false;
-=======
             if(isAdmin(setterUserName, forumName))
             {
                 DemoDB.getInstance.setForumPreferences(forumName, newDescription, newForumPolicy, newForumRules);

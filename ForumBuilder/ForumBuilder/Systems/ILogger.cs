@@ -8,6 +8,6 @@ namespace ForumBuilder.Systems
 {
     public interface ILogger
     {
-        void logPrint(String name, String contentToPrint);
+        void logPrint(String contentToPrint);
     }
 }
