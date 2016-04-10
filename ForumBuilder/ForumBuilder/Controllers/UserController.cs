@@ -16,6 +16,7 @@ namespace ForumBuilder.Controllers
                 if (singleton == null)
                 {
                     singleton = new UserController();
+                    Systems.Logger.getInstance.logPrint("User contoller created");
                 }
                 return singleton;
             }

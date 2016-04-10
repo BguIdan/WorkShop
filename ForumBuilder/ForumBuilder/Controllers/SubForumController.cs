@@ -18,6 +18,7 @@ namespace ForumBuilder.Controllers
                 if (singleton == null)
                 {
                     singleton = new SubForumController();
+                    Systems.Logger.getInstance.logPrint("Sub-forum contoller created");
                 }
                 return singleton;
             }

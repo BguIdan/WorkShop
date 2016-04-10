@@ -233,14 +233,14 @@ namespace ForumBuilder.BL_DB
             return null;
         }
 
-        public Boolean addUser(User user)
+        public Boolean addUser(string userName, string password, string mail)
         {
             foreach (User u in users)
             {
-                if (u.userName.Equals(user.userName))
+                if (u.userName.Equals(userName))
                     return false;
             }
-            users.Add(user);
+            users.Add(new User(userName, password, mail));
             return true;
         }
 

@@ -10,6 +10,7 @@ namespace ForumBuilder.Controllers
         private static ForumController singleton;
         DemoDB demoDB = DemoDB.getInstance;
         Systems.Logger logger = Systems.Logger.getInstance;
+        SuperUserController superUserController = SuperUserController.getInstance;
         public static ForumController getInstance
         {
             get
@@ -17,6 +18,7 @@ namespace ForumBuilder.Controllers
                 if (singleton == null)
                 {
                     singleton = new ForumController();
+                    Systems.Logger.getInstance.logPrint("Forum contoller created");
                 }
                 return singleton;
             }
@@ -27,10 +29,9 @@ namespace ForumBuilder.Controllers
             User user = demoDB.getUser(userNameAdmin);
             if (user != null)
             {
-
                 if (!isAdmin(userNameAdmin, forumName))
                 {
-                    //maybe add error message to logger?! not an admin
+                    logger.logPrint("Add sub-forum failed, "+userNameAdmin+" is not an admin");
                     return false;
                 }
                 Forum forum = demoDB.getforumByName(forumName);
@@ -45,7 +46,7 @@ namespace ForumBuilder.Controllers
                         User mod = demoDB.getUser(s);
                         if (mod == null)
                         {
-                            // maybe add error message to logger?! moderator not register to the forum
+                            logger.logPrint("Add sub-forum failed, the moderator " + s + " is not member of forum"); 
                             return false;
                         }
                     }
@@ -60,7 +61,7 @@ namespace ForumBuilder.Controllers
                         }
                         else
                         {
-                            // maybe add error message to logger?! date is allready passe
+                            logger.logPrint("Add sub-forum failed, date is allready passed"); 
                             return false;
                         }
 
@@ -69,29 +70,47 @@ namespace ForumBuilder.Controllers
             }
             else
             {
-                // maybe add error message to logger?! not an admin
+                logger.logPrint("Add sub-forum failed, "+ userNameAdmin + " is not a user"); 
                 return false;
             }
-
             return true;
         }
 
         public bool banMember(string bannedMember, string bannerUserName, string forumName)
         {
-            if (this.isMember(bannerUserName, forumName) && this.isMember(bannerUserName, forumName))
+            if (!isMember(bannedMember, forumName))
+            {
+                logger.logPrint("Ban Member failed, " + bannedMember + " is not a member");
+                return false;
+            }
+            else if(!isAdmin(bannerUserName, forumName)&& !superUserController.isSuperUser(bannerUserName))
+            {
+                logger.logPrint("Ban Member failed, " + bannedMember + " is not a admin or super user");
+                return false;
+            }
+            else 
             {
                 return demoDB.banMember(bannedMember, bannerUserName, forumName);
             }
-            return false;
+            
         }
 
         public bool dismissAdmin(string adminToDismissed, string dismissingUserName, string forumName)
         {
-            if (this.isAdmin(dismissingUserName, forumName) && this.isMember(adminToDismissed, forumName))
+            if (!isAdmin(adminToDismissed, forumName))
+            {
+                logger.logPrint("Dismiss admin failed, " + adminToDismissed + " is not a admin");
+                return false;
+            }
+            else if(!superUserController.isSuperUser(dismissingUserName))
+            {
+                logger.logPrint("Ban Member failed, " + dismissingUserName + " is not a super user");
+                return false;
+            }
+            else 
             {
                 return demoDB.dismissAdmin(adminToDismissed, forumName);
-            }
-            return false;
+            }           
         }
 
         public bool isAdmin(string userName, string forumName)
@@ -104,7 +123,6 @@ namespace ForumBuilder.Controllers
                     return true;
                 }
             }
-            logger.logPrint("User " +userName+ "is not administrator in "+ forumName);      
             return false;
         }
 
@@ -115,13 +133,12 @@ namespace ForumBuilder.Controllers
             {
                 return true;
             }
-            logger.logPrint("User " +userName+ "is not member in "+ forumName);      
             return false;
         }
 
         public bool nominateAdmin(string newAdmin, string nominatorName, string forumName)
         {
-            if (demoDB.getSuperUser(nominatorName)!=null)
+            if (demoDB.getSuperUser(nominatorName) != null)
             {
                 if (this.isMember(newAdmin, forumName))
                 {
@@ -130,46 +147,39 @@ namespace ForumBuilder.Controllers
                         logger.logPrint("admin nominated successfully");
                         return true;
                     }
+                    return false;
                 }
-                logger.logPrint("nominate admin fail, "+newAdmin + "is not member");
+                logger.logPrint("nominate admin fail, " + newAdmin + "is not member");
                 return false;
             }
-            else
-            {
-                logger.logPrint("nominate admin fail " + nominatorName + " is not super user");
-                return false;
-            }
-            
-        }
-
+            logger.logPrint("nominate admin fail " + nominatorName + " is not super user");
+            return false;
+        }            
+        
         public bool registerUser(string userName, string password, string mail, string forumName)
         {
             Forum forum = demoDB.getforumByName(forumName);
             if (forum == null)
             {
-                logger.logPrint("the forum does not exist");
+                logger.logPrint("Register user faild, the forum, "+ forumName+" does not exist");
                 return false;
             }
             if (userName.Length > 0 && password.Length > 0 && mail.Length > 0)
             {
                 if(demoDB.getUser(userName) !=null)
                 {
+                    logger.logPrint("Register user faild, "+userName+" is already taken");
                     return false;
                 }
-                User newUser = new User(userName, password, mail);
-                if (demoDB.addUser(newUser))
+                if (demoDB.addUser(userName, password, mail))
                 {
-                
-                    forum.members.Add(newUser.userName);
+                    forum.members.Add(userName);
                     return true;
                 }
                 return false;
             }
-            else
-            {
-                // maybe add error message to logger?!
-                return false;
-            }
+            logger.logPrint("Register user faild, password not strong enough");
+            return false;
         }
 
         public Boolean setForumPreferences(String forumName, String newDescription, String newForumPolicy, String newForumRules, string setterUserName)
@@ -177,7 +187,7 @@ namespace ForumBuilder.Controllers
             bool hasSucceed = false;
             if (demoDB.getforumByName(forumName) != null)
             {
-                logger.logPrint("Forum" + forumName + "do not exist");
+                logger.logPrint("Set forum preferences failed, Forum" + forumName + " do not exist");
             }
             else if (!isAdmin(setterUserName, forumName))
             {
