@@ -60,8 +60,8 @@
     <Compile Include="Controllers\ISuperUserController.cs" />
     <Compile Include="Controllers\IUserController.cs" />
     <Compile Include="Systems\Logger.cs" />
-    <Compile Include="Users\SuperUser.cs" />
-    <Compile Include="Users\User.cs" />
+    <Compile Include="BL_Back_End\SuperUser.cs" />
+    <Compile Include="BL_Back_End\User.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
