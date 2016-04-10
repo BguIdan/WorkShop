@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace ForumBuilder.Controllers
 {
-    class PostController :IPostController
+    public class PostController :IPostController
     {
         private static PostController singleton;
         ThreadController threadController = ThreadController.getInstance;

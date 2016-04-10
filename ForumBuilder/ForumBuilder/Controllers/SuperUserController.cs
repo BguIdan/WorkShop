@@ -9,6 +9,7 @@ namespace ForumBuilder.Controllers
         private static SuperUserController singleton;
         DemoDB demoDB = DemoDB.getInstance;
         Systems.Logger logger = Systems.Logger.getInstance;
+        
         public static SuperUserController getInstance
         {
             get
