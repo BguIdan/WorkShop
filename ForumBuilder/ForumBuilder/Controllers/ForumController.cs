@@ -9,7 +9,7 @@ namespace ForumBuilder.Controllers
     {
         private static ForumController singleton;
         DemoDB demoDB = DemoDB.getInstance;
-
+        Systems.Logger logger = Systems.Logger.getInstance;
         public static ForumController getInstance
         {
             get
@@ -115,7 +115,7 @@ namespace ForumBuilder.Controllers
                     return true;
                 }
             }
-            //Console.WriteLine("User " +userName+ "is not administrator in "+ forumName);      
+            logger.logPrint("User " +userName+ "is not administrator in "+ forumName);      
             return false;
         }
 
@@ -129,17 +129,31 @@ namespace ForumBuilder.Controllers
                     return true;
                 }
             }
-            //Console.WriteLine("User " +userName+ "is not member in "+ forumName);      
+            logger.logPrint("User " +userName+ "is not member in "+ forumName);      
             return false;
         }
 
         public bool nominateAdmin(string newAdmin, string nominatorName, string forumName)
         {
-            if (this.isMember(newAdmin, forumName))
+            if (demoDB.isSuperUser(nominatorName))
             {
-                return demoDB.nominateAdmin(newAdmin, nominatorName, forumName);
+                if (this.isMember(newAdmin, forumName))
+                {
+                    if (demoDB.nominateAdmin(newAdmin, nominatorName, forumName))
+                    {
+                        logger.logPrint("admin nominated successfully");
+                        return true;
+                    }
+                }
+                logger.logPrint("nominate admin fail, "+newAdmin + "is not member");
+                return false;
             }
-            return false;
+            else
+            {
+                logger.logPrint("nominate admin fail " + nominatorName + " is not super user");
+                return false;
+            }
+            
         }
 
         public bool registerUser(string userName, string password, string mail)
@@ -160,8 +174,16 @@ namespace ForumBuilder.Controllers
 
         public Boolean setForumPreferences(String forumName, String newDescription, String newForumPolicy, String newForumRules)
         {
-            DemoDB.getInstance.setForumPreferences(forumName, newDescription, newForumPolicy, newForumRules);
-            return true;
+            if (demoDB.getforumByName(forumName) != null)
+            {
+                logger.logPrint("Forum" + forumName + "do not exist");
+                return false;
+            }
+            if (demoDB.setForumPreferences(forumName, newDescription, newForumPolicy, newForumRules)) {
+                logger.logPrint(forumName + "preferences had changed successfully");
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -27,10 +27,10 @@ namespace ForumBuilder.Systems
 
         }
 
-        public void logPrint(String name, String contentToPrint)
+        public void logPrint(String contentToPrint)
         {
             _sw.WriteLine("Log Entry : " , DateTime.Now.ToLongTimeString());
-            _sw.WriteLine(name + ": " + contentToPrint);
+            _sw.WriteLine( contentToPrint);
             _sw.WriteLine("-----------------------------------------------");
         }
     }
