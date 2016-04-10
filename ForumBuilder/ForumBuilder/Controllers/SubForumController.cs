@@ -72,7 +72,7 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("To " + newModerator + " has no permission to be moderator, he is not a member");
             return false;
         }
-        private SubForum getSubForum(string subForumName, string forumName)
+        public SubForum getSubForum(string subForumName, string forumName)
         {
             return demoDB.getSubForum(subForumName, forumName);
         }
