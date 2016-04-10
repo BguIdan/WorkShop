@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ForumBuilder.BL_Back_End
+namespace ForumBuilder.Controllers
 {
     public class Post
     {
