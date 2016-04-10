@@ -30,10 +30,8 @@ namespace Tests
             List<string> adminList = new List<string>();
             this.forum = new Forum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList);
             ISuperUserController superUser = SuperUserController.getInstance;
-            superUser1._userName = "tomer";
-            superUser1._password = "1qE";
-            superUser1._email = "fjfj@wwa.com";
-            DemoDB.addSuperUser(superUser1._userName, superUser1._password);
+            superUser1 = new SuperUser("fkfkf@wkk.com", "1qW", "tomer");
+            SuperUserController.getInstance.addSuperUser(superUser1._email, superUser1._password, superUser1._userName);
             superUser.createForum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "tomer");
             Assert.IsTrue(this.forumController.registerUser("mem", "mempass", "mem@gmail.com", this.forum.forumName));
             Assert.IsTrue(this.forumController.registerUser("admin", "adminpass", "admin@gmail.com", this.forum.forumName));
@@ -166,9 +164,7 @@ namespace Tests
             String AdminName = this.userAdmin.userName;
             String forumName = this.forum.forumName;
             Assert.IsFalse(this.forumController.isMember(NonMemberName, forumName), "userNonMember should not be a member");
-            Assert.IsTrue(this.forumController.nominateAdmin(NonMemberName, AdminName, forumName), "nomination of non member to be admin should be successful");
-            Assert.IsTrue(this.forumController.isMember(NonMemberName, forumName), "after becoming an admin the (previously) non member should be a member now");
-            Assert.IsTrue(this.forumController.isAdmin(NonMemberName, forumName), "the (previously) non member should be an admin now");
+            Assert.IsFalse(this.forumController.nominateAdmin(NonMemberName, AdminName, forumName), "nomination of non member to be admin should NOT be successful");
         }
 
         [TestMethod]
@@ -179,7 +175,7 @@ namespace Tests
             String forumName = this.forum.forumName;
             Assert.IsTrue(this.forumController.isMember(userMemberName, forumName), "userMember should be a member in the forum");
             Assert.IsFalse(this.forumController.isAdmin(userMemberName, forumName), "userMember should not be an admin in the forum");
-            Assert.IsTrue(this.forumController.nominateAdmin(userMemberName, AdminName, forumName), "the nomination of userMember should be successful");
+            Assert.IsTrue(this.forumController.nominateAdmin(userMemberName, this.superUser1._userName, forumName), "the nomination of userMember should be successful");
             Assert.IsTrue(this.forumController.isMember(userMemberName, forumName), "userMember should be a member in the forum");
             Assert.IsTrue(this.forumController.isAdmin(userMemberName, forumName), "userMember should be an admin in the forum after the nomination");
         }
@@ -192,7 +188,7 @@ namespace Tests
             String forumName = this.forum.forumName;
             Assert.IsTrue(this.forumController.isMember(userAdminName, forumName), "userAdmin should be a member in the forum");
             Assert.IsTrue(this.forumController.isAdmin(userAdminName, forumName), "userAdmin should be an admin in the forum");
-            Assert.IsTrue(this.forumController.nominateAdmin(userAdminName, AdminName2, forumName), "userAdmin is already admin. the nomination should be successful");
+            Assert.IsFalse(this.forumController.nominateAdmin(userAdminName, AdminName2, forumName), "userAdmin is already admin. the nomination should NOT be successful");
             Assert.IsTrue(this.forumController.isMember(userAdminName, forumName), "userAdmin should still be a member in the forum");
             Assert.IsTrue(this.forumController.isAdmin(userAdminName, forumName), "userAdmin should still be an admin in the forum");
         }

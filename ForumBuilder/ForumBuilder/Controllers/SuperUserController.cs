@@ -44,7 +44,7 @@ namespace ForumBuilder.Controllers
             return false;
         }
 
-        internal bool addSuperUser(string email, string password, string userName)
+        public bool addSuperUser(string email, string password, string userName)
         {
             if (userName.Equals("") || password.Equals("") || email.Equals(""))
             {

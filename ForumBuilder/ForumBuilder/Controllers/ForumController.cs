@@ -78,7 +78,7 @@ namespace ForumBuilder.Controllers
 
         public bool banMember(string bannedMember, string bannerUserName, string forumName)
         {
-            if (this.isMember(bannerUserName, forumName) && this.isMember(bannerUserName, forumName))
+            if (this.isMember(bannedMember, forumName) && this.isAdmin(bannerUserName, forumName))
             {
                 return demoDB.banMember(bannedMember, bannerUserName, forumName);
             }
