@@ -108,12 +108,30 @@ namespace ForumBuilder.Controllers
 
         public bool isAdmin(string userName, string forumName)
         {
-            throw new NotImplementedException();
+            Forum forum = demoDB.getforumByName(forumName);
+            foreach (string s in forum.administrators)
+            {
+                if (s.Equals(userName))
+                {
+                    return true;
+                }
+            }
+            //Console.WriteLine("User " +userName+ "is not administrator in "+ forumName);      
+            return false;
         }
 
         public bool isMember(string userName, string forumName)
         {
-            throw new NotImplementedException();
+            Forum forum = demoDB.getforumByName(forumName);
+            foreach (string s in forum.members)
+            {
+                if (s.Equals(userName))
+                {
+                    return true;
+                }
+            }
+            //Console.WriteLine("User " +userName+ "is not member in "+ forumName);      
+            return false;
         }
 
         public bool nominateAdmin(string newAdmin, string nominatorName, string forumName)

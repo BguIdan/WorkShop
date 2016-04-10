@@ -26,14 +26,5 @@ namespace ForumBuilder.Controllers
         {
             return DemoDB.getInstance.createForum(forumName, descrption, forumPolicy, forumRules, administrators);
         }
-
-        public Boolean nominateAdmin(String newAdminName, String forumName, String superUserName)
-        {
-            return true;
-        }
-        public Boolean deleteAdmin(String deletedAdminName, String forumName, String superUserName)
-        {
-            return true;
-        }
     }
 }
