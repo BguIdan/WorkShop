@@ -9,68 +9,84 @@ namespace Tests
 {
     [TestClass]
     public class SubForumControllerTest
-    {/*
+    {
+        private IForumController forumController;
+        private Forum forum;
+        private User userNonMember;
+        private User userMember;
+        private User userModerator;
+        private User userAdmin;
         private ISubForumController subForum;
-        private User memberUser;
-        private User moderatorUser;
+        private String subForumName = "subforum";
+        private String forumName = "testForum";
 
         [TestInitialize]
         public void setUp()
         {
-            this.subForum = new SubForumController();
-            this.memberUser = new User("memberUser", "mempass", "mem@gmail.com");
-            this.moderatorUser = new User("moderMem", "moderpass", "moder@gmail.com");
-            Assert.IsTrue(this.subForum.nominateModerator(moderatorUser.userName, ""));
-            //TODO update the nominator to be valid user
+            this.forumController = ForumController.getInstance;
+            this.userNonMember = new User("nonMem", "nonmemPass", "nonmem@gmail.com");
+            this.userMember = new User("mem", "mempass", "mem@gmail.com");
+            this.userModerator = new User("mod", "modpass", "mod@gmail.com");
+            this.userAdmin = new User("admin", "adminpass", "admin@gmail.com");
+            Assert.IsTrue(this.forumController.registerUser("admin", "adminpass", "admin@gmail.com", this.forumName));
+            Assert.IsTrue(this.forumController.registerUser("mem", "mempass", "mem@gmail.com", this.forumName));
+            Assert.IsTrue(this.forumController.registerUser("mod", "modpass", "mod@gmail.com", this.forumName));
+            //Assert.IsTrue(this.forumController.nominateAdmin("admin", "adminpass", "admin@gmail.com"));
+            Dictionary<String, DateTime> modList = new Dictionary<String, DateTime>();
+            modList.Add(this.userModerator.userName, new DateTime(2030, 1, 1));
+            List<string> adminList = new List<string>();
+            adminList.Add("admin");
+            this.forum = new Forum(this.forumName, "descr", "policy", "the first rule is that you do not talk about fight club", adminList);
+            ISuperUserController superUser = SuperUserController.getInstance;
+            Assert.IsTrue(superUser.createForum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList, ""));
+            Assert.IsTrue(this.forumController.addSubForum(this.forum.forumName, this.subForumName, modList, this.userAdmin.userName));
+            this.subForum = SubForumController.getInstance;
+
         }
 
         [TestCleanup]
         public void cleanUp()
         {
+            this.forumController = null;
+            this.forum = null;
+            this.userNonMember = null;
+            this.userMember = null;
+            this.userModerator = null;
+            this.userAdmin = null;
             this.subForum = null;
         }
 
-        /******************************dismiss moderator***************************************
+        /******************************dismiss moderator***************************************/
 
         [TestMethod]
         public void test_dismissModerator_on_valid_moderator()
         {
-            String userModeratorName = this.moderatorUser.userName;
-            List<String> moderatorList = this.subForum.getModerators();
-            Assert.IsTrue(moderatorList.Contains(userModeratorName), "the moderatorList list should contain the moderator");
-            Assert.IsTrue(this.subForum.dismissModerator(userModeratorName), "the dismissal of user moderator should be successful");
-            Assert.IsFalse(moderatorList.Contains(userModeratorName), "after dismissal user moderator user should not be moderator anymore");
+            String userModeratorName = this.userModerator.userName;
+            Assert.IsTrue(this.subForum.isModerator(userModeratorName, this.subForumName, this.forumName), "user moderator should be a moderator");
+            Assert.IsTrue(this.subForum.dismissModerator(userModeratorName, this.userAdmin.userName, this.subForumName, this.forumName), "the dismissal of user moderator should be successful");
+            Assert.IsFalse(this.subForum.isModerator(userModeratorName, this.subForumName, this.forumName), "user moderator should not be a moderator after his dismissal");
         }
 
         [TestMethod]
         public void test_dismissModerator_on_non_moderator()
         {
-            String memberUserName = this.memberUser.userName;
-            List<String> moderatorList = this.subForum.getModerators();
-            Assert.IsFalse(moderatorList.Contains(memberUserName), "the moderatorList list should not contain the non moderator member");
-            Assert.IsFalse(subForum.dismissModerator(memberUserName), "dismiss moderator on non moderator should return false");
-            Assert.IsFalse(moderatorList.Contains(memberUserName), "the moderatorList list should not contain the non moderator member");
+            String memberUserName = this.userMember.userName;
+            Assert.IsFalse(this.subForum.isModerator(memberUserName, this.subForumName, this.forumName), "the moderatorList list should not contain the non moderator member");
+            Assert.IsFalse(subForum.dismissModerator(memberUserName, this.userAdmin.userName, this.subForumName, this.forumName), "dismiss moderator on non moderator should return false");
+            Assert.IsFalse(this.subForum.isModerator(memberUserName, this.subForumName, this.forumName), "the moderatorList list should not contain the non moderator member");
         }
 
         [TestMethod]
         public void test_dismissModerator_on_null()
         {
-            List<String> moderatorList = this.subForum.getModerators();
-            Assert.IsFalse(subForum.dismissModerator(null), "dismiss moderator on null should return false");
-            List<String> moderatorListAfterDismissal = this.subForum.getModerators();
-            Assert.IsTrue(((moderatorList.Count == moderatorListAfterDismissal.Count) &&
-                            moderatorList.Except(moderatorListAfterDismissal).Any()), "after unsuccessful dismissal the lists should be equal");
+            Assert.IsFalse(subForum.dismissModerator(null, this.userAdmin.userName, this.subForumName, this.forumName), "dismiss moderator on null should return false");
         }
 
         [TestMethod]
         public void test_dismissModerator_on_empty_string()
         {
 
-            List<String> moderatorList = this.subForum.getModerators();
-            Assert.IsFalse(subForum.dismissModerator(""), "dismiss moderator on an empty string should return false");
-            List<String> moderatorListAfterDismissal = this.subForum.getModerators();
-            Assert.IsTrue(((moderatorList.Count == moderatorListAfterDismissal.Count) &&
-                            moderatorList.Except(moderatorListAfterDismissal).Any()), "after unsuccessful dismissal the lists should be equal");
+            Assert.IsFalse(subForum.dismissModerator("", this.userAdmin.userName, this.subForumName, this.forumName), "dismiss moderator on an empty string should return false");
         }
 
 
@@ -154,54 +170,38 @@ namespace Tests
         /******************************end of create thread***************************************/
 
 
-        /******************************nominate moderator***************************************
+        /******************************nominate moderator***************************************/
 
         [TestMethod]
         public void test_nominateModerator_on_member()
         {
-            String memberName = this.memberUser.userName;
-            List<String> moderatorListPriorNomination = this.subForum.getModerators();
-            Assert.IsTrue(this.subForum.nominateModerator(memberName), "nomination of member user should be successful");
-            List<String> moderatorListAfterNomination = this.subForum.getModerators();
-            Assert.IsTrue(moderatorListAfterNomination.Exists(s => s.Equals(memberName)), "member user should be added to the moderator list");
-            Assert.IsTrue((moderatorListAfterNomination.Except(moderatorListPriorNomination).Count() == 1), "moderator list should be changed by one additional string");
+            String memberName = this.userMember.userName;
+            Assert.IsTrue(this.subForum.nominateModerator(memberName, this.userAdmin.userName, new DateTime(2030, 1, 1), this.subForumName, this.forumName), "nomination of member user should be successful");
+            Assert.IsTrue(this.subForum.isModerator(memberName, this.subForumName, this.forumName), "member should be moderator after his successful numonation");
         }
 
         [TestMethod]
         public void test_nominateModerator_on_moderator()
         {
-            String moderatorName = this.moderatorUser.userName;
-            List<String> moderatorListPriorNomination = this.subForum.getModerators();
-            Assert.IsFalse(this.subForum.nominateModerator(moderatorName), "nomination of moderator user should not be successful");
-            List<String> moderatorListAfterNomination = this.subForum.getModerators();
-            Assert.IsTrue((moderatorListAfterNomination.Except(moderatorListPriorNomination).Count() == 0), "moderator list should not change");
+            String moderatorName = this.userModerator.userName;
+            Assert.IsFalse(this.subForum.nominateModerator(moderatorName, this.userAdmin.userName, new DateTime(2030, 1, 1), this.subForumName, this.forumName), "nomination of moderator user should not be successful");
+            Assert.IsTrue(this.subForum.isModerator(moderatorName, this.subForumName, this.forumName), "moderator user should still br a moderator");
         }
 
         [TestMethod]
         public void test_nominateModerator_on_null()
         {
-            List<String> moderatorListPriorNomination = this.subForum.getModerators();
-            Assert.IsFalse(this.subForum.nominateModerator(null), "nomination of null should not be successful");
-            List<String> moderatorListAfterNomination = this.subForum.getModerators();
-            Assert.IsTrue((moderatorListAfterNomination.Except(moderatorListPriorNomination).Count() == 0), "moderator list should not change");
+            Assert.IsFalse(this.subForum.nominateModerator(null, this.userAdmin.userName, new DateTime(2030, 1, 1), this.subForumName, this.forumName), "nomination of null should not be successful");
         }
 
         [TestMethod]
         public void test_nominateModerator_on_empty_string_name()
         {
-            List<String> moderatorListPriorNomination = this.subForum.getModerators();
-            Assert.IsFalse(this.subForum.nominateModerator(""), "nomination with empty string as name should not be successful");
-            List<String> moderatorListAfterNomination = this.subForum.getModerators();
-            Assert.IsTrue((moderatorListAfterNomination.Except(moderatorListPriorNomination).Count() == 0), "moderator list should not change");
+            Assert.IsFalse(this.subForum.nominateModerator("", this.userAdmin.userName, new DateTime(2030, 1, 1), this.subForumName, this.forumName), "nomination with empty string as name should not be successful");
         }
 
 
         /******************************end of nominate moderator***************************************/
-
-        /******************************delete thread***************************************/
-
-        //TODO
-        /******************************end of delete thread***************************************/
 
         /******************************get moderators***************************************
 
