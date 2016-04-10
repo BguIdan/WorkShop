@@ -19,6 +19,7 @@ namespace ForumBuilder.Controllers
                 if (singleton == null)
                 {
                     singleton = new PostController();
+                    Systems.Logger.getInstance.logPrint("Post contoller created");
                 }
                 return singleton;
             }

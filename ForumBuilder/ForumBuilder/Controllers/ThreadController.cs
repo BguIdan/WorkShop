@@ -19,6 +19,7 @@ namespace ForumBuilder.Controllers
                 if (singleton == null)
                 {
                     singleton = new ThreadController();
+                    Systems.Logger.getInstance.logPrint("Thread contoller created");
                 }
                 return singleton;
             }

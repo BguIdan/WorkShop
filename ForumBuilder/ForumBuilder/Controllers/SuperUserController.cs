@@ -18,6 +18,7 @@ namespace ForumBuilder.Controllers
                 if (singleton == null)
                 {
                     singleton = new SuperUserController();
+                    Systems.Logger.getInstance.logPrint("Super user contoller created");
                 }
                 return singleton;
             }
@@ -88,6 +89,15 @@ namespace ForumBuilder.Controllers
                 return false;
             }
             return demoDB.addSuperUser(email, password, userName);
+        }
+
+        internal bool isSuperUser(string user)
+        {
+            if (demoDB.getSuperUser(user) == null)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
