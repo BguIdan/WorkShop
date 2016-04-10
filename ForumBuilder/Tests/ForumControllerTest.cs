@@ -28,13 +28,15 @@ namespace Tests
             this.userAdmin2 = new User("admin2", "adminpass2", "admin2@gmail.com");
             Assert.IsTrue(this.forumController.registerUser("mem", "mempass", "mem@gmail.com"));
             Assert.IsTrue(this.forumController.registerUser("admin", "adminpass", "admin@gmail.com"));
-            Assert.IsTrue(this.forumController.nominateAdmin("admin", "adminpass", "admin@gmail.com"));
-            Assert.IsTrue(this.forumController.nominateAdmin("admin2", "adminpass2", "admin2@gmail.com"));
+            //Assert.IsTrue(this.forumController.nominateAdmin("admin", "adminpass", "admin@gmail.com"));
+            Assert.IsTrue(this.forumController.registerUser("admin2", "adminpass2", "admin2@gmail.com"));
+            //Assert.IsTrue(this.forumController.nominateAdmin("admin2", "adminpass2", "admin2@gmail.com"));
             List<string> adminList = new List<string>();
             adminList.Add("admin");
             adminList.Add("admin2");
-            this.forum = new Forum("testForum", "bla", "bla", "the first rule is that you do not talk about fight club", adminList);
-            
+            this.forum = new Forum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList);
+            ISuperUserController superUser = SuperUserController.getInstance;
+            superUser.createForum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "");
         }
 
         [TestCleanup]
@@ -238,37 +240,50 @@ namespace Tests
 
         /******************************end of register user***********************************/
 
-        /******************************change policy***********************************
-        //TODO add tests for changes by other users
-        public void test_changePolity_valid_policy()
+        /******************************set Forum Preferences***********************************/
+        public void test_setForumPreferences_valid_policy()
         {
             String forumName = this.forum.forumName;
             String oldPolicy = this.forumController.getForumPolicy(forumName);
             String newPolicy = "new policy for test";
-            String adminName = this.userAdmin.userName;
+            String oldDescription = this.forumController.getForumDescription(forumName);
+            String newDescr = "new description";
+            String oldRules = this.forumController.getForumRules(forumName);
+            String newRules = "there are no rules";
             Assert.AreNotEqual(oldPolicy, newPolicy, false, "the new policy should be different from the old one");
-            Assert.IsTrue(this.forumController.changePoliciy(newPolicy, adminName, this.forumController.getForumPolicy(forumName)), "policy change should be successful");
+            Assert.AreNotEqual(oldDescription, newDescr, false, "the new description should be different from the old one");
+            Assert.AreNotEqual(oldRules, newRules, false, "the new rules should be different from the old one");
+            Assert.IsTrue(this.forumController.setForumPreferences(forumName, newPolicy, newDescr, newRules), "policy change should be successful");
             Assert.AreEqual(this.forumController.getForumPolicy(forumName), newPolicy, false, "the new policy should be return after the change");
+            Assert.AreEqual(this.forumController.getForumDescription(forumName), newDescr, false, "the new description should be return after the change");
+            Assert.AreEqual(this.forumController.getForumRules(forumName), newRules, false, "the new rules should be return after the change");
+        
         }
 
-        public void test_changePolicy_with_null()
+        public void test_setForumPreferences_with_null()
         {
             String forumName = this.forum.forumName;
-            String oldPolicy = this.forum.forumPolicy;
-            String adminName = this.userAdmin.userName;
-            Assert.IsFalse(this.forumController.changePoliciy(null, adminName, forumName), "policy change with null should not be successful");
-            Assert.AreEqual(this.forumController.getForumPolicy(forumName), oldPolicy, false, "after an unsuccessful change, the old policy should be returned");
-        }
-
-        public void test_changePolicy_with_empty_string()
-        {
-            String forumName = this.forum.forumName;
-            String adminName = this.userAdmin.userName;
             String oldPolicy = this.forumController.getForumPolicy(forumName);
-            Assert.IsTrue(this.forumController.changePoliciy("", adminName, forumName), "policy change with an empty string should be successful");
-            Assert.AreEqual(this.forumController.getForumPolicy(forumName), "", false, "the new policy(empty string) should be return after the change");
+            String oldDescr = this.forumController.getForumDescription(forumName);
+            String oldRules = this.forumController.getForumRules(forumName);
+            Assert.IsFalse(this.forumController.setForumPreferences(forumName, null, null, null), "policy change with null should not be successful");
+            Assert.AreEqual(this.forumController.getForumPolicy(forumName), oldPolicy, false, "after an unsuccessful change, the old policy should be returned");
+            Assert.AreEqual(this.forumController.getForumDescription(forumName), oldDescr, false, "after an unsuccessful change, the old description should be returned");
+            Assert.AreEqual(this.forumController.getForumRules(forumName), oldRules, false, "after an unsuccessful change, the old rules should be returned");
+
         }
-        */
+
+        public void test_setForumPreferences_with_empty_string()
+        {
+            String forumName = this.forum.forumName;
+            String oldPolicy = this.forumController.getForumPolicy(forumName);
+            String oldDescr = this.forumController.getForumDescription(forumName);
+            String oldRules = this.forumController.getForumRules(forumName);
+            Assert.IsFalse(this.forumController.setForumPreferences(forumName, "", "", ""), "policy change with null should not be successful");
+            Assert.AreEqual(this.forumController.getForumPolicy(forumName), oldPolicy, false, "after an unsuccessful change, the old policy should be returned");
+            Assert.AreEqual(this.forumController.getForumDescription(forumName), oldDescr, false, "after an unsuccessful change, the old description should be returned");
+            Assert.AreEqual(this.forumController.getForumRules(forumName), oldRules, false, "after an unsuccessful change, the old rules should be returned");
+        }
 
         /******************************end of change policy***********************************/
 

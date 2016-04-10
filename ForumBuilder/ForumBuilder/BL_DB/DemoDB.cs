@@ -449,12 +449,18 @@ namespace ForumBuilder.BL_DB
 
         public void clear()
         {
-            this.forums.Clear();
-            this.subForums.Clear();
-            this.threads.Clear();
-            this.posts.Clear();
-            this.users.Clear();
-            this.messages.Clear();
+            if (this.forums != null)
+                this.forums.Clear();
+            if (this.subForums != null)
+                this.subForums.Clear();
+            if (this.threads != null)
+                this.threads.Clear();
+            if (this.posts != null)
+                this.posts.Clear();
+            if (this.users != null)
+                this.users.Clear();
+            if (this.messages != null)
+                this.messages.Clear();
         }
     }
 }
