@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ForumBuilder.Users;
 
-namespace ForumBuilder.BL_Back_End
+namespace ForumBuilder.Controllers
 {
     public class Forum
     {

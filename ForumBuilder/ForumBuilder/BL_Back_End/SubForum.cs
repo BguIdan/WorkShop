@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ForumBuilder.BL_Back_End
+namespace ForumBuilder.Controllers
 {
     public class SubForum
     {
