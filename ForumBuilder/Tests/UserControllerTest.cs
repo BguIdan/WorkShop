@@ -236,6 +236,5 @@ namespace Tests
             Assert.AreEqual(newFriendList.Count, 0, "unsuccessful friend addition should not change the friend list");
         }
 
-
     }
 }
