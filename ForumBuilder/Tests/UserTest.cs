@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ForumBuilder.Users;
+using ForumBuilder.BL_Back_End;
 
 namespace Tests
 {

@@ -1,15 +1,15 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ForumBuilder.Controllers;
-using ForumBuilder.Users;
 using System.Collections.Generic;
 using System.Linq;
+using ForumBuilder.BL_Back_End;
 
 namespace Tests
 {
     [TestClass]
     public class SubForumTest
-    {
+    {/*
         private ISubForumController subForum;
         private User memberUser;
         private User moderatorUser;
@@ -30,7 +30,7 @@ namespace Tests
             this.subForum = null;
         }
 
-        /******************************dismiss moderator***************************************/
+        /******************************dismiss moderator***************************************
 
         [TestMethod]
         public void test_dismissModerator_on_valid_moderator()
@@ -74,11 +74,11 @@ namespace Tests
         }
 
 
-        /******************************end of dismiss moderator***************************************/
+        /******************************end of dismiss moderator***************************************
 
 
 
-        /******************************create thread***************************************/
+        /******************************create thread***************************************
 
         [TestMethod]
         public void test_createThread_on_valid_input()
@@ -154,7 +154,7 @@ namespace Tests
         /******************************end of create thread***************************************/
 
 
-        /******************************nominate moderator***************************************/
+        /******************************nominate moderator***************************************
 
         [TestMethod]
         public void test_nominateModerator_on_member()
@@ -203,7 +203,7 @@ namespace Tests
         //TODO
         /******************************end of delete thread***************************************/
 
-        /******************************get moderators***************************************/
+        /******************************get moderators***************************************
 
         [TestMethod]
         public void test_getModerators_check_different_list_instances()
@@ -238,7 +238,7 @@ namespace Tests
 
         /******************************end of get moderators***************************************/
 
-        /******************************get threads***************************************/
+        /******************************get threads***************************************
 
         [TestMethod]
         public void test_getThreads_check_different_list_instances()

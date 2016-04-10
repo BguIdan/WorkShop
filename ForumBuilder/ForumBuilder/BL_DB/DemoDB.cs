@@ -7,7 +7,7 @@ using ForumBuilder.BL_Back_End;
 
 namespace ForumBuilder.BL_DB
 {
-    class DemoDB
+    public class DemoDB
     {
         private List<Forum> forums;
         private List<SubForum> subForums;
@@ -382,7 +382,6 @@ namespace ForumBuilder.BL_DB
 
         }
 
-        //<<<<<<< HEAD
         public Boolean setForumPreferences(String forumName, String newDescription, String newForumPolicy, String newForumRules)
         {
             bool isChanged = false;
@@ -436,7 +435,6 @@ namespace ForumBuilder.BL_DB
             get { return messages; }
         }
 
-        //=======
 
         public Boolean addSubForum(SubForum subForum)
         {
@@ -448,6 +446,15 @@ namespace ForumBuilder.BL_DB
             subForums.Add(subForum);
             return true;
         }
-        //>>>>>>> origin/registerToForum_and_createSF_nominateMod
+
+        public void clear()
+        {
+            this.forums.Clear();
+            this.subForums.Clear();
+            this.threads.Clear();
+            this.posts.Clear();
+            this.users.Clear();
+            this.messages.Clear();
+        }
     }
 }

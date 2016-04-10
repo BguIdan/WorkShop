@@ -5,7 +5,7 @@ using ForumBuilder.BL_DB;
 
 namespace ForumBuilder.Controllers
 {
-    class ForumController : IForumController
+    public class ForumController : IForumController
     {
         private static ForumController singleton;
         DemoDB demoDB = DemoDB.getInstance;
@@ -162,6 +162,12 @@ namespace ForumBuilder.Controllers
         {
             DemoDB.getInstance.setForumPreferences(forumName, newDescription, newForumPolicy, newForumRules);
             return true;
+        }
+
+        public String getForumPolicy(String forumName)
+        {
+            throw new NotImplementedException();
+            //TODO add implementation
         }
     }
 }

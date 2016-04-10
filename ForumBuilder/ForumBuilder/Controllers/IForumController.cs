@@ -14,6 +14,7 @@ namespace ForumBuilder.Controllers
         Boolean changePoliciy(String newPolicy, String changerName, string forumName);
         Boolean isAdmin(String userName, String forumName);
         Boolean isMember(String userName, String forumName);
+        String getForumPolicy(String forumName);
         //        Boolean dismissMember(String userName, String dismissingUserName, String forumName);
 
     }
