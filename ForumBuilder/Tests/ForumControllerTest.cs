@@ -238,7 +238,7 @@ namespace Tests
 
         /******************************end of register user***********************************/
 
-        /******************************change policy***********************************/
+        /******************************change policy***********************************
         //TODO add tests for changes by other users
         public void test_changePolity_valid_policy()
         {
@@ -268,7 +268,7 @@ namespace Tests
             Assert.IsTrue(this.forumController.changePoliciy("", adminName, forumName), "policy change with an empty string should be successful");
             Assert.AreEqual(this.forumController.getForumPolicy(forumName), "", false, "the new policy(empty string) should be return after the change");
         }
-
+        */
 
         /******************************end of change policy***********************************/
 

@@ -11,11 +11,12 @@ namespace ForumBuilder.Controllers
         Boolean nominateAdmin(String newAdmin, String nominatorName, string forumName);
         Boolean registerUser(String newUser, String password, String mail);
         Boolean addSubForum(string forumName, string name, Dictionary<String, DateTime> moderators, string userNameAdmin);
-        Boolean changePoliciy(String newPolicy, String changerName, string forumName);
         Boolean isAdmin(String userName, String forumName);
         Boolean isMember(String userName, String forumName);
+        Boolean setForumPreferences(String forumName, String newDescription, String newForumPolicy, String newForumRules);
         String getForumPolicy(String forumName);
-        //        Boolean dismissMember(String userName, String dismissingUserName, String forumName);
+        String getForumDescription(String forumName);
+        String getForumRules(String forumName);
 
     }
 }

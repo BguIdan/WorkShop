@@ -86,15 +86,6 @@ namespace ForumBuilder.Controllers
             return false;
         }
 
-        public bool changePoliciy(string newPolicy, string changerName, string forumName)
-        {
-            if (this.isAdmin(changerName, forumName))
-            {
-                return demoDB.changePolicy(newPolicy, forumName);
-            }
-            return false;
-        }
-
         public bool dismissAdmin(string adminToDismissed, string dismissingUserName, string forumName)
         {
             if (this.isAdmin(dismissingUserName, forumName) && this.isMember(adminToDismissed, forumName))
@@ -165,6 +156,18 @@ namespace ForumBuilder.Controllers
         }
 
         public String getForumPolicy(String forumName)
+        {
+            throw new NotImplementedException();
+            //TODO add implementation
+        }
+
+        public String getForumDescription(String forumName)
+        {
+            throw new NotImplementedException();
+            //TODO add implementation
+        }
+
+        public String getForumRules(String forumName)
         {
             throw new NotImplementedException();
             //TODO add implementation
