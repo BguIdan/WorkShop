@@ -1,28 +1,506 @@
 Log Entry : 
-User contoller created
+the system was initialized successully
 -----------------------------------------------
 Log Entry : 
 Forum contoller created
 -----------------------------------------------
 Log Entry : 
-Register user faild, the forum, testForum does not exist
+Forum testForum creation success
 -----------------------------------------------
 Log Entry : 
-Register user faild, the forum, testForum does not exist
+Dismiss admin failed, nonMem is not a admin
 -----------------------------------------------
 Log Entry : 
-Register user faild, the forum, testForum does not exist
+Forum testForum creation success
 -----------------------------------------------
 Log Entry : 
-Register user faild, the forum, testForum does not exist
+Dismiss admin failed, mem is not a admin
 -----------------------------------------------
 Log Entry : 
-Register user faild, the forum, testForum does not exist
+Forum testForum creation success
 -----------------------------------------------
 Log Entry : 
-Register user faild, the forum, testForum does not exist
+Forum testForum creation success
 -----------------------------------------------
 Log Entry : 
-Register user faild, the forum, testForum does not exist
+Dismiss admin failed,  is not a admin
 -----------------------------------------------
-Lo
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Ban Member failed,  is not a super user
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Ban Member failed, nonMem is not a member
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Register user faild, mem is already taken
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Ban Member failed,  is not a member
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+nominate admin fail, nonMemis not member
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+nominate admin fail, adminis already admin
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+nominate admin fail, is not member
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Register user faild, mem is already taken
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Register user faild, the forum,  does not exist
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Post contoller created
+-----------------------------------------------
+Log Entry : 
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Sub-forum contoller created
+-----------------------------------------------
+Log Entry : 
+Dismiss moderator mod
+-----------------------------------------------
+Log Entry : 
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Dismiss moderator failed, mem is not a moderator
+-----------------------------------------------
+Log Entry : 
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Dismiss moderator failed,  is not a moderator
+-----------------------------------------------
+Log Entry : 
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Dismiss moderator failed,  is not a moderator
+-----------------------------------------------
+Log Entry : 
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+nominate moderator memsuccess
+-----------------------------------------------
+Log Entry : 
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+To  has no permission to be moderator, he is not a member
+-----------------------------------------------
+Log Entry : 
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+To  has no permission to be moderator, he is not a member
+-----------------------------------------------
+Log Entry : 
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Create tread failed, there is no head or content in tread
+-----------------------------------------------
+Log Entry : 
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Create tread failed, there is no head or content in tread
+-----------------------------------------------
+Log Entry : 
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Create tread failed, there is no head or content in tread
+-----------------------------------------------
+Log Entry : 
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Create tread failed, there is no head or content in tread
+-----------------------------------------------
+Log Entry : 
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Create tread failed, user does not exist
+-----------------------------------------------
+Log Entry : 
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Create tread failed, sub-forum does not exist
+-----------------------------------------------
+Log Entry : 
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Create tread failed, sub-forum does not exist
+-----------------------------------------------
+Log Entry : 
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Create tread failed, user does not exist
+-----------------------------------------------
+Log Entry : 
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Remove post 0
+-----------------------------------------------
+Log Entry : 
+Remove thread 0
+-----------------------------------------------
+Log Entry : 
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Remove post 0
+-----------------------------------------------
+Log Entry : 
+Remove thread 0
+-----------------------------------------------
+Log Entry : 
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Delete thread failed, there is no permission to that user
+-----------------------------------------------
+Log Entry : 
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Remove post 0
+-----------------------------------------------
+Log Entry : 
+Remove thread 0
+-----------------------------------------------
+Log Entry : 
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Delete thread failed, no thread with that id
+-----------------------------------------------
+Log Entry : 
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Delete thread failed, there is no permission to that user
+-----------------------------------------------
+Log Entry : 
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Delete thread failed, there is no permission to that user
+-----------------------------------------------
+Log Entry : 
+User contoller created
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Add friend faild, nonMemis not a user
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Add friend faild, nonMemis not a user
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Add friend faild, nonMemis not a user
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Add friend faild, heIsNotAMemberis not a user
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Add friend faild, heIsNotAMemberis not a user
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Add friend faild, is not a user
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Remove friend faild, mem and admin are not friends
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 
+Remove friend faild, admin and admin2 are not friends
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Remove friend fa

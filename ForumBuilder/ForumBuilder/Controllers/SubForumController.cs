@@ -98,7 +98,7 @@ namespace ForumBuilder.Controllers
         public bool createThread(String headLine, String content, String writerName,  String forumName, String subForumName)
         {
             DateTime timePublished = DateTime.Now;
-            if (headLine.Equals("")&& content.Equals(""))
+            if (headLine==null || content==null||(headLine.Equals("")&& content.Equals("")))
             {
                 logger.logPrint("Create tread failed, there is no head or content in tread");
                 return false;
@@ -120,7 +120,7 @@ namespace ForumBuilder.Controllers
             }
             int id = demoDB.getAvilableIntOfPost();
             logger.logPrint("Add thread " + id);
-            return demoDB.addPost(writerName, id, headLine, content, -1, timePublished)&&demoDB.addThread(headLine, content, writerName, forumName, subForumName, id,timePublished);
+            return demoDB.addPost(writerName, id, headLine, content, -1, timePublished) && demoDB.addThread(headLine, content, writerName, forumName, subForumName, id,timePublished);
         }
 
         public bool deleteThread(int firstPostId,string removerName)
@@ -157,13 +157,14 @@ namespace ForumBuilder.Controllers
                     donePosts.Add(post);
                 }
                 bool hasSucceed= true;
-                for(int i =donePosts.Capacity-1; i>=0;i--)
+                for(int i =donePosts.Count-1; i>=0;i--)
                 {
                     hasSucceed = hasSucceed && demoDB.removePost(donePosts.ElementAt(i).id);
                     logger.logPrint("Remove post " + donePosts.ElementAt(i).id);
                 }
                 logger.logPrint("Remove thread " + firstPostId);
-                return hasSucceed && demoDB.removeThread(firstPostId, sf.name, sf.forum);
+                hasSucceed= hasSucceed && demoDB.removeThread(firstPostId, sf.name, sf.forum);
+                return hasSucceed;
             } 
         }
     }

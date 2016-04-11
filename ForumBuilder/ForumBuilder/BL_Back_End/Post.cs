@@ -24,6 +24,7 @@ namespace ForumBuilder.Controllers
             _parentId = parentId;
             _commentsIds = new List<int>();
             _timePublished = timePublished;
+            _writerUserName = writerUserName;
         }
         
         public Int32 id
