@@ -10,7 +10,8 @@ namespace ForumBuilder.Controllers
         private static UserController singleton;
         DemoDB demoDB = DemoDB.getInstance;
         Systems.Logger logger = Systems.Logger.getInstance;
-        ForumController forumController = ForumController.getInstance;
+        //ForumController forumController = ForumController.getInstance;
+
         public static UserController getInstance
         {
             get
@@ -38,7 +39,7 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Add friend faild, " + friendToAddName + "is not a user");
                 return false;
             }
-            if(forumController.isMembersOfSameForum(friendToAddName, userName))
+            if(ForumController.getInstance.isMembersOfSameForum(friendToAddName, userName))
             {
                 logger.logPrint("Add friend faild, " + friendToAddName + " and "+userName + " are not in the same forum");
                 return false;
@@ -82,7 +83,7 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Send message faild, " + toUserName + "is not a user");
                 return false;
             }
-            else if (forumController.isMembersOfSameForum(fromUserName, toUserName))
+            else if (ForumController.getInstance.isMembersOfSameForum(fromUserName, toUserName))
             {
                 logger.logPrint("Send message faild, " + fromUserName + " and " + toUserName + " are not in the same forum");
                 return false;

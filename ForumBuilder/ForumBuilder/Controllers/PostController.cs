@@ -9,10 +9,10 @@ namespace ForumBuilder.Controllers
     public class PostController :IPostController
     {
         private static PostController singleton;
-        ThreadController threadController = ThreadController.getInstance;
-        ForumController forumController = ForumController.getInstance;
-        SubForumController subForumController = SubForumController.getInstance;
-        SuperUserController superUserController = SuperUserController.getInstance;
+        //ThreadController threadController = ThreadController.getInstance;
+        //ForumController forumController = ForumController.getInstance;
+        //SubForumController subForumController = SubForumController.getInstance;
+        //SuperUserController superUserController = SuperUserController.getInstance;
         DemoDB demoDB = DemoDB.getInstance;
         Systems.Logger logger = Systems.Logger.getInstance;
         public static PostController getInstance
@@ -64,7 +64,7 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Add comment failed, user does not exist");
                 return false;
             }
-            else if(sf==null|| !forumController.isMember(writerName, sf.forum))
+            else if(sf==null|| !ForumController.getInstance.isMember(writerName, sf.forum))
             {
                 logger.logPrint("Add comment failed, user is not a member in forum");
                 return false;
@@ -85,13 +85,13 @@ namespace ForumBuilder.Controllers
             }
             else if (getPost(postId).parentId == -1)
             {
-                return subForumController.deleteThread(postId, removerName);
+                return SubForumController.getInstance.deleteThread(postId, removerName);
             }
             SubForum sf = getSubforumByPost(postId);
             if ((!demoDB.getPost(postId).writerUserName.Equals(removerName))
-                && (!superUserController.isSuperUser(removerName))
-                && (!forumController.isAdmin(removerName, sf.forum)
-                && (!subForumController.isModerator(removerName, sf.name, sf.forum))))
+                && (!SuperUserController.getInstance.isSuperUser(removerName))
+                && (!ForumController.getInstance.isAdmin(removerName, sf.forum)
+                && (!SubForumController.getInstance.isModerator(removerName, sf.name, sf.forum))))
             {
                 logger.logPrint("Delete thread comment, there is no permission to that user");
                 return false;

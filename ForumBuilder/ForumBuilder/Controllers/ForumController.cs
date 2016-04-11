@@ -10,7 +10,7 @@ namespace ForumBuilder.Controllers
         private static ForumController singleton;
         DemoDB demoDB = DemoDB.getInstance;
         Systems.Logger logger = Systems.Logger.getInstance;
-        SuperUserController superUserController = SuperUserController.getInstance;
+        //SuperUserController superUserController = SuperUserController.getInstance;
         public static ForumController getInstance
         {
             get
@@ -93,7 +93,7 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Ban Member failed, " + bannedMember + " is not a member");
                 return false;
             }
-            else if(!isAdmin(bannerUserName, forumName)&& !superUserController.isSuperUser(bannerUserName))
+            else if(!isAdmin(bannerUserName, forumName)&& !SuperUserController.getInstance.isSuperUser(bannerUserName))
             {
                 logger.logPrint("Ban Member failed, " + bannedMember + " is not a admin or super user");
                 return false;
@@ -112,7 +112,7 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Dismiss admin failed, " + adminToDismissed + " is not a admin");
                 return false;
             }
-            else if(!superUserController.isSuperUser(dismissingUserName))
+            else if(!SuperUserController.getInstance.isSuperUser(dismissingUserName))
             {
                 logger.logPrint("Ban Member failed, " + dismissingUserName + " is not a super user");
                 return false;

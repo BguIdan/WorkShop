@@ -20,5 +20,3 @@ C:\Users\User\Documents\sadna\ForumBuilder\Tests\bin\Debug\ForumBuilder.pdb
 C:\Users\User\Documents\sadna\ForumBuilder\Tests\bin\Debug\Service.pdb
 C:\Users\User\Documents\sadna\ForumBuilder\Tests\obj\Debug\Tests.dll
 C:\Users\User\Documents\sadna\ForumBuilder\Tests\obj\Debug\Tests.pdb
-C:\Users\User\Documents\sadna\ForumBuilder\Tests\bin\Debug\Tests.dll.CodeAnalysisLog.xml
-C:\Users\User\Documents\sadna\ForumBuilder\Tests\bin\Debug\Tests.dll.lastcodeanalysissucceeded

@@ -30,14 +30,20 @@ namespace ForumBuilder.Systems
         {
             if (singleton == null)
             {
+                singleton = new ForumSystem();
                 //adding the user
-                if (SuperUserController.getInstance.addSuperUser(email, password, userName))
+                SuperUserController superUserController = SuperUserController.getInstance;
+                if (superUserController.addSuperUser(email, password, userName))
                 {
                     //  send configuration email to the super user's 
-                    sendmail(email);
+                    //sendmail(email);
                 }
                 else
+                {
+                    singleton = null;
                     return null;
+                }
+                    
 
                 Logger.getInstance.logPrint("the system was initialized successully");
             }

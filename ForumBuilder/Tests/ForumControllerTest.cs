@@ -4,6 +4,7 @@ using ForumBuilder.Controllers;
 using ForumBuilder.BL_Back_End;
 using ForumBuilder.BL_DB;
 using System.Collections.Generic;
+using ForumBuilder.Systems;
 
 
 namespace Tests
@@ -22,6 +23,7 @@ namespace Tests
         [TestInitialize]
         public void setUp()
         {
+            ForumSystem.initialize("guy", "AG36djs", "hello@dskkl.com");
             this.forumController = ForumController.getInstance;
             this.userNonMember = new User("nonMem", "nonmemPass", "nonmem@gmail.com");
             this.userMember = new User("mem", "mempass", "mem@gmail.com");

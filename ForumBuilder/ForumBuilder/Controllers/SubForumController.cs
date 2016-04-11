@@ -13,8 +13,8 @@ namespace ForumBuilder.Controllers
 
         DemoDB demoDB = DemoDB.getInstance;
         Logger logger = Logger.getInstance;
-        ForumController forumController = ForumController.getInstance;
-        SuperUserController superUserController = SuperUserController.getInstance;
+        //ForumController forumController = ForumController.getInstance;
+        //SuperUserController superUserController = SuperUserController.getInstance;
         public static SubForumController getInstance
         {
             get
@@ -36,7 +36,7 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Dismiss moderator failed, sub-forum does not exist");
                 return false;
             }
-            else if (!forumController.isAdmin(dismissByAdmin, forumName))
+            else if (!ForumController.getInstance.isAdmin(dismissByAdmin, forumName))
             {
                 logger.logPrint("Dismiss moderator failed, "+ dismissByAdmin+" has no permission");
                 return false;
@@ -61,7 +61,7 @@ namespace ForumBuilder.Controllers
         public bool nominateModerator(string newModerator, string nominatorUser, DateTime date, string subForumName, string forumName)
         {
             SubForum subForum = getSubForum(subForumName, forumName);
-            if (forumController.isAdmin(nominatorUser, forumName) && forumController.isMember(newModerator, forumName))
+            if (ForumController.getInstance.isAdmin(nominatorUser, forumName) && ForumController.getInstance.isMember(newModerator, forumName))
             {
                 if (DateTime.Now.CompareTo(date) > 0)
                 {
@@ -74,9 +74,9 @@ namespace ForumBuilder.Controllers
                     return true;
                 }
             }
-            if(!forumController.isAdmin(nominatorUser, forumName))
+            if(!ForumController.getInstance.isAdmin(nominatorUser, forumName))
                 logger.logPrint("To "+nominatorUser+" has no permission to nominate moderator");
-            if(!forumController.isMember(newModerator, forumName))
+            if(!ForumController.getInstance.isMember(newModerator, forumName))
                 logger.logPrint("To " + newModerator + " has no permission to be moderator, he is not a member");
             return false;
         }
@@ -106,7 +106,7 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Create tread failed, sub-forum does not exist");
                 return false;
             }
-            else if (!forumController.isMember(writerName, forumName))
+            else if (!ForumController.getInstance.isMember(writerName, forumName))
             {
                 logger.logPrint("Create tread failed, user "+ writerName+" is not memberin forum "+ forumName);
                 return false;
@@ -125,8 +125,8 @@ namespace ForumBuilder.Controllers
             }
             SubForum sf= demoDB.getSubforumByThreadFirstPostId(firstPostId);
             if ((!demoDB.getPost(firstPostId).writerUserName.Equals(removerName))
-                &&(!superUserController.isSuperUser(removerName))
-                && (!forumController.isAdmin(removerName, sf.forum)
+                &&(!SuperUserController.getInstance.isSuperUser(removerName))
+                && (!ForumController.getInstance.isAdmin(removerName, sf.forum)
                 && (!isModerator(removerName,sf.name,sf.forum))))
             {
                 logger.logPrint("Delete thread failed, there is no permission to that user");

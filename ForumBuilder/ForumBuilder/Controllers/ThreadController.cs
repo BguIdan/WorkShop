@@ -9,7 +9,6 @@ namespace ForumBuilder.Controllers
         private static ThreadController singleton;
         DemoDB demoDB = DemoDB.getInstance;
         Systems.Logger logger = Systems.Logger.getInstance;
-        SubForumController subForumController = SubForumController.getInstance;
         
         public static ThreadController getInstance
         {
