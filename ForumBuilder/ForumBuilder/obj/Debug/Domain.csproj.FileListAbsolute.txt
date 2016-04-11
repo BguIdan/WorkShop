@@ -13,3 +13,8 @@ D:\Idan\Workshop\WorkShop.git\ForumBuilder\ForumBuilder\bin\Debug\ForumBuilder.e
 D:\Idan\Workshop\WorkShop.git\ForumBuilder\ForumBuilder\bin\Debug\ForumBuilder.pdb
 D:\Idan\Workshop\WorkShop.git\ForumBuilder\ForumBuilder\obj\Debug\ForumBuilder.exe
 D:\Idan\Workshop\WorkShop.git\ForumBuilder\ForumBuilder\obj\Debug\ForumBuilder.pdb
+C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\bin\Debug\ForumBuilder.exe.config
+C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\bin\Debug\ForumBuilder.exe
+C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\bin\Debug\ForumBuilder.pdb
+C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\obj\Debug\ForumBuilder.exe
+C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\obj\Debug\ForumBuilder.pdb

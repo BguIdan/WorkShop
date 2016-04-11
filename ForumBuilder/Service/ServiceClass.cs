@@ -101,11 +101,11 @@ namespace Service
         // IPostController
         public Boolean deletePost(Int32 postId, String deletingUser)
         {
-            return postController.deletePost(postId, deletingUser);
+            return postController.removeComment(postId, deletingUser);
         }
-        public Boolean addPost(String headLine, String content, String writerName, DateTime timePublished, Int32 commentedPost, String forum, String subForum)
+        public Boolean addPost(String headLine, String content, String writerName, Int32 commentedPost)
         {
-            return postController.addPost(headLine, content, writerName, timePublished, commentedPost, forum, subForum);
+            return postController.addComment(headLine,content,writerName,commentedPost);
         }
 
         // ISubForumController
@@ -116,6 +116,14 @@ namespace Service
         public Boolean nominateModerator(String newModerator, String nominatorUser, DateTime date, String subForumName, String forumName)
         {
             return subForumController.nominateModerator(newModerator, nominatorUser, date, subForumName, forumName);
+        }
+        public bool createThread(String headLine, String content, String writerName, String forumName, String subForumName)
+        {
+            return subForumController.createThread(headLine, content, writerName, forumName, subForumName);
+        }
+        public bool deleteThread(int firstPostId, string removerName)
+        {
+            return subForumController.deleteThread( firstPostId, removerName);
         }
 
         // ISuperUser

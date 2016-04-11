@@ -76,6 +76,16 @@ namespace ForumBuilder.Controllers
             return true;
         }
 
+        internal bool isMembersOfSameForum(string friendToAdd, string userName)
+        {
+            if(demoDB.getForumByMember(friendToAdd)!=null&& demoDB.getForumByMember(userName) != null 
+                && demoDB.getForumByMember(friendToAdd).forumName.Equals(demoDB.getForumByMember(userName).forumName))
+            {
+                return true;
+            }
+            return false;
+        }
+
         public bool banMember(string bannedMember, string bannerUserName, string forumName)
         {
             if (!isMember(bannedMember, forumName))
@@ -116,6 +126,8 @@ namespace ForumBuilder.Controllers
         public bool isAdmin(string userName, string forumName)
         {
             Forum forum = demoDB.getforumByName(forumName);
+            if (forum == null)
+                return false;
             foreach (string s in forum.administrators)
             {
                 if (s.Equals(userName))
