@@ -47,7 +47,6 @@ namespace Tests
             Assert.IsTrue(this.forumController.registerUser("admin", "adminpass", "admin@gmail.com", this.forumName));
             Assert.IsTrue(this.forumController.registerUser("mem", "mempass", "mem@gmail.com", this.forumName));
             Assert.IsTrue(this.forumController.registerUser("mod", "modpass", "mod@gmail.com", this.forumName));
-            //Assert.IsTrue(this.forumController.nominateAdmin("admin", "adminpass", "admin@gmail.com"));
             Assert.IsTrue(this.forumController.addSubForum(this.forum.forumName, this.subForumName, modList, this.userAdmin.userName));
             this.subForum = SubForumController.getInstance;
 
