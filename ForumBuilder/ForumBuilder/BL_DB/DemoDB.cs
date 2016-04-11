@@ -55,9 +55,9 @@ namespace ForumBuilder.BL_DB
                 this.messages.Clear();
         }
         
-        internal bool dismissModerator(string dismissedModerator, string dismissByAdmin, SubForum subForum)
+        internal bool dismissModerator(string dismissedModerator, string subForumName,string forumName)
         {
-            subForum.moderators.Remove(dismissedModerator);
+            getSubForum(subForumName,forumName).moderators.Remove(dismissedModerator);
             return true;
         }
         internal bool addSuperUser(string email, string password, string userName)

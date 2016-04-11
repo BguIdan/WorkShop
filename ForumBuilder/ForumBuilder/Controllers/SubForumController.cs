@@ -3,6 +3,7 @@ using ForumBuilder.Controllers;
 using ForumBuilder.BL_DB;
 using System.Collections.Generic;
 using System.Linq;
+using ForumBuilder.Systems;
 
 namespace ForumBuilder.Controllers
 {
@@ -11,7 +12,7 @@ namespace ForumBuilder.Controllers
         private static SubForumController singleton;
 
         DemoDB demoDB = DemoDB.getInstance;
-        Systems.Logger logger = Systems.Logger.getInstance;
+        Logger logger = Logger.getInstance;
         ForumController forumController = ForumController.getInstance;
         SuperUserController superUserController = SuperUserController.getInstance;
         public static SubForumController getInstance
@@ -21,7 +22,7 @@ namespace ForumBuilder.Controllers
                 if (singleton == null)
                 {
                     singleton = new SubForumController();
-                    Systems.Logger.getInstance.logPrint("Sub-forum contoller created");
+                    Logger.getInstance.logPrint("Sub-forum contoller created");
                 }
                 return singleton;
             }
@@ -30,11 +31,26 @@ namespace ForumBuilder.Controllers
         public bool dismissModerator(string dismissedModerator, string dismissByAdmin, string subForumName, string forumName)
         {
             SubForum subForum = getSubForum(subForumName, forumName);
-            if (forumController.isAdmin(dismissByAdmin, forumName) && forumController.isMember(dismissedModerator, forumName))
+            if (subForum == null)
             {
-                return demoDB.dismissModerator(dismissedModerator, dismissByAdmin, subForum);
+                logger.logPrint("Dismiss moderator failed, sub-forum does not exist");
+                return false;
             }
-            return false;
+            else if (!forumController.isAdmin(dismissByAdmin, forumName))
+            {
+                logger.logPrint("Dismiss moderator failed, "+ dismissByAdmin+" has no permission");
+                return false;
+            }
+            else if(!isModerator(dismissedModerator, subForumName, forumName))
+            {
+                logger.logPrint("Dismiss moderator failed, " + dismissedModerator + " is not a moderator");
+                return false;
+            }
+            else
+            {
+                logger.logPrint("Dismiss moderator "+ dismissedModerator);
+                return demoDB.dismissModerator(dismissedModerator, subForumName, forumName);
+            }
         }
         public bool isModerator(string name, string subForumName, string forumName)
         {
@@ -96,6 +112,7 @@ namespace ForumBuilder.Controllers
                 return false;
             }
             int id = demoDB.getAvilableIntOfPost();
+            logger.logPrint("Add thread " + id);
             return demoDB.addPost(writerName, id, headLine, content, -1, timePublished)&&demoDB.addThread(headLine, content, writerName, forumName, subForumName, id,timePublished);
         }
 
@@ -136,7 +153,9 @@ namespace ForumBuilder.Controllers
                 for(int i =donePosts.Capacity-1; i>=0;i--)
                 {
                     hasSucceed = hasSucceed && demoDB.removePost(donePosts.ElementAt(i).id);
+                    logger.logPrint("Remove post " + donePosts.ElementAt(i).id);
                 }
+                logger.logPrint("Remove thread " + firstPostId);
                 return hasSucceed && demoDB.removeThread(firstPostId, sf.name, sf.forum);
             } 
         }
