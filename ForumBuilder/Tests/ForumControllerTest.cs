@@ -30,6 +30,8 @@ namespace Tests
             this.userAdmin = new User("admin", "adminpass", "admin@gmail.com");
             this.userAdmin2 = new User("admin2", "adminpass2", "admin2@gmail.com");
             List<string> adminList = new List<string>();
+            adminList.Add("admin");
+            adminList.Add("admin2");
             this.forum = new Forum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList);
             ISuperUserController superUser = SuperUserController.getInstance;
             superUser1 = new SuperUser("fkfkf@wkk.com", "1qW", "tomer");
@@ -37,11 +39,7 @@ namespace Tests
             superUser.createForum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "tomer");
             Assert.IsTrue(this.forumController.registerUser("mem", "mempass", "mem@gmail.com", this.forum.forumName));
             Assert.IsTrue(this.forumController.registerUser("admin", "adminpass", "admin@gmail.com", this.forum.forumName));
-            //Assert.IsTrue(this.forumController.nominateAdmin("admin", "adminpass", "admin@gmail.com"));
             Assert.IsTrue(this.forumController.registerUser("admin2", "adminpass2", "admin2@gmail.com", this.forum.forumName));
-            //Assert.IsTrue(this.forumController.nominateAdmin("admin2", "adminpass2", "admin2@gmail.com"));
-            adminList.Add("admin");
-            adminList.Add("admin2");
 
         }
 

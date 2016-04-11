@@ -43,6 +43,13 @@ namespace ForumBuilder.Controllers
             get { return _title; }
             set { _title = value; }
         }
+
+        public String content
+        {
+            get { return _content; }
+            set { _content = value; }
+        }
+
         public String writerUserName
         {
             get { return _writerUserName; }

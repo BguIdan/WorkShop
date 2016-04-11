@@ -13,6 +13,7 @@ namespace Tests
     public class SubForumControllerTest
     {
         private IForumController forumController;
+        private IPostController postController;
         private Forum forum;
         private User userNonMember;
         private User userMember;
@@ -29,6 +30,7 @@ namespace Tests
         {
             ForumSystem.initialize("tomer", "1qW", "fkfkf@wkk.com");
             this.forumController = ForumController.getInstance;
+            this.postController = PostController.getInstance;
             this.userNonMember = new User("nonMem", "nonmemPass", "nonmem@gmail.com");
             this.userMember = new User("mem", "mempass", "mem@gmail.com");
             this.userModerator = new User("mod", "modpass", "mod@gmail.com");
@@ -273,6 +275,318 @@ namespace Tests
 
         /******************************end of get threads***************************************/
 
+        /*******************************create thread*****************************************/
+
+        [TestMethod]
+        public void test_createThread_mem_valid_input()
+        {
+            String headLine = "head";
+            String content = "content";
+            Assert.IsTrue(this.subForum.createThread(headLine, content, this.userMember.userName, this.forumName, this.subForumName));
+            List<Post> postList = this.postController.getAllPosts();
+            Assert.AreEqual(postList.Count, 1);
+            Post post = postList.First();
+            Assert.AreEqual(post.title, headLine);
+            Assert.AreEqual(post.content, content);
+            Assert.AreEqual(post.writerUserName, this.userMember.userName);
+        }
+
+
+        [TestMethod]
+        public void test_createThread_admin_valid_input()
+        {
+            String headLine = "head";
+            String content = "content";
+            Assert.IsTrue(this.subForum.createThread(headLine, content, this.userAdmin.userName, this.forumName, this.subForumName));
+            List<Post> postList = this.postController.getAllPosts();
+            Assert.AreEqual(postList.Count, 1);
+            Post post = postList.First();
+            Assert.AreEqual(post.title, headLine);
+            Assert.AreEqual(post.content, content);
+            Assert.AreEqual(post.writerUserName, this.userAdmin.userName);
+        }
+
+        [TestMethod]
+        public void test_createThread_mem_empty_headLine()
+        {
+            String headLine = "";
+            String content = "content";
+            Assert.IsTrue(this.subForum.createThread(headLine, content, this.userMember.userName, this.forumName, this.subForumName));
+            List<Post> postList = this.postController.getAllPosts();
+            Assert.AreEqual(postList.Count, 1);
+            Post post = postList.First();
+            Assert.AreEqual(post.title, headLine);
+            Assert.AreEqual(post.content, content);
+            Assert.AreEqual(post.writerUserName, this.userMember.userName);
+        }
+
+
+        [TestMethod]
+        public void test_createThread_admin_empty_headLine()
+        {
+            String headLine = "";
+            String content = "content";
+            Assert.IsTrue(this.subForum.createThread(headLine, content, this.userAdmin.userName, this.forumName, this.subForumName));
+            List<Post> postList = this.postController.getAllPosts();
+            Assert.AreEqual(postList.Count, 1);
+            Post post = postList.First();
+            Assert.AreEqual(post.title, headLine);
+            Assert.AreEqual(post.content, content);
+            Assert.AreEqual(post.writerUserName, this.userAdmin.userName);
+        }
+
+        [TestMethod]
+        public void test_createThread_mem_empty_content()
+        {
+            String headLine = "head";
+            String content = "";
+            Assert.IsTrue(this.subForum.createThread(headLine, content, this.userMember.userName, this.forumName, this.subForumName));
+            List<Post> postList = this.postController.getAllPosts();
+            Assert.AreEqual(postList.Count, 1);
+            Post post = postList.First();
+            Assert.AreEqual(post.title, headLine);
+            Assert.AreEqual(post.content, content);
+            Assert.AreEqual(post.writerUserName, this.userMember.userName);
+        }
+
+
+        [TestMethod]
+        public void test_createThread_admin_empty_content()
+        {
+            String headLine = "head";
+            String content = "";
+            Assert.IsTrue(this.subForum.createThread(headLine, content, this.userAdmin.userName, this.forumName, this.subForumName));
+            List<Post> postList = this.postController.getAllPosts();
+            Assert.AreEqual(postList.Count, 1);
+            Post post = postList.First();
+            Assert.AreEqual(post.title, headLine);
+            Assert.AreEqual(post.content, content);
+            Assert.AreEqual(post.writerUserName, this.userAdmin.userName);
+        }
+
+        [TestMethod]
+        public void test_createThread_mem_empty_inputs()
+        {
+            String headLine = "";
+            String content = "";
+            Assert.IsFalse(this.subForum.createThread(headLine, content, this.userMember.userName, this.forumName, this.subForumName));
+            List<Post> postList = this.postController.getAllPosts();
+            Assert.AreEqual(postList.Count, 0);
+        }
+
+
+        [TestMethod]
+        public void test_createThread_admin_empty_inputs()
+        {
+            String headLine = "";
+            String content = "";
+            Assert.IsFalse(this.subForum.createThread(headLine, content, this.userAdmin.userName, this.forumName, this.subForumName));
+            List<Post> postList = this.postController.getAllPosts();
+            Assert.AreEqual(postList.Count, 0);
+        }
+
+        [TestMethod]
+        public void test_createThread_mem_null_inputs()
+        {
+            String headLine = null;
+            String content = null;
+            Assert.IsFalse(this.subForum.createThread(headLine, content, this.userMember.userName, this.forumName, this.subForumName));
+            List<Post> postList = this.postController.getAllPosts();
+            Assert.AreEqual(postList.Count, 0);
+        }
+
+
+        [TestMethod]
+        public void test_createThread_admin_null_inputs()
+        {
+            String headLine = null;
+            String content = null;
+            Assert.IsFalse(this.subForum.createThread(headLine, content, this.userAdmin.userName, this.forumName, this.subForumName));
+            List<Post> postList = this.postController.getAllPosts();
+            Assert.AreEqual(postList.Count, 0);
+        }
+
+        [TestMethod]
+        public void test_createThread_invalid_userName()
+        {
+            String headLine = "head";
+            String content = "content";
+            Assert.IsFalse(this.subForum.createThread(headLine, content, "donJoe", this.forumName, this.subForumName));
+            List<Post> postList = this.postController.getAllPosts();
+            Assert.AreEqual(postList.Count, 0);
+        }
+
+        [TestMethod]
+        public void test_createThread_invalid_forumName()
+        {
+            String headLine = "head";
+            String content = "content";
+            Assert.IsFalse(this.subForum.createThread(headLine, content, this.userMember.userName, "notForum", this.subForumName));
+            List<Post> postList = this.postController.getAllPosts();
+            Assert.AreEqual(postList.Count, 0);
+        }
+
+        [TestMethod]
+        public void test_createThread_invalid_subForumName()
+        {
+            String headLine = "head";
+            String content = "content";
+            Assert.IsFalse(this.subForum.createThread(headLine, content, this.userMember.userName, this.forumName, "notSubForum"));
+            List<Post> postList = this.postController.getAllPosts();
+            Assert.AreEqual(postList.Count, 0);
+        }
+
+        [TestMethod]
+        public void test_createThread_nonMember()
+        {
+            String headLine = "head";
+            String content = "content";
+            Assert.IsFalse(this.subForum.createThread(headLine, content, this.userNonMember.userName, this.forumName, this.subForumName));
+            List<Post> postList = this.postController.getAllPosts();
+            Assert.AreEqual(postList.Count, 0);
+        }
+
+
+        /*******************************end of create thread*****************************************/
+
+        /*******************************delete thread*****************************************/
+
+
+        [TestMethod]
+        public void test_deleteMemThread_by_mem()
+        {
+            String headLine = "head";
+            String content = "content";
+            Assert.IsTrue(this.subForum.createThread(headLine, content, this.userMember.userName, this.forumName, this.subForumName));
+            List<Post> postList = this.postController.getAllPosts();
+            Assert.AreEqual(postList.Count, 1);
+            Post post = postList.First();
+            Assert.AreEqual(post.title, headLine);
+            Assert.AreEqual(post.content, content);
+            Assert.AreEqual(post.writerUserName, this.userMember.userName);
+            Assert.IsTrue(this.subForum.deleteThread(post.id, this.userMember.userName));
+            postList = this.postController.getAllPosts();
+            Assert.AreEqual(postList.Count, 0);
+        }
+
+
+        [TestMethod]
+        public void test_deleteMemThread_by_admin()
+        {
+            String headLine = "head";
+            String content = "content";
+            Assert.IsTrue(this.subForum.createThread(headLine, content, this.userMember.userName, this.forumName, this.subForumName));
+            List<Post> postList = this.postController.getAllPosts();
+            Assert.AreEqual(postList.Count, 1);
+            Post post = postList.First();
+            Assert.AreEqual(post.title, headLine);
+            Assert.AreEqual(post.content, content);
+            Assert.AreEqual(post.writerUserName, this.userMember.userName);
+            Assert.IsTrue(this.subForum.deleteThread(post.id, this.userAdmin.userName));
+            postList = this.postController.getAllPosts();
+            Assert.AreEqual(postList.Count, 0);
+        }
+
+
+        [TestMethod]
+        public void test_deleteAdminThread_by_mem()
+        {
+            String headLine = "head";
+            String content = "content";
+            Assert.IsTrue(this.subForum.createThread(headLine, content, this.userAdmin.userName, this.forumName, this.subForumName));
+            List<Post> postList = this.postController.getAllPosts();
+            Assert.AreEqual(postList.Count, 1);
+            Post post = postList.First();
+            Assert.AreEqual(post.title, headLine);
+            Assert.AreEqual(post.content, content);
+            Assert.AreEqual(post.writerUserName, this.userAdmin.userName);
+            Assert.IsTrue(this.subForum.deleteThread(post.id, this.userMember.userName));
+            postList = this.postController.getAllPosts();
+            Assert.AreEqual(postList.Count, 0);
+        }
+
+
+        [TestMethod]
+        public void test_deleteAdminThread_by_admin()
+        {
+            String headLine = "head";
+            String content = "content";
+            Assert.IsTrue(this.subForum.createThread(headLine, content, this.userAdmin.userName, this.forumName, this.subForumName));
+            List<Post> postList = this.postController.getAllPosts();
+            Assert.AreEqual(postList.Count, 1);
+            Post post = postList.First();
+            Assert.AreEqual(post.title, headLine);
+            Assert.AreEqual(post.content, content);
+            Assert.AreEqual(post.writerUserName, this.userAdmin.userName);
+            Assert.IsTrue(this.subForum.deleteThread(post.id, this.userAdmin.userName));
+            postList = this.postController.getAllPosts();
+            Assert.AreEqual(postList.Count, 0);
+        }
+
+        [TestMethod]
+        public void test_deleteThread_invalid_id()
+        {
+            String headLine = "head";
+            String content = "content";
+            Assert.IsTrue(this.subForum.createThread(headLine, content, this.userMember.userName, this.forumName, this.subForumName));
+            List<Post> postList = this.postController.getAllPosts();
+            Assert.AreEqual(postList.Count, 1);
+            Post post = postList.First();
+            Assert.AreEqual(post.title, headLine);
+            Assert.AreEqual(post.content, content);
+            Assert.AreEqual(post.writerUserName, this.userMember.userName);
+            Assert.IsFalse(this.subForum.deleteThread(post.id + 1, this.userAdmin.userName));
+            postList = this.postController.getAllPosts();
+            Assert.AreEqual(postList.Count, 1);
+            post = postList.First();
+            Assert.AreEqual(post.title, headLine);
+            Assert.AreEqual(post.content, content);
+            Assert.AreEqual(post.writerUserName, this.userMember.userName);
+        }
+
+        [TestMethod]
+        public void test_deleteThread_by_nonMember()
+        {
+            String headLine = "head";
+            String content = "content";
+            Assert.IsTrue(this.subForum.createThread(headLine, content, this.userMember.userName, this.forumName, this.subForumName));
+            List<Post> postList = this.postController.getAllPosts();
+            Assert.AreEqual(postList.Count, 1);
+            Post post = postList.First();
+            Assert.AreEqual(post.title, headLine);
+            Assert.AreEqual(post.content, content);
+            Assert.AreEqual(post.writerUserName, this.userMember.userName);
+            Assert.IsFalse(this.subForum.deleteThread(post.id, this.userNonMember.userName));
+            postList = this.postController.getAllPosts();
+            Assert.AreEqual(postList.Count, 1);
+            post = postList.First();
+            Assert.AreEqual(post.title, headLine);
+            Assert.AreEqual(post.content, content);
+            Assert.AreEqual(post.writerUserName, this.userMember.userName);
+        }
+
+        [TestMethod]
+        public void test_deleteThread_null_remover()
+        {
+            String headLine = "head";
+            String content = "content";
+            Assert.IsTrue(this.subForum.createThread(headLine, content, this.userMember.userName, this.forumName, this.subForumName));
+            List<Post> postList = this.postController.getAllPosts();
+            Assert.AreEqual(postList.Count, 1);
+            Post post = postList.First();
+            Assert.AreEqual(post.title, headLine);
+            Assert.AreEqual(post.content, content);
+            Assert.AreEqual(post.writerUserName, this.userMember.userName);
+            Assert.IsFalse(this.subForum.deleteThread(post.id, null));
+            postList = this.postController.getAllPosts();
+            Assert.AreEqual(postList.Count, 1);
+            post = postList.First();
+            Assert.AreEqual(post.title, headLine);
+            Assert.AreEqual(post.content, content);
+            Assert.AreEqual(post.writerUserName, this.userMember.userName);
+        }
+
+        /*******************************end of delete thread*****************************************/
 
         private bool areListsEqual<T>(List<T> list1, List<T> list2)
         {
