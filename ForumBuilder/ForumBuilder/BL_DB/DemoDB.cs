@@ -69,7 +69,13 @@ namespace ForumBuilder.BL_DB
         }
         internal bool nominateModerator(string newModerator, string nominatorUser, DateTime date, SubForum subForum)
         {
-            subForum.moderators.Remove(newModerator);
+            foreach(string s in subForum.moderators.Keys)
+            {
+                if (s.Equals(newModerator))
+                {
+                    return false;
+                }
+            }
             subForum.moderators.Add(newModerator, date);
             return true;
         }

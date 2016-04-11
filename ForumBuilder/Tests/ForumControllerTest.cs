@@ -77,7 +77,7 @@ namespace Tests
             String forumName = this.forum.forumName;
             String admin2Name = this.userAdmin2.userName;
             Assert.IsFalse(this.forumController.isAdmin(memName, forumName), "userMember should not be an admin in the forum");
-            Assert.IsTrue(this.forumController.dismissAdmin(memName, admin2Name, forumName), "userMember is not an administrator in the forum hence his dismissal from being administrator should be successful");
+            Assert.IsFalse(this.forumController.dismissAdmin(memName, admin2Name, forumName), "userMember is not an administrator in the forum hence his dismissal from being administrator should Not be successful");
             Assert.IsFalse(this.forumController.isAdmin(memName, forumName), "userMember should not be a administrator in the forum");
         }
 
@@ -89,7 +89,7 @@ namespace Tests
             String adminName = this.userAdmin.userName;
             String admin2Name = this.userAdmin2.userName;
             Assert.IsTrue(this.forumController.isAdmin(adminName, forumName), "userAdmin should be an admin in the forum");
-            Assert.IsTrue(this.forumController.dismissAdmin(adminName, admin2Name, forumName), "userAdmin is an administrator in the forum. his dismissal from being administrator should be successful");
+            Assert.IsTrue(this.forumController.dismissAdmin(adminName, superUser1.userName, forumName), "userAdmin is an administrator in the forum. his dismissal from being administrator should be successful");
             Assert.IsFalse(this.forumController.isAdmin(adminName, forumName), "userAdmin should not be a administrator in the forum");
         }
 
