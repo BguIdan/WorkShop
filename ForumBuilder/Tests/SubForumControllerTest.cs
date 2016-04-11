@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ForumBuilder.BL_Back_End;
 using ForumBuilder.BL_DB;
-
+using ForumBuilder.Systems;
 
 namespace Tests
 {
@@ -27,6 +27,7 @@ namespace Tests
         [TestInitialize]
         public void setUp()
         {
+            ForumSystem.initialize("tomer", "1qW", "fkfkf@wkk.com");
             this.forumController = ForumController.getInstance;
             this.userNonMember = new User("nonMem", "nonmemPass", "nonmem@gmail.com");
             this.userMember = new User("mem", "mempass", "mem@gmail.com");
@@ -38,14 +39,13 @@ namespace Tests
             adminList.Add("admin");
             this.forum = new Forum(this.forumName, "descr", "policy", "the first rule is that you do not talk about fight club", adminList);
             ISuperUserController superUser = SuperUserController.getInstance;
-            superUser1 = new SuperUser("fkfkf@wkk.com", "1qW", "tomer");
-            SuperUserController.getInstance.addSuperUser(superUser1.email, superUser1.password, superUser1.userName);
-            superUser.createForum(forum.forumName, forum.description, forum.forumPolicy, forum.forumRules, forum.administrators, superUser1.userName);
+            superUser1 = DemoDB.getInstance.getSuperUser("tomer");
+            superUser.createForum("1", "1", "1", "1", null, "tomer");
+            Assert.IsTrue(superUser.createForum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "tomer"));
             Assert.IsTrue(this.forumController.registerUser("admin", "adminpass", "admin@gmail.com", this.forumName));
             Assert.IsTrue(this.forumController.registerUser("mem", "mempass", "mem@gmail.com", this.forumName));
             Assert.IsTrue(this.forumController.registerUser("mod", "modpass", "mod@gmail.com", this.forumName));
             //Assert.IsTrue(this.forumController.nominateAdmin("admin", "adminpass", "admin@gmail.com"));
-            Assert.IsTrue(superUser.createForum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "tomer"));
             Assert.IsTrue(this.forumController.addSubForum(this.forum.forumName, this.subForumName, modList, this.userAdmin.userName));
             this.subForum = SubForumController.getInstance;
 
@@ -193,7 +193,7 @@ namespace Tests
         public void test_nominateModerator_on_moderator()
         {
             String moderatorName = this.userModerator.userName;
-            Assert.IsFalse(this.subForum.nominateModerator(moderatorName, this.userAdmin.userName, new DateTime(2030, 1, 1), this.subForumName, this.forumName), "nomination of moderator user should not be successful");
+            Assert.IsFalse(this.subForum.nominateModerator(moderatorName, this.userAdmin.userName, new DateTime(2030, 1, 1), this.subForumName, this.forumName), "nomination of moderator that already exists should not be successful");
             Assert.IsTrue(this.subForum.isModerator(moderatorName, this.subForumName, this.forumName), "moderator user should still br a moderator");
         }
 

@@ -54,9 +54,16 @@ namespace ForumBuilder.Controllers
         }
         public bool isModerator(string name, string subForumName, string forumName)
         {
-            if (getSubForum(subForumName, forumName) == null)
+            SubForum subForum = getSubForum(subForumName, forumName);
+            if (subForum == null)
                 return false;
-            return getSubForum(subForumName, forumName).moderators.ContainsKey(name);
+            foreach(string s in subForum.moderators.Keys)
+            {
+                if (s.Equals(name))
+                    return true;
+            }
+            return false;
+            //return subForum.moderators.ContainsKey(name);
         }
         public bool nominateModerator(string newModerator, string nominatorUser, DateTime date, string subForumName, string forumName)
         {
