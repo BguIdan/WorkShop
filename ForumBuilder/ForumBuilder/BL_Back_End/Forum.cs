@@ -27,7 +27,6 @@ namespace ForumBuilder.Controllers
             _forumRules = forumRules;
             _administrators = administrators;
             _members = new List<string>();
-            _subForums = new List<string>();
         }
 
         public String forumPolicy

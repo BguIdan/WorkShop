@@ -1,3 +1,4 @@
+C:\Users\User\Desktop\WorkShop\ForumBuilder\Tests\obj\Debug\Tests.csprojResolveAssemblyReference.cache
 C:\Users\User\Documents\sadna\ForumBuilder\Tests\obj\Debug\Tests.csprojResolveAssemblyReference.cache
 C:\Users\Aviv\Documents\WorkShop\ForumBuilder\Tests\obj\Debug\Tests.csprojResolveAssemblyReference.cache
 C:\Users\User\Desktop\git projects\ForumBuilder\Tests\obj\Debug\Tests.csprojResolveAssemblyReference.cache

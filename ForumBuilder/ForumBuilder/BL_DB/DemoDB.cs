@@ -57,8 +57,6 @@ namespace ForumBuilder.BL_DB
         
         internal bool dismissModerator(string dismissedModerator, string dismissByAdmin, SubForum subForum)
         {
-            if (!subForum.moderators.ContainsKey(dismissedModerator))
-                return false;
             subForum.moderators.Remove(dismissedModerator);
             return true;
         }
@@ -124,7 +122,7 @@ namespace ForumBuilder.BL_DB
         {
             foreach (SuperUser superUser in superUsers)
             {
-                if (superUser.userName.Equals(userName))
+                if (superUser._userName.Equals(userName))
                     return superUser;
             }
             return null;
