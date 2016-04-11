@@ -122,7 +122,7 @@ namespace ForumBuilder.BL_DB
         {
             foreach (SuperUser superUser in superUsers)
             {
-                if (superUser._userName.Equals(userName))
+                if (superUser.userName.Equals(userName))
                     return superUser;
             }
             return null;
