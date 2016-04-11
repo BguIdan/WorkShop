@@ -93,7 +93,7 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Ban Member failed, " + bannedMember + " is not a member");
                 return false;
             }
-            else if(!isAdmin(bannerUserName, forumName)&& !SuperUserController.getInstance.isSuperUser(bannerUserName))
+            else if(!isAdmin(bannerUserName, forumName)&& demoDB.getSuperUser(bannerUserName)==null)
             {
                 logger.logPrint("Ban Member failed, " + bannedMember + " is not a admin or super user");
                 return false;
@@ -112,7 +112,7 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Dismiss admin failed, " + adminToDismissed + " is not a admin");
                 return false;
             }
-            else if(!SuperUserController.getInstance.isSuperUser(dismissingUserName))
+            else if(demoDB.getSuperUser(dismissingUserName)==null)
             {
                 logger.logPrint("Ban Member failed, " + dismissingUserName + " is not a super user");
                 return false;

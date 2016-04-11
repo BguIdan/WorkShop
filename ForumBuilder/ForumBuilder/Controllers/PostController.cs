@@ -1,7 +1,6 @@
 ﻿using System;
-using ForumBuilder.BL_Back_End;
-using ForumBuilder.BL_DB;
 using System.Collections.Generic;
+using ForumBuilder.BL_DB;
 using System.Linq;
 
 namespace ForumBuilder.Controllers
@@ -9,10 +8,6 @@ namespace ForumBuilder.Controllers
     public class PostController :IPostController
     {
         private static PostController singleton;
-        //ThreadController threadController = ThreadController.getInstance;
-        //ForumController forumController = ForumController.getInstance;
-        //SubForumController subForumController = SubForumController.getInstance;
-        //SuperUserController superUserController = SuperUserController.getInstance;
         DemoDB demoDB = DemoDB.getInstance;
         Systems.Logger logger = Systems.Logger.getInstance;
         public static PostController getInstance
@@ -85,11 +80,13 @@ namespace ForumBuilder.Controllers
             }
             else if (getPost(postId).parentId == -1)
             {
-                return SubForumController.getInstance.deleteThread(postId, removerName);
+                logger.logPrint("Delete comment failed, this is not a comment");
+                return false;
+                //return SubForumController.getInstance.deleteThread(postId, removerName);
             }
             SubForum sf = getSubforumByPost(postId);
             if ((!demoDB.getPost(postId).writerUserName.Equals(removerName))
-                && (!SuperUserController.getInstance.isSuperUser(removerName))
+                && (demoDB.getSuperUser(removerName)!=null)
                 && (!ForumController.getInstance.isAdmin(removerName, sf.forum)
                 && (!SubForumController.getInstance.isModerator(removerName, sf.name, sf.forum))))
             {
@@ -121,6 +118,34 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Remove post " +donePosts.ElementAt(i).id);
             }
             return hasSucceed;
+        }
+        public List<Post> getAllPosts(String forumName, String subforumName)
+        {
+            List <Post> list = new List<Post>();
+            SubForum sf= SubForumController.getInstance.getSubForum(subforumName, forumName);
+            foreach(int t in sf.threads)
+            {
+                List<Post> donePosts = new List<Post>();
+                List<Post> undonePosts = new List<Post>();
+                undonePosts.Add(demoDB.getPost(t));
+                while (undonePosts.Count != 0)
+                {
+                    Post post = undonePosts.ElementAt(0);
+                    undonePosts.RemoveAt(0);
+                    List<Post> related = demoDB.getRelatedPosts(post.id);
+                    while (related != null && related.Count != 0)
+                    {
+                        undonePosts.Add(related.ElementAt(0));
+                        related.RemoveAt(0);
+                    }
+                    donePosts.Add(post);
+                }
+                foreach (Post p in donePosts)
+                {
+                    list.Add(p);
+                }
+            }
+            return list;
         }
     }
 }
