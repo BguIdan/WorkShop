@@ -25,7 +25,7 @@ namespace ForumBuilder.BL_DB
             posts = new List<Post>();
             users = new List<User>();
             superUsers = new List<SuperUser>();
-
+            messages= new List<Message>();
         }
         public static DemoDB getInstance
         {
@@ -39,17 +39,22 @@ namespace ForumBuilder.BL_DB
             }
 
         }
-        public int getAvilableIntOfPost()
+        public void clear()
         {
-            int max = 0;
-            foreach (Post p in posts)
-            {
-                if (p.id >= max)
-                    max = p.id + 1;
-            }
-            return max;
+            if (this.forums != null)
+                this.forums.Clear();
+            if (this.subForums != null)
+                this.subForums.Clear();
+            if (this.threads != null)
+                this.threads.Clear();
+            if (this.posts != null)
+                this.posts.Clear();
+            if (this.users != null)
+                this.users.Clear();
+            if (this.messages != null)
+                this.messages.Clear();
         }
-
+        
         internal bool dismissModerator(string dismissedModerator, string dismissByAdmin, SubForum subForum)
         {
             if (!subForum.moderators.ContainsKey(dismissedModerator))
@@ -57,34 +62,19 @@ namespace ForumBuilder.BL_DB
             subForum.moderators.Remove(dismissedModerator);
             return true;
         }
-
-        internal bool deleteThreadFromSubforum(int firstPostId)
-        {
-            foreach (SubForum sf in subForums)
-            {
-                if (sf.threads.Contains(firstPostId))
-                {
-                    sf.threads.Remove(firstPostId);
-                    return true;
-                }
-            }
-            return false;
-
-        }
-
         internal bool addSuperUser(string email, string password, string userName)
         {
-            superUsers.Add(new SuperUser(email, password, userName));
+            SuperUser su = new SuperUser(email, password, userName);
+            superUsers.Add(su);
+            users.Add(su);
             return true;
         }
-
         internal bool nominateModerator(string newModerator, string nominatorUser, DateTime date, SubForum subForum)
         {
             subForum.moderators.Remove(newModerator);
             subForum.moderators.Add(newModerator, date);
             return true;
         }
-
         internal Forum getforumByName(string forumName)
         {
             foreach (Forum f in forums)
@@ -94,72 +84,42 @@ namespace ForumBuilder.BL_DB
             }
             return null;
         }
-
-        internal bool removeThreadByfirstPostId(int firstPostToDelete)
+        internal Forum getForumByMember(string userName)
         {
-            Thread tr = null;
-            foreach (Thread t in threads)
+            foreach(Forum f in forums)
             {
-                if (t.firstPost.id == firstPostToDelete)
-                    tr = t;
+                if (f.members.Contains(userName))
+                    return f;
             }
-            if (tr == null)
-                return false;
-            threads.Remove(tr);
-            return true;
-
+            return null;
         }
-
-        public Boolean addPost(Post post)
+        internal bool addMessage(int id, string sender, string reciver, string content)
         {
-            foreach (Post p in posts)
-            {
-                if (p.id == post.id)
-                    return false;
-            }
-            posts.Add(post);
+            messages.Add(new Message(id, sender, reciver, content));
             return true;
         }
-
+        internal List<string> getUserFriends(string userName)
+        {
+            return getUser(userName).friends;
+        }
         internal bool banMember(string bannedMember, string bannerUserName, string forumName)
         {
             Forum forum = this.getforumByName(forumName);
             forum.members.Remove(bannedMember);
             return true;
         }
-
         internal bool changePolicy(string newPolicy, string forumName)
         {
             Forum forum = this.getforumByName(forumName);
             forum.forumPolicy = newPolicy;
             return true;
         }
-
-        public bool addThreadToSubForum(Thread thread, string forum, string subForum)
-        {
-            foreach (SubForum sf in subForums)
-            {
-                if (sf.forum.Equals(forum) && sf.name.Equals(subForums))
-                {
-                    foreach (int t in sf.threads)
-                    {
-                        if (t == thread.firstPost.id)
-                            return false;
-                    }
-                    sf.threads.Add(thread.firstPost.id);
-                    return true;
-                }
-            }
-            return false;
-        }
-
         internal bool nominateAdmin(string newAdmin, string nominatorName, string forumName)
         {
             Forum forum = getforumByName(forumName);
             forum.administrators.Add(newAdmin);
             return true;
         }
-        
         public SuperUser getSuperUser(string userName)
         {
             foreach (SuperUser superUser in superUsers)
@@ -169,62 +129,12 @@ namespace ForumBuilder.BL_DB
             }
             return null;
         }
-
         internal bool dismissAdmin(string adminToDismissed, string forumName)
         {
             Forum forum = getforumByName(forumName);
             forum.administrators.Remove(adminToDismissed);
             return true;
         }
-
-        public Boolean addThread(Thread thread)
-        {
-            foreach (Thread t in threads)
-            {
-                if (t.firstPost.id == thread.firstPost.id)
-                    return false;
-            }
-            threads.Add(thread);
-            return true;
-        }
-
-        public void removePost(Post p)
-        {
-            posts.Remove(p);
-        }
-
-        internal Post getPost(int postId)
-        {
-            foreach (Post p in posts)
-            {
-                if (p.id == postId)
-                    return p;
-            }
-            return null;
-        }
-
-        internal SubForum getSubforumByThread(Thread t)
-        {
-            foreach (SubForum sf in subForums)
-            {
-                if (sf.threads.Contains(t.firstPost.id))
-                {
-                    return sf;
-                }
-            }
-            return null;
-        }
-
-        internal Thread getThreadByFirstPostId(int postId)
-        {
-            foreach (Thread t in threads)
-            {
-                if (t.firstPost.id == postId)
-                    return t;
-            }
-            return null;
-        }
-
         public User getUser(string userName)
         {
             for (int i = 0; i < users.Count; i++)
@@ -234,7 +144,6 @@ namespace ForumBuilder.BL_DB
             }
             return null;
         }
-
         public Boolean addUser(string userName, string password, string mail)
         {
             foreach (User u in users)
@@ -245,21 +154,6 @@ namespace ForumBuilder.BL_DB
             users.Add(new User(userName, password, mail));
             return true;
         }
-
-        public List<Post> getRelatedPosts(int postId)
-        {
-            List<Post> curPost = new List<Post>();
-            for (int i = 0; i < posts.Count; i++)
-            {
-                if ((posts.ElementAt(i).parentId == postId))
-                {
-                    curPost.Add(posts.ElementAt(i));
-                }
-            }
-            return curPost;
-
-        }
-
         public Boolean createForum(string forumName, string descrption, string forumPolicy, string forumRules, List<string> administrators)
         {
             Forum newForum = new Forum(forumName, descrption, forumPolicy, forumRules, administrators);
@@ -267,8 +161,6 @@ namespace ForumBuilder.BL_DB
             return true;
 
         }
-       
-
         public Boolean setForumPreferences(String forumName, String newDescription, String newForumPolicy, String newForumRules)
         {
             bool isChanged = false;
@@ -284,7 +176,6 @@ namespace ForumBuilder.BL_DB
             }
             return isChanged;
         }
-
         internal bool addFriendToUser(string userName, string friendToAddName)
         {
             User user = getUser(userName);
@@ -318,7 +209,6 @@ namespace ForumBuilder.BL_DB
         {
             get { return messages; }
         }
-
         public Boolean addSubForum(SubForum subForum)
         {
             foreach (SubForum sf in subForums)
@@ -330,20 +220,95 @@ namespace ForumBuilder.BL_DB
             return true;
         }
 
-        public void clear()
+
+        internal Post getPost(int postId)
         {
-            if (this.forums != null)
-                this.forums.Clear();
-            if (this.subForums != null)
-                this.subForums.Clear();
-            if (this.threads != null)
-                this.threads.Clear();
-            if (this.posts != null)
-                this.posts.Clear();
-            if (this.users != null)
-                this.users.Clear();
-            if (this.messages != null)
-                this.messages.Clear();
+            foreach (Post p in posts)
+            {
+                if (p.id == postId)
+                    return p;
+            }
+            return null;
         }
+        public List<Post> getRelatedPosts(int postId)
+        {
+            List<Post> curPost = new List<Post>();
+            for (int i = 0; i < posts.Count; i++)
+            {
+                if ((posts.ElementAt(i).parentId == postId))
+                {
+                    curPost.Add(posts.ElementAt(i));
+                }
+            }
+            return curPost;
+
+        }
+        public int getAvilableIntOfPost()
+        {
+            int max = 0;
+            foreach (Post p in posts)
+            {
+                if (p.id >= max)
+                    max = p.id + 1;
+            }
+            return max;
+        }
+        internal SubForum getSubforumByThreadFirstPostId(int id)
+        {
+            foreach (SubForum sf in subForums)
+            {
+                if (sf.threads.Contains(id))
+                {
+                    return sf;
+                }
+            }
+            return null;
+        }
+        internal Thread getThreadByFirstPostId(int postId)
+        {
+            foreach (Thread t in threads)
+            {
+                if (t.firstPost.id == postId)
+                    return t;
+            }
+            return null;
+        }
+
+        internal bool addThread(string headLine, string content, string writerName, string forum, string subForum, int id, DateTime timePublished)
+        {
+            Thread thread = new Thread(getPost(id));
+            threads.Add(thread);
+            getSubForum(subForum, forum).threads.Add(id);
+            return true;
+        }
+        internal bool addPost(String writerUserName, Int32 id, String headLine, String content, Int32 parentId, DateTime timePublished)
+        {
+            Post post = new Post(writerUserName, id, headLine, content, parentId, timePublished);
+            posts.Add(post);
+            if (parentId != -1)
+            {
+                getPost(parentId).commentsIds.Add(id);
+            }
+            return true;
+        }
+
+        internal bool removeThread(int id,string subForumName,string forumName)
+        {
+            Thread thread = getThreadByFirstPostId(id);
+            threads.Remove(thread);
+            getSubForum(subForumName, forumName).threads.Remove(id);
+            return true;
+        }
+        internal bool removePost(int id)
+        {
+            Post post = getPost(id);
+            posts.Remove(post);
+            if (post.parentId != -1)
+            {
+                getPost(post.parentId).commentsIds.Remove(id);
+            }
+            return true;
+        }
+
     }
 }

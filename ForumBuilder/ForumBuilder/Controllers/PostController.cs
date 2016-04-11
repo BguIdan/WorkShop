@@ -10,6 +10,9 @@ namespace ForumBuilder.Controllers
     {
         private static PostController singleton;
         ThreadController threadController = ThreadController.getInstance;
+        ForumController forumController = ForumController.getInstance;
+        SubForumController subForumController = SubForumController.getInstance;
+        SuperUserController superUserController = SuperUserController.getInstance;
         DemoDB demoDB = DemoDB.getInstance;
         Systems.Logger logger = Systems.Logger.getInstance;
         public static PostController getInstance
@@ -25,45 +28,6 @@ namespace ForumBuilder.Controllers
             }
 
         }
-        public Boolean deletePost(Int32 postId, String deletingUser)
-        {
-            SubForum sf= getSubforumByPost(postId);
-            Forum f = demoDB.getforumByName(sf.forum);
-            if (sf==null || f==null ||( !getPost(postId).writerUserName.Equals(deletingUser)
-                && !sf.moderators.Keys.Contains(deletingUser) && !f.administrators.Contains(deletingUser)))
-                return false;
-            //find the posts that have to delete
-            List<Post> donePosts = new List<Post>();
-            List<Post> undonePosts = new List<Post>();
-            undonePosts.Add(getPost(postId));
-            while (undonePosts.Count != 0)
-            {
-                Post post = undonePosts.ElementAt(0);
-                undonePosts.RemoveAt(0);
-                List<Post> related =demoDB.getRelatedPosts(post.id);
-                while (related != null && related.Count != 0)
-                {
-                    undonePosts.Add(related.ElementAt(0));
-                    related.RemoveAt(0);
-                }
-                donePosts.Add(post);
-            }
-            //remove all post that in done post
-            //check if first post is first in thread
-            Post head = getPost(postId);
-            if (head.parentId == -1)
-            {
-                if (!threadController.deleteThread(postId))
-                    return false;
-            }
-            foreach(Post p in donePosts)
-            {
-                demoDB.removePost(p);
-            }
-
-            return true;
-        }
-
         private SubForum getSubforumByPost(int postId)
         {
             Post p = getPost(postId);
@@ -74,28 +38,86 @@ namespace ForumBuilder.Controllers
                 p = getPost(p.parentId);
             }
             Thread t= demoDB.getThreadByFirstPostId(p.id);
-            return demoDB.getSubforumByThread(t);
+            return demoDB.getSubforumByThreadFirstPostId(p.id);
             
         }
-
         private Post getPost(int postId)
         {
             return demoDB.getPost(postId);
         }
 
-        public Boolean addPost(String headLine, String content, String writerName, DateTime timePublished, Int32 commentedPost/*if new thread, -1*/, String forum, String subForum)
+        public Boolean addComment(String headLine, String content, String writerName, int commentedPost/*if new thread, -1*/)
         {
-            if (headLine.Length <= 0 && content.Length <= 0)
-                return false;
-            Post newPost = new Post(writerName, demoDB.getAvilableIntOfPost(), headLine, content, commentedPost, timePublished);
-            //check if post not exist (done up but do formaly)
-            if (!demoDB.addPost(newPost))
-                return false;
-            if (commentedPost == -1)
+            SubForum sf= demoDB.getSubforumByThreadFirstPostId(commentedPost);
+            if (getPost(commentedPost) == null)
             {
-                return threadController.addFirstPost(newPost, forum,subForum);
+                logger.logPrint("Add comment failed, there is no post to comment at");
+                return false;
             }
-            return true;
+            if (headLine.Equals("") && content.Equals(""))
+            {
+                logger.logPrint("Add comment failed, there is no head or content in tread");
+                return false;
+            }
+            else if (demoDB.getUser(writerName) == null)
+            {
+                logger.logPrint("Add comment failed, user does not exist");
+                return false;
+            }
+            else if(sf==null|| !forumController.isMember(writerName, sf.forum))
+            {
+                logger.logPrint("Add comment failed, user is not a member in forum");
+                return false;
+            }
+            else
+            {
+                return demoDB.addPost(writerName, demoDB.getAvilableIntOfPost(), headLine, content, commentedPost, DateTime.Now);
+            }
+        }
+        public Boolean removeComment(int postId, String removerName)
+        {
+            if (getPost(postId) == null)
+            {
+                logger.logPrint("Delete comment failed, there is no post with that id");
+                return false;
+            }
+            else if (getPost(postId).parentId == -1)
+            {
+                return subForumController.deleteThread(postId, removerName);
+            }
+            SubForum sf = getSubforumByPost(postId);
+            if ((!demoDB.getPost(postId).writerUserName.Equals(removerName))
+                && (!superUserController.isSuperUser(removerName))
+                && (!forumController.isAdmin(removerName, sf.forum)
+                && (!subForumController.isModerator(removerName, sf.name, sf.forum))))
+            {
+                logger.logPrint("Delete thread comment, there is no permission to that user");
+                return false;
+            }
+
+
+            //find the posts that have to delete
+            List<Post> donePosts = new List<Post>();
+            List<Post> undonePosts = new List<Post>();
+            undonePosts.Add(demoDB.getPost(postId));
+            while (undonePosts.Count != 0)
+            {
+                Post post = undonePosts.ElementAt(0);
+                undonePosts.RemoveAt(0);
+                List<Post> related = demoDB.getRelatedPosts(post.id);
+                while (related != null && related.Count != 0)
+                {
+                    undonePosts.Add(related.ElementAt(0));
+                    related.RemoveAt(0);
+                }
+                donePosts.Add(post);
+            }
+            bool hasSucceed = true;
+            for (int i = donePosts.Capacity - 1; i >= 0; i--)
+            {
+                hasSucceed = hasSucceed && demoDB.removePost(donePosts.ElementAt(i).id);
+            }
+            return hasSucceed;
         }
     }
 }
