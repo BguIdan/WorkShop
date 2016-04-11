@@ -71,7 +71,9 @@ namespace ForumBuilder.Controllers
             }
             else
             {
-                return demoDB.addPost(writerName, demoDB.getAvilableIntOfPost(), headLine, content, commentedPost, DateTime.Now);
+                int id = demoDB.getAvilableIntOfPost();
+                logger.logPrint("Create comment "+ id+" to "+commentedPost);
+                return demoDB.addPost(writerName, id, headLine, content, commentedPost, DateTime.Now);
             }
         }
         public Boolean removeComment(int postId, String removerName)
@@ -116,6 +118,7 @@ namespace ForumBuilder.Controllers
             for (int i = donePosts.Capacity - 1; i >= 0; i--)
             {
                 hasSucceed = hasSucceed && demoDB.removePost(donePosts.ElementAt(i).id);
+                logger.logPrint("Remove post " +donePosts.ElementAt(i).id);
             }
             return hasSucceed;
         }
