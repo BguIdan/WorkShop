@@ -39,7 +39,7 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Add friend faild, " + friendToAddName + "is not a user");
                 return false;
             }
-            if(ForumController.getInstance.isMembersOfSameForum(friendToAddName, userName))
+            if(!ForumController.getInstance.isMembersOfSameForum(friendToAddName, userName))
             {
                 logger.logPrint("Add friend faild, " + friendToAddName + " and "+userName + " are not in the same forum");
                 return false;
@@ -83,7 +83,7 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Send message faild, " + toUserName + "is not a user");
                 return false;
             }
-            else if (ForumController.getInstance.isMembersOfSameForum(fromUserName, toUserName))
+            else if (!ForumController.getInstance.isMembersOfSameForum(fromUserName, toUserName))
             {
                 logger.logPrint("Send message faild, " + fromUserName + " and " + toUserName + " are not in the same forum");
                 return false;
@@ -99,6 +99,8 @@ namespace ForumBuilder.Controllers
 
         public List<String> getFriendList(String userName)
         {
+            if (demoDB.getUser(userName) == null)
+                return null;
             return demoDB.getUserFriends(userName);
         }
 

@@ -500,9 +500,9 @@ namespace Tests
             Assert.AreEqual(post.title, headLine);
             Assert.AreEqual(post.content, content);
             Assert.AreEqual(post.writerUserName, this.userAdmin.userName);
-            Assert.IsTrue(this.subForum.deleteThread(post.id, this.userMember.userName));
+            Assert.IsFalse(this.subForum.deleteThread(post.id, this.userMember.userName));
             postList = this.postController.getAllPosts(this.forumName, this.subForumName);
-            Assert.AreEqual(postList.Count, 0);
+            Assert.AreEqual(postList.Count, 1);
         }
 
 

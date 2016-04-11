@@ -150,13 +150,20 @@ namespace ForumBuilder.Controllers
 
         public bool nominateAdmin(string newAdmin, string nominatorName, string forumName)
         {
-            if (demoDB.getSuperUser(nominatorName) != null)
+            if (demoDB.getforumByName(forumName).administrators.Contains(newAdmin))
+            {
+                logger.logPrint("nominate admin fail, " + newAdmin + "is already admin");
+                return false;
+            }
+            if (demoDB.getSuperUser(nominatorName) != null|| demoDB.getforumByName(forumName).administrators.Contains(nominatorName))
             {
                 if (this.isMember(newAdmin, forumName))
                 {
                     if (demoDB.nominateAdmin(newAdmin, nominatorName, forumName))
                     {
                         logger.logPrint("admin nominated successfully");
+                        if (demoDB.getforumByName(forumName).administrators.Contains(nominatorName))
+                            demoDB.dismissAdmin(nominatorName, forumName);
                         return true;
                     }
                     return false;
