@@ -134,7 +134,7 @@ namespace Service
 
         public static int Main(string[] args)
         {
-            ForumSystem.initialize("name", "pass", "email");
+            //ForumSystem.initialize("name", "pass", "email");
             return -1;
         }
     }

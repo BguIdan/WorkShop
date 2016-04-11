@@ -18,7 +18,7 @@ namespace ForumBuilder.Controllers
                 if (singleton == null)
                 {
                     singleton = new SuperUserController();
-                    Systems.Logger.getInstance.logPrint("Super user contoller created");
+                    //Systems.Logger.getInstance.logPrint("Super user contoller created");
                 }
                 return singleton;
             }

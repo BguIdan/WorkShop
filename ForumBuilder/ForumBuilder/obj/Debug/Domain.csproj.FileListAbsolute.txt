@@ -18,3 +18,4 @@ C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\bin\Debug\ForumBuilder.e
 C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\bin\Debug\ForumBuilder.pdb
 C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\obj\Debug\ForumBuilder.exe
 C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\obj\Debug\ForumBuilder.pdb
+C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\obj\Debug\Domain.csprojResolveAssemblyReference.cache

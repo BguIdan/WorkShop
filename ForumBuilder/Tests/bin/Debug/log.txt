@@ -1,0 +1,213 @@
+Log Entry : 
+the system was initialized successully
+-----------------------------------------------
+Log Entry : 
+Forum contoller created
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Dismiss admin failed, nonMem is not a admin
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Dismiss admin failed, mem is not a admin
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Ban Member failed, admin2 is not a super user
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Dismiss admin failed,  is not a admin
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Ban Member failed,  is not a super user
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Ban Member failed, nonMem is not a member
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Register user faild, mem is already taken
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Ban Member failed,  is not a member
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+nominate admin fail admin is not super user
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+nominate admin fail admin is not super user
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+nominate admin fail admin is not super user
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Register user faild, mem is already taken
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Register user faild, the forum,  does not exist
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 
+User contoller created
+-----------------------------------------------
+Log Entry : 
+Register user faild, mem is already taken
+-----------------------------------------------
+Log Entry : 
+Register user faild, mem is already taken
+-----------------------------------------------
+Log Entry : 
+Register user faild, mem is already taken
+-----------------------------------------------
+Log Entry : 
+Register user faild, mem is already taken
+-----------------------------------------------
+Log Entry : 
+Register user faild, mem is already taken
+-----------------------------------------------
+Log Entry : 
+Register user faild, mem is already taken
+-----------------------------------------------
+Log Entry : 
+Register user faild, mem is already taken
+-----------------------------------------------
+Log Entry : 
+Register user faild, mem is already taken
+-----------------------------------------------
+Log Entry : 
+Register user faild, mem is already taken
+---------------------------------------------
