@@ -14,7 +14,7 @@ namespace ForumBuilder.BL_DB
         private List<Post> posts;
         private List<User> users;
         private List<Message> messages;
-        private List<SuperUser> superUsers;
+        private List<User> superUsers;
         private static DemoDB singleton;
 
         private DemoDB()
@@ -24,7 +24,7 @@ namespace ForumBuilder.BL_DB
             threads = new List<Thread>();
             posts = new List<Post>();
             users = new List<User>();
-            superUsers = new List<SuperUser>();
+            superUsers = new List<User>();
             messages= new List<Message>();
         }
         public static DemoDB getInstance
@@ -62,7 +62,7 @@ namespace ForumBuilder.BL_DB
         }
         internal bool addSuperUser(string email, string password, string userName)
         {
-            SuperUser su = new SuperUser(email, password, userName);
+            User su = new User(userName, password, email);
             superUsers.Add(su);
             users.Add(su);
             return true;
@@ -125,9 +125,9 @@ namespace ForumBuilder.BL_DB
             forum.administrators.Add(newAdmin);
             return true;
         }
-        public SuperUser getSuperUser(string userName)
+        public User getSuperUser(string userName)
         {
-            foreach (SuperUser superUser in superUsers)
+            foreach (User superUser in superUsers)
             {
                 if (superUser.userName.Equals(userName))
                     return superUser;

@@ -53,12 +53,10 @@
     <Compile Include="BL_Back_End\SubForum.cs" />
     <Compile Include="BL_Back_End\Thread.cs" />
     <Compile Include="Systems\ILogger.cs" />
-    <Compile Include="Systems\ISystem.cs" />
     <Compile Include="Systems\ForumSystem.cs" />
     <Compile Include="Controllers\ISuperUserController.cs" />
     <Compile Include="Controllers\IUserController.cs" />
     <Compile Include="Systems\Logger.cs" />
-    <Compile Include="BL_Back_End\SuperUser.cs" />
     <Compile Include="BL_Back_End\User.cs" />
   </ItemGroup>
   <ItemGroup />
