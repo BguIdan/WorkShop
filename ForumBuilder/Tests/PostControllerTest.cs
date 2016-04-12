@@ -19,7 +19,7 @@ namespace Tests
         private User userMember;
         private User userMod;
         private User userAdmin;
-        private SuperUser superUser;
+        private User superUser;
         private String forumName = "forum";
         private String subForumName = "subForum";
         private int postId;
@@ -43,8 +43,8 @@ namespace Tests
             modList.Add(this.userMod.userName, new DateTime(2030, 1, 1));
             this.forum = new Forum(this.forumName, "descr", "policy", "the first rule is that you do not talk about fight club", adminList);
             ISuperUserController superUserController = SuperUserController.getInstance;
-            superUser = new SuperUser("fkfkf@wkk.com", "1qW", "tomer");
-            SuperUserController.getInstance.addSuperUser(superUser.email, superUser.password, superUser.userName);
+            this.superUser = new User("tomer", "1qW", "fkfkf@wkk.com");
+            SuperUserController.getInstance.addSuperUser(this.superUser.email, superUser.password, superUser.userName);
             superUserController.createForum(this.forumName, "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "tomer");
             Assert.IsTrue(this.forumController.registerUser("mem", "mempass", "mem@gmail.com", this.forumName));
             Assert.IsTrue(this.forumController.registerUser("mod", "modpass", "mod@gmail.com", this.forumName));

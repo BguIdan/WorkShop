@@ -22,7 +22,7 @@ namespace Tests
         private ISubForumController subForum;
         private String subForumName = "subforum";
         private String forumName = "testForum";
-        private SuperUser superUser1;
+        private User superUser1;
 
 
         [TestInitialize]

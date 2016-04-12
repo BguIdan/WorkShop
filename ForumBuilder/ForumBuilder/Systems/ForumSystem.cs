@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace ForumBuilder.Systems
 {
-    public class ForumSystem : ISystem
+    public class ForumSystem
     {
         private static ForumSystem singleton;
         private DemoDB demo_db = DemoDB.getInstance;

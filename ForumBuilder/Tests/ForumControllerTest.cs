@@ -18,7 +18,7 @@ namespace Tests
         private User userMember;
         private User userAdmin;
         private User userAdmin2;
-        private SuperUser superUser1;
+        private User superUser1;
 
         [TestInitialize]
         public void setUp()
@@ -34,7 +34,7 @@ namespace Tests
             adminList.Add("admin2");
             this.forum = new Forum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList);
             ISuperUserController superUser = SuperUserController.getInstance;
-            superUser1 = new SuperUser("fkfkf@wkk.com", "1qW", "tomer");
+            superUser1 = new User("tomer", "1qW", "fkfkf@wkk.com");
             SuperUserController.getInstance.addSuperUser(superUser1.email, superUser1.password, superUser1.userName);
             superUser.createForum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "tomer");
             Assert.IsTrue(this.forumController.registerUser("mem", "mempass", "mem@gmail.com", this.forum.forumName));
