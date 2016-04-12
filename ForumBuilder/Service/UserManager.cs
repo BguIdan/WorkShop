@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using ForumBuilder.Controllers;
 namespace Service
 {
-    class UserManager:IUserManager
+    public class UserManager :IUserManager
     {
         private static UserManager singleton;
         private IUserController userController;
@@ -36,9 +36,9 @@ namespace Service
         {
             return userController.deleteFriend(userName, deletedFriend);
         }
-        public Boolean sendPrivateMessage(String fromUserName, String toUserName, String content, Int32 id)
+        public Boolean sendPrivateMessage(String fromUserName, String toUserName, String content)
         {
-            return userController.sendPrivateMessage(fromUserName, toUserName, content, id);
+            return userController.sendPrivateMessage(fromUserName, toUserName, content);
         }
     }
 }

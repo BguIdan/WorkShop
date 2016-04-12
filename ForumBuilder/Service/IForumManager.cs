@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    interface IForumManager
+    public interface IForumManager
     {
         Boolean dismissAdmin(String adminToDismissed, String dismissingUserName, String forumName);
         Boolean banMember(String bannedMember, String bannerUserName, String forumName);

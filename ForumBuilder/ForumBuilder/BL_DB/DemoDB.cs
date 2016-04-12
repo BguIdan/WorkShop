@@ -112,6 +112,20 @@ namespace ForumBuilder.BL_DB
             forum.members.Remove(bannedMember);
             return true;
         }
+
+        internal int getNextFreeMessageId()
+        {
+            int id = 0;
+            foreach(Message m in messages)
+            {
+                if (id <= m.id)
+                {
+                    id = m.id + 1;
+                }
+            }
+            return id;
+        }
+
         internal bool changePolicy(string newPolicy, string forumName)
         {
             Forum forum = this.getforumByName(forumName);

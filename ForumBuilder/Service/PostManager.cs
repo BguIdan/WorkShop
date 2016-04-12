@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    class PostManager:IPostManager
+    public class PostManager :IPostManager
     {
         private static PostManager singleton;
         private IPostController postController;

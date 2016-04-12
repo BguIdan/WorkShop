@@ -68,7 +68,7 @@ namespace ForumBuilder.Controllers
             return demoDB.removeFriendOfUser(userName, deletedFriendName);
         }
 
-        public bool sendPrivateMessage(string fromUserName, string toUserName, string content, int id)
+        public bool sendPrivateMessage(string fromUserName, string toUserName, string content)
         {
             User sender = demoDB.getUser(fromUserName);
             User reciver = demoDB.getUser(toUserName);
@@ -93,7 +93,7 @@ namespace ForumBuilder.Controllers
                 return false;
             }
             else
-                return demoDB.addMessage(id, fromUserName, toUserName, content);
+                return demoDB.addMessage(demoDB.getNextFreeMessageId(), fromUserName, toUserName, content);
         }
 
         public List<String> getFriendList(String userName)

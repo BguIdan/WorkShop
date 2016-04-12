@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    interface ISuperUserManager
+    public interface ISuperUserManager
     {
         Boolean createForum(String forumName, String descrption, String forumPolicy, String forumRules, List<String> administrators, String superUserName);
 

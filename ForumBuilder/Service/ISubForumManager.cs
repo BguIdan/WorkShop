@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    interface ISubForumManager
+    public interface ISubForumManager
     {
         Boolean dismissModerator(String dismissedModerator, String dismissByAdmin, String subForumName, String forumName);
         Boolean nominateModerator(String newModerator, String nominatorUser, DateTime date, String subForumName, String forumName);

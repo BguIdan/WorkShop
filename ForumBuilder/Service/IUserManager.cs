@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    interface IUserManager
+    public interface IUserManager
     {
         Boolean addFriend(String userName, String friendToAdd);
         Boolean deleteFriend(String userName, String deletedFriend);
-        Boolean sendPrivateMessage(String fromUserName, String toUserName, String content, Int32 id);
+        Boolean sendPrivateMessage(String fromUserName, String toUserName, String content);
     }
 }
