@@ -10,11 +10,7 @@ namespace Tests
     [TestClass]
     public class AcceptanceTests
     {
-        Service.ForumManager forumMan = Service.ForumManager.getInstance;
-        Service.SuperUserManager superUserMan = Service.SuperUserManager.getInstance;
-        Service.SubForumManager subForumMan = Service.SubForumManager.getInstance;
-        Service.UserManager userMan = Service.UserManager.getInstance;
-        Service.PostManager postMan = Service.PostManager.getInstance;
+        
 
         /*************************use case 2******************************
 
@@ -123,6 +119,12 @@ namespace Tests
         [TestMethod]
         public void Test_register_to_forum_withWrongInputs()
         {
+            Service.ForumManager forumMan = Service.ForumManager.getInstance;
+            Service.SuperUserManager superUserMan = Service.SuperUserManager.getInstance;
+            Service.SubForumManager subForumMan = Service.SubForumManager.getInstance;
+            Service.UserManager userMan = Service.UserManager.getInstance;
+            Service.PostManager postMan = Service.PostManager.getInstance;
+
             List<string> adminList = new List<string>();
             adminList.Add("admin1");
             adminList.Add("admin2");
@@ -140,6 +142,11 @@ namespace Tests
         [TestMethod]
         public void Test_register_to_forum_Functionality()
         {
+            Service.ForumManager forumMan = Service.ForumManager.getInstance;
+            Service.SuperUserManager superUserMan = Service.SuperUserManager.getInstance;
+            Service.SubForumManager subForumMan = Service.SubForumManager.getInstance;
+            Service.UserManager userMan = Service.UserManager.getInstance;
+            Service.PostManager postMan = Service.PostManager.getInstance;
             List<string> adminList = new List<string>();
             adminList.Add("admin1");
             adminList.Add("admin2");
@@ -162,7 +169,6 @@ namespace Tests
             Assert.IsTrue(userMan.sendPrivateMessage("mem1", "admin1", "when the test gona be done"));
         }
 
-        /*************************use case 3******************************/
 
 
     }
