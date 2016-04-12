@@ -13,8 +13,7 @@ namespace ForumBuilder.Controllers
 
         DemoDB demoDB = DemoDB.getInstance;
         Logger logger = Logger.getInstance;
-        //ForumController forumController = ForumController.getInstance;
-        //SuperUserController superUserController = SuperUserController.getInstance;
+
         public static SubForumController getInstance
         {
             get
