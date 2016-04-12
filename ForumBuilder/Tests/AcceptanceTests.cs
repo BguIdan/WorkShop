@@ -102,6 +102,9 @@ namespace Tests
 
         }
 
+        /*************************use case 3******************************/
+
+
         [TestMethod]
         public void AT_test_changeForumPreferences_with_empty_string()
         {
@@ -126,46 +129,55 @@ namespace Tests
         }
 
 
-        [TestMethod]
-        public void Test_register_to_forum_withWrongInputs()
-        {
-            Service.ForumManager forumMan = Service.ForumManager.getInstance;
-            Service.SuperUserManager superUserMan = Service.SuperUserManager.getInstance;
-            Service.SubForumManager subForumMan = Service.SubForumManager.getInstance;
-            Service.UserManager userMan = Service.UserManager.getInstance;
-            Service.PostManager postMan = Service.PostManager.getInstance;
+        /*************************use case 4******************************/
 
-            List<string> adminList = new List<string>();
-            adminList.Add("admin1");
-            adminList.Add("admin2");
-            superUserMan.createForum("forumName", "descrption", "forumPolicy", "forumRules", adminList, "superUserName");
-            Assert.IsTrue(forumMan.registerUser("admin1", "passWord1", "jksdjk@xc.com", "foumName"));
-            Assert.IsTrue(forumMan.registerUser("admin2", "passWord2", "jkkkk@xc.com", "foumName"));
-            Assert.IsFalse(forumMan.registerUser("admin2", "passWord2", "jkkkk@xc.com", "foumName"));
-            Assert.IsTrue(forumMan.registerUser("mem1", "passWor1", "fff@xc.com", "foumName"));
-            Assert.IsFalse(forumMan.registerUser("mem2", "passWor1", "fff@xc.com", "foumNames"));
-            Assert.IsFalse(forumMan.registerUser("", "passWor1", "fff@xc.com", "foumName"));
-            Assert.IsFalse(forumMan.registerUser("mem2", "", "fff@xc.com", "foumName"));
-            Assert.IsFalse(forumMan.registerUser("mem2", "passWor1", "", "foumName"));
-            Assert.IsFalse(forumMan.registerUser("mem2", "passWor1", "fff@xc.com", "foumName"));
-        }
         [TestMethod]
-        public void Test_register_to_forum_Functionality()
+        public void AT_Test_register_to_forum_withWrongInputs()
         {
             Service.ForumManager forumMan = Service.ForumManager.getInstance;
             Service.SuperUserManager superUserMan = Service.SuperUserManager.getInstance;
-            Service.SubForumManager subForumMan = Service.SubForumManager.getInstance;
-            Service.UserManager userMan = Service.UserManager.getInstance;
-            Service.PostManager postMan = Service.PostManager.getInstance;
-            List<string> adminList = new List<string>();
+
+            superUserMan.initialize("guy", "AG36djs", "hello@dskkl.com");
+            String adminName = "admin";
+            List<String> adminList = new List<String>();
             adminList.Add("admin1");
             adminList.Add("admin2");
-            superUserMan.createForum("forumName", "descrption", "forumPolicy", "forumRules", adminList, "superUserName");
-            Assert.IsTrue(forumMan.registerUser("admin1", "passWord1", "jksdjk@xc.com", "foumName"));
+
+            superUserMan.createForum("forumName", "descrption", "forumPolicy", "forumRules", adminList, "guy");
+            Assert.IsTrue(forumMan.registerUser("admin1", "passWord1", "jksdjk@xc.com", "forumName"));
+            Assert.IsTrue(forumMan.registerUser("admin2", "passWord2", "jkkkk@xc.com", "forumName"));
+            Assert.IsFalse(forumMan.registerUser("admin2", "passWord2", "jkkkk@xc.com", "forumName"));
+            Assert.IsTrue(forumMan.registerUser("mem1", "passWor1", "fff@xc.com", "forumName"));
+            Assert.IsTrue(forumMan.registerUser("mem2", "passWor1", "fff@xc.com", "forumName"));
+            Assert.IsFalse(forumMan.registerUser("", "passWor1", "fff@xc.com", "forumName"));
+            Assert.IsFalse(forumMan.registerUser("mem2", "", "fff@xc.com", "forumName"));
+            Assert.IsFalse(forumMan.registerUser("mem2", "passWor1", "", "forumName"));
+            Assert.IsFalse(forumMan.registerUser("mem2", "passWor1", "fff@xc.com", "forumName"));
+            DemoDB db = DemoDB.getInstance;
+            db.clear();
+        }
+
+        [TestMethod]
+        public void AT_Test_register_to_forum_Functionality()
+        {
+            
+            Service.ForumManager forumMan = Service.ForumManager.getInstance;
+            Service.SuperUserManager superUserMan = Service.SuperUserManager.getInstance;
+            Service.UserManager userMan = Service.UserManager.getInstance;
+
+            superUserMan.initialize("guy", "AG36djs", "hello@dskkl.com");
+            String adminName = "admin";
+            List<String> adminList = new List<String>();
+            adminList.Add("admin1");
+            adminList.Add("admin2");
+
+            superUserMan.createForum("forumName", "descrption", "forumPolicy", "forumRules", adminList, "guy");
+
+            Assert.IsTrue(forumMan.registerUser("admin1", "passWord1", "jksdjk@xc.com", "forumName"));
             Assert.IsFalse(userMan.sendPrivateMessage("admin1", "admin2", "hello"));
             Assert.IsFalse(userMan.addFriend("admin1", "admin2"));
             Assert.IsFalse(userMan.addFriend("admin2", "admin1"));
-            Assert.IsTrue(forumMan.registerUser("admin2", "passWord2", "jkkkk@xc.com", "foumName"));
+            Assert.IsTrue(forumMan.registerUser("admin2", "passWord2", "jkkkk@xc.com", "forumName"));
             Assert.IsTrue(userMan.sendPrivateMessage("admin1", "admin2", "its me"));
             Assert.IsTrue(userMan.addFriend("admin1", "admin2"));
             Assert.IsTrue(userMan.addFriend("admin2", "admin1"));
@@ -173,13 +185,15 @@ namespace Tests
             Assert.IsFalse(userMan.addFriend("admin1", "mem1"));
             Assert.IsFalse(userMan.addFriend("mem1", "admin1"));
             Assert.IsFalse(userMan.sendPrivateMessage("mem1", "admin1", "i was wonder"));
-            Assert.IsTrue(forumMan.registerUser("mem1", "passWor1", "fff@xc.com", "foumName"));
+            Assert.IsTrue(forumMan.registerUser("mem1", "passWor1", "fff@xc.com", "forumName"));
             Assert.IsTrue(userMan.addFriend("admin1", "mem1"));
             Assert.IsTrue(userMan.addFriend("mem1", "admin1"));
             Assert.IsTrue(userMan.sendPrivateMessage("mem1", "admin1", "when the test gona be done"));
+            DemoDB db = DemoDB.getInstance;
+            db.clear();
         }
 
-
+        /*************************use case 4******************************/
 
     }
 }
