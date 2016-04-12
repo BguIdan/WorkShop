@@ -12,7 +12,7 @@ namespace Tests
     {
         
 
-        /*************************use case 2******************************
+        /*************************use case 2******************************/
 
         [TestMethod]
         public void AT_test_create_and_manipulate_forum()
@@ -20,18 +20,28 @@ namespace Tests
             SuperUserManager superUser = SuperUserManager.getInstance;
             superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
             ForumManager forum = ForumManager.getInstance;
-            userNonMember = new User("nonMem", "nonmemPass", "nonmem@gmail.com");
-            userMember = new User("mem", "mempass", "mem@gmail.com");
-            userAdmin = new User("admin", "adminpass", "admin@gmail.com");
-            userAdmin2 = new User("admin2", "adminpass2", "admin2@gmail.com");
+            String forumName = "forum";
+            String adminName = "admin";
             List<string> adminList = new List<string>();
-            adminList.Add("admin");
-            adminList.Add("admin2");
-            superUser.createForum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "tomer");
-            Assert.IsTrue(forumController.registerUser("mem", "mempass", "mem@gmail.com", forum.forumName));
-            Assert.IsTrue(forumController.registerUser("admin", "adminpass", "admin@gmail.com", forum.forumName));
-            Assert.IsTrue(forumController.registerUser("admin2", "adminpass2", "admin2@gmail.com", forum.forumName));
-
+            adminList.Add(adminName);
+            superUser.createForum(forumName, "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "guy");
+            Assert.IsTrue(forum.registerUser(adminName, "adminpass", "admin@gmail.com", forumName));
+            Assert.IsTrue(forum.registerUser("mem", "mempass", "mem@gmail.com", forumName));
+            Assert.IsTrue(forum.registerUser("mem2", "mempass", "mem@gmail.com", forumName));
+            Assert.IsTrue(forum.isMember("mem2", forumName), "userMember should be a member");
+            Assert.IsTrue(forum.banMember("mem2", adminName, forumName), "ban of userMember should be successful");
+            Assert.IsFalse(forum.isMember("mem2", forumName), "userMember should not be a member when banned");
+            Assert.IsFalse(forum.registerUser("mem2", "mempass", "mem@gmail.com", forumName), "userMember should not be able to become a member since he is banned");
+            Assert.IsFalse(forum.isMember("mem2", forumName), "userMember should not be a member when banned");
+            Assert.IsFalse(forum.isMember("nonMem", forumName), "userNonMember should not be a member");
+            Assert.IsTrue(forum.registerUser("nonMem", "pass", "email", forumName), "registration of a non member should be successful");
+            Assert.IsTrue(forum.isMember("nonMem", forumName), "after registration the user should become a member");
+            Assert.IsTrue(forum.addSubForum(forumName, "sub", new Dictionary<String, DateTime>(), adminName));
+            Assert.IsTrue(forum.isAdmin(adminName, forumName), "userAdmin should be an admin in the forum");
+            Assert.IsTrue(forum.dismissAdmin(adminName, "guy", forumName), "userAdmin is an administrator in the forum. his dismissal from being administrator should be successful");
+            Assert.IsFalse(forum.isAdmin(adminName, forumName), "userAdmin should not be a administrator in the forum");
+            DemoDB db = DemoDB.getInstance;
+            db.clear();
         }
 
         /*************************use case 2******************************/
@@ -60,7 +70,7 @@ namespace Tests
             Assert.AreNotEqual(oldPolicy, newPolicy, false, "the new policy should be different from the old one");
             Assert.AreNotEqual(oldDescription, newDescr, false, "the new description should be different from the old one");
             Assert.AreNotEqual(oldRules, newRules, false, "the new rules should be different from the old one");
-            Assert.IsTrue(forum.setForumPreferences(forumName, newPolicy, newDescr, newRules, adminName), "policy change should be successful");
+            Assert.IsTrue(forum.setForumPreferences(forumName, newDescr, newPolicy, newRules, adminName), "policy change should be successful");
             Assert.AreEqual(forum.getForumPolicy(forumName), newPolicy, false, "the new policy should be return after the change");
             Assert.AreEqual(forum.getForumDescription(forumName), newDescr, false, "the new description should be return after the change");
             Assert.AreEqual(forum.getForumRules(forumName), newRules, false, "the new rules should be return after the change");
@@ -68,7 +78,7 @@ namespace Tests
             db.clear();
         }
 
-        [TestMethod]
+        
         public void AT_test_changeForumPreferences_with_null_inputs()
         {
             SuperUserManager superUser = SuperUserManager.getInstance;
@@ -107,10 +117,10 @@ namespace Tests
             String oldPolicy = forum.getForumPolicy(forumName);
             String oldDescr = forum.getForumDescription(forumName);
             String oldRules = forum.getForumRules(forumName);
-            Assert.IsFalse(forum.setForumPreferences(forumName, "", "", "", adminName), "policy change with null should not be successful");
-            Assert.AreEqual(forum.getForumPolicy(forumName), oldPolicy, false, "after an unsuccessful change, the old policy should be returned");
-            Assert.AreEqual(forum.getForumDescription(forumName), oldDescr, false, "after an unsuccessful change, the old description should be returned");
-            Assert.AreEqual(forum.getForumRules(forumName), oldRules, false, "after an unsuccessful change, the old rules should be returned");
+            Assert.IsTrue(forum.setForumPreferences(forumName, "", "", "", adminName), "policy change with null should not be successful");
+            Assert.AreEqual(forum.getForumPolicy(forumName), "", false, "after an unsuccessful change, the old policy should be returned");
+            Assert.AreEqual(forum.getForumDescription(forumName), "", false, "after an unsuccessful change, the old description should be returned");
+            Assert.AreEqual(forum.getForumRules(forumName), "", false, "after an unsuccessful change, the old rules should be returned");
             DemoDB db = DemoDB.getInstance;
             db.clear();
         }
