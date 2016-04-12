@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    class SuperUserManager:ISuperUserManager
+    public class SuperUserManager :ISuperUserManager
     {
         private static SuperUserManager singleton;
         private ISuperUserController superUserController;

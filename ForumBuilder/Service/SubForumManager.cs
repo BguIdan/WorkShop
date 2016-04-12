@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    class SubForumManager:ISubForumManager
+    public class SubForumManager :ISubForumManager
     {
         private static SubForumManager singleton;
         private ISubForumController subForumController;

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    class ForumManager:IForumManager
+    public class ForumManager:IForumManager
     {
         private static ForumManager singleton;
         private IForumController forumController;

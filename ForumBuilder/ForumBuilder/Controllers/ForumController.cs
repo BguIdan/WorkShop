@@ -177,7 +177,7 @@ namespace ForumBuilder.Controllers
             }
             if (userName.Length > 0 && password.Length > 0 && mail.Length > 0)
             {
-                if(demoDB.getUser(userName) !=null)
+                if(demoDB.getUser(userName) ==null)
                 {
                     logger.logPrint("Register user faild, "+userName+" is already taken");
                     return false;
@@ -196,7 +196,7 @@ namespace ForumBuilder.Controllers
         public Boolean setForumPreferences(String forumName, String newDescription, String newForumPolicy, String newForumRules, string setterUserName)
         {
             bool hasSucceed = false;
-            if (demoDB.getforumByName(forumName) != null)
+            if (demoDB.getforumByName(forumName) == null)
             {
                 logger.logPrint("Set forum preferences failed, Forum" + forumName + " do not exist");
             }
