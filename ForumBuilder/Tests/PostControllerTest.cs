@@ -672,6 +672,99 @@ namespace Tests
             }
         }
 
+        [TestMethod]
+        public void test_removeComment_subcomment_with_nested_subComments()
+        {
+            int commentCounter = INITIAL_COMMENT_COUNT;
+            test_addComment_admin();
+            commentCounter++;
+            List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
+            Post newPost = null;
+            foreach (Post p in posts)
+            {
+                if (p.writerUserName == this.userAdmin.userName)
+                {
+                    newPost = p;
+                    break;
+                }
+            }
+            Assert.IsNotNull(newPost, "the added post should exist");
+            int parentId = newPost.id;
+            Assert.IsTrue(this.postController.addComment("head", "subcomment", this.userAdmin.userName, parentId));
+            commentCounter++;
+            posts = this.postController.getAllPosts(this.forumName, this.subForumName);
+            newPost = null;
+            foreach (Post p in posts)
+            {
+                if (p.parentId == parentId)
+                {
+                    newPost = p;
+                    break;
+                }
+            }
+            Assert.IsNotNull(newPost, "the added post should exist");
+            int id = newPost.id;
+            Assert.IsTrue(this.postController.addComment("head", "content", this.userMember.userName, id));
+            Assert.IsTrue(this.postController.addComment("head", "content", this.userAdmin.userName, id));
+            commentCounter = +2;
+            for (int i = 0; i < 5; i++)
+            {
+                posts = this.postController.getAllPosts(this.forumName, this.subForumName);
+                newPost = null;
+                foreach (Post p in posts)
+                {
+                    if (p.parentId == id)
+                    {
+                        newPost = p;
+                        break;
+                    }
+                }
+                Assert.IsNotNull(newPost, "the added post should exist");
+                id = newPost.id;
+                Assert.IsTrue(this.postController.addComment("head", "content", this.userMember.userName, id));
+                Assert.IsTrue(this.postController.addComment("head", "content", this.userAdmin.userName, id));
+                commentCounter = +2;
+            }
+            Assert.IsTrue(this.postController.removeComment(id, this.userAdmin.userName));
+            commentCounter = -13;
+            posts = this.postController.getAllPosts(this.forumName, this.subForumName);
+            Assert.AreEqual(posts.Count, commentCounter);
+            foreach (Post p in posts)
+            {
+                Assert.AreNotEqual(p.id, id);
+                Assert.AreNotEqual(p.parentId, id);
+            }
+            Assert.AreEqual(commentCounter, 1);
+        }
+
+
+        [TestMethod]
+        public void test_removeComment_invalidId_notExists()
+        {
+            int invalidId = INITIAL_COMMENT_COUNT + 1;
+            Boolean foundInvalid;
+            List<Post> postsPre = this.postController.getAllPosts(this.forumName, this.subForumName);
+            while (true)
+            {
+                foundInvalid = true;
+                foreach(Post p in postsPre)
+                {
+                    if (p.id == invalidId)
+                    {
+                        foundInvalid = false;
+                        break;
+                    }
+                }
+                if (foundInvalid)
+                    break;
+                else
+                    invalidId++;
+            }
+            Assert.IsFalse(this.postController.removeComment(invalidId, this.userMember.userName));
+            List<Post> postsAfter = this.postController.getAllPosts(this.forumName, this.subForumName);
+            Assert.AreEqual(postsPre.Count, postsAfter.Count);
+        }
+
 
 
     }
