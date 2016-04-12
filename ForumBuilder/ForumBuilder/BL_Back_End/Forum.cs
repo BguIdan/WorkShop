@@ -17,8 +17,6 @@ namespace ForumBuilder.Controllers
         private List<string> _members;
         private List<string> _subForums;
 
-
-
         public Forum(string forumName, string descrption, string forumPolicy, string forumRules, List<string> administrators)
         {
             _forumName = forumName;

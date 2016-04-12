@@ -21,7 +21,7 @@ namespace ForumBuilder.BL_Back_End
             _password = password;
             _email = email;
             _friends = new List<String>();
-    }
+        }
 
         public String userName
         {
@@ -46,6 +46,5 @@ namespace ForumBuilder.BL_Back_End
             get { return _friends; }
             set { _friends = value; }
         }
-
     }
 }

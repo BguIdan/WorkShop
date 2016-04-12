@@ -21,7 +21,6 @@ namespace ForumBuilder.Controllers
                 }
                 return singleton;
             }
-
         }
         private SubForum getSubforumByPost(int postId)
         {
@@ -34,7 +33,6 @@ namespace ForumBuilder.Controllers
             }
             Thread t= demoDB.getThreadByFirstPostId(p.id);
             return demoDB.getSubforumByThreadFirstPostId(p.id);
-            
         }
         private Post getPost(int postId)
         {
@@ -93,7 +91,6 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Delete thread comment, there is no permission to that user");
                 return false;
             }
-
 
             //find the posts that have to delete
             List<Post> donePosts = new List<Post>();
