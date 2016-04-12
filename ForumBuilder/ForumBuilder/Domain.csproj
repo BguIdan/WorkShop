@@ -44,7 +44,6 @@
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\SubForumController.cs" />
     <Compile Include="Controllers\SuperUserController.cs" />
-    <Compile Include="Controllers\ThreadController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="BL_Back_End\Forum.cs" />
     <Compile Include="Controllers\IForumController.cs" />

@@ -503,6 +503,102 @@ Log Entry :
 Remove post 2
 -----------------------------------------------
 Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Create comment 1 to 0
+-----------------------------------------------
+Log Entry : 
+Create comment 2 to 1
+-----------------------------------------------
+Log Entry : 
+Create comment 3 to 2
+-----------------------------------------------
+Log Entry : 
+Create comment 4 to 2
+-----------------------------------------------
+Log Entry : 
+Create comment 5 to 3
+-----------------------------------------------
+Log Entry : 
+Create comment 6 to 3
+-----------------------------------------------
+Log Entry : 
+Create comment 7 to 5
+-----------------------------------------------
+Log Entry : 
+Create comment 8 to 5
+-----------------------------------------------
+Log Entry : 
+Create comment 9 to 7
+-----------------------------------------------
+Log Entry : 
+Create comment 10 to 7
+-----------------------------------------------
+Log Entry : 
+Create comment 11 to 9
+-----------------------------------------------
+Log Entry : 
+Create comment 12 to 9
+-----------------------------------------------
+Log Entry : 
+Create comment 13 to 11
+-----------------------------------------------
+Log Entry : 
+Create comment 14 to 11
+-----------------------------------------------
+Log Entry : 
+Remove post 14
+-----------------------------------------------
+Log Entry : 
+Remove post 13
+-----------------------------------------------
+Log Entry : 
+Remove post 12
+-----------------------------------------------
+Log Entry : 
+Remove post 11
+-----------------------------------------------
+Log Entry : 
+Remove post 10
+-----------------------------------------------
+Log Entry : 
+Remove post 9
+-----------------------------------------------
+Log Entry : 
+Remove post 8
+-----------------------------------------------
+Log Entry : 
+Remove post 7
+-----------------------------------------------
+Log Entry : 
+Remove post 6
+-----------------------------------------------
+Log Entry : 
+Remove post 5
+-----------------------------------------------
+Log Entry : 
+Remove post 4
+-----------------------------------------------
+Log Entry : 
+Remove post 3
+-----------------------------------------------
+Log Entry : 
+Remove post 2
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Delete comment failed, there is no post with that id
+-----------------------------------------------
+Log Entry : 
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
 Log Entry : 
@@ -858,4 +954,15 @@ Forum testForum creation success
 -----------------------------------------------
 Log Entry : 
 Forum testForum creation success
----------------
+-----------------------------------------------
+Log Entry : 
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 
+Remove friend faild, admin and admin2 are not friends
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+Remove friend faild, is not a
