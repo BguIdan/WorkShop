@@ -37,7 +37,6 @@ namespace ForumBuilder.BL_DB
                 }
                 return singleton;
             }
-
         }
         public void clear()
         {
@@ -164,7 +163,6 @@ namespace ForumBuilder.BL_DB
             Forum newForum = new Forum(forumName, descrption, forumPolicy, forumRules, administrators);
             forums.Add(newForum);
             return true;
-
         }
         public Boolean setForumPreferences(String forumName, String newDescription, String newForumPolicy, String newForumRules)
         {
@@ -246,7 +244,6 @@ namespace ForumBuilder.BL_DB
                 }
             }
             return curPost;
-
         }
         public int getAvilableIntOfPost()
         {

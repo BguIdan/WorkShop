@@ -18,6 +18,5 @@ namespace ForumBuilder.Controllers
             get { return _firstPost; }
             set { _firstPost = value; }
         }
-        
     }
 }

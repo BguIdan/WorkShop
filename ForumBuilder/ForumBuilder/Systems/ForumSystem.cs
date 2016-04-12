@@ -1,10 +1,7 @@
-﻿using System.Collections.Generic;
-using ForumBuilder.Controllers;
-using ForumBuilder.BL_Back_End;
+﻿using ForumBuilder.Controllers;
 using ForumBuilder.BL_DB;
 using System;
 using System.Net.Mail;
-using System.Linq;
 
 namespace ForumBuilder.Systems
 {
@@ -23,7 +20,6 @@ namespace ForumBuilder.Systems
                 }
                 return singleton;
             }
-
         }
 
         public static ForumSystem initialize(String userName, String password, String email)
@@ -43,8 +39,6 @@ namespace ForumBuilder.Systems
                     singleton = null;
                     return null;
                 }
-                    
-
                 Logger.getInstance.logPrint("the system was initialized successully");
             }
             return getInstance;
@@ -62,12 +56,7 @@ namespace ForumBuilder.Systems
             mail.Body = "please configure your account";
             client.Send(mail);
         }
-        /*
-        public bool createForum(string forumName, string descrption, string forumPolicy, string forumRules, List<string> administrators)
-        {
-            return demo_db.createForum(forumName, descrption, forumPolicy, forumRules, administrators);
-        }
-        */
+
         public static int Main(string[] args)
         {
             return -1;

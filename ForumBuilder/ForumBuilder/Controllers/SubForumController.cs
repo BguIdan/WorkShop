@@ -25,7 +25,6 @@ namespace ForumBuilder.Controllers
                 }
                 return singleton;
             }
-
         }
         public bool dismissModerator(string dismissedModerator, string dismissByAdmin, string subForumName, string forumName)
         {
@@ -62,7 +61,6 @@ namespace ForumBuilder.Controllers
                     return true;
             }
             return false;
-            //return subForum.moderators.ContainsKey(name);
         }
         public bool nominateModerator(string newModerator, string nominatorUser, DateTime date, string subForumName, string forumName)
         {
@@ -95,9 +93,6 @@ namespace ForumBuilder.Controllers
         {
             return demoDB.getSubForum(subForumName, forumName);
         }
-
-
-
 
         public bool createThread(String headLine, String content, String writerName,  String forumName, String subForumName)
         {

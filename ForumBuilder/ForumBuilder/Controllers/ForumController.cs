@@ -37,7 +37,6 @@ namespace ForumBuilder.Controllers
                     forum.subForums.Add(name);
                     SubForum subForum = new SubForum(name, forumName);
                     demoDB.addSubForum(subForum);
-
                     foreach (string s in moderators.Keys)
                     {
                         if (demoDB.getUser(s) == null)
@@ -59,7 +58,6 @@ namespace ForumBuilder.Controllers
                             logger.logPrint("Add sub-forum failed, date is allready passed"); 
                             return false;
                         }
-
                     }
                 }
             }
@@ -97,7 +95,6 @@ namespace ForumBuilder.Controllers
             {
                 return demoDB.banMember(bannedMember, bannerUserName, forumName);
             }
-            
         }
 
         public bool dismissAdmin(string adminToDismissed, string dismissingUserName, string forumName)

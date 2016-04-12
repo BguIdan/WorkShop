@@ -18,11 +18,10 @@ namespace ForumBuilder.Controllers
                 if (singleton == null)
                 {
                     singleton = new SuperUserController();
-                    //Systems.Logger.getInstance.logPrint("Super user contoller created");
+                    Systems.Logger.getInstance.logPrint("Super user contoller created");
                 }
                 return singleton;
             }
-
         }
 
         public Boolean createForum(String forumName, String descrption, String forumPolicy, String forumRules, List<String> administrators, String superUserName)
@@ -52,7 +51,7 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("one or more of the fields is missing");
                 return false;
             }
-            // should check if the password is strong enough
+            // check if the password is strong enough
             bool isNumExist = false;
             bool isSmallKeyExist = false;
             bool isBigKeyExist = false;
