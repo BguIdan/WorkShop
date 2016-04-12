@@ -9,6 +9,7 @@ namespace Service
     interface ISuperUserManager
     {
         Boolean createForum(String forumName, String descrption, String forumPolicy, String forumRules, List<String> administrators, String superUserName);
+        Boolean initialize(String name, String password, String email);
 
     }
 }

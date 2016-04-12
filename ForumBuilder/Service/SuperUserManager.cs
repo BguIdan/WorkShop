@@ -1,4 +1,5 @@
 ﻿using ForumBuilder.Controllers;
+using ForumBuilder.Systems;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    class SuperUserManager:ISuperUserManager
+    public class SuperUserManager:ISuperUserManager
     {
         private static SuperUserManager singleton;
         private ISuperUserController superUserController;
@@ -32,6 +33,12 @@ namespace Service
         public Boolean createForum(String forumName, String descrption, String forumPolicy, String forumRules, List<String> administrators, String superUserName)
         {
             return superUserController.createForum(forumName, descrption, forumPolicy, forumRules, administrators, superUserName);
+        }
+
+        public Boolean initialize(String name, String password, String email)
+        {
+            ForumSystem.initialize(name, password, email);
+            return true;
         }
 
         public static int Main(string[] args)

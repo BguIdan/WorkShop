@@ -196,7 +196,7 @@ namespace ForumBuilder.Controllers
         public Boolean setForumPreferences(String forumName, String newDescription, String newForumPolicy, String newForumRules, string setterUserName)
         {
             bool hasSucceed = false;
-            if (demoDB.getforumByName(forumName) != null)
+            if (demoDB.getforumByName(forumName) == null)
             {
                 logger.logPrint("Set forum preferences failed, Forum" + forumName + " do not exist");
             }
