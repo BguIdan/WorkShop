@@ -18,3 +18,9 @@ C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\bin\Debug\ForumBuilder.p
 C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\obj\Debug\ForumBuilder.exe
 C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\obj\Debug\ForumBuilder.pdb
 C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\obj\Debug\Domain.csprojResolveAssemblyReference.cache
+C:\Users\User\Desktop\WorkShop\ForumBuilder\ForumBuilder\bin\Debug\ForumBuilder.exe.config
+C:\Users\User\Desktop\WorkShop\ForumBuilder\ForumBuilder\bin\Debug\ForumBuilder.exe
+C:\Users\User\Desktop\WorkShop\ForumBuilder\ForumBuilder\bin\Debug\ForumBuilder.pdb
+C:\Users\User\Desktop\WorkShop\ForumBuilder\ForumBuilder\obj\Debug\Domain.csprojResolveAssemblyReference.cache
+C:\Users\User\Desktop\WorkShop\ForumBuilder\ForumBuilder\obj\Debug\ForumBuilder.exe
+C:\Users\User\Desktop\WorkShop\ForumBuilder\ForumBuilder\obj\Debug\ForumBuilder.pdb

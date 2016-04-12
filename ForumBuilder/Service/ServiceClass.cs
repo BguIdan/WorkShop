@@ -10,7 +10,6 @@ namespace Service
         private static ServiceClass singleton;
         private ForumController forumController;
         private SubForumController subForumController;
-        private ThreadController threadController;
         private PostController postController;
         private UserController userController;
         private SuperUserController superUserController;
@@ -19,8 +18,6 @@ namespace Service
         {
             forumController = ForumController.getInstance;
             subForumController = SubForumController.getInstance;
-            threadController = ThreadController.getInstance;
-            postController = PostController.getInstance;
             userController = UserController.getInstance;
             superUserController = SuperUserController.getInstance;
         }
