@@ -627,7 +627,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void test_removeComment_subComment_without_subcomments_by_admin()
+        public void test_removeComment_subComment_with_subcomments_by_admin()
         {
             int commentCounter = INITIAL_COMMENT_COUNT;
             test_addComment_admin();
