@@ -10,7 +10,6 @@ namespace ForumBuilder.Controllers
         private static UserController singleton;
         DemoDB demoDB = DemoDB.getInstance;
         Systems.Logger logger = Systems.Logger.getInstance;
-        //ForumController forumController = ForumController.getInstance;
 
         public static UserController getInstance
         {

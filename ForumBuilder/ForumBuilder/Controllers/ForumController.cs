@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using ForumBuilder.BL_Back_End;
 using ForumBuilder.BL_DB;
 
 namespace ForumBuilder.Controllers
@@ -10,7 +9,6 @@ namespace ForumBuilder.Controllers
         private static ForumController singleton;
         DemoDB demoDB = DemoDB.getInstance;
         Systems.Logger logger = Systems.Logger.getInstance;
-        //SuperUserController superUserController = SuperUserController.getInstance;
         public static ForumController getInstance
         {
             get
@@ -26,8 +24,7 @@ namespace ForumBuilder.Controllers
 
         public bool addSubForum(string forumName, string name, Dictionary<String, DateTime> moderators, string userNameAdmin)
         {
-            User user = demoDB.getUser(userNameAdmin);
-            if (user != null)
+            if (demoDB.getUser(userNameAdmin) != null)
             {
                 if (!isAdmin(userNameAdmin, forumName))
                 {
@@ -43,8 +40,7 @@ namespace ForumBuilder.Controllers
 
                     foreach (string s in moderators.Keys)
                     {
-                        User mod = demoDB.getUser(s);
-                        if (mod == null)
+                        if (demoDB.getUser(s) == null)
                         {
                             logger.logPrint("Add sub-forum failed, the moderator " + s + " is not member of forum"); 
                             return false;
@@ -52,7 +48,6 @@ namespace ForumBuilder.Controllers
                     }
                     foreach (string s in moderators.Keys)
                     {
-                        User mod = demoDB.getUser(s);
                         DateTime date;
                         moderators.TryGetValue(s, out date);
                         if (date > DateTime.Now)

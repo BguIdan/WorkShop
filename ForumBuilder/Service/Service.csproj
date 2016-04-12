@@ -35,7 +35,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ServiceClass.cs" />
+    <Compile Include="ForumManager.cs" />
+    <Compile Include="IForumManager.cs" />
+    <Compile Include="IPostManager.cs" />
+    <Compile Include="ISubForumManager.cs" />
+    <Compile Include="ISuperUserManager.cs" />
+    <Compile Include="IUserManager.cs" />
+    <Compile Include="PostManager.cs" />
+    <Compile Include="SubForumManager.cs" />
+    <Compile Include="SuperUserManager.cs" />
+    <Compile Include="UserManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
