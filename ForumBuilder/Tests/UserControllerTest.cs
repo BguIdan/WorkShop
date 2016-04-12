@@ -47,7 +47,6 @@ namespace Tests
             this.userNonMember = null;
             this.userMember = null;
             this.userAdmin = null;
-            //TODO find a way to reset the DB
         }
 
 

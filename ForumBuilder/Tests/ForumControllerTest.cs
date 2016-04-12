@@ -46,15 +46,14 @@ namespace Tests
         [TestCleanup]
         public void cleanUp()
         {
-            DemoDB db = DemoDB.getInstance;
-            db.clear();
             this.forumController = null;
             this.forum = null;
             this.userNonMember = null;
             this.userMember = null;
             this.userAdmin = null;
             this.userAdmin2 = null;
-            //TODO find a way to reset the DB
+            DemoDB db = DemoDB.getInstance;
+            db.clear();
         }
 
         /******************************dismiss admin***********************************/
@@ -116,9 +115,6 @@ namespace Tests
             Assert.IsFalse(this.forumController.isMember(NonMemberName, forumName), "userNonMember should not be a member");
             Assert.IsFalse(this.forumController.banMember(NonMemberName, AdminName, forumName), "ban of userNonMember should Not be successful");
             Assert.IsFalse(this.forumController.isMember(NonMemberName, forumName), "userNonMember should not be a member");
-            ///TODO
-            //Assert.IsFalse(this.forumController.registerUser(this.userNonMember.userName, this.userNonMember.password, this.userNonMember.email, forumName), "userNonMember should not be able to become a member since he is banned");
-            Assert.IsFalse(this.forumController.isMember(NonMemberName, forumName), "userNonMember should not be a member");
         }
 
         [TestMethod]
@@ -150,7 +146,6 @@ namespace Tests
         [TestMethod]
         public void test_banMember_on_null()
         {
-            //TODO more null tests
             Assert.IsFalse(this.forumController.banMember(null, this.userAdmin2.userName, this.forum.forumName), "ban of null should not be successful");
         }
 
@@ -237,7 +232,6 @@ namespace Tests
         public void test_registerUser_on_null()
         {
             Assert.IsFalse(this.forumController.registerUser(null, null, null,null), "registration of null should return false");
-            //TODO more null tests
         }
 
 
@@ -424,7 +418,6 @@ namespace Tests
 
         /******************************create sub forum***********************************/
 
-        //TODO
         /******************************end of create sub forum***********************************/
 
 
