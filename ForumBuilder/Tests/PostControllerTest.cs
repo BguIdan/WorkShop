@@ -703,10 +703,11 @@ namespace Tests
                 }
             }
             Assert.IsNotNull(newPost, "the added post should exist");
+            int originalId = newPost.id;
             int id = newPost.id;
-            Assert.IsTrue(this.postController.addComment("head", "content", this.userMember.userName, id));
-            Assert.IsTrue(this.postController.addComment("head", "content", this.userAdmin.userName, id));
-            commentCounter = +2;
+            Assert.IsTrue(this.postController.addComment("head", "content", this.userMember.userName, originalId));
+            Assert.IsTrue(this.postController.addComment("head", "content", this.userAdmin.userName, originalId));
+            commentCounter += 2;
             for (int i = 0; i < 5; i++)
             {
                 posts = this.postController.getAllPosts(this.forumName, this.subForumName);
@@ -723,18 +724,18 @@ namespace Tests
                 id = newPost.id;
                 Assert.IsTrue(this.postController.addComment("head", "content", this.userMember.userName, id));
                 Assert.IsTrue(this.postController.addComment("head", "content", this.userAdmin.userName, id));
-                commentCounter = +2;
+                commentCounter += 2;
             }
-            Assert.IsTrue(this.postController.removeComment(id, this.userAdmin.userName));
-            commentCounter = -13;
+            Assert.IsTrue(this.postController.removeComment(originalId, this.userAdmin.userName));
+            commentCounter -= 13;
             posts = this.postController.getAllPosts(this.forumName, this.subForumName);
-            Assert.AreEqual(posts.Count, commentCounter);
+            Assert.AreEqual(commentCounter, posts.Count);
             foreach (Post p in posts)
             {
                 Assert.AreNotEqual(p.id, id);
                 Assert.AreNotEqual(p.parentId, id);
             }
-            Assert.AreEqual(commentCounter, 1);
+            Assert.AreEqual(commentCounter, 2);
         }
 
 
