@@ -177,7 +177,7 @@ namespace ForumBuilder.Controllers
             }
             if (userName.Length > 0 && password.Length > 0 && mail.Length > 0)
             {
-                if(demoDB.getUser(userName) ==null)
+                if(demoDB.getUser(userName) !=null)
                 {
                     logger.logPrint("Register user faild, "+userName+" is already taken");
                     return false;
