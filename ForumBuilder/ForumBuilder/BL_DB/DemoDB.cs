@@ -67,16 +67,17 @@ namespace ForumBuilder.BL_DB
             users.Add(su);
             return true;
         }
-        internal bool nominateModerator(string newModerator, string nominatorUser, DateTime date, SubForum subForum)
+        internal bool nominateModerator(string newModerator, string nominatorUser, DateTime date, string subForumName,string forumName)
         {
-            foreach(string s in subForum.moderators.Keys)
+            SubForum sf = getSubForum(subForumName,forumName);
+            foreach(string s in sf.moderators.Keys)
             {
                 if (s.Equals(newModerator))
                 {
                     return false;
                 }
             }
-            subForum.moderators.Add(newModerator, date);
+            sf.moderators.Add(newModerator, date);
             return true;
         }
         internal Forum getforumByName(string forumName)

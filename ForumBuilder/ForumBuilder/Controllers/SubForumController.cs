@@ -68,6 +68,11 @@ namespace ForumBuilder.Controllers
         public bool nominateModerator(string newModerator, string nominatorUser, DateTime date, string subForumName, string forumName)
         {
             SubForum subForum = getSubForum(subForumName, forumName);
+            if (subForum == null)
+            {
+                logger.logPrint("sub forum does not exist");
+                return false;
+            }
             if (ForumController.getInstance.isAdmin(nominatorUser, forumName) && ForumController.getInstance.isMember(newModerator, forumName))
             {
                 if (DateTime.Now.CompareTo(date) > 0)
@@ -75,7 +80,7 @@ namespace ForumBuilder.Controllers
                     logger.logPrint("the date in nominate moderator already past");
                     return false;
                 }
-                if (demoDB.nominateModerator(newModerator, nominatorUser, date, subForum))
+                if (demoDB.nominateModerator(newModerator, nominatorUser, date, subForumName,forumName))
                 {
                     logger.logPrint("nominate moderator " + newModerator + "success");
                     return true;

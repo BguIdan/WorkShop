@@ -134,13 +134,379 @@ Log Entry :
 Post contoller created
 -----------------------------------------------
 Log Entry : 
+Sub-forum contoller created
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Create comment 1 to 0
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Create comment 1 to 0
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Create comment 1 to 0
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Add comment failed, user does not exist
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Create comment 1 to 0
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Create comment 1 to 0
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Create comment 1 to 0
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Add comment failed, user does not exist
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Create comment 1 to 0
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Create comment 1 to 0
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Create comment 1 to 0
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Add comment failed, user does not exist
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Add comment failed, there is no head or content in tread
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Add comment failed, there is no head or content in tread
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Add comment failed, there is no head or content in tread
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Add comment failed, user does not exist
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Add comment failed, there is no post to comment at
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Add comment failed, there is no post to comment at
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Add comment failed, there is no post to comment at
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Add comment failed, there is no post to comment at
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Create comment 1 to 0
+-----------------------------------------------
+Log Entry : 
+Remove post 1
+-----------------------------------------------
+Log Entry : 
+Remove post 0
+-----------------------------------------------
+Log Entry : 
+Remove thread 0
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Create comment 1 to 0
+-----------------------------------------------
+Log Entry : 
+Remove post 1
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Create comment 1 to 0
+-----------------------------------------------
+Log Entry : 
+Delete thread comment, there is no permission to that user
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Create comment 1 to 0
+-----------------------------------------------
+Log Entry : 
+Remove post 1
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Create comment 1 to 0
+-----------------------------------------------
+Log Entry : 
+Create comment 2 to 1
+-----------------------------------------------
+Log Entry : 
+Create comment 3 to 1
+-----------------------------------------------
+Log Entry : 
+Remove post 3
+-----------------------------------------------
+Log Entry : 
+Remove post 2
+-----------------------------------------------
+Log Entry : 
+Remove post 1
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Create comment 1 to 0
+-----------------------------------------------
+Log Entry : 
+Create comment 2 to 1
+-----------------------------------------------
+Log Entry : 
+Create comment 3 to 1
+-----------------------------------------------
+Log Entry : 
+Remove post 3
+-----------------------------------------------
+Log Entry : 
+Remove post 2
+-----------------------------------------------
+Log Entry : 
+Remove post 1
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Create comment 1 to 0
+-----------------------------------------------
+Log Entry : 
+Create comment 2 to 0
+-----------------------------------------------
+Log Entry : 
+Remove post 1
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Create comment 1 to 0
+-----------------------------------------------
+Log Entry : 
+Create comment 2 to 1
+-----------------------------------------------
+Log Entry : 
+Remove post 2
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Create comment 1 to 0
+-----------------------------------------------
+Log Entry : 
+Create comment 2 to 1
+-----------------------------------------------
+Log Entry : 
+Create comment 3 to 2
+-----------------------------------------------
+Log Entry : 
+Create comment 4 to 2
+-----------------------------------------------
+Log Entry : 
+Remove post 4
+-----------------------------------------------
+Log Entry : 
+Remove post 3
+-----------------------------------------------
+Log Entry : 
+Remove post 2
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Add thread 0
+-----------------------------------------------
+Log Entry : 
+Create comment 1 to 0
+-----------------------------------------------
+Log Entry : 
+Create comment 2 to 1
+-----------------------------------------------
+Log Entry : 
+Create comment 3 to 2
+-----------------------------------------------
+Log Entry : 
+Create comment 4 to 2
+-----------------------------------------------
+Log Entry : 
+Remove post 4
+-----------------------------------------------
+Log Entry : 
+Remove post 3
+-----------------------------------------------
+Log Entry : 
+Remove post 2
+-----------------------------------------------
+Log Entry : 
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
 Log Entry : 
 Forum testForum creation success
------------------------------------------------
-Log Entry : 
-Sub-forum contoller created
 -----------------------------------------------
 Log Entry : 
 Dismiss moderator mod
@@ -492,15 +858,4 @@ Forum testForum creation success
 -----------------------------------------------
 Log Entry : 
 Forum testForum creation success
------------------------------------------------
-Log Entry : 
-admin nominated successfully
------------------------------------------------
-Log Entry : 
-Remove friend faild, admin and admin2 are not friends
------------------------------------------------
-Log Entry : 
-Forum testForum creation success
------------------------------------------------
-Log Entry : 
-Remove friend fa
+---------------

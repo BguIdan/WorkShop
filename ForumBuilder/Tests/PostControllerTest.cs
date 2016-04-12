@@ -388,7 +388,7 @@ namespace Tests
             Post newPost = null;
             foreach (Post p in posts)
             {
-                if (p.writerUserName == this.userMember.userName && p.id != this.postId)
+                if (p.parentId == this.postId)
                 {
                     newPost = p;
                     break;
@@ -418,7 +418,7 @@ namespace Tests
             Post newPost = null;
             foreach (Post p in posts)
             {
-                if (p.writerUserName == this.userAdmin.userName && p.id != this.postId)
+                if (p.parentId == this.postId)
                 {
                     newPost = p;
                     break;
@@ -426,7 +426,7 @@ namespace Tests
             }
             Assert.IsNotNull(newPost, "the added post should exist");
             int id = newPost.id;
-            Assert.IsFalse(this.postController.removeComment(id, this.userAdmin.userName));
+            Assert.IsTrue(this.postController.removeComment(id, this.userAdmin.userName));
             posts = this.postController.getAllPosts(this.forumName, this.subForumName);
             newPost = null;
             foreach (Post p in posts)
@@ -437,7 +437,7 @@ namespace Tests
                     break;
                 }
             }
-            Assert.IsNotNull(newPost, "the added post should not be deleted by other user");
+            Assert.IsNull(newPost, "the added post should not be deleted by other user");
         }
 
         [TestMethod]
@@ -448,7 +448,7 @@ namespace Tests
             Post newPost = null;
             foreach (Post p in posts)
             {
-                if (p.writerUserName == this.userMember.userName)
+                if (p.parentId == this.postId)
                 {
                     newPost = p;
                     break;
@@ -590,7 +590,7 @@ namespace Tests
             Post newPost = null;
             foreach (Post p in posts)
             {
-                if (p.writerUserName == this.userMember.userName)
+                if (p.parentId == this.postId)
                 {
                     newPost = p;
                     break;
@@ -614,9 +614,9 @@ namespace Tests
             int id = newPost.id;
             Assert.IsTrue(this.postController.addComment("head", "content", this.userMember.userName, id));
             Assert.IsTrue(this.postController.addComment("head", "content", this.userAdmin.userName, id));
-            commentCounter =+ 2;
+            commentCounter += 2;
             Assert.IsTrue(this.postController.removeComment(id, this.userMember.userName));
-            commentCounter =- 3;
+            commentCounter -= 3;
             posts = this.postController.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(posts.Count, commentCounter);
             foreach (Post p in posts)
@@ -636,7 +636,7 @@ namespace Tests
             Post newPost = null;
             foreach (Post p in posts)
             {
-                if (p.writerUserName == this.userAdmin.userName)
+                if (p.parentId == this.postId)
                 {
                     newPost = p;
                     break;
@@ -660,9 +660,9 @@ namespace Tests
             int id = newPost.id;
             Assert.IsTrue(this.postController.addComment("head", "content", this.userMember.userName, id));
             Assert.IsTrue(this.postController.addComment("head", "content", this.userAdmin.userName, id));
-            commentCounter =+ 2;
+            commentCounter += 2;
             Assert.IsTrue(this.postController.removeComment(id, this.userAdmin.userName));
-            commentCounter =- 3;
+            commentCounter -= 3;
             posts = this.postController.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(posts.Count, commentCounter);
             foreach (Post p in posts)
