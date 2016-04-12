@@ -24,6 +24,8 @@ namespace Tests
         private String subForumName = "subForum";
         private int postId;
 
+        const int INITIAL_COMMENT_COUNT = 1;
+
         [TestInitialize]
         public void setUp()
         {
@@ -326,7 +328,351 @@ namespace Tests
             Assert.AreEqual(posts.Count, 1);
         }
 
-        /**************************add comment*********************************/
+        /**************************end of add comment*********************************/
+
+        /**************************end of remove comment*********************************/
+
+        [TestMethod]
+        public void test_removeComment_mem_noSubComments()
+        {
+            test_addComment_mem();
+            List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
+            Post newPost = null;
+            foreach (Post p in posts)
+            {
+                if (p.writerUserName == this.userMember.userName)
+                {
+                    newPost = p;
+                    break;
+                }
+            }
+            Assert.IsNotNull(newPost, "the added post should exist");
+            int id = newPost.id;
+            Assert.IsTrue(this.postController.removeComment(id, this.userMember.userName));
+            posts = this.postController.getAllPosts(this.forumName, this.subForumName);
+            foreach (Post p in posts)
+            {
+                Assert.AreNotEqual(p.id, id);
+            }
+        }
+
+        [TestMethod]
+        public void test_removeComment_admin_noSubComments()
+        {
+            test_addComment_admin();
+            List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
+            Post newPost = null;
+            foreach (Post p in posts)
+            {
+                if (p.writerUserName == this.userAdmin.userName)
+                {
+                    newPost = p;
+                    break;
+                }
+            }
+            Assert.IsNotNull(newPost, "the added post should exist");
+            int id = newPost.id;
+            Assert.IsTrue(this.postController.removeComment(id, this.userAdmin.userName));
+            posts = this.postController.getAllPosts(this.forumName, this.subForumName);
+            foreach (Post p in posts)
+            {
+                Assert.AreNotEqual(p.id, id);
+            }
+        }
+
+        [TestMethod]
+        public void test_removeComment_not_owner_by_mem_noSubComments()
+        {
+            test_addComment_admin();
+            List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
+            Post newPost = null;
+            foreach (Post p in posts)
+            {
+                if (p.writerUserName == this.userMember.userName && p.id != this.postId)
+                {
+                    newPost = p;
+                    break;
+                }
+            }
+            Assert.IsNotNull(newPost, "the added post should exist");
+            int id = newPost.id;
+            Assert.IsFalse(this.postController.removeComment(id, this.userMember.userName));
+            posts = this.postController.getAllPosts(this.forumName, this.subForumName);
+            newPost = null;
+            foreach (Post p in posts)
+            {
+                if (p.id == id)
+                {
+                    newPost = p;
+                    break;
+                }
+            }
+            Assert.IsNotNull(newPost, "the added post should not be deleted by other user");
+        }
+
+        [TestMethod]
+        public void test_removeComment_not_owner_admin_noSubComments()
+        {
+            test_addComment_mem();
+            List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
+            Post newPost = null;
+            foreach (Post p in posts)
+            {
+                if (p.writerUserName == this.userAdmin.userName && p.id != this.postId)
+                {
+                    newPost = p;
+                    break;
+                }
+            }
+            Assert.IsNotNull(newPost, "the added post should exist");
+            int id = newPost.id;
+            Assert.IsFalse(this.postController.removeComment(id, this.userAdmin.userName));
+            posts = this.postController.getAllPosts(this.forumName, this.subForumName);
+            newPost = null;
+            foreach (Post p in posts)
+            {
+                if (p.id == id)
+                {
+                    newPost = p;
+                    break;
+                }
+            }
+            Assert.IsNotNull(newPost, "the added post should not be deleted by other user");
+        }
+
+        [TestMethod]
+        public void test_removeComment_mem_withSubComments()
+        {
+            test_addComment_mem();
+            List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
+            Post newPost = null;
+            foreach (Post p in posts)
+            {
+                if (p.writerUserName == this.userMember.userName)
+                {
+                    newPost = p;
+                    break;
+                }
+            }
+            Assert.IsNotNull(newPost, "the added post should exist");
+            int id = newPost.id;
+            Assert.IsTrue(this.postController.addComment("head", "subcomment", this.userMember.userName, id));
+            Assert.IsTrue(this.postController.addComment("head2", "subcomment2", this.userAdmin.userName, id));
+            Assert.IsTrue(this.postController.removeComment(id, this.userMember.userName));
+            posts = this.postController.getAllPosts(this.forumName, this.subForumName);
+            foreach (Post p in posts)
+            {
+                Assert.AreNotEqual(p.id, id);
+                Assert.AreNotEqual(p.parentId, id);
+            }
+            Assert.AreEqual(posts.Count, 1);
+        }
+
+        [TestMethod]
+        public void test_removeComment_admin_withSubComments()
+        {
+            test_addComment_admin();
+            List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
+            Post newPost = null;
+            foreach (Post p in posts)
+            {
+                if (p.writerUserName == this.userAdmin.userName)
+                {
+                    newPost = p;
+                    break;
+                }
+            }
+            Assert.IsNotNull(newPost, "the added post should exist");
+            int id = newPost.id;
+            Assert.IsTrue(this.postController.addComment("head", "subcomment", this.userMember.userName, id));
+            Assert.IsTrue(this.postController.addComment("head2", "subcomment2", this.userAdmin.userName, id));
+            Assert.IsTrue(this.postController.removeComment(id, this.userAdmin.userName));
+            posts = this.postController.getAllPosts(this.forumName, this.subForumName);
+            foreach (Post p in posts)
+            {
+                Assert.AreNotEqual(p.id, id);
+                Assert.AreNotEqual(p.parentId, id);
+            }
+            Assert.AreEqual(posts.Count, 1);
+        }
+
+        [TestMethod]
+        public void test_removeComment_subComment_without_subcomments_by_mem()
+        {
+            int commentCounter = INITIAL_COMMENT_COUNT;
+            test_addComment_mem();
+            commentCounter++;
+            List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
+            Post newPost = null;
+            foreach (Post p in posts)
+            {
+                if (p.writerUserName == this.userMember.userName)
+                {
+                    newPost = p;
+                    break;
+                }
+            }
+            Assert.IsNotNull(newPost, "the added post should exist");
+            int parentId = newPost.id;
+            Assert.IsTrue(this.postController.addComment("head", "subcomment", this.userMember.userName, parentId));
+            commentCounter++;
+            posts = this.postController.getAllPosts(this.forumName, this.subForumName);
+            newPost = null;
+            foreach (Post p in posts)
+            {
+                if (p.parentId == parentId)
+                {
+                    newPost = p;
+                    break;
+                }
+            }
+            Assert.IsNotNull(newPost, "the added post should exist");
+            int id = newPost.id;
+            Assert.IsTrue(this.postController.removeComment(id, this.userMember.userName));
+            commentCounter--;
+            posts = this.postController.getAllPosts(this.forumName, this.subForumName);
+            Assert.AreEqual(posts.Count, commentCounter);
+            foreach (Post p in posts)
+            {
+                Assert.AreNotEqual(p.id, id);
+            }
+        }
+
+        [TestMethod]
+        public void test_removeComment_subComment_without_subcomments_by_admin()
+        {
+            int commentCounter = INITIAL_COMMENT_COUNT;
+            test_addComment_admin();
+            commentCounter++;
+            List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
+            Post newPost = null;
+            foreach (Post p in posts)
+            {
+                if (p.writerUserName == this.userAdmin.userName)
+                {
+                    newPost = p;
+                    break;
+                }
+            }
+            Assert.IsNotNull(newPost, "the added post should exist");
+            int parentId = newPost.id;
+            Assert.IsTrue(this.postController.addComment("head", "subcomment", this.userAdmin.userName, parentId));
+            commentCounter++;
+            posts = this.postController.getAllPosts(this.forumName, this.subForumName);
+            newPost = null;
+            foreach (Post p in posts)
+            {
+                if (p.parentId == parentId)
+                {
+                    newPost = p;
+                    break;
+                }
+            }
+            Assert.IsNotNull(newPost, "the added post should exist");
+            int id = newPost.id;
+            Assert.IsTrue(this.postController.removeComment(id, this.userAdmin.userName));
+            commentCounter--;
+            posts = this.postController.getAllPosts(this.forumName, this.subForumName);
+            Assert.AreEqual(posts.Count, commentCounter);
+            foreach (Post p in posts)
+            {
+                Assert.AreNotEqual(p.id, id);
+            }
+        }
+
+        [TestMethod]
+        public void test_removeComment_subComment_with_subcomments_by_mem()
+        {
+            int commentCounter = INITIAL_COMMENT_COUNT;
+            test_addComment_mem();
+            commentCounter++;
+            List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
+            Post newPost = null;
+            foreach (Post p in posts)
+            {
+                if (p.writerUserName == this.userMember.userName)
+                {
+                    newPost = p;
+                    break;
+                }
+            }
+            Assert.IsNotNull(newPost, "the added post should exist");
+            int parentId = newPost.id;
+            Assert.IsTrue(this.postController.addComment("head", "subcomment", this.userMember.userName, parentId));
+            commentCounter++;
+            posts = this.postController.getAllPosts(this.forumName, this.subForumName);
+            newPost = null;
+            foreach (Post p in posts)
+            {
+                if (p.parentId == parentId)
+                {
+                    newPost = p;
+                    break;
+                }
+            }
+            Assert.IsNotNull(newPost, "the added post should exist");
+            int id = newPost.id;
+            Assert.IsTrue(this.postController.addComment("head", "content", this.userMember.userName, id));
+            Assert.IsTrue(this.postController.addComment("head", "content", this.userAdmin.userName, id));
+            commentCounter =+ 2;
+            Assert.IsTrue(this.postController.removeComment(id, this.userMember.userName));
+            commentCounter =- 3;
+            posts = this.postController.getAllPosts(this.forumName, this.subForumName);
+            Assert.AreEqual(posts.Count, commentCounter);
+            foreach (Post p in posts)
+            {
+                Assert.AreNotEqual(p.id, id);
+                Assert.AreNotEqual(p.parentId, id);
+            }
+        }
+
+        [TestMethod]
+        public void test_removeComment_subComment_without_subcomments_by_admin()
+        {
+            int commentCounter = INITIAL_COMMENT_COUNT;
+            test_addComment_admin();
+            commentCounter++;
+            List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
+            Post newPost = null;
+            foreach (Post p in posts)
+            {
+                if (p.writerUserName == this.userAdmin.userName)
+                {
+                    newPost = p;
+                    break;
+                }
+            }
+            Assert.IsNotNull(newPost, "the added post should exist");
+            int parentId = newPost.id;
+            Assert.IsTrue(this.postController.addComment("head", "subcomment", this.userAdmin.userName, parentId));
+            commentCounter++;
+            posts = this.postController.getAllPosts(this.forumName, this.subForumName);
+            newPost = null;
+            foreach (Post p in posts)
+            {
+                if (p.parentId == parentId)
+                {
+                    newPost = p;
+                    break;
+                }
+            }
+            Assert.IsNotNull(newPost, "the added post should exist");
+            int id = newPost.id;
+            Assert.IsTrue(this.postController.addComment("head", "content", this.userMember.userName, id));
+            Assert.IsTrue(this.postController.addComment("head", "content", this.userAdmin.userName, id));
+            commentCounter =+ 2;
+            Assert.IsTrue(this.postController.removeComment(id, this.userAdmin.userName));
+            commentCounter =- 3;
+            posts = this.postController.getAllPosts(this.forumName, this.subForumName);
+            Assert.AreEqual(posts.Count, commentCounter);
+            foreach (Post p in posts)
+            {
+                Assert.AreNotEqual(p.id, id);
+                Assert.AreNotEqual(p.parentId, id);
+            }
+        }
+
+
 
     }
 }
