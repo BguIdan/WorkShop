@@ -43,7 +43,7 @@ namespace ForumBuilder.Controllers
 
         public Boolean addComment(String headLine, String content, String writerName, int commentedPost/*if new thread, -1*/)
         {
-            SubForum sf= demoDB.getSubforumByThreadFirstPostId(commentedPost);
+            SubForum sf= getSubforumByPost(commentedPost);
             if (getPost(commentedPost) == null)
             {
                 logger.logPrint("Add comment failed, there is no post to comment at");
@@ -80,13 +80,13 @@ namespace ForumBuilder.Controllers
             }
             else if (getPost(postId).parentId == -1)
             {
-                logger.logPrint("Delete comment failed, this is not a comment");
-                return false;
-                //return SubForumController.getInstance.deleteThread(postId, removerName);
+                //logger.logPrint("Delete comment failed, this is not a comment");
+                //return false;
+                return SubForumController.getInstance.deleteThread(postId, removerName);
             }
             SubForum sf = getSubforumByPost(postId);
             if ((!demoDB.getPost(postId).writerUserName.Equals(removerName))
-                && (demoDB.getSuperUser(removerName)!=null)
+                && (demoDB.getSuperUser(removerName)==null)
                 && (!ForumController.getInstance.isAdmin(removerName, sf.forum)
                 && (!SubForumController.getInstance.isModerator(removerName, sf.name, sf.forum))))
             {
@@ -112,7 +112,7 @@ namespace ForumBuilder.Controllers
                 donePosts.Add(post);
             }
             bool hasSucceed = true;
-            for (int i = donePosts.Capacity - 1; i >= 0; i--)
+            for (int i = donePosts.Count - 1; i >= 0; i--)
             {
                 hasSucceed = hasSucceed && demoDB.removePost(donePosts.ElementAt(i).id);
                 logger.logPrint("Remove post " +donePosts.ElementAt(i).id);
