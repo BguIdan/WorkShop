@@ -204,6 +204,10 @@ namespace ForumBuilder.Controllers
             {
                 logger.logPrint("Set forum preferences failed, " + setterUserName + " is not an admin");
             }
+            else if (forumName==null|newDescription==null| setterUserName==null)
+            {
+                logger.logPrint("Set forum preferences failed, one or more of the arguments is null");
+            }
             else if (demoDB.setForumPreferences(forumName, newDescription, newForumPolicy, newForumRules)) {
                 logger.logPrint(forumName + "preferences had changed successfully");
                 hasSucceed = true;

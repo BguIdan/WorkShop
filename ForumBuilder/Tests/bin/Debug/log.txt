@@ -1,8 +1,77 @@
 Log Entry : 
+Super user contoller created
+-----------------------------------------------
+Log Entry : 
 the system was initialized successully
 -----------------------------------------------
 Log Entry : 
 Forum contoller created
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Register user faild, mem2 is already taken
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+forumpreferences had changed successfully
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+Set forum preferences failed, one or more of the arguments is null
+-----------------------------------------------
+Log Entry : 
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 
+forumpreferences had changed successfully
+-----------------------------------------------
+Log Entry : 
+Forum forumName creation success
+-----------------------------------------------
+Log Entry : 
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 
+Register user faild, password not strong enough
+-----------------------------------------------
+Log Entry : 
+Register user faild, password not strong enough
+-----------------------------------------------
+Log Entry : 
+Register user faild, password not strong enough
+-----------------------------------------------
+Log Entry : 
+Register user faild, mem2 is already taken
+-----------------------------------------------
+Log Entry : 
+User contoller created
+-----------------------------------------------
+Log Entry : 
+Forum forumName creation success
+-----------------------------------------------
+Log Entry : 
+Send message faild, admin2is not a user
+-----------------------------------------------
+Log Entry : 
+Add friend faild, admin2is not a user
+-----------------------------------------------
+Log Entry : 
+Add friend faild, admin2is not a user
+-----------------------------------------------
+Log Entry : 
+Add friend faild, mem1is not a user
+-----------------------------------------------
+Log Entry : 
+Add friend faild, mem1is not a user
+-----------------------------------------------
+Log Entry : 
+Send message faild, mem1is not a user
 -----------------------------------------------
 Log Entry : 
 Forum testForum creation success
@@ -99,6 +168,18 @@ Forum testForum creation success
 -----------------------------------------------
 Log Entry : 
 Register user faild, the forum,  does not exist
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+testForumpreferences had changed successfully
+-----------------------------------------------
+Log Entry : 
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 
+testForumpreferences had changed successfully
 -----------------------------------------------
 Log Entry : 
 Forum testForum creation success
@@ -887,9 +968,6 @@ Log Entry :
 Delete thread failed, there is no permission to that user
 -----------------------------------------------
 Log Entry : 
-User contoller created
------------------------------------------------
-Log Entry : 
 Forum testForum creation success
 -----------------------------------------------
 Log Entry : 
@@ -947,22 +1025,4 @@ Log Entry :
 Forum testForum creation success
 -----------------------------------------------
 Log Entry : 
-Remove friend faild, mem and admin are not friends
------------------------------------------------
-Log Entry : 
-Forum testForum creation success
------------------------------------------------
-Log Entry : 
-Forum testForum creation success
------------------------------------------------
-Log Entry : 
-admin nominated successfully
------------------------------------------------
-Log Entry : 
-Remove friend faild, admin and admin2 are not friends
------------------------------------------------
-Log Entry : 
-Forum testForum creation success
------------------------------------------------
-Log Entry : 
-Remove friend faild, is not a
+Remove fr

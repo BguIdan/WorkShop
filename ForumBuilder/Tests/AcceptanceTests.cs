@@ -78,7 +78,7 @@ namespace Tests
             db.clear();
         }
 
-        
+        [TestMethod]
         public void AT_test_changeForumPreferences_with_null_inputs()
         {
             SuperUserManager superUser = SuperUserManager.getInstance;
