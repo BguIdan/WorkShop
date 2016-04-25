@@ -39,7 +39,7 @@ namespace ForumBuilder.Systems
                     singleton = null;
                     return null;
                 }
-                Logger.getInstance.logPrint("the system was initialized successully");
+                Logger.getInstance.logPrint("The System was initialized successully");
             }
             return getInstance;
         }

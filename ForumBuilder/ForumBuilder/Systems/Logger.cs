@@ -28,7 +28,7 @@ namespace ForumBuilder.Systems
 
         public void logPrint(String contentToPrint)
         {
-            _sw.WriteLine("Log Entry : " , DateTime.Now.ToLongTimeString());
+            _sw.WriteLine("Log Entry : \t\t" + DateTime.Now);
             _sw.WriteLine( contentToPrint);
             _sw.WriteLine("-----------------------------------------------");
         }
