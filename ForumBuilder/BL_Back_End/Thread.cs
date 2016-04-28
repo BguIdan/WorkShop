@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ForumBuilder.Controllers
+namespace BL_Back_End
 {
     public class Thread
     {
