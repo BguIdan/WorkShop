@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using BL_Back_End;
 namespace ForumBuilder.Controllers
 {
     public interface IPostController

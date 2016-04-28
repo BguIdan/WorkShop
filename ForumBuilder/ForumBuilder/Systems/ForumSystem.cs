@@ -1,14 +1,13 @@
 ﻿using ForumBuilder.Controllers;
-using ForumBuilder.BL_DB;
 using System;
 using System.Net.Mail;
+using Database;
 
 namespace ForumBuilder.Systems
 {
     public class ForumSystem
     {
         private static ForumSystem singleton;
-        private DemoDB demo_db = DemoDB.getInstance;
         Logger logger = Logger.getInstance;
         private static ForumSystem getInstance
         {

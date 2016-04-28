@@ -1,9 +1,10 @@
 ﻿using System;
 using ForumBuilder.Controllers;
-using ForumBuilder.BL_DB;
 using System.Collections.Generic;
 using System.Linq;
 using ForumBuilder.Systems;
+using BL_Back_End;
+using Database;
 
 namespace ForumBuilder.Controllers
 {
@@ -11,7 +12,7 @@ namespace ForumBuilder.Controllers
     {
         private static SubForumController singleton;
 
-        DemoDB demoDB = DemoDB.getInstance;
+         DBClass DB = DBClass.getInstance;
         Logger logger = Logger.getInstance;
 
         public static SubForumController getInstance
@@ -47,7 +48,7 @@ namespace ForumBuilder.Controllers
             else
             {
                 logger.logPrint("Dismiss moderator "+ dismissedModerator);
-                return demoDB.dismissModerator(dismissedModerator, subForumName, forumName);
+                return DB.dismissModerator(dismissedModerator, subForumName, forumName);
             }
         }
         public bool isModerator(string name, string subForumName, string forumName)
@@ -77,7 +78,7 @@ namespace ForumBuilder.Controllers
                     logger.logPrint("the date in nominate moderator already past");
                     return false;
                 }
-                if (demoDB.nominateModerator(newModerator, nominatorUser, date, subForumName,forumName))
+                if (DB.nominateModerator(newModerator, nominatorUser, date, subForumName,forumName))
                 {
                     logger.logPrint("nominate moderator " + newModerator + "success");
                     return true;
@@ -91,7 +92,7 @@ namespace ForumBuilder.Controllers
         }
         public SubForum getSubForum(string subForumName, string forumName)
         {
-            return demoDB.getSubForum(subForumName, forumName);
+            return DB.getSubForum(subForumName, forumName);
         }
 
         public bool createThread(String headLine, String content, String writerName,  String forumName, String subForumName)
@@ -102,12 +103,12 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Create tread failed, there is no head or content in tread");
                 return false;
             }
-            else if (demoDB.getUser(writerName) == null)
+            else if (DB.getUser(writerName) == null)
             {
                 logger.logPrint("Create tread failed, user does not exist");
                 return false;
             }
-            else if (demoDB.getSubForum(subForumName,forumName)== null)
+            else if (DB.getSubForum(subForumName,forumName)== null)
             {
                 logger.logPrint("Create tread failed, sub-forum does not exist");
                 return false;
@@ -117,20 +118,20 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Create tread failed, user "+ writerName+" is not memberin forum "+ forumName);
                 return false;
             }
-            int id = demoDB.getAvilableIntOfPost();
+            int id = DB.getAvilableIntOfPost();
             logger.logPrint("Add thread " + id);
-            return demoDB.addPost(writerName, id, headLine, content, -1, timePublished) && demoDB.addThread(headLine, content, writerName, forumName, subForumName, id,timePublished);
+            return DB.addPost(writerName, id, headLine, content, -1, timePublished) && DB.addThread(headLine, content, writerName, forumName, subForumName, id,timePublished);
         }
 
         public bool deleteThread(int firstPostId,string removerName)
         {
-            if (demoDB.getThreadByFirstPostId(firstPostId) == null)
+            if (DB.getThreadByFirstPostId(firstPostId) == null)
             {
                 logger.logPrint("Delete thread failed, no thread with that id");
                 return false;
             }
-            SubForum sf= demoDB.getSubforumByThreadFirstPostId(firstPostId);
-            if ((!demoDB.getPost(firstPostId).writerUserName.Equals(removerName))
+            SubForum sf= DB.getSubforumByThreadFirstPostId(firstPostId);
+            if ((!DB.getPost(firstPostId).writerUserName.Equals(removerName))
                 &&(!SuperUserController.getInstance.isSuperUser(removerName))
                 && (!ForumController.getInstance.isAdmin(removerName, sf.forum)
                 && (!isModerator(removerName,sf.name,sf.forum))))
@@ -142,12 +143,12 @@ namespace ForumBuilder.Controllers
             {
                 List<Post> donePosts = new List<Post>();
                 List<Post> undonePosts = new List<Post>();
-                undonePosts.Add(demoDB.getPost(firstPostId));
+                undonePosts.Add(DB.getPost(firstPostId));
                 while (undonePosts.Count != 0)
                 {
                     Post post = undonePosts.ElementAt(0);
                     undonePosts.RemoveAt(0);
-                    List<Post> related = demoDB.getRelatedPosts(post.id);
+                    List<Post> related = DB.getRelatedPosts(post.id);
                     while (related != null && related.Count != 0)
                     {
                         undonePosts.Add(related.ElementAt(0));
@@ -158,11 +159,11 @@ namespace ForumBuilder.Controllers
                 bool hasSucceed= true;
                 for(int i =donePosts.Count-1; i>=0;i--)
                 {
-                    hasSucceed = hasSucceed && demoDB.removePost(donePosts.ElementAt(i).id);
+                    hasSucceed = hasSucceed && DB.removePost(donePosts.ElementAt(i).id);
                     logger.logPrint("Remove post " + donePosts.ElementAt(i).id);
                 }
                 logger.logPrint("Remove thread " + firstPostId);
-                hasSucceed= hasSucceed && demoDB.removeThread(firstPostId, sf.name, sf.forum);
+                hasSucceed= hasSucceed && DB.removeThread(firstPostId, sf.name, sf.forum);
                 return hasSucceed;
             } 
         }

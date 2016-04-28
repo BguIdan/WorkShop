@@ -3,7 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Service;
-using ForumBuilder.BL_DB;
+using Database;
 
 namespace Tests
 {
@@ -40,7 +40,7 @@ namespace Tests
             Assert.IsTrue(forum.isAdmin(adminName, forumName), "userAdmin should be an admin in the forum");
             Assert.IsTrue(forum.dismissAdmin(adminName, "guy", forumName), "userAdmin is an administrator in the forum. his dismissal from being administrator should be successful");
             Assert.IsFalse(forum.isAdmin(adminName, forumName), "userAdmin should not be a administrator in the forum");
-            DemoDB db = DemoDB.getInstance;
+            DBClass db = DBClass.getInstance;
             db.clear();
         }
 
@@ -74,7 +74,7 @@ namespace Tests
             Assert.AreEqual(forum.getForumPolicy(forumName), newPolicy, false, "the new policy should be return after the change");
             Assert.AreEqual(forum.getForumDescription(forumName), newDescr, false, "the new description should be return after the change");
             Assert.AreEqual(forum.getForumRules(forumName), newRules, false, "the new rules should be return after the change");
-            DemoDB db = DemoDB.getInstance;
+            DBClass db = DBClass.getInstance;
             db.clear();
         }
 
@@ -97,7 +97,7 @@ namespace Tests
             Assert.AreEqual(forum.getForumPolicy(forumName), oldPolicy, false, "after an unsuccessful change, the old policy should be returned");
             Assert.AreEqual(forum.getForumDescription(forumName), oldDescr, false, "after an unsuccessful change, the old description should be returned");
             Assert.AreEqual(forum.getForumRules(forumName), oldRules, false, "after an unsuccessful change, the old rules should be returned");
-            DemoDB db = DemoDB.getInstance;
+            DBClass db = DBClass.getInstance;
             db.clear();
 
         }
@@ -124,7 +124,7 @@ namespace Tests
             Assert.AreEqual(forum.getForumPolicy(forumName), "", false, "after an unsuccessful change, the old policy should be returned");
             Assert.AreEqual(forum.getForumDescription(forumName), "", false, "after an unsuccessful change, the old description should be returned");
             Assert.AreEqual(forum.getForumRules(forumName), "", false, "after an unsuccessful change, the old rules should be returned");
-            DemoDB db = DemoDB.getInstance;
+            DBClass db = DBClass.getInstance;
             db.clear();
         }
 
@@ -138,7 +138,6 @@ namespace Tests
             Service.SuperUserManager superUserMan = Service.SuperUserManager.getInstance;
 
             superUserMan.initialize("guy", "AG36djs", "hello@dskkl.com");
-            String adminName = "admin";
             List<String> adminList = new List<String>();
             adminList.Add("admin1");
             adminList.Add("admin2");
@@ -153,7 +152,7 @@ namespace Tests
             Assert.IsFalse(forumMan.registerUser("mem2", "", "fff@xc.com", "forumName"));
             Assert.IsFalse(forumMan.registerUser("mem2", "passWor1", "", "forumName"));
             Assert.IsFalse(forumMan.registerUser("mem2", "passWor1", "fff@xc.com", "forumName"));
-            DemoDB db = DemoDB.getInstance;
+            DBClass db = DBClass.getInstance;
             db.clear();
         }
 
@@ -166,7 +165,6 @@ namespace Tests
             Service.UserManager userMan = Service.UserManager.getInstance;
 
             superUserMan.initialize("guy", "AG36djs", "hello@dskkl.com");
-            String adminName = "admin";
             List<String> adminList = new List<String>();
             adminList.Add("admin1");
             adminList.Add("admin2");
@@ -189,7 +187,7 @@ namespace Tests
             Assert.IsTrue(userMan.addFriend("admin1", "mem1"));
             Assert.IsTrue(userMan.addFriend("mem1", "admin1"));
             Assert.IsTrue(userMan.sendPrivateMessage("mem1", "admin1", "when the test gona be done"));
-            DemoDB db = DemoDB.getInstance;
+            DBClass db = DBClass.getInstance;
             db.clear();
         }
 

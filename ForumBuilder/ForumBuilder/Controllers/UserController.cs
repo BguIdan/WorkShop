@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using ForumBuilder.BL_DB;
-using ForumBuilder.BL_Back_End;
+using BL_Back_End;
+using Database;
 
 namespace ForumBuilder.Controllers
 {
     public class UserController : IUserController
     {
         private static UserController singleton;
-        DemoDB demoDB = DemoDB.getInstance;
+        DBClass DB = DBClass.getInstance;
         Systems.Logger logger = Systems.Logger.getInstance;
 
         public static UserController getInstance
@@ -26,8 +26,8 @@ namespace ForumBuilder.Controllers
         }
         public bool addFriend(string userName, string friendToAddName)
         {
-            User user = demoDB.getUser(userName);
-            User friendToAdd = demoDB.getUser(friendToAddName);
+            User user = DB.getUser(userName);
+            User friendToAdd = DB.getUser(friendToAddName);
             if (user == null)
             {
                 logger.logPrint("Add friend faild, " + userName + "is not a user");
@@ -43,13 +43,13 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Add friend faild, " + friendToAddName + " and "+userName + " are not in the same forum");
                 return false;
             }
-            return demoDB.addFriendToUser(userName, friendToAddName);            
+            return DB.addFriendToUser(userName, friendToAddName);            
         }
 
         public bool deleteFriend(string userName, string deletedFriendName)
         {
-            User user = demoDB.getUser(userName);
-            User friendTodelete = demoDB.getUser(deletedFriendName);
+            User user = DB.getUser(userName);
+            User friendTodelete = DB.getUser(deletedFriendName);
             if (user == null)
             {
                 logger.logPrint("Remove friend faild, " + userName + "is not a user");
@@ -65,13 +65,13 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Remove friend faild, " + userName + " and " + deletedFriendName + " are not friends");
                 return false;
             }
-            return demoDB.removeFriendOfUser(userName, deletedFriendName);
+            return DB.removeFriendOfUser(userName, deletedFriendName);
         }
 
         public bool sendPrivateMessage(string fromUserName, string toUserName, string content)
         {
-            User sender = demoDB.getUser(fromUserName);
-            User reciver = demoDB.getUser(toUserName);
+            User sender = DB.getUser(fromUserName);
+            User reciver = DB.getUser(toUserName);
             if (sender == null)
             {
                 logger.logPrint("Send message faild, " + fromUserName + "is not a user");
@@ -93,14 +93,14 @@ namespace ForumBuilder.Controllers
                 return false;
             }
             else
-                return demoDB.addMessage(demoDB.getNextFreeMessageId(), fromUserName, toUserName, content);
+                return DB.addMessage(fromUserName, toUserName, content);
         }
 
         public List<String> getFriendList(String userName)
         {
-            if (demoDB.getUser(userName) == null)
+            if (DB.getUser(userName) == null)
                 return null;
-            return demoDB.getUserFriends(userName);
+            return DB.getUserFriends(userName);
         }
 
     }

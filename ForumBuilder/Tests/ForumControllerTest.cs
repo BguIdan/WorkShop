@@ -1,11 +1,10 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ForumBuilder.Controllers;
-using ForumBuilder.BL_Back_End;
-using ForumBuilder.BL_DB;
+using BL_Back_End;
 using System.Collections.Generic;
 using ForumBuilder.Systems;
-
+using Database;
 
 namespace Tests
 {
@@ -52,7 +51,7 @@ namespace Tests
             this.userMember = null;
             this.userAdmin = null;
             this.userAdmin2 = null;
-            DemoDB db = DemoDB.getInstance;
+            DBClass db = DBClass.getInstance;
             db.clear();
         }
 
