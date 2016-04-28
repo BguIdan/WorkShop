@@ -1,0 +1,30 @@
+﻿<Window x:Class="PL.ForumWindow" Background="Ivory"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ForumWindow" Height="400" Width="400">
+    <Grid>
+        <DockPanel Margin="0,0,0,343">
+            <Menu DockPanel.Dock="Top" Height="50"  Width="392">
+                <MenuItem Header="Coupons" Click="MenuItem_Coupon">
+                    <MenuItem Header="Add Coupon From Social Network" Name="Add"/>
+                    <MenuItem Header="Search and Purchase Coupons" Name="Look"/>
+                    <MenuItem Header="Rank Purchased Coupon" Name="Rank" />
+                    <Separator />
+                    <MenuItem Header="Exit" Name="Exit"/>
+                </MenuItem>
+                <MenuItem Header="My User"  >
+                    <MenuItem Header="View My Purchased Coupons" Click="viewCoupons"/>
+                </MenuItem>
+                <MenuItem Header="Notifications"  >
+                    <MenuItem Header="Set Notifications" Click="setNotifications"/>
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+        <TextBlock FontSize="20" FontFamily="Broadway" TextWrapping="Wrap" VerticalAlignment="Top"
+            	Text="Sub-Forums " Visibility="Visible" Height="32" Margin="127,39,127,0"
+            	RenderTransformOrigin="0.78,0.757" Width="138"/>
+        <DataGrid x:Name="couponsView" HorizontalAlignment="Left" 
+                  AutoGenerateColumns="True" Margin="23,80,0,0" VerticalAlignment="Top" 
+                  Height="265" Width="341" SelectionChanged="DataGrid_SelectionChanged" Loaded="DataGrid_Loaded"/>
+    </Grid>
+</Window>

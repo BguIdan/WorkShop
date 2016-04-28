@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ForumBuilder.BL_Back_End;
 
-namespace ForumBuilder.Controllers
+namespace BL_Back_End
 {
     public class Forum
     {

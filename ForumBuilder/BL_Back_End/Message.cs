@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ForumBuilder.BL_Back_End
+namespace BL_Back_End
 {
     public class Message
     {
