@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ForumBuilder.Controllers;
 using ForumBuilder.BL_Back_End;
+using Database;
 
 namespace ForumBuilder.BL_DB
 {
@@ -17,6 +18,7 @@ namespace ForumBuilder.BL_DB
         private List<User> superUsers;
         private static DemoDB singleton;
 
+        private static DBClass DB;
         private DemoDB()
         {
             forums = new List<Forum>();
@@ -34,6 +36,7 @@ namespace ForumBuilder.BL_DB
                 if (singleton == null)
                 {
                     singleton = new DemoDB();
+                    DB = DBClass.getInstance;
                 }
                 return singleton;
             }

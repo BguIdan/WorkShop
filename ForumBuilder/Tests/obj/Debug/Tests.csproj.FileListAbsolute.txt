@@ -31,3 +31,5 @@ C:\Users\User\Documents\sadna\ForumBuilder\Tests\bin\Debug\Service.pdb
 C:\Users\User\Documents\sadna\ForumBuilder\Tests\obj\Debug\Tests.csprojResolveAssemblyReference.cache
 C:\Users\User\Documents\sadna\ForumBuilder\Tests\obj\Debug\Tests.dll
 C:\Users\User\Documents\sadna\ForumBuilder\Tests\obj\Debug\Tests.pdb
+C:\Users\User\Documents\sadna\ForumBuilder\Tests\bin\Debug\Database.exe
+C:\Users\User\Documents\sadna\ForumBuilder\Tests\bin\Debug\Database.pdb

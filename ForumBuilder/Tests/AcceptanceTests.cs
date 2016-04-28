@@ -10,8 +10,14 @@ namespace Tests
     [TestClass]
     public class AcceptanceTests
     {
-        
-
+        [TestMethod]
+        public void forGuy()
+        {
+            SuperUserManager superUser = SuperUserManager.getInstance;
+            superUser.initialize("guy", "AG36djs", "hello@dskkl.com");            
+            DemoDB db = DemoDB.getInstance;
+            db.clear();
+        }
         /*************************use case 2******************************/
 
         [TestMethod]
@@ -138,7 +144,6 @@ namespace Tests
             Service.SuperUserManager superUserMan = Service.SuperUserManager.getInstance;
 
             superUserMan.initialize("guy", "AG36djs", "hello@dskkl.com");
-            String adminName = "admin";
             List<String> adminList = new List<String>();
             adminList.Add("admin1");
             adminList.Add("admin2");
@@ -166,7 +171,7 @@ namespace Tests
             Service.UserManager userMan = Service.UserManager.getInstance;
 
             superUserMan.initialize("guy", "AG36djs", "hello@dskkl.com");
-            String adminName = "admin";
+            //String adminName = "admin";
             List<String> adminList = new List<String>();
             adminList.Add("admin1");
             adminList.Add("admin2");
