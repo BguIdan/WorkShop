@@ -3,8 +3,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ForumBuilder.Controllers;
 using System.Collections.Generic;
 using System.Linq;
-using ForumBuilder.BL_Back_End;
-using ForumBuilder.BL_DB;
+using BL_Back_End;
+using Database;
 using ForumBuilder.Systems;
 
 namespace Tests
@@ -41,7 +41,8 @@ namespace Tests
             adminList.Add("admin");
             this.forum = new Forum(this.forumName, "descr", "policy", "the first rule is that you do not talk about fight club", adminList);
             ISuperUserController superUser = SuperUserController.getInstance;
-            superUser1 = DemoDB.getInstance.getSuperUser("tomer");
+            superUser1 = 
+                DBClass.getInstance.getSuperUser("tomer");
             superUser.createForum("1", "1", "1", "1", null, "tomer");
             Assert.IsTrue(superUser.createForum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "tomer"));
             Assert.IsTrue(this.forumController.registerUser("admin", "adminpass", "admin@gmail.com", this.forumName));
@@ -55,7 +56,7 @@ namespace Tests
         [TestCleanup]
         public void cleanUp()
         {
-            DemoDB db = DemoDB.getInstance;
+            DBClass db = DBClass.getInstance;
             db.clear();
             this.forumController = null;
             this.forum = null;

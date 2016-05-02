@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using ForumBuilder.BL_DB;
 using System.Linq;
+using Database;
 
 namespace ForumBuilder.Controllers
 {
     public class SuperUserController : UserController, ISuperUserController
     {
         private static SuperUserController singleton;
-        DemoDB demoDB = DemoDB.getInstance;
+        DBClass DB = DBClass.getInstance;
         Systems.Logger logger = Systems.Logger.getInstance;
         
         public static SuperUserController getInstance
@@ -31,12 +31,12 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("cannot create new forum because one or more of the fields is empty");
                 return false;
             }
-            if (demoDB.getSuperUser(superUserName) == null)
+            if (DB.getSuperUser(superUserName) == null)
             {
                 logger.logPrint("create forum fail " + superUserName + " is not super user");
                 return false;
             }                
-            else if (demoDB.createForum(forumName, descrption, forumPolicy, forumRules, administrators))
+            else if (DB.createForum(forumName, descrption, forumPolicy, forumRules, administrators))
             {
                 logger.logPrint("Forum " + forumName + " creation success");
                 return true;
@@ -87,12 +87,12 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("error in email format");
                 return false;
             }
-            return demoDB.addSuperUser(email, password, userName);
+            return DB.addSuperUser(email, password, userName);
         }
 
         internal bool isSuperUser(string user)
         {
-            if (demoDB.getSuperUser(user) == null)
+            if (DB.getSuperUser(user) == null)
             {
                 return false;
             }

@@ -1,5 +1,5 @@
 ﻿using System;
-using ForumBuilder.BL_Back_End;
+using BL_Back_End;
 namespace ForumBuilder.Controllers
 {
     public interface ISubForumController

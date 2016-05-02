@@ -38,28 +38,30 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BL_Back_End\Message.cs" />
-    <Compile Include="BL_DB\DemoDB.cs" />
     <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\SubForumController.cs" />
     <Compile Include="Controllers\SuperUserController.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="BL_Back_End\Forum.cs" />
     <Compile Include="Controllers\IForumController.cs" />
     <Compile Include="Controllers\IPostController.cs" />
     <Compile Include="Controllers\ISubForumController.cs" />
-    <Compile Include="BL_Back_End\Post.cs" />
-    <Compile Include="BL_Back_End\SubForum.cs" />
-    <Compile Include="BL_Back_End\Thread.cs" />
     <Compile Include="Systems\ILogger.cs" />
     <Compile Include="Systems\ForumSystem.cs" />
     <Compile Include="Controllers\ISuperUserController.cs" />
     <Compile Include="Controllers\IUserController.cs" />
     <Compile Include="Systems\Logger.cs" />
-    <Compile Include="BL_Back_End\User.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\BL_Back_End\BL_Back_End.csproj">
+      <Project>{3ff8847a-b113-4c03-bed3-485dcaba2836}</Project>
+      <Name>BL_Back_End</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Database\Database.csproj">
+      <Project>{f9dd4028-a8e6-418d-b96b-6976d26e6aa4}</Project>
+      <Name>Database</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

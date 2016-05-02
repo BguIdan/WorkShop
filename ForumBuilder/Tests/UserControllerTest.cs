@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ForumBuilder.Controllers;
-using ForumBuilder.BL_DB;
-using ForumBuilder.BL_Back_End;
+using BL_Back_End;
 using ForumBuilder.Systems;
+using Database;
 
 namespace Tests
 {
@@ -40,7 +40,7 @@ namespace Tests
         [TestCleanup]
         public void cleanUp()
         {
-            DemoDB db = DemoDB.getInstance;
+            DBClass db = DBClass.getInstance;
             db.clear();
             this.forumController = null;
             this.userNonMember = null;

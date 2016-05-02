@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using ForumBuilder.BL_DB;
-
+using BL_Back_End;
+using Database;
 namespace ForumBuilder.Controllers
 {
     public class ForumController : IForumController
     {
         private static ForumController singleton;
-        DemoDB demoDB = DemoDB.getInstance;
+        DBClass DB = DBClass.getInstance;
         Systems.Logger logger = Systems.Logger.getInstance;
         public static ForumController getInstance
         {
@@ -24,22 +24,22 @@ namespace ForumBuilder.Controllers
 
         public bool addSubForum(string forumName, string name, Dictionary<String, DateTime> moderators, string userNameAdmin)
         {
-            if (demoDB.getUser(userNameAdmin) != null)
+            if (DB.getUser(userNameAdmin) != null)
             {
                 if (!isAdmin(userNameAdmin, forumName))
                 {
                     logger.logPrint("Add sub-forum failed, "+userNameAdmin+" is not an admin");
                     return false;
                 }
-                Forum forum = demoDB.getforumByName(forumName);
+                Forum forum = DB.getforumByName(forumName);
                 if (forum != null)
                 {
                     forum.subForums.Add(name);
                     SubForum subForum = new SubForum(name, forumName);
-                    demoDB.addSubForum(subForum);
+                    DB.addSubForum(subForum);
                     foreach (string s in moderators.Keys)
                     {
-                        if (demoDB.getUser(s) == null)
+                        if (DB.getUser(s) == null)
                         {
                             logger.logPrint("Add sub-forum failed, the moderator " + s + " is not member of forum"); 
                             return false;
@@ -71,8 +71,8 @@ namespace ForumBuilder.Controllers
 
         internal bool isMembersOfSameForum(string friendToAdd, string userName)
         {
-            if(demoDB.getForumByMember(friendToAdd)!=null&& demoDB.getForumByMember(userName) != null 
-                && demoDB.getForumByMember(friendToAdd).forumName.Equals(demoDB.getForumByMember(userName).forumName))
+            if(DB.getForumByMember(friendToAdd)!=null&& DB.getForumByMember(userName) != null 
+                && DB.getForumByMember(friendToAdd).forumName.Equals(DB.getForumByMember(userName).forumName))
             {
                 return true;
             }
@@ -86,14 +86,14 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Ban Member failed, " + bannedMember + " is not a member");
                 return false;
             }
-            else if(!isAdmin(bannerUserName, forumName)&& demoDB.getSuperUser(bannerUserName)==null)
+            else if(!isAdmin(bannerUserName, forumName)&& DB.getSuperUser(bannerUserName)==null)
             {
                 logger.logPrint("Ban Member failed, " + bannedMember + " is not a admin or super user");
                 return false;
             }
             else 
             {
-                return demoDB.banMember(bannedMember, bannerUserName, forumName);
+                return DB.banMember(bannedMember, bannerUserName, forumName);
             }
         }
 
@@ -104,20 +104,20 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Dismiss admin failed, " + adminToDismissed + " is not a admin");
                 return false;
             }
-            else if(demoDB.getSuperUser(dismissingUserName)==null)
+            else if(DB.getSuperUser(dismissingUserName)==null)
             {
                 logger.logPrint("Ban Member failed, " + dismissingUserName + " is not a super user");
                 return false;
             }
             else 
             {
-                return demoDB.dismissAdmin(adminToDismissed, forumName);
+                return DB.dismissAdmin(adminToDismissed, forumName);
             }           
         }
 
         public bool isAdmin(string userName, string forumName)
         {
-            Forum forum = demoDB.getforumByName(forumName);
+            Forum forum = DB.getforumByName(forumName);
             if (forum == null)
                 return false;
             foreach (string s in forum.administrators)
@@ -132,7 +132,7 @@ namespace ForumBuilder.Controllers
 
         public bool isMember(string userName, string forumName)
         {
-            Forum forum = demoDB.getforumByName(forumName);
+            Forum forum = DB.getforumByName(forumName);
             if (forum.members.Contains(userName))
             {
                 return true;
@@ -142,20 +142,20 @@ namespace ForumBuilder.Controllers
 
         public bool nominateAdmin(string newAdmin, string nominatorName, string forumName)
         {
-            if (demoDB.getforumByName(forumName).administrators.Contains(newAdmin))
+            if (DB.getforumByName(forumName).administrators.Contains(newAdmin))
             {
                 logger.logPrint("nominate admin fail, " + newAdmin + "is already admin");
                 return false;
             }
-            if (demoDB.getSuperUser(nominatorName) != null|| demoDB.getforumByName(forumName).administrators.Contains(nominatorName))
+            if (DB.getSuperUser(nominatorName) != null|| DB.getforumByName(forumName).administrators.Contains(nominatorName))
             {
                 if (this.isMember(newAdmin, forumName))
                 {
-                    if (demoDB.nominateAdmin(newAdmin, nominatorName, forumName))
+                    if (DB.nominateAdmin(newAdmin, nominatorName, forumName))
                     {
                         logger.logPrint("admin nominated successfully");
-                        if (demoDB.getforumByName(forumName).administrators.Contains(nominatorName))
-                            demoDB.dismissAdmin(nominatorName, forumName);
+                        if (DB.getforumByName(forumName).administrators.Contains(nominatorName))
+                            DB.dismissAdmin(nominatorName, forumName);
                         return true;
                     }
                     return false;
@@ -169,7 +169,7 @@ namespace ForumBuilder.Controllers
         
         public bool registerUser(string userName, string password, string mail, string forumName)
         {
-            Forum forum = demoDB.getforumByName(forumName);
+            Forum forum = DB.getforumByName(forumName);
             if (forum == null)
             {
                 logger.logPrint("Register user faild, the forum, "+ forumName+" does not exist");
@@ -177,12 +177,12 @@ namespace ForumBuilder.Controllers
             }
             if (userName.Length > 0 && password.Length > 0 && mail.Length > 0)
             {
-                if(demoDB.getUser(userName) !=null)
+                if(DB.getUser(userName) !=null)
                 {
                     logger.logPrint("Register user faild, "+userName+" is already taken");
                     return false;
                 }
-                if (demoDB.addUser(userName, password, mail))
+                if (DB.addUser(userName, password, mail))
                 {
                     forum.members.Add(userName);
                     return true;
@@ -196,7 +196,7 @@ namespace ForumBuilder.Controllers
         public Boolean setForumPreferences(String forumName, String newDescription, String newForumPolicy, String newForumRules, string setterUserName)
         {
             bool hasSucceed = false;
-            if (demoDB.getforumByName(forumName) == null)
+            if (DB.getforumByName(forumName) == null)
             {
                 logger.logPrint("Set forum preferences failed, Forum" + forumName + " do not exist");
             }
@@ -208,7 +208,7 @@ namespace ForumBuilder.Controllers
             {
                 logger.logPrint("Set forum preferences failed, one or more of the arguments is null");
             }
-            else if (demoDB.setForumPreferences(forumName, newDescription, newForumPolicy, newForumRules)) {
+            else if (DB.setForumPreferences(forumName, newDescription, newForumPolicy, newForumRules)) {
                 logger.logPrint(forumName + "preferences had changed successfully");
                 hasSucceed = true;
             }
@@ -217,17 +217,17 @@ namespace ForumBuilder.Controllers
 
         public String getForumPolicy(String forumName)
         {
-            return demoDB.getforumByName(forumName).forumPolicy;
+            return DB.getforumByName(forumName).forumPolicy;
         }
 
         public String getForumDescription(String forumName)
         {
-            return demoDB.getforumByName(forumName).description;
+            return DB.getforumByName(forumName).description;
         }
 
         public String getForumRules(String forumName)
         {
-            return demoDB.getforumByName(forumName).forumRules;
+            return DB.getforumByName(forumName).forumRules;
         }
     }
 }

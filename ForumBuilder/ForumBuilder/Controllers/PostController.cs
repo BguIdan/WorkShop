@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using ForumBuilder.BL_DB;
-using System.Linq;
 
+using System.Linq;
+using BL_Back_End;
+using Database;
 namespace ForumBuilder.Controllers
 {
     public class PostController :IPostController
     {
         private static PostController singleton;
-        DemoDB demoDB = DemoDB.getInstance;
+        DBClass DB = DBClass.getInstance;
         Systems.Logger logger = Systems.Logger.getInstance;
         public static PostController getInstance
         {
@@ -31,12 +32,12 @@ namespace ForumBuilder.Controllers
             {
                 p = getPost(p.parentId);
             }
-            Thread t= demoDB.getThreadByFirstPostId(p.id);
-            return demoDB.getSubforumByThreadFirstPostId(p.id);
+            Thread t= DB.getThreadByFirstPostId(p.id);
+            return DB.getSubforumByThreadFirstPostId(p.id);
         }
         private Post getPost(int postId)
         {
-            return demoDB.getPost(postId);
+            return DB.getPost(postId);
         }
 
         public Boolean addComment(String headLine, String content, String writerName, int commentedPost/*if new thread, -1*/)
@@ -52,7 +53,7 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Add comment failed, there is no head or content in tread");
                 return false;
             }
-            else if (demoDB.getUser(writerName) == null)
+            else if (DB.getUser(writerName) == null)
             {
                 logger.logPrint("Add comment failed, user does not exist");
                 return false;
@@ -64,9 +65,9 @@ namespace ForumBuilder.Controllers
             }
             else
             {
-                int id = demoDB.getAvilableIntOfPost();
+                int id = DB.getAvilableIntOfPost();
                 logger.logPrint("Create comment "+ id+" to "+commentedPost);
-                return demoDB.addPost(writerName, id, headLine, content, commentedPost, DateTime.Now);
+                return DB.addPost(writerName, id, headLine, content, commentedPost, DateTime.Now);
             }
         }
         public Boolean removeComment(int postId, String removerName)
@@ -83,8 +84,8 @@ namespace ForumBuilder.Controllers
                 return SubForumController.getInstance.deleteThread(postId, removerName);
             }
             SubForum sf = getSubforumByPost(postId);
-            if ((!demoDB.getPost(postId).writerUserName.Equals(removerName))
-                && (demoDB.getSuperUser(removerName)==null)
+            if ((!DB.getPost(postId).writerUserName.Equals(removerName))
+                && (DB.getSuperUser(removerName)==null)
                 && (!ForumController.getInstance.isAdmin(removerName, sf.forum)
                 && (!SubForumController.getInstance.isModerator(removerName, sf.name, sf.forum))))
             {
@@ -95,12 +96,12 @@ namespace ForumBuilder.Controllers
             //find the posts that have to delete
             List<Post> donePosts = new List<Post>();
             List<Post> undonePosts = new List<Post>();
-            undonePosts.Add(demoDB.getPost(postId));
+            undonePosts.Add(DB.getPost(postId));
             while (undonePosts.Count != 0)
             {
                 Post post = undonePosts.ElementAt(0);
                 undonePosts.RemoveAt(0);
-                List<Post> related = demoDB.getRelatedPosts(post.id);
+                List<Post> related = DB.getRelatedPosts(post.id);
                 while (related != null && related.Count != 0)
                 {
                     undonePosts.Add(related.ElementAt(0));
@@ -111,7 +112,7 @@ namespace ForumBuilder.Controllers
             bool hasSucceed = true;
             for (int i = donePosts.Count - 1; i >= 0; i--)
             {
-                hasSucceed = hasSucceed && demoDB.removePost(donePosts.ElementAt(i).id);
+                hasSucceed = hasSucceed && DB.removePost(donePosts.ElementAt(i).id);
                 logger.logPrint("Remove post " +donePosts.ElementAt(i).id);
             }
             return hasSucceed;
@@ -124,12 +125,12 @@ namespace ForumBuilder.Controllers
             {
                 List<Post> donePosts = new List<Post>();
                 List<Post> undonePosts = new List<Post>();
-                undonePosts.Add(demoDB.getPost(t));
+                undonePosts.Add(DB.getPost(t));
                 while (undonePosts.Count != 0)
                 {
                     Post post = undonePosts.ElementAt(0);
                     undonePosts.RemoveAt(0);
-                    List<Post> related = demoDB.getRelatedPosts(post.id);
+                    List<Post> related = DB.getRelatedPosts(post.id);
                     while (related != null && related.Count != 0)
                     {
                         undonePosts.Add(related.ElementAt(0));
