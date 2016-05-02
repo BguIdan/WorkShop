@@ -255,6 +255,7 @@ namespace Database
             }
             catch
             {
+                closeConnectionDB();
                 return forum;
             }
         }
@@ -300,6 +301,7 @@ namespace Database
             }
             catch 
             {
+                closeConnectionDB();
                 return forum;
             }
         }
@@ -340,6 +342,7 @@ namespace Database
             }
             catch
             {
+                closeConnectionDB();
                 return null;
             }
         }
@@ -350,66 +353,140 @@ namespace Database
             return true;
         }
 
-        public int getNextFreeMessageId()
-        {
-            int id = 0;/*
-            foreach (Message m in messages)
-            {
-                if (id <= m.id)
-                {
-                    id = m.id + 1;
-                }
-            }*/
-            return id;
-        }
-
         public bool changePolicy(string newPolicy, string forumName)
-        {/*
-            Forum forum = this.getforumByName(forumName);
-            forum.forumPolicy = newPolicy;*/
-            return true;
+        {
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "UPDATE forums SET forumPolicy="+newPolicy+" where forumName='"+forumName+"' )";
+                command.ExecuteNonQuery();
+                closeConnectionDB();
+                return true;
+            }
+            catch
+            {
+                closeConnectionDB();
+                return false;
+            }
         }
         public bool nominateAdmin(string newAdmin, string nominatorName, string forumName)
-        {/*
-            Forum forum = getforumByName(forumName);
-            forum.administrators.Add(newAdmin); */
-            return true;
+        {
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "insert into forumAdministrators (forumName,administratorName)" +
+                        "values(" + forumName + "," + newAdmin + ")";
+                command.ExecuteNonQuery();
+                closeConnectionDB();
+                return true;
+            }
+            catch
+            {
+                closeConnectionDB();
+                return false;
+            }
         }
         public User getSuperUser(string userName)
-        {/*
-            foreach (User superUser in superUsers)
+        {
+            User user = null;
+            try
             {
-                if (superUser.userName.Equals(userName))
-                    return superUser;
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "Select * from superUsers where superUserName='" + userName + "'";
+                OleDbDataReader reader = command.ExecuteReader();
+                int count = 0;
+                while (reader.Read())
+                {
+                    count++;
+                }
+                if (count == 1)
+                {
+                    OleDbCommand command2 = new OleDbCommand();
+                    command2.Connection = connection;
+                    command2.CommandText = "Select * from users where userName='" + userName + "'";
+                    OleDbDataReader reader2 = command2.ExecuteReader();
+                    user = new User(reader2.GetString(0), reader2.GetString(1), reader2.GetString(2));
+                    closeConnectionDB();
+                    return user;
+                }
+                else
+                {
+                    //not exist
+                    closeConnectionDB();
+                    return user;
+                }
             }
-            */
+            catch
+            {
+                closeConnectionDB();
+                return user;
+            }
             return null;
         }
         public bool dismissAdmin(string adminToDismissed, string forumName)
-        {/*
-            Forum forum = getforumByName(forumName);
-            forum.administrators.Remove(adminToDismissed); */
-            return true;
+        {
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "delete from forumAdministrators where subForumModerators.forumName='"
+                + forumName + "'and forumAdministrators.AdministratorName='" + adminToDismissed+ "'";
+                command.ExecuteNonQuery();
+                //admin removed
+                closeConnectionDB();
+                return true;
+            }
+            catch
+            {
+                closeConnectionDB();
+                return false;
+            }
         }
         public User getUser(string userName)
-        {/*
-            for (int i = 0; i < users.Count; i++)
+        {
+            User user = null;
+            try
             {
-                if ((users.ElementAt(i)).userName.Equals(userName))
-                    return users.ElementAt(i);
+                OpenConnectionDB();
+                OleDbCommand command2 = new OleDbCommand();
+                command2.Connection = connection;
+                command2.CommandText = "Select * from users where userName='" + userName + "'";
+                OleDbDataReader reader2 = command2.ExecuteReader();
+                user = new User(reader2.GetString(0), reader2.GetString(1), reader2.GetString(2));
+                closeConnectionDB();
+                return user;
             }
-            */
-            return null;
+            catch
+            {
+                closeConnectionDB();
+                return user;
+            }
         }
-        public Boolean addUser(string userName, string password, string mail)
-        {/*
-            foreach (User u in users)
+        public Boolean addUser(string userName, string password, string email)
+        {
+            try
             {
-                if (u.userName.Equals(userName))
-                    return false;
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "insert into users (userName,password,email)" +
+                        "values(" + userName+","+password + "," +email + ")";
+                command.ExecuteNonQuery();
+                closeConnectionDB();
+                return true;
             }
-            users.Add(new User(userName, password, mail));*/
-            return true;
+            catch
+            {
+                closeConnectionDB();
+                return false;
+            }
         }
         public Boolean createForum(string forumName, string descrption, string forumPolicy, string forumRules, List<string> administrators)
         {/*
