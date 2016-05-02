@@ -68,6 +68,7 @@
     <ProjectReference Include="..\Database\Database.csproj">
       <Project>{f9dd4028-a8e6-418d-b96b-6976d26e6aa4}</Project>
       <Name>Database</Name>
+	</ProjectReference>
     <ProjectReference Include="..\Common\ForumBuilder.common.csproj">
       <Project>{db6f5ffc-3837-455b-a666-3c117c130995}</Project>
       <Name>ForumBuilder.common</Name>
