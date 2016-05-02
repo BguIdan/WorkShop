@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ForumBuilder.Controllers;
+using ForumBuilder.Common.ServiceContracts;
+
 namespace Service
 {
     public class UserManager :IUserManager
