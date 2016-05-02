@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BL_Back_End;
 
 namespace PL
 {
@@ -19,9 +20,13 @@ namespace PL
     /// </summary>
     public partial class ForumWindow : Window
     {
-        public ForumWindow()
+        //private Forum _forum;
+
+        public ForumWindow(string forumName)
         {
             InitializeComponent();
+            //_forum = getforum;
+            forumName.Content = forumName;
         }
 
         private void DataGrid_Loaded(object sender, RoutedEventArgs e)

@@ -20,11 +20,12 @@
                 </MenuItem>
             </Menu>
         </DockPanel>
-        <TextBlock FontSize="20" FontFamily="Broadway" TextWrapping="Wrap" VerticalAlignment="Top"
-            	Text="Sub-Forums " Visibility="Visible" Height="32" Margin="127,39,127,0"
-            	RenderTransformOrigin="0.78,0.757" Width="138"/>
-        <DataGrid x:Name="couponsView" HorizontalAlignment="Left" 
-                  AutoGenerateColumns="True" Margin="23,80,0,0" VerticalAlignment="Top" 
-                  Height="265" Width="341" SelectionChanged="DataGrid_SelectionChanged" Loaded="DataGrid_Loaded"/>
+        <Label Content="ForumName:"  Name="forumName" FontFamily="Cooper Black" HorizontalAlignment="Left" Margin="25,43,0,0" VerticalAlignment="Top" Width="341" Height="23"/>
+        <TextBlock FontSize="16" FontFamily="Broadway" TextWrapping="Wrap" VerticalAlignment="Top"
+            	Text="Sub-Forums " Visibility="Visible" Height="32" Margin="140,88,140,0"
+            	RenderTransformOrigin="0.78,0.757"/>
+        <DataGrid x:Name="couponsView" 
+                  AutoGenerateColumns="True" Margin="25,136,26,0" VerticalAlignment="Top" 
+                  Height="209" SelectionChanged="DataGrid_SelectionChanged" Loaded="DataGrid_Loaded"/>
     </Grid>
 </Window>

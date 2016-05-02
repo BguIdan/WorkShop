@@ -75,5 +75,10 @@ namespace BL_Back_End
                 _members = value;
             }
         }
+        
+        public static int Main(string[] args)
+        {
+            return -1;
+        }
     }
 }
