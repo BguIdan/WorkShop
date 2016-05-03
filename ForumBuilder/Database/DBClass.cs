@@ -72,9 +72,9 @@ namespace Database
             OpenConnectionDB();
             OleDbCommand command = new OleDbCommand();
             command.Connection = connection;
-            command.CommandText = "Select * from forumMembers,users where users.userName='"
-                +userName+"' and user.userName=forumMembers.memberName and users.password='"
-                +password+"' and forumMembers.forumName='"+forumName+ "' and forumMembers.isConnected=False";
+            command.CommandText = "SELECT  * FROM  members,users where users.userName='"
+                + userName+ "' and user.userName=members.memberName and users.password='"
+                + password+ "' and members.forumName='" + forumName+ "' and members.isConnected=False";
             OleDbDataReader reader = command.ExecuteReader();
             int count = 0;
             while (reader.Read())
@@ -103,7 +103,7 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "Select * from subForumModerators where subForumModerators.forumName='"
+                command.CommandText = "SELECT  * FROM  subForumModerators where subForumModerators.forumName='"
                     + forumName + "' and subForumModerators.subForumName='" + subForumName + "'and subForumModerators.moderatorName='"
                     + dismissedModerator + "'";
                 OleDbDataReader reader = command.ExecuteReader();
@@ -116,7 +116,7 @@ namespace Database
                 {
                     OleDbCommand command2 = new OleDbCommand();
                     command2.Connection = connection;
-                    command2.CommandText = "delete from subForumModerators where subForumModerators.forumName='"
+                    command2.CommandText = "DELETE  FROM  subForumModerators where subForumModerators.forumName='"
                     + forumName + "' and subForumModerators.subForumName='" + subForumName + "'and subForumModerators.moderatorName='"
                     + dismissedModerator + "'";
                     command.ExecuteNonQuery();
@@ -144,7 +144,7 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "Select * from users where users.userName='" + userName + "'";
+                command.CommandText = "SELECT  * FROM  users where users.userName='" + userName + "'";
                 OleDbDataReader reader = command.ExecuteReader();
                 int count = 0;
                 while (reader.Read())
@@ -155,11 +155,11 @@ namespace Database
                 {
                     OleDbCommand command2 = new OleDbCommand();
                     command2.Connection = connection;
-                    command2.CommandText = "insert into users (userName,password,email) values(" + userName + "," + password + "," + email + ")";
+                    command2.CommandText = "INSERT INTO users (userName,password,email) values(" + userName + "," + password + "," + email + ")";
                     command2.ExecuteNonQuery();
                     OleDbCommand command3 = new OleDbCommand();
                     command3.Connection = connection;
-                    command3.CommandText = "insert into superUsers (superUserName) values(" + userName + ")";
+                    command3.CommandText = "INSERT INTO superUsers (superUserName) values(" + userName + ")";
                     command3.ExecuteNonQuery();
                     //added
                     closeConnectionDB();
@@ -185,7 +185,7 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "Select * from users where subForumModerators.subForumName='" + subForumName + "'" +
+                command.CommandText = "SELECT  * FROM  users where subForumModerators.subForumName='" + subForumName + "'" +
                     " and subForumModerators.forumName='" + forumName + "'" +
                     " and subForumModerators.moderatorName = '" + newModerator + "'";
                 OleDbDataReader reader = command.ExecuteReader();
@@ -198,7 +198,7 @@ namespace Database
                 {
                     OleDbCommand command2 = new OleDbCommand();
                     command2.Connection = connection;
-                    command2.CommandText = "insert into subForumModerators (subForumName,forumName,moderatorName,endTermOfOffice)"+
+                    command2.CommandText = "INSERT INTO subForumModerators (subForumName,forumName,moderatorName,endTermOfOffice)" +
                         "values(" + subForumName + "," + forumName + "," + newModerator+","+ date.Day + "/" + date.Month + "/" + date.Year + ")";
                     command2.ExecuteNonQuery();
                     //added
@@ -225,7 +225,7 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "Select * from forums where forums.forumName='" + forumName+ "'";
+                command.CommandText = "SELECT  * FROM  forums where forums.forumName='" + forumName+ "'";
                 OleDbDataReader reader = command.ExecuteReader();
                 int count = 0;
                 while (reader.Read())
@@ -238,7 +238,7 @@ namespace Database
                     reader.Read();
                     OleDbCommand command2 = new OleDbCommand();
                     command2.Connection = connection;
-                    command2.CommandText = "Select * from forums where forumAdministartors.forumName='" + forumName + "'";
+                    command2.CommandText = "SELECT  * FROM  forums where forumAdministartors.forumName='" + forumName + "'";
                     OleDbDataReader reader2 = command2.ExecuteReader();
                     List<String> administrators = new List<String>();
                     while (reader2.Read())
@@ -261,7 +261,8 @@ namespace Database
                 return forum;
             }
         }
-        public Forum getForumByMember(string userName)
+
+        /*public Forum getForumByMember(string userName)
         {
             Forum forum = null;
             try
@@ -269,7 +270,7 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "Select * from forums where users.userName='" + userName + "' and users.forumName=forums.forumName";
+                command.CommandText = "SELECT  * FROM  forums where users.userName='" + userName + "' and users.forumName=forums.forumName";
                 OleDbDataReader reader = command.ExecuteReader();
                 int count = 0;
                 String forumName="";
@@ -284,7 +285,7 @@ namespace Database
                     reader.Read();
                     OleDbCommand command2 = new OleDbCommand();
                     command2.Connection = connection;
-                    command2.CommandText = "Select * from forums where forumAdministartors.forumName='" + forumName + "'";
+                    command2.CommandText = "SELECT  * FROM  forums where forumAdministartors.forumName='" + forumName + "'";
                     OleDbDataReader reader2 = command2.ExecuteReader();
                     List<String> administrators = new List<String>();
                     while (reader2.Read())
@@ -306,14 +307,14 @@ namespace Database
                 closeConnectionDB();
                 return forum;
             }
-        }
+        }*/
         public bool addMessage(string sender, string reciver, string content)
         {
             try
             {
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "insert into subForumModerators (sender,reciver,content)" +
+                command.CommandText = "INSERT INTO subForumModerators (sender,reciver,content)" +
                     "values(" + sender + "," + reciver + "," + content + ")";
                 command.ExecuteNonQuery();
                 //added
@@ -332,7 +333,7 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "Select * from friendOf where friendOf.userName='" + userName+ "'";
+                command.CommandText = "SELECT  * FROM  friendOf where friendOf.userName='" + userName+ "'";
                 OleDbDataReader reader = command.ExecuteReader();
                 List<String> friends = new List<String>();
                 while (reader.Read())
@@ -348,14 +349,26 @@ namespace Database
                 return null;
             }
         }
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public bool banMember(string bannedMember, string bannerUserName, string forumName)
-        {/*
-            Forum forum = this.getforumByName(forumName);
-            forum.members.Remove(bannedMember);*/
-            return true;
+        public bool banMember(string bannedMember, string forumName)
+        {
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "DELETE  FROM  members where userName='" + bannedMember+
+                    "' and forumName='" + forumName + "'";
+                command.ExecuteNonQuery();
+                //member removed
+                closeConnectionDB();
+                return true;
+            }
+            catch
+            {
+                closeConnectionDB();
+                return false;
+            }
         }
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////
         public bool changePolicy(string newPolicy, string forumName)
         {
             try
@@ -381,7 +394,7 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "insert into forumAdministrators (forumName,administratorName)" +
+                command.CommandText = "INSERT INTO forumAdministrators (forumName,administratorName)" +
                         "values(" + forumName + "," + newAdmin + ")";
                 command.ExecuteNonQuery();
                 closeConnectionDB();
@@ -401,7 +414,7 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "Select * from superUsers where superUserName='" + userName + "'";
+                command.CommandText = "SELECT  * FROM  superUsers where superUserName='" + userName + "'";
                 OleDbDataReader reader = command.ExecuteReader();
                 int count = 0;
                 while (reader.Read())
@@ -412,7 +425,7 @@ namespace Database
                 {
                     OleDbCommand command2 = new OleDbCommand();
                     command2.Connection = connection;
-                    command2.CommandText = "Select * from users where userName='" + userName + "'";
+                    command2.CommandText = "SELECT  * FROM  users where userName='" + userName + "'";
                     OleDbDataReader reader2 = command2.ExecuteReader();
                     user = new User(reader2.GetString(0), reader2.GetString(1), reader2.GetString(2));
                     closeConnectionDB();
@@ -438,7 +451,7 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "delete from forumAdministrators where subForumModerators.forumName='"
+                command.CommandText = "DELETE  FROM  forumAdministrators where subForumModerators.forumName='"
                 + forumName + "'and forumAdministrators.AdministratorName='" + adminToDismissed+ "'";
                 command.ExecuteNonQuery();
                 //admin removed
@@ -459,8 +472,9 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command2 = new OleDbCommand();
                 command2.Connection = connection;
-                command2.CommandText = "Select * from users where userName='" + userName + "'";
+                command2.CommandText = "SELECT  * FROM  users where userName='" + userName + "'";
                 OleDbDataReader reader2 = command2.ExecuteReader();
+                reader2.Read();
                 user = new User(reader2.GetString(0), reader2.GetString(1), reader2.GetString(2));
                 closeConnectionDB();
                 return user;
@@ -478,7 +492,7 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "insert into users (userName,password,email) " +
+                command.CommandText = "INSERT INTO users (userName,password,email) " +
                         "values(" + userName+","+password + "," +email + ")";
                 command.ExecuteNonQuery();
                 closeConnectionDB();
@@ -490,6 +504,72 @@ namespace Database
                 return false;
             }
         }
+        public Boolean addMemberToForum(string userName, string forumName)
+        {
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "INSERT INTO members (userName,forumName) " +
+                        "values(" + userName + "," + forumName  + ")";
+                command.ExecuteNonQuery();
+                closeConnectionDB();
+                return true;
+            }
+            catch
+            {
+                closeConnectionDB();
+                return false;
+            }
+        }
+        public List<string> getMembersOfForum(string forumName)
+        {
+            List<string> users = new List<string>();
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "SELECT  * FROM  members where forumName='" + forumName + "'";
+                OleDbDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    users.Add(reader.GetString(0));
+                }
+                closeConnectionDB();
+                return users;
+            }
+            catch
+            {
+                closeConnectionDB();
+                return null;
+            }
+        }
+        public List<string> getSimularForumsOf2users(string userName1, string userName2)
+        {
+            List<string> forums = new List<string>();
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "SELECT  * FROM  members AS m1,members AS m2 where m1.forumName=m2.forumName'" +
+                    " and m1.userName='"+ userName1+ "' and m2.userName='" + userName2 + "'";
+                OleDbDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    forums.Add(reader.GetString(1));
+                }
+                closeConnectionDB();
+                return forums;
+            }
+            catch
+            {
+                closeConnectionDB();
+                return null;
+            }
+        }
         public Boolean createForum(string forumName, string descrption, string forumPolicy, string forumRules, List<string> administrators)
         {
             try
@@ -497,14 +577,14 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "insert into forums (forumName, descrption, forumPolicy, forumRules) " +
+                command.CommandText = "INSERT INTO forums (forumName, descrption, forumPolicy, forumRules) " +
                         "values(" + forumName+","+ descrption + "," + forumPolicy + "," + forumRules +")";
                 command.ExecuteNonQuery();
                 OleDbCommand command2 = new OleDbCommand();
                 command2.Connection = connection;
                 foreach (string admin in administrators)
                 {
-                    command2.CommandText = "insert into forumadminstrators (forumName, administratorsName)" +
+                    command2.CommandText = "INSERT INTO forumadminstrators (forumName, administratorsName)" +
                             "values(" + forumName + "," + admin+ ")";
                     command2.ExecuteNonQuery();
                 }
@@ -542,7 +622,7 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "insert into friendOf (userName, friendName)" +
+                command.CommandText = "INSERT INTO friendOf (userName, friendName)" +
                         "values(" + userName+ "," + friendToAddName + ")";
                 command.ExecuteNonQuery();
                 closeConnectionDB();
@@ -561,7 +641,7 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "delete from friendOf where userName='"+userName+
+                command.CommandText = "DELETE  from friendOf where userName='" + userName+
                     ", friendName='"+ deletedFriendName + "')";
                 command.ExecuteNonQuery();
                 closeConnectionDB();
@@ -581,13 +661,13 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "Select * from subForums where subForums.forumName='" + forumName + "' and "+
+                command.CommandText = "SELECT  * FROM  subForums where subForums.forumName='" + forumName + "' and "+
                     "subForums.subForumName = '" + subForumName+ "'";
                 OleDbDataReader reader = command.ExecuteReader();
                 reader.Read();
                 OleDbCommand command2 = new OleDbCommand();
                 command2.Connection = connection;
-                command2.CommandText = "Select * from forums where subForumModerators.forumName='" + forumName + "' and "+
+                command2.CommandText = "SELECT  * FROM  forums where subForumModerators.forumName='" + forumName + "' and "+
                     "subForumModerators.subForumName='" + subForumName + "'";
                 OleDbDataReader reader2 = command2.ExecuteReader();
                 subForum = new SubForum(reader.GetString(0), reader.GetString(1));
@@ -612,7 +692,7 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "Select * from messages";
+                command.CommandText = "SELECT  * FROM  messages";
                 OleDbDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
@@ -635,7 +715,7 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "insert into subForums (subForumName,forumName) " +
+                command.CommandText = "INSERT INTO subForums (subForumName,forumName) " +
                         "values("+subForumName +","+ forumName + ")";
                 command.ExecuteNonQuery();
                 closeConnectionDB();
@@ -655,7 +735,7 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "Select * from posts where postID='" + postId + "'";
+                command.CommandText = "SELECT  * FROM  posts where postID='" + postId + "'";
                 OleDbDataReader reader = command.ExecuteReader();
                 reader.Read();
                 post = new Post(reader.GetString(1), reader.GetInt32(0), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), DateTime.Parse(reader.GetDateTime(5).ToString("dd MM yyyy")));
@@ -681,7 +761,7 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "Select * from posts where parentPostID='" + postId + "'";
+                command.CommandText = "SELECT  * FROM  posts where parentPostID='" + postId + "'";
                 OleDbDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
@@ -720,7 +800,7 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "Select * from threads where firstMessageId='" + id + "'";
+                command.CommandText = "SELECT  * FROM  threads where firstMessageId='" + id + "'";
                 OleDbDataReader reader = command.ExecuteReader();
                 reader.Read();
                 String sfName = reader.GetString(1);
@@ -742,7 +822,7 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "Select * from posts where postID='" + postId + "'";
+                command.CommandText = "SELECT  * FROM  posts where postID='" + postId + "'";
                 OleDbDataReader reader = command.ExecuteReader();
                 reader.Read();
                 thread = new Thread( new Post(reader.GetString(1), reader.GetInt32(0), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), DateTime.Parse(reader.GetDateTime(5).ToString("dd MM yyyy"))));
@@ -763,7 +843,7 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "insert into threads (firstMessageId,subForumName, forumName)" +
+                command.CommandText = "INSERT INTO threads (firstMessageId,subForumName, forumName)" +
                         "values(" + firstMessageId + "," + subForumName + "," + forumName + ")";
                 command.ExecuteNonQuery();
                 closeConnectionDB();
@@ -782,7 +862,7 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "insert into posts (postID,writerUserName, title,content,parentPostID,publishTime)" +
+                command.CommandText = "INSERT INTO posts (postID,writerUserName, title,content,parentPostID,publishTime)" +
                         "values(" + postID + "," + writerUserName + "," + headLine + "," + content + "," + parentId +"," +
                         timePublished.Day + "/" + timePublished.Month + "/" + timePublished.Year + ")";
                 command.ExecuteNonQuery();
@@ -803,7 +883,7 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "delete from theards where firstMessageId='" + id + "'";
+                command.CommandText = "DELETE  FROM  theards where firstMessageId='" + id + "'";
                 command.ExecuteNonQuery();
                 closeConnectionDB();
                 return true;
@@ -821,7 +901,7 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "delete from posts where PostID='"+ id+ "'";
+                command.CommandText = "DELETE  from posts where PostID='" + id+ "'";
                 command.ExecuteNonQuery();
                 closeConnectionDB();
                 if (maxNotAvailable == id)
@@ -845,16 +925,17 @@ namespace Database
             {
                 OpenConnectionDB();
                 List<String> commands = new List<string>();
-                commands.Add("delete from forumadministrators");
-                commands.Add("delete from messages");
-                commands.Add("delete from friendOf");
-                commands.Add("delete from subForumModerators");
-                commands.Add("delete from theards");
-                commands.Add("delete from posts");
-                commands.Add("delete from subForums");
-                commands.Add("delete from superUsers");
-                commands.Add("delete from Users");
-                commands.Add("delete from forums");
+                commands.Add("DELETE  from members");
+                commands.Add("DELETE  from forumadministrators");
+                commands.Add("DELETE  from messages");
+                commands.Add("DELETE  from friendOf");
+                commands.Add("DELETE  from subForumModerators");
+                commands.Add("DELETE  from theards");
+                commands.Add("DELETE  from posts");
+                commands.Add("DELETE  from subForums");
+                commands.Add("DELETE  from superUsers");
+                commands.Add("DELETE  from Users");
+                commands.Add("DELETE  from forums");
 
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
