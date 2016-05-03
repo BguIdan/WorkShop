@@ -22,15 +22,27 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
-      
+        // TODO: know Forum!!! or Forum name
+        //private List<Forum> _forumsList;
+        private List<string> _forumsList;
+        private String _choosenForum;
+
         public MainWindow()
         {
+            InitializeComponent();
+            for (int i = 0; i < _forumsList.Count; i++)
+            {
+                ComboBoxItem newItem = new ComboBoxItem();
+                // TODO: insert all forums names to the combo box list
+                //newItem.Content = _forumsList.ElementAt(i).Name;
+                comboBox.Items.Add(newItem);
+            }
             this.Show(); 
         }
 
         private void LoginPressed(object sender, RoutedEventArgs e)
         {
-            /* validate input */
+            /* TODO: validate input is it enough? */
 
             string userName = ID.Text;
             string pass = Password.Password;
@@ -39,9 +51,11 @@ namespace PL
                 MessageBox.Show("Invalid Input");
                 return;
             }
-            if (/*login()*/true)
+            if (_choosenForum != null)
             {
-
+                ForumWindow fw = new ForumWindow(_choosenForum);
+                this.Close();
+                fw.ShowDialog();
             }
             else
             {
@@ -53,16 +67,25 @@ namespace PL
 
         private void ForgorPasswordPressed(object sender, RoutedEventArgs e)
         {
-            RestorePasswordWindow rpw = new RestorePasswordWindow(itsUserBL);
+            // TODO: know the user class
+            // RestorePasswordWindow rpw = new RestorePasswordWindow(itsUserBL);
+            RestorePasswordWindow rpw = new RestorePasswordWindow();
             this.Close();
             rpw.ShowDialog();
         }
 
         private void SignUpUser(object sender, RoutedEventArgs e)
         {
-            SignUpWindow suw = new SignUpWindow(itsUserBL, iDAL, itsAdminBL);
+            // TODO: know the admin and user class and create new one in the data base
+            // SignUpWindow suw = new SignUpWindow(itsUserBL, iDAL, itsAdminBL);
+            SignUpWindow suw = new SignUpWindow();
             this.Close();
             suw.ShowDialog();
+        }
+
+        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _choosenForum = comboBox.SelectedItem.ToString();
         }
 
     }

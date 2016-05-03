@@ -62,6 +62,12 @@
     <Compile Include="SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SubForumWindow.xaml.cs">
+      <DependentUpon>SubForumWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SuperUserWindow.xaml.cs">
+      <DependentUpon>SuperUserWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserWindow.xaml.cs">
       <DependentUpon>UserWindow.xaml</DependentUpon>
     </Compile>
@@ -95,6 +101,14 @@
     <Page Include="SignUpWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SubForumWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SuperUserWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

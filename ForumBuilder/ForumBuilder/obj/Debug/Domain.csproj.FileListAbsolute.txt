@@ -20,3 +20,4 @@ C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\obj\Debug\Domain.csprojR
 C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\obj\Debug\ForumBuilder.exe
 C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\obj\Debug\ForumBuilder.pdb
 D:\Idan\Workshop\WorkShop.git\ForumBuilder\ForumBuilder\obj\Debug\Domain.csprojResolveAssemblyReference.cache
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\ForumBuilder\bin\Debug\ForumBuilder.exe.config
