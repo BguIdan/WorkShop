@@ -69,8 +69,8 @@ namespace ForumBuilder.Controllers
 
         internal bool isMembersOfSameForum(string friendToAdd, string userName)
         {
-            if(DB.getForumByMember(friendToAdd)!=null&& DB.getForumByMember(userName) != null 
-                && DB.getForumByMember(friendToAdd).forumName.Equals(DB.getForumByMember(userName).forumName))
+            if(DB.getSimularForumsOf2users(friendToAdd,userName)!=null&&
+                DB.getSimularForumsOf2users(friendToAdd,userName).Count>0)  
             {
                 return true;
             }
@@ -91,7 +91,7 @@ namespace ForumBuilder.Controllers
             }
             else 
             {
-                return DB.banMember(bannedMember, bannerUserName, forumName);
+                return DB.banMember(bannedMember, forumName);
             }
         }
 
@@ -131,7 +131,12 @@ namespace ForumBuilder.Controllers
         public bool isMember(string userName, string forumName)
         {
             Forum forum = DB.getforumByName(forumName);
-            if (forum.members.Contains(userName))
+            List<string> users= DB.getMembersOfForum(forumName);
+            if (users == null)
+            {
+                return false;
+            }
+            if (users.Contains(userName))
             {
                 return true;
             }
@@ -167,8 +172,7 @@ namespace ForumBuilder.Controllers
         
         public bool registerUser(string userName, string password, string mail, string forumName)
         {
-            Forum forum = DB.getforumByName(forumName);
-            if (forum == null)
+            if (DB.getforumByName(forumName) == null)
             {
                 logger.logPrint("Register user faild, the forum, "+ forumName+" does not exist");
                 return false;
@@ -182,7 +186,7 @@ namespace ForumBuilder.Controllers
                 }
                 if (DB.addUser(userName, password, mail))
                 {
-                    forum.members.Add(userName);
+                    DB.addMemberToForum(userName,forumName);
                     return true;
                 }
                 return false;
