@@ -34,9 +34,7 @@ namespace ForumBuilder.Controllers
                 Forum forum = DB.getforumByName(forumName);
                 if (forum != null)
                 {
-                    forum.subForums.Add(name);
-                    SubForum subForum = new SubForum(name, forumName);
-                    DB.addSubForum(subForum);
+                    DB.addSubForum(name, forumName);
                     foreach (string s in moderators.Keys)
                     {
                         if (DB.getUser(s) == null)
@@ -51,7 +49,7 @@ namespace ForumBuilder.Controllers
                         moderators.TryGetValue(s, out date);
                         if (date > DateTime.Now)
                         {
-                            subForum.moderators.Add(s, date);
+                            DB.nominateModerator(s, date, name, forumName);
                         }
                         else
                         {

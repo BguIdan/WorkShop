@@ -10,6 +10,8 @@ namespace Database
 {
     public class DBClass
     {
+        private static List<int> avilabelPostIDs = new List<int>();
+        private static int maxNotAvailable = -1;
         private static DBClass singleton;
         OleDbConnection connection;
         static void Main(string[] args)
@@ -176,7 +178,7 @@ namespace Database
             }
             
         }
-        public bool nominateModerator(string newModerator, string nominatorUser, DateTime date, string subForumName, string forumName)
+        public bool nominateModerator(string newModerator, DateTime date, string subForumName, string forumName)
         {
             try
             {
@@ -346,13 +348,14 @@ namespace Database
                 return null;
             }
         }
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////
         public bool banMember(string bannedMember, string bannerUserName, string forumName)
         {/*
             Forum forum = this.getforumByName(forumName);
             forum.members.Remove(bannedMember);*/
             return true;
         }
-
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////
         public bool changePolicy(string newPolicy, string forumName)
         {
             try
@@ -476,7 +479,7 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "insert into users (userName,password,email)" +
+                command.CommandText = "insert into users (userName,password,email) " +
                         "values(" + userName+","+password + "," +email + ")";
                 command.ExecuteNonQuery();
                 closeConnectionDB();
@@ -489,180 +492,386 @@ namespace Database
             }
         }
         public Boolean createForum(string forumName, string descrption, string forumPolicy, string forumRules, List<string> administrators)
-        {/*
-            Forum newForum = new Forum(forumName, descrption, forumPolicy, forumRules, administrators);
-            forums.Add(newForum); */
-            return true;
+        {
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "insert into forums (forumName, descrption, forumPolicy, forumRules) " +
+                        "values(" + forumName+","+ descrption + "," + forumPolicy + "," + forumRules +")";
+                command.ExecuteNonQuery();
+                OleDbCommand command2 = new OleDbCommand();
+                command2.Connection = connection;
+                foreach (string admin in administrators)
+                {
+                    command2.CommandText = "insert into forumadminstrators (forumName, administratorsName)" +
+                            "values(" + forumName + "," + admin+ ")";
+                    command2.ExecuteNonQuery();
+                }
+                closeConnectionDB();
+                return true;
+            }
+            catch
+            {
+                closeConnectionDB();
+                return false;
+            }
         }
         public Boolean setForumPreferences(String forumName, String newDescription, String newForumPolicy, String newForumRules)
         {
-            bool isChanged = false;
-            /*for (int i = 0; i < forums.Count() && !isChanged; i++)
+            try
             {
-                if (forums[i].forumName.Equals(forumName))
-                {
-                    forums[i].description = newDescription;
-                    forums[i].forumPolicy = newForumPolicy;
-                    forums[i].forumRules = newForumRules;
-                    isChanged = true;
-                }
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "UPDATE forums SET forumPolicy=" + newForumPolicy + ", description = " + newDescription + ", forumRules = " + newForumRules +" where forumName='" + forumName + "' )";
+                command.ExecuteNonQuery();
+                closeConnectionDB();
+                return true;
             }
-            */
-            return isChanged;
+            catch
+            {
+                closeConnectionDB();
+                return false;
+            }
         }
         public bool addFriendToUser(string userName, string friendToAddName)
         {
-            /*
-            User user = getUser(userName);
-            if (user.friends.Contains(friendToAddName))
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "insert into friendOf (userName, friendName)" +
+                        "values(" + userName+ "," + friendToAddName + ")";
+                command.ExecuteNonQuery();
+                closeConnectionDB();
+                return true;
+            }
+            catch
+            {
+                closeConnectionDB();
                 return false;
-            user.friends.Add(friendToAddName);*/
-            return true;
+            }
         }
         public bool removeFriendOfUser(string userName, string deletedFriendName)
         {
-            /*
-            User user = getUser(userName);
-            user.friends.Remove(deletedFriendName);*/
-            return true;
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "delete from friendOf where userName='"+userName+
+                    ", friendName='"+ deletedFriendName + "')";
+                command.ExecuteNonQuery();
+                closeConnectionDB();
+                return true;
+            }
+            catch
+            {
+                closeConnectionDB();
+                return false;
+            }
         }
         public SubForum getSubForum(string subForumName, string forumName)
-        {/*
-            foreach (Forum f in forums)
+        {
+            SubForum subForum = null;
+            try
             {
-                if (f.forumName.Equals(forumName))
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "Select * from subForums where subForums.forumName='" + forumName + "' and "+
+                    "subForums.subForumName = '" + subForumName+ "'";
+                OleDbDataReader reader = command.ExecuteReader();
+                reader.Read();
+                OleDbCommand command2 = new OleDbCommand();
+                command2.Connection = connection;
+                command2.CommandText = "Select * from forums where subForumModerators.forumName='" + forumName + "' and "+
+                    "subForumModerators.subForumName='" + subForumName + "'";
+                OleDbDataReader reader2 = command2.ExecuteReader();
+                subForum = new SubForum(reader.GetString(0), reader.GetString(1));
+                while (reader2.Read())
                 {
-                    foreach (SubForum sf in subForums)
-                    {
-                        if (sf.name.Equals(subForumName))
-                            return sf;
-                    }
+                    subForum.moderators.Add(reader2.GetString(2), DateTime.Parse(reader2.GetDateTime(3).ToString("dd MM yyyy")));
                 }
-            }*/
-            return null;
-        }
-        /*public List<Message> Messages
-        {
-            get { return messages; }
-        }*/
-        public Boolean addSubForum(SubForum subForum)
-        {
-            /*
-            foreach (SubForum sf in subForums)
-            {
-                if (sf.name == subForum.name)
-                    return false;
+                closeConnectionDB();
+                return subForum;
             }
-            subForums.Add(subForum); */
-            return true;
+            catch
+            {
+                closeConnectionDB();
+                return subForum;
+            }
         }
-
-
+        public List<Message> getMessages()
+        {
+            try
+            {
+                List<Message> messages = new List<Message>();
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "Select * from messages";
+                OleDbDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Message message = new Message(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3));
+                    messages.Add(message);
+                }
+                closeConnectionDB();
+                return messages;
+            }
+            catch
+            {
+                closeConnectionDB();
+                return null;
+            }
+        }
+        public Boolean addSubForum(String  subForumName,String forumName)
+        {
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "insert into subForums (subForumName,forumName) " +
+                        "values("+subForumName +","+ forumName + ")";
+                command.ExecuteNonQuery();
+                closeConnectionDB();
+                return true;
+            }
+            catch
+            {
+                closeConnectionDB();
+                return false;
+            }
+        }
         public Post getPost(int postId)
-        {/*
-            foreach (Post p in posts)
+        {
+            Post post = null;
+            try
             {
-                if (p.id == postId)
-                    return p;
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "Select * from posts where postID='" + postId + "'";
+                OleDbDataReader reader = command.ExecuteReader();
+                reader.Read();
+                post = new Post(reader.GetString(1), reader.GetInt32(0), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), DateTime.Parse(reader.GetDateTime(5).ToString("dd MM yyyy")));
+                closeConnectionDB();
+                return post;
             }
-            */
-            return null;
+            catch
+            {
+                closeConnectionDB();
+                return post;
+            }
         }
         public List<Post> getRelatedPosts(int postId)
         {
-            List<Post> curPost = new List<Post>();/*
-            for (int i = 0; i < posts.Count; i++)
+            if (postId == 0)
             {
-                if ((posts.ElementAt(i).parentId == postId))
+                return null;
+            }
+            List<Post> curPost = new List<Post>();
+            Post post = null;
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "Select * from posts where parentPostID='" + postId + "'";
+                OleDbDataReader reader = command.ExecuteReader();
+                while (reader.Read())
                 {
-                    curPost.Add(posts.ElementAt(i));
+                    post = new Post(reader.GetString(1), reader.GetInt32(0), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), DateTime.Parse(reader.GetDateTime(5).ToString("dd MM yyyy")));
+                    curPost.Add(post);
                 }
-            }*/
-            return curPost;
+                closeConnectionDB();
+                return curPost;
+            }
+            catch
+            {
+                closeConnectionDB();
+                return curPost;
+            }
         }
         public int getAvilableIntOfPost()
         {
-
-            int max = 0;/*
-            foreach (Post p in posts)
+            int res = -2;
+            foreach (int p in avilabelPostIDs)
             {
-                if (p.id >= max)
-                    max = p.id + 1;
-            }*/
-            return max;
+                res = p;
+                break;
+            }
+            if (res != -2)
+            {
+                avilabelPostIDs.Remove(res);
+                return res;
+            }
+            maxNotAvailable++;
+            return maxNotAvailable;
         }
         public SubForum getSubforumByThreadFirstPostId(int id)
         {
-            /*
-            foreach (SubForum sf in subForums)
+            try
             {
-                if (sf.threads.Contains(id))
-                {
-                    return sf;
-                }
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "Select * from threads where firstMessageId='" + id + "'";
+                OleDbDataReader reader = command.ExecuteReader();
+                reader.Read();
+                String sfName = reader.GetString(1);
+                String fName = reader.GetString(2);
+                closeConnectionDB();
+                return getSubForum(sfName,fName);
             }
-            */
-            return null;
+            catch
+            {
+                closeConnectionDB();
+                return null;
+            }
         }
         public Thread getThreadByFirstPostId(int postId)
         {
-            /*
-            foreach (Thread t in threads)
+            Thread thread = null;
+            try
             {
-                if (t.firstPost.id == postId)
-                    return t;
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "Select * from posts where postID='" + postId + "'";
+                OleDbDataReader reader = command.ExecuteReader();
+                reader.Read();
+                thread = new Thread( new Post(reader.GetString(1), reader.GetInt32(0), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), DateTime.Parse(reader.GetDateTime(5).ToString("dd MM yyyy"))));
+                closeConnectionDB();
+                return thread;
             }
-            */
-            return null;
+            catch
+            {
+                closeConnectionDB();
+                return thread;
+            }
         }
 
-        public bool addThread(string headLine, string content, string writerName, string forum, string subForum, int id, DateTime timePublished)
+        public bool addThread(string forumName, string subForumName, int firstMessageId)
         {
-            /*
-            Thread thread = new Thread(getPost(id));
-            threads.Add(thread);
-            getSubForum(subForum, forum).threads.Add(id);
-            */
-            return true;
-        }
-        public bool addPost(String writerUserName, Int32 id, String headLine, String content, Int32 parentId, DateTime timePublished)
-        {
-            /*
-            Post post = new Post(writerUserName, id, headLine, content, parentId, timePublished);
-            posts.Add(post);
-            if (parentId != -1)
+            try
             {
-                getPost(parentId).commentsIds.Add(id);
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "insert into threads (firstMessageId,subForumName, forumName)" +
+                        "values(" + firstMessageId + "," + subForumName + "," + forumName + ")";
+                command.ExecuteNonQuery();
+                closeConnectionDB();
+                return true;
             }
-            */
-            return true;
+            catch
+            {
+                closeConnectionDB();
+                return false;
+            }
+        }
+        public bool addPost(String writerUserName, Int32 postID, String headLine, String content, Int32 parentId, DateTime timePublished)
+        {
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "insert into posts (postID,writerUserName, title,content,parentPostID,publishTime)" +
+                        "values(" + postID + "," + writerUserName + "," + headLine + "," + content + "," + parentId +"," +
+                        timePublished.Day + "/" + timePublished.Month + "/" + timePublished.Year + ")";
+                command.ExecuteNonQuery();
+                closeConnectionDB();
+                return true;
+            }
+            catch
+            {
+                closeConnectionDB();
+                return false;
+            }
         }
 
-        public bool removeThread(int id, string subForumName, string forumName)
+        public bool removeThread(int id)
         {
-            /*
-            Thread thread = getThreadByFirstPostId(id);
-            threads.Remove(thread);
-            getSubForum(subForumName, forumName).threads.Remove(id);
-            */
-            return true;
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "delete from theards where firstMessageId='" + id + "'";
+                command.ExecuteNonQuery();
+                closeConnectionDB();
+                return true;
+            }
+            catch
+            {
+                closeConnectionDB();
+                return false;
+            }
         }
         public bool removePost(int id)
         {
-            /*
-            Post post = getPost(id);
-            posts.Remove(post);
-            if (post.parentId != -1)
+            try
             {
-                getPost(post.parentId).commentsIds.Remove(id);
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "delete from posts where PostID='"+ id+ "'";
+                command.ExecuteNonQuery();
+                closeConnectionDB();
+                if (maxNotAvailable == id)
+                    maxNotAvailable--;
+                else
+                {
+                    avilabelPostIDs.Remove(id);
+                }
+                return true;
             }
-            */
-            return true;
+            catch
+            {
+                closeConnectionDB();
+                return false;
+            }
         }
 
         public void clear()
         {
-            throw new NotImplementedException();
+            try
+            {
+                OpenConnectionDB();
+                List<String> commands = new List<string>();
+                commands.Add("delete from forumadministrators");
+                commands.Add("delete from messages");
+                commands.Add("delete from friendOf");
+                commands.Add("delete from subForumModerators");
+                commands.Add("delete from theards");
+                commands.Add("delete from posts");
+                commands.Add("delete from subForums");
+                commands.Add("delete from superUsers");
+                commands.Add("delete from Users");
+                commands.Add("delete from forums");
+
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                foreach (string commandTXT in commands)
+                {
+                    command.CommandText = commandTXT;
+                    command.ExecuteNonQuery();
+                }
+                closeConnectionDB();
+                maxNotAvailable = -1;
+                avilabelPostIDs = new List<int>();
+            }
+            catch
+            {
+                closeConnectionDB();
+            }
         }
     }
 }
