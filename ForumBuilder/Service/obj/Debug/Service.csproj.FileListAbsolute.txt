@@ -6,11 +6,3 @@ C:\Users\User\Desktop\WorkShop\ForumBuilder\Service\bin\Debug\Service.exe
 C:\Users\User\Desktop\WorkShop\ForumBuilder\Service\bin\Debug\Service.pdb
 C:\Users\User\Desktop\WorkShop\ForumBuilder\Service\bin\Debug\ForumBuilder.exe
 C:\Users\User\Desktop\WorkShop\ForumBuilder\Service\bin\Debug\ForumBuilder.pdb
-C:\Users\User\Documents\sadna\ForumBuilder\Service\bin\Debug\Service.exe.config
-C:\Users\User\Documents\sadna\ForumBuilder\Service\bin\Debug\Service.exe
-C:\Users\User\Documents\sadna\ForumBuilder\Service\bin\Debug\Service.pdb
-C:\Users\User\Documents\sadna\ForumBuilder\Service\bin\Debug\ForumBuilder.exe
-C:\Users\User\Documents\sadna\ForumBuilder\Service\bin\Debug\ForumBuilder.pdb
-C:\Users\User\Documents\sadna\ForumBuilder\Service\obj\Debug\Service.csprojResolveAssemblyReference.cache
-C:\Users\User\Documents\sadna\ForumBuilder\Service\obj\Debug\Service.exe
-C:\Users\User\Documents\sadna\ForumBuilder\Service\obj\Debug\Service.pdb

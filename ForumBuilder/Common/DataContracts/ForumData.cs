@@ -3,28 +3,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ServiceModel;
+using System.Runtime.Serialization;
 
-namespace BL_Back_End
+namespace ForumBuilder.Common.DataContracts
 {
-    public class Forum
+    [DataContract]
+    public class ForumData
     {
+        [DataMember]
         private String _forumName;
+
+        [DataMember]
         private String _description;
+
+        [DataMember]
         private String _forumPolicy;
+
+        [DataMember]
         private String _forumRules;
-        private List<string> _administrators;
-        private List<string> _members;
+
+        [DataMember]
         private List<string> _subForums;
 
-        public Forum(string forumName, string descrption, string forumPolicy, string forumRules, List<string> administrators)
+        public ForumData(string forumName, string descrption, string forumPolicy, string forumRules)
         {
-            _forumName = forumName;
-            _description = descrption;
-            _forumPolicy = forumPolicy;
-            _forumRules = forumRules;
-            _administrators = administrators;
-            _members = new List<string>();
-            _subForums = new List<string>();
+            this._forumName = forumName;
+            this._description = descrption;
+            this._forumPolicy = forumPolicy;
+            this._forumRules = forumRules;
+            this._subForums = new List<string>();
         }
 
         public String forumPolicy
@@ -51,34 +59,10 @@ namespace BL_Back_End
             set { _forumName = value; }
         }
 
-        public List<String> administrators
-        {
-            get { return _administrators; }
-            set { _administrators = value; }
-        }
-
         public List<String> subForums
         {
             get { return _subForums; }
             set { _subForums = value; }
-        }
-
-        public List<string> members
-        {
-            get
-            {
-                return _members;
-            }
-
-            set
-            {
-                _members = value;
-            }
-        }
-        
-        public static int Main(string[] args)
-        {
-            return -1;
         }
     }
 }

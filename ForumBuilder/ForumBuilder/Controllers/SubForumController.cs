@@ -78,7 +78,7 @@ namespace ForumBuilder.Controllers
                     logger.logPrint("the date in nominate moderator already past");
                     return false;
                 }
-                if (DB.nominateModerator(newModerator, nominatorUser, date, subForumName,forumName))
+                if (DB.nominateModerator(newModerator, date, subForumName,forumName))
                 {
                     logger.logPrint("nominate moderator " + newModerator + "success");
                     return true;
@@ -120,7 +120,7 @@ namespace ForumBuilder.Controllers
             }
             int id = DB.getAvilableIntOfPost();
             logger.logPrint("Add thread " + id);
-            return DB.addPost(writerName, id, headLine, content, -1, timePublished) && DB.addThread(headLine, content, writerName, forumName, subForumName, id,timePublished);
+            return DB.addPost(writerName, id, headLine, content, -1, timePublished) && DB.addThread( forumName, subForumName, id);
         }
 
         public bool deleteThread(int firstPostId,string removerName)
@@ -163,7 +163,7 @@ namespace ForumBuilder.Controllers
                     logger.logPrint("Remove post " + donePosts.ElementAt(i).id);
                 }
                 logger.logPrint("Remove thread " + firstPostId);
-                hasSucceed= hasSucceed && DB.removeThread(firstPostId, sf.name, sf.forum);
+                hasSucceed= hasSucceed && DB.removeThread(firstPostId);
                 return hasSucceed;
             } 
         }
