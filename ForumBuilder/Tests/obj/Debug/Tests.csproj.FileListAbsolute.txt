@@ -12,3 +12,4 @@ C:\Users\User\Desktop\WorkShop\ForumBuilder\Tests\obj\Debug\Tests.csprojResolveA
 C:\Users\User\Desktop\WorkShop\ForumBuilder\Tests\obj\Debug\Tests.dll
 C:\Users\User\Desktop\WorkShop\ForumBuilder\Tests\obj\Debug\Tests.pdb
 D:\Idan\Workshop\WorkShop.git\ForumBuilder\Tests\obj\Debug\Tests.csprojResolveAssemblyReference.cache
+C:\Users\User\Documents\sadna\ForumBuilder\Tests\obj\Debug\Tests.csprojResolveAssemblyReference.cache

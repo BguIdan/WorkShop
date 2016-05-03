@@ -430,7 +430,6 @@ namespace Database
                 closeConnectionDB();
                 return user;
             }
-            return null;
         }
         public bool dismissAdmin(string adminToDismissed, string forumName)
         {

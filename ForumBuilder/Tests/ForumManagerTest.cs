@@ -3,9 +3,7 @@ using ForumBuilder.Systems;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BL_Back_End;
 
 namespace Tests
 {
@@ -53,8 +51,8 @@ namespace Tests
             this.userMember = null;
             this.userAdmin = null;
             this.userAdmin2 = null;
-            DBClass db = DBClass.getInstance;
-            db.clear();
+            //DBClass db = DBClass.getInstance;
+            //db.clear();
         }
 
         /******************************dismiss admin***********************************/

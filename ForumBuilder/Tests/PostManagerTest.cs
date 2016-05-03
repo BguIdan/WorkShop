@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using BL_Back_End;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace Tests
     [TestClass]
     public class PostManagerTest
     {
-
+        /*
         private IForumController forumController;
         private IPostController postController;
         private ISubForumController subForumController;
@@ -71,7 +72,6 @@ namespace Tests
             db.clear();
         }
 
-        /**************************add comment*********************************/
 
         [TestMethod]
         public void test_addComment_mem()
@@ -328,9 +328,6 @@ namespace Tests
             Assert.AreEqual(posts.Count, 1);
         }
 
-        /**************************end of add comment*********************************/
-
-        /**************************end of remove comment*********************************/
 
         [TestMethod]
         public void test_removeComment_mem_noSubComments()
@@ -765,6 +762,6 @@ namespace Tests
             List<Post> postsAfter = this.postController.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(postsPre.Count, postsAfter.Count);
         }
-
+        */
     }
 }

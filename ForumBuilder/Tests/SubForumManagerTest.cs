@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Tests
-{
+{/*
     [TestClass]
     class SubForumManagerTest
     {
@@ -64,7 +64,6 @@ namespace Tests
             this.subForum = null;
         }
 
-        /******************************dismiss moderator***************************************/
 
         [TestMethod]
         public void test_dismissModerator_on_valid_moderator()
@@ -98,9 +97,7 @@ namespace Tests
         }
 
 
-        /******************************end of dismiss moderator***************************************
 
-        /******************************nominate moderator***************************************/
 
         [TestMethod]
         public void test_nominateModerator_on_member()
@@ -131,9 +128,6 @@ namespace Tests
         }
 
 
-        /******************************end of nominate moderator***************************************/
-
-        /*******************************create thread*****************************************/
 
         [TestMethod]
         public void test_createThread_mem_valid_input()
@@ -304,10 +298,7 @@ namespace Tests
             Assert.AreEqual(postList.Count, 0);
         }
 
-
-        /*******************************end of create thread*****************************************/
-
-        /*******************************delete thread*****************************************/
+        
 
 
         [TestMethod]
@@ -444,12 +435,11 @@ namespace Tests
             Assert.AreEqual(post.writerUserName, this.userMember.userName);
         }
 
-        /*******************************end of delete thread*****************************************/
 
         private bool areListsEqual<T>(List<T> list1, List<T> list2)
         {
             return ((list1.Count == list2.Count) &&
                             list1.Except(list2).Any());
         }
-    }
+    }*/
 }
