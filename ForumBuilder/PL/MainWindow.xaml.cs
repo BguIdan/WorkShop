@@ -13,7 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ForumBuilder.BL_Back_End;
 using Service;
 
 namespace PL
@@ -24,12 +23,8 @@ namespace PL
     public partial class MainWindow : Window
     {
       
-        private Forum _forum;
-
-        public MainWindow(Forum forum)
+        public MainWindow()
         {
-            _forum = forum;
-            ForumName.Content = _forum.forumName;
             this.Show(); 
         }
 
