@@ -10,9 +10,29 @@ namespace PL.proxies
 {
     public class ForumManagerClient : ClientBase<IForumManager>, IForumManager
     {
+
         public ForumManagerClient()
         {
- 
+        }
+    
+        public ForumManagerClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName)
+        {
+        }
+    
+        public ForumManagerClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress)
+        {
+        }
+    
+        public ForumManagerClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress)
+        {
+        }
+
+        public ForumManagerClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress)
+        {
         }
 
         public Boolean dismissAdmin(String adminToDismissed, String dismissingUserName, String forumName)

@@ -89,10 +89,6 @@
       <Project>{b690218f-8aff-410b-b355-7967970d472b}</Project>
       <Name>PL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Service\Service.csproj">
-      <Project>{ec30a637-9d10-4746-ae76-4d3b64204085}</Project>
-      <Name>Service</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -10,9 +10,28 @@ namespace PL.proxies
 {
     public class UserManagerClient : ClientBase<IUserManager>, IUserManager
     {
-        public UserManagerClient()
+         public UserManagerClient()
         {
+        }
+    
+        public UserManagerClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName)
+        {
+        }
+    
+        public UserManagerClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress)
+        {
+        }
+    
+        public UserManagerClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress)
+        {
+        }
 
+        public UserManagerClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress)
+        {
         }
 
         public Boolean addFriend(String userName, String friendToAdd)
