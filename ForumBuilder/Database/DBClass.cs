@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.OleDb;
 using BL_Back_End;
+using System.Data;
 
 namespace Database
 {
@@ -16,6 +17,23 @@ namespace Database
         OleDbConnection connection;
         static void Main(string[] args)
         {
+            DBClass db = DBClass.getInstance;
+            db.initializeDB();
+            db.clear();
+            db.addSuperUser("guy@gmail.com", "mypassword", "super1");
+            db.addUser("admin1", "mypassword2", "guy2@gmail.com");
+            db.addUser("admin2", "mypassword3", "guy3@gmail.com");
+            db.addUser("admin3", "mypassword3", "guy3@gmail.com");
+            db.addUser("user1", "mypassword4", "guy4@gmail.com");
+            db.addUser("user2", "mypassword4", "guy4@gmail.com");
+            db.addUser("user3", "mypassword4", "guy4@gmail.com");
+            db.addUser("user4", "mypassword4", "guy4@gmail.com");
+            List<String> list= new List<string>();
+            list.Add("admin1");
+            list.Add("admin2");
+            db.createForum("forum1", "is", "the", "best",list );
+            db.nominateAdmin("admin3", "forum1");
+            //db.clear();
             //Program DB = new Program();
             //DB.initializeDB();
         }
@@ -155,11 +173,15 @@ namespace Database
                 {
                     OleDbCommand command2 = new OleDbCommand();
                     command2.Connection = connection;
-                    command2.CommandText = "INSERT INTO users (userName,password,email) values(" + userName + "," + password + "," + email + ")";
+                    command2.CommandText = "INSERT INTO users ([userName],[password],[email]) VALUES (?,?,?)";
+                    command2.Parameters.AddWithValue("userName", userName);
+                    command2.Parameters.AddWithValue("password", password);
+                    command2.Parameters.AddWithValue("email", email);
                     command2.ExecuteNonQuery();
                     OleDbCommand command3 = new OleDbCommand();
                     command3.Connection = connection;
-                    command3.CommandText = "INSERT INTO superUsers (superUserName) values(" + userName + ")";
+                    command3.CommandText = "INSERT INTO superUsers ([superUserName]) values (?)";
+                    command3.Parameters.AddWithValue("superUserName", userName);
                     command3.ExecuteNonQuery();
                     //added
                     closeConnectionDB();
@@ -172,8 +194,9 @@ namespace Database
                     return false;
                 }
             }
-            catch 
+            catch (Exception e)
             {
+                string s = e.Message;
                 return false;
             }
             
@@ -198,8 +221,13 @@ namespace Database
                 {
                     OleDbCommand command2 = new OleDbCommand();
                     command2.Connection = connection;
-                    command2.CommandText = "INSERT INTO subForumModerators (subForumName,forumName,moderatorName,endTermOfOffice)" +
-                        "values(" + subForumName + "," + forumName + "," + newModerator+","+ date.Day + "/" + date.Month + "/" + date.Year + ")";
+                    command2.CommandText = "INSERT INTO subForumModerators "+
+                        "([subForumName],[forumName],[moderatorName],[endTermOfOffice]) " +
+                        "values (?,?,?,?)";
+                    command2.Parameters.AddWithValue("subForumName", subForumName);
+                    command2.Parameters.AddWithValue("forumName", forumName);
+                    command2.Parameters.AddWithValue("moderatorName", newModerator);
+                    command2.Parameters.AddWithValue("endTermOfOffice", date.Day + "/" + date.Month + "/" + date.Year);
                     command2.ExecuteNonQuery();
                     //added
                     closeConnectionDB();
@@ -314,8 +342,11 @@ namespace Database
             {
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "INSERT INTO subForumModerators (sender,reciver,content)" +
-                    "values(" + sender + "," + reciver + "," + content + ")";
+                command.CommandText = "INSERT INTO subForumModerators ([sender],[reciver],[content])" +
+                    "values(?,?,?)";
+                command.Parameters.AddWithValue("sender", sender);
+                command.Parameters.AddWithValue("reciver", reciver);
+                command.Parameters.AddWithValue("content", content);               
                 command.ExecuteNonQuery();
                 //added
                 closeConnectionDB();
@@ -387,15 +418,17 @@ namespace Database
                 return false;
             }
         }
-        public bool nominateAdmin(string newAdmin, string nominatorName, string forumName)
+        public bool nominateAdmin(string newAdmin, string forumName)
         {
             try
             {
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "INSERT INTO forumAdministrators (forumName,administratorName)" +
-                        "values(" + forumName + "," + newAdmin + ")";
+                command.CommandText = "INSERT INTO forumAdministrators ([forumName],[administratorName])" +
+                        "values (?,?)";
+                command.Parameters.AddWithValue("forumName", forumName);
+                command.Parameters.AddWithValue("administratorName", newAdmin);
                 command.ExecuteNonQuery();
                 closeConnectionDB();
                 return true;
@@ -492,8 +525,11 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "INSERT INTO users (userName,password,email) " +
-                        "values(" + userName+","+password + "," +email + ")";
+                command.CommandText = "INSERT INTO users ([userName],[password],[email]) " +
+                        "values(?,?,?)";
+                command.Parameters.AddWithValue("userName", userName);
+                command.Parameters.AddWithValue("password", password);
+                command.Parameters.AddWithValue("email", email);
                 command.ExecuteNonQuery();
                 closeConnectionDB();
                 return true;
@@ -511,8 +547,10 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "INSERT INTO members (userName,forumName) " +
-                        "values(" + userName + "," + forumName  + ")";
+                command.CommandText = "INSERT INTO members ([userName],[forumName]) " +
+                        "values(?,?)";
+                command.Parameters.AddWithValue("userName", userName);
+                command.Parameters.AddWithValue("forumName", forumName);
                 command.ExecuteNonQuery();
                 closeConnectionDB();
                 return true;
@@ -570,28 +608,35 @@ namespace Database
                 return null;
             }
         }
-        public Boolean createForum(string forumName, string descrption, string forumPolicy, string forumRules, List<string> administrators)
+        public Boolean createForum(string forumName, string description, string forumPolicy, string forumRules, List<string> administrators)
         {
             try
             {
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "INSERT INTO forums (forumName, descrption, forumPolicy, forumRules) " +
-                        "values(" + forumName+","+ descrption + "," + forumPolicy + "," + forumRules +")";
+                command.CommandText = "INSERT INTO forums ([forumName],[description],[forumPolicy],[forumRules]) " +
+                        "VALUES (?,?,?,?)";
+                command.Parameters.AddWithValue("forumName", forumName);
+                command.Parameters.AddWithValue("description", description);
+                command.Parameters.AddWithValue("forumPolicy", forumPolicy);
+                command.Parameters.AddWithValue("forumRules", forumRules);
                 command.ExecuteNonQuery();
-                OleDbCommand command2 = new OleDbCommand();
-                command2.Connection = connection;
+                
                 foreach (string admin in administrators)
                 {
-                    command2.CommandText = "INSERT INTO forumadminstrators (forumName, administratorsName)" +
-                            "values(" + forumName + "," + admin+ ")";
+                    OleDbCommand command2 = new OleDbCommand();
+                    command2.Connection = connection;
+                    command2.CommandText = "INSERT INTO forumAdministrators ([forumName], [administratorName]) " +
+                            "VALUES (?,?)";
+                    command2.Parameters.AddWithValue("forumName", forumName);
+                    command2.Parameters.AddWithValue("administratorName", admin);
                     command2.ExecuteNonQuery();
                 }
                 closeConnectionDB();
                 return true;
             }
-            catch
+            catch(Exception e)
             {
                 closeConnectionDB();
                 return false;
@@ -622,8 +667,10 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "INSERT INTO friendOf (userName, friendName)" +
-                        "values(" + userName+ "," + friendToAddName + ")";
+                command.CommandText = "INSERT INTO friendOf ([userName],[friendName]) " +
+                        "values (?,?)";
+                command.Parameters.AddWithValue("userName", userName);
+                command.Parameters.AddWithValue("friendName", friendToAddName);
                 command.ExecuteNonQuery();
                 closeConnectionDB();
                 return true;
@@ -715,8 +762,10 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "INSERT INTO subForums (subForumName,forumName) " +
-                        "values("+subForumName +","+ forumName + ")";
+                command.CommandText = "INSERT INTO subForums ([subForumName],[forumName]) " +
+                        "values (?,?)";
+                command.Parameters.AddWithValue("subForumName", subForumName);
+                command.Parameters.AddWithValue("forumName", forumName);
                 command.ExecuteNonQuery();
                 closeConnectionDB();
                 return true;
@@ -843,8 +892,11 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "INSERT INTO threads (firstMessageId,subForumName, forumName)" +
-                        "values(" + firstMessageId + "," + subForumName + "," + forumName + ")";
+                command.CommandText = "INSERT INTO threads ([firstMessageId],[subForumName],[forumName])" +
+                        " values (?,?,?)";
+                command.Parameters.AddWithValue("firstMessageId", firstMessageId);
+                command.Parameters.AddWithValue("subForumName", subForumName);
+                command.Parameters.AddWithValue("forumName", forumName);
                 command.ExecuteNonQuery();
                 closeConnectionDB();
                 return true;
@@ -862,9 +914,14 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "INSERT INTO posts (postID,writerUserName, title,content,parentPostID,publishTime)" +
-                        "values(" + postID + "," + writerUserName + "," + headLine + "," + content + "," + parentId +"," +
-                        timePublished.Day + "/" + timePublished.Month + "/" + timePublished.Year + ")";
+                command.CommandText = "INSERT INTO posts ([postID],[writerUserName],[title,content],[parentPostID],[publishTime])" +
+                        " values (?,?,?,?,?,?)";
+                command.Parameters.AddWithValue("postID", postID);
+                command.Parameters.AddWithValue("writerUserName", headLine);
+                command.Parameters.AddWithValue("title", writerUserName);
+                command.Parameters.AddWithValue("content", content);
+                command.Parameters.AddWithValue("parentPostID", parentId);
+                command.Parameters.AddWithValue("publishTime", timePublished.Day + "/" + timePublished.Month + "/" + timePublished.Year);
                 command.ExecuteNonQuery();
                 closeConnectionDB();
                 return true;
@@ -930,7 +987,7 @@ namespace Database
                 commands.Add("DELETE  from messages");
                 commands.Add("DELETE  from friendOf");
                 commands.Add("DELETE  from subForumModerators");
-                commands.Add("DELETE  from theards");
+                commands.Add("DELETE  from threads");
                 commands.Add("DELETE  from posts");
                 commands.Add("DELETE  from subForums");
                 commands.Add("DELETE  from superUsers");
