@@ -10,13 +10,12 @@ namespace PL.proxies
 {
     public class SubForumManagerClient : ClientBase<ISubForumManager>, ISubForumManager
     {
-        public Boolean dismissModerator(String dismissedModerator, String dismissByAdmin, String subForumName, String forumName)
         public SubForumManagerClient() 
         {
 
         }
 
-        Boolean dismissModerator(String dismissedModerator, String dismissByAdmin, String subForumName, String forumName)
+        public Boolean dismissModerator(String dismissedModerator, String dismissByAdmin, String subForumName, String forumName)
         {
             return Channel.dismissModerator(dismissedModerator, dismissByAdmin, subForumName, forumName);
         }
@@ -36,7 +35,7 @@ namespace PL.proxies
             return Channel.deleteThread(firstPostId, removerName);
         }
 
-        Boolean isModerator(string name, string subForumName, string forumName)
+        public Boolean isModerator(string name, string subForumName, string forumName)
         {
             return Channel.isModerator(name, subForumName, forumName);
         }

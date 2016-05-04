@@ -37,7 +37,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ForumManager.cs" />
-    <Compile Include="GettingStarted.cs" />
     <Compile Include="PostManager.cs" />
     <Compile Include="SubForumManager.cs" />
     <Compile Include="SuperUserManager.cs" />

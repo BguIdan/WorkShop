@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ForumBuilder.Common.ServiceContracts;
 
+
 namespace Service
 {
     public class SubForumManager :ISubForumManager
@@ -45,6 +46,11 @@ namespace Service
         public bool deleteThread(int firstPostId, string removerName)
         {
             return subForumController.deleteThread(firstPostId, removerName);
+        }
+        public Boolean isModerator(string name, string subForumName, string forumName)
+        {
+            //TODO: complete function
+            return false;
         }
     }
 }

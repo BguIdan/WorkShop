@@ -30,6 +30,7 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
+            _forumsList = new List<string>();
             for (int i = 0; i < _forumsList.Count; i++)
             {
                 ComboBoxItem newItem = new ComboBoxItem();

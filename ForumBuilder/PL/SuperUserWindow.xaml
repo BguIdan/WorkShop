@@ -8,7 +8,7 @@
                 <MenuItem Header="Create Forum" Name="CreateForum" />
                 <MenuItem Header="Set/Change Forum preferences" Name="Set"/>
                 <MenuItem Header="Create Sub-Forum" Name="CreateSub" />
-                <MenuItem Header="Delete Post" Name="Delete"/>
+                <MenuItem Header="Delete Post" Name="Del"/>
                 <Separator/>
                 <MenuItem Header="Exit" Name="Exit"/>
             </MenuItem>

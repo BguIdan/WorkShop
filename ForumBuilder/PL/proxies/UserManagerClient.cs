@@ -15,22 +15,22 @@ namespace PL.proxies
 
         }
 
-        Boolean addFriend(String userName, String friendToAdd)
+        public Boolean addFriend(String userName, String friendToAdd)
         {
             return Channel.addFriend(userName, friendToAdd);
         }
 
-        Boolean deleteFriend(String userName, String deletedFriend)
+        public Boolean deleteFriend(String userName, String deletedFriend)
         {
             return Channel.deleteFriend(userName, deletedFriend);
         }
 
-        Boolean sendPrivateMessage(String fromUserName, String toUserName, String content)
+        public Boolean sendPrivateMessage(String fromUserName, String toUserName, String content)
         {
             return Channel.sendPrivateMessage(fromUserName, toUserName, content);
         }
 
-        List<String> getFriendList(String userName)
+        public List<String> getFriendList(String userName)
         {
             return Channel.getFriendList(userName);
         }

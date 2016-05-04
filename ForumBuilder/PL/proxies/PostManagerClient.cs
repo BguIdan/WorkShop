@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
 using ForumBuilder.Common.ServiceContracts;
-using BL_Back_End;
+using ForumBuilder.Common.DataContracts;
 
 namespace PL.proxies
 {
@@ -16,17 +16,17 @@ namespace PL.proxies
 
         }
 
-        Boolean deletePost(Int32 postId, String deletingUser)
+        public Boolean deletePost(Int32 postId, String deletingUser)
         {
             return Channel.deletePost(postId, deletingUser);
         }
 
-        Boolean addPost(String headLine, String content, String writerName, Int32 commentedPost)
+        public Boolean addPost(String headLine, String content, String writerName, Int32 commentedPost)
         {
             return Channel.addPost(headLine, content, writerName, commentedPost);
         }
 
-        List<Post> getAllPosts(String forumName, String subforumName)
+        public List<PostData> getAllPosts(String forumName, String subforumName)
         {
             return Channel.getAllPosts(forumName, subforumName);
         }

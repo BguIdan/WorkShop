@@ -27,6 +27,7 @@ namespace PL
         public ForumWindow(string _forumName)
         {
             InitializeComponent();
+            _subForumNames = new List<string>();
             // TODO: Initialize field
             //_forum = getforum;
             forumName.Content = _forumName;
@@ -73,6 +74,21 @@ namespace PL
             }
             // ... Set Title to selected names.
             this.Title = string.Join(", ", names);
+        }
+
+        private void MenuItem_Coupon(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void setNotifications(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void viewCoupons(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

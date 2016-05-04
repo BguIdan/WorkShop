@@ -60,7 +60,6 @@
     <Compile Include="ForumWindow.xaml.cs">
       <DependentUpon>ForumWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GettingStarted.cs" />
     <Compile Include="proxies\ForumManagerClient.cs" />
     <Compile Include="proxies\PostManagerClient.cs" />
     <Compile Include="proxies\SubForumManagerClient.cs" />
@@ -154,10 +153,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BL_Back_End\BL_Back_End.csproj">
-      <Project>{3ff8847a-b113-4c03-bed3-485dcaba2836}</Project>
-      <Name>BL_Back_End</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Common\ForumBuilder.common.csproj">
       <Project>{db6f5ffc-3837-455b-a666-3c117c130995}</Project>
       <Name>ForumBuilder.common</Name>

@@ -42,5 +42,10 @@ namespace Service
         {
             return userController.sendPrivateMessage(fromUserName, toUserName, content);
         }
+        public List<String> getFriendList(String userName)
+        {
+            //TODO: complete function
+            return null;
+        }
     }
 }

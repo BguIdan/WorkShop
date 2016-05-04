@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
 using BL_Back_End;
+using ForumBuilder.Common.DataContracts;
 
 
 
@@ -20,7 +21,7 @@ namespace ForumBuilder.Common.ServiceContracts
         Boolean addPost(String headLine, String content, String writerName, Int32 commentedPost);
         
         [OperationContract]
-        List<Post> getAllPosts(String forumName, String subforumName);
+        List<PostData> getAllPosts(String forumName, String subforumName);
 
     }
 }

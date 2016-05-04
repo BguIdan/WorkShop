@@ -47,11 +47,11 @@ namespace PL
         public void Main()
         {
 
-        }
+        }*/
 
         private void MenuItem_Coupon(object sender, RoutedEventArgs e)
         {
-            MenuItem menuItem = e.Source as MenuItem;
+            /*MenuItem menuItem = e.Source as MenuItem;
             switch (menuItem.Name)
             {
                 case "AddSocial":    { AddCouponFromSocial(); } break;
@@ -63,10 +63,10 @@ namespace PL
                 case "Rank":         { RankACoupon(); }  break;
                 case "View":         { ViewCoupon(); } break;
                 case "Exit": { this.Visibility = System.Windows.Visibility.Collapsed; System.Environment.Exit(1); } break;
-            }
+            }*/
         }
-
-        private void ViewCoupon()
+        
+       /* private void ViewCoupon()
         {
             
             RankCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
@@ -240,20 +240,20 @@ namespace PL
 
             
             AddCoupon.Visibility = System.Windows.Visibility.Visible;
-        }      
+        }*/      
         
         void MenuItem_Store(object sender, RoutedEventArgs e)
         {
-            MenuItem menuItem = e.Source as MenuItem;
+            /*MenuItem menuItem = e.Source as MenuItem;
             switch (menuItem.Name)
             {
                 case "AddStore":        { AddAStore(); } break;
                 case "LookStore":       { LookForAStore(); } break;
                 case "DeleteStore":     { DeleteAStore(); } break;
-            }
+            }*/
         }
 
-        private void DeleteAStore()
+        /*private void DeleteAStore()
         {
             
             TextBlock.Visibility = System.Windows.Visibility.Collapsed;
@@ -311,22 +311,22 @@ namespace PL
             
             AddStoreWindow.Visibility = System.Windows.Visibility.Visible;
            
-        }
+        }*/
 
         private void MenuItem_Account(object sender, RoutedEventArgs e)
         {
-            MenuItem menuItem = e.Source as MenuItem;
+           /* MenuItem menuItem = e.Source as MenuItem;
             switch (menuItem.Name)
             {
                 case "Change": break;
                 case "ViewPurchased": break;
-            }
+            }*/
 
         }
 
         private void btn_addCouponFromSocial(object sender, RoutedEventArgs e)
         {
-            try
+            /*try
             {
                 string name = newCouponSocialName.Text;
                 DateTime dueDate = DateTime.Parse(newCouponSocialDateEnd.Text);
@@ -344,13 +344,13 @@ namespace PL
                 MessageBox.Show("sorry wrong input!");
                 return;
             }
-            MessageBox.Show("Success!");
+            MessageBox.Show("Success!");*/
             
         }
 
         private void btn_approveCoupon(object sender, RoutedEventArgs e)
         {
-            try
+           /* try
             {
                 var selected = (clsCoupon)this.couponsToApproveView.SelectedItem;
                 adminBL.confirmCoupon(selected.getStore(), selected.getDueDate(), selected.getDescription());
@@ -359,12 +359,12 @@ namespace PL
             catch
             {
                 MessageBox.Show("sorry wrong input!");
-            }
+            }*/
         }
 
         private void btn_editCoupon(object sender, RoutedEventArgs e)
         {
-            try
+            /*try
             {
                 var selected = (clsCoupon)this.couponsToEdit.SelectedItem;
                 QuantityEdit.Text = selected.getAvailableQuntity().ToString();
@@ -382,12 +382,12 @@ namespace PL
             catch
             {
                 MessageBox.Show("sorry wrong input!");
-            }
+            }*/
         }
 
         private void btn_edit(object sender, RoutedEventArgs e)
         {
-            try
+            /*try
             {
                 string name = nameEdit.Text;
                 DateTime dueDate = DateTime.Parse(dueDateEdit.Text);
@@ -408,13 +408,13 @@ namespace PL
             }
             MessageBox.Show("Success!");
             EditChooseCouponWindow.Visibility = System.Windows.Visibility.Visible;
-            EditCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
+            EditCouponWindow.Visibility = System.Windows.Visibility.Collapsed;*/
             
         }
 
         private void btn_deleteCoupon(object sender, RoutedEventArgs e)
         {
-            try
+            /*try
             {
                 var selected = (clsCoupon)this.deleteCouponGrid.SelectedItem;
                 string storeName = selected.getStore();
@@ -426,12 +426,12 @@ namespace PL
             catch
             {
                 MessageBox.Show("sorry wrong input!");
-            }
+            }*/
         }
 
         private void btn_searchCoupon(object sender, RoutedEventArgs e)
         {
-            try
+            /*try
             {
                 string storeName = lookStore.Text;
                 if (storeName.Equals(""))
@@ -453,12 +453,12 @@ namespace PL
             catch
             {
                 MessageBox.Show("sorry wrong input!");
-            }
+            }*/
         }
 
         private void btn_buyCoupon(object sender, RoutedEventArgs e)
         {
-            try
+            /*try
             {
                 var selected = (clsCoupon)this.couponsToBuyGrid.SelectedItem;
                 string storeName = selected.getStore();
@@ -490,12 +490,12 @@ namespace PL
             catch
             {
                 MessageBox.Show("sorry wrong input!");
-            }
+            }*/
         }
 
         private void btn_rateCoupon(object sender, RoutedEventArgs e)
         {
-            try
+            /*try
             {
                 var selected = (clsUsersCoupon)this.boughtCouponsGrid.SelectedItem;
                 int rate = Int32.Parse(ratingCouponBox.Text);
@@ -514,12 +514,12 @@ namespace PL
                 MessageBox.Show("sorry wrong input!");
                 return;
             }
-            boughtCouponsGrid.ItemsSource = adminBL.viewOrders(userID);
+            boughtCouponsGrid.ItemsSource = adminBL.viewOrders(userID);*/
         }
 
         private void btn_addStore(object sender, RoutedEventArgs e)
         {
-            try
+            /*try
             {
                 string name = storeName.Text;
                 string address = Address.Text;
@@ -542,12 +542,12 @@ namespace PL
                 MessageBox.Show("sorry wrong input!");
                 return;
             }
-            MessageBox.Show("Store added!");
+            MessageBox.Show("Store added!");*/
         }
 
         private void btn_searchStore(object sender, RoutedEventArgs e)
         {
-            bool preferences = false;
+           /* bool preferences = false;
             if (prefs.IsChecked == true)
             {
                 preferences = true;
@@ -557,12 +557,12 @@ namespace PL
             {
                 city = null;
             }
-            foundStoresGrid.ItemsSource = adminBL.searchStores(userID, preferences, city);
+            foundStoresGrid.ItemsSource = adminBL.searchStores(userID, preferences, city);*/
         }
 
         private void btn_deleteStore(object sender, RoutedEventArgs e)
         {
-            string name;
+            /*string name;
             try
             {
                 var selected = (clsStore)this.storesToDelete.SelectedItem;
@@ -574,8 +574,8 @@ namespace PL
                 MessageBox.Show("sorry wrong input!");
                 return;
             }
-            MessageBox.Show("Store " + name + " has been deleted!");
-        }*/
+            MessageBox.Show("Store " + name + " has been deleted!");*/
+        }
 
 
     }

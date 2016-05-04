@@ -12,8 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using BL;
-using BL_BackEnd;
+
 
 namespace PL
 {
@@ -22,7 +21,7 @@ namespace PL
     /// </summary>
     public partial class UserWindow : Window
     {
-        private UserBL uBL;
+        /*private UserBL uBL;
         private int ID;
         private AdminBL itsAdminBL;
         string message;
@@ -42,7 +41,7 @@ namespace PL
             TextBlock1.Visibility = System.Windows.Visibility.Visible;
             uBL = new UserBL(itsDAL);
             itsAdminBL = isAdminBL;
-            /* collaspe any other window: */
+            
             RankCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
             ViewCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
             AddCoupon.Visibility = System.Windows.Visibility.Collapsed;
@@ -72,7 +71,7 @@ namespace PL
 
         private void setNotifications(object sender, RoutedEventArgs e)
         {
-            /* collaspe any other window: */
+            
             ViewCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
             Notifier.Visibility = System.Windows.Visibility.Collapsed;
             RankCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
@@ -80,7 +79,7 @@ namespace PL
             AddCoupon.Visibility = System.Windows.Visibility.Collapsed;
             LookCoupon.Visibility = System.Windows.Visibility.Collapsed;
             RankCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
-            /* show only this window: */
+            
             Notifier.Visibility = System.Windows.Visibility.Visible;
             if (loca.IsChecked==true )
             {
@@ -98,7 +97,7 @@ namespace PL
         {
             notifictions();
             updateNotify();
-            /* collaspe any other window: */
+            
             ViewCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
             Notifier.Visibility = System.Windows.Visibility.Collapsed;
             RankCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
@@ -106,14 +105,14 @@ namespace PL
             AddCoupon.Visibility = System.Windows.Visibility.Collapsed;
             LookCoupon.Visibility = System.Windows.Visibility.Collapsed;
             RankCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
-            /* show only this window: */
+            
             RankCouponWindow.Visibility = System.Windows.Visibility.Visible;
             couponsView.ItemsSource = uBL.viewOrders(ID);
         }
 
         private void AddRegularCoupon()
         {
-            /* collaspe any other window: */
+            
             ViewCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
             RankCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
             Notifier.Visibility = System.Windows.Visibility.Collapsed;
@@ -121,7 +120,7 @@ namespace PL
             AddCoupon.Visibility = System.Windows.Visibility.Collapsed;
             LookCoupon.Visibility = System.Windows.Visibility.Collapsed;
             RankCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
-            /* show only this window: */
+          
             AddCoupon.Visibility = System.Windows.Visibility.Visible;
         }
 
@@ -129,7 +128,7 @@ namespace PL
         {
             notifictions();
             updateNotify();
-            /* collaspe any other window: */
+            
             RankCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
             Notifier.Visibility = System.Windows.Visibility.Collapsed;
             ViewCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
@@ -137,7 +136,7 @@ namespace PL
             AddCoupon.Visibility = System.Windows.Visibility.Collapsed;
             LookCoupon.Visibility = System.Windows.Visibility.Collapsed;
             RankCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
-            /* show only this window: */
+            
             LookCoupon.Visibility = System.Windows.Visibility.Visible;
         }
 
@@ -146,7 +145,7 @@ namespace PL
         {
             notifictions();
             updateNotify();
-            /* collaspe any other window: */
+            
             RankCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
             TextBlock1.Visibility = System.Windows.Visibility.Collapsed;
             ViewCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
@@ -154,7 +153,7 @@ namespace PL
             Notifier.Visibility = System.Windows.Visibility.Collapsed;
             LookCoupon.Visibility = System.Windows.Visibility.Collapsed;
             RankCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
-            /* show only this window: */
+            
             ViewCouponWindow.Visibility = System.Windows.Visibility.Visible;
             couponsView.ItemsSource = uBL.viewOrders(ID);
         }
@@ -359,6 +358,40 @@ namespace PL
         {
             // a notificationis on for no more than a minute
             AutoClosingMessageBox.Show(message, "Notification about coupon nearby/ending soon ", 60000);
+        }*/
+        private void btn_addCouponFromSocial(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_buyCoupon(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_rateCoupon(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_searchCoupon(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_Coupon(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void setNotifications(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void viewCoupons(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

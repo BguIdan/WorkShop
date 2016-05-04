@@ -23,5 +23,30 @@ namespace PL
         {
             InitializeComponent();
         }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_Coupon(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void setNotifications(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void viewCoupons(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DataGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ForumBuilder.Common.ServiceContracts;
+using ForumBuilder.Common.DataContracts;
 
 namespace Service
 {
@@ -38,6 +39,11 @@ namespace Service
         public Boolean addPost(String headLine, String content, String writerName, Int32 commentedPost)
         {
             return postController.addComment(headLine, content, writerName, commentedPost);
+        }
+        public List<PostData> getAllPosts(String forumName, String subforumName)
+        {
+            //TODO: complete the function
+            return null;
         }
     }
 }

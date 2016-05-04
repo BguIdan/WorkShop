@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Tests
 {
-    [TestClass]
+    /*[TestClass]
     public class PostManagerTest
     {
         private IForumController forumController;
@@ -778,5 +778,5 @@ namespace Tests
             List<Post> postsAfter = this.postManager.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(postsPre.Count, postsAfter.Count);
         }
-    }
+    }*/
 }

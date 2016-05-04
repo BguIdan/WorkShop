@@ -37,7 +37,7 @@ namespace PL
                 case "CreateForum": { createNewForum(); } break;
                 case "Set": { setPreferences(); } break;
                 case "CreateSub": { createSub(); } break;
-                case "Delete": { Delete(); } break;
+                case "Del": { Delete(); } break;
                 case "Exit": { this.Visibility = System.Windows.Visibility.Collapsed; System.Environment.Exit(1); } break;
             }
         }
@@ -68,6 +68,16 @@ namespace PL
         private void Delete()
         {
            
+        }
+
+        private void btn_addCouponFromSocial(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_View(object sender, RoutedEventArgs e)
+        {
+
         }
 
     }

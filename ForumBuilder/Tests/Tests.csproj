@@ -42,6 +42,7 @@
       <HintPath>..\packages\DW.CodedUI.2.6.2\lib\DW.CodedUI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ServiceModel" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -59,7 +60,6 @@
     <Compile Include="AcceptanceTests.cs" />
     <Compile Include="ForumControllerTest.cs" />
     <Compile Include="ForumManagerTest.cs" />
-    <Compile Include="GettingStarted.cs" />
     <Compile Include="PostControllerTest.cs" />
     <Compile Include="PostManagerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -99,6 +99,9 @@
     <None Include="TestSuit.orderedtest">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
