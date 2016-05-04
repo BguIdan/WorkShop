@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
+using BL_Back_End;
+
+
 
 namespace ForumBuilder.Common.ServiceContracts
 {
@@ -15,5 +18,9 @@ namespace ForumBuilder.Common.ServiceContracts
 
         [OperationContract]
         Boolean addPost(String headLine, String content, String writerName, Int32 commentedPost);
+        
+        [OperationContract]
+        List<Post> getAllPosts(String forumName, String subforumName);
+
     }
 }

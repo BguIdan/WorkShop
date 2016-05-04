@@ -8,8 +8,13 @@ using ForumBuilder.Common.ServiceContracts;
 
 namespace PL.proxies
 {
-    class UserManagerClient : ClientBase<IUserManager>, IUserManager
+    public class UserManagerClient : ClientBase<IUserManager>, IUserManager
     {
+        public UserManagerClient()
+        {
+
+        }
+
         Boolean addFriend(String userName, String friendToAdd)
         {
             return Channel.addFriend(userName, friendToAdd);
@@ -24,5 +29,11 @@ namespace PL.proxies
         {
             return Channel.sendPrivateMessage(fromUserName, toUserName, content);
         }
+
+        List<String> getFriendList(String userName)
+        {
+            return Channel.getFriendList(userName);
+        }
+
     }
 }

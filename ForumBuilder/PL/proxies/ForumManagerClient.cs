@@ -10,6 +10,11 @@ namespace PL.proxies
 {
     public class ForumManagerClient : ClientBase<IForumManager>, IForumManager
     {
+        public ForumManagerClient()
+        {
+ 
+        }
+
         Boolean dismissAdmin(String adminToDismissed, String dismissingUserName, String forumName)
         {
             return Channel.dismissAdmin(adminToDismissed, dismissingUserName, forumName);

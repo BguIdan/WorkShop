@@ -8,15 +8,21 @@ namespace ForumBuilder.Common.DataContracts
     public class ThreadData
     {
         [DataMember]
-        private PostData _firstPost;
+        private Post _firstPost;
 
         [DataMember]
         private String _title;
 
-        public ThreadData(PostData post)
+        public ThreadData(Post post)
         {
-            this._firstPost = post;
-            this._title = post.title;
+            _firstPost = post;
+            _title = post.title;
+        }
+
+        public Post firstPost
+        {
+            get { return _firstPost; }
+            set { _firstPost = value; }
         }
     }
 }
