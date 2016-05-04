@@ -52,3 +52,7 @@ C:\Users\Aviv\Documents\WorkShop\ForumBuilder\PL\obj\Debug\PL_MarkupCompile.cach
 C:\Users\Aviv\Documents\WorkShop\ForumBuilder\PL\obj\Debug\PL.g.resources
 C:\Users\Aviv\Documents\WorkShop\ForumBuilder\PL\obj\Debug\PL.Properties.Resources.resources
 C:\Users\Aviv\Documents\WorkShop\ForumBuilder\PL\obj\Debug\PL.csproj.GenerateResource.Cache
+C:\Users\User\Documents\sadna\ForumBuilder\PL\obj\Debug\SubForumWindow.baml
+C:\Users\User\Documents\sadna\ForumBuilder\PL\obj\Debug\SuperUserWindow.baml
+C:\Users\User\Documents\sadna\ForumBuilder\PL\obj\Debug\SubForumWindow.g.cs
+C:\Users\User\Documents\sadna\ForumBuilder\PL\obj\Debug\SuperUserWindow.g.cs

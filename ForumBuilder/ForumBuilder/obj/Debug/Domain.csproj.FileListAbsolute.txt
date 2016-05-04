@@ -24,3 +24,7 @@ C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\bin\Debug\Database.pdb
 C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\obj\Debug\Domain.csprojResolveAssemblyReference.cache
 C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\obj\Debug\ForumBuilder.exe
 C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\obj\Debug\ForumBuilder.pdb
+C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\bin\Debug\DW.CodedUI.dll
+C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\bin\Debug\DW.CodedUI.pdb
+C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\bin\Debug\DW.CodedUI.xml

@@ -50,7 +50,6 @@
     <Compile Include="Controllers\IForumController.cs" />
     <Compile Include="Controllers\IPostController.cs" />
     <Compile Include="Controllers\ISubForumController.cs" />
-    <Compile Include="GettingStarted.cs" />
     <Compile Include="Systems\ILogger.cs" />
     <Compile Include="Systems\ForumSystem.cs" />
     <Compile Include="Controllers\ISuperUserController.cs" />
