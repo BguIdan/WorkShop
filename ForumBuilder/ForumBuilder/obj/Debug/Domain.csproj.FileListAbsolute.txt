@@ -23,3 +23,14 @@ C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\bin\Debug\Database.pdb
 C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\obj\Debug\Domain.csprojResolveAssemblyReference.cache
 C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\obj\Debug\ForumBuilder.exe
 C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\obj\Debug\ForumBuilder.pdb
+C:\Users\Aviv\Documents\WorkShop\ForumBuilder\ForumBuilder\bin\Debug\ForumBuilder.exe
+C:\Users\Aviv\Documents\WorkShop\ForumBuilder\ForumBuilder\bin\Debug\ForumBuilder.pdb
+C:\Users\Aviv\Documents\WorkShop\ForumBuilder\ForumBuilder\bin\Debug\BL_Back_End.exe
+C:\Users\Aviv\Documents\WorkShop\ForumBuilder\ForumBuilder\bin\Debug\Database.exe
+C:\Users\Aviv\Documents\WorkShop\ForumBuilder\ForumBuilder\bin\Debug\DW.CodedUI.dll
+C:\Users\Aviv\Documents\WorkShop\ForumBuilder\ForumBuilder\bin\Debug\BL_Back_End.pdb
+C:\Users\Aviv\Documents\WorkShop\ForumBuilder\ForumBuilder\bin\Debug\Database.pdb
+C:\Users\Aviv\Documents\WorkShop\ForumBuilder\ForumBuilder\bin\Debug\DW.CodedUI.pdb
+C:\Users\Aviv\Documents\WorkShop\ForumBuilder\ForumBuilder\bin\Debug\DW.CodedUI.xml
+C:\Users\Aviv\Documents\WorkShop\ForumBuilder\ForumBuilder\obj\Debug\ForumBuilder.exe
+C:\Users\Aviv\Documents\WorkShop\ForumBuilder\ForumBuilder\obj\Debug\ForumBuilder.pdb
