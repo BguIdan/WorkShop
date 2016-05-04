@@ -5,11 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
 using ForumBuilder.Common.ServiceContracts;
+using BL_Back_End;
 
 namespace PL.proxies
 {
-    class PostManagerClient : ClientBase<IPostManager>, IPostManager
+    public class PostManagerClient : ClientBase<IPostManager>, IPostManager
     {
+        public PostManagerClient()
+        {
+
+        }
+
         Boolean deletePost(Int32 postId, String deletingUser)
         {
             return Channel.deletePost(postId, deletingUser);
@@ -19,5 +25,11 @@ namespace PL.proxies
         {
             return Channel.addPost(headLine, content, writerName, commentedPost);
         }
+
+        List<Post> getAllPosts(String forumName, String subforumName)
+        {
+            return Channel.getAllPosts(forumName, subforumName);
+        }
+
     }
 }

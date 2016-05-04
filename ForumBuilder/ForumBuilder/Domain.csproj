@@ -33,8 +33,12 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="DW.CodedUI">
+      <HintPath>..\packages\DW.CodedUI.2.6.2\lib\DW.CodedUI.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
@@ -46,6 +50,7 @@
     <Compile Include="Controllers\IForumController.cs" />
     <Compile Include="Controllers\IPostController.cs" />
     <Compile Include="Controllers\ISubForumController.cs" />
+    <Compile Include="GettingStarted.cs" />
     <Compile Include="Systems\ILogger.cs" />
     <Compile Include="Systems\ForumSystem.cs" />
     <Compile Include="Controllers\ISuperUserController.cs" />

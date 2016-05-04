@@ -6,26 +6,51 @@ using System.Runtime.Serialization;
 namespace ForumBuilder.Common.DataContracts
 {
     [DataContract]
-    public class SubForum
+    public class SubForumData
     {
         [DataMember]
-        private String name { get; set; }
+        private String _name;
 
         [DataMember]
-        private Dictionary<String, DateTime> moderators { get; set; }
+        private Dictionary<String, DateTime> _moderators;
 
         [DataMember]
-        private List<Int32> threads { get; set; }
+        private List<Int32> _threads;
 
         [DataMember]
-        private String forum { get; set; }
+        private String _forum;
 
-        public SubForum(String name,String forumName)
+        public SubForumData(String name, String forumName)
         {
-            this.name = name;
-            this.moderators = new Dictionary<String, DateTime>();
-            this.threads = new List<int>();
-            this.forum = forumName;
+            _name = name;
+            _moderators = new Dictionary<String, DateTime>();
+            _threads = new List<int>();
+            _forum = forumName;
+        }
+
+
+
+        public String name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+
+        public Dictionary<String, DateTime> moderators
+        {
+            get { return _moderators; }
+            set { _moderators = value; }
+        }
+
+        public List<Int32> threads
+        {
+            get { return _threads; }
+            set { _threads = value; }
+        }
+        public String forum
+        {
+            get { return _forum; }
+            set { _forum = value; }
         }
     }
 }

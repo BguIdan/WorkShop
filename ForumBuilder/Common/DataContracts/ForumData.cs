@@ -28,11 +28,11 @@ namespace ForumBuilder.Common.DataContracts
 
         public ForumData(string forumName, string descrption, string forumPolicy, string forumRules)
         {
-            this._forumName = forumName;
-            this._description = descrption;
-            this._forumPolicy = forumPolicy;
-            this._forumRules = forumRules;
-            this._subForums = new List<string>();
+            _forumName = forumName;
+            _description = descrption;
+            _forumPolicy = forumPolicy;
+            _forumRules = forumRules;
+            _subForums = new List<string>();
         }
 
         public String forumPolicy

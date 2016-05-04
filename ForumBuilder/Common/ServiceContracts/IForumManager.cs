@@ -20,7 +20,7 @@ namespace ForumBuilder.Common.ServiceContracts
         Boolean nominateAdmin(String newAdmin, String nominatorName, String forumName);
 
         [OperationContract]
-        Boolean registerUser(String newUser, String password, String mail, string forumName);
+        Boolean registerUser(String newUser, String password, String mail, String forumName);
 
         [OperationContract]
         Boolean addSubForum(String forumName, String name, Dictionary<String, DateTime> moderators, String userNameAdmin);

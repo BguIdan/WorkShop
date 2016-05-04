@@ -34,13 +34,13 @@ namespace ForumBuilder.Common.DataContracts
 
         public PostData(String writerUserName, Int32 id, String title, String content, Int32 parentId, DateTime timePublished)
         {
-            this.id = id;
-            this.title = title;
-            this.content = content;
-            this.parentId = parentId;
-            this.commentsIds = new List<int>();
-            this.timePublished = timePublished;
-            this.writerUserName = writerUserName;
+            _id = id;
+            _title = title;
+            _content = content;
+            _parentId = parentId;
+            _commentsIds = new List<int>();
+            _timePublished = timePublished;
+            _writerUserName = writerUserName;
         }
 
         public Int32 id

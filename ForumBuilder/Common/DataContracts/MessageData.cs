@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 namespace ForumBuilder.Common.DataContracts
 {
     [DataContract]
-    public class Message
+    public class MessageData
     {
         [DataMember]
         private Int32 _id;
@@ -19,7 +19,7 @@ namespace ForumBuilder.Common.DataContracts
         [DataMember]
         private String _content;
 
-        public Message(Int32 id, String sender, String reciver, String content)
+        public MessageData(Int32 id, String sender, String reciver, String content)
         {
             _id = id;
             _sender = sender;
