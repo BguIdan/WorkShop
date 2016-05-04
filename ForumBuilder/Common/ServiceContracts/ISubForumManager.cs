@@ -21,5 +21,9 @@ namespace ForumBuilder.Common.ServiceContracts
 
         [OperationContract]
         bool deleteThread(int firstPostId, string removerName);
+                
+        [OperationContract]
+        Boolean isModerator(string name, string subForumName, string forumName);
+
     }
 }

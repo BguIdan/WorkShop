@@ -18,5 +18,8 @@ namespace ForumBuilder.Common.ServiceContracts
 
         [OperationContract]
         Boolean sendPrivateMessage(String fromUserName, String toUserName, String content);
+
+        [OperationContract]
+        List<String> getFriendList(String userName);
     }
 }

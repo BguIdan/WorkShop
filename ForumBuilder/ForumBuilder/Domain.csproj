@@ -33,8 +33,12 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="DW.CodedUI">
+      <HintPath>..\packages\DW.CodedUI.2.6.2\lib\DW.CodedUI.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
