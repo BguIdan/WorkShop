@@ -12,15 +12,9 @@ using System.Threading.Tasks;
 
 namespace Tests
 {
-    /*[TestClass]
+    [TestClass]
     class UserManagerTest
     {
-
-        private IUserController userController = UserController.getInstance;
-        private IForumController forumController;
-        private User userNonMember;
-        private User userMember;
-        private User userAdmin;
 
         private IUserManager userManager = new UserManagerClient();
         private IForumManager forumManager;
@@ -59,6 +53,7 @@ namespace Tests
         }
 
 
+        /**********************add friend*********************/
         [TestMethod]
         public void test_addFriend_nonMember_with_nonMember()
         {
@@ -170,7 +165,9 @@ namespace Tests
             Assert.AreEqual(newFriendList.Count, 0, "unsuccessful friend addition should not change the friend list");
         }
 
+        /**********************end of add friend*********************/
 
+        /**********************delete friend*********************/
 
         [TestMethod]
         public void test_deleteFriend_member_with_member()
@@ -250,6 +247,6 @@ namespace Tests
             List<String> newFriendList = this.userManager.getFriendList(this.userAdmin.userName);
             Assert.AreEqual(newFriendList.Count, 0, "unsuccessful friend addition should not change the friend list");
         }
-    }*/
-    
+
+    }
 }

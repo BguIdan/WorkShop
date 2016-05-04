@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Tests
-{/*
+{
     [TestClass]
     class SubForumManagerTest
     {
@@ -141,9 +141,9 @@ namespace Tests
             String headLine = "head";
             String content = "content";
             Assert.IsTrue(this.subForum.createThread(headLine, content, this.userMember.userName, this.forumName, this.subForumName));
-            List<Post> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
+            List<PostData> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(postList.Count, 1);
-            Post post = postList.First();
+            PostData post = postList.First();
             Assert.AreEqual(post.title, headLine);
             Assert.AreEqual(post.content, content);
             Assert.AreEqual(post.writerUserName, this.userMember.userName);
@@ -156,9 +156,9 @@ namespace Tests
             String headLine = "head";
             String content = "content";
             Assert.IsTrue(this.subForum.createThread(headLine, content, this.userAdmin.userName, this.forumName, this.subForumName));
-            List<Post> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
+            List<PostData> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(postList.Count, 1);
-            Post post = postList.First();
+            PostData post = postList.First();
             Assert.AreEqual(post.title, headLine);
             Assert.AreEqual(post.content, content);
             Assert.AreEqual(post.writerUserName, this.userAdmin.userName);
@@ -170,9 +170,9 @@ namespace Tests
             String headLine = "";
             String content = "content";
             Assert.IsTrue(this.subForum.createThread(headLine, content, this.userMember.userName, this.forumName, this.subForumName));
-            List<Post> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
+            List<PostData> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(postList.Count, 1);
-            Post post = postList.First();
+            PostData post = postList.First();
             Assert.AreEqual(post.title, headLine);
             Assert.AreEqual(post.content, content);
             Assert.AreEqual(post.writerUserName, this.userMember.userName);
@@ -185,9 +185,9 @@ namespace Tests
             String headLine = "";
             String content = "content";
             Assert.IsTrue(this.subForum.createThread(headLine, content, this.userAdmin.userName, this.forumName, this.subForumName));
-            List<Post> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
+            List<PostData> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(postList.Count, 1);
-            Post post = postList.First();
+            PostData post = postList.First();
             Assert.AreEqual(post.title, headLine);
             Assert.AreEqual(post.content, content);
             Assert.AreEqual(post.writerUserName, this.userAdmin.userName);
@@ -199,9 +199,9 @@ namespace Tests
             String headLine = "head";
             String content = "";
             Assert.IsTrue(this.subForum.createThread(headLine, content, this.userMember.userName, this.forumName, this.subForumName));
-            List<Post> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
+            List<PostData> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(postList.Count, 1);
-            Post post = postList.First();
+            PostData post = postList.First();
             Assert.AreEqual(post.title, headLine);
             Assert.AreEqual(post.content, content);
             Assert.AreEqual(post.writerUserName, this.userMember.userName);
@@ -214,9 +214,9 @@ namespace Tests
             String headLine = "head";
             String content = "";
             Assert.IsTrue(this.subForum.createThread(headLine, content, this.userAdmin.userName, this.forumName, this.subForumName));
-            List<Post> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
+            List<PostData> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(postList.Count, 1);
-            Post post = postList.First();
+            PostData post = postList.First();
             Assert.AreEqual(post.title, headLine);
             Assert.AreEqual(post.content, content);
             Assert.AreEqual(post.writerUserName, this.userAdmin.userName);
@@ -228,7 +228,7 @@ namespace Tests
             String headLine = "";
             String content = "";
             Assert.IsFalse(this.subForum.createThread(headLine, content, this.userMember.userName, this.forumName, this.subForumName));
-            List<Post> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
+            List<PostData> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(postList.Count, 0);
         }
 
@@ -239,7 +239,7 @@ namespace Tests
             String headLine = "";
             String content = "";
             Assert.IsFalse(this.subForum.createThread(headLine, content, this.userAdmin.userName, this.forumName, this.subForumName));
-            List<Post> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
+            List<PostData> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(postList.Count, 0);
         }
 
@@ -249,7 +249,7 @@ namespace Tests
             String headLine = null;
             String content = null;
             Assert.IsFalse(this.subForum.createThread(headLine, content, this.userMember.userName, this.forumName, this.subForumName));
-            List<Post> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
+            List<PostData> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(postList.Count, 0);
         }
 
@@ -260,7 +260,7 @@ namespace Tests
             String headLine = null;
             String content = null;
             Assert.IsFalse(this.subForum.createThread(headLine, content, this.userAdmin.userName, this.forumName, this.subForumName));
-            List<Post> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
+            List<PostData> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(postList.Count, 0);
         }
 
@@ -270,7 +270,7 @@ namespace Tests
             String headLine = "head";
             String content = "content";
             Assert.IsFalse(this.subForum.createThread(headLine, content, "donJoe", this.forumName, this.subForumName));
-            List<Post> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
+            List<PostData> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(postList.Count, 0);
         }
 
@@ -280,7 +280,7 @@ namespace Tests
             String headLine = "head";
             String content = "content";
             Assert.IsFalse(this.subForum.createThread(headLine, content, this.userMember.userName, "notForum", this.subForumName));
-            List<Post> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
+            List<PostData> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(postList.Count, 0);
         }
 
@@ -290,7 +290,7 @@ namespace Tests
             String headLine = "head";
             String content = "content";
             Assert.IsFalse(this.subForum.createThread(headLine, content, this.userMember.userName, this.forumName, "notSubForum"));
-            List<Post> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
+            List<PostData> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(postList.Count, 0);
         }
 
@@ -300,7 +300,7 @@ namespace Tests
             String headLine = "head";
             String content = "content";
             Assert.IsFalse(this.subForum.createThread(headLine, content, this.userNonMember.userName, this.forumName, this.subForumName));
-            List<Post> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
+            List<PostData> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(postList.Count, 0);
         }
 
@@ -313,9 +313,9 @@ namespace Tests
             String headLine = "head";
             String content = "content";
             Assert.IsTrue(this.subForum.createThread(headLine, content, this.userMember.userName, this.forumName, this.subForumName));
-            List<Post> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
+            List<PostData> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(postList.Count, 1);
-            Post post = postList.First();
+            PostData post = postList.First();
             Assert.AreEqual(post.title, headLine);
             Assert.AreEqual(post.content, content);
             Assert.AreEqual(post.writerUserName, this.userMember.userName);
@@ -331,9 +331,9 @@ namespace Tests
             String headLine = "head";
             String content = "content";
             Assert.IsTrue(this.subForum.createThread(headLine, content, this.userMember.userName, this.forumName, this.subForumName));
-            List<Post> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
+            List<PostData> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(postList.Count, 1);
-            Post post = postList.First();
+            PostData post = postList.First();
             Assert.AreEqual(post.title, headLine);
             Assert.AreEqual(post.content, content);
             Assert.AreEqual(post.writerUserName, this.userMember.userName);
@@ -349,9 +349,9 @@ namespace Tests
             String headLine = "head";
             String content = "content";
             Assert.IsTrue(this.subForum.createThread(headLine, content, this.userAdmin.userName, this.forumName, this.subForumName));
-            List<Post> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
+            List<PostData> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(postList.Count, 1);
-            Post post = postList.First();
+            PostData post = postList.First();
             Assert.AreEqual(post.title, headLine);
             Assert.AreEqual(post.content, content);
             Assert.AreEqual(post.writerUserName, this.userAdmin.userName);
@@ -367,9 +367,9 @@ namespace Tests
             String headLine = "head";
             String content = "content";
             Assert.IsTrue(this.subForum.createThread(headLine, content, this.userAdmin.userName, this.forumName, this.subForumName));
-            List<Post> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
+            List<PostData> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(postList.Count, 1);
-            Post post = postList.First();
+            PostData post = postList.First();
             Assert.AreEqual(post.title, headLine);
             Assert.AreEqual(post.content, content);
             Assert.AreEqual(post.writerUserName, this.userAdmin.userName);
@@ -384,9 +384,9 @@ namespace Tests
             String headLine = "head";
             String content = "content";
             Assert.IsTrue(this.subForum.createThread(headLine, content, this.userMember.userName, this.forumName, this.subForumName));
-            List<Post> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
+            List<PostData> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(postList.Count, 1);
-            Post post = postList.First();
+            PostData post = postList.First();
             Assert.AreEqual(post.title, headLine);
             Assert.AreEqual(post.content, content);
             Assert.AreEqual(post.writerUserName, this.userMember.userName);
@@ -405,9 +405,9 @@ namespace Tests
             String headLine = "head";
             String content = "content";
             Assert.IsTrue(this.subForum.createThread(headLine, content, this.userMember.userName, this.forumName, this.subForumName));
-            List<Post> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
+            List<PostData> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(postList.Count, 1);
-            Post post = postList.First();
+            PostData post = postList.First();
             Assert.AreEqual(post.title, headLine);
             Assert.AreEqual(post.content, content);
             Assert.AreEqual(post.writerUserName, this.userMember.userName);
@@ -426,9 +426,9 @@ namespace Tests
             String headLine = "head";
             String content = "content";
             Assert.IsTrue(this.subForum.createThread(headLine, content, this.userMember.userName, this.forumName, this.subForumName));
-            List<Post> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
+            List<PostData> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(postList.Count, 1);
-            Post post = postList.First();
+            PostData post = postList.First();
             Assert.AreEqual(post.title, headLine);
             Assert.AreEqual(post.content, content);
             Assert.AreEqual(post.writerUserName, this.userMember.userName);
@@ -447,5 +447,5 @@ namespace Tests
             return ((list1.Count == list2.Count) &&
                             list1.Except(list2).Any());
         }
-    }*/
+    }
 }
