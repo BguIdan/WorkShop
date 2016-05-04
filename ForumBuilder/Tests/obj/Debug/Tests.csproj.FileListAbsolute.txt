@@ -28,3 +28,8 @@ C:\Users\User\Documents\sadna\ForumBuilder\Tests\bin\Debug\ForumBuilder.pdb
 C:\Users\User\Documents\sadna\ForumBuilder\Tests\bin\Debug\Service.pdb
 C:\Users\User\Documents\sadna\ForumBuilder\Tests\obj\Debug\Tests.dll
 C:\Users\User\Documents\sadna\ForumBuilder\Tests\obj\Debug\Tests.pdb
+C:\Users\User\Documents\sadna\ForumBuilder\Tests\bin\Debug\DW.CodedUI.dll
+C:\Users\User\Documents\sadna\ForumBuilder\Tests\bin\Debug\PL.exe
+C:\Users\User\Documents\sadna\ForumBuilder\Tests\bin\Debug\PL.pdb
+C:\Users\User\Documents\sadna\ForumBuilder\Tests\bin\Debug\DW.CodedUI.pdb
+C:\Users\User\Documents\sadna\ForumBuilder\Tests\bin\Debug\DW.CodedUI.xml
