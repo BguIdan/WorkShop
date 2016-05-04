@@ -10,12 +10,12 @@ namespace PL.proxies
 {
     class SuperUserManagerClient : ClientBase<ISuperUserManager>, ISuperUserManager
     {
-        Boolean createForum(String forumName, String descrption, String forumPolicy, String forumRules, List<String> administrators, String superUserName)
+        public Boolean createForum(String forumName, String descrption, String forumPolicy, String forumRules, List<String> administrators, String superUserName)
         {
             return Channel.createForum(forumName, descrption, forumPolicy, forumRules, administrators, superUserName);
         }
 
-        Boolean initialize(String name, String password, String email)
+        public Boolean initialize(String name, String password, String email)
         {
             return Channel.initialize(name, password, email);
         }

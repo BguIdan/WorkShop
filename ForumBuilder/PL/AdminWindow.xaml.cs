@@ -11,8 +11,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using BL;
-using BL_BackEnd;
 
 namespace PL
 {
@@ -21,7 +19,7 @@ namespace PL
     /// </summary>
     public partial class AdminWindow : Window
     {
-        private AdminBL adminBL;
+        /*private AdminBL adminBL;
         private UserBL itsUserBL;
         private int userID;
 
@@ -32,7 +30,6 @@ namespace PL
             itsUserBL = isUserBL;
             TextBlock.Visibility = System.Windows.Visibility.Visible;
             adminBL = new AdminBL(dalimp);
-            /* collaspe any other window: */
             RankCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
             TextBlock.Visibility = System.Windows.Visibility.Collapsed;
             AddCoupon.Visibility = System.Windows.Visibility.Collapsed;
@@ -71,7 +68,7 @@ namespace PL
 
         private void ViewCoupon()
         {
-            /* collaspe any other window: */
+            
             RankCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
             TextBlock.Visibility = System.Windows.Visibility.Collapsed;
             AddCoupon.Visibility = System.Windows.Visibility.Collapsed;
@@ -82,14 +79,14 @@ namespace PL
             AddStoreWindow.Visibility = System.Windows.Visibility.Collapsed;
             RankCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
             DeleteStoreWindow.Visibility = System.Windows.Visibility.Collapsed;
-            /* show only this window: */
+            
             ViewCouponWindow.Visibility = System.Windows.Visibility.Visible;
             couponsView.ItemsSource = adminBL.showAllCoupons();
         }
 
         private void RankACoupon()
         {
-            /* collaspe any other window: */
+            
             TextBlock.Visibility = System.Windows.Visibility.Collapsed;
             AddCoupon.Visibility = System.Windows.Visibility.Collapsed;
             LookCoupon.Visibility = System.Windows.Visibility.Collapsed;
@@ -101,14 +98,14 @@ namespace PL
             RankCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
             DeleteStoreWindow.Visibility = System.Windows.Visibility.Collapsed;
          
-            /* show only this window: */
+            
             RankCouponWindow.Visibility = System.Windows.Visibility.Visible;
             boughtCouponsGrid.ItemsSource = adminBL.viewOrders(userID);
         }
 
         private void LookForAcoupon()
         {
-            /* collaspe any other window: */
+            
             TextBlock.Visibility = System.Windows.Visibility.Collapsed;
             AddCoupon.Visibility = System.Windows.Visibility.Collapsed;
             LookCoupon.Visibility = System.Windows.Visibility.Collapsed;
@@ -121,13 +118,13 @@ namespace PL
             RankCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
             DeleteStoreWindow.Visibility = System.Windows.Visibility.Collapsed;
 
-            /* show only this window: */
+            
  	        LookCoupon.Visibility = System.Windows.Visibility.Visible;
         } 
         
         private void DeleteCoupon()
         {
-            /* collaspe any other window: */
+            
             TextBlock.Visibility = System.Windows.Visibility.Collapsed;
             AddCoupon.Visibility = System.Windows.Visibility.Collapsed;
             LookCoupon.Visibility = System.Windows.Visibility.Collapsed;
@@ -140,14 +137,14 @@ namespace PL
             RankCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
             DeleteStoreWindow.Visibility = System.Windows.Visibility.Collapsed;
 
-            /* show only this window: */
+            
             DeleteCouponWin.Visibility = System.Windows.Visibility.Visible;
             deleteCouponGrid.ItemsSource = adminBL.showCouponstoDelete();
         }
 
         private void BuyCoupon()
         {
-            /* collaspe any other window: */
+            
             TextBlock.Visibility = System.Windows.Visibility.Collapsed;
             AddCoupon.Visibility = System.Windows.Visibility.Collapsed;
             LookCoupon.Visibility = System.Windows.Visibility.Collapsed;
@@ -160,7 +157,7 @@ namespace PL
             RankCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
             DeleteStoreWindow.Visibility = System.Windows.Visibility.Collapsed;
 
-            /* show only this window: */
+            
             LookCoupon.Visibility = System.Windows.Visibility.Visible;
             //couponsToBuyGrid.ItemsSource = adminBL.showAuthorizedCoupons(); // need o write that one for userBL
             // show empty grid
@@ -168,7 +165,7 @@ namespace PL
 
         private void EditCoupon()
         {
-            /* collaspe any other window: */
+            
             TextBlock.Visibility = System.Windows.Visibility.Collapsed;
             AddCoupon.Visibility = System.Windows.Visibility.Collapsed;
             LookCoupon.Visibility = System.Windows.Visibility.Collapsed;
@@ -181,7 +178,7 @@ namespace PL
             RankCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
             DeleteStoreWindow.Visibility = System.Windows.Visibility.Collapsed;
 
-            /* show only this window: */
+            
             EditCouponWin.Visibility = System.Windows.Visibility.Visible;
             EditChooseCouponWindow.Visibility = System.Windows.Visibility.Visible;
             couponsToEdit.ItemsSource = adminBL.showAllCoupons();
@@ -189,7 +186,7 @@ namespace PL
 
         private void ConfirmCoupon()
         {
-            /* collaspe any other window: */
+            
             TextBlock.Visibility = System.Windows.Visibility.Collapsed;
             AddCoupon.Visibility = System.Windows.Visibility.Collapsed;
             LookCoupon.Visibility = System.Windows.Visibility.Collapsed;
@@ -202,14 +199,14 @@ namespace PL
             RankCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
             DeleteStoreWindow.Visibility = System.Windows.Visibility.Collapsed;
 
-            /* show only this window: */
+           
             ConfirmCouponWindow.Visibility = System.Windows.Visibility.Visible;
             couponsToApproveView.ItemsSource = adminBL.showUnauthorizedCoupons();
         }
 
         private void AddRegularCoupon()
         {
-            /* collaspe any other window: */
+            
             TextBlock.Visibility = System.Windows.Visibility.Collapsed;
             AddCoupon.Visibility = System.Windows.Visibility.Collapsed;
             LookCoupon.Visibility = System.Windows.Visibility.Collapsed;
@@ -222,13 +219,13 @@ namespace PL
             RankCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
             DeleteStoreWindow.Visibility = System.Windows.Visibility.Collapsed;
 
-            /* show only this window: */
+           
             AddCoupon.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void AddCouponFromSocial()
         {
-            /* collaspe any other window: */
+            
             TextBlock.Visibility = System.Windows.Visibility.Collapsed;
             AddCoupon.Visibility = System.Windows.Visibility.Collapsed;
             LookCoupon.Visibility = System.Windows.Visibility.Collapsed;
@@ -241,7 +238,7 @@ namespace PL
             RankCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
             DeleteStoreWindow.Visibility = System.Windows.Visibility.Collapsed;
 
-            /* show only this window: */
+            
             AddCoupon.Visibility = System.Windows.Visibility.Visible;
         }      
         
@@ -258,7 +255,7 @@ namespace PL
 
         private void DeleteAStore()
         {
-            /* collaspe any other window: */
+            
             TextBlock.Visibility = System.Windows.Visibility.Collapsed;
             AddCoupon.Visibility = System.Windows.Visibility.Collapsed;
             LookCoupon.Visibility = System.Windows.Visibility.Collapsed;
@@ -271,14 +268,14 @@ namespace PL
             RankCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
             DeleteStoreWindow.Visibility = System.Windows.Visibility.Collapsed;
 
-            /* show only this window: */
+            
             DeleteStoreWindow.Visibility = System.Windows.Visibility.Visible;
             storesToDelete.ItemsSource = adminBL.searchStores(userID, false, null);
         }
 
         private void LookForAStore()
         {          
-            /* collaspe any other window: */
+            
             TextBlock.Visibility = System.Windows.Visibility.Collapsed;
             AddCoupon.Visibility = System.Windows.Visibility.Collapsed;
             LookCoupon.Visibility = System.Windows.Visibility.Collapsed;
@@ -291,14 +288,14 @@ namespace PL
             RankCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
             DeleteStoreWindow.Visibility = System.Windows.Visibility.Collapsed;
 
-            /* show only this window: */
+            
             LookStoreWindow.Visibility = System.Windows.Visibility.Visible;
             
         }
 
         private void AddAStore()
         {
-            /* collaspe any other window: */
+            
             TextBlock.Visibility = System.Windows.Visibility.Collapsed;
             AddCoupon.Visibility = System.Windows.Visibility.Collapsed;
             LookCoupon.Visibility = System.Windows.Visibility.Collapsed;
@@ -311,7 +308,7 @@ namespace PL
             RankCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
             DeleteStoreWindow.Visibility = System.Windows.Visibility.Collapsed;
 
-            /* show only this window: */
+            
             AddStoreWindow.Visibility = System.Windows.Visibility.Visible;
            
         }
@@ -578,7 +575,7 @@ namespace PL
                 return;
             }
             MessageBox.Show("Store " + name + " has been deleted!");
-        }
+        }*/
 
 
     }

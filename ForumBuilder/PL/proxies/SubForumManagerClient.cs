@@ -10,22 +10,22 @@ namespace PL.proxies
 {
     class SubForumManagerClient : ClientBase<ISubForumManager>, ISubForumManager
     {
-        Boolean dismissModerator(String dismissedModerator, String dismissByAdmin, String subForumName, String forumName)
+        public Boolean dismissModerator(String dismissedModerator, String dismissByAdmin, String subForumName, String forumName)
         {
             return Channel.dismissModerator(dismissedModerator, dismissByAdmin, subForumName, forumName);
         }
 
-        Boolean nominateModerator(String newModerator, String nominatorUser, DateTime date, String subForumName, String forumName)
+        public Boolean nominateModerator(String newModerator, String nominatorUser, DateTime date, String subForumName, String forumName)
         {
             return Channel.nominateModerator(newModerator, nominatorUser, date, subForumName, forumName);
         }
 
-        bool createThread(String headLine, String content, String writerName, String forumName, String subForumName)
+        public bool createThread(String headLine, String content, String writerName, String forumName, String subForumName)
         {
             return Channel.createThread(headLine, content, writerName, forumName, subForumName);
         }
 
-        bool deleteThread(int firstPostId, string removerName)
+        public bool deleteThread(int firstPostId, string removerName)
         {
             return Channel.deleteThread(firstPostId, removerName);
         }

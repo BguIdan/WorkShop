@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using PL.proxies;
 
 namespace PL
 {
@@ -19,32 +20,13 @@ namespace PL
     /// </summary>
     public partial class SuperUserWindow : Window
     {
+        private SuperUserManagerClient _sUMC;
+
         public SuperUserWindow()
         {
             InitializeComponent();
-        }
-    }
-}
-        public AdminWindow(DAL.IDAL dalimp, int userID, UserBL isUserBL)
-        {
-            InitializeComponent();
-            this.userID = userID;
-            itsUserBL = isUserBL;
-            TextBlock.Visibility = System.Windows.Visibility.Visible;
-            adminBL = new AdminBL(dalimp);
-            /* collaspe any other window: */
-            RankCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
-            TextBlock.Visibility = System.Windows.Visibility.Collapsed;
-            AddCoupon.Visibility = System.Windows.Visibility.Collapsed;
-            LookCoupon.Visibility = System.Windows.Visibility.Collapsed;
-            DeleteCouponWin.Visibility = System.Windows.Visibility.Collapsed;
-            EditCouponWin.Visibility = System.Windows.Visibility.Collapsed;
-            ConfirmCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
-            AddStoreWindow.Visibility = System.Windows.Visibility.Collapsed;
-            RankCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
-            DeleteStoreWindow.Visibility = System.Windows.Visibility.Collapsed;
+            _sUMC = new SuperUserManagerClient();
             this.Show();
-
         }
 
         private void MenuItem_Actions(object sender, RoutedEventArgs e)
@@ -52,28 +34,42 @@ namespace PL
             MenuItem menuItem = e.Source as MenuItem;
             switch (menuItem.Name)
             {
-                case "CreateForum":    { AddCouponFromSocial(); } break;
-                case "Set":          { AddRegularCoupon(); }    break;
-                case "CreateSub":      { ConfirmCoupon(); } break;
-                case "Delete":         { EditCoupon(); } break;
+                case "CreateForum": { createNewForum(); } break;
+                case "Set": { setPreferences(); } break;
+                case "CreateSub": { createSub(); } break;
+                case "Delete": { Delete(); } break;
                 case "Exit": { this.Visibility = System.Windows.Visibility.Collapsed; System.Environment.Exit(1); } break;
             }
         }
 
-        private void ViewCoupon()
+        private void createNewForum()
         {
-            /* collaspe any other window: */
-            RankCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
-            TextBlock.Visibility = System.Windows.Visibility.Collapsed;
-            AddCoupon.Visibility = System.Windows.Visibility.Collapsed;
-            LookCoupon.Visibility = System.Windows.Visibility.Collapsed;
-            DeleteCouponWin.Visibility = System.Windows.Visibility.Collapsed;
-            EditCouponWin.Visibility = System.Windows.Visibility.Collapsed;
-            ConfirmCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
-            AddStoreWindow.Visibility = System.Windows.Visibility.Collapsed;
-            RankCouponWindow.Visibility = System.Windows.Visibility.Collapsed;
-            DeleteStoreWindow.Visibility = System.Windows.Visibility.Collapsed;
-            /* show only this window: */
-            ViewCouponWindow.Visibility = System.Windows.Visibility.Visible;
-            couponsView.ItemsSource = adminBL.showAllCoupons();
+            MainMenu.Visibility = System.Windows.Visibility.Collapsed;
+            createForum.Visibility = System.Windows.Visibility.Visible;
+            string forumName = newForumName.Text;
+            string desc = newForumDescription.Text;
+            string rules = newForumRules.Text;
+            string policy = newForumPolicy.Text;
+            string administrators = newAdminUserName.Text;
+            List<string> admins = new List<string>();
+            //_sUMC.createForum(forumName,desc,policy,rules,admin
         }
+
+        private void setPreferences()
+        {
+            
+        }
+
+        private void createSub()
+        {
+           
+        }
+
+        private void Delete()
+        {
+           
+        }
+
+    }
+}
+        
