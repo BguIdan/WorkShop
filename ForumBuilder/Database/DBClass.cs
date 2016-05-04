@@ -39,11 +39,28 @@ namespace Database
             db.addMemberToForum("user3", "forum1");
             db.addMemberToForum("user4", "forum1");
             db.addFriendToUser("user2", "user3");
+            db.addFriendToUser("user2", "user1");
             db.addMessage("user2", "user4", "hello its me");
             int id = db.getAvilableIntOfPost();
             db.addPost("user2",id, "hello", "my name is", -1,DateTime.Today);
             db.addThread("forum1", "subForum1", id);
-            db.addPost("user3", db.getAvilableIntOfPost(), "what?", "your name is",id, DateTime.Today);
+            int id2 = db.getAvilableIntOfPost();
+            db.addPost("user3", id2, "what?", "your name is",id, DateTime.Today);
+            db.addPost("user2", db.getAvilableIntOfPost(), "what?", "my name is", id2, DateTime.Today);
+            db.addPost("user3", db.getAvilableIntOfPost(), "what?", "your name is", id, DateTime.Today);
+            
+
+            Forum forum1=db.getforumByName("forum1");
+            SubForum subForum1=db.getSubForum("subForum1","forum1");
+            Post p=db.getPost(id);
+            List<String> members= db.getMembersOfForum("forum1");
+            List<Message> messages = db.getMessages();
+            List<Post> posts=db.getRelatedPosts(0);
+            SubForum subForum2=db.getSubforumByThreadFirstPostId(id);
+            User u1= db.getSuperUser("super1");
+            User u2 = db.getUser("user2");
+            Thread thread = db.getThreadByFirstPostId(0);
+            List<String> friends=db.getUserFriends("user2");
             //db.clear();
             //Program DB = new Program();
             //DB.initializeDB();
@@ -246,35 +263,21 @@ namespace Database
                 command.Connection = connection;
                 command.CommandText = "SELECT  * FROM  forums where forums.forumName='" + forumName+ "'";
                 OleDbDataReader reader = command.ExecuteReader();
-                int count = 0;
-                while (reader.Read())
+                reader.Read();
+                OleDbCommand command2 = new OleDbCommand();
+                command2.Connection = connection;
+                command2.CommandText = "SELECT  * FROM  forumAdministrators where forumAdministrators.forumName='" + forumName + "'";
+                OleDbDataReader reader2 = command2.ExecuteReader();
+                List<String> administrators = new List<String>();
+                while (reader2.Read())
                 {
-                    count++;
+                    administrators.Add(reader2.GetString(1));
                 }
-                if (count == 1)
-                {
-                    reader = command.ExecuteReader();
-                    reader.Read();
-                    OleDbCommand command2 = new OleDbCommand();
-                    command2.Connection = connection;
-                    command2.CommandText = "SELECT  * FROM  forums where forumAdministartors.forumName='" + forumName + "'";
-                    OleDbDataReader reader2 = command2.ExecuteReader();
-                    List<String> administrators = new List<String>();
-                    while (reader2.Read())
-                    {
-                        administrators.Add(reader2.GetString(1));
-                    }
-                    forum = new Forum(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), administrators);
-                    return forum;
-                }
-                else
-                {
-                    //not exist
-                    closeConnectionDB();
-                    return forum;
-                }
+                forum = new Forum(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), administrators);
+                closeConnectionDB();
+                return forum;
             }
-            catch
+            catch(Exception e)
             {
                 closeConnectionDB();
                 return forum;
@@ -706,13 +709,22 @@ namespace Database
                 reader.Read();
                 OleDbCommand command2 = new OleDbCommand();
                 command2.Connection = connection;
-                command2.CommandText = "SELECT  * FROM  forums where subForumModerators.forumName='" + forumName + "' and "+
+                command2.CommandText = "SELECT  * FROM  subForumModerators where subForumModerators.forumName='" + forumName + "' and "+
                     "subForumModerators.subForumName='" + subForumName + "'";
-                OleDbDataReader reader2 = command2.ExecuteReader();
                 subForum = new SubForum(reader.GetString(0), reader.GetString(1));
+                OleDbDataReader reader2 = command2.ExecuteReader();
                 while (reader2.Read())
                 {
                     subForum.moderators.Add(reader2.GetString(2), DateTime.Parse(reader2.GetDateTime(3).ToString("dd MM yyyy")));
+                }
+                OleDbCommand command3 = new OleDbCommand();
+                command3.Connection = connection;
+                command3.CommandText = "SELECT  * FROM  threads where forumName='" + forumName + "' and " +
+                    "subForumName='" + subForumName + "'";
+                OleDbDataReader reader3 = command3.ExecuteReader();
+                while (reader3.Read())
+                {
+                    subForum.threads.Add(reader3.GetInt32(0));
                 }
                 closeConnectionDB();
                 return subForum;
