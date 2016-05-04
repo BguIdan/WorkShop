@@ -20,3 +20,7 @@ C:\Users\User\Documents\sadna\ForumBuilder\Service\bin\Debug\BL_Back_End.pdb
 C:\Users\User\Documents\sadna\ForumBuilder\Service\obj\Debug\Service.csprojResolveAssemblyReference.cache
 C:\Users\User\Documents\sadna\ForumBuilder\Service\obj\Debug\Service.exe
 C:\Users\User\Documents\sadna\ForumBuilder\Service\obj\Debug\Service.pdb
+C:\Users\User\Documents\sadna\ForumBuilder\Service\bin\Debug\DW.CodedUI.dll
+C:\Users\User\Documents\sadna\ForumBuilder\Service\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\User\Documents\sadna\ForumBuilder\Service\bin\Debug\DW.CodedUI.pdb
+C:\Users\User\Documents\sadna\ForumBuilder\Service\bin\Debug\DW.CodedUI.xml

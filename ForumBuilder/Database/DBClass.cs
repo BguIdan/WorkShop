@@ -455,6 +455,7 @@ namespace Database
                     command2.Connection = connection;
                     command2.CommandText = "SELECT  * FROM  users where userName='" + userName + "'";
                     OleDbDataReader reader2 = command2.ExecuteReader();
+                    reader2.Read();
                     user = new User(reader2.GetString(0), reader2.GetString(1), reader2.GetString(2));
                     closeConnectionDB();
                     return user;
@@ -466,7 +467,7 @@ namespace Database
                     return user;
                 }
             }
-            catch
+            catch (Exception e)
             {
                 closeConnectionDB();
                 return user;
@@ -788,14 +789,14 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "SELECT  * FROM  posts where postID='" + postId + "'";
+                command.CommandText = "SELECT  * FROM  posts where postID=" + postId + "";
                 OleDbDataReader reader = command.ExecuteReader();
                 reader.Read();
                 post = new Post(reader.GetString(1), reader.GetInt32(0), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), DateTime.Parse(reader.GetDateTime(5).ToString("dd MM yyyy")));
                 closeConnectionDB();
                 return post;
             }
-            catch
+            catch(Exception e)
             {
                 closeConnectionDB();
                 return post;
@@ -803,7 +804,7 @@ namespace Database
         }
         public List<Post> getRelatedPosts(int postId)
         {
-            if (postId == 0)
+            if (postId <0)
             {
                 return null;
             }
@@ -814,7 +815,7 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "SELECT  * FROM  posts where parentPostID='" + postId + "'";
+                command.CommandText = "SELECT  * FROM  posts where parentPostID=" + postId + "";
                 OleDbDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
@@ -853,7 +854,7 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "SELECT  * FROM  threads where firstMessageId='" + id + "'";
+                command.CommandText = "SELECT  * FROM  threads where firstMessageId=" + id + "";
                 OleDbDataReader reader = command.ExecuteReader();
                 reader.Read();
                 String sfName = reader.GetString(1);
@@ -875,7 +876,7 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "SELECT  * FROM  posts where postID='" + postId + "'";
+                command.CommandText = "SELECT  * FROM  posts where postID=" + postId + "";
                 OleDbDataReader reader = command.ExecuteReader();
                 reader.Read();
                 thread = new Thread( new Post(reader.GetString(1), reader.GetInt32(0), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), DateTime.Parse(reader.GetDateTime(5).ToString("dd MM yyyy"))));
@@ -944,7 +945,7 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "DELETE  FROM  theards where firstMessageId='" + id + "'";
+                command.CommandText = "DELETE  FROM  theards where firstMessageId=" + id + "";
                 command.ExecuteNonQuery();
                 closeConnectionDB();
                 return true;
@@ -962,7 +963,7 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "DELETE  from posts where PostID='" + id+ "'";
+                command.CommandText = "DELETE  from posts where PostID=" + id+ "";
                 command.ExecuteNonQuery();
                 closeConnectionDB();
                 if (maxNotAvailable == id)
