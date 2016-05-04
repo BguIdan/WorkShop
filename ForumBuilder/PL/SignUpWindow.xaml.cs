@@ -21,16 +21,16 @@ namespace PL
     /// </summary>
     public partial class SignUpWindow : Window
     {
-        private UserBL itsUserBL;
+       /* private UserBL itsUserBL;
         private SQL_DAL_implementation iDAL;
-        private AdminBL itsAdminBL;
+        private AdminBL itsAdminBL;*/
 
-        public SignUpWindow(UserBL itsUser, SQL_DAL_implementation itsDal,   AdminBL itsadminBL)
+        public SignUpWindow()
         {
             InitializeComponent();
-            itsAdminBL = itsadminBL;
+            /*itsAdminBL = itsadminBL;
             itsUserBL = itsUser;
-            iDAL = itsDal; 
+            iDAL = itsDal; */
         }
 
         private void UserRegistration(object sender, RoutedEventArgs e)
@@ -45,8 +45,8 @@ namespace PL
                 userID = Convert.ToInt32(ID.Text);
                 name = nAame.Text;
                 pass = Password.Password;
-                pref = Pref.Text;
-                mail = Mail.Text;
+                //pref = Pref.Text;
+                //mail = Mail.Text;
             }
             catch
             {
@@ -56,17 +56,18 @@ namespace PL
             {
                 MessageBox.Show("Please fill all the required details, make sure password include at least 5 letters");
             }
-            bool suc = itsUserBL.createNewUser(userID, name, pass,mail);
+            //bool suc = itsUserBL.createNewUser(userID, name, pass,mail);
+            bool suc = false;
             if (suc == false)
             {
                 MessageBox.Show("Fail");
                 return;
             }
-            itsUserBL.setPreferences(userID, pref);
+           // itsUserBL.setPreferences(userID, pref);
             MessageBox.Show("Welcome " +name+ "!");
-            UserWindow uw = new UserWindow(iDAL, userID,itsAdminBL);
+            //UserWindow uw = new UserWindow(iDAL, userID,itsAdminBL);
             this.Close();
-            uw.Show();
+            //uw.Show();
 
         } 
     }

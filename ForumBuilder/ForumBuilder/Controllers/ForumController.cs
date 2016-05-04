@@ -154,7 +154,7 @@ namespace ForumBuilder.Controllers
             {
                 if (this.isMember(newAdmin, forumName))
                 {
-                    if (DB.nominateAdmin(newAdmin, nominatorName, forumName))
+                    if (DB.nominateAdmin(newAdmin, forumName))
                     {
                         logger.logPrint("admin nominated successfully");
                         if (DB.getforumByName(forumName).administrators.Contains(nominatorName))
