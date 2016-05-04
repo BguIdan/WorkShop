@@ -10,16 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\User\Documents\sadna\ForumBuilder\PL\App.xaml
-685257337
+81190339797
 
-<<<<<<< HEAD
-14-429210967
-14565935023
-=======
-14-863287140
-15-181417756
->>>>>>> origin/PL
-AdminWindow.xaml;ForumWindow.xaml;MainWindow.xaml;RestorePasswordWindow.xaml;SignUpWindow.xaml;UserWindow.xaml;
+21-59077912
+17-882840270
+AdminWindow.xaml;ForumWindow.xaml;MainWindow.xaml;RestorePasswordWindow.xaml;SignUpWindow.xaml;SubForumWindow.xaml;SuperUserWindow.xaml;UserWindow.xaml;
 
 False
 
