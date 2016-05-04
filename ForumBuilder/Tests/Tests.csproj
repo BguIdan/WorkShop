@@ -38,6 +38,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DW.CodedUI">
+      <HintPath>..\packages\DW.CodedUI.2.6.2\lib\DW.CodedUI.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -56,6 +59,7 @@
     <Compile Include="AcceptanceTests.cs" />
     <Compile Include="ForumControllerTest.cs" />
     <Compile Include="ForumManagerTest.cs" />
+    <Compile Include="GettingStarted.cs" />
     <Compile Include="PostControllerTest.cs" />
     <Compile Include="PostManagerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,12 +85,17 @@
       <Project>{5e3130c0-d5dc-41a6-a297-28b5d4859ed4}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PL\PL.csproj">
+      <Project>{b690218f-8aff-410b-b355-7967970d472b}</Project>
+      <Name>PL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Service\Service.csproj">
       <Project>{ec30a637-9d10-4746-ae76-4d3b64204085}</Project>
       <Name>Service</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="TestSuit.orderedtest">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

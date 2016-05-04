@@ -8,8 +8,13 @@ using ForumBuilder.Common.ServiceContracts;
 
 namespace PL.proxies
 {
-    class SubForumManagerClient : ClientBase<ISubForumManager>, ISubForumManager
+    public class SubForumManagerClient : ClientBase<ISubForumManager>, ISubForumManager
     {
+        public SubForumManagerClient() 
+        {
+
+        }
+
         Boolean dismissModerator(String dismissedModerator, String dismissByAdmin, String subForumName, String forumName)
         {
             return Channel.dismissModerator(dismissedModerator, dismissByAdmin, subForumName, forumName);
@@ -29,5 +34,11 @@ namespace PL.proxies
         {
             return Channel.deleteThread(firstPostId, removerName);
         }
+
+        Boolean isModerator(string name, string subForumName, string forumName)
+        {
+            return Channel.isModerator(name, subForumName, forumName);
+        }
+
     }
 }

@@ -33,15 +33,20 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ForumManager.cs" />
+    <Compile Include="GettingStarted.cs" />
     <Compile Include="PostManager.cs" />
     <Compile Include="SubForumManager.cs" />
     <Compile Include="SuperUserManager.cs" />
     <Compile Include="UserManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="DW.CodedUI">
+      <HintPath>..\packages\DW.CodedUI.2.6.2\lib\DW.CodedUI.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>

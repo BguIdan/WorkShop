@@ -9,26 +9,50 @@ using System.Runtime.Serialization;
 namespace ForumBuilder.Common.DataContracts
 {
     [DataContract]
-    public class User
+    public class UserData
     {
         [DataMember]
-        private String userName { get; set; }
+        private String _userName;
 
         [DataMember]
-        private String password { get; set; }
+        private String _password;
 
         [DataMember]
-        private String email { get; set; }
+        private String _email;
 
         [DataMember]
-        private List<String> friends { get; set; }
+        private List<String> _friends;
 
-        public User(String userName, String password, String email)
+        public UserData(String userName, String password, String email)
         {
-            this.userName = userName;
-            this.password = password;
-            this.email = email;
-            this.friends = new List<String>();
+            _userName = userName;
+            _password = password;
+            _email = email;
+            _friends = new List<String>();
+        }
+
+        public String userName
+        {
+            get { return _userName; }
+            set { _userName = value; }
+        }
+
+        public String password
+        {
+            get { return _password; }
+            set { _password = value; }
+        }
+
+        public String email
+        {
+            get { return _email; }
+            set { _email = value; }
+        }
+
+        public List<String> friends
+        {
+            get { return _friends; }
+            set { _friends = value; }
         }
     }
 }
