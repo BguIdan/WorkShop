@@ -1,7 +1,7 @@
-﻿<Window x:Class="PL.ForumWindow" Background="Ivory"
+﻿<Window x:Class="PL.SubForumWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="ForumWindow" Height="400" Width="400">
+        Title="SubForumWindow" Height="400" Width="400">
     <Grid>
         <DockPanel Margin="0,0,0,343">
             <Menu DockPanel.Dock="Top" Height="50"  Width="392">
@@ -20,15 +20,16 @@
                 </MenuItem>
             </Menu>
         </DockPanel>
-        <Label Content="ForumName:"  Name="forumName" FontFamily="Cooper Black" HorizontalAlignment="Left" Margin="25,43,0,0" VerticalAlignment="Top" Width="341" Height="23"/>
+        <Label Content="Sub-ForumName:"  Name="sForumName" FontFamily="Cooper Black" HorizontalAlignment="Left" Margin="25,43,0,0" VerticalAlignment="Top" Width="341" Height="23"/>
         <TextBlock FontSize="16" FontFamily="Broadway" TextWrapping="Wrap" VerticalAlignment="Top"
-            	Text="Sub-Forums" Visibility="Visible" Height="32" Margin="140,88,140,0"
+            	Text="Threads" Visibility="Visible" Height="32" Margin="158,88,158,0"
             	RenderTransformOrigin="0.78,0.757"/>
         <DataGrid x:Name="couponsView" 
                   AutoGenerateColumns="True" Margin="25,135,26,25" SelectionChanged="DataGrid_SelectionChanged" Loaded="DataGrid_Loaded">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Width="*"/>
-                <DataGridTextColumn Header="ForumName" Width="*"/>
+                <DataGridTextColumn Header="Title" Width="*"/>
+                <DataGridTextColumn Header="Writer" Width="*"/>
+                <DataGridTextColumn Header="Time Published" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

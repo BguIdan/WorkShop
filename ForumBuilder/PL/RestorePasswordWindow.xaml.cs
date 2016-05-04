@@ -21,11 +21,11 @@ namespace PL
     /// </summary>
     public partial class RestorePasswordWindow : Window
     {
-        private UserBL itsUserBL;
-        public RestorePasswordWindow(UserBL itsUser)
+        //private UserBL itsUserBL;
+        public RestorePasswordWindow()
         {
             InitializeComponent();
-            itsUserBL = itsUser;
+            //itsUserBL = itsUser;
         }
 
         private void SendDetails(object sender, RoutedEventArgs e)
@@ -36,7 +36,7 @@ namespace PL
             try
             {
                 userID = Convert.ToInt32(ID.Text);
-                email = itsUserBL.getMail(userID);
+                //email = itsUserBL.getMail(userID);
             }
             catch
             {
@@ -47,7 +47,7 @@ namespace PL
                 MessageBox.Show("Please fill all the required details");
             }
 
-            itsUserBL.restorePassword(userID, email);
+            //itsUserBL.restorePassword(userID, email);
 
             MessageBox.Show("Mail sended");
 

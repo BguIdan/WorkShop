@@ -1,25 +1,18 @@
 ﻿<Window ResizeMode="NoResize" x:Class="PL.MainWindow" Background="Ivory"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Title="Coupons" Height="400" Width="400">
+    Title="Forum" Height="400" Width="400">
     <Grid Margin="0,11,8,0" RenderTransformOrigin="0.5,0.5">
-        <Grid.RenderTransform>
-            <TransformGroup>
-                <ScaleTransform/>
-                <SkewTransform/>
-                <RotateTransform Angle="-0.389"/>
-                <TranslateTransform/>
-            </TransformGroup>
-        </Grid.RenderTransform>
-        <Image HorizontalAlignment="Left" Height="83" VerticalAlignment="Bottom" Width="293" Margin="55,0,0,236" 
+        <Image Margin="46,40,46,235" 
                Source="http://www.tudiabetes.org/forum/uploads/default/original/3X/3/5/35d47232d1d9cb26dcd2a226952f98137a9080c8.jpg" RenderTransformOrigin="0.662,0.451"/>
-        <TextBlock FontFamily="Cooper Black" HorizontalAlignment="Left" Margin="43,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="298"><LineBreak/><Run/>
+        <TextBlock FontFamily="Cooper Black" HorizontalAlignment="Left" Margin="43,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="298"><Run Text="Choose forum:"/><LineBreak/>
             <LineBreak/><Run Text="Please login:"/><LineBreak/><Run/><LineBreak/><Run Text="Enter UserName:"/>
             <LineBreak/><Run/><LineBreak/><Run Text="Enter Password:"/><LineBreak/><Run/></TextBlock>
-        <TextBox Name="ID" HorizontalAlignment="Left" Height="24" Margin="174,229,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="119" />
+        <TextBox Name="ID" Height="24" Margin="174,229,93,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" />
         <Button FontFamily="Cooper Black" Content="Login" HorizontalAlignment="Left" Margin="171,307,0,0" Height="20" VerticalAlignment="Top" Width="75" Click="LoginPressed"/>
-        <PasswordBox Name="Password" HorizontalAlignment="Left" Height="22" Margin="174,258,0,0" VerticalAlignment="Top" Width="119"/>
+        <PasswordBox Name="Password" Height="22" Margin="174,258,93,0" VerticalAlignment="Top"/>
         <Button FontFamily="Cooper Black" Content="Forgot Password" HorizontalAlignment="Left" Height="20" Margin="43,307,0,0" VerticalAlignment="Top" Width="123" Click="ForgorPasswordPressed"/>
-        <Button FontFamily="Cooper Black" Content="Sign Up" HorizontalAlignment="Left" Margin="251,307,0,0" Height="20" VerticalAlignment="Top" Width="75" Click="SignUpUser"/>    
+        <Button FontFamily="Cooper Black" Content="Sign Up" HorizontalAlignment="Left" Margin="251,307,0,0" Height="20" VerticalAlignment="Top" Width="75" Click="SignUpUser"/>
+        <ComboBox x:Name="comboBox" SelectionChanged="comboBox_SelectionChanged" Margin="174,178,93,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
