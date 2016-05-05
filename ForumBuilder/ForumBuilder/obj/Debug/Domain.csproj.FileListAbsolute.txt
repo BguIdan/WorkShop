@@ -27,3 +27,5 @@ C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\bin\Debug\DW.CodedUI.dll
 C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\bin\Debug\DW.CodedUI.pdb
 C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\bin\Debug\DW.CodedUI.xml
+C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\bin\Debug\Common.dll
+C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\bin\Debug\Common.pdb

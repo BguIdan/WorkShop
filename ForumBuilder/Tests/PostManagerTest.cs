@@ -6,7 +6,6 @@ using ForumBuilder.Common.ServiceContracts;
 using ForumBuilder.Systems;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PL.proxies;
-using Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;

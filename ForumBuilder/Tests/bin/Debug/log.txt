@@ -1,0 +1,352 @@
+Log Entry : 		05/05/2016 17:44:13
+The System was initialized successully
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:13
+Forum contoller created
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:13
+Post contoller created
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:13
+Super user contoller created
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:13
+nominate admin fail, adminis already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:13
+nominate admin fail, admin2is already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:13
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:14
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:14
+nominate admin fail, adminis already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:14
+nominate admin fail, admin2is already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:14
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:15
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:15
+nominate admin fail, adminis already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:16
+nominate admin fail, admin2is already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:16
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:16
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:17
+nominate admin fail, adminis already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:17
+nominate admin fail, admin2is already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:17
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:17
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:18
+nominate admin fail, adminis already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:18
+nominate admin fail, admin2is already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:18
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:19
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:20
+nominate admin fail, adminis already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:20
+nominate admin fail, admin2is already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:20
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:20
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:21
+nominate admin fail, adminis already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:21
+nominate admin fail, admin2is already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:21
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:22
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:23
+nominate admin fail, adminis already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:23
+nominate admin fail, admin2is already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:23
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:23
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:24
+nominate admin fail, adminis already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:24
+nominate admin fail, admin2is already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:24
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:25
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:26
+nominate admin fail, adminis already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:26
+nominate admin fail, admin2is already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:26
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:26
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:27
+nominate admin fail, adminis already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:27
+nominate admin fail, admin2is already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:27
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:27
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:28
+nominate admin fail, adminis already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:28
+nominate admin fail, admin2is already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:28
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:29
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:30
+nominate admin fail, adminis already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:30
+nominate admin fail, admin2is already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:30
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:30
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:31
+nominate admin fail, adminis already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:31
+nominate admin fail, admin2is already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:31
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:32
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:33
+nominate admin fail, adminis already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:33
+nominate admin fail, admin2is already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:33
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:33
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:34
+nominate admin fail, adminis already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:34
+nominate admin fail, admin2is already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:34
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:35
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:36
+nominate admin fail, adminis already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:36
+nominate admin fail, admin2is already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:36
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:36
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:37
+nominate admin fail, adminis already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:37
+nominate admin fail, admin2is already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:37
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:37
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:38
+nominate admin fail, adminis already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:39
+nominate admin fail, admin2is already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:39
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:39
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:40
+nominate admin fail, adminis already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:40
+nominate admin fail, admin2is already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:40
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:40
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:41
+nominate admin fail, adminis already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:41
+nominate admin fail, admin2is already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:41
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:42
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:43
+nominate admin fail, adminis already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:43
+nominate admin fail, admin2is already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:43
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:43
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:44
+nominate admin fail, adminis already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:44
+nominate admin fail, admin2is already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:44
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:45
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:46
+nominate admin fail, adminis already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:46
+nominate admin fail, admin2is already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:46
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:46
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:47
+nominate admin fail, adminis already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:47
+nominate admin fail, admin2is already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:47
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:48
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:49
+nominate admin fail, adminis already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:49
+nominate admin fail, admin2is already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:49
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:49
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:50
+nominate admin fail, adminis already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:50
+nominate admin fail, admin2is already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:50
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:50
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:51
+nominate admin fail, adminis already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:51
+nominate admin fail, admin2is already admin
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:51
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:52
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/05/2016 17:44:53
+nominate admin fail, adminis already admin
+-----------------------------------------------
+Log Entry : 		05/05/2

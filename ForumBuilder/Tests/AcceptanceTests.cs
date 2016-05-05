@@ -2,8 +2,9 @@
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Service;
+using ForumBuilder.Common.ServiceContracts;
 using Database;
+using PL.proxies;
 
 namespace Tests
 {
@@ -17,9 +18,11 @@ namespace Tests
         [TestMethod]
         public void AT_test_create_and_manipulate_forum()
         {
-            SuperUserManager superUser = SuperUserManager.getInstance;
+            DBClass db = DBClass.getInstance;
+            db.clear();
+            ISuperUserManager superUser = new SuperUserManagerClient();
             superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
-            ForumManager forum = ForumManager.getInstance;
+            IForumManager forum = new ForumManagerClient(); 
             String forumName = "forum";
             String adminName = "admin";
             List<string> adminList = new List<string>();
@@ -40,7 +43,6 @@ namespace Tests
             Assert.IsTrue(forum.isAdmin(adminName, forumName), "userAdmin should be an admin in the forum");
             Assert.IsTrue(forum.dismissAdmin(adminName, "guy", forumName), "userAdmin is an administrator in the forum. his dismissal from being administrator should be successful");
             Assert.IsFalse(forum.isAdmin(adminName, forumName), "userAdmin should not be a administrator in the forum");
-            DBClass db = DBClass.getInstance;
             db.clear();
         }
 
@@ -52,9 +54,11 @@ namespace Tests
         [TestMethod]
         public void AT_test_changeForumPreferences_valid_policy()
         {
-            SuperUserManager superUser = SuperUserManager.getInstance;
+            DBClass db = DBClass.getInstance;
+            db.clear();
+            ISuperUserManager superUser = new SuperUserManagerClient();
             superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
-            ForumManager forum = ForumManager.getInstance;
+            IForumManager forum = new ForumManagerClient(); 
             String forumName = "forum";
             String adminName = "admin";
             List<string> adminList = new List<string>();
@@ -74,16 +78,17 @@ namespace Tests
             Assert.AreEqual(forum.getForumPolicy(forumName), newPolicy, false, "the new policy should be return after the change");
             Assert.AreEqual(forum.getForumDescription(forumName), newDescr, false, "the new description should be return after the change");
             Assert.AreEqual(forum.getForumRules(forumName), newRules, false, "the new rules should be return after the change");
-            DBClass db = DBClass.getInstance;
             db.clear();
         }
 
         [TestMethod]
         public void AT_test_changeForumPreferences_with_null_inputs()
         {
-            SuperUserManager superUser = SuperUserManager.getInstance;
+            DBClass db = DBClass.getInstance;
+            db.clear();
+            ISuperUserManager superUser = new SuperUserManagerClient();
             superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
-            ForumManager forum = ForumManager.getInstance;
+            IForumManager forum = new ForumManagerClient(); 
             String forumName = "forum";
             String adminName = "admin";
             List<String> adminList = new List<String>();
@@ -97,7 +102,6 @@ namespace Tests
             Assert.AreEqual(forum.getForumPolicy(forumName), oldPolicy, false, "after an unsuccessful change, the old policy should be returned");
             Assert.AreEqual(forum.getForumDescription(forumName), oldDescr, false, "after an unsuccessful change, the old description should be returned");
             Assert.AreEqual(forum.getForumRules(forumName), oldRules, false, "after an unsuccessful change, the old rules should be returned");
-            DBClass db = DBClass.getInstance;
             db.clear();
 
         }
@@ -108,9 +112,11 @@ namespace Tests
         [TestMethod]
         public void AT_test_changeForumPreferences_with_empty_string()
         {
-            SuperUserManager superUser = SuperUserManager.getInstance;
+            DBClass db = DBClass.getInstance;
+            db.clear();
+            ISuperUserManager superUser = new SuperUserManagerClient();
             superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
-            ForumManager forum = ForumManager.getInstance;
+            IForumManager forum = new ForumManagerClient();
             String forumName = "forum";
             String adminName = "admin";
             List<String> adminList = new List<String>();
@@ -124,7 +130,6 @@ namespace Tests
             Assert.AreEqual(forum.getForumPolicy(forumName), "", false, "after an unsuccessful change, the old policy should be returned");
             Assert.AreEqual(forum.getForumDescription(forumName), "", false, "after an unsuccessful change, the old description should be returned");
             Assert.AreEqual(forum.getForumRules(forumName), "", false, "after an unsuccessful change, the old rules should be returned");
-            DBClass db = DBClass.getInstance;
             db.clear();
         }
 
@@ -134,9 +139,8 @@ namespace Tests
         [TestMethod]
         public void AT_Test_register_to_forum_withWrongInputs()
         {
-            Service.ForumManager forumMan = Service.ForumManager.getInstance;
-            Service.SuperUserManager superUserMan = Service.SuperUserManager.getInstance;
-
+            IForumManager forumMan = new ForumManagerClient();
+            ISuperUserManager superUserMan = new SuperUserManagerClient();
             superUserMan.initialize("guy", "AG36djs", "hello@dskkl.com");
             List<String> adminList = new List<String>();
             adminList.Add("admin1");
@@ -159,10 +163,9 @@ namespace Tests
         [TestMethod]
         public void AT_Test_register_to_forum_Functionality()
         {
-            
-            Service.ForumManager forumMan = Service.ForumManager.getInstance;
-            Service.SuperUserManager superUserMan = Service.SuperUserManager.getInstance;
-            Service.UserManager userMan = Service.UserManager.getInstance;
+            IForumManager forumMan = new ForumManagerClient();
+            ISuperUserManager superUserMan = new SuperUserManagerClient();
+            IUserManager userMan = new UserManagerClient();
 
             superUserMan.initialize("guy", "AG36djs", "hello@dskkl.com");
             List<String> adminList = new List<String>();
