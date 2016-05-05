@@ -8,7 +8,7 @@ using ForumBuilder.Common.ServiceContracts;
 
 namespace Service
 {
-    public class ForumManager:IForumManager
+    public class ForumManager : IForumManager
     {
         private static ForumManager singleton;
         private IForumController forumController;

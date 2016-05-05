@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Service;
+using PL.proxies;
 
 namespace PL
 {
@@ -38,6 +38,17 @@ namespace PL
                 //newItem.Content = _forumsList.ElementAt(i).Name;
                 comboBox.Items.Add(newItem);
             }
+            /*//TODO client server communication POC delete later
+             * ForumManagerClient fmc = new ForumManagerClient();
+            fmc.addSubForum("a", "b", null, "c");
+            PostManagerClient pmc = new PostManagerClient();
+            pmc.addPost("", "", "", 0);
+            SubForumManagerClient sfmc = new SubForumManagerClient();
+            sfmc.createThread("", "", "", "", "");
+            SuperUserManagerClient sumc = new SuperUserManagerClient();
+            sumc.createForum("", "", "", "", null, "");
+            UserManagerClient umc = new UserManagerClient();
+            umc.addFriend("", "");*/
             this.Show(); 
         }
 

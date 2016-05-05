@@ -41,11 +41,12 @@ namespace Service
             ForumSystem.initialize(name, password, email);
             return true;
         }
-
+        /*
         public static int Main(string[] args)
         {
             //ForumSystem.initialize("name", "pass", "email");
             return -1;
-        }
+        }*/
+        //TODO should this main func be deleted?
     }
 }

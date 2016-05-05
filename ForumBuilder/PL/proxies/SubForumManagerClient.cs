@@ -12,7 +12,26 @@ namespace PL.proxies
     {
         public SubForumManagerClient() 
         {
+        }
+    
+        public SubForumManagerClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName)
+        {
+        }
+    
+        public SubForumManagerClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress)
+        {
+        }
+    
+        public SubForumManagerClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress)
+        {
+        }
 
+        public SubForumManagerClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress)
+        {
         }
 
         public Boolean dismissModerator(String dismissedModerator, String dismissByAdmin, String subForumName, String forumName)

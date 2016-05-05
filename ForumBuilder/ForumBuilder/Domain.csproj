@@ -32,7 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -40,8 +42,10 @@
       <HintPath>..\packages\DW.CodedUI.2.6.2\lib\DW.CodedUI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ServiceModel" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientProxy.cs" />
     <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\SubForumController.cs" />
@@ -50,22 +54,32 @@
     <Compile Include="Controllers\IForumController.cs" />
     <Compile Include="Controllers\IPostController.cs" />
     <Compile Include="Controllers\ISubForumController.cs" />
-    <Compile Include="Systems\ILogger.cs" />
-    <Compile Include="Systems\ForumSystem.cs" />
     <Compile Include="Controllers\ISuperUserController.cs" />
     <Compile Include="Controllers\IUserController.cs" />
-    <Compile Include="Systems\Logger.cs" />
+    <Compile Include="Managers\ForumManager.cs" />
+    <Compile Include="Managers\PostManager.cs" />
+    <Compile Include="Managers\SubForumManager.cs" />
+    <Compile Include="Managers\SuperUserManager.cs" />
+    <Compile Include="Managers\UserManager.cs" />
+    <Compile Include="System\ForumSystem.cs" />
+    <Compile Include="System\ILogger.cs" />
+    <Compile Include="System\Logger.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BL_Back_End\BL_Back_End.csproj">
       <Project>{3ff8847a-b113-4c03-bed3-485dcaba2836}</Project>
       <Name>BL_Back_End</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Common\ForumBuilder.common.csproj">
+      <Project>{db6f5ffc-3837-455b-a666-3c117c130995}</Project>
+      <Name>ForumBuilder.common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Database\Database.csproj">
       <Project>{f9dd4028-a8e6-418d-b96b-6976d26e6aa4}</Project>
       <Name>Database</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
