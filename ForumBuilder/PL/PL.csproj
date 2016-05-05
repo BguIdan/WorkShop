@@ -57,6 +57,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="addPostAndThreadWindow.xaml.cs">
+      <DependentUpon>addPostAndThreadWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ForumWindow.xaml.cs">
       <DependentUpon>ForumWindow.xaml</DependentUpon>
     </Compile>
@@ -81,6 +84,10 @@
     <Compile Include="UserWindow.xaml.cs">
       <DependentUpon>UserWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="addPostAndThreadWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AdminWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
