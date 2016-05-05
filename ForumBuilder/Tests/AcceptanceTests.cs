@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ForumBuilder.Common.ServiceContracts;
 using Database;
 using PL.proxies;
+using ForumBuilder.Common.DataContracts;
 
 namespace Tests
 {
@@ -46,7 +47,7 @@ namespace Tests
             db.clear();
         }
 
-        /*************************use case 2******************************/
+        /*************************end use case 2******************************/
 
 
         /*************************use case 3******************************/
@@ -106,8 +107,6 @@ namespace Tests
 
         }
 
-        /*************************use case 3******************************/
-
 
         [TestMethod]
         public void AT_test_changeForumPreferences_with_empty_string()
@@ -133,6 +132,7 @@ namespace Tests
             db.clear();
         }
 
+        /*************************end use case 3******************************/
 
         /*************************use case 4******************************/
 
@@ -194,7 +194,94 @@ namespace Tests
             db.clear();
         }
 
-        /*************************use case 4******************************/
+        /*************************end use case 4******************************/
+
+        /*************************use case 5+9******************************/
+        
+        [TestMethod]
+        public void AT_test_create_subForum_and_nominate_moderator()
+        {
+            ISuperUserManager superUser = new SuperUserManagerClient();
+            superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
+            IForumManager forum  = new ForumManagerClient();
+            ISubForumManager subForum = new SubForumManagerClient();
+            String forumName = "forum";
+            String adminName = "admin";
+            String subForumName = "subforum";
+            String ModeratorName = "mod";
+            List<string> adminList = new List<string>();
+            adminList.Add(adminName);
+            Dictionary<String, DateTime> modList = new Dictionary<String, DateTime>();
+            modList.Add(ModeratorName, new DateTime(2030, 1, 1));
+            superUser.createForum(forumName, "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "guy");
+            
+            Assert.IsTrue(forum.addSubForum(forumName, subForumName, modList, adminName));
+
+            Assert.IsTrue(forum.registerUser(adminName, "adminpass", "admin@gmail.com", forumName));
+            Assert.IsTrue(forum.registerUser("mem", "mempass", "mem@gmail.com", forumName));
+
+            Assert.IsTrue(subForum.nominateModerator("mem", adminName, new DateTime(2030, 1, 1), subForumName, forumName), "nomination of member user should be successful");
+            Assert.IsTrue(subForum.isModerator("mem", subForumName, forumName), "member should be moderator after his successful numonation");
+
+            DBClass db = DBClass.getInstance;
+            db.clear();
+        }
+
+        /*************************end use case 5+9******************************/
+
+        /*************************use case 6******************************/
+
+        [TestMethod]
+        public void AT_test_add_thread_and_post()
+        {
+            ISuperUserManager superUser = new SuperUserManagerClient();
+            IForumManager forum = new ForumManagerClient();
+            ISubForumManager subForum = new SubForumManagerClient();
+            IPostManager post = new PostManagerClient();
+            superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
+            String forumName = "forum";
+            String adminName = "admin";
+            String subForumName = "subforum";
+            String moderatorName = "mod";
+            String userMemberName = "mem";
+            List<string> adminList = new List<string>();
+            adminList.Add(adminName);
+            Dictionary<String, DateTime> modList = new Dictionary<String, DateTime>();
+            modList.Add(moderatorName, new DateTime(2030, 1, 1));
+            superUser.createForum(forumName, "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "guy");
+
+
+            Assert.IsTrue(forum.addSubForum(forumName, subForumName, modList, adminName));
+
+            Assert.IsTrue(forum.registerUser(adminName, "adminpass", "admin@gmail.com", forumName));
+            Assert.IsTrue(forum.registerUser(userMemberName, "mempass", "mem@gmail.com", forumName));
+            Assert.IsTrue(forum.registerUser(moderatorName, "modpass", "mod@gmail.com", forumName));
+
+            Assert.IsTrue(subForum.nominateModerator(moderatorName, adminName, new DateTime(2030, 1, 1), subForumName, forumName), "nomination of member user should be successful");
+            Assert.IsTrue(subForum.isModerator(moderatorName, subForumName, forumName), "member should be moderator after his successful numonation");
+
+            Assert.IsTrue(forum.addSubForum(forumName, subForumName, modList, adminName));
+            Assert.IsTrue(subForum.createThread("headLine", "content", userMemberName, forumName, subForumName));
+            List<PostData> posts = post.getAllPosts(forumName, subForumName);
+            int postId = posts[0].id;
+            Assert.IsTrue(subForum.createThread("headLine", "content", userMemberName, forumName, subForumName));
+            Assert.AreEqual(posts.Count, 1);
+
+            Assert.IsTrue(post.addPost("headLine2", "content2", adminName, postId));
+            Assert.AreEqual(posts.Count, 2);
+
+            Assert.IsTrue(post.addPost("headLine3", "content3", userMemberName, postId));
+            Assert.AreEqual(posts.Count, 3);
+
+            DBClass db = DBClass.getInstance;
+            db.clear();
+
+
+        
+        }
+
+        /*************************end use case 6******************************/
+
 
     }
 }

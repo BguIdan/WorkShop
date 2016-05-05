@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace Tests
 {
     [TestClass]
-    class UserManagerTest
+    public class UserManagerTest
     {
 
         private IUserManager userManager = new UserManagerClient();

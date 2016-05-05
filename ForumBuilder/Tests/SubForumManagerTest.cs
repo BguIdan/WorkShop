@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace Tests
 {
     [TestClass]
-    class SubForumManagerTest
+    public class SubForumManagerTest
     {
         private IForumManager forumManager;
         private IPostManager postManager;

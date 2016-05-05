@@ -10,7 +10,6 @@ using System.Text;
 using System.Threading.Tasks;
 using PL.proxies;
 using System.ServiceModel;
-using DW.CodedUI;
 using Database;
 
 namespace Tests
