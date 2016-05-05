@@ -29,3 +29,6 @@ C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\bin\Debug\DW.CodedUI.pdb
 C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\bin\Debug\DW.CodedUI.xml
 C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\bin\Debug\Common.dll
 C:\Users\User\Documents\sadna\ForumBuilder\ForumBuilder\bin\Debug\Common.pdb
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\ForumBuilder\bin\Debug\ForumBuilder.exe.config
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\ForumBuilder\obj\Debug\ForumBuilder.exe
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\ForumBuilder\obj\Debug\ForumBuilder.pdb

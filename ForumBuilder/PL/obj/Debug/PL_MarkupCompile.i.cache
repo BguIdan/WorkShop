@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\User\Desktop\WorkShop\ForumBuilder\PL\obj\Debug\
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\PL\obj\Debug\
 PL
 none
 false
 DEBUG;TRACE
-C:\Users\User\Desktop\WorkShop\ForumBuilder\PL\App.xaml
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\PL\App.xaml
 9-1254883444
 
-2319371692
-151611307574
+23-414704481
+15861599564
 addPostAndThreadWindow.xaml;AdminWindow.xaml;ForumWindow.xaml;MainWindow.xaml;RestorePasswordWindow.xaml;SignUpWindow.xaml;SubForumWindow.xaml;SuperUserWindow.xaml;UserWindow.xaml;
 
-False
+True
 
