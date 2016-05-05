@@ -22,23 +22,25 @@ namespace Tests
         [TestInitialize]
         public void setUp()
         {
+            DBClass db = DBClass.getInstance;
+            db.clear();
             ForumSystem.initialize("guy", "AG36djs", "hello@dskkl.com");
             this.forumController = ForumController.getInstance;
             this.userNonMember = new User("nonMem", "nonmemPass", "nonmem@gmail.com");
             this.userMember = new User("mem", "mempass", "mem@gmail.com");
             this.userAdmin = new User("admin", "adminpass", "admin@gmail.com");
             this.userAdmin2 = new User("admin2", "adminpass2", "admin2@gmail.com");
+            ISuperUserController superUser = SuperUserController.getInstance;
+            superUser.addUser("admin", "adminpass", "admin@gmail.com");
+            superUser.addUser("admin2", "adminpass2", "admin2@gmail.com");
             List<string> adminList = new List<string>();
             adminList.Add("admin");
             adminList.Add("admin2");
-            this.forum = new Forum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList);
-            ISuperUserController superUser = SuperUserController.getInstance;
+            this.forum = new Forum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList);            
             superUser1 = new User("tomer", "1qW", "fkfkf@wkk.com");
             SuperUserController.getInstance.addSuperUser(superUser1.email, superUser1.password, superUser1.userName);
-            superUser.createForum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "tomer");
+            superUser.createForum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "tomer");            
             Assert.IsTrue(this.forumController.registerUser("mem", "mempass", "mem@gmail.com", this.forum.forumName));
-            Assert.IsTrue(this.forumController.registerUser("admin", "adminpass", "admin@gmail.com", this.forum.forumName));
-            Assert.IsTrue(this.forumController.registerUser("admin2", "adminpass2", "admin2@gmail.com", this.forum.forumName));
 
         }
 

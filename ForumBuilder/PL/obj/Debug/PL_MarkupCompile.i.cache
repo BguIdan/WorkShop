@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\User\Documents\sadna\ForumBuilder\PL\App.xaml
-81190339797
+9-1254883444
 
-22-1658974271
+2319371692
 15-72071789
-AdminWindow.xaml;ForumWindow.xaml;MainWindow.xaml;RestorePasswordWindow.xaml;SignUpWindow.xaml;SubForumWindow.xaml;SuperUserWindow.xaml;UserWindow.xaml;
+addPostAndThreadWindow.xaml;AdminWindow.xaml;ForumWindow.xaml;MainWindow.xaml;RestorePasswordWindow.xaml;SignUpWindow.xaml;SubForumWindow.xaml;SuperUserWindow.xaml;UserWindow.xaml;
 
-False
+True
 

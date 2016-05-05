@@ -6,5 +6,6 @@ namespace ForumBuilder.Controllers
     public interface ISuperUserController : IUserController
     {
         Boolean createForum(String forumName, String descrption, String forumPolicy, String forumRules, List<String> administrators, String superUserName);
+        Boolean addUser(string userName, string password, string mail);
     }
 }

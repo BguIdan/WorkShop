@@ -99,3 +99,6 @@ C:\Users\User\Desktop\WorkShop\ForumBuilder\PL\obj\Debug\PL.Properties.Resources
 C:\Users\User\Desktop\WorkShop\ForumBuilder\PL\obj\Debug\PL.csproj.GenerateResource.Cache
 C:\Users\User\Desktop\WorkShop\ForumBuilder\PL\obj\Debug\PL.exe
 C:\Users\User\Desktop\WorkShop\ForumBuilder\PL\obj\Debug\PL.pdb
+C:\Users\User\Documents\sadna\ForumBuilder\PL\obj\Debug\addPostAndThreadWindow.g.cs
+C:\Users\User\Documents\sadna\ForumBuilder\PL\obj\Debug\PL_MarkupCompile.lref
+C:\Users\User\Documents\sadna\ForumBuilder\PL\obj\Debug\addPostAndThreadWindow.baml

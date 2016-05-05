@@ -18,6 +18,8 @@ namespace Tests
         [TestMethod]
         public void AT_test_create_and_manipulate_forum()
         {
+            DBClass db = DBClass.getInstance;
+            db.clear();
             ISuperUserManager superUser = new SuperUserManagerClient();
             superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
             IForumManager forum = new ForumManagerClient(); 
@@ -41,7 +43,6 @@ namespace Tests
             Assert.IsTrue(forum.isAdmin(adminName, forumName), "userAdmin should be an admin in the forum");
             Assert.IsTrue(forum.dismissAdmin(adminName, "guy", forumName), "userAdmin is an administrator in the forum. his dismissal from being administrator should be successful");
             Assert.IsFalse(forum.isAdmin(adminName, forumName), "userAdmin should not be a administrator in the forum");
-            DBClass db = DBClass.getInstance;
             db.clear();
         }
 
@@ -53,6 +54,8 @@ namespace Tests
         [TestMethod]
         public void AT_test_changeForumPreferences_valid_policy()
         {
+            DBClass db = DBClass.getInstance;
+            db.clear();
             ISuperUserManager superUser = new SuperUserManagerClient();
             superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
             IForumManager forum = new ForumManagerClient(); 
@@ -75,13 +78,14 @@ namespace Tests
             Assert.AreEqual(forum.getForumPolicy(forumName), newPolicy, false, "the new policy should be return after the change");
             Assert.AreEqual(forum.getForumDescription(forumName), newDescr, false, "the new description should be return after the change");
             Assert.AreEqual(forum.getForumRules(forumName), newRules, false, "the new rules should be return after the change");
-            DBClass db = DBClass.getInstance;
             db.clear();
         }
 
         [TestMethod]
         public void AT_test_changeForumPreferences_with_null_inputs()
         {
+            DBClass db = DBClass.getInstance;
+            db.clear();
             ISuperUserManager superUser = new SuperUserManagerClient();
             superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
             IForumManager forum = new ForumManagerClient(); 
@@ -98,7 +102,6 @@ namespace Tests
             Assert.AreEqual(forum.getForumPolicy(forumName), oldPolicy, false, "after an unsuccessful change, the old policy should be returned");
             Assert.AreEqual(forum.getForumDescription(forumName), oldDescr, false, "after an unsuccessful change, the old description should be returned");
             Assert.AreEqual(forum.getForumRules(forumName), oldRules, false, "after an unsuccessful change, the old rules should be returned");
-            DBClass db = DBClass.getInstance;
             db.clear();
 
         }
@@ -109,6 +112,8 @@ namespace Tests
         [TestMethod]
         public void AT_test_changeForumPreferences_with_empty_string()
         {
+            DBClass db = DBClass.getInstance;
+            db.clear();
             ISuperUserManager superUser = new SuperUserManagerClient();
             superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
             IForumManager forum = new ForumManagerClient();
@@ -125,7 +130,6 @@ namespace Tests
             Assert.AreEqual(forum.getForumPolicy(forumName), "", false, "after an unsuccessful change, the old policy should be returned");
             Assert.AreEqual(forum.getForumDescription(forumName), "", false, "after an unsuccessful change, the old description should be returned");
             Assert.AreEqual(forum.getForumRules(forumName), "", false, "after an unsuccessful change, the old rules should be returned");
-            DBClass db = DBClass.getInstance;
             db.clear();
         }
 

@@ -38,6 +38,10 @@ namespace ForumBuilder.Controllers
             }                
             else if (DB.createForum(forumName, descrption, forumPolicy, forumRules, administrators))
             {
+                foreach(String admin in administrators)
+                {
+                    ForumController.getInstance.nominateAdmin(admin, superUserName,forumName);
+                }
                 logger.logPrint("Forum " + forumName + " creation success");
                 return true;
             }
@@ -97,6 +101,20 @@ namespace ForumBuilder.Controllers
                 return false;
             }
             return true;
+        }
+        public bool addUser(string userName, string password, string mail)
+        {
+            if (userName.Length > 0 && password.Length > 0 && mail.Length > 0)
+            {
+                if (DB.getUser(userName) != null)
+                {
+                    logger.logPrint("Register user faild, " + userName + " is already taken");
+                    return false;
+                }
+                return DB.addUser(userName, password, mail);
+            }
+            logger.logPrint("Register user faild, password not strong enough");
+            return false;
         }
     }
 }

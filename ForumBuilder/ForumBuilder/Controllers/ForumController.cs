@@ -150,20 +150,22 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("nominate admin fail, " + newAdmin + "is already admin");
                 return false;
             }
-            if (DB.getSuperUser(nominatorName) != null|| DB.getforumByName(forumName).administrators.Contains(nominatorName))
+            if (DB.getUser(newAdmin) == null)
+                return false;
+            if ((DB.getSuperUser(nominatorName) != null|| DB.getforumByName(forumName).administrators.Contains(nominatorName)))
             {
-                if (this.isMember(newAdmin, forumName))
+                bool isMem = isMember(newAdmin, forumName);
+                if (!isMem)
                 {
-                    if (DB.nominateAdmin(newAdmin, forumName))
-                    {
-                        logger.logPrint("admin nominated successfully");
-                        if (DB.getforumByName(forumName).administrators.Contains(nominatorName))
-                            DB.dismissAdmin(nominatorName, forumName);
-                        return true;
-                    }
-                    return false;
+                    isMem=isMem|| DB.addMemberToForum(newAdmin, forumName);
                 }
-                logger.logPrint("nominate admin fail, " + newAdmin + "is not member");
+                if (isMem&& DB.nominateAdmin(newAdmin, forumName))
+                {
+                    logger.logPrint("admin nominated successfully");
+                    if (DB.getforumByName(forumName).administrators.Contains(nominatorName))
+                        DB.dismissAdmin(nominatorName, forumName);
+                    return true;
+                }
                 return false;
             }
             logger.logPrint("nominate admin fail " + nominatorName + " is not super user");
@@ -179,8 +181,13 @@ namespace ForumBuilder.Controllers
             }
             if (userName.Length > 0 && password.Length > 0 && mail.Length > 0)
             {
-                if(DB.getUser(userName) !=null)
+                User user = DB.getUser(userName);
+                if (user !=null)
                 {
+                    if(user.userName.Equals(userName)&&user.password.Equals(password))
+                    {
+                        return DB.addMemberToForum(userName, forumName);
+                    }
                     logger.logPrint("Register user faild, "+userName+" is already taken");
                     return false;
                 }
