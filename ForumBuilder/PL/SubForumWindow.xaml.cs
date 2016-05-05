@@ -17,6 +17,19 @@ namespace PL
         private string Writer;
         private string Time;
 
+        public dataContainer()
+        {
+
+        }
+
+        public dataContainer(int id, string title, string writer, string time)
+        {
+            _id = id;
+            _time = time;
+            _title = title;
+            _writer = writer;
+        }
+
         public string _title
         {
             get
@@ -75,6 +88,7 @@ namespace PL
         private PostManagerClient _pm;
         private string _userName;
         private int _patentId;//used for adding post;
+        private List<dataContainer> dataOfEachPost;
 
         public SubForumWindow(string fName, string sfName, string userName)//forum subforum names and userName
         {
@@ -84,6 +98,7 @@ namespace PL
             sForumName.Content = sfName;
             _userName = userName;
             _patentId = -1;
+            dataOfEachPost = new List<dataContainer>();
         }
 
         private void ThreadView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -91,7 +106,6 @@ namespace PL
             var grid = sender as DataGrid;
             var selected = grid.SelectedItem as dataContainer;
             List<PostData> posts = _pm.getAllPosts(forumName.Content.ToString(), sForumName.Content.ToString());
-            var commentTable = new List<dataContainer>();
             foreach (PostData pd1 in posts)
             {
                 if (pd1.id == selected._id)//needs to show the thread of this post
@@ -105,23 +119,22 @@ namespace PL
                         {
                             if (pd2.id == singleCommentId)
                             {
-                                dataContainer dt = new dataContainer();
-                                dt._id = pd2.id;
-                                dt._title = pd2.title;
-                                dt._writer = pd2.writerUserName;
-                                dt._time = pd2.timePublished.ToString();
-                                commentTable.Add(dt);
+                                Expander exp = new Expander();
+                                exp.Header = pd2.title + "                                                          " + pd2.timePublished + "\n pulished by:" + pd2.writerUserName;
+                                exp.Content = pd2.content;
+                                listBox.Items.Add(exp);
+                                dataContainer dt = new dataContainer(pd2.id, pd2.title, pd2.writerUserName, pd2.timePublished.ToString());
+                                dataOfEachPost.Add(dt);
                             }
                         }
                     }
                 }
             }
-            singleThread.ItemsSource = commentTable;
             threadView.Visibility = Visibility.Collapsed;
             threadTextBox.Visibility = Visibility.Collapsed;
             addThreadButton.Visibility = Visibility.Collapsed;
             addPostButton.Visibility = Visibility.Visible;
-            singleThread.Visibility = Visibility.Visible;
+            listBox.Visibility = Visibility.Visible;
 
         }
 
@@ -159,7 +172,7 @@ namespace PL
             var grid = sender as DataGrid;
             grid.ItemsSource = table;
             addPostButton.Visibility = Visibility.Collapsed;
-            singleThread.Visibility = Visibility.Collapsed;
+            listBox.Visibility = Visibility.Collapsed;
             threadView.Visibility = Visibility.Visible;
         }
 
@@ -170,9 +183,9 @@ namespace PL
 
         private void back_Click(object sender, RoutedEventArgs e)
         {
-            if (singleThread.Visibility == Visibility.Visible)
+            if (listBox.Visibility == Visibility.Visible)
             {
-                singleThread.Visibility = Visibility.Collapsed;
+                listBox.Visibility = Visibility.Collapsed;
                 addPostButton.Visibility = Visibility.Collapsed;
                 addThreadButton.Visibility = Visibility.Visible;
                 threadView.Visibility = Visibility.Visible;
@@ -185,24 +198,10 @@ namespace PL
             }
         }
 
-        private void openMessage_Click(object sender, RoutedEventArgs e)
-        {
-            var grid = singleThread;
-            var selected = grid.SelectedItem as dataContainer;
-            List<PostData> posts = _pm.getAllPosts(forumName.Content.ToString(), sForumName.Content.ToString());
-            foreach (PostData pd in posts)
-            {
-                if (pd.id == selected._id)
-                {
-                    MessageBox.Show(pd.content);
-                }
-            }
-        }
-
         private void deleteMessageButton_Click(object sender, RoutedEventArgs e)
         {
-            var grid = singleThread;
-            var selected = grid.SelectedItem as dataContainer;
+            int index = listBox.SelectedIndex;
+            dataContainer selected = dataOfEachPost[index];
             List<PostData> posts = _pm.getAllPosts(forumName.Content.ToString(), sForumName.Content.ToString());
             PostData postToDelete = null;
             foreach (PostData pd in posts)
@@ -215,6 +214,7 @@ namespace PL
             if (postToDelete != null)
             {
                 _pm.deletePost(postToDelete.id, _userName);
+                listBox.Items.RemoveAt(index);
             }
             else
             {
