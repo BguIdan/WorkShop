@@ -17,6 +17,10 @@ namespace Database
         OleDbConnection connection;
         static void Main(string[] args)
         {
+            //DBClass db = DBClass.getInstance;
+            //db.initializeDB();
+            //db.clear();
+            /*
             DBClass db = DBClass.getInstance;
             db.initializeDB();
             db.clear();
@@ -28,16 +32,20 @@ namespace Database
             db.addUser("user2", "mypassword4", "guy4@gmail.com");
             db.addUser("user3", "mypassword4", "guy4@gmail.com");
             db.addUser("user4", "mypassword4", "guy4@gmail.com");
+            db.addUser("user5", "mypassword4", "guy4@gmail.com");
             List<String> list= new List<string>();
             list.Add("admin1");
             list.Add("admin2");
             db.createForum("forum1", "is", "the", "best",list );
-            db.nominateAdmin("admin3", "forum1");
+            db.nominateAdmin("admin3", "forum1
+            ");
             db.addSubForum("subForum1", "forum1");
             db.nominateModerator("user1", DateTime.Today, "subForum1", "forum1");
+            db.nominateModerator("user5", DateTime.Today, "subForum1", "forum1");
             db.addMemberToForum("user2", "forum1");
             db.addMemberToForum("user3", "forum1");
             db.addMemberToForum("user4", "forum1");
+            db.addMemberToForum("user5", "forum1");
             db.addFriendToUser("user2", "user3");
             db.addFriendToUser("user2", "user1");
             db.addMessage("user2", "user4", "hello its me");
@@ -61,9 +69,22 @@ namespace Database
             User u2 = db.getUser("user2");
             Thread thread = db.getThreadByFirstPostId(0);
             List<String> friends=db.getUserFriends("user2");
+            db.dismissModerator("user5", "subForum1", "forum1");
+            db.dismissAdmin("admin1", "forum1");
+            db.banMember("user2", "forum1");
+
+            db.setForumPreferences("forum1", "desc","pol","rul");
+            db.changePolicy("change", "forum1");
+            db.removeFriendOfUser("user2", "user3");
+            db.removePost(1);
+            db.removeThread(0);
+
+            //getsimu
+
             //db.clear();
             //Program DB = new Program();
             //DB.initializeDB();
+            */
         }
         public static DBClass getInstance
         {
@@ -165,7 +186,7 @@ namespace Database
                     command2.CommandText = "DELETE  FROM  subForumModerators where subForumModerators.forumName='"
                     + forumName + "' and subForumModerators.subForumName='" + subForumName + "'and subForumModerators.moderatorName='"
                     + dismissedModerator + "'";
-                    command.ExecuteNonQuery();
+                    command2.ExecuteNonQuery();
                     //moderator removed
                     closeConnectionDB();
                     return true;
@@ -177,7 +198,7 @@ namespace Database
                     return false;
                 }
             }
-            catch
+            catch(Exception e)
             {
                 return false;
             }
@@ -402,12 +423,12 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "UPDATE forums SET forumPolicy="+newPolicy+" where forumName='"+forumName+"' )";
+                command.CommandText = "UPDATE forums SET forumPolicy='"+newPolicy+"' where forumName='"+forumName+"'";
                 command.ExecuteNonQuery();
                 closeConnectionDB();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
                 closeConnectionDB();
                 return false;
@@ -480,8 +501,8 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "DELETE  FROM  forumAdministrators where subForumModerators.forumName='"
-                + forumName + "'and forumAdministrators.AdministratorName='" + adminToDismissed+ "'";
+                command.CommandText = "DELETE  FROM  forumAdministrators where forumName='"
+                + forumName + "' and AdministratorName='" + adminToDismissed+ "'";
                 command.ExecuteNonQuery();
                 //admin removed
                 closeConnectionDB();
@@ -645,12 +666,12 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "UPDATE forums SET forumPolicy=" + newForumPolicy + ", description = " + newDescription + ", forumRules = " + newForumRules +" where forumName='" + forumName + "' )";
+                command.CommandText = "UPDATE forums SET forumPolicy='" + newForumPolicy + "', description = '" + newDescription + "', forumRules = '" + newForumRules +"' where forumName='" + forumName + "'";
                 command.ExecuteNonQuery();
                 closeConnectionDB();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
                 closeConnectionDB();
                 return false;
@@ -685,12 +706,12 @@ namespace Database
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
                 command.CommandText = "DELETE  from friendOf where userName='" + userName+
-                    ", friendName='"+ deletedFriendName + "')";
+                    "' and friendName='"+ deletedFriendName + "'";
                 command.ExecuteNonQuery();
                 closeConnectionDB();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
                 closeConnectionDB();
                 return false;
@@ -945,12 +966,12 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "DELETE  FROM  theards where firstMessageId=" + id + "";
+                command.CommandText = "DELETE  FROM  threads where firstMessageId=" + id + "";
                 command.ExecuteNonQuery();
                 closeConnectionDB();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
                 closeConnectionDB();
                 return false;
