@@ -81,7 +81,6 @@ namespace PL
                 MessageBox.Show("wrong user name or password");
                 return;
             }
-            
         }
 
         private void ForgorPasswordPressed(object sender, RoutedEventArgs e)
