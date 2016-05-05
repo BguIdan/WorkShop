@@ -10,7 +10,6 @@ using System.Text;
 using System.Threading.Tasks;
 using PL.proxies;
 using System.ServiceModel;
-using Service;
 using DW.CodedUI;
 using Database;
 
@@ -43,7 +42,8 @@ namespace Tests
             this.forum = new ForumData("testForum", "descr", "policy", "the first rule is that you do not talk about fight club");
             ISuperUserManager superUser = new SuperUserManagerClient();
             superUser1 = new UserData("tomer", "1qW", "fkfkf@wkk.com");
-            SuperUserManager.getInstance.initialize(superUser1.userName, superUser1.password, superUser1.email);
+            ISuperUserManager SuperUserManager = new SuperUserManagerClient();
+            SuperUserManager.initialize(superUser1.userName, superUser1.password, superUser1.email);
             superUser.createForum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "tomer");
             Assert.IsTrue(this.forumManager.registerUser("mem", "mempass", "mem@gmail.com", this.forum.forumName));
             Assert.IsTrue(this.forumManager.registerUser("admin", "adminpass", "admin@gmail.com", this.forum.forumName));
@@ -60,8 +60,8 @@ namespace Tests
             this.userMember = null;
             this.userAdmin = null;
             this.userAdmin2 = null;
-            //DBClass db = DBClass.getInstance;
-            //db.clear();
+            DBClass db = DBClass.getInstance;
+            db.clear();
         }
 
         /******************************dismiss admin***********************************/

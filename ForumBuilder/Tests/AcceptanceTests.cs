@@ -2,8 +2,9 @@
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Service;
+using ForumBuilder.Common.ServiceContracts;
 using Database;
+using PL.proxies;
 
 namespace Tests
 {
@@ -17,9 +18,9 @@ namespace Tests
         [TestMethod]
         public void AT_test_create_and_manipulate_forum()
         {
-            SuperUserManager superUser = SuperUserManager.getInstance;
+            ISuperUserManager superUser = new SuperUserManagerClient();
             superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
-            ForumManager forum = ForumManager.getInstance;
+            IForumManager forum = new ForumManagerClient(); 
             String forumName = "forum";
             String adminName = "admin";
             List<string> adminList = new List<string>();
@@ -52,9 +53,9 @@ namespace Tests
         [TestMethod]
         public void AT_test_changeForumPreferences_valid_policy()
         {
-            SuperUserManager superUser = SuperUserManager.getInstance;
+            ISuperUserManager superUser = new SuperUserManagerClient();
             superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
-            ForumManager forum = ForumManager.getInstance;
+            IForumManager forum = new ForumManagerClient(); 
             String forumName = "forum";
             String adminName = "admin";
             List<string> adminList = new List<string>();
@@ -81,9 +82,9 @@ namespace Tests
         [TestMethod]
         public void AT_test_changeForumPreferences_with_null_inputs()
         {
-            SuperUserManager superUser = SuperUserManager.getInstance;
+            ISuperUserManager superUser = new SuperUserManagerClient();
             superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
-            ForumManager forum = ForumManager.getInstance;
+            IForumManager forum = new ForumManagerClient(); 
             String forumName = "forum";
             String adminName = "admin";
             List<String> adminList = new List<String>();
@@ -108,9 +109,9 @@ namespace Tests
         [TestMethod]
         public void AT_test_changeForumPreferences_with_empty_string()
         {
-            SuperUserManager superUser = SuperUserManager.getInstance;
+            ISuperUserManager superUser = new SuperUserManagerClient();
             superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
-            ForumManager forum = ForumManager.getInstance;
+            IForumManager forum = new ForumManagerClient();
             String forumName = "forum";
             String adminName = "admin";
             List<String> adminList = new List<String>();
@@ -134,9 +135,8 @@ namespace Tests
         [TestMethod]
         public void AT_Test_register_to_forum_withWrongInputs()
         {
-            Service.ForumManager forumMan = Service.ForumManager.getInstance;
-            Service.SuperUserManager superUserMan = Service.SuperUserManager.getInstance;
-
+            IForumManager forumMan = new ForumManagerClient();
+            ISuperUserManager superUserMan = new SuperUserManagerClient();
             superUserMan.initialize("guy", "AG36djs", "hello@dskkl.com");
             List<String> adminList = new List<String>();
             adminList.Add("admin1");
@@ -159,10 +159,9 @@ namespace Tests
         [TestMethod]
         public void AT_Test_register_to_forum_Functionality()
         {
-            
-            Service.ForumManager forumMan = Service.ForumManager.getInstance;
-            Service.SuperUserManager superUserMan = Service.SuperUserManager.getInstance;
-            Service.UserManager userMan = Service.UserManager.getInstance;
+            IForumManager forumMan = new ForumManagerClient();
+            ISuperUserManager superUserMan = new SuperUserManagerClient();
+            IUserManager userMan = new UserManagerClient();
 
             superUserMan.initialize("guy", "AG36djs", "hello@dskkl.com");
             List<String> adminList = new List<String>();

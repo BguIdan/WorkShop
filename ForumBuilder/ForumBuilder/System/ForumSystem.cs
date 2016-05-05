@@ -44,7 +44,7 @@ namespace ForumBuilder.Systems
                     Logger logger = Logger.getInstance;
                 try
                 {
-
+                    /*
                     ServiceHost forumService = new ServiceHost(typeof(ForumManager));
                     forumService.Open();
                     logger.logPrint("forum service was initialized under localhost:8081");
@@ -64,6 +64,7 @@ namespace ForumBuilder.Systems
                     ServiceHost userService = new ServiceHost(typeof(UserManager));
                     userService.Open();
                     logger.logPrint("user service was initialized under localhost:8085");
+                     */
                 }
                 catch (CommunicationException ce)
                 {

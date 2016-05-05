@@ -9,3 +9,13 @@ C:\Users\User\Documents\sadna\ForumBuilder\Common\bin\Debug\Microsoft.VisualStud
 C:\Users\User\Documents\sadna\ForumBuilder\Common\bin\Debug\BL_Back_End.pdb
 C:\Users\User\Documents\sadna\ForumBuilder\Common\bin\Debug\DW.CodedUI.pdb
 C:\Users\User\Documents\sadna\ForumBuilder\Common\bin\Debug\DW.CodedUI.xml
+C:\Users\Aviv\Documents\WorkShop\ForumBuilder\Common\bin\Debug\Common.dll
+C:\Users\Aviv\Documents\WorkShop\ForumBuilder\Common\bin\Debug\Common.pdb
+C:\Users\Aviv\Documents\WorkShop\ForumBuilder\Common\bin\Debug\BL_Back_End.exe
+C:\Users\Aviv\Documents\WorkShop\ForumBuilder\Common\bin\Debug\DW.CodedUI.dll
+C:\Users\Aviv\Documents\WorkShop\ForumBuilder\Common\bin\Debug\BL_Back_End.pdb
+C:\Users\Aviv\Documents\WorkShop\ForumBuilder\Common\bin\Debug\DW.CodedUI.pdb
+C:\Users\Aviv\Documents\WorkShop\ForumBuilder\Common\bin\Debug\DW.CodedUI.xml
+C:\Users\Aviv\Documents\WorkShop\ForumBuilder\Common\obj\Debug\ForumBuilder.common.csprojResolveAssemblyReference.cache
+C:\Users\Aviv\Documents\WorkShop\ForumBuilder\Common\obj\Debug\Common.dll
+C:\Users\Aviv\Documents\WorkShop\ForumBuilder\Common\obj\Debug\Common.pdb
