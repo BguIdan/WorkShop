@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ForumBuilder.Common.ServiceContracts;
+using BL_Back_End;
+using ForumBuilder.Common.DataContracts;
 
 namespace Service
 {
@@ -73,6 +75,13 @@ namespace Service
         public String getForumRules(String forumName)
         {
             return forumController.getForumRules(forumName);
+        }
+        public ForumData getForum(String forumName)
+        {
+            Forum temp = forumController.getForum(forumName);
+            ForumData toReturn = new ForumData(temp.forumName , temp.description , temp.forumPolicy , temp.forumRules);
+            return toReturn;
+            
         }
     }
 }

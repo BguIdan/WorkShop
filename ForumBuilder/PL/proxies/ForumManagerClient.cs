@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
 using ForumBuilder.Common.ServiceContracts;
+using ForumBuilder.Common.DataContracts;
 
 namespace PL.proxies
 {
@@ -88,6 +89,11 @@ namespace PL.proxies
         public String getForumRules(String forumName)
         {
             return Channel.getForumRules(forumName);
+        }
+
+        public ForumData getForum(String forumName)
+        {
+            return Channel.getForum(forumName);
         }
     }
 }

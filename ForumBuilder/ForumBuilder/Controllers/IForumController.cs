@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using BL_Back_End;
 
 
 namespace ForumBuilder.Controllers
@@ -17,6 +18,7 @@ namespace ForumBuilder.Controllers
         String getForumPolicy(String forumName);
         String getForumDescription(String forumName);
         String getForumRules(String forumName);
+        Forum getForum(String forumName); 
 
     }
 }

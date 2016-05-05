@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using PL.proxies;
+using ForumBuilder.Common.DataContracts;
 
 namespace PL
 {
@@ -22,22 +23,15 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
-        // TODO: know Forum!!! or Forum name
-        //private List<Forum> _forumsList;
-        private List<string> _forumsList;
+        private List<ForumData> _forumsList;
         private String _choosenForum;
+        private ForumManagerClient _fMC;
 
         public MainWindow()
         {
             InitializeComponent();
-            _forumsList = new List<string>();
-            for (int i = 0; i < _forumsList.Count; i++)
-            {
-                ComboBoxItem newItem = new ComboBoxItem();
-                // TODO: insert all forums names to the combo box list
-                //newItem.Content = _forumsList.ElementAt(i).Name;
-                comboBox.Items.Add(newItem);
-            }
+            _forumsList = new List<ForumData>();
+            _fMC = new ForumManagerClient();
             /*//TODO client server communication POC delete later
              * ForumManagerClient fmc = new ForumManagerClient();
             fmc.addSubForum("a", "b", null, "c");
@@ -50,6 +44,18 @@ namespace PL
             UserManagerClient umc = new UserManagerClient();
             umc.addFriend("", "");*/
             this.Show(); 
+        }
+
+        public void updateForums(ForumData newForum)
+        {
+            _forumsList.Add(newForum);
+
+            for (int i = 0; i < _forumsList.Count; i++)
+            {
+                ComboBoxItem newItem = new ComboBoxItem();
+                newItem.Content = _forumsList.ElementAt(i).forumName;
+                comboBox.Items.Add(newItem);
+            }
         }
 
         private void LoginPressed(object sender, RoutedEventArgs e)
@@ -65,7 +71,8 @@ namespace PL
             }
             if (_choosenForum != null)
             {
-                ForumWindow fw = new ForumWindow(_choosenForum);
+                ForumData toSend = _fMC.getForum(_choosenForum);
+                ForumWindow fw = new ForumWindow(toSend);
                 this.Close();
                 fw.ShowDialog();
             }

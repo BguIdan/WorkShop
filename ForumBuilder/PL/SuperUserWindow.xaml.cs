@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using PL.proxies;
+using ForumBuilder.Common.DataContracts;
 
 namespace PL
 {
@@ -21,11 +22,20 @@ namespace PL
     public partial class SuperUserWindow : Window
     {
         private SuperUserManagerClient _sUMC;
+        private ForumManagerClient _fMC;
+        private UserData _myUser;
+        private MainWindow _mw;
 
-        public SuperUserWindow()
+        public SuperUserWindow(String userName, String password, String email)
         {
             InitializeComponent();
             _sUMC = new SuperUserManagerClient();
+            _fMC = new ForumManagerClient();
+
+            // TODO: check if it is OK to create new MainWindow
+
+            _mw = new MainWindow();
+            _myUser = new UserData(userName, password, email);
             this.Show();
         }
 
@@ -38,46 +48,70 @@ namespace PL
                 case "Set": { setPreferences(); } break;
                 case "CreateSub": { createSub(); } break;
                 case "Del": { Delete(); } break;
+                case "Createuser": { createUser(); } break;
                 case "Exit": { this.Visibility = System.Windows.Visibility.Collapsed; System.Environment.Exit(1); } break;
             }
+        }
+
+        private void MenuItem_View(object sender, RoutedEventArgs e)
+        {
+            //TODO: complete the mehtod
         }
 
         private void createNewForum()
         {
             MainMenu.Visibility = System.Windows.Visibility.Collapsed;
+            setPreferencesWin.Visibility = System.Windows.Visibility.Collapsed;
             createForum.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void setPreferences()
+        {
+            MainMenu.Visibility = System.Windows.Visibility.Collapsed;
+            createForum.Visibility = System.Windows.Visibility.Collapsed;
+            setPreferencesWin.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void createSub()
+        {
+            //TODO: complete the mehtod
+        }
+
+        private void Delete()
+        {
+            //TODO: complete the mehtod
+        }
+
+        private void createUser()
+        {
+            //TODO: complete the mehtod
+        }
+
+        private void btn_CreateNewForum(object sender, RoutedEventArgs e)
+        {
             string forumName = newForumName.Text;
             string desc = newForumDescription.Text;
             string rules = newForumRules.Text;
             string policy = newForumPolicy.Text;
             string administrators = newAdminUserName.Text;
-            List<string> admins = new List<string>();
-            //_sUMC.createForum(forumName,desc,policy,rules,admin
+            List<string> admins = administrators.Split(',').ToList();
+            Boolean isCreated = _sUMC.createForum(forumName, desc, policy, rules, admins, _myUser.userName);
+            if (isCreated)
+            {
+                MessageBox.Show("Forum:" + forumName + "was successfully created!");
+                ForumData newForum = _fMC.getForum(forumName);
+                _mw.updateForums(newForum);
+
+                //TODO: direct to the new forum window
+                //TODO: send mail to every forum manager?
+            }
+            else { MessageBox.Show("Something went wrong the forum wasn't created"); }
         }
 
-        private void setPreferences()
+        private void btn_SetForumPref(object sender, RoutedEventArgs e)
         {
-            
-        }
-
-        private void createSub()
-        {
-           
-        }
-
-        private void Delete()
-        {
-           
-        }
-
-        private void btn_addCouponFromSocial(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void MenuItem_View(object sender, RoutedEventArgs e)
-        {
-
+            string forumToSet = ForumNameToSet.Text;
+            //TODO: direct to the forum window
         }
 
     }

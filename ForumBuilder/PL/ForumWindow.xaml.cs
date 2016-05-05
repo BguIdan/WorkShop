@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ForumBuilder.Common.DataContracts;
 
 namespace PL
 {
@@ -19,18 +20,16 @@ namespace PL
     /// </summary>
     public partial class ForumWindow : Window
     {
-        //TODO: need to know Forum
-        //private Forum _forum;
-        private List<String> _subForumNames;
+        
+        private ForumData _myforum;
+        //private List<String> _subForumNames;
         private String _subForumChosen;
 
-        public ForumWindow(string _forumName)
+        public ForumWindow(ForumData forum)
         {
             InitializeComponent();
-            _subForumNames = new List<string>();
-            // TODO: Initialize field
-            //_forum = getforum;
-            forumName.Content = _forumName;
+            //_subForumNames = new List<string>();
+            _myforum = forum;
         }
 
         private void DataGrid_Loaded(object sender, RoutedEventArgs e)
@@ -76,9 +75,22 @@ namespace PL
             this.Title = string.Join(", ", names);
         }
 
-        private void MenuItem_Coupon(object sender, RoutedEventArgs e)
+        private void MenuItem_Forums(object sender, RoutedEventArgs e)
         {
+            MenuItem menuItem = e.Source as MenuItem;
+            switch (menuItem.Name)
+            {
+                case "AddSub": { addNewSubForum(); } break;
+                case "Set": { setPreferences(); } break;
+                case "Exit": { this.Visibility = System.Windows.Visibility.Collapsed; System.Environment.Exit(1); } break;
+            }
+        }
 
+        private void addNewSubForum()
+        {
+            MainMenu.Visibility = System.Windows.Visibility.Collapsed;
+            mainGrid.Visibility = System.Windows.Visibility.Collapsed;
+          //TODO: addForum.Visibility = System.Windows.Visibility.Visible; ;
         }
 
         private void setNotifications(object sender, RoutedEventArgs e)
@@ -86,9 +98,81 @@ namespace PL
 
         }
 
-        private void viewCoupons(object sender, RoutedEventArgs e)
+        private void setPreferences()
         {
+            MainMenu.Visibility = System.Windows.Visibility.Collapsed;
+            mainGrid.Visibility = System.Windows.Visibility.Collapsed;
+            //TODO: addForum.Visibility = System.Windows.Visibility.Collapsed;
+        }
 
+        private void descChoose(object sender, RoutedEventArgs e)
+        {
+            bool toChange = descCheck.IsChecked.Value;
+            if (toChange) { ForumDescToSet.IsEnabled = true; }
+            else { ForumDescToSet.IsEnabled = false; }
+        }
+
+        private void policyChoose(object sender, RoutedEventArgs e)
+        {
+            bool toChange = policyCheck.IsChecked.Value;
+            if (toChange) { ForumPolicyToSet.IsEnabled = true; }
+            else { ForumPolicyToSet.IsEnabled = false; }
+        }
+
+        private void rulesChoose(object sender, RoutedEventArgs e)
+        {
+            bool toChange = rulesCheck.IsChecked.Value;
+            if (toChange) { ForumRulesToSet.IsEnabled = true; }
+            else { ForumRulesToSet.IsEnabled = false; }
+        }
+
+        private void btn_SetForumPref(object sender, RoutedEventArgs e)
+        {
+            MyDialog.Visibility = System.Windows.Visibility.Visible;
+            MyDialog.Focusable = true;
+        }
+
+        private void btn_toSetPref(object sender, RoutedEventArgs e)
+        {
+            String temp = "";
+            var btn = sender as Button;
+            if (btn.Name.Equals("yesBtn"))
+            {
+                temp = yesBtn.Content.ToString();
+            }
+            else { temp = noBtn.Content.ToString(); }
+            setPref(temp);
+        }
+
+        private void setPref(String isDone)
+        {
+            MyDialog.Focusable = false;
+            MyDialog.Visibility = System.Windows.Visibility.Collapsed;
+
+            if (isDone.Equals("Yes"))
+            {
+                string temp = "";
+                bool toChange = descCheck.IsChecked.Value;
+                if (toChange)
+                {
+                    temp = ForumDescToSet.Text;
+                    _myforum.description = temp;
+                }
+                toChange = policyCheck.IsChecked.Value;
+                if (toChange)
+                {
+                    temp = ForumPolicyToSet.Text;
+                    _myforum.forumPolicy = temp;
+                }
+                toChange = rulesCheck.IsChecked.Value;
+                if (toChange)
+                {
+                    temp = ForumRulesToSet.Text;
+                    _myforum.forumRules = temp;
+                }
+                MessageBox.Show("Preferences was successfully changed! ");
+                setPreferencesWin.Visibility = System.Windows.Visibility.Collapsed;
+            }            
         }
     }
 }

@@ -238,5 +238,9 @@ namespace ForumBuilder.Controllers
         {
             return DB.getforumByName(forumName).forumRules;
         }
+        public Forum getForum(String forumName) 
+        {
+            return DB.getforumByName(forumName);
+        }
     }
 }

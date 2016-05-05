@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
+using ForumBuilder.Common.DataContracts;
 
 namespace ForumBuilder.Common.ServiceContracts
 {
@@ -42,6 +43,9 @@ namespace ForumBuilder.Common.ServiceContracts
 
         [OperationContract]
         String getForumRules(String forumName);
+
+        [OperationContract]
+        ForumData getForum(String forumName);
 
     }
 }
