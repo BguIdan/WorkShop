@@ -65,7 +65,9 @@ namespace ForumBuilder.Systems
                     ServiceHost userService = new ServiceHost(typeof(UserManager));
                     userService.Open();
                     logger.logPrint("user service was initialized under localhost:8085");
-                    */
+
+                  */
+
                 }
                 catch (CommunicationException ce)
                 {

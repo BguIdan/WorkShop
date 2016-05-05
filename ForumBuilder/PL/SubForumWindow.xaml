@@ -20,17 +20,31 @@
                 </MenuItem>
             </Menu>
         </DockPanel>
-        <Label Content="Sub-ForumName:"  Name="sForumName" FontFamily="Cooper Black" HorizontalAlignment="Left" Margin="25,43,0,0" VerticalAlignment="Top" Width="341" Height="23"/>
-        <TextBlock FontSize="16" FontFamily="Broadway" TextWrapping="Wrap" VerticalAlignment="Top"
+        <Label Content="ForumName:"  Name="forumName" FontFamily="Cooper Black" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top" Width="341" Height="23"/>
+        <Label Content="Sub-ForumName:"  Name="sForumName" FontFamily="Cooper Black" HorizontalAlignment="Left" Margin="25,49,0,0" VerticalAlignment="Top" Width="341" Height="23"/>
+        <TextBlock Name="threadTextBox" FontSize="16" FontFamily="Broadway" TextWrapping="Wrap" VerticalAlignment="Top"
             	Text="Threads" Visibility="Visible" Height="32" Margin="158,88,158,0"
             	RenderTransformOrigin="0.78,0.757"/>
-        <DataGrid x:Name="couponsView" 
-                  AutoGenerateColumns="True" Margin="25,135,26,25" SelectionChanged="DataGrid_SelectionChanged" Loaded="DataGrid_Loaded">
+        <DataGrid x:Name="threadView" 
+                  AutoGenerateColumns="True" Margin="25,117,26,43" SelectionChanged="ThreadView_SelectionChanged" Loaded="DataGrid_Loaded">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Title" Width="*"/>
                 <DataGridTextColumn Header="Writer" Width="*"/>
                 <DataGridTextColumn Header="Time Published" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
+        <DataGrid x:Name="singleThread" 
+        	AutoGenerateColumns="True" Margin="25,117,26,43" SelectionChanged="singleThread_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Title" Width="*"/>
+                <DataGridTextColumn Header="Writer" Width="*"/>
+                <DataGridTextColumn Header="Time Published" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="backButton" Content="back " HorizontalAlignment="Left" Height="29" Margin="25,332,0,0" VerticalAlignment="Top" Width="62" Click="back_Click"/>
+        <Button x:Name="openMessageButton" Content="open" HorizontalAlignment="Left" Height="29" Margin="92,332,0,0" VerticalAlignment="Top" Width="70" Click="openMessage_Click"/>
+        <Button x:Name="deleteMessageButton" Content="delete" HorizontalAlignment="Left" Height="28" Margin="167,332,0,0" VerticalAlignment="Top" Width="81" Click="deleteMessageButton_Click"/>
+        <Button x:Name="addThreadButton" Content="add thread" HorizontalAlignment="Left" Height="27" Margin="265,332,0,0" VerticalAlignment="Top" Width="68"/>
+        <Button x:Name="addPostButton" Content="add post" HorizontalAlignment="Left" Height="27" Margin="265,332,0,0" VerticalAlignment="Top" Width="68" Click="addPostButton_Click"/>
     </Grid>
 </Window>
