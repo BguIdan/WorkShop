@@ -43,17 +43,9 @@ C:\Users\User\Documents\sadna\ForumBuilder\PL\bin\Debug\PL.exe
 C:\Users\User\Documents\sadna\ForumBuilder\PL\bin\Debug\PL.pdb
 C:\Users\User\Documents\sadna\ForumBuilder\PL\bin\Debug\Common.dll
 C:\Users\User\Documents\sadna\ForumBuilder\PL\bin\Debug\DW.CodedUI.dll
-C:\Users\User\Documents\sadna\ForumBuilder\PL\bin\Debug\ForumBuilder.exe
-C:\Users\User\Documents\sadna\ForumBuilder\PL\bin\Debug\Service.exe
-C:\Users\User\Documents\sadna\ForumBuilder\PL\bin\Debug\Database.exe
-C:\Users\User\Documents\sadna\ForumBuilder\PL\bin\Debug\BL_Back_End.exe
 C:\Users\User\Documents\sadna\ForumBuilder\PL\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 C:\Users\User\Documents\sadna\ForumBuilder\PL\bin\Debug\Common.pdb
-C:\Users\User\Documents\sadna\ForumBuilder\PL\bin\Debug\ForumBuilder.pdb
-C:\Users\User\Documents\sadna\ForumBuilder\PL\bin\Debug\Service.pdb
 C:\Users\User\Documents\sadna\ForumBuilder\PL\bin\Debug\DW.CodedUI.pdb
 C:\Users\User\Documents\sadna\ForumBuilder\PL\bin\Debug\DW.CodedUI.xml
-C:\Users\User\Documents\sadna\ForumBuilder\PL\bin\Debug\Database.pdb
-C:\Users\User\Documents\sadna\ForumBuilder\PL\bin\Debug\BL_Back_End.pdb
 C:\Users\User\Documents\sadna\ForumBuilder\PL\obj\Debug\PL.exe
 C:\Users\User\Documents\sadna\ForumBuilder\PL\obj\Debug\PL.pdb
