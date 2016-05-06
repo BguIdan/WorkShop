@@ -640,7 +640,7 @@ namespace Database
                 command.Parameters.AddWithValue("forumRules", forumRules);
                 command.ExecuteNonQuery();
                 
-                foreach (string admin in administrators)
+               /* foreach (string admin in administrators)
                 {
                     OleDbCommand command2 = new OleDbCommand();
                     command2.Connection = connection;
@@ -649,7 +649,7 @@ namespace Database
                     command2.Parameters.AddWithValue("forumName", forumName);
                     command2.Parameters.AddWithValue("administratorName", admin);
                     command2.ExecuteNonQuery();
-                }
+                }*/
                 closeConnectionDB();
                 return true;
             }
