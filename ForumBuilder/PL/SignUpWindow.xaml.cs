@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using PL.proxies;
 
 
 namespace PL
@@ -20,52 +21,39 @@ namespace PL
     /// </summary>
     public partial class SignUpWindow : Window
     {
-       /* private UserBL itsUserBL;
-        private SQL_DAL_implementation iDAL;
-        private AdminBL itsAdminBL;*/
+        private ForumManagerClient _fMC;
+        private String _forumToRegister;
 
-        public SignUpWindow()
+        public SignUpWindow(ForumManagerClient forumManager, String forumName)
         {
             InitializeComponent();
-            /*itsAdminBL = itsadminBL;
-            itsUserBL = itsUser;
-            iDAL = itsDal; */
+            _fMC = forumManager;
+            _forumToRegister = forumName;
+            this.Show();
         }
 
         private void UserRegistration(object sender, RoutedEventArgs e)
         {
-            int userID = 0;
-            string name = null;
+            string userName = null;
             string pass = null;
-            string pref = null;
-            string mail = null;
-            try
-            {
-                userID = Convert.ToInt32(ID.Text);
-                name = nAame.Text;
-                pass = Password.Password;
-                //pref = Pref.Text;
-                //mail = Mail.Text;
-            }
-            catch
-            {
-                MessageBox.Show("ID must be digits");
-            }
-            if (mail==null || pref == null || userID == 0 || pass == null  || name == null)
+            string userMail = null;
+
+            userName = name.Text;
+            pass = Password.Password;
+            userMail = mail.Text;
+            if (mail==null || pass == null  || name == null)
             {
                 MessageBox.Show("Please fill all the required details, make sure password include at least 5 letters");
             }
-            //bool suc = itsUserBL.createNewUser(userID, name, pass,mail);
-            bool suc = false;
+            bool suc = _fMC.registerUser(userName,pass,userMail,_forumToRegister);
             if (suc == false)
             {
-                MessageBox.Show("Fail");
+                MessageBox.Show("Failed to register. One or more of the details is wrong");
                 return;
             }
-           // itsUserBL.setPreferences(userID, pref);
-            MessageBox.Show("Welcome " +name+ "!");
-            //UserWindow uw = new UserWindow(iDAL, userID,itsAdminBL);
+            MessageBox.Show(userName + "Registration succeeded!");
             this.Close();
+            //UserWindow uw = new UserWindow(iDAL, userID,itsAdminBL);
             //uw.Show();
 
         } 

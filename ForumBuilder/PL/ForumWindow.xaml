@@ -7,6 +7,7 @@
             <MenuItem Header="Forums" Click="MenuItem_Forums">
                 <MenuItem Header="Add Sub-Forum" Name="AddSub"/>
                 <MenuItem Header="Set\Change Preferences" Name="Set" />
+                <MenuItem Header="Sign Up (Guest)" Name="Sign" />
                 <Separator />
                 <MenuItem Header="Exit" Name="Exit"/>
             </MenuItem>
@@ -41,11 +42,12 @@
             <TextBlock FontSize="30" FontFamily="Broadway" TextWrapping="Wrap" Text=" Set  Forum Preferences" Margin="90,10,90,262"/>
         </Grid>
 
-        <Grid Name="MyDialog" Visibility="Visible" Margin="61,135,61,135" Background="Silver">
+        <Grid Name="MyDialog" Visibility="Collapsed" Margin="61,135,61,135" Background="Silver">
             <TextBlock FontFamily="Cooper Black" VerticalAlignment="Top" Height="18" Text="Do you want to save changes?" Margin="41,18,37,0" />
             <Button Name="yesBtn" Click="btn_toSetPref" FontFamily="Cooper Black" Content="Yes" Margin="41,68,155,10" />
             <Button Name="noBtn" Click="btn_toSetPref" FontFamily="Cooper Black" Content="No" Margin="155,68,41,10" />
         </Grid>
+        <Button x:Name="privateMessages" Content="Private Messages" HorizontalAlignment="Left" Height="40" Margin="10,319,0,0" VerticalAlignment="Top" Width="129" Click="privateMessages_Click"/>
 
     </Grid>
 </Window>

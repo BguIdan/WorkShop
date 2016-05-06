@@ -4,15 +4,17 @@
     Title="Forum" Height="400" Width="400">
     <Grid Margin="0,11,8,0" RenderTransformOrigin="0.5,0.5">
         <Image Margin="46,40,46,235" 
-               Source="http://www.tudiabetes.org/forum/uploads/default/original/3X/3/5/35d47232d1d9cb26dcd2a226952f98137a9080c8.jpg" RenderTransformOrigin="0.662,0.451"/>
+               Source="http://www.tudiabetes.org/forum/uploads/default/original/3X/3/5/35d47232d1d9cb26dcd2a226952f98137a9080c8.jpg"/>
         <TextBlock FontFamily="Cooper Black" Margin="44,178,44,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="Choose forum:"/><LineBreak/>
             <LineBreak/><Run Text="Please login:"/><LineBreak/><Run/><LineBreak/><Run Text="Enter UserName:"/>
             <LineBreak/><Run/><LineBreak/><Run Text="Enter Password:"/><LineBreak/><Run/></TextBlock>
-        <TextBox Name="ID" Height="24" Margin="174,229,93,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" />
+        <TextBox Name="ID" Margin="174,229,93,108" TextWrapping="Wrap" Text="" />
         <Button FontFamily="Cooper Black" Content="Login" HorizontalAlignment="Left" Margin="172,307,0,0" Height="20" VerticalAlignment="Top" Width="75" Click="LoginPressed"/>
         <PasswordBox Name="Password" Height="22" Margin="174,258,93,0" VerticalAlignment="Top"/>
-        <Button FontFamily="Cooper Black" Content="Forgot Password" HorizontalAlignment="Left" Height="20" Margin="44,307,0,0" VerticalAlignment="Top" Width="123" Click="ForgorPasswordPressed"/>
-        <Button FontFamily="Cooper Black" Content="Sign Up" Margin="252,307,59,0" Height="20" VerticalAlignment="Top" Click="SignUpUser"/>
-        <ComboBox x:Name="comboBox" SelectionChanged="comboBox_SelectionChanged" Margin="174,178,93,0" VerticalAlignment="Top"/>
+        <Button Name="Forgot"  FontFamily="Cooper Black" Content="Forgot Password" HorizontalAlignment="Left" Height="20" Margin="44,307,0,0" VerticalAlignment="Top" Width="123" Click="ForgorPasswordPressed"/>
+        <Button Name="signUP" FontFamily="Cooper Black" Content="Sign Up" Margin="252,307,59,0" Height="20" VerticalAlignment="Top" Click="SignUpUser"/>
+        <ComboBox x:Name="comboBox" SelectionChanged="comboBox_SelectionChanged" Margin="174,178,93,161"/>
+        <CheckBox Name="guestCheck" IsChecked="False" Margin="278,211,93,134" Click="guestChoose" />
+        <TextBlock Name="guest" FontFamily="Cooper Black" Text="As Guest" Margin="211,211,115,134"/>
     </Grid>
 </Window>
