@@ -1,0 +1,291 @@
+Log Entry : 		06/05/2016 21:11:00
+The System was initialized successully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:00
+Forum contoller created
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:00
+Super user contoller created
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:01
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:01
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:02
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:02
+Dismiss admin failed, nonMem is not a admin
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:02
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:03
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:03
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:03
+Dismiss admin failed, mem is not a admin
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:04
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:05
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:05
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:06
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:07
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:07
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:07
+Dismiss admin failed,  is not a admin
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:08
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:09
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:09
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:09
+Ban Member failed,  is not a super user
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:10
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:10
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:11
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:11
+Ban Member failed, nonMem is not a member
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:12
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:13
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:13
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:14
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:15
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:15
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:17
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:17
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:17
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:18
+Ban Member failed,  is not a member
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:19
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:19
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:19
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:21
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:21
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:21
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:22
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:23
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:24
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:24
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:24
+nominate admin fail, adminis already admin
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:25
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:26
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:26
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:27
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:28
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:28
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:29
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:30
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:30
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:32
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:32
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:32
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:34
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:34
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:34
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:35
+Register user faild, the forum,  does not exist
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:36
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:36
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:36
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:37
+testForumpreferences had changed successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:38
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:38
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:38
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:39
+testForumpreferences had changed successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:40
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:40
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:41
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:42
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:42
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:42
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:44
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:44
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:44
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:45
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:46
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:46
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:47
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:48
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:48
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:49
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:49
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:49
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:51
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:51
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:51
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:53
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:53
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:53
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:55
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		06/05/2016 21:11:55
+admin nominated successfully
+--------

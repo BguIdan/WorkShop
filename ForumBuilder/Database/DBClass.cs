@@ -103,7 +103,8 @@ namespace Database
             try
             {
                 connection = new OleDbConnection();
-                connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\User\Documents\sadna\forumDB.accdb;
+                string s = connection.ConnectionString;
+                connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\User\Documents\sadna\forumDB.mdb;
                                                 Persist Security Info=False;";
                 connection.Open();             
                 connection.Close();
