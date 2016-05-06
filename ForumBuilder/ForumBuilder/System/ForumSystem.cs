@@ -4,6 +4,7 @@ using System.Net.Mail;
 using Database;
 using System.ServiceModel;
 using Service;
+using System.ComponentModel.DataAnnotations;
 
 namespace ForumBuilder.Systems
 {
@@ -45,7 +46,9 @@ namespace ForumBuilder.Systems
                 try
                 {
 
-                    /*
+                    /*//TODO should be removed for the services to be published
+                     * //for this to work the exe/vs should be run in administrator mode
+                     * 
                     ServiceHost forumService = new ServiceHost(typeof(ForumManager));
                     forumService.Open();
                     logger.logPrint("forum service was initialized under localhost:8081");
@@ -95,13 +98,88 @@ namespace ForumBuilder.Systems
 
         public static int Main(string[] args)
         {
-            /*//TODO client server communication POC delete later
-             * initialize("gal","pass","gal@gmail.com");
-            Console.WriteLine("The service is ready.");
-            Console.WriteLine("Press <ENTER> to terminate service.");
-            Console.WriteLine();
-            Console.ReadLine();*/
-            return -1;
+            Console.WriteLine(  "welcome to your forum builder!\n" +
+                                "please insert your desired user name:");
+            String username = getUserName();
+            String password = getUserPassword();
+            String email = getEmail();
+
+            initialize(username, password, email);
+            runServer();
+            return 0;
+        }
+
+        private static String getUserName()
+        {
+            String userName = Console.ReadLine();
+            String ans;
+            while (true)
+            {
+                Console.WriteLine("please confirm your user name: \"" + userName + "\"  yes/no");
+                ans = Console.ReadLine();
+                if (ans.Equals("yes", StringComparison.OrdinalIgnoreCase))
+                    break;
+                else if (ans.Equals("no", StringComparison.OrdinalIgnoreCase))
+                {
+                    Console.WriteLine("user name: \"" + userName + "\" was rejected, please insert new one");
+                    userName = Console.ReadLine();
+                }
+            }
+            return userName;
+        }
+
+        private static String getUserPassword()
+        {
+            Console.WriteLine("please insert your desired password");
+            String userPass = Console.ReadLine();
+            String ans;
+            while (true)
+            {
+                Console.WriteLine("please confirm your password: \"" + userPass + "\"  yes/no");
+                ans = Console.ReadLine();
+                if (ans.Equals("yes", StringComparison.OrdinalIgnoreCase))
+                    break;
+                else if (ans.Equals("no", StringComparison.OrdinalIgnoreCase))
+                {
+                    Console.WriteLine("password: \"" + userPass + "\" was rejected, please insert new one");
+                    userPass = Console.ReadLine();
+                }
+            }
+            return userPass;
+        }
+
+        private static String getEmail()
+        {
+            Console.WriteLine("please insert your email address");
+            String email = Console.ReadLine();
+            String ans;
+            while (true)
+            {
+                if (!new EmailAddressAttribute().IsValid(email))
+                {
+                    Console.WriteLine("email address is invalid, please insert a new one");
+                    email = Console.ReadLine();
+                    continue;
+                }
+                Console.WriteLine("please confirm your email address: \"" + email + "\"  yes/no");
+                ans = Console.ReadLine();
+                if (ans.Equals("yes", StringComparison.OrdinalIgnoreCase))
+                    break;
+                else if (ans.Equals("no", StringComparison.OrdinalIgnoreCase))
+                {
+                    Console.WriteLine("email address: \"" + email + "\" was rejected \nplease insert you valid email address");
+                    email = Console.ReadLine();
+                }
+            }
+            return email;
+        }
+
+        public static void runServer()
+        {
+            Console.WriteLine("server is running");
+            while (true)
+            {
+            }
         }
     }
 }
