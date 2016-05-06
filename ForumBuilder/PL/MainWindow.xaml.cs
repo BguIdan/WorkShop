@@ -60,15 +60,13 @@ namespace PL
 
         private void LoginPressed(object sender, RoutedEventArgs e)
         {
-            /* TODO: validate input is it enough? */
-
             string userName = ID.Text;
             string pass = Password.Password;
-            if (userName.Equals("") || pass.Equals(""))
+            /*if (userName.Equals("") || pass.Equals(""))
             {
                 MessageBox.Show("Invalid Input");
                 return;
-            }
+            }*/
             if (_choosenForum != null)
             {
                 ForumData toSend = _fMC.getForum(_choosenForum);
@@ -78,8 +76,7 @@ namespace PL
             }
             else
             {
-                MessageBox.Show("wrong user name or password");
-                return;
+                MessageBox.Show("You have to choose forum from the list");
             }
         }
 
@@ -96,14 +93,32 @@ namespace PL
         {
             // TODO: know the admin and user class and create new one in the data base
             // SignUpWindow suw = new SignUpWindow(itsUserBL, iDAL, itsAdminBL);
-            SignUpWindow suw = new SignUpWindow();
-            this.Close();
+            SignUpWindow suw = new SignUpWindow(_fMC,_choosenForum);
             suw.ShowDialog();
         }
 
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             _choosenForum = comboBox.SelectedItem.ToString();
+        }
+
+        private void guestChoose(object sender, RoutedEventArgs e)
+        {
+            bool toChange = guestCheck.IsChecked.Value;
+            if (toChange) 
+            { 
+                ID.IsEnabled = false;
+                Password.IsEnabled = false;
+                Forgot.IsEnabled = false;
+                signUP.IsEnabled = false;
+            }
+            else 
+            {
+                ID.IsEnabled = true;
+                Password.IsEnabled = true;
+                Forgot.IsEnabled = true;
+                signUP.IsEnabled = true;
+            }
         }
 
     }

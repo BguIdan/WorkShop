@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ForumBuilder.Common.DataContracts;
+using PL.proxies;
 
 namespace PL
 {
@@ -24,12 +25,14 @@ namespace PL
         private ForumData _myforum;
         //private List<String> _subForumNames;
         private String _subForumChosen;
+        private ForumManagerClient _fMC;
 
         public ForumWindow(ForumData forum)
         {
             InitializeComponent();
             //_subForumNames = new List<string>();
             _myforum = forum;
+            _fMC = new ForumManagerClient();
         }
 
         private void DataGrid_Loaded(object sender, RoutedEventArgs e)
@@ -82,6 +85,7 @@ namespace PL
             {
                 case "AddSub": { addNewSubForum(); } break;
                 case "Set": { setPreferences(); } break;
+                case "SignUP": { SignUP(); } break;
                 case "Exit": { this.Visibility = System.Windows.Visibility.Collapsed; System.Environment.Exit(1); } break;
             }
         }
@@ -90,19 +94,29 @@ namespace PL
         {
             MainMenu.Visibility = System.Windows.Visibility.Collapsed;
             mainGrid.Visibility = System.Windows.Visibility.Collapsed;
+            MyDialog.Visibility = System.Windows.Visibility.Collapsed;
+            setPreferencesWin.Visibility = System.Windows.Visibility.Collapsed;
           //TODO: addForum.Visibility = System.Windows.Visibility.Visible; ;
         }
 
         private void setNotifications(object sender, RoutedEventArgs e)
         {
-
+            //TODO: need to do this func?
         }
 
         private void setPreferences()
         {
             MainMenu.Visibility = System.Windows.Visibility.Collapsed;
             mainGrid.Visibility = System.Windows.Visibility.Collapsed;
+            MyDialog.Visibility = System.Windows.Visibility.Collapsed;
             //TODO: addForum.Visibility = System.Windows.Visibility.Collapsed;
+            setPreferencesWin.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void SignUP()
+        {
+            SignUpWindow sU = new SignUpWindow(_fMC,_myforum.forumName);
+            sU.ShowDialog();
         }
 
         private void descChoose(object sender, RoutedEventArgs e)
