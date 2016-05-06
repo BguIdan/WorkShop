@@ -47,6 +47,7 @@
             <Button Name="yesBtn" Click="btn_toSetPref" FontFamily="Cooper Black" Content="Yes" Margin="41,68,155,10" />
             <Button Name="noBtn" Click="btn_toSetPref" FontFamily="Cooper Black" Content="No" Margin="155,68,41,10" />
         </Grid>
+        <Button x:Name="privateMessages" Content="Private Messages" HorizontalAlignment="Left" Height="40" Margin="10,319,0,0" VerticalAlignment="Top" Width="129" Click="privateMessages_Click"/>
 
     </Grid>
 </Window>
