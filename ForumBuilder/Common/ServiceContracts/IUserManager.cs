@@ -21,5 +21,6 @@ namespace ForumBuilder.Common.ServiceContracts
 
         [OperationContract]
         List<String> getFriendList(String userName);
+        List<string[]> getAllPrivateMessages(string userName);
     }
 }

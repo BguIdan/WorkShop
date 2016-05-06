@@ -9,5 +9,6 @@ namespace ForumBuilder.Controllers
         Boolean deleteFriend(String userName, String deletedFriend);
         Boolean sendPrivateMessage(string fromUserName, string toUserName, string content);
         List<String> getFriendList(String userName);
+        List<string[]> getAllPrivateMessages(string userName);
     }
 }
