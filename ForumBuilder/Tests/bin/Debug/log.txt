@@ -1,0 +1,186 @@
+<<<<<<< HEAD
+=======
+Log Entry : 		6/5/2016 12:25:58 PM
+The System was initialized successully
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+Forum contoller created
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+Super user contoller created
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+create forum fail tomer is not super user
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+Register user faild, the forum, testForum does not exist
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+create forum fail tomer is not super user
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+Register user faild, the forum, testForum does not exist
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+create forum fail tomer is not super user
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+Register user faild, the forum, testForum does not exist
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+create forum fail tomer is not super user
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+Register user faild, the forum, testForum does not exist
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+create forum fail tomer is not super user
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+Register user faild, the forum, testForum does not exist
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+create forum fail tomer is not super user
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+Register user faild, the forum, testForum does not exist
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+create forum fail tomer is not super user
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+Register user faild, the forum, testForum does not exist
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+create forum fail tomer is not super user
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+Register user faild, the forum, testForum does not exist
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+create forum fail tomer is not super user
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+Register user faild, the forum, testForum does not exist
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+create forum fail tomer is not super user
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+Register user faild, the forum, testForum does not exist
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+create forum fail tomer is not super user
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+Register user faild, the forum, testForum does not exist
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+create forum fail tomer is not super user
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+Register user faild, the forum, testForum does not exist
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+create forum fail tomer is not super user
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+Register user faild, the forum, testForum does not exist
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+create forum fail tomer is not super user
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+Register user faild, the forum, testForum does not exist
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+create forum fail tomer is not super user
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+Register user faild, the forum, testForum does not exist
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+create forum fail tomer is not super user
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+Register user faild, the forum, testForum does not exist
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+create forum fail tomer is not super user
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+Register user faild, the forum, testForum does not exist
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+create forum fail tomer is not super user
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+Register user faild, the forum, testForum does not exist
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+create forum fail tomer is not super user
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+Register user faild, the forum, testForum does not exist
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+create forum fail tomer is not super user
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+Register user faild, the forum, testForum does not exist
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+create forum fail tomer is not super user
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+Register user faild, the forum, testForum does not exist
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+create forum fail tomer is not super user
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+Register user faild, the forum, testForum does not exist
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+create forum fail tomer is not super user
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+Register user faild, the forum, testForum does not exist
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+create forum fail tomer is not super user
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+Register user faild, the forum, testForum does not exist
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+create forum fail tomer is not super user
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+Register user faild, the forum, testForum does not exist
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+create forum fail tomer is not super user
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+Register user faild, the forum, testForum does not exist
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+create forum fail tomer is not super user
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+Register user faild, the forum, testForum does not exist
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+create forum fail tomer is not super user
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+Register user faild, the forum, testForum does not exist
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+create forum fail tomer is not super user
+-----------------------------------------------
+Log Entry : 		6/5/2016 12:25:58 PM
+Register user faild, the forum, testForum does not exist
+--------------------------------
+>>>>>>> origin/master
