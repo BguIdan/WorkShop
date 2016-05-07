@@ -105,7 +105,7 @@ namespace ForumBuilder.Systems
             String email = getEmail();
 
             initialize(username, password, email);
-            runServer();
+            runServer(username, password, email);
             return 0;
         }
 
@@ -174,9 +174,12 @@ namespace ForumBuilder.Systems
             return email;
         }
 
-        public static void runServer()
+        public static void runServer(String userName, String password, String email)
         {
-            Console.WriteLine("server is running");
+            Console.WriteLine("server is running. \n" +
+                                "super user credentials:" +
+                                "user name: " + userName + "  password: " + password + 
+                                "  email: " + email);
             while (true)
             {
             }
