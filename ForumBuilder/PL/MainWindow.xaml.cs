@@ -30,6 +30,9 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
+
+            //TODO: How to get all forums names from DB????????????!?!?!!?!?!?!? 
+
             _forumsList = new List<ForumData>();
             _fMC = new ForumManagerClient();
             /*//TODO client server communication POC delete later
@@ -49,13 +52,13 @@ namespace PL
         public void updateForums(ForumData newForum)
         {
             _forumsList.Add(newForum);
-
+            /* if binding doesn't work
             for (int i = 0; i < _forumsList.Count; i++)
             {
                 ComboBoxItem newItem = new ComboBoxItem();
                 newItem.Content = _forumsList.ElementAt(i).forumName;
                 comboBox.Items.Add(newItem);
-            }
+            }*/
         }
 
         private void LoginPressed(object sender, RoutedEventArgs e)
@@ -70,15 +73,17 @@ namespace PL
             if (_choosenForum != null)
             {
                 ForumData toSend = _fMC.getForum(_choosenForum);
-                ForumWindow fw = new ForumWindow(toSend);
+                ForumWindow fw = new ForumWindow(toSend,userName);
                 this.Close();
-                fw.ShowDialog();
+                fw.Show();
             }
             else
             {
                 MessageBox.Show("You have to choose forum from the list");
             }
         }
+
+        // TODO:In the next 2 functions i need to decide how to handle different types of users and to decide rather to know and hold userData class
 
         private void ForgorPasswordPressed(object sender, RoutedEventArgs e)
         {

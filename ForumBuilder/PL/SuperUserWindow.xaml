@@ -34,7 +34,7 @@
             <TextBlock FontSize="30" FontFamily="Broadway" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Create New Forum"  Height="47" Width="326" Margin="26,12,20,287"/>
         </Grid>
 
-        <Grid Name="setPreferencesWin" Visibility="Visible" Margin="10,24,10,0">
+        <Grid Name="setPreferencesWin" Visibility="Collapsed" Margin="10,24,10,0">
             <TextBlock FontFamily="Cooper Black" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Please Enter Forum Name:" VerticalAlignment="Top" Height="18" Width="168" Margin="48,148,0,0"/>
             <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Margin="48,185,224,0" Text="Forum Name:"/>
             <TextBox Name="ForumNameToSet" Height="18" Margin="195,185,57,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
