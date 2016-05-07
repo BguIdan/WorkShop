@@ -242,8 +242,6 @@ namespace PL
             }
         }
 
-        private void privateMessages_Click(object sender, RoutedEventArgs e)
-
         /*private void privateMessages_Click(object sender, RoutedEventArgs e)
 
         {
