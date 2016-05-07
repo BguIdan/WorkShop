@@ -157,13 +157,13 @@ namespace ForumBuilder.Controllers
                     donePosts.Add(post);
                 }
                 bool hasSucceed= true;
-                for(int i =donePosts.Count-1; i>=0;i--)
+                hasSucceed = hasSucceed && DB.removeThread(firstPostId);
+                for (int i =donePosts.Count-1; i>=0;i--)
                 {
                     hasSucceed = hasSucceed && DB.removePost(donePosts.ElementAt(i).id);
                     logger.logPrint("Remove post " + donePosts.ElementAt(i).id);
                 }
                 logger.logPrint("Remove thread " + firstPostId);
-                hasSucceed= hasSucceed && DB.removeThread(firstPostId);
                 return hasSucceed;
             } 
         }

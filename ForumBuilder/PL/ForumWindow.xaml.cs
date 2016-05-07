@@ -25,12 +25,22 @@ namespace PL
         private ForumData _myforum;
         private String _subForumChosen;
         private ForumManagerClient _fMC;
+        private string _userName;
 
         public ForumWindow(ForumData forum)
         {
             InitializeComponent();
             _myforum = forum;
             _fMC = new ForumManagerClient();
+        }
+
+        public ForumWindow(ForumData forum, string userName)
+        {
+            InitializeComponent();
+            //_subForumNames = new List<string>();
+            _myforum = forum;
+            _fMC = new ForumManagerClient();
+            _userName = userName;
         }
 
         private void DataGrid_Loaded(object sender, RoutedEventArgs e)
@@ -229,6 +239,13 @@ namespace PL
             {
                 MessageBox.Show("Sub-Forum " + sub_ForumName + " was successfully created and " + userName + " is the Sub-Forum moderator.");
             }
+
+        private void privateMessages_Click(object sender, RoutedEventArgs e)
+        {
+            privateMessagesWindow newWin = new privateMessagesWindow(_userName, this);
+            this.Visibility = Visibility.Collapsed;
+            newWin.Show();
+
         }
     }
 }

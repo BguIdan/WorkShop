@@ -14,7 +14,7 @@ namespace BL_Back_End
             _id = id;
             _sender = sender;
             _reciver = reciver;
-            _content = content;
+            Content = content;
         }
 
         public Int32 id
@@ -32,6 +32,19 @@ namespace BL_Back_End
         {
             get { return _reciver; }
             set { _reciver = value; }
+        }
+
+        public string Content
+        {
+            get
+            {
+                return _content;
+            }
+
+            set
+            {
+                _content = value;
+            }
         }
     }
 }

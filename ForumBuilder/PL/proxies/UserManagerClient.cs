@@ -48,6 +48,10 @@ namespace PL.proxies
         {
             return Channel.sendPrivateMessage(fromUserName, toUserName, content);
         }
+        public List<string[]> getAllPrivateMessages(String userName)
+        {
+            return Channel.getAllPrivateMessages(userName);
+        }
 
         public List<String> getFriendList(String userName)
         {
