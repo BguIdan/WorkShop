@@ -30,7 +30,7 @@ namespace ForumBuilder.Systems
             {
                 singleton = new ForumSystem();
                 //adding the user
-                /*SuperUserController superUserController = SuperUserController.getInstance;
+                SuperUserController superUserController = SuperUserController.getInstance;
                 if (superUserController.addSuperUser(email, password, userName))
                 {
                     //  send configuration email to the super user's 
@@ -41,7 +41,7 @@ namespace ForumBuilder.Systems
                     singleton = null;
                     return null;
                 }
-                */
+                
                     Logger logger = Logger.getInstance;
                 try
                 {

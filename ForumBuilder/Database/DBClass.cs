@@ -136,7 +136,7 @@ namespace Database
             {
             }
         }
-        public Boolean MemberConnect(String userName, String password, String forumName)
+        /*public Boolean MemberConnect(String userName, String password, String forumName)
         {
             OpenConnectionDB();
             OleDbCommand command = new OleDbCommand();
@@ -163,7 +163,7 @@ namespace Database
                 closeConnectionDB();
                 return false;
             }
-        }
+        }*/
 
         public bool dismissModerator(string dismissedModerator, string subForumName, string forumName)
         {
@@ -200,7 +200,7 @@ namespace Database
                     return false;
                 }
             }
-            catch(Exception e)
+            catch
             {
                 return false;
             }
@@ -245,9 +245,8 @@ namespace Database
                     return false;
                 }
             }
-            catch (Exception e)
+            catch 
             {
-                string s = e.Message;
                 return false;
             }
             
@@ -271,7 +270,7 @@ namespace Database
                 closeConnectionDB();
                 return true;
             }
-            catch(Exception e)
+            catch
             {
                 return false;
             }
@@ -300,7 +299,7 @@ namespace Database
                 closeConnectionDB();
                 return forum;
             }
-            catch(Exception e)
+            catch
             {
                 closeConnectionDB();
                 return forum;
@@ -370,7 +369,7 @@ namespace Database
                 closeConnectionDB();
                 return true;
             }
-            catch(Exception e)
+            catch
             {
                 return false;
             }
@@ -430,7 +429,7 @@ namespace Database
                 closeConnectionDB();
                 return true;
             }
-            catch (Exception e)
+            catch
             {
                 closeConnectionDB();
                 return false;
@@ -490,7 +489,7 @@ namespace Database
                     return user;
                 }
             }
-            catch (Exception e)
+            catch 
             {
                 closeConnectionDB();
                 return user;
@@ -611,7 +610,7 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "SELECT  * FROM  members AS m1,members AS m2 where m1.forumName=m2.forumName'" +
+                command.CommandText = "SELECT  * FROM  members AS m1,members AS m2 where m1.forumName=m2.forumName" +
                     " and m1.userName='"+ userName1+ "' and m2.userName='" + userName2 + "'";
                 OleDbDataReader reader = command.ExecuteReader();
                 while (reader.Read())
@@ -655,7 +654,7 @@ namespace Database
                 closeConnectionDB();
                 return true;
             }
-            catch(Exception e)
+            catch
             {
                 closeConnectionDB();
                 return false;
@@ -673,7 +672,7 @@ namespace Database
                 closeConnectionDB();
                 return true;
             }
-            catch (Exception e)
+            catch 
             {
                 closeConnectionDB();
                 return false;
@@ -713,7 +712,7 @@ namespace Database
                 closeConnectionDB();
                 return true;
             }
-            catch (Exception e)
+            catch 
             {
                 closeConnectionDB();
                 return false;
@@ -819,7 +818,7 @@ namespace Database
                 closeConnectionDB();
                 return post;
             }
-            catch(Exception e)
+            catch
             {
                 closeConnectionDB();
                 return post;
@@ -954,7 +953,7 @@ namespace Database
                 closeConnectionDB();
                 return true;
             }
-            catch(Exception e)
+            catch
             {
                 closeConnectionDB();
                 return false;
@@ -973,7 +972,7 @@ namespace Database
                 closeConnectionDB();
                 return true;
             }
-            catch (Exception e)
+            catch 
             {
                 closeConnectionDB();
                 return false;
@@ -997,7 +996,7 @@ namespace Database
                 }
                 return true;
             }
-            catch(Exception e)
+            catch
             {
                 closeConnectionDB();
                 return false;

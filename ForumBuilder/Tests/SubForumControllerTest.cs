@@ -33,21 +33,23 @@ namespace Tests
             ForumSystem.initialize("tomer", "1qW", "fkfkf@wkk.com");
             this.forumController = ForumController.getInstance;
             this.postController = PostController.getInstance;
+            ISuperUserController superUser = SuperUserController.getInstance;
             this.userNonMember = new User("nonMem", "nonmemPass", "nonmem@gmail.com");
             this.userMember = new User("mem", "mempass", "mem@gmail.com");
             this.userModerator = new User("mod", "modpass", "mod@gmail.com");
             this.userAdmin = new User("admin", "adminpass", "admin@gmail.com");
+            superUser.addUser("admin", "adminpass", "admin@gmail.com");
             Dictionary<String, DateTime> modList = new Dictionary<String, DateTime>();
             modList.Add(this.userModerator.userName, new DateTime(2030, 1, 1));
             List<string> adminList = new List<string>();
             adminList.Add("admin");
             this.forum = new Forum(this.forumName, "descr", "policy", "the first rule is that you do not talk about fight club", adminList);
-            ISuperUserController superUser = SuperUserController.getInstance;
             superUser1 = 
                 DBClass.getInstance.getSuperUser("tomer");
+            SuperUserController.getInstance.addSuperUser("fkfkf@wkk.com", "1qW", "tomer");
             superUser.createForum("1", "1", "1", "1", null, "tomer");
             Assert.IsTrue(superUser.createForum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "tomer"));
-            Assert.IsTrue(this.forumController.registerUser("admin", "adminpass", "admin@gmail.com", this.forumName));
+            //Assert.IsTrue(this.forumController.registerUser("admin", "adminpass", "admin@gmail.com", this.forumName));
             Assert.IsTrue(this.forumController.registerUser("mem", "mempass", "mem@gmail.com", this.forumName));
             Assert.IsTrue(this.forumController.registerUser("mod", "modpass", "mod@gmail.com", this.forumName));
             Assert.IsTrue(this.forumController.addSubForum(this.forum.forumName, this.subForumName, modList, this.userAdmin.userName));
