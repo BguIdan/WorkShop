@@ -23,14 +23,12 @@ namespace PL
     {
         
         private ForumData _myforum;
-        //private List<String> _subForumNames;
         private String _subForumChosen;
         private ForumManagerClient _fMC;
 
         public ForumWindow(ForumData forum)
         {
             InitializeComponent();
-            //_subForumNames = new List<string>();
             _myforum = forum;
             _fMC = new ForumManagerClient();
         }
@@ -96,20 +94,36 @@ namespace PL
             mainGrid.Visibility = System.Windows.Visibility.Collapsed;
             MyDialog.Visibility = System.Windows.Visibility.Collapsed;
             setPreferencesWin.Visibility = System.Windows.Visibility.Collapsed;
-          //TODO: addForum.Visibility = System.Windows.Visibility.Visible; ;
+            /* if binding doesn't work
+            for (int i = 0; i < _myforum.members.Count; i++)
+            {
+                ComboBoxItem newItem = new ComboBoxItem();
+                newItem.Content = _myforum.members.ElementAt(i);
+                comboBox.Items.Add(newItem);
+            }*/
+            ComboBoxItem newFirstItem = new ComboBoxItem();
+            newFirstItem.Content = "UnLimited";
+            comboBoxDuration.Items.Add(newFirstItem);
+            for (int i = 1; i < 31; i++)
+            {
+                ComboBoxItem newItem = new ComboBoxItem();
+                newItem.Content = i;
+                comboBoxDuration.Items.Add(newItem);
+            }
+            AddSubForum.Visibility = System.Windows.Visibility.Visible; ;
         }
 
-        private void setNotifications(object sender, RoutedEventArgs e)
+        /*private void setNotifications(object sender, RoutedEventArgs e)
         {
             //TODO: need to do this func?
-        }
+        }*/
 
         private void setPreferences()
         {
             MainMenu.Visibility = System.Windows.Visibility.Collapsed;
             mainGrid.Visibility = System.Windows.Visibility.Collapsed;
             MyDialog.Visibility = System.Windows.Visibility.Collapsed;
-            //TODO: addForum.Visibility = System.Windows.Visibility.Collapsed;
+            AddSubForum.Visibility = System.Windows.Visibility.Collapsed;
             setPreferencesWin.Visibility = System.Windows.Visibility.Visible;
         }
 
@@ -184,9 +198,37 @@ namespace PL
                     temp = ForumRulesToSet.Text;
                     _myforum.forumRules = temp;
                 }
-                MessageBox.Show("Preferences was successfully changed! ");
+                MessageBox.Show("Preferences was successfully changed!");
                 setPreferencesWin.Visibility = System.Windows.Visibility.Collapsed;
             }            
+        }
+
+        private void btn_createSub(object sender, RoutedEventArgs e)
+        {
+            int time = 0;
+            //TODO: check what to do with unlimited time
+            DateTime timeToSend = DateTime.Now;
+            String sub_ForumName = subForumName.Text;
+            // TODO: add to option for more than one moderator
+            String userName = comboBox.SelectedItem.ToString();
+            String timeDuration = comboBoxDuration.SelectedItem.ToString();
+            if (!timeDuration.Equals("UnLimited"))
+            {
+                time = Convert.ToInt32(timeDuration);
+                timeToSend = DateTime.Now.AddDays(time);
+            }
+            Dictionary<String,DateTime> dic = new Dictionary<string,DateTime>();
+            dic.Add(userName,timeToSend);
+            //TODO: check what to do with type of users(admin, member etc.)
+            Boolean isAdded = _fMC.addSubForum(_myforum.forumName, sub_ForumName, dic, "");
+            if (isAdded == false)
+            {
+                MessageBox.Show(userName + "can not be a moderator, try someone else.");
+            }
+            else
+            {
+                MessageBox.Show("Sub-Forum " + sub_ForumName + " was successfully created and " + userName + " is the Sub-Forum moderator.");
+            }
         }
     }
 }
