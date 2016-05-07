@@ -102,3 +102,6 @@ C:\Users\User\Desktop\WorkShop\ForumBuilder\PL\obj\Debug\PL.pdb
 C:\Users\User\Documents\sadna\ForumBuilder\PL\obj\Debug\addPostAndThreadWindow.g.cs
 C:\Users\User\Documents\sadna\ForumBuilder\PL\obj\Debug\PL_MarkupCompile.lref
 C:\Users\User\Documents\sadna\ForumBuilder\PL\obj\Debug\addPostAndThreadWindow.baml
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\PL\obj\Debug\PL.csprojResolveAssemblyReference.cache
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\PL\obj\Debug\PL.exe
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\PL\obj\Debug\PL.pdb

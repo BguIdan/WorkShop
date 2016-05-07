@@ -227,8 +227,8 @@ namespace PL
                 time = Convert.ToInt32(timeDuration);
                 timeToSend = DateTime.Now.AddDays(time);
             }
-            Dictionary<String,DateTime> dic = new Dictionary<string,DateTime>();
-            dic.Add(userName,timeToSend);
+            Dictionary<String, DateTime> dic = new Dictionary<string, DateTime>();
+            dic.Add(userName, timeToSend);
             //TODO: check what to do with type of users(admin, member etc.)
             Boolean isAdded = _fMC.addSubForum(_myforum.forumName, sub_ForumName, dic, "");
             if (isAdded == false)
@@ -239,6 +239,7 @@ namespace PL
             {
                 MessageBox.Show("Sub-Forum " + sub_ForumName + " was successfully created and " + userName + " is the Sub-Forum moderator.");
             }
+        }
 
         private void privateMessages_Click(object sender, RoutedEventArgs e)
         {
