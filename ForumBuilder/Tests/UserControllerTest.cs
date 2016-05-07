@@ -30,11 +30,13 @@ namespace Tests
             this.userNonMember = new User("nonMem", "nonmemPass", "nonmem@gmail.com");
             this.userMember = new User("mem", "mempass", "mem@gmail.com");
             this.userAdmin = new User("admin", "adminpass", "admin@gmail.com");
+            superUser.addUser("admin", "adminpass", "admin@gmail.com");
             List<string> adminList = new List<string>();
             adminList.Add("admin");
+            SuperUserController.getInstance.addSuperUser("fkfkf@wkk.com", "1qW", "tomer");
             superUser.createForum(ForumName, "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "tomer");
             Assert.IsTrue(this.forumController.registerUser("mem", "mempass", "mem@gmail.com", this.ForumName));
-            Assert.IsTrue(this.forumController.registerUser("admin", "adminpass", "admin@gmail.com", this.ForumName));
+ //           Assert.IsTrue(this.forumController.registerUser("admin", "adminpass", "admin@gmail.com", this.ForumName));
             
             
         }
@@ -181,6 +183,7 @@ namespace Tests
             Assert.AreEqual(newFriendList.Count, 1, "friend list size should increase from 0 to 1");
             Assert.IsTrue(newFriendList.Contains(newMemberName));
             Assert.IsTrue(this.userController.deleteFriend(this.userMember.userName, newMemberName), "deleting friend should be successful");
+            newFriendList = this.userController.getFriendList(this.userMember.userName);
             Assert.AreEqual(newFriendList.Count, 0, "friend list size should increase from 1 to 0");
             Assert.IsFalse(newFriendList.Contains(newMemberName));
         }
@@ -196,6 +199,7 @@ namespace Tests
             Assert.AreEqual(newFriendList.Count, 1, "friend list size should increase from 0 to 1");
             Assert.IsTrue(newFriendList.Contains(this.userAdmin.userName));
             Assert.IsTrue(this.userController.deleteFriend(this.userMember.userName, this.userAdmin.userName), "deleting friend should be successful");
+            newFriendList = this.userController.getFriendList(this.userAdmin.userName);
             Assert.AreEqual(newFriendList.Count, 0, "friend list size should increase from 1 to 0");
             Assert.IsFalse(newFriendList.Contains(this.userAdmin.userName));
         }
@@ -214,6 +218,7 @@ namespace Tests
             Assert.AreEqual(newFriendList.Count, 1, "friend list size should increase from 0 to 1");
             Assert.IsTrue(newFriendList.Contains(newMemberName));
             Assert.IsTrue(this.userController.deleteFriend(this.userAdmin.userName, newMemberName), "deleting friend should be successful");
+            newFriendList = this.userController.getFriendList(this.userAdmin.userName);
             Assert.AreEqual(newFriendList.Count, 0, "friend list size should increase from 1 to 0");
             Assert.IsFalse(newFriendList.Contains(newMemberName));
         }
@@ -232,6 +237,7 @@ namespace Tests
             Assert.AreEqual(newFriendList.Count, 1, "friend list size should increase from 0 to 1");
             Assert.IsTrue(newFriendList.Contains(adminName));
             Assert.IsTrue(this.userController.deleteFriend(this.userAdmin.userName, adminName), "deleting friend should be successful");
+            newFriendList = this.userController.getFriendList(this.userAdmin.userName);
             Assert.AreEqual(newFriendList.Count, 0, "friend list size should increase from 1 to 0");
             Assert.IsFalse(newFriendList.Contains(adminName));
         }
