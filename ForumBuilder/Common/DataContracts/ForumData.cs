@@ -25,6 +25,9 @@ namespace ForumBuilder.Common.DataContracts
 
         [DataMember]
         private List<string> _subForums;
+        
+        [DataMember]
+        private List<string> _members;
 
         public ForumData(string forumName, string descrption, string forumPolicy, string forumRules)
         {
@@ -63,6 +66,12 @@ namespace ForumBuilder.Common.DataContracts
         {
             get { return _subForums; }
             set { _subForums = value; }
+        }
+
+        public List<string> members
+        {
+            get { return _members; }
+            set { _members = value;}
         }
     }
 }

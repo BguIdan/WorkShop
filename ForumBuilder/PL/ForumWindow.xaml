@@ -5,14 +5,14 @@
     <Grid>
         <Menu Margin="0,0,0,346" Name="MainMenu">
             <MenuItem Header="Forums" Click="MenuItem_Forums">
-                <MenuItem Header="Add Sub-Forum" Name="AddSub"/>
+                <MenuItem Header="Create Sub-Forum" Name="AddSub"/>
                 <MenuItem Header="Set\Change Preferences" Name="Set" />
                 <MenuItem Header="Sign Up (Guest)" Name="Sign" />
                 <Separator />
                 <MenuItem Header="Exit" Name="Exit"/>
             </MenuItem>
-            <MenuItem Header="Notifications"  >
-                <MenuItem Header="Set Notifications" Click="setNotifications"/>
+            <MenuItem Header="Notifications" IsEnabled="False" >
+                <MenuItem Header="Set Notifications"/>
             </MenuItem>
         </Menu>
         <Grid Name="mainGrid" Visibility="Collapsed" Margin="0,24,0,0">
@@ -46,6 +46,18 @@
             <TextBlock FontFamily="Cooper Black" VerticalAlignment="Top" Height="18" Text="Do you want to save changes?" Margin="41,18,37,0" />
             <Button Name="yesBtn" Click="btn_toSetPref" FontFamily="Cooper Black" Content="Yes" Margin="41,68,155,10" />
             <Button Name="noBtn" Click="btn_toSetPref" FontFamily="Cooper Black" Content="No" Margin="155,68,41,10" />
+        </Grid>
+
+        <Grid Name="AddSubForum" Visibility="Visible" Margin="10,24,10,0">
+            <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Text="Please enter forum name and select a member to be a moderator:" VerticalAlignment="Top" Height="27" Margin="44,84,110,0"/>
+            <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Margin="48,148,201,0" Text="Sub-Forum Name:"/>
+            <TextBox Name="subForumName" Margin="195,148,57,180" TextWrapping="Wrap"/>
+            <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Margin="48,174,224,154" Text="Forum Member:"/>
+            <ComboBox x:Name="comboBox" ItemsSource="{Binding Path= _myforum.members}" Margin="195,174,57,154"/>
+            <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Margin="48,200,201,116" Text="Managing Duration Time: (In Days)"/>
+            <ComboBox x:Name="comboBoxDuration" Margin="195,212,57,116"/>
+            <Button FontFamily="Cooper Black" Content="Create" Margin="195,274,57,45" Click="btn_createSub"/>
+            <TextBlock FontSize="30" FontFamily="Broadway" TextWrapping="Wrap" Text="Create Sub-Forum" Margin="30,18,30,282"/>
         </Grid>
 
     </Grid>
