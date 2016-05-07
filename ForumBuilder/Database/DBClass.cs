@@ -996,7 +996,7 @@ namespace Database
                 }
                 return true;
             }
-            catch
+            catch(Exception e)
             {
                 closeConnectionDB();
                 return false;
