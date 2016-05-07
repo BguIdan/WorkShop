@@ -64,9 +64,6 @@
       <DependentUpon>ForumWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="notificationHost\ClientNotificationHost.cs" />
-    <Compile Include="privateMessagesWindow.xaml.cs">
-      <DependentUpon>privateMessagesWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="proxies\ForumManagerClient.cs" />
     <Compile Include="proxies\PostManagerClient.cs" />
     <Compile Include="proxies\SubForumManagerClient.cs" />
@@ -74,9 +71,6 @@
     <Compile Include="proxies\UserManagerClient.cs" />
     <Compile Include="RestorePasswordWindow.xaml.cs">
       <DependentUpon>RestorePasswordWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="sendMessageWindow.xaml.cs">
-      <DependentUpon>sendMessageWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
@@ -117,17 +111,9 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="privateMessagesWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="RestorePasswordWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="sendMessageWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SignUpWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

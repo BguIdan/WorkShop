@@ -199,11 +199,11 @@ namespace PL
             }            
         }
 
-        private void privateMessages_Click(object sender, RoutedEventArgs e)
+        /*private void privateMessages_Click(object sender, RoutedEventArgs e)
         {
             privateMessagesWindow newWin = new privateMessagesWindow(_userName, this);
             this.Visibility = Visibility.Collapsed;
             newWin.Show();
-        }
+        }*/
     }
 }
