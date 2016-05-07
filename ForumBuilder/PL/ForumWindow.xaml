@@ -47,7 +47,7 @@
             <Button Name="yesBtn" Click="btn_toSetPref" FontFamily="Cooper Black" Content="Yes" Margin="41,68,155,10" />
             <Button Name="noBtn" Click="btn_toSetPref" FontFamily="Cooper Black" Content="No" Margin="155,68,41,10" />
         </Grid>
-        <Button x:Name="privateMessages" Content="Private Messages" HorizontalAlignment="Left" Height="40" Margin="10,319,0,0" VerticalAlignment="Top" Width="129" Click="privateMessages_Click"/>
+        <Button x:Name="privateMessages" Content="Private Messages" HorizontalAlignment="Left" Height="40" Margin="10,319,0,0" VerticalAlignment="Top" Width="129"/>
 
         <Grid Name="AddSubForum" Visibility="Visible" Margin="10,24,10,0">
             <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Text="Please enter forum name and select a member to be a moderator:" VerticalAlignment="Top" Height="27" Margin="44,84,110,0"/>
