@@ -47,5 +47,7 @@ namespace ForumBuilder.Common.ServiceContracts
         [OperationContract]
         ForumData getForum(String forumName);
 
+        [OperationContract]
+        List<String> getForums();
     }
 }

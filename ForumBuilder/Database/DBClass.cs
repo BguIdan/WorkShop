@@ -310,7 +310,29 @@ namespace Database
                 return forum;
             }
         }
-
+        public List<String> getForums()
+        {
+            try
+            {
+                OpenConnectionDB();
+                List<String> forums = new List<String>();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "SELECT  forumName FROM  forums";
+                OleDbDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    forums.Add(reader.GetString(0));
+                }
+                closeConnectionDB();
+                return forums;
+            }
+            catch
+            {
+                closeConnectionDB();
+                return null; ;
+            }
+        }
         /*public Forum getForumByMember(string userName)
         {
             Forum forum = null;

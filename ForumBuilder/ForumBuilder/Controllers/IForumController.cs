@@ -18,7 +18,7 @@ namespace ForumBuilder.Controllers
         String getForumPolicy(String forumName);
         String getForumDescription(String forumName);
         String getForumRules(String forumName);
-        Forum getForum(String forumName); 
-
+        Forum getForum(String forumName);
+        List<String> getForums();
     }
 }
