@@ -43,5 +43,9 @@ namespace PL.proxies
         {
             return Channel.initialize(name, password, email);
         }
+        public Boolean logIn(string name, string pass, string email)
+        {
+            return true;
+        }
     }
 }
