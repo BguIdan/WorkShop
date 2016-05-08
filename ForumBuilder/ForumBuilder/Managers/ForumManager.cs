@@ -98,5 +98,25 @@ namespace Service
         {
             return forumController.getForums();
         }
+        public int getAdminReportNumOfPOst(String AdminName, String forumName)
+        {
+            return forumController.getAdminReportNumOfPOst( AdminName, forumName);
+        }
+
+        public List<PostData> getAdminReportPostOfmember(String AdminName, String forumName, String memberName)
+        {
+            List<Post> posts = forumController.getAdminReportPostOfmember(AdminName, forumName, memberName);
+            List<PostData> postsData = new List<PostData>();
+            foreach (Post p in posts)
+            {
+                postsData.Add(new PostData(p.writerUserName, p.id, p.title, p.content, p.parentId, p.timePublished));
+            }
+            return postsData;
+        }
+
+        public List<String> getAdminReport(String AdminName, String forumName)
+        {
+            return forumController.getAdminReport(AdminName, forumName);
+        }
     }
 }

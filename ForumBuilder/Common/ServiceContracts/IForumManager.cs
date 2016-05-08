@@ -56,5 +56,14 @@ namespace ForumBuilder.Common.ServiceContracts
 
         [OperationContract]
         List<String> getForums();
+
+        [OperationContract]
+        int getAdminReportNumOfPOst(String AdminName, String forumName);
+
+        [OperationContract]
+        List<PostData> getAdminReportPostOfmember(String AdminName, String forumName, String memberName);
+
+        [OperationContract]
+        List<String> getAdminReport(String AdminName, String forumName);
     }
 }
