@@ -88,6 +88,9 @@
     <Compile Include="SubForumWindow.xaml.cs">
       <DependentUpon>SubForumWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SuperUserLogInWindow.xaml.cs">
+      <DependentUpon>SuperUserLogInWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SuperUserWindow.xaml.cs">
       <DependentUpon>SuperUserWindow.xaml</DependentUpon>
     </Compile>
@@ -138,6 +141,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SubForumWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SuperUserLogInWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

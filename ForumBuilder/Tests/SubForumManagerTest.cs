@@ -4,6 +4,8 @@ using ForumBuilder.Common.DataContracts;
 using ForumBuilder.Common.ServiceContracts;
 using ForumBuilder.Systems;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.ServiceModel;
+using PL.notificationHost;
 using PL.proxies;
 using System;
 using System.Collections.Generic;
@@ -33,7 +35,7 @@ namespace Tests
         public void setUp()
         {
             ForumSystem.initialize("tomer", "1qW", "fkfkf@wkk.com");
-            this.forumManager = new ForumManagerClient();
+            this.forumManager = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
             this.postManager = new PostManagerClient();
             this.userNonMember = new UserData("nonMem", "nonmemPass", "nonmem@gmail.com");
             this.userMember = new UserData("mem", "mempass", "mem@gmail.com");

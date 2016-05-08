@@ -41,12 +41,9 @@ namespace Service
             ForumSystem.initialize(name, password, email);
             return true;
         }
-        /*
-        public static int Main(string[] args)
+        public Boolean login(String user, String forumName, string email)
         {
-            //ForumSystem.initialize("name", "pass", "email");
-            return -1;
-        }*/
-        //TODO should this main func be deleted?
+            return superUserController.login(user, forumName, email);
+        }
     }
 }

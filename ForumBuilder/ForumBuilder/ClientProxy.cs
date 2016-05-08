@@ -8,27 +8,27 @@ using ForumBuilder.Common.ClientServiceContracts;
 
 namespace Service
 {
-    public class ClientProxy : ClientBase<IUserNotificationsService>, IUserNotificationsService
-    {
-        public Boolean applyPostPublishedInForumNotification(String forumName, String subForumName, String publisherName)
+    public class ClientProxy /*: ClientBase<IUserNotificationsService>, IUserNotificationsService*/
+    {/*//TODO gal: consider removal since the callback mechanism is used
+        public void applyPostPublishedInForumNotification(String forumName, String subForumName, String publisherName)
         {
-            return Channel.applyPostPublishedInForumNotification(forumName, subForumName, publisherName);
+            Channel.applyPostPublishedInForumNotification(forumName, subForumName, publisherName);
         }
 
-        public Boolean applyPostModificationNotification(String forumName, String subForumName, String publisherName, String title, String content)
+        public void applyPostModificationNotification(String forumName, String subForumName, String publisherName, String title, String content)
         {
-            return Channel.applyPostModificationNotification(forumName, subForumName, publisherName, title, content);
+            Channel.applyPostModificationNotification(forumName, subForumName, publisherName, title, content);
         }
 
-        public Boolean applyPostDelitionNotification(String forumName, String subForumName, String publisherName, String title, String content)
+        public void applyPostDelitionNotification(String forumName, String subForumName, String publisherName, String title, String content)
         {
-            return Channel.applyPostDelitionNotification(forumName, subForumName, publisherName, title, content);
+            Channel.applyPostDelitionNotification(forumName, subForumName, publisherName, title, content);
         }
 
-        public Boolean sendUserMessage(String senderName, String content)
+        public void sendUserMessage(String senderName, String content)
         {
-            return Channel.sendUserMessage(senderName, content);
-        }
+            Channel.sendUserMessage(senderName, content);
+        }*/
 
     }
 }

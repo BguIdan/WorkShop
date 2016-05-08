@@ -5,6 +5,10 @@ using Database;
 using System.ServiceModel;
 using Service;
 using System.ComponentModel.DataAnnotations;
+using ForumBuilder.Common.ServiceContracts;
+//TODO gal: remove after use
+using System.Threading;
+//
 
 namespace ForumBuilder.Systems
 {
@@ -24,6 +28,7 @@ namespace ForumBuilder.Systems
             }
         }
 
+        //TODO gal: should this really return forumSystem instance?
         public static ForumSystem initialize(String userName, String password, String email)
         {
             if (singleton == null)
@@ -36,11 +41,11 @@ namespace ForumBuilder.Systems
                     //  send configuration email to the super user's 
                     //sendmail(email);
                 }
-                else
+                /*else
                 {
                     singleton = null;
                     return null;
-                }
+                }*/
                 
                     Logger logger = Logger.getInstance;
                 try
@@ -48,7 +53,7 @@ namespace ForumBuilder.Systems
 
                     /*//TODO should be removed for the services to be published
                      * //for this to work the exe/vs should be run in administrator mode
-                     * 
+                     */
                     ServiceHost forumService = new ServiceHost(typeof(ForumManager));
                     forumService.Open();
                     logger.logPrint("forum service was initialized under localhost:8081");
@@ -69,7 +74,7 @@ namespace ForumBuilder.Systems
                     userService.Open();
                     logger.logPrint("user service was initialized under localhost:8085");
 
-                  */
+                  
 
                 }
                 catch (CommunicationException ce)
@@ -100,9 +105,9 @@ namespace ForumBuilder.Systems
         {
             Console.WriteLine(  "welcome to your forum builder!\n" +
                                 "please insert your desired user name:");
-            String username = getUserName();
-            String password = getUserPassword();
-            String email = getEmail();
+            String username = "idan";//getUserName();
+            String password = "idanA1";//getUserPassword();
+            String email = "d@d.d";//getEmail();
 
             initialize(username, password, email);
             runServer(username, password, email);

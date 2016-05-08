@@ -9,30 +9,31 @@ using ForumBuilder.Common.DataContracts;
 
 namespace PL.proxies
 {
-    public class ForumManagerClient : ClientBase<IForumManager>, IForumManager
+    public class ForumManagerClient : DuplexClientBase<IForumManager>, IForumManager
     {
 
-        public ForumManagerClient()
+        public ForumManagerClient(InstanceContext instanceContext) :
+            base(instanceContext)
         {
         }
     
-        public ForumManagerClient(string endpointConfigurationName) : 
-                base(endpointConfigurationName)
-        {
-        }
-    
-        public ForumManagerClient(string endpointConfigurationName, string remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress)
-        {
-        }
-    
-        public ForumManagerClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress)
+        public ForumManagerClient(InstanceContext instanceContext, string endpointConfigurationName) :
+            base(instanceContext, endpointConfigurationName)
         {
         }
 
-        public ForumManagerClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(binding, remoteAddress)
+        public ForumManagerClient(InstanceContext instanceContext, string endpointConfigurationName, string remoteAddress) :
+            base(instanceContext, endpointConfigurationName, remoteAddress)
+        {
+        }
+
+        public ForumManagerClient(InstanceContext instanceContext, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) :
+            base(instanceContext, endpointConfigurationName, remoteAddress)
+        {
+        }
+
+        public ForumManagerClient(InstanceContext instanceContext, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) :
+            base(instanceContext, binding, remoteAddress)
         {
         }
 
@@ -51,9 +52,19 @@ namespace PL.proxies
             return Channel.nominateAdmin(newAdmin, nominatorName, forumName);
         }
 
-        public Boolean registerUser(String newUser, String password, String mail, string forumName)
+        public Boolean registerUser(String newUser, String password, String mail, String forumName)
         {
             return Channel.registerUser(newUser, password, mail, forumName);
+        }
+
+        public Boolean login(String user, String forumName, string password)
+        {
+            return Channel.login(user, forumName, password);
+        }
+        
+        public Boolean logout(String user, String forumName)
+        {
+            return Channel.logout(user, forumName);
         }
 
         public Boolean addSubForum(String forumName, String name, Dictionary<String, DateTime> moderators, String userNameAdmin)

@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using Database;
+using BL_Back_End;
 
 namespace ForumBuilder.Controllers
 {
     public class SuperUserController : UserController, ISuperUserController
     {
         private static SuperUserController singleton;
+        ForumController forumController = ForumController.getInstance;
         DBClass DB = DBClass.getInstance;
         Systems.Logger logger = Systems.Logger.getInstance;
-        
+        String loggedInSuperUser = "";
+
+
         public static SuperUserController getInstance
         {
             get
@@ -38,6 +42,7 @@ namespace ForumBuilder.Controllers
             }                
             else if (DB.createForum(forumName, descrption, forumPolicy, forumRules, administrators))
             {
+                this.forumController.addForum(forumName);
                 foreach(String admin in administrators)
                 {
                     ForumController.getInstance.nominateAdmin(admin, superUserName,forumName);
@@ -115,6 +120,20 @@ namespace ForumBuilder.Controllers
             }
             logger.logPrint("Register user faild, password not strong enough");
             return false;
+        }
+        public Boolean login(String user, String password, string email)
+        {
+            User superUser = DB.getSuperUser(user);
+            if (superUser != null && superUser.password.Equals(password) && superUser.email.Equals(email))
+            {
+                loggedInSuperUser = user;
+                return true;
+            }
+            else
+            {
+                logger.logPrint("could not login, wrong cerdintals");
+                return false;
+            }
         }
     }
 }

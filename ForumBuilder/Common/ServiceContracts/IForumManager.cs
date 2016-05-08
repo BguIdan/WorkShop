@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
 using ForumBuilder.Common.DataContracts;
+using ForumBuilder.Common.ClientServiceContracts;
 
 namespace ForumBuilder.Common.ServiceContracts
 {
-    [ServiceContract]
+    [ServiceContract(CallbackContract = typeof(IUserNotificationsService))]
     public interface IForumManager
     {
         [OperationContract]
@@ -22,6 +23,12 @@ namespace ForumBuilder.Common.ServiceContracts
 
         [OperationContract]
         Boolean registerUser(String newUser, String password, String mail, String forumName);
+
+        [OperationContract]
+        Boolean login(String newUser, String forumName,string password);
+
+        [OperationContract]
+        Boolean logout(String newUser, String forumName);
 
         [OperationContract]
         Boolean addSubForum(String forumName, String name, Dictionary<String, DateTime> moderators, String userNameAdmin);

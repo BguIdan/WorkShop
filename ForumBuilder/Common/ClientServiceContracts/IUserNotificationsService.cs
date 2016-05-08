@@ -11,16 +11,16 @@ namespace ForumBuilder.Common.ClientServiceContracts
     public interface IUserNotificationsService
     {
 
-        [OperationContract]
-        Boolean applyPostPublishedInForumNotification(String forumName, String subForumName, String publisherName);
+        [OperationContract(IsOneWay = true)]
+        void applyPostPublishedInForumNotification(String forumName, String subForumName, String publisherName);
 
-        [OperationContract]
-        Boolean applyPostModificationNotification(String forumName, String subForumName, String publisherName, String title, String content);
+        [OperationContract(IsOneWay = true)]
+        void applyPostModificationNotification(String forumName, String subForumName, String publisherName, String title, String content);
 
-        [OperationContract]
-        Boolean applyPostDelitionNotification(String forumName, String subForumName, String publisherName, String title, String content);
+        [OperationContract(IsOneWay = true)]
+        void applyPostDelitionNotification(String forumName, String subForumName, String publisherName, String title, String content);
 
-        [OperationContract]
-        Boolean sendUserMessage(String senderName, String content);
+        [OperationContract(IsOneWay = true)]
+        void sendUserMessage(String senderName, String content);
     }
 }

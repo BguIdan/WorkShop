@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ServiceModel;
+using PL.notificationHost;
 using PL.proxies;
 using ForumBuilder.Common.DataContracts;
 
@@ -23,59 +25,37 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
-        private List<ForumData> _forumsList;
+        private List<string> _forumsList;
         private String _choosenForum;
         private ForumManagerClient _fMC;
 
         public MainWindow()
         {
             InitializeComponent();
-
-            //TODO: How to get all forums names from DB????????????!?!?!!?!?!?!? 
-
-            _forumsList = new List<ForumData>();
-            _fMC = new ForumManagerClient();
-            /*//TODO client server communication POC delete later
-             * ForumManagerClient fmc = new ForumManagerClient();
-            fmc.addSubForum("a", "b", null, "c");
-            PostManagerClient pmc = new PostManagerClient();
-            pmc.addPost("", "", "", 0);
-            SubForumManagerClient sfmc = new SubForumManagerClient();
-            sfmc.createThread("", "", "", "", "");
-            SuperUserManagerClient sumc = new SuperUserManagerClient();
-            sumc.createForum("", "", "", "", null, "");
-            UserManagerClient umc = new UserManagerClient();
-            umc.addFriend("", "");*/
-            this.Show(); 
-        }
-
-        public void updateForums(ForumData newForum)
-        {
-            _forumsList.Add(newForum);
-            /* if binding doesn't work
-            for (int i = 0; i < _forumsList.Count; i++)
-            {
-                ComboBoxItem newItem = new ComboBoxItem();
-                newItem.Content = _forumsList.ElementAt(i).forumName;
-                comboBox.Items.Add(newItem);
-            }*/
+            //TODO gal: delete before submission
+            Thread.Sleep(1000);
+			_fMC = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
+            _forumsList = _fMC.getForums();
+            this.Show();
         }
 
         private void LoginPressed(object sender, RoutedEventArgs e)
         {
             string userName = ID.Text;
             string pass = Password.Password;
-            /*if (userName.Equals("") || pass.Equals(""))
-            {
-                MessageBox.Show("Invalid Input");
-                return;
-            }*/
             if (_choosenForum != null)
             {
                 ForumData toSend = _fMC.getForum(_choosenForum);
-                ForumWindow fw = new ForumWindow(toSend,userName);
-                this.Close();
-                fw.Show();
+                if (_fMC.login(userName, _choosenForum, pass))
+                {
+                    ForumWindow fw = new ForumWindow(toSend, userName);
+                    this.Close();
+                    fw.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Oops... can't login!");
+                }
             }
             else
             {
@@ -124,6 +104,24 @@ namespace PL
                 Forgot.IsEnabled = true;
                 signUP.IsEnabled = true;
             }
+        }
+        private void superUserViewButton_Click(object sender, RoutedEventArgs e)
+        {
+            SuperUserLogInWindow newWin = new SuperUserLogInWindow();
+            newWin.Show();
+            this.Close();
+        }
+
+        private void ComboBox_OnDropDownOpened(object sender, EventArgs e)
+        {
+            comboBox.Items.Clear();
+            foreach (String forumName in this._forumsList)
+                comboBox.Items.Add(forumName);
+        }
+
+        private void ComboBox_OnDropDownClosed(object sender, EventArgs e)
+        {
+            _forumsList = _fMC.getForums();
         }
 
     }

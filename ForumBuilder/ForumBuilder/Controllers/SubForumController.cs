@@ -11,8 +11,8 @@ namespace ForumBuilder.Controllers
     public class SubForumController : ISubForumController
     {
         private static SubForumController singleton;
-
-         DBClass DB = DBClass.getInstance;
+        ForumController forumController = ForumController.getInstance;
+        DBClass DB = DBClass.getInstance;
         Logger logger = Logger.getInstance;
 
         public static SubForumController getInstance
@@ -120,6 +120,7 @@ namespace ForumBuilder.Controllers
             }
             int id = DB.getAvilableIntOfPost();
             logger.logPrint("Add thread " + id);
+            this.forumController.sendThreadCreationNotification(headLine, content, writerName, forumName, subForumName);
             return DB.addPost(writerName, id, headLine, content, -1, timePublished,forumName) && DB.addThread( forumName, subForumName, id);
         }
 

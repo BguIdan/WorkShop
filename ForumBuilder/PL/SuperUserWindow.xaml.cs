@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.ServiceModel;
+using PL.notificationHost;
 using PL.proxies;
 using ForumBuilder.Common.DataContracts;
 
@@ -24,19 +26,13 @@ namespace PL
         private SuperUserManagerClient _sUMC;
         private ForumManagerClient _fMC;
         private UserData _myUser;
-        private MainWindow _mw;
 
         public SuperUserWindow(String userName, String password, String email)
         {
             InitializeComponent();
             _sUMC = new SuperUserManagerClient();
-            _fMC = new ForumManagerClient();
-
-            // TODO: check if it is OK to create new MainWindow
-
-            _mw = new MainWindow();
+            _fMC = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
             _myUser = new UserData(userName, password, email);
-            this.Show();
         }
 
         private void MenuItem_Actions(object sender, RoutedEventArgs e)
@@ -49,13 +45,30 @@ namespace PL
                 case "CreateSub": { createSub(); } break;
                 case "Del": { Delete(); } break;
                 case "Createuser": { createUser(); } break;
-                case "Exit": { this.Visibility = System.Windows.Visibility.Collapsed; System.Environment.Exit(1); } break;
+                case "logoutMenu": { logout(); } break;
             }
+        }
+
+        private void logout()
+        {
+            MainWindow _mw = new MainWindow();
+            _mw.Show();
+            this.Close();
         }
 
         private void MenuItem_View(object sender, RoutedEventArgs e)
         {
-            //TODO: complete the mehtod
+            MenuItem menuItem = e.Source as MenuItem;
+            switch (menuItem.Name)
+            {
+                case "ViewForums": { showForumList(); } break;
+            }
+
+        }
+
+        private void showForumList()
+        {
+
         }
 
         private void createNewForum()
@@ -100,7 +113,6 @@ namespace PL
             {
                 MessageBox.Show("Forum:" + forumName + "was successfully created!");
                 ForumData newForum = _fMC.getForum(forumName);
-                _mw.updateForums(newForum);
 
                 //TODO: direct to the new forum window
                 //TODO: send mail to every forum manager?

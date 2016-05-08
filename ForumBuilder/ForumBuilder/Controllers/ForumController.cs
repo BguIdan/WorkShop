@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using BL_Back_End;
 using Database;
+using System.ServiceModel;
+using ForumBuilder.Common.ClientServiceContracts;
+
 namespace ForumBuilder.Controllers
 {
     public class ForumController : IForumController
@@ -9,6 +12,9 @@ namespace ForumBuilder.Controllers
         private static ForumController singleton;
         DBClass DB = DBClass.getInstance;
         Systems.Logger logger = Systems.Logger.getInstance;
+        Dictionary<String, List<String>> loggedInUsersByForum = new Dictionary<String, List<String>>();
+        Dictionary<String, IUserNotificationsService> channelsByLoggedInUsers= new Dictionary<String, IUserNotificationsService>();
+
         public static ForumController getInstance
         {
             get
@@ -176,7 +182,7 @@ namespace ForumBuilder.Controllers
         }            
         
         public bool registerUser(string userName, string password, string mail, string forumName)
-        {
+        {//TODO gal does the user automatically logs in after registering?
             if (DB.getforumByName(forumName) == null)
             {
                 logger.logPrint("Register user faild, the forum, "+ forumName+" does not exist");
@@ -191,7 +197,7 @@ namespace ForumBuilder.Controllers
                     {
                         return DB.addMemberToForum(userName, forumName);
                     }
-                    logger.logPrint("Register user faild, "+userName+" is already taken");
+                    logger.logPrint("Register user failed, "+userName+" is already taken");
                     return false;
                 }
                 if (DB.addUser(userName, password, mail))
@@ -201,8 +207,60 @@ namespace ForumBuilder.Controllers
                 }
                 return false;
             }
-            logger.logPrint("Register user faild, password not strong enough");
+            logger.logPrint("Register user failed, password not strong enough");
             return false;
+        }
+
+        public Boolean addForum(String forumName)
+        {
+            if (!this.loggedInUsersByForum.ContainsKey(forumName))
+            {
+                this.loggedInUsersByForum.Add(forumName, new List<String>());
+                return true;
+            }
+            else
+                return false;
+
+        }
+
+        public Boolean login(String user, String forumName, string pass)
+        {
+            User usr = DB.getUser(user);
+            if (usr != null && usr.password.Equals(pass) && DB.getforumByName(forumName) != null)
+            {
+                this.loggedInUsersByForum[forumName].Add(user);
+                this.channelsByLoggedInUsers[user] = OperationContext.Current.GetCallbackChannel<IUserNotificationsService>();
+                return true;
+            }
+            else
+            {
+                logger.logPrint("could not login, wrong cerdintals");
+                return false;
+            }
+        }
+
+        public Boolean logout(String user, String forumName)
+        {
+            if (!this.loggedInUsersByForum.ContainsKey(forumName))
+                return false;
+            if (!this.loggedInUsersByForum[forumName].Contains(user))
+                return false;
+            this.loggedInUsersByForum[forumName].Remove(user);
+            this.channelsByLoggedInUsers[user] = null;
+            return true;
+        }
+
+        public Boolean sendThreadCreationNotification(String headLine, String content, String publisherName, String forumName, String subForumName)
+        {
+            List<String> loggedInUsers = this.loggedInUsersByForum[forumName];
+            if (loggedInUsers == null)
+                return false;
+            foreach (String userName in loggedInUsers)
+            {
+                if (channelsByLoggedInUsers[userName] != null)
+                    channelsByLoggedInUsers[userName].applyPostPublishedInForumNotification(forumName, subForumName, publisherName);
+            }
+            return true;
         }
 
         public Boolean setForumPreferences(String forumName, String newDescription, String newForumPolicy, String newForumRules, string setterUserName)

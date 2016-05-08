@@ -48,6 +48,17 @@ namespace Service
         {
             return forumController.registerUser(newUser, password, mail, forumName);
         }
+
+        public Boolean login(String user, String forumName,string password)
+        {
+            return forumController.login(user, forumName, password);
+        }
+
+        public Boolean logout(String user, String forumName)
+        {
+            return forumController.logout(user, forumName);
+        }
+
         public Boolean addSubForum(String forumName, String name, Dictionary<String, DateTime> moderators, String userNameAdmin)
         {
             return forumController.addSubForum(forumName, name, moderators, userNameAdmin);

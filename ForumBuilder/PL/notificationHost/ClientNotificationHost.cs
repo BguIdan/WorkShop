@@ -5,33 +5,33 @@ using System.Text;
 using System.Threading.Tasks;
 using ForumBuilder.Common.ClientServiceContracts;
 using System.ServiceModel;
+using System.Windows;
 
 namespace PL.notificationHost
 {
     public class ClientNotificationHost : IUserNotificationsService
     {
-        public Boolean applyPostPublishedInForumNotification(String forumName, String subForumName, String publisherName)
+        public void applyPostPublishedInForumNotification(String forumName, String subForumName, String publisherName)
         {
-            //TODO
-            return false;
+                MessageBox.Show(publisherName + " published a post in " + forumName + 
+                    "'s sub-forum " + subForumName, "new post");
+         }
+
+        public void applyPostModificationNotification(String forumName, String subForumName, String publisherName, String title, String content)
+        {
+                MessageBox.Show(publisherName + "'s post you were following in " + forumName + 
+                    "'s sub-forum " + subForumName + "was modified", "post modified");
         }
 
-        public Boolean applyPostModificationNotification(String forumName, String subForumName, String publisherName, String title, String content)
+        public void applyPostDelitionNotification(String forumName, String subForumName, String publisherName, String title, String content)
         {
-            //TODO
-            return false;
+                MessageBox.Show(publisherName + "'s post you were following in " + forumName +
+                    "'s sub-forum " + subForumName + "was modified", "post modified");
         }
 
-        public Boolean applyPostDelitionNotification(String forumName, String subForumName, String publisherName, String title, String content)
+        public void sendUserMessage(String senderName, String content)
         {
-            //TODO
-            return false;
-        }
-
-        public Boolean sendUserMessage(String senderName, String content)
-        {
-            //TODO
-            return false;
+            MessageBox.Show(content, senderName + " set you a message");
         }
 
     }
