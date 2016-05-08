@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.ServiceModel;
+using PL.notificationHost;
 using PL.proxies;
 using ForumBuilder.Common.DataContracts;
 
@@ -30,7 +32,7 @@ namespace PL
         {
             InitializeComponent();
             _sUMC = new SuperUserManagerClient();
-            _fMC = new ForumManagerClient();
+            _fMC = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
 
             // TODO: check if it is OK to create new MainWindow
 

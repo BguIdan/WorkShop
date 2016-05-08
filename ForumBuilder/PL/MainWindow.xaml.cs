@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ServiceModel;
+using PL.notificationHost;
 using PL.proxies;
 using ForumBuilder.Common.DataContracts;
 
@@ -30,7 +32,10 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
-            _fMC = new ForumManagerClient();
+            //TODO gal: consider removal
+            //ServiceHost notificationsHost = new ServiceHost(typeof(PL.notificationHost.ClientNotificationHost));
+            //notificationsHost.Open();
+			_fMC = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
             _forumsList = _fMC.getForums();
             this.Show(); 
         }

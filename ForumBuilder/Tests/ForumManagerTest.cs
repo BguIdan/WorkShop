@@ -8,7 +8,11 @@ using BL_Back_End;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ForumBuilder.Controllers;
+using Service;
+using PL.notificationHost;
 using PL.proxies;
+using System.ServiceModel.Description;
 using System.ServiceModel;
 using Database;
 
@@ -29,8 +33,29 @@ namespace Tests
         [TestInitialize]
         public void setUp()
         {
-            ForumSystem.initialize("guy", "AG36djs", "hello@dskkl.com");
-            this.forumManager = new ForumManagerClient();
+            //TODO gal: tidy up
+            //ForumSystem.initialize("guy", "AG36djs", "hello@dskkl.com");
+            SuperUserController superUserController = SuperUserController.getInstance;
+            superUser1 = new UserData("tomer", "1qW", "fkfkf@wkk.com");
+            superUserController.addSuperUser(superUser1.userName, superUser1.password, superUser1.email);
+            ServiceHost forumService = new ServiceHost(typeof(ForumManager), new Uri("net.tcp://localhost:8081/forumService"));
+            //forumService.AddServiceEndpoint(typeof(IForumManager), new NetTcpBinding(), "ForumManager", new Uri("net.tcp://localhost:8081/forumService"));
+            forumService.Open();
+
+            ServiceHost postService = new ServiceHost(typeof(PostManager), new Uri("net.tcp://localhost:8082/postService"));
+            postService.AddServiceEndpoint(typeof(IPostManager), new NetTcpBinding(), "PostManager");
+            postService.Open();
+
+            ServiceHost subForumService = new ServiceHost(typeof(SubForumManager), new Uri("net.tcp://localhost:8083/subForumService"));
+            subForumService.Open();
+
+            ServiceHost superUserService = new ServiceHost(typeof(SuperUserManager), new Uri("net.tcp://localhost:8084/superUserService"));
+            superUserService.Open();
+
+            ServiceHost userService = new ServiceHost(typeof(UserManager), new Uri("net.tcp://localhost:8085/userService"));
+            userService.Open();
+/////////////////////////////////////
+            this.forumManager = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
             this.userNonMember = new UserData("nonMem", "nonmemPass", "nonmem@gmail.com");
             this.userMember = new UserData("mem", "mempass", "mem@gmail.com");
             this.userAdmin = new UserData("admin", "adminpass", "admin@gmail.com");
@@ -40,9 +65,8 @@ namespace Tests
             adminList.Add("admin2");
             this.forum = new ForumData("testForum", "descr", "policy", "the first rule is that you do not talk about fight club");
             ISuperUserManager superUser = new SuperUserManagerClient();
-            superUser1 = new UserData("tomer", "1qW", "fkfkf@wkk.com");
             ISuperUserManager SuperUserManager = new SuperUserManagerClient();
-            SuperUserManager.initialize(superUser1.userName, superUser1.password, superUser1.email);
+            //SuperUserManager.initialize(superUser1.userName, superUser1.password, superUser1.email);
             superUser.createForum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "tomer");
             Assert.IsTrue(this.forumManager.registerUser("mem", "mempass", "mem@gmail.com", this.forum.forumName));
             Assert.IsTrue(this.forumManager.registerUser("admin", "adminpass", "admin@gmail.com", this.forum.forumName));

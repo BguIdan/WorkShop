@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ForumBuilder.Common.DataContracts;
+using System.ServiceModel;
+using PL.notificationHost;
 using PL.proxies;
 
 namespace PL
@@ -40,7 +42,8 @@ namespace PL
         {
             InitializeComponent();
             _myforum = forum;
-            _fMC = new ForumManagerClient();
+            _fMC = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
+            _fMC.login(userName, forum.forumName);
             _userName = userName;
             ForumName.Content = "ForumName: " + _myforum.forumName;
         }

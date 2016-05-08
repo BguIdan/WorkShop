@@ -8,6 +8,7 @@ namespace ForumBuilder.Controllers
     public class SuperUserController : UserController, ISuperUserController
     {
         private static SuperUserController singleton;
+        ForumController forumController = ForumController.getInstance;
         DBClass DB = DBClass.getInstance;
         Systems.Logger logger = Systems.Logger.getInstance;
         
@@ -38,6 +39,7 @@ namespace ForumBuilder.Controllers
             }                
             else if (DB.createForum(forumName, descrption, forumPolicy, forumRules, administrators))
             {
+                this.forumController.addForum(forumName);
                 foreach(String admin in administrators)
                 {
                     ForumController.getInstance.nominateAdmin(admin, superUserName,forumName);

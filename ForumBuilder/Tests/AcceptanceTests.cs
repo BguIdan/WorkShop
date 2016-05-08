@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ForumBuilder.Common.ServiceContracts;
 using Database;
+using System.ServiceModel;
+using PL.notificationHost;
 using PL.proxies;
 using ForumBuilder.Common.DataContracts;
 
@@ -23,7 +25,7 @@ namespace Tests
             db.clear();
             ISuperUserManager superUser = new SuperUserManagerClient();
             superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
-            IForumManager forum = new ForumManagerClient(); 
+            IForumManager forum = new ForumManagerClient(new InstanceContext(new ClientNotificationHost())); 
             String forumName = "forum";
             String adminName = "admin";
             List<string> adminList = new List<string>();
@@ -59,7 +61,7 @@ namespace Tests
             db.clear();
             ISuperUserManager superUser = new SuperUserManagerClient();
             superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
-            IForumManager forum = new ForumManagerClient(); 
+            IForumManager forum = new ForumManagerClient(new InstanceContext(new ClientNotificationHost())); 
             String forumName = "forum";
             String adminName = "admin";
             List<string> adminList = new List<string>();
@@ -89,7 +91,7 @@ namespace Tests
             db.clear();
             ISuperUserManager superUser = new SuperUserManagerClient();
             superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
-            IForumManager forum = new ForumManagerClient(); 
+            IForumManager forum = new ForumManagerClient(new InstanceContext(new ClientNotificationHost())); 
             String forumName = "forum";
             String adminName = "admin";
             List<String> adminList = new List<String>();
@@ -115,7 +117,7 @@ namespace Tests
             db.clear();
             ISuperUserManager superUser = new SuperUserManagerClient();
             superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
-            IForumManager forum = new ForumManagerClient();
+            IForumManager forum = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
             String forumName = "forum";
             String adminName = "admin";
             List<String> adminList = new List<String>();
@@ -139,7 +141,7 @@ namespace Tests
         [TestMethod]
         public void AT_Test_register_to_forum_withWrongInputs()
         {
-            IForumManager forumMan = new ForumManagerClient();
+            IForumManager forumMan = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
             ISuperUserManager superUserMan = new SuperUserManagerClient();
             superUserMan.initialize("guy", "AG36djs", "hello@dskkl.com");
             List<String> adminList = new List<String>();
@@ -163,7 +165,7 @@ namespace Tests
         [TestMethod]
         public void AT_Test_register_to_forum_Functionality()
         {
-            IForumManager forumMan = new ForumManagerClient();
+            IForumManager forumMan = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
             ISuperUserManager superUserMan = new SuperUserManagerClient();
             IUserManager userMan = new UserManagerClient();
 
@@ -203,7 +205,7 @@ namespace Tests
         {
             ISuperUserManager superUser = new SuperUserManagerClient();
             superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
-            IForumManager forum  = new ForumManagerClient();
+            IForumManager forum = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
             ISubForumManager subForum = new SubForumManagerClient();
             String forumName = "forum";
             String adminName = "admin";
@@ -235,7 +237,7 @@ namespace Tests
         public void AT_test_add_thread_and_post()
         {
             ISuperUserManager superUser = new SuperUserManagerClient();
-            IForumManager forum = new ForumManagerClient();
+            IForumManager forum = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
             ISubForumManager subForum = new SubForumManagerClient();
             IPostManager post = new PostManagerClient();
             superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
