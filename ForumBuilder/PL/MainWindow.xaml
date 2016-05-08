@@ -13,7 +13,7 @@
         <PasswordBox Name="Password" Margin="174,258,93,81" Height="22" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <Button Name="Forgot"  FontFamily="Cooper Black" Content="Forgot Password" Margin="14,307,283,34" Click="ForgorPasswordPressed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <Button Name="signUP" FontFamily="Cooper Black" Content="Sign Up" Margin="215,307,130,34" Click="SignUpUser" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        <ComboBox x:Name="comboBox" SelectionChanged="comboBox_SelectionChanged" Margin="174,162,93,174" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <ComboBox x:Name="comboBox" SelectionChanged="comboBox_SelectionChanged" Margin="174,162,93,174" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/  DropDownOpened="ComboBox_OnDropDownOpened" DropDownClosed="ComboBox_OnDropDownClosed">
         <CheckBox Name="guestCheck" IsChecked="False" Margin="278,206,116,144" Click="guestChoose" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <TextBlock Name="guest" FontFamily="Cooper Black" Text="As Guest" Margin="200,200,149,139" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <Button x:Name="superUserViewButton" FontFamily="Cooper Black" Content="Im An Admin" Margin="294,307,27,34" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="superUserViewButton_Click"/>

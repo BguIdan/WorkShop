@@ -45,15 +45,5 @@ namespace Service
         {
             return superUserController.login(user, forumName, email);
         }
-
-
-
-        /*
-        public static int Main(string[] args)
-        {
-            //ForumSystem.initialize("name", "pass", "email");
-            return -1;
-        }*/
-        //TODO should this main func be deleted?
     }
 }

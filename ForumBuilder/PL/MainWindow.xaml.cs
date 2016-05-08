@@ -32,24 +32,11 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
-            //TODO gal: consider removal
-            //ServiceHost notificationsHost = new ServiceHost(typeof(PL.notificationHost.ClientNotificationHost));
-            //notificationsHost.Open();
+            //TODO gal: delete before submission
             Thread.Sleep(1000);
 			_fMC = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
             _forumsList = _fMC.getForums();
-        }
-
-        public void updateForums(ForumData newForum)
-        {
-            _forumsList.Add(newForum.forumName);
-            /* if binding doesn't work
-            for (int i = 0; i < _forumsList.Count; i++)
-            {
-                ComboBoxItem newItem = new ComboBoxItem();
-                newItem.Content = _forumsList.ElementAt(i).forumName;
-                comboBox.Items.Add(newItem);
-            }*/
+            this.Show();
         }
 
         private void LoginPressed(object sender, RoutedEventArgs e)
@@ -123,6 +110,18 @@ namespace PL
             SuperUserLogInWindow newWin = new SuperUserLogInWindow();
             newWin.Show();
             this.Close();
+        }
+
+        private void ComboBox_OnDropDownOpened(object sender, EventArgs e)
+        {
+            comboBox.Items.Clear();
+            foreach (String forumName in this._forumsList)
+                comboBox.Items.Add(forumName);
+        }
+
+        private void ComboBox_OnDropDownClosed(object sender, EventArgs e)
+        {
+            _forumsList = _fMC.getForums();
         }
 
     }

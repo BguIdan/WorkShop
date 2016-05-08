@@ -125,7 +125,7 @@ namespace ForumBuilder.Controllers
         }
 
         public bool deleteThread(int firstPostId,string removerName)
-        {
+        {   
             if (DB.getThreadByFirstPostId(firstPostId) == null)
             {
                 logger.logPrint("Delete thread failed, no thread with that id");

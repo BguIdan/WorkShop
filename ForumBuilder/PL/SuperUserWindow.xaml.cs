@@ -58,7 +58,17 @@ namespace PL
 
         private void MenuItem_View(object sender, RoutedEventArgs e)
         {
-            //TODO: complete the mehtod
+            MenuItem menuItem = e.Source as MenuItem;
+            switch (menuItem.Name)
+            {
+                case "ViewForums": { showForumList(); } break;
+            }
+
+        }
+
+        private void showForumList()
+        {
+
         }
 
         private void createNewForum()

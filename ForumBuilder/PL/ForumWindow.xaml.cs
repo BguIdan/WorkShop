@@ -36,8 +36,6 @@ namespace PL
             _fMC = new ForumManagerClient();
         }*/
 
-        // TODO: ASK Tomer about this constructor !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
         public ForumWindow(ForumData forum, string userName)
         {
             InitializeComponent();
