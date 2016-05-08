@@ -41,6 +41,13 @@ namespace Service
             ForumSystem.initialize(name, password, email);
             return true;
         }
+        public Boolean login(String user, String forumName, string email)
+        {
+            return superUserController.login(user, forumName, email);
+        }
+
+
+
         /*
         public static int Main(string[] args)
         {

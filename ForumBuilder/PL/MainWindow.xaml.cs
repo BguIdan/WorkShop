@@ -116,6 +116,12 @@ namespace PL
                 signUP.IsEnabled = true;
             }
         }
+        private void superUserViewButton_Click(object sender, RoutedEventArgs e)
+        {
+            SuperUserLogInWindow newWin = new SuperUserLogInWindow();
+            newWin.Show();
+            this.Close();
+        }
 
     }
 }

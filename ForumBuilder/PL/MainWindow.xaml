@@ -9,12 +9,13 @@
         <TextBlock FontFamily="Cooper Black" Text="Enter UserName:" Margin="44,231,219,110" Height="22" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <TextBlock FontFamily="Cooper Black" Text="Enter Password:" Margin="44,259,219,82" Height="22" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <TextBox Name="ID" Margin="174,229,93,108" TextWrapping="Wrap" Text="" Height="22" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        <Button Name="login" FontFamily="Cooper Black" Content="Login"  Margin="184,307,162,34" Click="LoginPressed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Button Name="login" FontFamily="Cooper Black" Content="Login"  Margin="138,307,208,34" Click="LoginPressed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <PasswordBox Name="Password" Margin="174,258,93,81" Height="22" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        <Button Name="Forgot"  FontFamily="Cooper Black" Content="Forgot Password" Margin="44,307,219,34" Width="123" Click="ForgorPasswordPressed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        <Button Name="signUP" FontFamily="Cooper Black" Content="Sign Up" Margin="252,307,93,34" Click="SignUpUser" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Button Name="Forgot"  FontFamily="Cooper Black" Content="Forgot Password" Margin="10,307,276,34" Width="123" Click="ForgorPasswordPressed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Button Name="signUP" FontFamily="Cooper Black" Content="Sign Up" Margin="206,307,139,34" Click="SignUpUser" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <ComboBox x:Name="comboBox" SelectionChanged="comboBox_SelectionChanged" ItemsSource="{Binding Path= _forumsList}" Margin="174,165,93,176" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <CheckBox Name="guestCheck" IsChecked="False" Margin="278,202,93,143" Click="guestChoose" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <TextBlock Name="guest" FontFamily="Cooper Black" Text="As Guest" Margin="200,200,149,139" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Button x:Name="superUserViewButton" FontFamily="Cooper Black" Content="Im An Admin" Margin="275,307,46,34" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="superUserViewButton_Click"/>
     </Grid>
 </Window>

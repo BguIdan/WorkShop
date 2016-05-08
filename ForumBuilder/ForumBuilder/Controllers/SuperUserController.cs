@@ -11,7 +11,9 @@ namespace ForumBuilder.Controllers
         ForumController forumController = ForumController.getInstance;
         DBClass DB = DBClass.getInstance;
         Systems.Logger logger = Systems.Logger.getInstance;
-        
+        List<String> loggedInSuperUser = new List<String>();
+
+
         public static SuperUserController getInstance
         {
             get
@@ -117,6 +119,15 @@ namespace ForumBuilder.Controllers
             }
             logger.logPrint("Register user faild, password not strong enough");
             return false;
+        }
+        public Boolean login(String user, String forumName, string email)
+        {
+            //TODO gal: remove comment later
+            // if (!this.loggedInUsersByForum.ContainsKey(forumName))
+            //   return false;
+
+            this.loggedInSuperUser.Add(user);
+            return true;
         }
     }
 }
