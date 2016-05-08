@@ -23,35 +23,21 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
-        private List<ForumData> _forumsList;
+        private List<string> _forumsList;
         private String _choosenForum;
         private ForumManagerClient _fMC;
 
         public MainWindow()
         {
             InitializeComponent();
-
-            //TODO: How to get all forums names from DB????????????!?!?!!?!?!?!? 
-
-            _forumsList = new List<ForumData>();
             _fMC = new ForumManagerClient();
-            /*//TODO client server communication POC delete later
-             * ForumManagerClient fmc = new ForumManagerClient();
-            fmc.addSubForum("a", "b", null, "c");
-            PostManagerClient pmc = new PostManagerClient();
-            pmc.addPost("", "", "", 0);
-            SubForumManagerClient sfmc = new SubForumManagerClient();
-            sfmc.createThread("", "", "", "", "");
-            SuperUserManagerClient sumc = new SuperUserManagerClient();
-            sumc.createForum("", "", "", "", null, "");
-            UserManagerClient umc = new UserManagerClient();
-            umc.addFriend("", "");*/
+            _forumsList = _fMC.getForums();
             this.Show(); 
         }
 
         public void updateForums(ForumData newForum)
         {
-            _forumsList.Add(newForum);
+            _forumsList.Add(newForum.forumName);
             /* if binding doesn't work
             for (int i = 0; i < _forumsList.Count; i++)
             {
