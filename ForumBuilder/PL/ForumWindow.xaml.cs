@@ -27,26 +27,27 @@ namespace PL
         private ForumManagerClient _fMC;
         private string _userName;
 
-        public ForumWindow(ForumData forum)
+        /*public ForumWindow(ForumData forum)
         {
             InitializeComponent();
             _myforum = forum;
             _fMC = new ForumManagerClient();
-        }
+        }*/
+
+        // TODO: ASK Tomer about this constructor !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         public ForumWindow(ForumData forum, string userName)
         {
             InitializeComponent();
-            //_subForumNames = new List<string>();
             _myforum = forum;
             _fMC = new ForumManagerClient();
             _userName = userName;
+            ForumName.Content = "ForumName: " + _myforum.forumName;
         }
 
         private void DataGrid_Loaded(object sender, RoutedEventArgs e)
         {
-            //TODO: need to know Forum
-            // ... Create a List of objects.
+            // ... Create a List of objects. (Example)
             /*var items = new List<Forum>();
             items.Add(new Forum("Fido", "10" , " ", " " , new List<string>()));
             items.Add(new Forum("Spark", "20" , " ", " " , new List<string>()));
@@ -59,9 +60,9 @@ namespace PL
                   items.Add(_subForumNames.ElementAt(i));
               }*/
 
-            // ... Assign ItemsSource of DataGrid.
+            // ... Assign ItemsSource of DataGrid. (Should do the job)
             var grid = sender as DataGrid;
-            //grid.ItemsSource = items;
+            grid.ItemsSource = _myforum.subForums;
         }
 
         private void DataGrid_SelectionChanged(object sender,SelectionChangedEventArgs e)
@@ -70,20 +71,8 @@ namespace PL
             var grid = sender as DataGrid;
             var selected = grid.SelectedItems;
             _subForumChosen = selected.ToString();
-
-            //TODO: Probably irrelevant (!!!)
-            // ... Add all Names to a List.
-            List<string> names = new List<string>();
-            foreach (var item in selected)
-            {
-                //TODO: need to know Forum
-                //var forum = item as Forum;
-                //names.Add(forum.forumName);
-                var forum = item as string;
-                names.Add(forum);
-            }
-            // ... Set Title to selected names.
-            this.Title = string.Join(", ", names);
+            SubForumWindow sfw = new SubForumWindow(_myforum.forumName, _subForumChosen, _userName);
+            sfw.ShowDialog();
         }
 
         private void MenuItem_Forums(object sender, RoutedEventArgs e)
