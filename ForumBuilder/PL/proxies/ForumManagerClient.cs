@@ -110,5 +110,19 @@ namespace PL.proxies
         {
             return Channel.getForums();
         }
+        public int getAdminReportNumOfPOst(String AdminName, String forumName)
+        {
+            return Channel.getAdminReportNumOfPOst( AdminName,  forumName);
+        }
+
+        public List<PostData> getAdminReportPostOfmember(String AdminName, String forumName, String memberName)
+        {
+            return Channel.getAdminReportPostOfmember( AdminName,  forumName,  memberName);
+        }
+
+        public List<String> getAdminReport(String AdminName, String forumName)
+        {
+            return Channel.getAdminReport( AdminName, forumName);
+        }
     }
 }
