@@ -30,7 +30,7 @@ namespace PL
 
         private void logInButton_Click(object sender, RoutedEventArgs e)
         {
-            if (_su.logIn(userNameTextBox.Text, passwordTextBox.Text, emailTextBox.Text))
+            if (_su.login(userNameTextBox.Text, passwordTextBox.Text, emailTextBox.Text))
             {
                 SuperUserWindow newWin = new SuperUserWindow(userNameTextBox.Text, passwordTextBox.Text, emailTextBox.Text);
                 newWin.Show();

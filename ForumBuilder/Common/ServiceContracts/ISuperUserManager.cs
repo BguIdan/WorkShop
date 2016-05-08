@@ -16,5 +16,8 @@ namespace ForumBuilder.Common.ServiceContracts
         [OperationContract]
         Boolean initialize(String name, String password, String email);
 
+        [OperationContract]
+        Boolean login(String newUser, String forumName, string email);
+
     }
 }

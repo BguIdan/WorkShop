@@ -7,5 +7,6 @@ namespace ForumBuilder.Controllers
     {
         Boolean createForum(String forumName, String descrption, String forumPolicy, String forumRules, List<String> administrators, String superUserName);
         Boolean addUser(string userName, string password, string mail);
+        Boolean login(String newUser, String forumName, string email);
     }
 }
