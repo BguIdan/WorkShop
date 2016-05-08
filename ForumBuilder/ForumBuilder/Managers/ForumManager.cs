@@ -49,9 +49,9 @@ namespace Service
             return forumController.registerUser(newUser, password, mail, forumName);
         }
 
-        public Boolean login(String user, String forumName)
+        public Boolean login(String user, String forumName,string password)
         {
-            return forumController.login(user, forumName);
+            return forumController.login(user, forumName, password);
         }
 
         public Boolean logout(String user, String forumName)

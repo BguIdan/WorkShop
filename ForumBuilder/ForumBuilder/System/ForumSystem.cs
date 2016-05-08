@@ -41,11 +41,11 @@ namespace ForumBuilder.Systems
                     //  send configuration email to the super user's 
                     //sendmail(email);
                 }
-                else
+                /*else
                 {
                     singleton = null;
                     return null;
-                }
+                }*/
                 
                     Logger logger = Logger.getInstance;
                 try
@@ -105,9 +105,9 @@ namespace ForumBuilder.Systems
         {
             Console.WriteLine(  "welcome to your forum builder!\n" +
                                 "please insert your desired user name:");
-            String username = getUserName();
-            String password = getUserPassword();
-            String email = getEmail();
+            String username = "idan";//getUserName();
+            String password = "idanA1";//getUserPassword();
+            String email = "d@d.d";//getEmail();
 
             initialize(username, password, email);
             runServer(username, password, email);

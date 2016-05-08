@@ -24,6 +24,7 @@ namespace ForumBuilder.Controllers
             }
 
         }
+        
         public bool addFriend(string userName, string friendToAddName)
         {
             User user = DB.getUser(userName);

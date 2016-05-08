@@ -223,15 +223,20 @@ namespace ForumBuilder.Controllers
 
         }
 
-        public Boolean login(String user, String forumName)
+        public Boolean login(String user, String forumName, string pass)
         {
-            //TODO gal: remove comment later
-           // if (!this.loggedInUsersByForum.ContainsKey(forumName))
-             //   return false;
-
-            this.loggedInUsersByForum[forumName].Add(user);
-            this.channelsByLoggedInUsers[user] = OperationContext.Current.GetCallbackChannel<IUserNotificationsService>();
-            return true;
+            User usr = DB.getUser(user);
+            if (usr != null && usr.password.Equals(pass) && DB.getforumByName(forumName) != null)
+            {
+                this.loggedInUsersByForum[forumName].Add(user);
+                this.channelsByLoggedInUsers[user] = OperationContext.Current.GetCallbackChannel<IUserNotificationsService>();
+                return true;
+            }
+            else
+            {
+                logger.logPrint("could not login, wrong cerdintals");
+                return false;
+            }
         }
 
         public Boolean logout(String user, String forumName)

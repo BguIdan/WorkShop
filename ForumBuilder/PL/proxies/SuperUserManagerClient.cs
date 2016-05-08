@@ -47,5 +47,6 @@ namespace PL.proxies
         {
             return Channel.login(name, pass, email);
         }
+
     }
 }

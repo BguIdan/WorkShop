@@ -18,6 +18,6 @@ namespace ForumBuilder.Common.ServiceContracts
 
         [OperationContract]
         Boolean login(String newUser, String forumName, string email);
-
+        
     }
 }

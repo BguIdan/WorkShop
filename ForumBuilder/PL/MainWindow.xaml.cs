@@ -35,9 +35,9 @@ namespace PL
             //TODO gal: consider removal
             //ServiceHost notificationsHost = new ServiceHost(typeof(PL.notificationHost.ClientNotificationHost));
             //notificationsHost.Open();
+            Thread.Sleep(1000);
 			_fMC = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
             _forumsList = _fMC.getForums();
-            this.Show(); 
         }
 
         public void updateForums(ForumData newForum)
@@ -56,17 +56,19 @@ namespace PL
         {
             string userName = ID.Text;
             string pass = Password.Password;
-            /*if (userName.Equals("") || pass.Equals(""))
-            {
-                MessageBox.Show("Invalid Input");
-                return;
-            }*/
             if (_choosenForum != null)
             {
                 ForumData toSend = _fMC.getForum(_choosenForum);
-                ForumWindow fw = new ForumWindow(toSend,userName);
-                this.Close();
-                fw.Show();
+                if (_fMC.login(userName, _choosenForum, pass))
+                {
+                    ForumWindow fw = new ForumWindow(toSend, userName);
+                    this.Close();
+                    fw.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Oops... can't login!");
+                }
             }
             else
             {

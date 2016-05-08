@@ -25,7 +25,7 @@ namespace ForumBuilder.Common.ServiceContracts
         Boolean registerUser(String newUser, String password, String mail, String forumName);
 
         [OperationContract]
-        Boolean login(String newUser, String forumName);
+        Boolean login(String newUser, String forumName,string password);
 
         [OperationContract]
         Boolean logout(String newUser, String forumName);
