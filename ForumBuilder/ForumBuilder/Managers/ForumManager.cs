@@ -83,5 +83,9 @@ namespace Service
             return toReturn;
             
         }
+        public List<String> getForums()
+        {
+            return forumController.getForums();
+        }
     }
 }

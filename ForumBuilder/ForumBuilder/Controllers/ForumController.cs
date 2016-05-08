@@ -66,7 +66,10 @@ namespace ForumBuilder.Controllers
             }
             return true;
         }
-
+        public List<String> getForums()
+        {
+            return DB.getForums();
+        }
         internal bool isMembersOfSameForum(string friendToAdd, string userName)
         {
             if(DB.getSimularForumsOf2users(friendToAdd,userName)!=null&&

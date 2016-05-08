@@ -95,5 +95,9 @@ namespace PL.proxies
         {
             return Channel.getForum(forumName);
         }
+        public List<String> getForums()
+        {
+            return Channel.getForums();
+        }
     }
 }
