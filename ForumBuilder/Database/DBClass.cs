@@ -256,7 +256,7 @@ namespace Database
             }
             
         }
-        public bool nominateModerator(string newModerator, DateTime date, string subForumName, string forumName)
+        public bool nominateModerator(string newModerator, DateTime date, string subForumName, string forumName,String nominator)
         {
             try
             {
@@ -264,12 +264,14 @@ namespace Database
                 OleDbCommand command2 = new OleDbCommand();
                 command2.Connection = connection;
                 command2.CommandText = "INSERT INTO subForumModerators "+
-                    "([subForumName],[forumName],[moderatorName],[endTermOfOffice]) " +
-                        "values (?,?,?,?)";
+                    "([subForumName],[forumName],[moderatorName],[endTermOfOffice],[nominator],[dateAdded]) " +
+                        "values (?,?,?,?,?,?)";
                 command2.Parameters.AddWithValue("subForumName", subForumName);
                 command2.Parameters.AddWithValue("forumName", forumName);
                 command2.Parameters.AddWithValue("moderatorName", newModerator);
                 command2.Parameters.AddWithValue("endTermOfOffice", date.Day + "/" + date.Month + "/" + date.Year);
+                command2.Parameters.AddWithValue("nominator", nominator);
+                command2.Parameters.AddWithValue("dateAdded", DateTime.Today.Day + "/" + DateTime.Today.Month + "/" + DateTime.Today.Year);
                 command2.ExecuteNonQuery();
                 //added
                 closeConnectionDB();
@@ -326,6 +328,37 @@ namespace Database
                 }
                 closeConnectionDB();
                 return forums;
+            }
+            catch
+            {
+                closeConnectionDB();
+                return null; ;
+            }
+        }
+        public List<String> getModertorsReport(String forumName)
+        {
+            try
+            {
+                OpenConnectionDB();
+                List<String> modertorsReport = new List<String>();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "SELECT subForumModerators.subForumName,"+
+                    "subForumModerators.moderatorName,subForumModerators.nominator,"+
+                    "subForumModerators.dateAdded,posts.title,posts.content FROM"+
+                    "subForumModerators,posts where subForumModerators.forumName='"+
+                    forumName+ "' and posts.forumName=subForumModerators.forumName"+
+                    "and posts.writerUserName=subForumModerators.moderatorName";
+                OleDbDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    modertorsReport.Add(reader.GetString(0)+","+reader.GetString(1)+","+
+                        reader.GetString(2)+","+ 
+                        reader.GetDateTime(3).ToString("dd MM yyyy")+","+
+                        reader.GetString(4)+","+reader.GetString(5));
+                }
+                closeConnectionDB();
+                return modertorsReport;
             }
             catch
             {
@@ -841,7 +874,7 @@ namespace Database
                 command.CommandText = "SELECT  * FROM  posts where postID=" + postId + "";
                 OleDbDataReader reader = command.ExecuteReader();
                 reader.Read();
-                post = new Post(reader.GetString(1), reader.GetInt32(0), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), DateTime.Parse(reader.GetDateTime(5).ToString("dd MM yyyy")));
+                post = new Post(reader.GetString(1), reader.GetInt32(0), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), DateTime.Parse(reader.GetDateTime(5).ToString("dd MM yyyy")),reader.GetString(6));
                 closeConnectionDB();
                 return post;
             }
@@ -868,7 +901,7 @@ namespace Database
                 OleDbDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    post = new Post(reader.GetString(1), reader.GetInt32(0), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), DateTime.Parse(reader.GetDateTime(5).ToString("dd MM yyyy")));
+                    post = new Post(reader.GetString(1), reader.GetInt32(0), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), DateTime.Parse(reader.GetDateTime(5).ToString("dd MM yyyy")), reader.GetString(6));
                     curPost.Add(post);
                 }
                 closeConnectionDB();
@@ -928,7 +961,7 @@ namespace Database
                 command.CommandText = "SELECT  * FROM  posts where postID=" + postId + "";
                 OleDbDataReader reader = command.ExecuteReader();
                 reader.Read();
-                thread = new Thread( new Post(reader.GetString(1), reader.GetInt32(0), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), DateTime.Parse(reader.GetDateTime(5).ToString("dd MM yyyy"))));
+                thread = new Thread( new Post(reader.GetString(1), reader.GetInt32(0), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), DateTime.Parse(reader.GetDateTime(5).ToString("dd MM yyyy")), reader.GetString(6)));
                 closeConnectionDB();
                 return thread;
             }
@@ -961,21 +994,22 @@ namespace Database
                 return false;
             }
         }
-        public bool addPost(String writerUserName, Int32 postID, String headLine, String content, Int32 parentId, DateTime timePublished)
+        public bool addPost(String writerUserName, Int32 postID, String headLine, String content, Int32 parentId, DateTime timePublished,String forumName)
         {
             try
             {
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "INSERT INTO posts ([postID],[writerUserName],[title],[content],[parentPostID],[publishTime])" +
-                        " values (?,?,?,?,?,?)";
+                command.CommandText = "INSERT INTO posts ([postID],[writerUserName],[title],[content],[parentPostID],[publishTime],[forumName])" +
+                        " values (?,?,?,?,?,?,?)";
                 command.Parameters.AddWithValue("postID", postID);
                 command.Parameters.AddWithValue("writerUserName", writerUserName);
                 command.Parameters.AddWithValue("title", headLine);
                 command.Parameters.AddWithValue("content", content);
                 command.Parameters.AddWithValue("parentPostID", parentId);
                 command.Parameters.AddWithValue("publishTime", timePublished.Day + "/" + timePublished.Month + "/" + timePublished.Year);
+                command.Parameters.AddWithValue("forumName", forumName);
                 command.ExecuteNonQuery();
                 closeConnectionDB();
                 return true;
@@ -986,7 +1020,25 @@ namespace Database
                 return false;
             }
         }
-
+        public int numOfPostInForum(String forumName)
+        {
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "SELECT  Count(postID) FROM  posts where forumName='" + forumName + "'";
+                OleDbDataReader reader = command.ExecuteReader();
+                reader.Read();
+                closeConnectionDB();
+                return reader.GetInt32(0);
+            }
+            catch
+            {
+                closeConnectionDB();
+                return -1;
+            }
+        }
         public bool removeThread(int id)
         {
             try
@@ -1029,7 +1081,31 @@ namespace Database
                 return false;
             }
         }
-
+        public List<Post> getMemberPosts(String memberName,String forumName)
+        {
+            List<Post> posts = new List<Post>();
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "SELECT  * FROM  posts where forumName='" + forumName + "'"+
+                    " and writerUserName='"+memberName+"'";
+                OleDbDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Post post = new Post(reader.GetString(1), reader.GetInt32(0), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), DateTime.Parse(reader.GetDateTime(5).ToString("dd MM yyyy")), reader.GetString(6));
+                    posts.Add(post);
+                }
+                closeConnectionDB();
+                return posts;
+            }
+            catch
+            {
+                closeConnectionDB();
+                return null;
+            }
+        }
         public void clear()
         {
             try

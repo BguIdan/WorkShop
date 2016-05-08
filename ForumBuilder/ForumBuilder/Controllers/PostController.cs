@@ -67,7 +67,7 @@ namespace ForumBuilder.Controllers
             {
                 int id = DB.getAvilableIntOfPost();
                 logger.logPrint("Create comment "+ id+" to "+commentedPost);
-                return DB.addPost(writerName, id, headLine, content, commentedPost, DateTime.Now);
+                return DB.addPost(writerName, id, headLine, content, commentedPost, DateTime.Now,sf.forum);
             }
         }
         public Boolean removeComment(int postId, String removerName)

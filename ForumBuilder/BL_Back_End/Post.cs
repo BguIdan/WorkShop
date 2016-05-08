@@ -15,8 +15,9 @@ namespace BL_Back_End
         private Int32 _parentId;
         private List<Int32> _commentsIds;
         private DateTime _timePublished;
+        private String _forumName;
 
-        public Post(String writerUserName, Int32 id, String title, String content, Int32 parentId, DateTime timePublished)
+        public Post(String writerUserName, Int32 id, String title, String content, Int32 parentId, DateTime timePublished,String forumName)
         {
             _id = id;
             _title = title;
@@ -25,6 +26,7 @@ namespace BL_Back_End
             _commentsIds = new List<int>();
             _timePublished = timePublished;
             _writerUserName = writerUserName;
+            _forumName = forumName;
         }
         
         public Int32 id
@@ -66,6 +68,11 @@ namespace BL_Back_End
         {
             get{return _timePublished;}
             set{_timePublished = value;}
+        }
+        public String forumName
+        {
+            get { return _forumName; }
+            set { _forumName = value; }
         }
     }
 }
