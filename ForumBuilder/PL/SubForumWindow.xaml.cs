@@ -118,9 +118,12 @@ namespace PL
                 {
                     List<int> commentsIds = new List<int>();
                     commentsIds.Add(selected.Id);
-                    foreach(int id in pd1.commentsIds)
+                    foreach(PostData tempPostData in posts)
                     {
-                        commentsIds.Add(id);
+                        if (tempPostData.parentId == pd1.id)
+                        {
+                            commentsIds.Add(tempPostData.id);
+                        }
                     }
                     //going over all comments to make a new table
                     _patentId = pd1.id;
