@@ -98,10 +98,54 @@ namespace Database
                         singleton = new DBClass();
                         singleton.initializeDB();
                         //maxNotAvailable = Math.Max(singleton.getMaxIntOfPost(), -1);
-                        singleton.forums = new List<Forum>();
+                        singleton.forums = singleton.getAllForums();
                     }
                     return singleton;
                 }
+            }
+        }
+
+        private List<Forum> getAllForums()
+        {
+            if (this.forums != null)
+                return this.forums;
+            List<Forum> forums = new List<Forum>();
+            Forum forum = null;
+            try
+            {
+                lock (lockThis)
+                {
+                    OpenConnectionDB();
+                    OleDbCommand command = new OleDbCommand();
+                    command.Connection = connection;
+                    command.CommandText = "SELECT  * FROM  forums";
+                    OleDbDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        OleDbCommand command2 = new OleDbCommand();
+                        command2.Connection = connection;
+                        command2.CommandText = "SELECT  * FROM  forumAdministrators where forumAdministrators.forumName='" + reader.GetString(0) + "'";
+                        OleDbDataReader reader2 = command2.ExecuteReader();
+                        List<String> administrators = new List<String>();
+                        while (reader2.Read())
+                        {
+                            administrators.Add(reader2.GetString(1));
+                        }
+                        forum = new Forum(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), administrators);
+                        List<String> members = getMembersOfForum(reader.GetString(0));
+                        List<String> subForums = getsubForumsNamesOfForum(reader.GetString(0));
+                        closeConnectionDB();
+                        forum.members = members;
+                        forum.subForums = subForums;
+                        forums.Add(forum);
+                    }
+                }
+                return forums;
+            }
+            catch
+            {
+                closeConnectionDB();
+                return null;
             }
         }
 
@@ -143,11 +187,11 @@ namespace Database
                 //connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\User\Desktop\WorkShop\forumDB.mdb;
                 //                                Persist Security Info=False;";
 
-               // connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\User\Documents\sadna\forumDB.mdb;
-               // Persist Security Info=False;";
-
-                connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Aviv\Documents\WorkShop\forumDB.mdb;
+                connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\User\Documents\sadna\forumDB.mdb;
                 Persist Security Info=False;";
+
+                //connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Aviv\Documents\WorkShop\forumDB.mdb;
+                //Persist Security Info=False;";
                 //connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\gal\Desktop\wsep\New Folder\project\forumDB.mdb;
                 //Persist Security Info=False;";
                 //connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\gal\Desktop\wsep\New Folder\project\forumDB.mdb;
@@ -435,36 +479,41 @@ namespace Database
 
         public List<String> getForums()
         {
-            List<String> forumsName = new List<String>();
-            foreach (Forum f in forums)
+            if (forums != null)
             {
-                forumsName.Add(f.forumName);
-            }
-            return forumsName;
-            /*
-            try
-            {
-                lock (lockThis)
+                List<String> forumsName = new List<String>();
+                foreach (Forum f in forums)
                 {
-                    OpenConnectionDB();
-                    List<String> forums = new List<String>();
-                    OleDbCommand command = new OleDbCommand();
-                    command.Connection = connection;
-                    command.CommandText = "SELECT  forumName FROM  forums";
-                    OleDbDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
+                    forumsName.Add(f.forumName);
+                }
+                return forumsName;
+            }
+            else
+            {
+                try
+                {
+                    lock (lockThis)
                     {
-                        forums.Add(reader.GetString(0));
+                        OpenConnectionDB();
+                        List<String> forums = new List<String>();
+                        OleDbCommand command = new OleDbCommand();
+                        command.Connection = connection;
+                        command.CommandText = "SELECT  forumName FROM  forums";
+                        OleDbDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            forums.Add(reader.GetString(0));
+                        }
+                        closeConnectionDB();
+                        return forums;
                     }
+                }
+                catch
+                {
                     closeConnectionDB();
-                    return forums;
+                    return null; ;
                 }
             }
-            catch
-            {
-                closeConnectionDB();
-                return null; ;
-            }*/
         }
         public List<String> getModertorsReport(String forumName)
         {
