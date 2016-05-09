@@ -71,7 +71,7 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("sub forum does not exist");
                 return false;
             }
-            if (ForumController.getInstance.isAdmin(nominatorUser, forumName) && ForumController.getInstance.isMember(newModerator, forumName))
+            if ((ForumController.getInstance.isAdmin(nominatorUser, forumName)|| SuperUserController.getInstance.isSuperUser(nominatorUser)) && ForumController.getInstance.isMember(newModerator, forumName))
             {
                 if (DateTime.Now.CompareTo(date) > 0)
                 {
@@ -84,7 +84,7 @@ namespace ForumBuilder.Controllers
                     return true;
                 }
             }
-            if(!ForumController.getInstance.isAdmin(nominatorUser, forumName))
+            if(!ForumController.getInstance.isAdmin(nominatorUser, forumName)&&!SuperUserController.getInstance.isSuperUser(nominatorUser))
                 logger.logPrint("To "+nominatorUser+" has no permission to nominate moderator");
             if(!ForumController.getInstance.isMember(newModerator, forumName))
                 logger.logPrint("To " + newModerator + " has no permission to be moderator, he is not a member");
