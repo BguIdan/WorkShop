@@ -972,7 +972,6 @@ namespace Database
                 return thread;
             }
         }
-
         public bool addThread(string forumName, string subForumName, int firstMessageId)
         {
             try
@@ -1074,6 +1073,24 @@ namespace Database
                 {
                     avilabelPostIDs.Remove(id);
                 }
+                return true;
+            }
+            catch
+            {
+                closeConnectionDB();
+                return false;
+            }
+        }
+        public Boolean updatePost(int postID,String title,String content)
+        {
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "UPDATE posts SET title='" + title + "' , content='" + content + "' where postID=" + postID + "";
+                command.ExecuteNonQuery();
+                closeConnectionDB();
                 return true;
             }
             catch
