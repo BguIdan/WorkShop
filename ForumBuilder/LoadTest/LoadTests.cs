@@ -27,8 +27,8 @@ namespace LoadTest
         [TestMethod]
         public void add_user_and_comment()
         {
-          //  DBClass db = DBClass.getInstance;
-          //  db.clear();
+            DBClass db = DBClass.getInstance;
+            db.clear();
             //ForumSystem.initialize("guy", "AG36djs", "hello@dskkl.com");
             this.forumController = ForumController.getInstance;
             this.postController = PostController.getInstance;
@@ -58,7 +58,7 @@ namespace LoadTest
             String headLine = "head";
             String content = "content";
             this.postController.addComment(headLine, content, this.userMember.userName, this.postId);
-           // db.clear();
+            db.clear();
 
 
         }

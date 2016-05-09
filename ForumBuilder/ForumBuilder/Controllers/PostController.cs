@@ -115,7 +115,7 @@ namespace ForumBuilder.Controllers
                 hasSucceed = hasSucceed && DB.removePost(donePosts.ElementAt(i).id);
                 logger.logPrint("Remove post " +donePosts.ElementAt(i).id);
             }
-            ForumController.getInstance.sendPostDelitionNotification(DB.getPost(postId).forumName, removerName);
+            //ForumController.getInstance.sendPostDelitionNotification(DB.getPost(postId).forumName, removerName);
             return hasSucceed;
         }
         public List<Post> getAllPosts(String forumName, String subforumName)
