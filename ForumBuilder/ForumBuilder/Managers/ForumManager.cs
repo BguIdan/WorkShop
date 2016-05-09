@@ -90,7 +90,7 @@ namespace Service
         public ForumData getForum(String forumName)
         {
             Forum temp = forumController.getForum(forumName);
-            ForumData toReturn = new ForumData(temp.forumName , temp.description , temp.forumPolicy , temp.forumRules, temp.subForums);
+            ForumData toReturn = new ForumData(temp.forumName , temp.description , temp.forumPolicy , temp.forumRules, temp.subForums,temp.members);
             return toReturn;
             
         }

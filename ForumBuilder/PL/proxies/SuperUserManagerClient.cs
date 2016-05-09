@@ -53,5 +53,15 @@ namespace PL.proxies
             return Channel.isSuperUser(name);
         }
 
+        public int SuperUserReportNumOfForums(string superUserName)
+        {
+            return Channel.SuperUserReportNumOfForums(superUserName);
+        }
+
+        public List<String> getSuperUserReportOfMembers(string superUserName)
+        {
+            return Channel.getSuperUserReportOfMembers(superUserName);
+        }
+
     }
 }

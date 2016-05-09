@@ -50,5 +50,13 @@ namespace Service
         {
             return superUserController.isSuperUser(userName);
         }
+        public int SuperUserReportNumOfForums(string superUserName)
+        {
+            return superUserController.SuperUserReportNumOfForums(superUserName);
+        }
+        public List<String> getSuperUserReportOfMembers(string superUserName)
+        {
+            return superUserController.getSuperUserReportOfMembers(superUserName);
+        }
     }
 }

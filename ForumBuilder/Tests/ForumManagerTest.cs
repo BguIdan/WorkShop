@@ -63,7 +63,7 @@ namespace Tests
             List<string> adminList = new List<string>();
             adminList.Add("admin");
             adminList.Add("admin2");
-            this.forum = new ForumData("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", new List<String>());
+            this.forum = new ForumData("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", new List<String>(), new List<String>());
             ISuperUserManager superUser = new SuperUserManagerClient();
             ISuperUserManager SuperUserManager = new SuperUserManagerClient();
             //SuperUserManager.initialize(superUser1.userName, superUser1.password, superUser1.email);
