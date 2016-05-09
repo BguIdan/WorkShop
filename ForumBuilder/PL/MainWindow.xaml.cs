@@ -46,7 +46,13 @@ namespace PL
             if (_choosenForum != null)
             {
                 ForumData toSend = _fMC.getForum(_choosenForum);
-                if (_fMC.login(userName, _choosenForum, pass))
+                if (guestCheck.IsChecked.Value)
+                {
+                    ForumWindow fw = new ForumWindow(toSend, "Guest");
+                    this.Close();
+                    fw.Show();
+                }
+                else if (_fMC.login(userName, _choosenForum, pass))
                 {
                     ForumWindow fw = new ForumWindow(toSend, userName);
                     this.Close();
@@ -62,29 +68,24 @@ namespace PL
                 MessageBox.Show("You have to choose forum from the list");
             }
         }
-
-        // TODO:In the next 2 functions i need to decide how to handle different types of users and to decide rather to know and hold userData class
-
-        private void ForgorPasswordPressed(object sender, RoutedEventArgs e)
-        {
-            // TODO: know the user class
-            // RestorePasswordWindow rpw = new RestorePasswordWindow(itsUserBL);
-            RestorePasswordWindow rpw = new RestorePasswordWindow();
-            this.Close();
-            rpw.ShowDialog();
-        }
-
+        
         private void SignUpUser(object sender, RoutedEventArgs e)
         {
-            // TODO: know the admin and user class and create new one in the data base
-            // SignUpWindow suw = new SignUpWindow(itsUserBL, iDAL, itsAdminBL);
             SignUpWindow suw = new SignUpWindow(_fMC,_choosenForum);
-            suw.ShowDialog();
+            suw.Show();
+            this.Close();
         }
 
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            _choosenForum = comboBox.SelectedItem.ToString();
+            try
+            {
+                _choosenForum = comboBox.SelectedItem.ToString();
+            }
+            catch (Exception excep)
+            {
+                MessageBox.Show(excep.ToString());
+            }
         }
 
         private void guestChoose(object sender, RoutedEventArgs e)
@@ -94,14 +95,14 @@ namespace PL
             { 
                 ID.IsEnabled = false;
                 Password.IsEnabled = false;
-                Forgot.IsEnabled = false;
+                superUserViewButton.IsEnabled = false;
                 signUP.IsEnabled = false;
             }
             else 
             {
                 ID.IsEnabled = true;
                 Password.IsEnabled = true;
-                Forgot.IsEnabled = true;
+                superUserViewButton.IsEnabled = true;
                 signUP.IsEnabled = true;
             }
         }

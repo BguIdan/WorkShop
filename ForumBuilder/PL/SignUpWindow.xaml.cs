@@ -29,33 +29,29 @@ namespace PL
             InitializeComponent();
             _fMC = forumManager;
             _forumToRegister = forumName;
-            this.Show();
         }
 
         private void UserRegistration(object sender, RoutedEventArgs e)
         {
-            string userName = null;
-            string pass = null;
-            string userMail = null;
-
-            userName = name.Text;
-            pass = Password.Password;
-            userMail = mail.Text;
-            if (mail==null || pass == null  || name == null)
+            string userName = name.Text;
+            string pass = Password.Password;
+            string userMail = mail.Text;
+            /*if (mail==null || pass == null  || name == null)
             {
                 MessageBox.Show("Please fill all the required details, make sure password include at least 5 letters");
-            }
+            }*/
             bool suc = _fMC.registerUser(userName,pass,userMail,_forumToRegister);
             if (suc == false)
             {
                 MessageBox.Show("Failed to register. One or more of the details is wrong");
-                return;
             }
-            MessageBox.Show(userName + "Registration succeeded!");
-            this.Close();
-            //UserWindow uw = new UserWindow(iDAL, userID,itsAdminBL);
-            //uw.Show();
-
+            else
+            {
+                MessageBox.Show(userName + "  Registration succeeded!");
+                MainWindow mw = new MainWindow();
+                mw.Show();
+                this.Close();
+            }
         } 
     }
 }

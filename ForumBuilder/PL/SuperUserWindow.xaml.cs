@@ -113,11 +113,13 @@ namespace PL
             {
                 MessageBox.Show("Forum:" + forumName + "was successfully created!");
                 ForumData newForum = _fMC.getForum(forumName);
+                MainMenu.Visibility = System.Windows.Visibility.Visible;
+                createForum.Visibility = System.Windows.Visibility.Collapsed;
 
                 //TODO: direct to the new forum window
                 //TODO: send mail to every forum manager?
             }
-            else { MessageBox.Show("Something went wrong the forum wasn't created"); }
+            else { MessageBox.Show("Something went wrong the forum wasn't created, try again."); }
         }
 
         private void btn_SetForumPref(object sender, RoutedEventArgs e)

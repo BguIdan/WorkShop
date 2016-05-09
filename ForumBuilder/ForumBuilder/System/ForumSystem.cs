@@ -111,6 +111,7 @@ namespace ForumBuilder.Systems
 
             initialize(username, password, email);
             runServer(username, password, email);
+            DBClass.getInstance.clear();
             return 0;
         }
 
@@ -185,9 +186,10 @@ namespace ForumBuilder.Systems
                                 "super user credentials:" +
                                 "user name: " + userName + "  password: " + password + 
                                 "  email: " + email);
-            while (true)
+            /*while (true)
             {
-            }
+            }*/
+            Console.ReadLine();
         }
     }
 }

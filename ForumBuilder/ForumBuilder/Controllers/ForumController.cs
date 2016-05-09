@@ -225,8 +225,13 @@ namespace ForumBuilder.Controllers
 
         public Boolean login(String user, String forumName, string pass)
         {
+            if (!loggedInUsersByForum.ContainsKey(forumName))
+            {
+                loggedInUsersByForum.Add(forumName, new List<string>());
+            }
             User usr = DB.getUser(user);
-            if (usr != null && usr.password.Equals(pass) && DB.getforumByName(forumName) != null)
+            Forum temp = DB.getforumByName(forumName);
+            if (usr != null && usr.password.Equals(pass) &&  temp!= null)
             {
                 this.loggedInUsersByForum[forumName].Add(user);
                 this.channelsByLoggedInUsers[user] = OperationContext.Current.GetCallbackChannel<IUserNotificationsService>();

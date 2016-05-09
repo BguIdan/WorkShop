@@ -45,5 +45,10 @@ namespace Service
         {
             return superUserController.login(user, forumName, email);
         }
+
+        public Boolean isSuperUser(string userName)
+        {
+            return superUserController.isSuperUser(userName);
+        }
     }
 }

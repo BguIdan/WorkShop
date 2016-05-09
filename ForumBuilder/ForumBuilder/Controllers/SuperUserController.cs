@@ -99,7 +99,7 @@ namespace ForumBuilder.Controllers
             return DB.addSuperUser(email, password, userName);
         }
 
-        internal bool isSuperUser(string user)
+        public Boolean isSuperUser(string user)
         {
             if (DB.getSuperUser(user) == null)
             {
