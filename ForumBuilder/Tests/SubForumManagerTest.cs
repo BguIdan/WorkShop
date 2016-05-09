@@ -7,6 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.ServiceModel;
 using PL.notificationHost;
 using PL.proxies;
+using ForumBuilder.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,32 +29,32 @@ namespace Tests
         private ISubForumManager subForum;
         private String subForumName = "subforum";
         private String forumName = "testForum";
-        private User superUser1;
+        private UserData superUser;
 
 
         [TestInitialize]
         public void setUp()
         {
-            ForumSystem.initialize("tomer", "1qW", "fkfkf@wkk.com");
+            SuperUserController superUserController = SuperUserController.getInstance;
+            this.superUser = new UserData("tomer", "1qW", "fkfkf@wkk.com");
+            superUserController.addSuperUser(this.superUser.email, this.superUser.password, this.superUser.userName);
             this.forumManager = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
-            this.postManager = new PostManagerClient();
             this.userNonMember = new UserData("nonMem", "nonmemPass", "nonmem@gmail.com");
             this.userMember = new UserData("mem", "mempass", "mem@gmail.com");
-            this.userModerator = new UserData("mod", "modpass", "mod@gmail.com");
             this.userAdmin = new UserData("admin", "adminpass", "admin@gmail.com");
+            superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email);
+            List<string> adminList = new List<string>();
+            adminList.Add(this.userAdmin.userName);
+            this.forum = new ForumData(this.forumName, "descr", "policy", "the first rule is that you do not talk about fight club", new List<String>());
+            superUserController.createForum(this.forum.forumName, "descr", "policy", "the first rule is that you do not talk about fight club", adminList, superUser.userName);
+            Assert.IsTrue(this.forumManager.registerUser(userMember.userName, userMember.password, userMember.email, this.forum.forumName));
+            this.postManager = new PostManagerClient();
+            this.userModerator = new UserData("mod", "modpass", "mod@gmail.com");
             Dictionary<String, DateTime> modList = new Dictionary<String, DateTime>();
             modList.Add(this.userModerator.userName, new DateTime(2030, 1, 1));
-            List<string> adminList = new List<string>();
-            adminList.Add("admin");
-            this.forum = new ForumData(this.forumName, "descr", "policy", "the first rule is that you do not talk about fight club", new List<String>(), new List<String>());
-            ISuperUserManager superUser = new SuperUserManagerClient();
-            superUser1 = DBClass.getInstance.getSuperUser("tomer");
-            superUser.createForum("1", "1", "1", "1", null, "tomer");
-            Assert.IsTrue(superUser.createForum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "tomer"));
-            Assert.IsTrue(this.forumManager.registerUser("admin", "adminpass", "admin@gmail.com", this.forumName));
-            Assert.IsTrue(this.forumManager.registerUser("mem", "mempass", "mem@gmail.com", this.forumName));
-            Assert.IsTrue(this.forumManager.registerUser("mod", "modpass", "mod@gmail.com", this.forumName));
-            Assert.IsTrue(this.forumManager.addSubForum(this.forum.forumName, this.subForumName, modList, this.userAdmin.userName));
+            Assert.IsTrue(ForumController.getInstance.registerUser("mod", "modPass1", "mod@gmail.com", this.forumName));
+            Assert.IsTrue(this.forumManager.addSubForum(this.forumName, this.subForumName, modList, this.userAdmin.userName));
+            Assert.IsTrue(SubForumController.getInstance.createThread("headLine", "content", this.userMember.userName, this.forumName, this.subForumName));
             this.subForum = new SubForumManagerClient();
 
         }

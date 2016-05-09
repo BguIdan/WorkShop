@@ -28,50 +28,27 @@ namespace Tests
         private UserData userMember;
         private UserData userAdmin;
         private UserData userAdmin2;
-        private UserData superUser1;
+        private UserData superUser;
 
         [TestInitialize]
         public void setUp()
         {
-            //TODO gal: tidy up
-            //ForumSystem.initialize("guy", "AG36djs", "hello@dskkl.com");
             SuperUserController superUserController = SuperUserController.getInstance;
-            superUser1 = new UserData("tomer", "1qW", "fkfkf@wkk.com");
-            superUserController.addSuperUser(superUser1.userName, superUser1.password, superUser1.email);
-            ServiceHost forumService = new ServiceHost(typeof(ForumManager), new Uri("net.tcp://localhost:8081/forumService"));
-            //forumService.AddServiceEndpoint(typeof(IForumManager), new NetTcpBinding(), "ForumManager", new Uri("net.tcp://localhost:8081/forumService"));
-            forumService.Open();
-
-            ServiceHost postService = new ServiceHost(typeof(PostManager), new Uri("net.tcp://localhost:8082/postService"));
-            postService.AddServiceEndpoint(typeof(IPostManager), new NetTcpBinding(), "PostManager");
-            postService.Open();
-
-            ServiceHost subForumService = new ServiceHost(typeof(SubForumManager), new Uri("net.tcp://localhost:8083/subForumService"));
-            subForumService.Open();
-
-            ServiceHost superUserService = new ServiceHost(typeof(SuperUserManager), new Uri("net.tcp://localhost:8084/superUserService"));
-            superUserService.Open();
-
-            ServiceHost userService = new ServiceHost(typeof(UserManager), new Uri("net.tcp://localhost:8085/userService"));
-            userService.Open();
-/////////////////////////////////////
+            this.superUser = new UserData("tomer", "1qW", "fkfkf@wkk.com");
+            superUserController.addSuperUser(this.superUser.email, this.superUser.password, this.superUser.userName);
             this.forumManager = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
             this.userNonMember = new UserData("nonMem", "nonmemPass", "nonmem@gmail.com");
             this.userMember = new UserData("mem", "mempass", "mem@gmail.com");
             this.userAdmin = new UserData("admin", "adminpass", "admin@gmail.com");
             this.userAdmin2 = new UserData("admin2", "adminpass2", "admin2@gmail.com");
+            superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email);
+            superUserController.addUser(userAdmin2.userName, userAdmin2.password, userAdmin2.email);
             List<string> adminList = new List<string>();
             adminList.Add("admin");
             adminList.Add("admin2");
-            this.forum = new ForumData("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", new List<String>(), new List<String>());
-            ISuperUserManager superUser = new SuperUserManagerClient();
-            ISuperUserManager SuperUserManager = new SuperUserManagerClient();
-            //SuperUserManager.initialize(superUser1.userName, superUser1.password, superUser1.email);
-            superUser.createForum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "tomer");
-            Assert.IsTrue(this.forumManager.registerUser("mem", "mempass", "mem@gmail.com", this.forum.forumName));
-            Assert.IsTrue(this.forumManager.registerUser("admin", "adminpass", "admin@gmail.com", this.forum.forumName));
-            Assert.IsTrue(this.forumManager.registerUser("admin2", "adminpass2", "admin2@gmail.com", this.forum.forumName));
-
+            this.forum = new ForumData("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", new List<String>());
+            superUserController.createForum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList, superUser.userName);
+            Assert.IsTrue(this.forumManager.registerUser(userMember.userName, userMember.password, userMember.email, this.forum.forumName));
         }
 
         [TestCleanup]
@@ -117,7 +94,7 @@ namespace Tests
             String adminName = this.userAdmin.userName;
             String admin2Name = this.userAdmin2.userName;
             Assert.IsTrue(this.forumManager.isAdmin(adminName, forumName), "userAdmin should be an admin in the forum");
-            Assert.IsTrue(this.forumManager.dismissAdmin(adminName, superUser1.userName, forumName), "userAdmin is an administrator in the forum. his dismissal from being administrator should be successful");
+            Assert.IsTrue(this.forumManager.dismissAdmin(adminName, superUser.userName, forumName), "userAdmin is an administrator in the forum. his dismissal from being administrator should be successful");
             Assert.IsFalse(this.forumManager.isAdmin(adminName, forumName), "userAdmin should not be a administrator in the forum");
         }
 
@@ -201,7 +178,7 @@ namespace Tests
             String forumName = this.forum.forumName;
             Assert.IsTrue(this.forumManager.isMember(userMemberName, forumName), "userMember should be a member in the forum");
             Assert.IsFalse(this.forumManager.isAdmin(userMemberName, forumName), "userMember should not be an admin in the forum");
-            Assert.IsTrue(this.forumManager.nominateAdmin(userMemberName, this.superUser1.userName, forumName), "the nomination of userMember should be successful");
+            Assert.IsTrue(this.forumManager.nominateAdmin(userMemberName, this.superUser.userName, forumName), "the nomination of userMember should be successful");
             Assert.IsTrue(this.forumManager.isMember(userMemberName, forumName), "userMember should be a member in the forum");
             Assert.IsTrue(this.forumManager.isAdmin(userMemberName, forumName), "userMember should be an admin in the forum after the nomination");
         }

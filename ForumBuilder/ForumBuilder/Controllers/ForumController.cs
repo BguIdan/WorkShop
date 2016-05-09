@@ -252,6 +252,8 @@ namespace ForumBuilder.Controllers
 
         public Boolean sendThreadCreationNotification(String headLine, String content, String publisherName, String forumName, String subForumName)
         {
+            if (loggedInUsersByForum == null)
+                this.loggedInUsersByForum = new Dictionary<String,List<String>>();
             List<String> loggedInUsers = this.loggedInUsersByForum[forumName];
             if (loggedInUsers == null)
                 return false;

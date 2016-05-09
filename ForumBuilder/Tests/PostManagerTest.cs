@@ -6,6 +6,7 @@ using ForumBuilder.Common.ServiceContracts;
 using ForumBuilder.Systems;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.ServiceModel;
+using ForumBuilder.Controllers;
 using PL.notificationHost;
 using PL.proxies;
 using System;
@@ -38,28 +39,28 @@ namespace Tests
           [TestInitialize]
           public void setUp()
           {
-              ForumSystem.initialize("guy", "AG36djs", "hello@dskkl.com");
+              SuperUserController superUserController = SuperUserController.getInstance;
+              this.superUser = new UserData("tomer", "1qW", "fkfkf@wkk.com");
+              superUserController.addSuperUser(this.superUser.email, this.superUser.password, this.superUser.userName);
               this.forumManager = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
-              this.postManager = new PostManagerClient();
-              this.subForumManager = new SubForumManagerClient();
               this.userNonMember = new UserData("nonMem", "nonmemPass", "nonmem@gmail.com");
               this.userMember = new UserData("mem", "mempass", "mem@gmail.com");
-              this.userMod = new UserData("mod", "modpass", "mod@gmail.com");
               this.userAdmin = new UserData("admin", "adminpass", "admin@gmail.com");
+              superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email);
               List<string> adminList = new List<string>();
               adminList.Add(this.userAdmin.userName);
+              this.forum = new ForumData(this.forumName, "descr", "policy", "the first rule is that you do not talk about fight club", new List<String>());
+              superUserController.createForum(this.forum.forumName, "descr", "policy", "the first rule is that you do not talk about fight club", adminList, superUser.userName);
+              Assert.IsTrue(this.forumManager.registerUser(userMember.userName, userMember.password, userMember.email, this.forum.forumName));
+              this.postManager = new PostManagerClient();
+              this.subForumManager = new SubForumManagerClient();
+              this.userMod = new UserData("mod", "modpass", "mod@gmail.com");
               Dictionary<String, DateTime> modList = new Dictionary<String, DateTime>();
               modList.Add(this.userMod.userName, new DateTime(2030, 1, 1));
-              this.forum = new ForumData(this.forumName, "descr", "policy", "the first rule is that you do not talk about fight club", new List<String>(), new List<String>());
-              ISuperUserManager superUserManager = new SuperUserManagerClient();
-              this.superUser = new UserData("tomer", "1qW", "fkfkf@wkk.com");
-              superUserManager.createForum(this.forumName, "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "tomer");
-              Assert.IsTrue(this.forumManager.registerUser("mem", "mempass", "mem@gmail.com", this.forumName));
-              Assert.IsTrue(this.forumManager.registerUser("mod", "modpass", "mod@gmail.com", this.forumName));
-              Assert.IsTrue(this.forumManager.registerUser("admin", "adminpass", "admin@gmail.com", this.forumName));
+              Assert.IsTrue(ForumController.getInstance.registerUser("mod", "modPass1", "mod@gmail.com", this.forumName));
               Assert.IsTrue(this.forumManager.addSubForum(this.forumName, this.subForumName, modList, this.userAdmin.userName));
-              Assert.IsTrue(this.subForumManager.createThread("headLine", "content", this.userMember.userName, this.forumName, this.subForumName));
-              List<PostData> posts = this.postManager.getAllPosts(this.forumName, this.subForumName);
+              Assert.IsTrue(SubForumController.getInstance.createThread("headLine", "content", this.userMember.userName, this.forumName, this.subForumName));
+              List<Post> posts = PostController.getInstance.getAllPosts(this.forumName, this.subForumName);
               Assert.AreEqual(posts.Count, 1);
               this.postId = posts[0].id;
           }
