@@ -38,7 +38,7 @@ namespace Tests
             this.userMember = new User("mem", "mempass", "mem@gmail.com");
             this.userModerator = new User("mod", "modpass", "mod@gmail.com");
             this.userAdmin = new User("admin", "adminpass", "admin@gmail.com");
-            superUser.addUser("admin", "adminpass", "admin@gmail.com");
+            superUser.addUser("admin", "adminpass", "admin@gmail.com", "tomer");
             Dictionary<String, DateTime> modList = new Dictionary<String, DateTime>();
             modList.Add(this.userModerator.userName, new DateTime(2030, 1, 1));
             List<string> adminList = new List<string>();

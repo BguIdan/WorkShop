@@ -41,12 +41,12 @@ namespace Tests
             this.userMember = new UserData("mem", "mempass", "mem@gmail.com");
             this.userAdmin = new UserData("admin", "adminpass", "admin@gmail.com");
             this.userAdmin2 = new UserData("admin2", "adminpass2", "admin2@gmail.com");
-            superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email);
-            superUserController.addUser(userAdmin2.userName, userAdmin2.password, userAdmin2.email);
+            superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName);
+            superUserController.addUser(userAdmin2.userName, userAdmin2.password, userAdmin2.email, superUser.userName);
             List<string> adminList = new List<string>();
             adminList.Add("admin");
             adminList.Add("admin2");
-            this.forum = new ForumData("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", new List<String>());
+            this.forum = new ForumData("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", new List<String>(), new List<String>());
             superUserController.createForum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList, superUser.userName);
             Assert.IsTrue(this.forumManager.registerUser(userMember.userName, userMember.password, userMember.email, this.forum.forumName));
         }

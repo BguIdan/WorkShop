@@ -31,8 +31,8 @@ namespace Tests
             this.userAdmin = new User("admin", "adminpass", "admin@gmail.com");
             this.userAdmin2 = new User("admin2", "adminpass2", "admin2@gmail.com");
             ISuperUserController superUser = SuperUserController.getInstance;
-            superUser.addUser("admin", "adminpass", "admin@gmail.com");
-            superUser.addUser("admin2", "adminpass2", "admin2@gmail.com");
+            superUser.addUser("admin", "adminpass", "admin@gmail.com", "guy");
+            superUser.addUser("admin2", "adminpass2", "admin2@gmail.com", "guy");
             List<string> adminList = new List<string>();
             adminList.Add("admin");
             adminList.Add("admin2");

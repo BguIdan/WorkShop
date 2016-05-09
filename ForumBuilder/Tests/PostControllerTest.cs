@@ -40,7 +40,7 @@ namespace Tests
             this.userMember = new User("mem", "mempass", "mem@gmail.com");
             this.userMod = new User("mod", "modpass", "mod@gmail.com");
             this.userAdmin = new User("admin", "adminpass", "admin@gmail.com");
-            superUserController.addUser("admin", "adminpass", "admin@gmail.com");
+            superUserController.addUser("admin", "adminpass", "admin@gmail.com", "guy");
             List<string> adminList = new List<string>();
             adminList.Add(this.userAdmin.userName);
             Dictionary<String, DateTime> modList = new Dictionary<String, DateTime>();

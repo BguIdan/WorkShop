@@ -30,7 +30,7 @@ namespace Tests
             this.userNonMember = new User("nonMem", "nonmemPass", "nonmem@gmail.com");
             this.userMember = new User("mem", "mempass", "mem@gmail.com");
             this.userAdmin = new User("admin", "adminpass", "admin@gmail.com");
-            superUser.addUser("admin", "adminpass", "admin@gmail.com");
+            superUser.addUser("admin", "adminpass", "admin@gmail.com", "tomer");
             List<string> adminList = new List<string>();
             adminList.Add("admin");
             SuperUserController.getInstance.addSuperUser("fkfkf@wkk.com", "1qW", "tomer");
