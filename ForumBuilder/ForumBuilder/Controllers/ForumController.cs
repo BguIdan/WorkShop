@@ -55,7 +55,7 @@ namespace ForumBuilder.Controllers
                         moderators.TryGetValue(s, out date);
                         if (date > DateTime.Now)
                         {
-                            DB.nominateModerator(s, date, name, forumName);
+                            DB.nominateModerator(s, date, name, forumName,userNameAdmin);
                         }
                         else
                         {
@@ -307,6 +307,26 @@ namespace ForumBuilder.Controllers
         public Forum getForum(String forumName) 
         {
             return DB.getforumByName(forumName);
+        }
+
+        public int getAdminReportNumOfPOst(String AdminName,String forumName)
+        {
+            if(isAdmin(AdminName, forumName))
+                return DB.numOfPostInForum(forumName);
+            return -1;
+        }
+        public List<Post> getAdminReportPostOfmember(String AdminName, String forumName,String memberName)
+        {
+            if (isAdmin(AdminName, forumName))
+                return DB.getMemberPosts(memberName,forumName);
+            return null;
+        }
+        public List<String> getAdminReport(String AdminName, String forumName)
+        {
+            if (isAdmin(AdminName, forumName))
+                return DB.getModertorsReport(forumName);
+            return null;
+            
         }
     }
 }

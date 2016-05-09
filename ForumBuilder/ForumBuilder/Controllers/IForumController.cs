@@ -24,5 +24,8 @@ namespace ForumBuilder.Controllers
         String getForumRules(String forumName);
         Forum getForum(String forumName);
         List<String> getForums();
+        int getAdminReportNumOfPOst(String AdminName, String forumName);
+        List<Post> getAdminReportPostOfmember(String AdminName, String forumName, String memberName);
+        List<String> getAdminReport(String AdminName, String forumName);
     }
 }
