@@ -40,7 +40,7 @@ namespace ForumBuilder.Controllers
             return DB.getPost(postId);
         }
 
-        public Boolean addComment(String headLine, String content, String writerName, int commentedPost/*if new thread, -1*/)
+        public Boolean addComment(String headLine, String content, String writerName, int commentedPost)
         {
             SubForum sf= getSubforumByPost(commentedPost);
             if (getPost(commentedPost) == null)
