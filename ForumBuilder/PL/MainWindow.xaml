@@ -4,17 +4,17 @@
     Title="Forum" Height="400" Width="425" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
     <Grid Margin="0,0,0,0">
         <Image Margin="46,40,46,235" Source="http://www.tudiabetes.org/forum/uploads/default/original/3X/3/5/35d47232d1d9cb26dcd2a226952f98137a9080c8.jpg" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        <TextBlock FontFamily="Cooper Black" Margin="44,174,269,174" TextWrapping="Wrap" Text="Choose forum:" Height="22" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        <TextBlock FontFamily="Cooper Black" Text="Please login:" Margin="44,204,269,144" Height="22" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        <TextBlock FontFamily="Cooper Black" Text="Enter UserName:" Margin="44,234,269,114" Height="22" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        <TextBlock FontFamily="Cooper Black" Text="Enter Password:" Margin="44,262,269,86" Height="22" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        <TextBox Name="ID" Margin="174,229,93,108" TextWrapping="Wrap" Text="" Height="22" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        <Button Name="login" FontFamily="Cooper Black" Content="Login"  Margin="192,307,154,34" Click="LoginPressed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        <PasswordBox Name="Password" Margin="174,258,93,81" Height="22" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        <Button Name="signUP" FontFamily="Cooper Black" Content="Sign Up" Margin="268,307,77,34" Click="SignUpUser" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <TextBlock FontFamily="Cooper Black" Margin="22,174,269,173" TextWrapping="Wrap" Text="Choose forum:" Height="22" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <TextBlock FontFamily="Cooper Black" Text="Please login:" Margin="22,204,269,143" Height="22" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <TextBlock FontFamily="Cooper Black" Text="Enter UserName:" Margin="22,234,269,113" Height="22" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <TextBlock FontFamily="Cooper Black" Text="Enter Password:" Margin="22,262,269,85" Height="22" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <ComboBox x:Name="comboBox" SelectionChanged="comboBox_SelectionChanged" Margin="174,162,93,174" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" DropDownOpened="ComboBox_OnDropDownOpened" DropDownClosed="ComboBox_OnDropDownClosed"/>
         <CheckBox Name="guestCheck" IsChecked="False" Margin="278,206,116,140" Click="guestChoose" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <TextBox Name="ID" Margin="174,229,93,108" TextWrapping="Wrap" Text="" Height="22" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <PasswordBox Name="Password" Margin="174,258,93,81" Height="22" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Button x:Name="superUserViewButton" FontFamily="Cooper Black" Content="Im A Super User" Margin="54,303,246,38" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="superUserViewButton_Click"/>
+        <Button Name="login" FontFamily="Cooper Black" Content="Login"  Margin="176,303,170,38" Click="LoginPressed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Button Name="signUP" FontFamily="Cooper Black" Content="Sign Up" Margin="252,303,93,38" Click="SignUpUser" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <TextBlock Name="guest" FontFamily="Cooper Black" Text="As Guest" Margin="200,200,149,139" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        <Button x:Name="superUserViewButton" FontFamily="Cooper Black" Content="Im A Super User" Margin="70,307,230,34" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="superUserViewButton_Click"/>
     </Grid>
 </Window>

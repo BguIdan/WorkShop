@@ -12,12 +12,6 @@
                     <Separator />
                     <MenuItem Header="Log Out" Name="logOutButton"/>
                 </MenuItem>
-                <MenuItem Header="My User"  >
-                    <MenuItem Header="View My Purchased Coupons" Click="viewCoupons"/>
-                </MenuItem>
-                <MenuItem Header="Notifications"  >
-                    <MenuItem Header="Set Notifications" Click="setNotifications"/>
-                </MenuItem>
             </Menu>
         </DockPanel>
         <Label Content="ForumName:"  Name="forumName" FontFamily="Cooper Black" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top" Width="341" Height="23"/>
@@ -29,6 +23,6 @@
                   AutoGenerateColumns="True" Margin="25,117,26,43" SelectionChanged="ThreadView_SelectionChanged" Loaded="DataGrid_Loaded">
 
         </DataGrid>
-        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="209" Margin="25,117,0,0" VerticalAlignment="Top" Width="341"/>
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="209" Margin="0,117,0,0" VerticalAlignment="Top" Width="392"/>
     </Grid>
 </Window>
