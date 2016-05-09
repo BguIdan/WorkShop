@@ -1,1 +1,3 @@
 *.dll
+/DW.CodedUI.xml
+/Tests.dll.config

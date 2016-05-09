@@ -74,7 +74,7 @@ namespace Tests
         }
 
 
-        [TestMethod]
+/*        [TestMethod]
         public void test_dismissModerator_on_valid_moderator()
         {
             String userModeratorName = this.userModerator.userName;
@@ -82,7 +82,7 @@ namespace Tests
             Assert.IsTrue(this.subForum.dismissModerator(userModeratorName, this.userAdmin.userName, this.subForumName, this.forumName), "the dismissal of user moderator should be successful");
             Assert.IsFalse(this.subForum.isModerator(userModeratorName, this.subForumName, this.forumName), "user moderator should not be a moderator after his dismissal");
         }
-
+        */
         [TestMethod]
         public void test_dismissModerator_on_non_moderator()
         {
@@ -108,7 +108,7 @@ namespace Tests
 
 
 
-        [TestMethod]
+       /* [TestMethod]
         public void test_nominateModerator_on_member()
         {
             String memberName = this.userMember.userName;
@@ -122,7 +122,7 @@ namespace Tests
             String moderatorName = this.userModerator.userName;
             Assert.IsFalse(this.subForum.nominateModerator(moderatorName, this.userAdmin.userName, new DateTime(2030, 1, 1), this.subForumName, this.forumName), "nomination of moderator that already exists should not be successful");
             Assert.IsTrue(this.subForum.isModerator(moderatorName, this.subForumName, this.forumName), "moderator user should still br a moderator");
-        }
+        }*/
 
         [TestMethod]
         public void test_nominateModerator_on_null()
@@ -137,7 +137,7 @@ namespace Tests
         }
 
 
-
+/*
         [TestMethod]
         public void test_createThread_mem_valid_input()
         {
@@ -152,7 +152,6 @@ namespace Tests
             Assert.AreEqual(post.writerUserName, this.userMember.userName);
         }
 
-
         [TestMethod]
         public void test_createThread_admin_valid_input()
         {
@@ -166,7 +165,8 @@ namespace Tests
             Assert.AreEqual(post.content, content);
             Assert.AreEqual(post.writerUserName, this.userAdmin.userName);
         }
-
+*/
+/*
         [TestMethod]
         public void test_createThread_mem_empty_headLine()
         {
@@ -181,7 +181,6 @@ namespace Tests
             Assert.AreEqual(post.writerUserName, this.userMember.userName);
         }
 
-
         [TestMethod]
         public void test_createThread_admin_empty_headLine()
         {
@@ -195,7 +194,8 @@ namespace Tests
             Assert.AreEqual(post.content, content);
             Assert.AreEqual(post.writerUserName, this.userAdmin.userName);
         }
-
+*/
+/*
         [TestMethod]
         public void test_createThread_mem_empty_content()
         {
@@ -210,7 +210,6 @@ namespace Tests
             Assert.AreEqual(post.writerUserName, this.userMember.userName);
         }
 
-
         [TestMethod]
         public void test_createThread_admin_empty_content()
         {
@@ -224,7 +223,8 @@ namespace Tests
             Assert.AreEqual(post.content, content);
             Assert.AreEqual(post.writerUserName, this.userAdmin.userName);
         }
-
+*/
+/*
         [TestMethod]
         public void test_createThread_mem_empty_inputs()
         {
@@ -235,7 +235,6 @@ namespace Tests
             Assert.AreEqual(postList.Count, 0);
         }
 
-
         [TestMethod]
         public void test_createThread_admin_empty_inputs()
         {
@@ -245,7 +244,8 @@ namespace Tests
             List<PostData> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(postList.Count, 0);
         }
-
+*/
+/*
         [TestMethod]
         public void test_createThread_mem_null_inputs()
         {
@@ -256,7 +256,6 @@ namespace Tests
             Assert.AreEqual(postList.Count, 0);
         }
 
-
         [TestMethod]
         public void test_createThread_admin_null_inputs()
         {
@@ -266,7 +265,8 @@ namespace Tests
             List<PostData> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(postList.Count, 0);
         }
-
+*/
+/*
         [TestMethod]
         public void test_createThread_invalid_userName()
         {
@@ -276,7 +276,8 @@ namespace Tests
             List<PostData> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(postList.Count, 0);
         }
-
+*/
+/*
         [TestMethod]
         public void test_createThread_invalid_forumName()
         {
@@ -296,7 +297,6 @@ namespace Tests
             List<PostData> postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(postList.Count, 0);
         }
-
         [TestMethod]
         public void test_createThread_nonMember()
         {
@@ -380,8 +380,9 @@ namespace Tests
             postList = this.postManager.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(postList.Count, 0);
         }
+  */
 
-        [TestMethod]
+    /*    [TestMethod]
         public void test_deleteThread_invalid_id()
         {
             String headLine = "head";
@@ -443,7 +444,7 @@ namespace Tests
             Assert.AreEqual(post.content, content);
             Assert.AreEqual(post.writerUserName, this.userMember.userName);
         }
-
+*/
 
         private bool areListsEqual<T>(List<T> list1, List<T> list2)
         {

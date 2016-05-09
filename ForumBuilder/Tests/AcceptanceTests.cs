@@ -9,6 +9,7 @@ using PL.notificationHost;
 using PL.proxies;
 using ForumBuilder.Common.DataContracts;
 using ForumBuilder.Controllers;
+using Service;
 
 namespace Tests
 {
@@ -24,31 +25,32 @@ namespace Tests
         {
             DBClass db = DBClass.getInstance;
             db.clear();
-            ISuperUserManager superUser = new SuperUserManagerClient();
-            superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
-            SuperUserController.getInstance.addSuperUser("hello@dskkl.com", "AG36djs", "guy");
-            IForumManager forum = new ForumManagerClient(new InstanceContext(new ClientNotificationHost())); 
-            String forumName = "forum";
-            String adminName = "admin";
+            SuperUserController superUserController = SuperUserController.getInstance;
+            UserData superUser = new UserData("tomer", "1qW", "fkfkf@wkk.com");
+            superUserController.addSuperUser(superUser.email, superUser.password, superUser.userName);
+            IForumManager forum = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
+            ForumData forumData = new ForumData("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", new List<String>(), new List<String>());
+            UserData userAdmin = new UserData("admin", "adminpass", "admin@gmail.com");
+            superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName);
             List<string> adminList = new List<string>();
-            adminList.Add(adminName);
-            superUser.createForum(forumName, "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "guy");
-            Assert.IsTrue(forum.registerUser(adminName, "adminpass", "admin@gmail.com", forumName));
+            adminList.Add(userAdmin.userName);
+            superUserController.createForum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList, superUser.userName); 
+            String forumName = forumData.forumName;
+            String adminName = userAdmin.userName;
+
             Assert.IsTrue(forum.registerUser("mem", "mempass", "mem@gmail.com", forumName));
             Assert.IsTrue(forum.registerUser("mem2", "mempass", "mem@gmail.com", forumName));
             Assert.IsTrue(forum.isMember("mem2", forumName), "userMember should be a member");
             Assert.IsTrue(forum.banMember("mem2", adminName, forumName), "ban of userMember should be successful");
             Assert.IsFalse(forum.isMember("mem2", forumName), "userMember should not be a member when banned");
-            Assert.IsFalse(forum.registerUser("mem2", "mempass", "mem@gmail.com", forumName), "userMember should not be able to become a member since he is banned");
             Assert.IsFalse(forum.isMember("mem2", forumName), "userMember should not be a member when banned");
             Assert.IsFalse(forum.isMember("nonMem", forumName), "userNonMember should not be a member");
             Assert.IsTrue(forum.registerUser("nonMem", "pass", "email", forumName), "registration of a non member should be successful");
             Assert.IsTrue(forum.isMember("nonMem", forumName), "after registration the user should become a member");
             Assert.IsTrue(forum.addSubForum(forumName, "sub", new Dictionary<String, DateTime>(), adminName));
             Assert.IsTrue(forum.isAdmin(adminName, forumName), "userAdmin should be an admin in the forum");
-            Assert.IsTrue(forum.dismissAdmin(adminName, "guy", forumName), "userAdmin is an administrator in the forum. his dismissal from being administrator should be successful");
+            Assert.IsTrue(forum.dismissAdmin(adminName, "tomer", forumName), "userAdmin is an administrator in the forum. his dismissal from being administrator should be successful");
             Assert.IsFalse(forum.isAdmin(adminName, forumName), "userAdmin should not be a administrator in the forum");
-            db.clear();
         }
 
         /*************************end use case 2******************************/
@@ -59,31 +61,32 @@ namespace Tests
         [TestMethod]
         public void AT_test_changeForumPreferences_valid_policy()
         {
+            
             DBClass db = DBClass.getInstance;
             db.clear();
-            ISuperUserManager superUser = new SuperUserManagerClient();
-            superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
-            SuperUserController.getInstance.addSuperUser("hello@dskkl.com", "AG36djs", "guy");
-            IForumManager forum = new ForumManagerClient(new InstanceContext(new ClientNotificationHost())); 
-            String forumName = "forum";
-            String adminName = "admin";
+            SuperUserController superUserController = SuperUserController.getInstance;
+            UserData superUser = new UserData("tomer", "1qW", "fkfkf@wkk.com");
+            superUserController.addSuperUser(superUser.email, superUser.password, superUser.userName);
+            IForumManager forum = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
+            ForumData forumData = new ForumData("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", new List<String>(), new List<String>());
+            UserData userAdmin = new UserData("admin", "adminpass", "admin@gmail.com");
+            superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName);
             List<string> adminList = new List<string>();
-            adminList.Add(adminName);
-            superUser.createForum(forumName, "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "guy");
-            Assert.IsTrue(forum.registerUser(adminName, "adminpass", "admin@gmail.com", forumName));
-            String oldPolicy = forum.getForumPolicy(forumName);
+            adminList.Add(userAdmin.userName);
+            superUserController.createForum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList, superUser.userName);
+            String oldPolicy = forum.getForumPolicy(forumData.forumName);
             String newPolicy = "new policy for test";
-            String oldDescription = forum.getForumDescription(forumName);
+            String oldDescription = forum.getForumDescription(forumData.forumName);
             String newDescr = "new description";
-            String oldRules = forum.getForumRules(forumName);
+            String oldRules = forum.getForumRules(forumData.forumName);
             String newRules = "there are no rules";
             Assert.AreNotEqual(oldPolicy, newPolicy, false, "the new policy should be different from the old one");
             Assert.AreNotEqual(oldDescription, newDescr, false, "the new description should be different from the old one");
             Assert.AreNotEqual(oldRules, newRules, false, "the new rules should be different from the old one");
-            Assert.IsTrue(forum.setForumPreferences(forumName, newDescr, newPolicy, newRules, adminName), "policy change should be successful");
-            Assert.AreEqual(forum.getForumPolicy(forumName), newPolicy, false, "the new policy should be return after the change");
-            Assert.AreEqual(forum.getForumDescription(forumName), newDescr, false, "the new description should be return after the change");
-            Assert.AreEqual(forum.getForumRules(forumName), newRules, false, "the new rules should be return after the change");
+            Assert.IsTrue(forum.setForumPreferences(forumData.forumName, newDescr, newPolicy, newRules, userAdmin.userName), "policy change should be successful");
+            Assert.AreEqual(forum.getForumPolicy(forumData.forumName), newPolicy, false, "the new policy should be return after the change");
+            Assert.AreEqual(forum.getForumDescription(forumData.forumName), newDescr, false, "the new description should be return after the change");
+            Assert.AreEqual(forum.getForumRules(forumData.forumName), newRules, false, "the new rules should be return after the change");
             db.clear();
         }
 
@@ -92,23 +95,23 @@ namespace Tests
         {
             DBClass db = DBClass.getInstance;
             db.clear();
-            ISuperUserManager superUser = new SuperUserManagerClient();
-            superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
-            SuperUserController.getInstance.addSuperUser("hello@dskkl.com", "AG36djs", "guy");
-            IForumManager forum = new ForumManagerClient(new InstanceContext(new ClientNotificationHost())); 
-            String forumName = "forum";
-            String adminName = "admin";
-            List<String> adminList = new List<String>();
-            adminList.Add(adminName);
-            superUser.createForum(forumName, "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "guy");
-            Assert.IsTrue(forum.registerUser(adminName, "adminpass", "admin@gmail.com", forumName));
-            String oldPolicy = forum.getForumPolicy(forumName);
-            String oldDescr = forum.getForumDescription(forumName);
-            String oldRules = forum.getForumRules(forumName);
-            Assert.IsFalse(forum.setForumPreferences(forumName, null, null, null, adminName), "policy change with null should not be successful");
-            Assert.AreEqual(forum.getForumPolicy(forumName), oldPolicy, false, "after an unsuccessful change, the old policy should be returned");
-            Assert.AreEqual(forum.getForumDescription(forumName), oldDescr, false, "after an unsuccessful change, the old description should be returned");
-            Assert.AreEqual(forum.getForumRules(forumName), oldRules, false, "after an unsuccessful change, the old rules should be returned");
+            SuperUserController superUserController = SuperUserController.getInstance;
+            UserData superUser = new UserData("tomer", "1qW", "fkfkf@wkk.com");
+            superUserController.addSuperUser(superUser.email, superUser.password, superUser.userName);
+            IForumManager forum = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
+            ForumData forumData = new ForumData("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", new List<String>(), new List<String>());
+            UserData userAdmin = new UserData("admin", "adminpass", "admin@gmail.com");
+            superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName);
+            List<string> adminList = new List<string>();
+            adminList.Add(userAdmin.userName);
+            superUserController.createForum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList, superUser.userName);
+            String oldPolicy = forum.getForumPolicy(forumData.forumName);
+            String oldDescr = forum.getForumDescription(forumData.forumName);
+            String oldRules = forum.getForumRules(forumData.forumName);
+            Assert.IsFalse(forum.setForumPreferences(forumData.forumName, null, null, null, forumData.forumName), "policy change with null should not be successful");
+            Assert.AreEqual(forum.getForumPolicy(forumData.forumName), oldPolicy, false, "after an unsuccessful change, the old policy should be returned");
+            Assert.AreEqual(forum.getForumDescription(forumData.forumName), oldDescr, false, "after an unsuccessful change, the old description should be returned");
+            Assert.AreEqual(forum.getForumRules(forumData.forumName), oldRules, false, "after an unsuccessful change, the old rules should be returned");
             db.clear();
 
         }
@@ -119,23 +122,23 @@ namespace Tests
         {
             DBClass db = DBClass.getInstance;
             db.clear();
-            ISuperUserManager superUser = new SuperUserManagerClient();
-            superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
-            SuperUserController.getInstance.addSuperUser("hello@dskkl.com", "AG36djs", "guy");
+            SuperUserController superUserController = SuperUserController.getInstance;
+            UserData superUser = new UserData("tomer", "1qW", "fkfkf@wkk.com");
+            superUserController.addSuperUser(superUser.email, superUser.password, superUser.userName);
             IForumManager forum = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
-            String forumName = "forum";
-            String adminName = "admin";
-            List<String> adminList = new List<String>();
-            adminList.Add(adminName);
-            superUser.createForum(forumName, "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "guy");
-            Assert.IsTrue(forum.registerUser(adminName, "adminpass", "admin@gmail.com", forumName));
-            String oldPolicy = forum.getForumPolicy(forumName);
-            String oldDescr = forum.getForumDescription(forumName);
-            String oldRules = forum.getForumRules(forumName);
-            Assert.IsTrue(forum.setForumPreferences(forumName, "", "", "", adminName), "policy change with null should not be successful");
-            Assert.AreEqual(forum.getForumPolicy(forumName), "", false, "after an unsuccessful change, the old policy should be returned");
-            Assert.AreEqual(forum.getForumDescription(forumName), "", false, "after an unsuccessful change, the old description should be returned");
-            Assert.AreEqual(forum.getForumRules(forumName), "", false, "after an unsuccessful change, the old rules should be returned");
+            ForumData forumData = new ForumData("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", new List<String>(), new List<String>());
+            UserData userAdmin = new UserData("admin", "adminpass", "admin@gmail.com");
+            superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName);
+            List<string> adminList = new List<string>();
+            adminList.Add(userAdmin.userName);
+            superUserController.createForum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList, superUser.userName);
+            String oldPolicy = forum.getForumPolicy(forumData.forumName);
+            String oldDescr = forum.getForumDescription(forumData.forumName);
+            String oldRules = forum.getForumRules(forumData.forumName);
+            Assert.IsTrue(forum.setForumPreferences(forumData.forumName, "", "", "", userAdmin.userName), "policy change with null should not be successful");
+            Assert.AreEqual(forum.getForumPolicy(forumData.forumName), "", false, "after an unsuccessful change, the old policy should be returned");
+            Assert.AreEqual(forum.getForumDescription(forumData.forumName), "", false, "after an unsuccessful change, the old description should be returned");
+            Assert.AreEqual(forum.getForumRules(forumData.forumName), "", false, "after an unsuccessful change, the old rules should be returned");
             db.clear();
         }
 
@@ -146,47 +149,47 @@ namespace Tests
         [TestMethod]
         public void AT_Test_register_to_forum_withWrongInputs()
         {
-            IForumManager forumMan = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
-            ISuperUserManager superUserMan = new SuperUserManagerClient();
-            superUserMan.initialize("guy", "AG36djs", "hello@dskkl.com");
-            SuperUserController.getInstance.addSuperUser("hello@dskkl.com", "AG36djs", "guy");
-            List<String> adminList = new List<String>();
-            adminList.Add("admin1");
-            adminList.Add("admin2");
-
-            superUserMan.createForum("forumName", "descrption", "forumPolicy", "forumRules", adminList, "guy");
-            Assert.IsTrue(forumMan.registerUser("admin1", "passWord1", "jksdjk@xc.com", "forumName"));
-            Assert.IsTrue(forumMan.registerUser("admin2", "passWord2", "jkkkk@xc.com", "forumName"));
-            Assert.IsFalse(forumMan.registerUser("admin2", "passWord2", "jkkkk@xc.com", "forumName"));
-            Assert.IsTrue(forumMan.registerUser("mem1", "passWor1", "fff@xc.com", "forumName"));
-            Assert.IsTrue(forumMan.registerUser("mem2", "passWor1", "fff@xc.com", "forumName"));
-            Assert.IsFalse(forumMan.registerUser("", "passWor1", "fff@xc.com", "forumName"));
-            Assert.IsFalse(forumMan.registerUser("mem2", "", "fff@xc.com", "forumName"));
-            Assert.IsFalse(forumMan.registerUser("mem2", "passWor1", "", "forumName"));
-            Assert.IsFalse(forumMan.registerUser("mem2", "passWor1", "fff@xc.com", "forumName"));
             DBClass db = DBClass.getInstance;
             db.clear();
+            SuperUserController superUserController = SuperUserController.getInstance;
+            UserData superUser = new UserData("tomer", "1qW", "fkfkf@wkk.com");
+            superUserController.addSuperUser(superUser.email, superUser.password, superUser.userName);
+            IForumManager forumMan = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
+            ForumData forumData = new ForumData("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", new List<String>(), new List<String>());
+            UserData userAdmin = new UserData("admin", "adminpass", "admin@gmail.com");
+            superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName);
+            List<string> adminList = new List<string>();
+            adminList.Add(userAdmin.userName);
+            superUserController.createForum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList, superUser.userName);
+            Assert.IsFalse(forumMan.registerUser("admin", "passWord2", "jkkkk@xc.com", forumData.forumName));
+            Assert.IsTrue(forumMan.registerUser("mem1", "passWor1", "fff@xc.com", forumData.forumName));
+            Assert.IsTrue(forumMan.registerUser("mem2", "passWor1", "fff@xc.com", forumData.forumName));
+            Assert.IsFalse(forumMan.registerUser("", "passWor1", "fff@xc.com", forumData.forumName));
+            Assert.IsFalse(forumMan.registerUser("mem2", "", "fff@xc.com", forumData.forumName));
+            Assert.IsFalse(forumMan.registerUser("mem2", "passWor1", "", forumData.forumName));
+            Assert.IsFalse(forumMan.registerUser("mem2", "passWor1", "fff@xc.com", forumData.forumName));
         }
 
         [TestMethod]
         public void AT_Test_register_to_forum_Functionality()
         {
+            DBClass db = DBClass.getInstance;
+            db.clear();
+            SuperUserController superUserController = SuperUserController.getInstance;
+            UserData superUser = new UserData("tomer", "1qW", "fkfkf@wkk.com");
+            superUserController.addSuperUser(superUser.email, superUser.password, superUser.userName);
             IForumManager forumMan = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
-            ISuperUserManager superUserMan = new SuperUserManagerClient();
+            ForumData forumData = new ForumData("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", new List<String>(), new List<String>());
+            UserData userAdmin = new UserData("admin1", "adminpass", "admin@gmail.com");
+            superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName);
+            List<string> adminList = new List<string>();
+            adminList.Add(userAdmin.userName);
+            superUserController.createForum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList, superUser.userName);
             IUserManager userMan = new UserManagerClient();
-
-            superUserMan.initialize("guy", "AG36djs", "hello@dskkl.com");
-            List<String> adminList = new List<String>();
-            adminList.Add("admin1");
-            adminList.Add("admin2");
-
-            superUserMan.createForum("forumName", "descrption", "forumPolicy", "forumRules", adminList, "guy");
-
-            Assert.IsTrue(forumMan.registerUser("admin1", "passWord1", "jksdjk@xc.com", "forumName"));
             Assert.IsFalse(userMan.sendPrivateMessage("admin1", "admin2", "hello"));
             Assert.IsFalse(userMan.addFriend("admin1", "admin2"));
             Assert.IsFalse(userMan.addFriend("admin2", "admin1"));
-            Assert.IsTrue(forumMan.registerUser("admin2", "passWord2", "jkkkk@xc.com", "forumName"));
+            Assert.IsTrue(forumMan.registerUser("admin2", "passWord2", "jkkkk@xc.com", forumData.forumName));
             Assert.IsTrue(userMan.sendPrivateMessage("admin1", "admin2", "its me"));
             Assert.IsTrue(userMan.addFriend("admin1", "admin2"));
             Assert.IsTrue(userMan.addFriend("admin2", "admin1"));
@@ -194,12 +197,10 @@ namespace Tests
             Assert.IsFalse(userMan.addFriend("admin1", "mem1"));
             Assert.IsFalse(userMan.addFriend("mem1", "admin1"));
             Assert.IsFalse(userMan.sendPrivateMessage("mem1", "admin1", "i was wonder"));
-            Assert.IsTrue(forumMan.registerUser("mem1", "passWor1", "fff@xc.com", "forumName"));
+            Assert.IsTrue(forumMan.registerUser("mem1", "passWor1", "fff@xc.com", forumData.forumName));
             Assert.IsTrue(userMan.addFriend("admin1", "mem1"));
             Assert.IsTrue(userMan.addFriend("mem1", "admin1"));
             Assert.IsTrue(userMan.sendPrivateMessage("mem1", "admin1", "when the test gona be done"));
-            DBClass db = DBClass.getInstance;
-            db.clear();
         }
 
         /*************************end use case 4******************************/
@@ -209,66 +210,65 @@ namespace Tests
         [TestMethod]
         public void AT_test_create_subForum_and_nominate_moderator()
         {
-            ISuperUserManager superUser = new SuperUserManagerClient();
-            superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
-            IForumManager forum = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
-            ISubForumManager subForum = new SubForumManagerClient();
-            String forumName = "forum";
-            String adminName = "admin";
-            String subForumName = "subforum";
-            String ModeratorName = "mod";
-            List<string> adminList = new List<string>();
-            adminList.Add(adminName);
-            Dictionary<String, DateTime> modList = new Dictionary<String, DateTime>();
-            modList.Add(ModeratorName, new DateTime(2030, 1, 1));
-            superUser.createForum(forumName, "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "guy");
-            
-            Assert.IsTrue(forum.addSubForum(forumName, subForumName, modList, adminName));
-
-            Assert.IsTrue(forum.registerUser(adminName, "adminpass", "admin@gmail.com", forumName));
-            Assert.IsTrue(forum.registerUser("mem", "mempass", "mem@gmail.com", forumName));
-
-            Assert.IsTrue(subForum.nominateModerator("mem", adminName, new DateTime(2030, 1, 1), subForumName, forumName), "nomination of member user should be successful");
-            Assert.IsTrue(subForum.isModerator("mem", subForumName, forumName), "member should be moderator after his successful numonation");
-
             DBClass db = DBClass.getInstance;
             db.clear();
+            SuperUserController superUserController = SuperUserController.getInstance;
+            UserData superUser = new UserData("tomer", "1qW", "fkfkf@wkk.com");
+            superUserController.addSuperUser(superUser.email, superUser.password, superUser.userName);
+            IForumManager forum = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
+            ForumData forumData = new ForumData("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", new List<String>(), new List<String>());
+            UserData userAdmin = new UserData("admin1", "adminpass", "admin@gmail.com");
+            superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName);
+            List<string> adminList = new List<string>();
+            adminList.Add(userAdmin.userName);
+            superUserController.createForum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList, superUser.userName);
+            String subForumName = "sub";
+            Assert.IsTrue(forum.addSubForum(forumData.forumName, subForumName, new Dictionary<String, DateTime>(), userAdmin.userName));
+
+            Assert.IsTrue(forum.registerUser("mem", "mempasS1", "mem@gmail.com", forumData.forumName));
+
+            ISubForumManager subForum = new SubForumManagerClient();
+            Assert.IsTrue(subForum.nominateModerator("mem", userAdmin.userName, new DateTime(2030, 1, 1), subForumName, forumData.forumName), "nomination of member user should be successful");
+            Assert.IsTrue(SubForumController.getInstance.isModerator("mem", subForumName, forumData.forumName), "member should be moderator after his successful numonation");
         }
 
         /*************************end use case 5+9******************************/
 
         /*************************use case 6******************************/
 
-        [TestMethod]
+/*        [TestMethod]
         public void AT_test_add_thread_and_post()
         {
-            ISuperUserManager superUser = new SuperUserManagerClient();
+            DBClass db = DBClass.getInstance;
+            db.clear();
+            SuperUserController superUserController = SuperUserController.getInstance;
+            UserData superUser = new UserData("tomer", "1qW", "fkfkf@wkk.com");
+            superUserController.addSuperUser(superUser.email, superUser.password, superUser.userName);
             IForumManager forum = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
+            ForumData forumData = new ForumData("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", new List<String>(), new List<String>());
+            UserData userAdmin = new UserData("admin1", "adminpass", "admin@gmail.com");
+            superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName);
+            List<string> adminList = new List<string>();
+            adminList.Add(userAdmin.userName);
+            superUserController.createForum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList, superUser.userName);
+            String subForumName = "sub";
+
+            String forumName = forumData.forumName;
+            String adminName = userAdmin.userName;
+            String userMemberName = "mem";
+            String moderatorName = "mod";
             ISubForumManager subForum = new SubForumManagerClient();
             IPostManager post = new PostManagerClient();
-            superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
-            String forumName = "forum";
-            String adminName = "admin";
-            String subForumName = "subforum";
-            String moderatorName = "mod";
-            String userMemberName = "mem";
-            List<string> adminList = new List<string>();
-            adminList.Add(adminName);
-            Dictionary<String, DateTime> modList = new Dictionary<String, DateTime>();
-            modList.Add(moderatorName, new DateTime(2030, 1, 1));
-            superUser.createForum(forumName, "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "guy");
 
+            Assert.IsTrue(forum.addSubForum(forumName, subForumName, new Dictionary<String, DateTime>(), adminName));
 
-            Assert.IsTrue(forum.addSubForum(forumName, subForumName, modList, adminName));
-
-            Assert.IsTrue(forum.registerUser(adminName, "adminpass", "admin@gmail.com", forumName));
             Assert.IsTrue(forum.registerUser(userMemberName, "mempass", "mem@gmail.com", forumName));
             Assert.IsTrue(forum.registerUser(moderatorName, "modpass", "mod@gmail.com", forumName));
 
-            Assert.IsTrue(subForum.nominateModerator(moderatorName, adminName, new DateTime(2030, 1, 1), subForumName, forumName), "nomination of member user should be successful");
-            Assert.IsTrue(subForum.isModerator(moderatorName, subForumName, forumName), "member should be moderator after his successful numonation");
+            Assert.IsTrue(SubForumManager.getInstance.nominateModerator(moderatorName, adminName, new DateTime(2030, 1, 1), subForumName, forumName), "nomination of member user should be successful");
+//            Assert.IsTrue(SubForumManager.getInstance.isModerator(moderatorName, subForumName, forumName), "member should be moderator after his successful numonation");
 
-            Assert.IsTrue(forum.addSubForum(forumName, subForumName, modList, adminName));
+            Assert.IsTrue(forum.addSubForum(forumName, subForumName, new Dictionary<String, DateTime>(), adminName));
             Assert.IsTrue(subForum.createThread("headLine", "content", userMemberName, forumName, subForumName));
             List<PostData> posts = post.getAllPosts(forumName, subForumName);
             int postId = posts[0].id;
@@ -280,14 +280,8 @@ namespace Tests
 
             Assert.IsTrue(post.addPost("headLine3", "content3", userMemberName, postId));
             Assert.AreEqual(posts.Count, 3);
-
-            DBClass db = DBClass.getInstance;
-            db.clear();
-
-
-        
         }
-
+        */
         /*************************end use case 6******************************/
 
 
