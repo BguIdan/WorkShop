@@ -71,8 +71,6 @@ namespace PL
         
         private void SignUpUser(object sender, RoutedEventArgs e)
         {
-            // TODO: know the admin and user class and create new one in the data base
-            // SignUpWindow suw = new SignUpWindow(itsUserBL, iDAL, itsAdminBL);
             SignUpWindow suw = null;
             try
             {
@@ -82,10 +80,10 @@ namespace PL
             {
                 MessageBox.Show("please choose a forum to register", "error");
             }
-            this.Close();
             try
             {
-                suw.ShowDialog();
+                suw.Show();
+                this.Close();
             }
             catch(NullReferenceException ec)
             {
