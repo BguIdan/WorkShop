@@ -1172,6 +1172,31 @@ namespace Database
                 return null;
             }
         }
+        public List<String> getSuperUserReportOfMembers()
+        {
+            List<String> users = new List<String>();
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "SELECT  (users.email,users.userName,members.forumName) FROM  users,members where users.username=members.userName" +
+                    " ORDER BY users.email";
+                OleDbDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    String user = "email: " + reader.GetString(0) + " user Name: " + reader.GetString(1) + " in forum: " + reader.GetString(2);
+                    users.Add(user);
+                }
+                closeConnectionDB();
+                return users;
+            }
+            catch
+            {
+                closeConnectionDB();
+                return null;
+            }
+        }
         public void clear()
         {
             try
