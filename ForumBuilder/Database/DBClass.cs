@@ -97,7 +97,7 @@ namespace Database
                     {
                         singleton = new DBClass();
                         singleton.initializeDB();
-                        //maxNotAvailable = Math.Max(singleton.getMaxIntOfPost(), -1);
+                        maxNotAvailable = Math.Max(singleton.getMaxIntOfPost(), -1);
                         singleton.forums = singleton.getAllForums();
                     }
                     return singleton;
