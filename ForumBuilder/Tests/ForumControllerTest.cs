@@ -18,6 +18,7 @@ namespace Tests
         private User userAdmin;
         private User userAdmin2;
         private User superUser1;
+        private User superUser;
 
         [TestInitialize]
         public void setUp()
@@ -25,6 +26,8 @@ namespace Tests
             DBClass db = DBClass.getInstance;
             db.clear();
             ForumSystem.initialize("guy", "AG36djs", "hello@dskkl.com");
+            this.superUser = new User("guy", "AG36djs", "hello@dskkl.com");
+            SuperUserController.getInstance.addSuperUser(this.superUser.email, this.superUser.password, this.superUser.userName);
             this.forumController = ForumController.getInstance;
             this.userNonMember = new User("nonMem", "nonmemPass", "nonmem@gmail.com");
             this.userMember = new User("mem", "mempass", "mem@gmail.com");

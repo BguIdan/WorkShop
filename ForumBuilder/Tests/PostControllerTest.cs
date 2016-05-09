@@ -32,10 +32,12 @@ namespace Tests
             DBClass db = DBClass.getInstance;
             db.clear();
             ForumSystem.initialize("guy", "AG36djs", "hello@dskkl.com");
+            ISuperUserController superUserController = SuperUserController.getInstance;
+            this.superUser = new User("guy", "AG36djs", "hello@dskkl.com");
+            SuperUserController.getInstance.addSuperUser(this.superUser.email, this.superUser.password, this.superUser.userName);
             this.forumController = ForumController.getInstance;
             this.postController = PostController.getInstance;
             this.subForumController = SubForumController.getInstance;
-            ISuperUserController superUserController = SuperUserController.getInstance;
             this.userNonMember = new User("nonMem", "nonmemPass", "nonmem@gmail.com");
             this.userMember = new User("mem", "mempass", "mem@gmail.com");
             this.userMod = new User("mod", "modpass", "mod@gmail.com");
