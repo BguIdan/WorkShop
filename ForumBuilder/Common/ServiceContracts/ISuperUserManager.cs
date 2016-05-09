@@ -24,5 +24,8 @@ namespace ForumBuilder.Common.ServiceContracts
 
         [OperationContract]
         int SuperUserReportNumOfForums(string superUserName);
+
+        [OperationContract]
+        List<String> getSuperUserReportOfMembers(string superUserName);
     }
 }

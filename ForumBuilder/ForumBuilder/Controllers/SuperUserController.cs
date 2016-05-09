@@ -142,5 +142,12 @@ namespace ForumBuilder.Controllers
             else
                 return -1;
         }
+        public List<String> getSuperUserReportOfMembers(string superUserName)
+        {
+            if (isSuperUser(superUserName))
+                return DB.getSuperUserReportOfMembers();
+            else
+                return null;
+        }
     }
 }

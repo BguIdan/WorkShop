@@ -50,7 +50,7 @@ namespace Tests
               adminList.Add(this.userAdmin.userName);
               Dictionary<String, DateTime> modList = new Dictionary<String, DateTime>();
               modList.Add(this.userMod.userName, new DateTime(2030, 1, 1));
-              this.forum = new ForumData(this.forumName, "descr", "policy", "the first rule is that you do not talk about fight club", new List<String>());
+              this.forum = new ForumData(this.forumName, "descr", "policy", "the first rule is that you do not talk about fight club", new List<String>(), new List<String>());
               ISuperUserManager superUserManager = new SuperUserManagerClient();
               this.superUser = new UserData("tomer", "1qW", "fkfkf@wkk.com");
               superUserManager.createForum(this.forumName, "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "tomer");

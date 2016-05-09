@@ -10,5 +10,6 @@ namespace ForumBuilder.Controllers
         Boolean login(String newUser, String forumName, string email);
         Boolean isSuperUser(string userName);
         int SuperUserReportNumOfForums(string superUserName);
+        List<String> getSuperUserReportOfMembers(string superUserName);
     }
 }

@@ -45,7 +45,7 @@ namespace Tests
             modList.Add(this.userModerator.userName, new DateTime(2030, 1, 1));
             List<string> adminList = new List<string>();
             adminList.Add("admin");
-            this.forum = new ForumData(this.forumName, "descr", "policy", "the first rule is that you do not talk about fight club", new List<String>());
+            this.forum = new ForumData(this.forumName, "descr", "policy", "the first rule is that you do not talk about fight club", new List<String>(), new List<String>());
             ISuperUserManager superUser = new SuperUserManagerClient();
             superUser1 = DBClass.getInstance.getSuperUser("tomer");
             superUser.createForum("1", "1", "1", "1", null, "tomer");
