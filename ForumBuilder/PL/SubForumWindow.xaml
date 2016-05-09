@@ -27,11 +27,7 @@
             	RenderTransformOrigin="0.78,0.757"/>
         <DataGrid x:Name="threadView" 
                   AutoGenerateColumns="True" Margin="25,117,26,43" SelectionChanged="ThreadView_SelectionChanged" Loaded="DataGrid_Loaded">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Title" Width="*"/>
-                <DataGridTextColumn Header="Writer" Width="*"/>
-                <DataGridTextColumn Header="Time Published" Width="*"/>
-            </DataGrid.Columns>
+
         </DataGrid>
         <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="209" Margin="25,117,0,0" VerticalAlignment="Top" Width="341"/>
     </Grid>

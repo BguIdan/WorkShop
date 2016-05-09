@@ -24,6 +24,7 @@ namespace PL
         private Window _prevWindow;
         private int _parentID;
         private PostManagerClient _pm;
+        private SubForumManagerClient _sf;
         private string _userName;
         private string _forumName;
         private string _subForumName;
@@ -32,6 +33,7 @@ namespace PL
         {
             InitializeComponent();
             _forumName = forumName;
+            _sf = new SubForumManagerClient();
             _subForumName = subForumName;
             _prevWindow = prevWindow;
             _parentID = parrentId;
@@ -49,19 +51,36 @@ namespace PL
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            if (_pm.addPost(title.Text, content.Text, _userName, _parentID))
+            if (_parentID != -1)
             {
-                MessageBox.Show("post was added succesfully");
+                if (_pm.addPost(title.Text, content.Text, _userName, _parentID))
+                {
+                    MessageBox.Show("post was added succesfully");
+                    _prevWindow.Close();
+                    SubForumWindow newWin = new SubForumWindow(_forumName, _subForumName, _userName);
+                    this.Close();
+                    newWin.Show();
+                }
+                else
+                {
+                    MessageBox.Show("could not add post");
+                }
             }
             else
             {
-                MessageBox.Show("could not add post");
+                if (_sf.createThread(title.Text, content.Text, _userName, _forumName, _subForumName))
+                {
+                    MessageBox.Show("thread was added succesfully");
+                    _prevWindow.Close();
+                    SubForumWindow newWin = new SubForumWindow(_forumName, _subForumName, _userName);
+                    this.Close();
+                    newWin.Show();
+                }
+                else
+                {
+                    MessageBox.Show("could not add thread");
+                }
             }
-
-            _prevWindow.Close();
-            SubForumWindow newWin = new SubForumWindow(_forumName, _subForumName, _userName);
-            this.Close();
-            newWin.Show();
         }
 
         private void backButton_Click(object sender, RoutedEventArgs e)

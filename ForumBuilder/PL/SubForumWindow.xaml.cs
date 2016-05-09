@@ -15,10 +15,62 @@ namespace PL
     /// 
     public class dataContainer
     {
-        private int Id;
-        private string Title;
-        private string Writer;
-        private string Time;
+        private int _id;
+        private string _title;
+        private string _writer;
+        private string _time;
+
+        public int Id
+        {
+            get
+            {
+                return _id;
+            }
+
+            set
+            {
+                _id = value;
+            }
+        }
+
+        public string Title
+        {
+            get
+            {
+                return _title;
+            }
+
+            set
+            {
+                _title = value;
+            }
+        }
+
+        public string Writer
+        {
+            get
+            {
+                return _writer;
+            }
+
+            set
+            {
+                _writer = value;
+            }
+        }
+
+        public string Time
+        {
+            get
+            {
+                return _time;
+            }
+
+            set
+            {
+                _time = value;
+            }
+        }
 
         public dataContainer()
         {
@@ -27,63 +79,12 @@ namespace PL
 
         public dataContainer(int id, string title, string writer, string time)
         {
-            _id = id;
-            _time = time;
-            _title = title;
-            _writer = writer;
+            Id = id;
+            Title = title;
+            Writer = writer;
+            Time = time;
         }
 
-        public string _title
-        {
-            get
-            {
-                return Title;
-            }
-
-            set
-            {
-                Title = value;
-            }
-        }
-
-        public string _writer
-        {
-            get
-            {
-                return Writer;
-            }
-
-            set
-            {
-                Writer = value;
-            }
-        }
-
-        public string _time
-        {
-            get
-            {
-                return Time;
-            }
-
-            set
-            {
-                Time = value;
-            }
-        }
-
-        public int _id
-        {
-            get
-            {
-                return Id;
-            }
-
-            set
-            {
-                Id = value;
-            }
-        }
     }
 
     public partial class SubForumWindow : Window
@@ -113,9 +114,14 @@ namespace PL
             List<PostData> posts = _pm.getAllPosts(forumName.Content.ToString(), sForumName.Content.ToString());
             foreach (PostData pd1 in posts)
             {
-                if (pd1.id == selected._id)//needs to show the thread of this post
+                if (pd1.id == selected.Id)//needs to show the thread of this post
                 {
-                    List<int> commentsIds = pd1.commentsIds;
+                    List<int> commentsIds = new List<int>();
+                    commentsIds.Add(selected.Id);
+                    foreach(int id in pd1.commentsIds)
+                    {
+                        commentsIds.Add(id);
+                    }
                     //going over all comments to make a new table
                     _patentId = pd1.id;
                     foreach (int singleCommentId in commentsIds)
@@ -137,7 +143,8 @@ namespace PL
             }
             threadView.Visibility = Visibility.Collapsed;
             threadTextBox.Visibility = Visibility.Collapsed;
-            addPostButton.Header = "add thread";
+            addPostButton.Header = "add post";
+            addPostButton.Visibility = Visibility.Visible;
             listBox.Visibility = Visibility.Visible;
         }
 
@@ -165,16 +172,15 @@ namespace PL
                 if (pd.parentId == -1)//if its the first message in thread
                 {
                     dataContainer dt = new dataContainer();
-                    dt._id = pd.id;
-                    dt._title = pd.title;
-                    dt._writer = pd.writerUserName;
-                    dt._time = pd.timePublished.ToString();
+                    dt.Id = pd.id;
+                    dt.Title = pd.title;
+                    dt.Writer = pd.writerUserName;
+                    dt.Time = pd.timePublished.ToString();
                     table.Add(dt);
                 }
             }
-            var grid = sender as DataGrid;
-            grid.ItemsSource = table;
-            addPostButton.Visibility = Visibility.Collapsed;
+            threadView.ItemsSource = table;
+            addPostButton.Header = "Add Thread";
             listBox.Visibility = Visibility.Collapsed;
             threadView.Visibility = Visibility.Visible;
         }
@@ -189,14 +195,16 @@ namespace PL
             if (listBox.Visibility == Visibility.Visible)
             {
                 listBox.Visibility = Visibility.Collapsed;
-                addPostButton.Header = "add post";
+                addPostButton.Header = "add Thread";
                 threadView.Visibility = Visibility.Visible;
                 threadTextBox.Visibility = Visibility.Visible;
                 _patentId = -1;
             }
             else//needs to go back to previous page
             {
-
+                SubForumWindow newWin = new SubForumWindow(forumName.Content.ToString(), sForumName.Content.ToString(), _userName);
+                newWin.Show();
+                this.Close();
             }
         }
 
@@ -208,7 +216,7 @@ namespace PL
             PostData postToDelete = null;
             foreach (PostData pd in posts)
             {
-                if (pd.id == selected._id)
+                if (pd.id == selected.Id)
                 {
                     postToDelete = pd;
                 }
