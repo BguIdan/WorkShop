@@ -48,5 +48,10 @@ namespace PL.proxies
             return Channel.login(name, pass, email);
         }
 
+        public Boolean isSuperUser(string name)
+        {
+            return Channel.isSuperUser(name);
+        }
+
     }
 }

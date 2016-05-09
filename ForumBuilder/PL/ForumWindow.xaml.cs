@@ -28,22 +28,74 @@ namespace PL
         private String _subForumChosen;
         private ForumManagerClient _fMC;
         private string _userName;
-
-        /*public ForumWindow(ForumData forum)
-        {
-            InitializeComponent();
-            _myforum = forum;
-            _fMC = new ForumManagerClient();
-        }*/
-
+        private SuperUserManagerClient _sUMC;
+              
         public ForumWindow(ForumData forum, string userName)
         {
             InitializeComponent();
             _myforum = forum;
             _fMC = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
-            //_fMC.login(userName, forum.forumName);
             _userName = userName;
-            ForumName.Content = "ForumName: " + _myforum.forumName;
+            ForumName.Content = "ForumName:  " + _myforum.forumName;
+            _sUMC = new SuperUserManagerClient();
+            InitializePermissons(userName);
+        }
+
+        private void InitializePermissons(string userName)
+        {
+            // a guest
+            if (userName.Equals("Guest"))
+            {
+                AddSub.IsEnabled = false;
+                Set.IsEnabled = false;
+            }
+            // a member but not an admin
+            else if (!_fMC.isAdmin(userName, _myforum.forumName) && !_sUMC.isSuperUser(userName))
+            {
+                AddSub.IsEnabled = false;
+                Set.IsEnabled = false;
+                Sign.IsEnabled = false;
+            }
+            // an admin
+            else if (!_sUMC.isSuperUser(userName))
+            {
+                Sign.IsEnabled = false;
+            }
+            //  a super user
+            else
+            {
+               // all open 
+            }
+        }
+                
+        private void MenuItem_Forums(object sender, RoutedEventArgs e)
+        {
+            MenuItem menuItem = e.Source as MenuItem;
+            switch (menuItem.Name)
+            {
+                case "AddSub": { addNewSubForum(); } break;
+                case "Set": { setPreferences(); } break;
+                case "SignUP": { SignUP(); } break;
+                case "menuLogout": { logout(_userName); } break;
+            }
+        }
+
+        private void logout(String nameLogout)
+        {
+            MainWindow mw = new MainWindow();
+            // a guest
+            if (nameLogout.Equals("Guest"))
+            {
+                mw.Show();
+                this.Close();
+            }
+            // an fourom member
+            else
+            {
+                _fMC.logout(nameLogout, _myforum.forumName);
+                mw.Show();
+                this.Close();
+            }
         }
 
         private void DataGrid_Loaded(object sender, RoutedEventArgs e)
@@ -53,7 +105,7 @@ namespace PL
             items.Add(new Forum("Fido", "10" , " ", " " , new List<string>()));
             items.Add(new Forum("Spark", "20" , " ", " " , new List<string>()));
             items.Add(new Forum("Fluffy", "4" , " ", " " , new List<string>()));*/
-           
+
             /* Option B:
               var items = new List<String>();
               for(int i=0; i < _subForumNames.Count;i++)
@@ -66,41 +118,28 @@ namespace PL
             grid.ItemsSource = _myforum.subForums;
         }
 
-        private void DataGrid_SelectionChanged(object sender,SelectionChangedEventArgs e)
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // ... Get SelectedItems from DataGrid.
+            // Get SelectedItems from DataGrid.
             var grid = sender as DataGrid;
             var selected = grid.SelectedItems;
             _subForumChosen = selected.ToString();
             SubForumWindow sfw = new SubForumWindow(_myforum.forumName, _subForumChosen, _userName);
             sfw.ShowDialog();
         }
-
-        private void MenuItem_Forums(object sender, RoutedEventArgs e)
-        {
-            MenuItem menuItem = e.Source as MenuItem;
-            switch (menuItem.Name)
-            {
-                case "AddSub": { addNewSubForum(); } break;
-                case "Set": { setPreferences(); } break;
-                case "SignUP": { SignUP(); } break;
-                case "Exit": { this.Visibility = System.Windows.Visibility.Collapsed; System.Environment.Exit(1); } break;
-            }
-        }
-
+        
         private void addNewSubForum()
         {
             MainMenu.Visibility = System.Windows.Visibility.Collapsed;
             mainGrid.Visibility = System.Windows.Visibility.Collapsed;
             MyDialog.Visibility = System.Windows.Visibility.Collapsed;
             setPreferencesWin.Visibility = System.Windows.Visibility.Collapsed;
-            /* if binding doesn't work
             for (int i = 0; i < _myforum.members.Count; i++)
             {
                 ComboBoxItem newItem = new ComboBoxItem();
                 newItem.Content = _myforum.members.ElementAt(i);
                 comboBox.Items.Add(newItem);
-            }*/
+            }
             ComboBoxItem newFirstItem = new ComboBoxItem();
             newFirstItem.Content = "UnLimited";
             comboBoxDuration.Items.Add(newFirstItem);
@@ -130,7 +169,8 @@ namespace PL
         private void SignUP()
         {
             SignUpWindow sU = new SignUpWindow(_fMC,_myforum.forumName);
-            sU.ShowDialog();
+            sU.Show();
+            this.Close();
         }
 
         private void descChoose(object sender, RoutedEventArgs e)
@@ -220,7 +260,6 @@ namespace PL
             }
             Dictionary<String, DateTime> dic = new Dictionary<string, DateTime>();
             dic.Add(userName, timeToSend);
-            //TODO: check what to do with type of users(admin, member etc.)
             Boolean isAdded = _fMC.addSubForum(_myforum.forumName, sub_ForumName, dic, "");
             if (isAdded == false)
             {

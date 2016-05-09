@@ -70,4 +70,3 @@ C:\Users\User\Documents\sadna\ForumBuilder\PL\obj\Debug\PL.Properties.Resources.
 C:\Users\User\Documents\sadna\ForumBuilder\PL\obj\Debug\PL.csproj.GenerateResource.Cache
 C:\Users\User\Documents\sadna\ForumBuilder\PL\obj\Debug\PL.exe
 C:\Users\User\Documents\sadna\ForumBuilder\PL\obj\Debug\PL.pdb
-D:\Idan\Workshop\WorkShop.git\ForumBuilder\PL\bin\Debug\PL.exe.config

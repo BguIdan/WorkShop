@@ -76,9 +76,6 @@
     <Compile Include="proxies\SubForumManagerClient.cs" />
     <Compile Include="proxies\SuperUserManagerClient.cs" />
     <Compile Include="proxies\UserManagerClient.cs" />
-    <Compile Include="RestorePasswordWindow.xaml.cs">
-      <DependentUpon>RestorePasswordWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="sendMessageWindow.xaml.cs">
       <DependentUpon>sendMessageWindow.xaml</DependentUpon>
     </Compile>
@@ -127,10 +124,6 @@
     <Page Include="privateMessagesWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="RestorePasswordWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="sendMessageWindow.xaml">
       <SubType>Designer</SubType>
