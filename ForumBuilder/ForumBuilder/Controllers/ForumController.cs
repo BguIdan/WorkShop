@@ -28,15 +28,10 @@ namespace ForumBuilder.Controllers
             }
         }
 
-        public bool addSubForum(string forumName, string name, Dictionary<String, DateTime> moderators, string userNameAdmin)
+        public bool addSubForum(string forumName, string name, Dictionary<String, DateTime> moderators, string creatorName)
         {
-            if (DB.getUser(userNameAdmin) != null)
+            if (DB.getSuperUser(creatorName)!=null||isAdmin(creatorName, forumName))
             {
-                if (!isAdmin(userNameAdmin, forumName))
-                {
-                    logger.logPrint("Add sub-forum failed, "+userNameAdmin+" is not an admin");
-                    return false;
-                }
                 Forum forum = DB.getforumByName(forumName);
                 if (forum != null)
                 {
@@ -55,7 +50,7 @@ namespace ForumBuilder.Controllers
                         moderators.TryGetValue(s, out date);
                         if (date > DateTime.Now)
                         {
-                            DB.nominateModerator(s, date, name, forumName,userNameAdmin);
+                            DB.nominateModerator(s, date, name, forumName,creatorName);
                         }
                         else
                         {
@@ -67,7 +62,7 @@ namespace ForumBuilder.Controllers
             }
             else
             {
-                logger.logPrint("Add sub-forum failed, "+ userNameAdmin + " is not a user"); 
+                logger.logPrint("Add sub-forum failed, "+ creatorName + " is not allowed"); 
                 return false;
             }
             return true;
