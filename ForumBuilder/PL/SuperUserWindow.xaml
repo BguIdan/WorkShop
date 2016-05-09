@@ -42,5 +42,16 @@
             <TextBlock FontSize="30" FontFamily="Broadway" HorizontalAlignment="Center" TextWrapping="Wrap" Text=" Set  Forum Preferences" Margin="90,30,90,242"/>
         </Grid>
 
+        <Grid Name="createUserWin" Visibility="Collapsed" Margin="0,0,0,0">
+            <TextBlock FontFamily="Cooper Black" HorizontalAlignment="Left" TextWrapping="Wrap" Text="User Name:" VerticalAlignment="Top" Height="22" Width="99" Margin="43,165,0,0"/>
+            <TextBox Name="userName" Height="22" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="167,165,85,0"/>
+            <TextBlock FontFamily="Cooper Black" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="22" Width="99" Margin="43,203,0,0" Text="Password: "/>
+            <PasswordBox Name="Password" Margin="167,203,85,145" Height="22" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Text="Email: " Margin="43,242,250,106"/>
+            <TextBox Name="email" Height="22" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="167,242,85,0"/>
+            <Button FontFamily="Cooper Black" Content="Create User" Margin="194,309,85,28" Click="btn_CreateNewUser"/>
+            <TextBlock FontSize="30" FontFamily="Broadway" TextWrapping="Wrap" Text="Create New User"  Height="40" Margin="60,60,60,270"/>
+        </Grid>
+
     </Grid>
 </Window>

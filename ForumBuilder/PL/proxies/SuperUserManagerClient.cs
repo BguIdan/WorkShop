@@ -63,5 +63,9 @@ namespace PL.proxies
             return Channel.getSuperUserReportOfMembers(superUserName);
         }
 
+        public Boolean addUser(string userName, string password, string mail, string superUserName)
+        {
+            return Channel.addUser(userName, password, mail, superUserName);
+        }
     }
 }

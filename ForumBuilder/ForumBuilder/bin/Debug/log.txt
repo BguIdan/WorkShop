@@ -1,0 +1,24 @@
+Log Entry : 		9/5/2016 1:26:57 PM
+Forum contoller created
+-----------------------------------------------
+Log Entry : 		9/5/2016 1:26:57 PM
+Super user contoller created
+-----------------------------------------------
+Log Entry : 		9/5/2016 1:26:58 PM
+forum service was initialized under localhost:8081
+-----------------------------------------------
+Log Entry : 		9/5/2016 1:26:58 PM
+post service was initialized under localhost:8082
+-----------------------------------------------
+Log Entry : 		9/5/2016 1:26:58 PM
+sub forum service was initialized under localhost:8083
+-----------------------------------------------
+Log Entry : 		9/5/2016 1:26:58 PM
+super user service was initialized under localhost:8084
+-----------------------------------------------
+Log Entry : 		9/5/2016 1:26:58 PM
+user service was initialized under localhost:8085
+-----------------------------------------------
+Log Entry : 		9/5/2016 1:26:58 PM
+The System was initialized successully
+---------------------------------------

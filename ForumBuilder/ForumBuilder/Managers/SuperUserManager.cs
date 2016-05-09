@@ -58,5 +58,10 @@ namespace Service
         {
             return superUserController.getSuperUserReportOfMembers(superUserName);
         }
+
+        public Boolean addUser(string userName, string password, string mail, string superUserName)
+        {
+            return superUserController.addUser(userName,  password,  mail,  superUserName);
+        }
     }
 }
