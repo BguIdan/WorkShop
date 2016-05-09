@@ -4,7 +4,7 @@
         Title="ForumWindow" Height="400" Width="400">
     <Grid>
         <Menu Margin="0,0,0,346" Name="MainMenu" VerticalAlignment="Top">
-            <MenuItem Header="Forums" Click="MenuItem_Forums">
+            <MenuItem Header="Actions" Click="MenuItem_Forums">
                 <MenuItem Header="Create Sub-Forum" Name="AddSub"/>
                 <MenuItem Header="Set\Change Preferences" Name="Set" />
                 <MenuItem Header="Sign Up (Guest)" Name="Sign" />
@@ -17,7 +17,7 @@
         </Menu>
         <Grid Name="mainGrid" Visibility="Visible" Margin="0,0,0,0">
             <Label Name="ForumName" FontSize="30" FontFamily="Cooper Black" Margin="37,43,37,287"/>
-            <TextBlock Name="headline" FontSize="16" FontFamily="Broadway" TextWrapping="Wrap" VerticalAlignment="Top" Text="Sub-Forums" Visibility="Visible" Height="32" Margin="140,88,140,0"/>
+            <TextBlock Name="headline" FontSize="16" FontFamily="Broadway" TextWrapping="Wrap" VerticalAlignment="Top" Text="Sub-Forums" Visibility="Visible" Height="26" Margin="140,97,140,0"/>
             <DataGrid x:Name="subForumsView" 
                   AutoGenerateColumns="True" Margin="25,135,25,25" SelectionChanged="DataGrid_SelectionChanged" Loaded="DataGrid_Loaded">
                 <DataGrid.Columns>

@@ -75,6 +75,7 @@ namespace PL
         {
             MainMenu.Visibility = System.Windows.Visibility.Collapsed;
             setPreferencesWin.Visibility = System.Windows.Visibility.Collapsed;
+            createUserWin.Visibility = System.Windows.Visibility.Collapsed;
             createForum.Visibility = System.Windows.Visibility.Visible;
         }
 
@@ -82,6 +83,7 @@ namespace PL
         {
             MainMenu.Visibility = System.Windows.Visibility.Collapsed;
             createForum.Visibility = System.Windows.Visibility.Collapsed;
+            createUserWin.Visibility = System.Windows.Visibility.Collapsed;
             setPreferencesWin.Visibility = System.Windows.Visibility.Visible;
         }
 
@@ -97,7 +99,10 @@ namespace PL
 
         private void createUser()
         {
-            //TODO: complete the mehtod
+            MainMenu.Visibility = System.Windows.Visibility.Collapsed;
+            createForum.Visibility = System.Windows.Visibility.Collapsed;
+            setPreferencesWin.Visibility = System.Windows.Visibility.Collapsed;
+            createUserWin.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void btn_CreateNewForum(object sender, RoutedEventArgs e)
@@ -111,7 +116,7 @@ namespace PL
             Boolean isCreated = _sUMC.createForum(forumName, desc, policy, rules, admins, _myUser.userName);
             if (isCreated)
             {
-                MessageBox.Show("Forum:" + forumName + "was successfully created!");
+                MessageBox.Show("Forum: " + forumName + " was successfully created!");
                 ForumData newForum = _fMC.getForum(forumName);
                 MainMenu.Visibility = System.Windows.Visibility.Visible;
                 createForum.Visibility = System.Windows.Visibility.Collapsed;
@@ -126,6 +131,25 @@ namespace PL
         {
             string forumToSet = ForumNameToSet.Text;
             //TODO: direct to the forum window
+        }
+
+        private void btn_CreateNewUser(object sender, RoutedEventArgs e)
+        {
+            string name = userName.Text;
+            string pass = Password.Password;
+            string userMail = email.Text;
+
+            bool succ = _sUMC.addUser(name, pass, userMail, _myUser.userName);
+            if (!succ)
+            {
+                MessageBox.Show("Failed to create user!");
+            }
+            else
+            {
+                MessageBox.Show(name + "  creation succeeded!");
+                MainMenu.Visibility = System.Windows.Visibility.Visible;
+                createUserWin.Visibility = System.Windows.Visibility.Collapsed;
+            }
         }
 
     }

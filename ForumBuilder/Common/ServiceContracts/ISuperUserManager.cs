@@ -27,5 +27,8 @@ namespace ForumBuilder.Common.ServiceContracts
 
         [OperationContract]
         List<String> getSuperUserReportOfMembers(string superUserName);
+
+        [OperationContract]
+        Boolean addUser(string userName, string password, string mail, string superUserName);
     }
 }

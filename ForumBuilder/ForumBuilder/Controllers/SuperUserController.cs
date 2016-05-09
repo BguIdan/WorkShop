@@ -107,8 +107,12 @@ namespace ForumBuilder.Controllers
             }
             return true;
         }
-        public bool addUser(string userName, string password, string mail)
+        public bool addUser(string userName, string password, string mail, string superUserName)
         {
+            if (!isSuperUser(superUserName))
+            {
+                return false;
+            }
             if (userName.Length > 0 && password.Length > 0 && mail.Length > 0)
             {
                 if (DB.getUser(userName) != null)

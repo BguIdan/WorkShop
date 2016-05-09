@@ -247,27 +247,34 @@ namespace PL
         private void btn_createSub(object sender, RoutedEventArgs e)
         {
             int time = 0;
-            //TODO: check what to do with unlimited time
+            int unlimited = 120;
             DateTime timeToSend = DateTime.Now;
             String sub_ForumName = subForumName.Text;
             // TODO: add to option for more than one moderator
-            String userName = comboBox.SelectedItem.ToString();
-            String timeDuration = comboBoxDuration.SelectedItem.ToString();
+            String userName = comboBox.Text;
+            String timeDuration = comboBoxDuration.Text;
             if (!timeDuration.Equals("UnLimited"))
             {
-                time = Convert.ToInt32(timeDuration);
+                time = int.Parse(timeDuration);
                 timeToSend = DateTime.Now.AddDays(time);
+            }
+            else
+            {
+                timeToSend = DateTime.Now.AddYears(unlimited);
             }
             Dictionary<String, DateTime> dic = new Dictionary<string, DateTime>();
             dic.Add(userName, timeToSend);
-            Boolean isAdded = _fMC.addSubForum(_myforum.forumName, sub_ForumName, dic, "");
+            Boolean isAdded = _fMC.addSubForum(_myforum.forumName, sub_ForumName, dic, _userName);
             if (isAdded == false)
             {
-                MessageBox.Show(userName + "can not be a moderator, try someone else.");
+                MessageBox.Show(userName + " can not be a moderator, try someone else.");
             }
             else
             {
                 MessageBox.Show("Sub-Forum " + sub_ForumName + " was successfully created and " + userName + " is the Sub-Forum moderator.");
+                MainMenu.Visibility = System.Windows.Visibility.Visible;
+                mainGrid.Visibility = System.Windows.Visibility.Visible;
+                AddSubForum.Visibility = System.Windows.Visibility.Collapsed;
             }
         }
 
