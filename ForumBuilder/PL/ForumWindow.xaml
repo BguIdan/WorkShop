@@ -18,13 +18,7 @@
         <Grid Name="mainGrid" Visibility="Visible" Margin="0,0,0,0">
             <Label Name="ForumName" FontSize="30" FontFamily="Cooper Black" Margin="37,43,37,287"/>
             <TextBlock Name="headline" FontSize="16" FontFamily="Broadway" TextWrapping="Wrap" VerticalAlignment="Top" Text="Sub-Forums" Visibility="Visible" Height="26" Margin="140,97,140,0"/>
-            <DataGrid x:Name="subForumsView" 
-                  AutoGenerateColumns="True" Margin="25,135,25,25" SelectionChanged="DataGrid_SelectionChanged" Loaded="DataGrid_Loaded">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name" Width="*"/>
-                    <DataGridTextColumn Header="ForumName" Width="*"/>
-                </DataGrid.Columns>
-            </DataGrid>
+            <ListBox x:Name="subForumsListBox" HorizontalAlignment="Left" Height="182" Margin="21,135,0,0" VerticalAlignment="Top" Width="347" SelectionChanged="subForumsListBox_SelectionChanged"/>
         </Grid>
 
         <Grid Name="setPreferencesWin" Visibility="Collapsed" Margin="10,24,10,0">
