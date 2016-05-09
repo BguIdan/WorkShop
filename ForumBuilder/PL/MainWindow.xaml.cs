@@ -71,9 +71,26 @@ namespace PL
         
         private void SignUpUser(object sender, RoutedEventArgs e)
         {
-            SignUpWindow suw = new SignUpWindow(_fMC,_choosenForum);
-            suw.Show();
+            // TODO: know the admin and user class and create new one in the data base
+            // SignUpWindow suw = new SignUpWindow(itsUserBL, iDAL, itsAdminBL);
+            SignUpWindow suw = null;
+            try
+            {
+                suw = new SignUpWindow(_fMC,_choosenForum);
+            }
+            catch
+            {
+                MessageBox.Show("please choose a forum to register", "error");
+            }
             this.Close();
+            try
+            {
+                suw.ShowDialog();
+            }
+            catch(NullReferenceException ec)
+            {
+                //if the forum was not successfully instantiated it will throw null reference exception
+            }
         }
 
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

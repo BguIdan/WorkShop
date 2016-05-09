@@ -27,6 +27,17 @@ namespace BL_Back_End
             _subForums = new List<string>();
         }
 
+        public Forum(string forumName, string descrption, string forumPolicy, string forumRules, List<string> administrators, List<string> subForums)
+        {
+            _forumName = forumName;
+            _description = descrption;
+            _forumPolicy = forumPolicy;
+            _forumRules = forumRules;
+            _administrators = administrators;
+            _members = new List<string>();
+            _subForums = subForums;
+        }
+
         public String forumPolicy
         {
             get { return _forumPolicy; }

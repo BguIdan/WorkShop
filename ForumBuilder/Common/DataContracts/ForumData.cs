@@ -29,13 +29,13 @@ namespace ForumBuilder.Common.DataContracts
         [DataMember]
         private List<string> _members;
 
-        public ForumData(string forumName, string descrption, string forumPolicy, string forumRules)
+        public ForumData(string forumName, string descrption, string forumPolicy, string forumRules, List<String> subForums)
         {
             _forumName = forumName;
             _description = descrption;
             _forumPolicy = forumPolicy;
             _forumRules = forumRules;
-            _subForums = new List<string>();
+            _subForums = subForums;
         }
 
         public String forumPolicy

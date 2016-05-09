@@ -26,6 +26,8 @@ namespace PL
 
         public SignUpWindow(ForumManagerClient forumManager, String forumName)
         {
+            if (forumName == null)
+                throw new Exception();
             InitializeComponent();
             _fMC = forumManager;
             _forumToRegister = forumName;
