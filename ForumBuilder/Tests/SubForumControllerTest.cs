@@ -19,6 +19,7 @@ namespace Tests
         private User userMember;
         private User userModerator;
         private User userAdmin;
+        private User superUser;
         private ISubForumController subForum;
         private String subForumName = "subforum";
         private String forumName = "testForum";
@@ -31,6 +32,8 @@ namespace Tests
             DBClass db = DBClass.getInstance;
             db.clear();
             ForumSystem.initialize("tomer", "1qW", "fkfkf@wkk.com");
+            this.superUser = new User("tomer", "1qW", "fkfkf@wkk.com");
+            SuperUserController.getInstance.addSuperUser(this.superUser.email, this.superUser.password, this.superUser.userName);
             this.forumController = ForumController.getInstance;
             this.postController = PostController.getInstance;
             ISuperUserController superUser = SuperUserController.getInstance;

@@ -8,6 +8,7 @@ using System.ServiceModel;
 using PL.notificationHost;
 using PL.proxies;
 using ForumBuilder.Common.DataContracts;
+using ForumBuilder.Controllers;
 
 namespace Tests
 {
@@ -25,6 +26,7 @@ namespace Tests
             db.clear();
             ISuperUserManager superUser = new SuperUserManagerClient();
             superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
+            SuperUserController.getInstance.addSuperUser("hello@dskkl.com", "AG36djs", "guy");
             IForumManager forum = new ForumManagerClient(new InstanceContext(new ClientNotificationHost())); 
             String forumName = "forum";
             String adminName = "admin";
@@ -61,6 +63,7 @@ namespace Tests
             db.clear();
             ISuperUserManager superUser = new SuperUserManagerClient();
             superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
+            SuperUserController.getInstance.addSuperUser("hello@dskkl.com", "AG36djs", "guy");
             IForumManager forum = new ForumManagerClient(new InstanceContext(new ClientNotificationHost())); 
             String forumName = "forum";
             String adminName = "admin";
@@ -91,6 +94,7 @@ namespace Tests
             db.clear();
             ISuperUserManager superUser = new SuperUserManagerClient();
             superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
+            SuperUserController.getInstance.addSuperUser("hello@dskkl.com", "AG36djs", "guy");
             IForumManager forum = new ForumManagerClient(new InstanceContext(new ClientNotificationHost())); 
             String forumName = "forum";
             String adminName = "admin";
@@ -117,6 +121,7 @@ namespace Tests
             db.clear();
             ISuperUserManager superUser = new SuperUserManagerClient();
             superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
+            SuperUserController.getInstance.addSuperUser("hello@dskkl.com", "AG36djs", "guy");
             IForumManager forum = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
             String forumName = "forum";
             String adminName = "admin";
@@ -144,6 +149,7 @@ namespace Tests
             IForumManager forumMan = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
             ISuperUserManager superUserMan = new SuperUserManagerClient();
             superUserMan.initialize("guy", "AG36djs", "hello@dskkl.com");
+            SuperUserController.getInstance.addSuperUser("hello@dskkl.com", "AG36djs", "guy");
             List<String> adminList = new List<String>();
             adminList.Add("admin1");
             adminList.Add("admin2");

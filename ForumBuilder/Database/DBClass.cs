@@ -20,7 +20,7 @@ namespace Database
             //DBClass db = DBClass.getInstance;
             //db.initializeDB();
             //db.clear();
-            /*
+            
             DBClass db = DBClass.getInstance;
             db.initializeDB();
             db.clear();
@@ -37,11 +37,10 @@ namespace Database
             list.Add("admin1");
             list.Add("admin2");
             db.createForum("forum1", "is", "the", "best",list );
-            db.nominateAdmin("admin3", "forum1
-            ");
+            db.nominateAdmin("admin3", "forum1");
             db.addSubForum("subForum1", "forum1");
-            db.nominateModerator("user1", DateTime.Today, "subForum1", "forum1");
-            db.nominateModerator("user5", DateTime.Today, "subForum1", "forum1");
+            db.nominateModerator("user1", DateTime.Today, "subForum1", "forum1","admin3");
+            db.nominateModerator("user5", DateTime.Today, "subForum1", "forum1","admin3");
             db.addMemberToForum("user2", "forum1");
             db.addMemberToForum("user3", "forum1");
             db.addMemberToForum("user4", "forum1");
@@ -50,13 +49,13 @@ namespace Database
             db.addFriendToUser("user2", "user1");
             db.addMessage("user2", "user4", "hello its me");
             int id = db.getAvilableIntOfPost();
-            db.addPost("user2",id, "hello", "my name is", -1,DateTime.Today);
+            db.addPost("user2",id, "hello", "my name is", -1,DateTime.Today,"forum1");
             db.addThread("forum1", "subForum1", id);
             int id2 = db.getAvilableIntOfPost();
-            db.addPost("user3", id2, "what?", "your name is",id, DateTime.Today);
-            db.addPost("user2", db.getAvilableIntOfPost(), "what?", "my name is", id2, DateTime.Today);
-            db.addPost("user3", db.getAvilableIntOfPost(), "what?", "your name is", id, DateTime.Today);
-            
+            db.addPost("user3", id2, "what?", "your name is",id, DateTime.Today, "forum1");
+            db.addPost("user2", db.getAvilableIntOfPost(), "what?", "my name is", id2, DateTime.Today, "forum1");
+            db.addPost("user3", db.getAvilableIntOfPost(), "what?", "your name is", id, DateTime.Today, "forum1");
+            db.getsubForumsNamesOfForum("forum1");
 
             Forum forum1=db.getforumByName("forum1");
             SubForum subForum1=db.getSubForum("subForum1","forum1");
@@ -84,7 +83,7 @@ namespace Database
             //db.clear();
             //Program DB = new Program();
             //DB.initializeDB();
-            */
+            
         }
         public static DBClass getInstance
         {
@@ -105,11 +104,11 @@ namespace Database
                 connection = new OleDbConnection();
                 //connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\Idan\Workshop\WorkShop.git\forumDB.mdb;
                 //                                Persist Security Info=False;";
-                connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\User\Desktop\WorkShop\forumDB.mdb;
-                                                Persist Security Info=False;";
+                //connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\User\Desktop\WorkShop\forumDB.mdb;
+                //                                Persist Security Info=False;";
 
-                //connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\User\Documents\sadna\forumDB.mdb;
-                //Persist Security Info=False;";
+                connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\User\Documents\sadna\forumDB.mdb;
+                Persist Security Info=False;";
                 //connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\gal\Desktop\wsep\New Folder\project\forumDB.mdb;
                 //Persist Security Info=False;";
                 //connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\gal\Desktop\wsep\New Folder\project\forumDB.mdb;
@@ -325,11 +324,11 @@ namespace Database
                     administrators.Add(reader2.GetString(1));
                 }
                 forum = new Forum(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), administrators);
+                closeConnectionDB();
                 List<String> members = getMembersOfForum(forumName);
                 forum.members = members;
                 List<String> subForums = getsubForumsNamesOfForum(forumName);
                 forum.subForums = subForums;
-                closeConnectionDB();
                 return forum;
             }
             catch
@@ -348,15 +347,15 @@ namespace Database
                 command.Connection = connection;
                 command.CommandText = "SELECT  * FROM  subForums where forumName='" + forumName + "'";
                 OleDbDataReader reader = command.ExecuteReader();
-                closeConnectionDB();
                 List<String> subForums = new List<String>();
                 while (reader.Read())
                 {
-                    subForums.Add(reader.GetString(1));
+                    subForums.Add(reader.GetString(0));
                 }
+                closeConnectionDB();
                 return subForums;
             }
-            catch
+            catch(Exception e)
             {
                 closeConnectionDB();
                 return null;
