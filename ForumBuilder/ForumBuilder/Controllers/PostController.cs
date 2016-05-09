@@ -145,5 +145,23 @@ namespace ForumBuilder.Controllers
             }
             return list;
         }
+        public Boolean updatePost(int postID, String title, String content,String userName)
+        {
+            Post p = DB.getPost(postID);
+            if (p == null)
+            {
+                logger.logPrint("update post failed, post id hasnt post");
+                return false;
+            }
+            if (!p.writerUserName.Equals(userName))
+            {
+                logger.logPrint("update post failed, user is not allowed to update post");
+                return false;
+            }
+            else
+            {
+                return DB.updatePost(postID, title, content);
+            }
+        }
     }
 }
