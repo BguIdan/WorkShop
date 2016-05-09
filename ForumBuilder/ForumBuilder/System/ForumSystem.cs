@@ -55,7 +55,7 @@ namespace ForumBuilder.Systems
                      * //for this to work the exe/vs should be run in administrator mode
                      */
                     ServiceHost forumService = new ServiceHost(typeof(ForumManager));
-                    forumService.Open();
+                    forumService.Open(); 
                     logger.logPrint("forum service was initialized under localhost:8081");
 
                     ServiceHost postService = new ServiceHost(typeof(PostManager));
