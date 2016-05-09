@@ -32,7 +32,6 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
-            //TODO gal: delete before submission
             Thread.Sleep(1000);
 			_fMC = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
             _forumsList = _fMC.getForums();

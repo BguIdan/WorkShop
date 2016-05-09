@@ -145,11 +145,6 @@ namespace PL
 
         }
 
-        /*private void setNotifications(object sender, RoutedEventArgs e)
-        {
-            //TODO: need to do this func?
-        }*/
-
         private void setPreferences()
         {
             MainMenu.Visibility = System.Windows.Visibility.Collapsed;

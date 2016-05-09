@@ -177,7 +177,7 @@ namespace ForumBuilder.Controllers
         }            
         
         public bool registerUser(string userName, string password, string mail, string forumName)
-        {//TODO gal does the user automatically logs in after registering?
+        {
             if (DB.getforumByName(forumName) == null)
             {
                 logger.logPrint("Register user faild, the forum, "+ forumName+" does not exist");
@@ -261,6 +261,36 @@ namespace ForumBuilder.Controllers
             {
                 if (channelsByLoggedInUsers[userName] != null)
                     channelsByLoggedInUsers[userName].applyPostPublishedInForumNotification(forumName, subForumName, publisherName);
+            }
+            return true;
+        }
+
+        public Boolean sendPostModificationNotification(String forumName, String publisherName, String title, String content)
+        {
+            if (loggedInUsersByForum == null)
+                this.loggedInUsersByForum = new Dictionary<String, List<String>>();
+            List<String> loggedInUsers = this.loggedInUsersByForum[forumName];
+            if (loggedInUsers == null)
+                return false;
+            foreach (String userName in loggedInUsers)
+            {
+                if (channelsByLoggedInUsers[userName] != null)
+                    channelsByLoggedInUsers[userName].applyPostModificationNotification(forumName, publisherName, title, content);
+            }
+            return true;
+        }
+
+        public Boolean sendPostDelitionNotification(String forumName, String publisherName)
+        {
+            if (loggedInUsersByForum == null)
+                this.loggedInUsersByForum = new Dictionary<String, List<String>>();
+            List<String> loggedInUsers = this.loggedInUsersByForum[forumName];
+            if (loggedInUsers == null)
+                return false;
+            foreach (String userName in loggedInUsers)
+            {
+                if (channelsByLoggedInUsers[userName] != null)
+                    channelsByLoggedInUsers[userName].applyPostDelitionNotification(forumName, publisherName);
             }
             return true;
         }
