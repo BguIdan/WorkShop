@@ -8,6 +8,7 @@
                 <MenuItem Header="Action" Click="MenuItem_Click">
                     <MenuItem Header="Add Thread " Name="addPostButton"/>
                     <MenuItem Header="View Private Messages" Name="privateMessages"/>
+                    <MenuItem Header="Nominate Moderator" Name="nominateModerator"/>
                     <MenuItem Header="Dismiss Moderator" Name="dismissModerator"/>
                     <MenuItem Header="Edit Message" Name="editMassege"/>
                     <MenuItem Header="Delete" Name="deleteMessageButton"/>

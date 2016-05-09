@@ -122,7 +122,7 @@ namespace PL
                 {
                     List<int> commentsIds = new List<int>();
                     commentsIds.Add(selected.Id);
-                    foreach(PostData tempPostData in posts)
+                    foreach (PostData tempPostData in posts)
                     {
                         if (tempPostData.parentId == pd1.id)
                         {
@@ -284,18 +284,20 @@ namespace PL
             MenuItem menuItem = e.Source as MenuItem;
             switch (menuItem.Name)
             {
-                case "addPostButton": { addPostButton_Click(sender,e); } break;
+                case "addPostButton": { addPostButton_Click(sender, e); } break;
                 case "deleteMessageButton": { deleteMessageButton_Click(sender, e); } break;
                 case "backButton": { back_Click(sender, e); } break;
                 case "logOutButton": { logOut(sender, e); } break;
                 case "privateMessages": { privateMessages_Click(sender, e); } break;
                 case "editMassege": { editMessage_Click(sender, e); } break;
-                case "dismissModerator": { dismissModerator_Click(sender, e); } break;
+                case "dismissModerator": { dismissModerator_Click(sender, e, false); } break;
+                case "nominateModerator": { dismissModerator_Click(sender, e, true); } break;
+
             }
         }
-        private void dismissModerator_Click(object sender, RoutedEventArgs e)
+        private void dismissModerator_Click(object sender, RoutedEventArgs e, bool whaToDo)
         {
-            DismissModerator newWin = new DismissModerator(this, _userName, forumName.Content.ToString(), sForumName.Content.ToString());
+            DismissModerator newWin = new DismissModerator(this, _userName, forumName.Content.ToString(), sForumName.Content.ToString(), whaToDo);
             newWin.Show();
             this.Visibility = Visibility.Collapsed;
         }
