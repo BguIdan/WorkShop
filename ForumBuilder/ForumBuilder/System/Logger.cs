@@ -10,7 +10,7 @@ namespace ForumBuilder.Systems
 
         private Logger(String fullPath)
         {
-            _sw = new StreamWriter(fullPath);
+            _sw = File.CreateText(fullPath);//File.AppendText("log.txt");// new StreamWriter(fullPath);
         }
 
         public static Logger getInstance
