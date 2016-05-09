@@ -6,9 +6,6 @@
         <Menu Margin="0,0,0,340" Name="MainMenu" VerticalAlignment="Top">
             <MenuItem Header="Actions" Click="MenuItem_Actions">
                 <MenuItem Header="Create Forum" Name="CreateForum" />
-                <MenuItem Header="Set/Change Forum preferences" Name="Set"/>
-                <MenuItem Header="Create Sub-Forum" Name="CreateSub" />
-                <MenuItem Header="Delete Post" Name="Del"/>
                 <MenuItem Header="Create User" Name="Createuser" />
                 <Separator/>
                 <MenuItem Header="Logout" Name="logoutMenu"/>
@@ -49,6 +46,7 @@
             <Button FontFamily="Cooper Black" Content="Create User" Margin="194,309,85,28" Click="btn_CreateNewUser"/>
             <TextBlock FontSize="30" FontFamily="Broadway" TextWrapping="Wrap" Text="Create New User"  Height="40" Margin="60,60,60,270"/>
         </Grid>
+        <Button x:Name="backButton" Content="Back" FontFamily="cooper black" Visibility="Collapsed" FontSize="16" HorizontalAlignment="Left" Height="47" Margin="0,312,0,0" VerticalAlignment="Top" Width="121" Click="backButton_Click"/>
 
     </Grid>
 </Window>

@@ -84,8 +84,11 @@ namespace PL
                 case "Set": { setPreferences(); } break;
                 case "SignUP": { SignUP(); } break;
                 case "menuLogout": { logout(_userName); } break;
+                case "privateMessages": { privateMessages_Click(sender, e); } break;
             }
         }
+
+
 
         private void logout(String nameLogout)
         {
@@ -137,7 +140,9 @@ namespace PL
                 newItem.Content = i;
                 comboBoxDuration.Items.Add(newItem);
             }
-            AddSubForum.Visibility = System.Windows.Visibility.Visible; ;
+            AddSubForum.Visibility = System.Windows.Visibility.Visible;
+            backButton.Visibility = System.Windows.Visibility.Visible;
+
         }
 
         /*private void setNotifications(object sender, RoutedEventArgs e)
@@ -152,6 +157,7 @@ namespace PL
             MyDialog.Visibility = System.Windows.Visibility.Collapsed;
             AddSubForum.Visibility = System.Windows.Visibility.Collapsed;
             setPreferencesWin.Visibility = System.Windows.Visibility.Visible;
+            backButton.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void SignUP()
@@ -241,6 +247,11 @@ namespace PL
             // TODO: add to option for more than one moderator
             String userName = comboBox.Text;
             String timeDuration = comboBoxDuration.Text;
+            if (timeDuration == null || userName == null || sub_ForumName == null || sub_ForumName.Equals(""))
+            {
+                MessageBox.Show("error has accured");
+                return;
+            }
             if (!timeDuration.Equals("UnLimited"))
             {
                 time = int.Parse(timeDuration);
@@ -260,9 +271,13 @@ namespace PL
             else
             {
                 MessageBox.Show("Sub-Forum " + sub_ForumName + " was successfully created and " + userName + " is the Sub-Forum moderator.");
-                MainMenu.Visibility = System.Windows.Visibility.Visible;
-                mainGrid.Visibility = System.Windows.Visibility.Visible;
-                AddSubForum.Visibility = System.Windows.Visibility.Collapsed;
+                ForumWindow newWin = new ForumWindow(_fMC.getForum(_myforum.forumName), _userName);
+                this.Close();
+                newWin.Show();
+
+                //MainMenu.Visibility = System.Windows.Visibility.Visible;
+                //mainGrid.Visibility = System.Windows.Visibility.Visible;
+                //AddSubForum.Visibility = System.Windows.Visibility.Collapsed;
             }
         }
 
@@ -277,17 +292,19 @@ namespace PL
         }
 
 
-        /*private void privateMessages_Click(object sender, RoutedEventArgs e)
+        private void privateMessages_Click(object sender, RoutedEventArgs e)
 
         {
             privateMessagesWindow newWin = new privateMessagesWindow(_userName, this);
             this.Visibility = Visibility.Collapsed;
             newWin.Show();
-
-
         }
 
-        }*/
-
+        private void backButton_Click(object sender, RoutedEventArgs e)
+        {
+            ForumWindow newWin = new ForumWindow(_myforum, _userName);
+            newWin.Show();
+            this.Close();
+        }
     }
 }

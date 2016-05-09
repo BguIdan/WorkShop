@@ -28,6 +28,7 @@ namespace PL
         private string _userName;
         private string _forumName;
         private string _subForumName;
+        private PostData _postToEdit;
 
         public addPostAndThreadWindow(Window prevWindow, int parrentId, string userName, string forumName, string subForumName)//-1 for new thread
         {
@@ -47,39 +48,61 @@ namespace PL
             }
             _pm = new PostManagerClient();
             _userName = userName;
+            _postToEdit = null;
+        }
+        public addPostAndThreadWindow(PostData postToEdit, string userName, string forumName, string subForumName)
+        {
+            InitializeComponent();
+            _postToEdit = postToEdit;
+            _userName = userName;
+            _sf = new SubForumManagerClient();
+            _pm = new PostManagerClient();
+            _forumName = forumName;
+            _subForumName = subForumName;
+
         }
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            if (_parentID != -1)
+            if (_postToEdit == null)
             {
-                if (_pm.addPost(title.Text, content.Text, _userName, _parentID))
+                if (_parentID != -1)
                 {
-                    MessageBox.Show("post was added succesfully");
-                    _prevWindow.Close();
-                    SubForumWindow newWin = new SubForumWindow(_forumName, _subForumName, _userName);
-                    this.Close();
-                    newWin.Show();
+                    if (_pm.addPost(title.Text, content.Text, _userName, _parentID))
+                    {
+                        MessageBox.Show("post was added succesfully");
+                        _prevWindow.Close();
+                        SubForumWindow newWin = new SubForumWindow(_forumName, _subForumName, _userName);
+                        this.Close();
+                        newWin.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("could not add post");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("could not add post");
+                    if (_sf.createThread(title.Text, content.Text, _userName, _forumName, _subForumName))
+                    {
+                        MessageBox.Show("thread was added succesfully");
+                        _prevWindow.Close();
+                        SubForumWindow newWin = new SubForumWindow(_forumName, _subForumName, _userName);
+                        this.Close();
+                        newWin.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("could not add thread");
+                    }
                 }
             }
             else
             {
-                if (_sf.createThread(title.Text, content.Text, _userName, _forumName, _subForumName))
-                {
-                    MessageBox.Show("thread was added succesfully");
-                    _prevWindow.Close();
-                    SubForumWindow newWin = new SubForumWindow(_forumName, _subForumName, _userName);
-                    this.Close();
-                    newWin.Show();
-                }
-                else
-                {
-                    MessageBox.Show("could not add thread");
-                }
+                _pm.updatePost(_postToEdit.id, title.Text, content.Text, _userName);
+                SubForumWindow newWin = new SubForumWindow(_forumName, _subForumName, _userName);
+                newWin.Show();
+                this.Close();
             }
         }
 
