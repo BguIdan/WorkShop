@@ -21,6 +21,8 @@ namespace PL
     /// <summary>
     /// Interaction logic for ForumWindow.xaml
     /// </summary>
+    /// 
+
     public partial class ForumWindow : Window
     {
         
@@ -39,6 +41,11 @@ namespace PL
             ForumName.Content = "ForumName:  " + _myforum.forumName;
             _sUMC = new SuperUserManagerClient();
             InitializePermissons(userName);
+            //initializing the subForumListBox
+            foreach(string subForum in _myforum.subForums)
+            {
+                subForumsListBox.Items.Add(subForum);
+            }
         }
 
         private void InitializePermissons(string userName)
@@ -98,25 +105,6 @@ namespace PL
             }
         }
 
-        private void DataGrid_Loaded(object sender, RoutedEventArgs e)
-        {
-            // ... Create a List of objects. (Example)
-            /*var items = new List<Forum>();
-            items.Add(new Forum("Fido", "10" , " ", " " , new List<string>()));
-            items.Add(new Forum("Spark", "20" , " ", " " , new List<string>()));
-            items.Add(new Forum("Fluffy", "4" , " ", " " , new List<string>()));*/
-
-            /* Option B:
-              var items = new List<String>();
-              for(int i=0; i < _subForumNames.Count;i++)
-              {
-                  items.Add(_subForumNames.ElementAt(i));
-              }*/
-
-            // ... Assign ItemsSource of DataGrid. (Should do the job)
-            var grid = sender as DataGrid;
-            grid.ItemsSource = _myforum.subForums;
-        }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -277,6 +265,17 @@ namespace PL
                 AddSubForum.Visibility = System.Windows.Visibility.Collapsed;
             }
         }
+
+        private void subForumsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Get SelectedItems from DataGrid.
+
+            _subForumChosen = subForumsListBox.SelectedItem.ToString();
+            SubForumWindow sfw = new SubForumWindow(_myforum.forumName, _subForumChosen, _userName);
+            sfw.Show();
+            this.Close();
+        }
+
 
         /*private void privateMessages_Click(object sender, RoutedEventArgs e)
 

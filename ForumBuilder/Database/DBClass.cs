@@ -21,7 +21,7 @@ namespace Database
             //DBClass db = DBClass.getInstance;
             //db.initializeDB();
             //db.clear();
-            
+           /*
             DBClass db = DBClass.getInstance;
             db.initializeDB();
             db.clear();
@@ -84,7 +84,7 @@ namespace Database
             //db.clear();
             //Program DB = new Program();
             //DB.initializeDB();
-            
+         */
         }
         public static DBClass getInstance
         {
@@ -98,9 +98,41 @@ namespace Database
                         singleton.initializeDB();
                     }
                     return singleton;
+                    singleton = new DBClass();
+                    singleton.initializeDB();
+                    maxNotAvailable = Math.Max(singleton.getMaxIntOfPost(),-1);
                 }
             }
         }
+
+        private int getMaxIntOfPost()
+        {
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "SELECT  Max(postID) FROM  posts";
+                OleDbDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    int x = reader.GetInt32(0);
+                    closeConnectionDB();
+                    return x;
+                }
+                else
+                {
+                    closeConnectionDB();
+                    return -1;
+                }
+            }
+            catch
+            {
+                closeConnectionDB();
+                return -1;
+            }
+        }
+
         public Boolean initializeDB()
         {
             try
@@ -111,7 +143,7 @@ namespace Database
                 //connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\User\Desktop\WorkShop\forumDB.mdb;
                 //                                Persist Security Info=False;";
 
-                connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\User\Documents\sadna\forumDB.mdb;
+                connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\User\Desktop\WorkShop\forumDB.mdb;
                 Persist Security Info=False;";
                 //connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\gal\Desktop\wsep\New Folder\project\forumDB.mdb;
                 //Persist Security Info=False;";
@@ -913,6 +945,35 @@ namespace Database
             try
             {
                 lock (lockThis)
+                {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "SELECT  * FROM  subForums where subForums.forumName='" + forumName + "' and "+
+                    "subForums.subForumName = '" + subForumName+ "'";
+                OleDbDataReader reader = command.ExecuteReader();
+                if(reader.Read())
+                    subForum = new SubForum(reader.GetString(0), reader.GetString(1));
+                else
+                {
+                    return null;
+                }
+                OleDbCommand command2 = new OleDbCommand();
+                command2.Connection = connection;
+                command2.CommandText = "SELECT  * FROM  subForumModerators where subForumModerators.forumName='" + forumName + "' and "+
+                    "subForumModerators.subForumName='" + subForumName + "'";
+                
+                OleDbDataReader reader2 = command2.ExecuteReader();
+                while (reader2.Read())
+                {
+                    subForum.moderators.Add(reader2.GetString(2), DateTime.Parse(reader2.GetDateTime(3).ToString("dd MM yyyy")));
+                }
+                OleDbCommand command3 = new OleDbCommand();
+                command3.Connection = connection;
+                command3.CommandText = "SELECT  * FROM  threads where forumName='" + forumName + "' and " +
+                    "subForumName='" + subForumName + "'";
+                OleDbDataReader reader3 = command3.ExecuteReader();
+                while (reader3.Read())
                 {
                     OpenConnectionDB();
                     OleDbCommand command = new OleDbCommand();
