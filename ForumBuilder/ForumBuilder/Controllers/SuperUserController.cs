@@ -40,7 +40,7 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("create forum fail " + superUserName + " is not super user");
                 return false;
             }                
-            else if (DB.createForum(forumName, descrption, forumPolicy, forumRules))
+            else if (DB.createForum(forumName, descrption, forumPolicy, forumRules, new List<string>()))
             {
                 this.forumController.addForum(forumName);
                 foreach(String admin in administrators)
