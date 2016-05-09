@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using ForumBuilder.Common.DataContracts;
 using PL.proxies;
+using System.ServiceModel;
+using PL.notificationHost;
 
 namespace PL
 {
@@ -86,6 +89,7 @@ namespace PL
     public partial class SubForumWindow : Window
     {
         private PostManagerClient _pm;
+        private ForumManagerClient _fm;
         private string _userName;
         private int _patentId;//used for adding post;
         private List<dataContainer> dataOfEachPost;
@@ -93,6 +97,7 @@ namespace PL
         public SubForumWindow(string fName, string sfName, string userName)//forum subforum names and userName
         {
             InitializeComponent();
+            _fm = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
             _pm = new PostManagerClient();
             forumName.Content = fName;
             sForumName.Content = sfName;
@@ -132,10 +137,8 @@ namespace PL
             }
             threadView.Visibility = Visibility.Collapsed;
             threadTextBox.Visibility = Visibility.Collapsed;
-            addThreadButton.Visibility = Visibility.Collapsed;
-            addPostButton.Visibility = Visibility.Visible;
+            addPostButton.Header = "add thread";
             listBox.Visibility = Visibility.Visible;
-
         }
 
         private void MenuItem_Coupon(object sender, RoutedEventArgs e)
@@ -186,8 +189,7 @@ namespace PL
             if (listBox.Visibility == Visibility.Visible)
             {
                 listBox.Visibility = Visibility.Collapsed;
-                addPostButton.Visibility = Visibility.Collapsed;
-                addThreadButton.Visibility = Visibility.Visible;
+                addPostButton.Header = "add post";
                 threadView.Visibility = Visibility.Visible;
                 threadTextBox.Visibility = Visibility.Visible;
                 _patentId = -1;
@@ -227,6 +229,26 @@ namespace PL
             addPostAndThreadWindow win = new addPostAndThreadWindow(this, _patentId, _userName, forumName.Content.ToString(), sForumName.Content.ToString());
             this.Visibility = Visibility.Collapsed;
             win.Show();
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem menuItem = e.Source as MenuItem;
+            switch (menuItem.Name)
+            {
+                case "addPostButton": { addPostButton_Click(sender,e); } break;
+                case "deleteMessageButton": { deleteMessageButton_Click(sender, e); } break;
+                case "backButton": { back_Click(sender, e); } break;
+                case "logOutButton": { logOut(sender, e); } break;
+            }
+        }
+
+        private void logOut(object sender, RoutedEventArgs e)
+        {
+            _fm.logout(_userName, forumName.Content.ToString());
+            MainWindow newWin = new MainWindow();
+            newWin.Show();
+            this.Close();
         }
     }
 }

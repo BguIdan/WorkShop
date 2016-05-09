@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="SuperUserLogInWindow" Height="300" Width="300">
     <Grid>
-        <Button x:Name="logInButton" Content="Log In" HorizontalAlignment="Left" Height="25" Margin="93,194,0,0" VerticalAlignment="Top" Width="111" FontFamily="cooper" Click="logInButton_Click"/>
+        <Button x:Name="logInButton" Content="Log In" HorizontalAlignment="Left" Height="25" Margin="145,208,0,0" VerticalAlignment="Top" Width="111" FontFamily="cooper" Click="logInButton_Click"/>
         <TextBlock FontFamily="Cooper Black" Text="Enter UserName:" Margin="10,107,136,140" Height="22" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <TextBlock FontFamily="Cooper Black" Text="Enter Password:" Margin="10,135,136,112" Height="22" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <TextBox x:Name="userNameTextBox" HorizontalAlignment="Left" Height="22" Margin="173,107,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="83"/>
@@ -15,6 +15,7 @@
         <Label x:Name="label" Content="Super User" HorizontalAlignment="Left" Height="35" Margin="93,33,0,0" VerticalAlignment="Top" Width="101" FontFamily="cooper" FontSize="16"/>
         <TextBox x:Name="emailTextBox" HorizontalAlignment="Left" Height="29" Margin="173,73,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="83"/>
         <TextBlock FontFamily="Cooper Black" Text="Enter Email:" Margin="10,73,136,167" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Button x:Name="backButton" Content="Back" HorizontalAlignment="Left" Height="25" Margin="29,208,0,0" VerticalAlignment="Top" Width="111" FontFamily="cooper" Click="backButton_Click"/>
 
     </Grid>
 </Window>
