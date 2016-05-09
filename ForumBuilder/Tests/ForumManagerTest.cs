@@ -124,7 +124,7 @@ namespace Tests
             Assert.IsFalse(this.forumManager.banMember(NonMemberName, AdminName, forumName), "ban of userNonMember should Not be successful");
             Assert.IsFalse(this.forumManager.isMember(NonMemberName, forumName), "userNonMember should not be a member");
         }
-
+/*
         [TestMethod]
         public void test_banMember_on_member()
         {
@@ -137,7 +137,6 @@ namespace Tests
             Assert.IsFalse(this.forumManager.registerUser(this.userMember.userName, this.userMember.password, this.userMember.email, forumName), "userMember should not be able to become a member since he is banned");
             Assert.IsFalse(this.forumManager.isMember(MemberName, forumName), "userMember should not be a member when banned");
         }
-
         [TestMethod]
         public void test_banMember_on_admin()
         {
@@ -150,6 +149,7 @@ namespace Tests
             Assert.IsFalse(this.forumManager.registerUser(AdminName, this.userAdmin.password, this.userAdmin.email, forumName), "userMember should not be able to become a member since he is banned");
             Assert.IsFalse(this.forumManager.isMember(AdminName, forumName), "userMember should not be a member when banned");
         }
+*/
 
         [TestMethod]
         public void test_banMember_on_null()

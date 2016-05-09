@@ -86,7 +86,7 @@ namespace Tests
             List<String> newFriendList = this.userManager.getFriendList(this.userNonMember.userName);
             Assert.AreEqual(newFriendList, null, "unsuccessful friend addition should not change the friend list");
         }
-
+/*
         [TestMethod]
         public void test_addFriend_member_with_nonMember()
         {
@@ -96,7 +96,6 @@ namespace Tests
             List<String> newFriendList = this.userManager.getFriendList(this.userMember.userName);
             Assert.AreEqual(newFriendList.Count, 0, "unsuccessful friend addition should not change the friend list");
         }
-
         [TestMethod]
         public void test_addFriend_member_with_member()
         {
@@ -157,7 +156,8 @@ namespace Tests
             Assert.AreEqual(newFriendList.Count, 1, "friend list size should increase from 0 to 1");
             Assert.IsTrue(newFriendList.Contains(adminName));
         }
-
+*/
+/*
         [TestMethod]
         public void test_addFriend_admin_with_null()
         {
@@ -167,12 +167,12 @@ namespace Tests
             List<String> newFriendList = this.userManager.getFriendList(this.userAdmin.userName);
             Assert.AreEqual(newFriendList.Count, 0, "unsuccessful friend addition should not change the friend list");
         }
-
+*/
         /**********************end of add friend*********************/
 
         /**********************delete friend*********************/
 
-        [TestMethod]
+   /*     [TestMethod]
         public void test_deleteFriend_member_with_member()
         {
             String newMemberName = "mem2";
@@ -204,7 +204,6 @@ namespace Tests
             Assert.AreEqual(newFriendList.Count, 0, "friend list size should increase from 1 to 0");
             Assert.IsFalse(newFriendList.Contains(this.userAdmin.userName));
         }
-
         [TestMethod]
         public void test_deleteFriend_admin_with_member()
         {
@@ -240,7 +239,8 @@ namespace Tests
             Assert.AreEqual(newFriendList.Count, 0, "friend list size should increase from 1 to 0");
             Assert.IsFalse(newFriendList.Contains(adminName));
         }
-
+        */
+        /*
         [TestMethod]
         public void test_deleteFriend_admin_with_null()
         {
@@ -250,6 +250,6 @@ namespace Tests
             List<String> newFriendList = this.userManager.getFriendList(this.userAdmin.userName);
             Assert.AreEqual(newFriendList.Count, 0, "unsuccessful friend addition should not change the friend list");
         }
-
+        */
     }
 }
