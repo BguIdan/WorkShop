@@ -41,5 +41,12 @@ namespace PL
                 MessageBox.Show("couldn't log in");
             }
         }
+
+        private void backButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow newWin = new MainWindow();
+            newWin.Show();
+            this.Close();
+        }
     }
 }
