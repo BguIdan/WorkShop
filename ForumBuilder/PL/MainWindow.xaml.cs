@@ -31,7 +31,7 @@ namespace PL
         {
             InitializeComponent();
             _fMC = new ForumManagerClient();
-            _forumsList = _fMC.getForums();
+         //   _forumsList = _fMC.getForums();
             this.Show(); 
         }
 

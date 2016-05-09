@@ -6,6 +6,7 @@ using ForumBuilder.Common.ServiceContracts;
 using Database;
 using PL.proxies;
 using ForumBuilder.Common.DataContracts;
+using ForumBuilder.Systems;
 
 namespace Tests
 {
@@ -22,7 +23,7 @@ namespace Tests
             DBClass db = DBClass.getInstance;
             db.clear();
             ISuperUserManager superUser = new SuperUserManagerClient();
-            superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
+            ForumSystem.initialize("guy", "AG36djs", "hello@dskkl.com");
             IForumManager forum = new ForumManagerClient(); 
             String forumName = "forum";
             String adminName = "admin";
@@ -58,7 +59,7 @@ namespace Tests
             DBClass db = DBClass.getInstance;
             db.clear();
             ISuperUserManager superUser = new SuperUserManagerClient();
-            superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
+            ForumSystem.initialize("guy", "AG36djs", "hello@dskkl.com");
             IForumManager forum = new ForumManagerClient(); 
             String forumName = "forum";
             String adminName = "admin";
@@ -88,7 +89,7 @@ namespace Tests
             DBClass db = DBClass.getInstance;
             db.clear();
             ISuperUserManager superUser = new SuperUserManagerClient();
-            superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
+            ForumSystem.initialize("guy", "AG36djs", "hello@dskkl.com");
             IForumManager forum = new ForumManagerClient(); 
             String forumName = "forum";
             String adminName = "admin";
@@ -114,7 +115,7 @@ namespace Tests
             DBClass db = DBClass.getInstance;
             db.clear();
             ISuperUserManager superUser = new SuperUserManagerClient();
-            superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
+            ForumSystem.initialize("guy", "AG36djs", "hello@dskkl.com");
             IForumManager forum = new ForumManagerClient();
             String forumName = "forum";
             String adminName = "admin";
@@ -139,9 +140,11 @@ namespace Tests
         [TestMethod]
         public void AT_Test_register_to_forum_withWrongInputs()
         {
+            DBClass db = DBClass.getInstance;
+            db.clear();
             IForumManager forumMan = new ForumManagerClient();
             ISuperUserManager superUserMan = new SuperUserManagerClient();
-            superUserMan.initialize("guy", "AG36djs", "hello@dskkl.com");
+            ForumSystem.initialize("guy", "AG36djs", "hello@dskkl.com");
             List<String> adminList = new List<String>();
             adminList.Add("admin1");
             adminList.Add("admin2");
@@ -156,18 +159,19 @@ namespace Tests
             Assert.IsFalse(forumMan.registerUser("mem2", "", "fff@xc.com", "forumName"));
             Assert.IsFalse(forumMan.registerUser("mem2", "passWor1", "", "forumName"));
             Assert.IsFalse(forumMan.registerUser("mem2", "passWor1", "fff@xc.com", "forumName"));
-            DBClass db = DBClass.getInstance;
             db.clear();
         }
 
         [TestMethod]
         public void AT_Test_register_to_forum_Functionality()
         {
+            DBClass db = DBClass.getInstance;
+            db.clear();
             IForumManager forumMan = new ForumManagerClient();
             ISuperUserManager superUserMan = new SuperUserManagerClient();
             IUserManager userMan = new UserManagerClient();
 
-            superUserMan.initialize("guy", "AG36djs", "hello@dskkl.com");
+            ForumSystem.initialize("guy", "AG36djs", "hello@dskkl.com");
             List<String> adminList = new List<String>();
             adminList.Add("admin1");
             adminList.Add("admin2");
@@ -190,7 +194,6 @@ namespace Tests
             Assert.IsTrue(userMan.addFriend("admin1", "mem1"));
             Assert.IsTrue(userMan.addFriend("mem1", "admin1"));
             Assert.IsTrue(userMan.sendPrivateMessage("mem1", "admin1", "when the test gona be done"));
-            DBClass db = DBClass.getInstance;
             db.clear();
         }
 
@@ -201,8 +204,10 @@ namespace Tests
         [TestMethod]
         public void AT_test_create_subForum_and_nominate_moderator()
         {
+            DBClass db = DBClass.getInstance;
+            db.clear();
             ISuperUserManager superUser = new SuperUserManagerClient();
-            superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
+            ForumSystem.initialize("guy", "AG36djs", "hello@dskkl.com");
             IForumManager forum  = new ForumManagerClient();
             ISubForumManager subForum = new SubForumManagerClient();
             String forumName = "forum";
@@ -222,8 +227,6 @@ namespace Tests
 
             Assert.IsTrue(subForum.nominateModerator("mem", adminName, new DateTime(2030, 1, 1), subForumName, forumName), "nomination of member user should be successful");
             Assert.IsTrue(subForum.isModerator("mem", subForumName, forumName), "member should be moderator after his successful numonation");
-
-            DBClass db = DBClass.getInstance;
             db.clear();
         }
 
@@ -234,11 +237,13 @@ namespace Tests
         [TestMethod]
         public void AT_test_add_thread_and_post()
         {
+            DBClass db = DBClass.getInstance;
+            db.clear();
             ISuperUserManager superUser = new SuperUserManagerClient();
             IForumManager forum = new ForumManagerClient();
             ISubForumManager subForum = new SubForumManagerClient();
             IPostManager post = new PostManagerClient();
-            superUser.initialize("guy", "AG36djs", "hello@dskkl.com");
+            ForumSystem.initialize("guy", "AG36djs", "hello@dskkl.com");
             String forumName = "forum";
             String adminName = "admin";
             String subForumName = "subforum";
@@ -273,7 +278,6 @@ namespace Tests
             Assert.IsTrue(post.addPost("headLine3", "content3", userMemberName, postId));
             Assert.AreEqual(posts.Count, 3);
 
-            DBClass db = DBClass.getInstance;
             db.clear();
 
 

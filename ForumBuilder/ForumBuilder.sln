@@ -1,9 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "ForumBuilder\Domain.csproj", "{5E3130C0-D5DC-41A6-A297-28B5D4859ED4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B690218F-8AFF-410B-B355-7967970D472B} = {B690218F-8AFF-410B-B355-7967970D472B}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{25185434-FB59-44F0-95DD-FEB28B45C1E6}"
 EndProject
@@ -14,6 +17,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{F9DD4028-A8E6-418D-B96B-6976D26E6AA4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForumBuilder.common", "Common\ForumBuilder.common.csproj", "{DB6F5FFC-3837-455B-A666-3C117C130995}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8D0EE7C8-8129-4294-97AE-CB29DFCA5149}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoadTest", "LoadTest\LoadTest.csproj", "{6C620ED7-0D8F-4140-B5E6-7334BE953E51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +97,16 @@ Global
 		{DB6F5FFC-3837-455B-A666-3C117C130995}.Release|ARM.ActiveCfg = Release|Any CPU
 		{DB6F5FFC-3837-455B-A666-3C117C130995}.Release|x64.ActiveCfg = Release|Any CPU
 		{DB6F5FFC-3837-455B-A666-3C117C130995}.Release|x86.ActiveCfg = Release|Any CPU
+		{6C620ED7-0D8F-4140-B5E6-7334BE953E51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C620ED7-0D8F-4140-B5E6-7334BE953E51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C620ED7-0D8F-4140-B5E6-7334BE953E51}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{6C620ED7-0D8F-4140-B5E6-7334BE953E51}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6C620ED7-0D8F-4140-B5E6-7334BE953E51}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6C620ED7-0D8F-4140-B5E6-7334BE953E51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C620ED7-0D8F-4140-B5E6-7334BE953E51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C620ED7-0D8F-4140-B5E6-7334BE953E51}.Release|ARM.ActiveCfg = Release|Any CPU
+		{6C620ED7-0D8F-4140-B5E6-7334BE953E51}.Release|x64.ActiveCfg = Release|Any CPU
+		{6C620ED7-0D8F-4140-B5E6-7334BE953E51}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

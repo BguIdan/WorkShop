@@ -1,11 +1,3 @@
-C:\Users\Aviv\Documents\WorkShop\ForumBuilder\BL_Back_End\bin\Debug\BL_Back_End.exe.config
-C:\Users\Aviv\Documents\WorkShop\ForumBuilder\BL_Back_End\bin\Debug\BL_Back_End.exe
-C:\Users\Aviv\Documents\WorkShop\ForumBuilder\BL_Back_End\bin\Debug\BL_Back_End.pdb
-C:\Users\Aviv\Documents\WorkShop\ForumBuilder\BL_Back_End\bin\Debug\DW.CodedUI.dll
-C:\Users\Aviv\Documents\WorkShop\ForumBuilder\BL_Back_End\bin\Debug\DW.CodedUI.pdb
-C:\Users\Aviv\Documents\WorkShop\ForumBuilder\BL_Back_End\bin\Debug\DW.CodedUI.xml
-C:\Users\Aviv\Documents\WorkShop\ForumBuilder\BL_Back_End\obj\Debug\BL_Back_End.exe
-C:\Users\Aviv\Documents\WorkShop\ForumBuilder\BL_Back_End\obj\Debug\BL_Back_End.pdb
 C:\Users\User\Desktop\WorkShop\ForumBuilder\BL_Back_End\bin\Debug\BL_Back_End.exe.config
 C:\Users\User\Desktop\WorkShop\ForumBuilder\BL_Back_End\bin\Debug\BL_Back_End.exe
 C:\Users\User\Desktop\WorkShop\ForumBuilder\BL_Back_End\bin\Debug\BL_Back_End.pdb

@@ -29,6 +29,8 @@ namespace Tests
         [TestInitialize]
         public void setUp()
         {
+            DBClass db = DBClass.getInstance;
+            db.clear();
             ForumSystem.initialize("guy", "AG36djs", "hello@dskkl.com");
             this.forumManager = new ForumManagerClient();
             this.userNonMember = new UserData("nonMem", "nonmemPass", "nonmem@gmail.com");
