@@ -135,5 +135,12 @@ namespace ForumBuilder.Controllers
                 return false;
             }
         }
+        public int SuperUserReportNumOfForums(string superUserName)
+        {
+            if (isSuperUser(superUserName))
+                return DB.numOfForums();
+            else
+                return -1;
+        }
     }
 }

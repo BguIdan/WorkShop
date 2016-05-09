@@ -160,6 +160,7 @@ namespace ForumBuilder.Controllers
             }
             else
             {
+                //TODO: gal work! interactivity
                 return DB.updatePost(postID, title, content);
             }
         }

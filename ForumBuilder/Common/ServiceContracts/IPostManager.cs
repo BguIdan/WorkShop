@@ -23,5 +23,7 @@ namespace ForumBuilder.Common.ServiceContracts
         [OperationContract]
         List<PostData> getAllPosts(String forumName, String subforumName);
 
+        [OperationContract]
+        Boolean updatePost(int postID, String title, String content, String userName);
     }
 }

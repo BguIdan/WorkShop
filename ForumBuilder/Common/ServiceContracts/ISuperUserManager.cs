@@ -21,5 +21,8 @@ namespace ForumBuilder.Common.ServiceContracts
 
         [OperationContract]
         Boolean isSuperUser(String user);
+
+        [OperationContract]
+        int SuperUserReportNumOfForums(string superUserName);
     }
 }

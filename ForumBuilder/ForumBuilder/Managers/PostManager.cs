@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BL_Back_End;
 using ForumBuilder.Common.ServiceContracts;
 using ForumBuilder.Common.DataContracts;
 
@@ -42,8 +43,17 @@ namespace Service
         }
         public List<PostData> getAllPosts(String forumName, String subforumName)
         {
-            //TODO: complete the function
-            return null;
+            List<Post> posts= postController.getAllPosts(forumName, subforumName);
+            List<PostData> postsData = new List<PostData>();
+            foreach (Post p in posts)
+            {
+                postsData.Add(new PostData(p.writerUserName, p.id, p.title, p.content, p.parentId, p.timePublished));
+            }
+            return postsData;
+        }
+        public Boolean updatePost(int postID, String title, String content, String userName)
+        {
+            return postController.updatePost(postID, title, content, userName);
         }
     }
 }
