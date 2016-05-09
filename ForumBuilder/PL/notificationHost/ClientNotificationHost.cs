@@ -17,16 +17,14 @@ namespace PL.notificationHost
                     "'s sub-forum " + subForumName, "new post");
          }
 
-        public void applyPostModificationNotification(String forumName, String subForumName, String publisherName, String title, String content)
+        public void applyPostModificationNotification(String forumName, String publisherName, String title, String content)
         {
-                MessageBox.Show(publisherName + "'s post you were following in " + forumName + 
-                    "'s sub-forum " + subForumName + "was modified", "post modified");
+                MessageBox.Show(publisherName + "'s post you were following in " + forumName + "was modified (" + title + ")", "post modified");
         }
 
-        public void applyPostDelitionNotification(String forumName, String subForumName, String publisherName, String title, String content)
+        public void applyPostDelitionNotification(String forumName, String publisherName)
         {
-                MessageBox.Show(publisherName + "'s post you were following in " + forumName +
-                    "'s sub-forum " + subForumName + "was modified", "post modified");
+                MessageBox.Show(publisherName + "'s post you were following in " + forumName + "was deleted", "post deleted");
         }
 
         public void sendUserMessage(String senderName, String content)

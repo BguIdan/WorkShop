@@ -15,10 +15,10 @@ namespace ForumBuilder.Common.ClientServiceContracts
         void applyPostPublishedInForumNotification(String forumName, String subForumName, String publisherName);
 
         [OperationContract(IsOneWay = true)]
-        void applyPostModificationNotification(String forumName, String subForumName, String publisherName, String title, String content);
+        void applyPostModificationNotification(String forumName, String publisherName, String title, String content);
 
         [OperationContract(IsOneWay = true)]
-        void applyPostDelitionNotification(String forumName, String subForumName, String publisherName, String title, String content);
+        void applyPostDelitionNotification(String forumName, String publisherName);
 
         [OperationContract(IsOneWay = true)]
         void sendUserMessage(String senderName, String content);

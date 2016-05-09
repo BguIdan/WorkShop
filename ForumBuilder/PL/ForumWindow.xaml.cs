@@ -140,11 +140,6 @@ namespace PL
             AddSubForum.Visibility = System.Windows.Visibility.Visible; ;
         }
 
-        /*private void setNotifications(object sender, RoutedEventArgs e)
-        {
-            //TODO: need to do this func?
-        }*/
-
         private void setPreferences()
         {
             MainMenu.Visibility = System.Windows.Visibility.Collapsed;
