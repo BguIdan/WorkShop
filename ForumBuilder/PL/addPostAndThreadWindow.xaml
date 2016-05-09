@@ -7,11 +7,11 @@
         mc:Ignorable="d"
         Title="addPostAndThreadWindow" Height="300" Width="300">
     <Grid>
-        <Label x:Name="whatToAdd" Content="whatToAdd" HorizontalAlignment="Left" Height="31" Margin="109,10,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label x:Name="whatToAdd" FontFamily="cooper black" FontSize="30" Content="whatToAdd" HorizontalAlignment="Left" Height="60" Margin="30,10,0,0" VerticalAlignment="Top" Width="223"/>
         <TextBox x:Name="title" HorizontalAlignment="Left" Height="32" Margin="30,75,0,0" TextWrapping="Wrap" Text="title" VerticalAlignment="Top" Width="223"/>
         <TextBox x:Name="content" HorizontalAlignment="Left" Height="97" Margin="30,130,0,0" TextWrapping="Wrap" Text="content" VerticalAlignment="Top" Width="223"/>
-        <Button x:Name="addButton" Content="add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="178,239,0,0" Click="addButton_Click"/>
-        <Button x:Name="backButton" Content="back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="30,239,0,0" Click="backButton_Click"/>
+        <Button x:Name="addButton" FontFamily="cooper black" Content="add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="178,239,0,0" Click="addButton_Click"/>
+        <Button x:Name="backButton" FontFamily="cooper black" Content="back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="30,239,0,0" Click="backButton_Click"/>
 
     </Grid>
 </Window>

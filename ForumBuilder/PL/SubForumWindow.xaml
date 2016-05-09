@@ -5,12 +5,12 @@
     <Grid>
         <DockPanel Margin="0,0,0,343">
             <Menu DockPanel.Dock="Top" Height="50"  Width="392">
-                <MenuItem Header="Coupons" Click="MenuItem_Coupon">
-                    <MenuItem Header="Add Coupon From Social Network" Name="Add"/>
-                    <MenuItem Header="Search and Purchase Coupons" Name="Look"/>
-                    <MenuItem Header="Rank Purchased Coupon" Name="Rank" />
+                <MenuItem Header="Action" Click="MenuItem_Click">
+                    <MenuItem Header="Add Thread " Name="addPostButton"/>
+                    <MenuItem Header="Delete" Name="deleteMessageButton"/>
+                    <MenuItem Header="Back" Name="backButton" />
                     <Separator />
-                    <MenuItem Header="Exit" Name="Exit"/>
+                    <MenuItem Header="Log Out" Name="logOutButton"/>
                 </MenuItem>
                 <MenuItem Header="My User"  >
                     <MenuItem Header="View My Purchased Coupons" Click="viewCoupons"/>
@@ -33,10 +33,6 @@
                 <DataGridTextColumn Header="Time Published" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="backButton" Content="back " HorizontalAlignment="Left" Height="29" Margin="25,332,0,0" VerticalAlignment="Top" Width="62" Click="back_Click"/>
-        <Button x:Name="deleteMessageButton" Content="delete" HorizontalAlignment="Left" Height="28" Margin="167,332,0,0" VerticalAlignment="Top" Width="81" Click="deleteMessageButton_Click"/>
-        <Button x:Name="addThreadButton" Content="add thread" HorizontalAlignment="Left" Height="27" Margin="265,332,0,0" VerticalAlignment="Top" Width="68"/>
-        <Button x:Name="addPostButton" Content="add post" HorizontalAlignment="Left" Height="27" Margin="265,332,0,0" VerticalAlignment="Top" Width="68" Click="addPostButton_Click"/>
         <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="209" Margin="25,117,0,0" VerticalAlignment="Top" Width="341"/>
     </Grid>
 </Window>
