@@ -35,7 +35,7 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Dismiss moderator failed, sub-forum does not exist");
                 return false;
             }
-            else if (!ForumController.getInstance.isAdmin(dismissByAdmin, forumName))
+            else if (!ForumController.getInstance.isAdmin(dismissByAdmin, forumName) && !SuperUserController.getInstance.isSuperUser(dismissByAdmin))
             {
                 logger.logPrint("Dismiss moderator failed, "+ dismissByAdmin+" has no permission");
                 return false;

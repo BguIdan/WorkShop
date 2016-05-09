@@ -6,6 +6,7 @@
         <Menu Margin="0,0,0,346" Name="MainMenu" VerticalAlignment="Top">
             <MenuItem Header="Actions" Click="MenuItem_Forums">
                 <MenuItem Header="Create Sub-Forum" Name="AddSub"/>
+                <MenuItem Header="View Private Messages" Name="privateMessages"/>
                 <MenuItem Header="Set\Change Preferences" Name="Set" />
                 <MenuItem Header="Sign Up (Guest)" Name="Sign" />
                 <Separator />
@@ -15,13 +16,14 @@
                 <MenuItem Header="Set Notifications"/>
             </MenuItem>
         </Menu>
-        <Grid Name="mainGrid" Visibility="Visible" Margin="0,0,0,0">
-            <Label Name="ForumName" FontSize="30" FontFamily="Cooper Black" Margin="37,43,37,287"/>
-            <TextBlock Name="headline" FontSize="16" FontFamily="Broadway" TextWrapping="Wrap" VerticalAlignment="Top" Text="Sub-Forums" Visibility="Visible" Height="26" Margin="140,97,140,0"/>
+        <Grid Name="mainGrid" Visibility="Visible">
+            <Label Name="ForumName" FontSize="30" FontFamily="Cooper Black" Margin="0,29,0,287"/>
+            <TextBlock Name="headline" FontSize="16" FontFamily="Broadway" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" Text="Sub-Forums" Visibility="Visible" Height="43" Margin="0,87,0,0"/>
             <ListBox x:Name="subForumsListBox" HorizontalAlignment="Left" Height="182" Margin="21,135,0,0" VerticalAlignment="Top" Width="347" SelectionChanged="subForumsListBox_SelectionChanged"/>
         </Grid>
 
         <Grid Name="setPreferencesWin" Visibility="Collapsed" Margin="10,24,10,0">
+            <Button x:Name="backButton" Content="Back" Height="20" FontFamily="cooper black" FontSize="15" HorizontalAlignment="Left" Margin="0,264,0,0" VerticalAlignment="Top" Width="99" Click="backButton_Click"/>
             <CheckBox Name="descCheck" IsChecked="False" Margin="18,148,339,182" Click="rulesChoose" />
             <CheckBox Name="policyCheck" IsChecked="False" Margin="18,174,339,155" Click="descChoose" />
             <CheckBox Name="rulesCheck" IsChecked="False" Margin="18,200,339,130" Click="policyChoose" />
@@ -32,7 +34,7 @@
             <TextBox Name="ForumPolicyToSet" Height="18" Margin="195,174,57,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False"/>
             <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Margin="48,200,224,0" Text="Forum Rules:"/>
             <TextBox Name="ForumRulesToSet" Height="18" Margin="195,200,57,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False"/>
-            <Button FontFamily="Cooper Black" Content="Set Preferences" Margin="195,264,57,45" Click="btn_SetForumPref"/>
+            <Button FontFamily="Cooper Black" Content="Set Preferences" Margin="195,264,57,45" Click="btn_SetForumPref" Height="20"/>
             <TextBlock FontSize="30" FontFamily="Broadway" TextWrapping="Wrap" Text=" Set  Forum Preferences" Margin="90,10,90,262"/>
         </Grid>
 
@@ -41,9 +43,8 @@
             <Button Name="yesBtn" Click="btn_toSetPref" FontFamily="Cooper Black" Content="Yes" Margin="41,68,155,10" />
             <Button Name="noBtn" Click="btn_toSetPref" FontFamily="Cooper Black" Content="No" Margin="155,68,41,10" />
         </Grid>
-        <Button x:Name="privateMessages" Content="Private Messages" Visibility="Collapsed" HorizontalAlignment="Left" Height="40" Margin="10,319,0,0" VerticalAlignment="Top" Width="129"/>
-
         <Grid Name="AddSubForum" Visibility="Collapsed" Margin="10,24,10,0">
+            <Button x:Name="backButton1" Content="Back" FontFamily="cooper black" FontSize="15" HorizontalAlignment="Left" Height="37" Margin="10,322,0,0" VerticalAlignment="Top" Width="99" Click="backButton_Click"/>
             <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Text="Please enter forum name and select a member to be a moderator:" VerticalAlignment="Top" Height="27" Margin="44,84,110,0"/>
             <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Margin="48,148,201,0" Text="Sub-Forum Name:"/>
             <TextBox Name="subForumName" Margin="195,148,57,180" TextWrapping="Wrap"/>

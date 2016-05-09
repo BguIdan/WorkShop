@@ -42,8 +42,6 @@ namespace PL
             {
                 case "CreateForum": { createNewForum(); } break;
                 case "Set": { setPreferences(); } break;
-                case "CreateSub": { createSub(); } break;
-                case "Del": { Delete(); } break;
                 case "Createuser": { createUser(); } break;
                 case "logoutMenu": { logout(); } break;
             }
@@ -77,6 +75,7 @@ namespace PL
             setPreferencesWin.Visibility = System.Windows.Visibility.Collapsed;
             createUserWin.Visibility = System.Windows.Visibility.Collapsed;
             createForum.Visibility = System.Windows.Visibility.Visible;
+            backButton.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void setPreferences()
@@ -85,16 +84,7 @@ namespace PL
             createForum.Visibility = System.Windows.Visibility.Collapsed;
             createUserWin.Visibility = System.Windows.Visibility.Collapsed;
             setPreferencesWin.Visibility = System.Windows.Visibility.Visible;
-        }
-
-        private void createSub()
-        {
-            //TODO: complete the mehtod
-        }
-
-        private void Delete()
-        {
-            //TODO: complete the mehtod
+            backButton.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void createUser()
@@ -103,6 +93,7 @@ namespace PL
             createForum.Visibility = System.Windows.Visibility.Collapsed;
             setPreferencesWin.Visibility = System.Windows.Visibility.Collapsed;
             createUserWin.Visibility = System.Windows.Visibility.Visible;
+            backButton.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void btn_CreateNewForum(object sender, RoutedEventArgs e)
@@ -152,6 +143,12 @@ namespace PL
             }
         }
 
+        private void backButton_Click(object sender, RoutedEventArgs e)
+        {
+            SuperUserWindow newWin = new SuperUserWindow(_myUser.userName, _myUser.password, _myUser.email);
+            newWin.Show();
+            this.Close();
+        }
     }
 }
         

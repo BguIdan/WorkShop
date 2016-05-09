@@ -7,6 +7,9 @@
             <Menu DockPanel.Dock="Top" Height="50"  Width="392">
                 <MenuItem Header="Action" Click="MenuItem_Click">
                     <MenuItem Header="Add Thread " Name="addPostButton"/>
+                    <MenuItem Header="View Private Messages" Name="privateMessages"/>
+                    <MenuItem Header="Dismiss Moderator" Name="dismissModerator"/>
+                    <MenuItem Header="Edit Message" Name="editMassege"/>
                     <MenuItem Header="Delete" Name="deleteMessageButton"/>
                     <MenuItem Header="Back" Name="backButton" />
                     <Separator />
@@ -14,15 +17,15 @@
                 </MenuItem>
             </Menu>
         </DockPanel>
-        <Label Content="ForumName:"  Name="forumName" FontFamily="Cooper Black" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top" Width="341" Height="23"/>
-        <Label Content="Sub-ForumName:"  Name="sForumName" FontFamily="Cooper Black" HorizontalAlignment="Left" Margin="25,49,0,0" VerticalAlignment="Top" Width="341" Height="23"/>
-        <TextBlock Name="threadTextBox" FontSize="16" FontFamily="Broadway" TextWrapping="Wrap" VerticalAlignment="Top"
-            	Text="Threads" Visibility="Visible" Height="32" Margin="158,88,158,0"
-            	RenderTransformOrigin="0.78,0.757"/>
+        <Label Content="ForumName:" FontSize="16"  Name="forumName" FontFamily="Cooper Black" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top" Width="341" Height="37"/>
+        <Label Content="Sub-ForumName:" FontSize="16" Name="sForumName" FontFamily="Cooper Black" HorizontalAlignment="Left" Margin="25,68,0,0" VerticalAlignment="Top" Width="341" Height="35"/>
+        <TextBlock Name="threadTextBox" FontSize="16" FontFamily="cooper black" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center"
+            	Text="   Threads" Visibility="Visible" Height="36" Margin="155,108,109,0"
+            	RenderTransformOrigin="0.78,0.757" Width="128"/>
         <DataGrid x:Name="threadView" 
-                  AutoGenerateColumns="True" Margin="25,117,26,43" SelectionChanged="ThreadView_SelectionChanged" Loaded="DataGrid_Loaded">
+                  AutoGenerateColumns="True" Margin="0,160,0,0" SelectionChanged="ThreadView_SelectionChanged" Loaded="DataGrid_Loaded">
 
         </DataGrid>
-        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="209" Margin="0,117,0,0" VerticalAlignment="Top" Width="392"/>
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="209" Margin="0,160,0,0" VerticalAlignment="Top" Width="392"/>
     </Grid>
 </Window>

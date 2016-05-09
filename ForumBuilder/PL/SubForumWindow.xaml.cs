@@ -111,6 +111,10 @@ namespace PL
         {
             var grid = sender as DataGrid;
             var selected = grid.SelectedItem as dataContainer;
+            if (selected == null)
+            {
+                return;
+            }
             List<PostData> posts = _pm.getAllPosts(forumName.Content.ToString(), sForumName.Content.ToString());
             foreach (PostData pd1 in posts)
             {
@@ -149,7 +153,7 @@ namespace PL
                 }
             }
             threadView.Visibility = Visibility.Collapsed;
-            threadTextBox.Visibility = Visibility.Collapsed;
+            threadTextBox.Text = "   Posts";
             addPostButton.Header = "add post";
             addPostButton.Visibility = Visibility.Visible;
             listBox.Visibility = Visibility.Visible;
@@ -204,12 +208,12 @@ namespace PL
                 listBox.Visibility = Visibility.Collapsed;
                 addPostButton.Header = "add Thread";
                 threadView.Visibility = Visibility.Visible;
-                threadTextBox.Visibility = Visibility.Visible;
+                threadTextBox.Text = "   Threads";
                 _patentId = -1;
             }
             else//needs to go back to previous page
             {
-                SubForumWindow newWin = new SubForumWindow(forumName.Content.ToString(), sForumName.Content.ToString(), _userName);
+                ForumWindow newWin = new ForumWindow(_fm.getForum(forumName.Content.ToString()), _userName);
                 newWin.Show();
                 this.Close();
             }
@@ -284,7 +288,72 @@ namespace PL
                 case "deleteMessageButton": { deleteMessageButton_Click(sender, e); } break;
                 case "backButton": { back_Click(sender, e); } break;
                 case "logOutButton": { logOut(sender, e); } break;
+                case "privateMessages": { privateMessages_Click(sender, e); } break;
+                case "editMassege": { editMessage_Click(sender, e); } break;
+                case "dismissModerator": { dismissModerator_Click(sender, e); } break;
             }
+        }
+        private void dismissModerator_Click(object sender, RoutedEventArgs e)
+        {
+            DismissModerator newWin = new DismissModerator(this, _userName, forumName.Content.ToString(), sForumName.Content.ToString());
+            newWin.Show();
+            this.Visibility = Visibility.Collapsed;
+        }
+
+        private void editMessage_Click(object sender, RoutedEventArgs e)
+        {
+            int index = -1;
+            int tempIndex = 0;
+            bool found = false;
+            foreach (ListBox item in listBox.Items)
+            {
+                if (!found)
+                {
+                    if (item != null && item.Items[0] != null && item.Items[1] != null)
+                    {
+                        CheckBox cb = (CheckBox)(item.Items[1]);
+                        if (cb.IsChecked.Value)
+                        {
+                            found = true;
+                            index = tempIndex;
+                        }
+                    }
+                    tempIndex++;
+                }
+            }
+            if (index == -1)
+            {
+                MessageBox.Show("no box is checked");
+                return;
+            }
+            dataContainer selected = dataOfEachPost[index];
+            List<PostData> posts = _pm.getAllPosts(forumName.Content.ToString(), sForumName.Content.ToString());
+            PostData postToEdit = null;
+            foreach (PostData pd in posts)
+            {
+                if (pd.id == selected.Id)
+                {
+                    postToEdit = pd;
+                }
+            }
+            if (postToEdit != null)//if the wanted post exists
+            {
+                addPostAndThreadWindow newWin = new addPostAndThreadWindow(postToEdit, _userName, forumName.Content.ToString(), sForumName.Content.ToString());
+                newWin.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("error: couldn't find message");
+            }
+        }
+
+        private void privateMessages_Click(object sender, RoutedEventArgs e)
+
+        {
+            privateMessagesWindow newWin = new privateMessagesWindow(_userName, this);
+            this.Visibility = Visibility.Collapsed;
+            newWin.Show();
         }
 
         private void logOut(object sender, RoutedEventArgs e)

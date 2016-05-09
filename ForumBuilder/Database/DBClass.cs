@@ -97,7 +97,7 @@ namespace Database
                     {
                         singleton = new DBClass();
                         singleton.initializeDB();
-                        //maxNotAvailable = Math.Max(singleton.getMaxIntOfPost(), -1);
+                        maxNotAvailable = Math.Max(singleton.getMaxIntOfPost(), -1);
                         singleton.forums = singleton.getAllForums();
                     }
                     return singleton;
@@ -495,17 +495,17 @@ namespace Database
                     lock (lockThis)
                     {
                         OpenConnectionDB();
-                        List<String> forums = new List<String>();
+                        List<String> forums1 = new List<String>();
                         OleDbCommand command = new OleDbCommand();
                         command.Connection = connection;
                         command.CommandText = "SELECT  forumName FROM  forums";
                         OleDbDataReader reader = command.ExecuteReader();
                         while (reader.Read())
                         {
-                            forums.Add(reader.GetString(0));
+                            forums1.Add(reader.GetString(0));
                         }
                         closeConnectionDB();
-                        return forums;
+                        return forums1;
                     }
                 }
                 catch
