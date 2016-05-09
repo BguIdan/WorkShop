@@ -171,6 +171,25 @@ namespace Database
             }
         }*/
 
+        public int numOfForums()
+        {
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "SELECT  Count(forumName) FROM  forums";
+                OleDbDataReader reader = command.ExecuteReader();
+                reader.Read();
+                closeConnectionDB();
+                return reader.GetInt32(0);
+            }
+            catch
+            {
+                closeConnectionDB();
+                return -1;
+            }
+        }
         public bool dismissModerator(string dismissedModerator, string subForumName, string forumName)
         {
             try
@@ -304,6 +323,10 @@ namespace Database
                     administrators.Add(reader2.GetString(1));
                 }
                 forum = new Forum(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), administrators);
+                List<String> members = getMembersOfForum(forumName);
+                forum.members = members;
+                List<String> subForums = getsubForumsNamesOfForum(forumName);
+                forum.subForums = subForums;
                 closeConnectionDB();
                 return forum;
             }
@@ -313,6 +336,31 @@ namespace Database
                 return forum;
             }
         }
+
+        public List<string> getsubForumsNamesOfForum(string forumName)
+        {
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "SELECT  * FROM  subForums where forumName='" + forumName + "'";
+                OleDbDataReader reader = command.ExecuteReader();
+                closeConnectionDB();
+                List<String> subForums = new List<String>();
+                while (reader.Read())
+                {
+                    subForums.Add(reader.GetString(1));
+                }
+                return subForums;
+            }
+            catch
+            {
+                closeConnectionDB();
+                return null;
+            }
+        }
+
         public List<String> getForums()
         {
             try

@@ -31,5 +31,10 @@ namespace PL.proxies
             return Channel.getAllPosts(forumName, subforumName);
         }
 
+        public Boolean updatePost(int postID, String title, String content, String userName)
+        {
+            return Channel.updatePost(postID, title, content, userName);
+        }
+
     }
 }
