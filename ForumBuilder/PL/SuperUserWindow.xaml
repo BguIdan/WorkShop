@@ -13,9 +13,6 @@
                 <Separator/>
                 <MenuItem Header="Logout" Name="logoutMenu"/>
             </MenuItem>
-            <MenuItem Header="View" Click="MenuItem_View">
-                <MenuItem Header="View current forums" Name="ViewForums" />
-            </MenuItem>
         </Menu>
 
         <Grid Name="createForum" Visibility="Collapsed" Margin="10,24,10,0">

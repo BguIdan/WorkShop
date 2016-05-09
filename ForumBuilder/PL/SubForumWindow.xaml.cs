@@ -133,10 +133,14 @@ namespace PL
                         {
                             if (pd2.id == singleCommentId)
                             {
+                                ListBox innerListBox = new ListBox();
                                 Expander exp = new Expander();
-                                exp.Header = pd2.title + "                                                          " + pd2.timePublished + "\n pulished by:" + pd2.writerUserName;
+                                exp.Header = pd2.title + "                                     " + pd2.timePublished + "\n pulished by:" + pd2.writerUserName;
                                 exp.Content = pd2.content;
-                                listBox.Items.Add(exp);
+                                CheckBox cb = new CheckBox();
+                                innerListBox.Items.Add(exp);
+                                innerListBox.Items.Add(cb);
+                                listBox.Items.Add(innerListBox);
                                 dataContainer dt = new dataContainer(pd2.id, pd2.title, pd2.writerUserName, pd2.timePublished.ToString());
                                 dataOfEachPost.Add(dt);
                             }
@@ -213,7 +217,30 @@ namespace PL
 
         private void deleteMessageButton_Click(object sender, RoutedEventArgs e)
         {
-            int index = listBox.SelectedIndex;
+            int index = -1;
+            int tempIndex = 0;
+            bool found = false;
+            foreach (ListBox item in listBox.Items)
+            {
+                if (!found)
+                {
+                    if (item != null && item.Items[0] != null && item.Items[1] != null)
+                    {
+                        CheckBox cb = (CheckBox)(item.Items[1]);
+                        if (cb.IsChecked.Value)
+                        {
+                            found = true;
+                            index = tempIndex;
+                        }
+                    }
+                    tempIndex++;
+                }
+            }
+            if (index == -1)
+            {
+                MessageBox.Show("no box is checked");
+                return;
+            }
             dataContainer selected = dataOfEachPost[index];
             List<PostData> posts = _pm.getAllPosts(forumName.Content.ToString(), sForumName.Content.ToString());
             PostData postToDelete = null;
@@ -228,6 +255,12 @@ namespace PL
             {
                 _pm.deletePost(postToDelete.id, _userName);
                 listBox.Items.RemoveAt(index);
+                if (index == 0)
+                {
+                    SubForumWindow newWin = new SubForumWindow(forumName.Content.ToString(), sForumName.Content.ToString(), _userName);
+                    newWin.Show();
+                    this.Close();
+                }
             }
             else
             {
