@@ -14,7 +14,8 @@ namespace WebClient
 
         }
 
-       /* private void btn_createSub(object sender, RoutedEventArgs e)
+       /* the WPF code
+        * private void btn_createSub(object sender, RoutedEventArgs e)
         {
             int time = 0;
             int unlimited = 120;

@@ -50,8 +50,11 @@ namespace WebClient
             {
                 ForumData toSend = _fMC.getForum(_choosenForum);
                 if (CheckBox_Guest.Checked)
-                {//TODO gal: go to forums window as guest
-                    showAlert("im guest");
+                {
+                    Session["forumName"] = _choosenForum;
+                    Session["userName"] = "Guest";
+                    Session["ForumManagerClient"] = _fMC;
+                    Response.Redirect("ForumWindow.aspx");
                 }
                 else if (_fMC.login(userName, _choosenForum, pass))
                 {

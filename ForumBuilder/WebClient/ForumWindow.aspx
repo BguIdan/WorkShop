@@ -5,24 +5,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <script type="text/javascript">
-        var w;
-
-        function startWorker() {
-            if (typeof (Worker) !== "undefined") {
-                if (typeof (w) == "undefined") {
-                    w = new Worker("worker.js");
-                }
-                w.onmessage = function (event) {
-                    if ('<#= newPostNotification %>')
-                    { document.getElementById("Label1").style.display = "none" }
-                    else { document.getElementById("Label1").style.display = "" }
-                };
-            } else {
-                document.getElementById("Label1").innerHTML = "Sorry! No Web Worker support.";
-            }
-        }
-      </script>
 </head>
 <body>
     <h1>Sub-Forums</h1>
@@ -44,9 +26,6 @@
     </p>
     <p>
         <asp:Table ID="tbl_subForumList" runat="server"></asp:Table>
-    </p>
-        <p>
-            <asp:Label id="Label1" Visible="false" Text="check" runat="server"></asp:Label>
     </p>
     </div>
     </form>

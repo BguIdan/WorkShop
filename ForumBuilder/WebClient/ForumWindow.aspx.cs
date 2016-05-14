@@ -51,7 +51,6 @@ namespace WebClient
                 row.Cells.Add(cell);
                 tbl_subForumList.Rows.Add(row);
             }
-            Page.ClientScript.RegisterStartupScript(GetType(), "MyKey", "startWorker();",true);
         }
         
         private void InitializePermissons(string userName)
@@ -179,12 +178,7 @@ namespace WebClient
 
         public void applyPostPublishedInForumNotification(String forumName, String subForumName, String publisherName)
         {
-            //ScriptManager.RegisterStartupScript(this, this.GetType(), "notify", "showAlert(\"check\")", true);
-            //Page.ClientScript.RegisterStartupScript(this.GetType(), "notify", "alert(\"check\")", true);
-            newPostNotification = true;
-          //  showAlert("check");
-                //showAlert(publisherName + " published a post in " + forumName + 
-                  // "'s sub-forum " + subForumName);
+            //TODO failed to effect the web page dynamically (gal)
         }
 
         public void applyPostModificationNotification(String forumName, String publisherName, String title, String content)
