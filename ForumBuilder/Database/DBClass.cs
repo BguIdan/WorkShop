@@ -137,10 +137,10 @@ namespace Database
                 //connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\User\Desktop\WorkShop\forumDB.mdb;
                 //                                Persist Security Info=False;";
 
-                connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\User\Documents\sadna\forumDB.mdb;
-                Persist Security Info=False;";
-                //connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\gal\Desktop\wsep\New Folder\project\forumDB.mdb;
+                //connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\User\Documents\sadna\forumDB.mdb;
                 //Persist Security Info=False;";
+                connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\gal\Desktop\wsep\New Folder\project\forumDB.mdb;
+                Persist Security Info=False;";
                 //connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\gal\Desktop\wsep\New Folder\project\forumDB.mdb;
                 //                                Persist Security Info=False;";
 

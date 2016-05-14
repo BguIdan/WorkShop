@@ -130,6 +130,7 @@ namespace PL
         private void ComboBox_OnDropDownOpened(object sender, EventArgs e)
         {
             comboBox.Items.Clear();
+            while (_forumsList == null) { Thread.Sleep(20); }
             foreach (String forumName in this._forumsList)
                 comboBox.Items.Add(forumName);
         }

@@ -6,6 +6,7 @@ using System.ServiceModel;
 using Service;
 using System.ComponentModel.DataAnnotations;
 using ForumBuilder.Common.ServiceContracts;
+using System.Collections.Generic;
 
 namespace ForumBuilder.Systems
 {
@@ -99,6 +100,8 @@ namespace ForumBuilder.Systems
 
         public static int Main(string[] args)
         {
+            //TODO gal: remove later
+            DBClass.getInstance.clear();
             Console.WriteLine(  "welcome to your forum builder!\n" +
                                 "please insert your desired user name:");
             String username = "idan";//getUserName();
@@ -106,6 +109,17 @@ namespace ForumBuilder.Systems
             String email = "d@d.d";//getEmail();
 
             initialize(username, password, email);
+            if (!SuperUserController.getInstance.createForum("f", "f", "f", "f", new List<String>(), "idan"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!1");
+            if (!ForumController.getInstance.registerUser("g1", "gG1", "g@g.g", "f"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!1");
+            if (!ForumController.getInstance.registerUser("g2", "gG1", "g@g.g", "f"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!1");
+            if (!ForumController.getInstance.nominateAdmin("g1", "idan", "f"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!1");
+            if (!ForumController.getInstance.addSubForum("f", "f1", new Dictionary<String, DateTime>(), "g1"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!1");
+
             runServer(username, password, email);
             DBClass.getInstance.clear();
             return 0;
