@@ -132,17 +132,10 @@ namespace Database
             try
             {
                 connection = new OleDbConnection();
-                //connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\Idan\Workshop\WorkShop.git\forumDB.mdb;
-                //                                Persist Security Info=False;";
-                //connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\User\Desktop\WorkShop\forumDB.mdb;
-                //                                Persist Security Info=False;";
-
-                //connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\User\Documents\sadna\forumDB.mdb;
-                //Persist Security Info=False;";
-                connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\gal\Desktop\wsep\New Folder\project\forumDB.mdb;
-                Persist Security Info=False;";
-                //connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\gal\Desktop\wsep\New Folder\project\forumDB.mdb;
-                //                                Persist Security Info=False;";
+                string s =System.IO.Directory.GetCurrentDirectory();
+                s = s.Substring(0, s.IndexOf("ForumBuilder"))+ "forumDB.mdb; Persist Security Info = False;";
+                s = "Provider=Microsoft.Jet.OLEDB.4.0; Data Source=" + s;
+                connection.ConnectionString = @s;
 
                 connection.Open();
                 connection.Close();
