@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
-using BL_Back_End;
 using ForumBuilder.Common.DataContracts;
 
 

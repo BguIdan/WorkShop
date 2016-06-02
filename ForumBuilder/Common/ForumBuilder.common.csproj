@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="ClientServiceContracts\IUserNotificationsService.cs" />
     <Compile Include="DataContracts\ForumData.cs" />
+    <Compile Include="DataContracts\ForumPolicyData.cs" />
     <Compile Include="DataContracts\MessageData.cs" />
     <Compile Include="DataContracts\PostData.cs" />
     <Compile Include="DataContracts\SubForumData.cs" />
