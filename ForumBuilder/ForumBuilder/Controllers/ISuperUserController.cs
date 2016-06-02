@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using BL_Back_End;
 
 namespace ForumBuilder.Controllers
 {
     public interface ISuperUserController : IUserController
     {
-        Boolean createForum(String forumName, String descrption, String forumPolicy, String forumRules, List<String> administrators, String superUserName);
+        Boolean createForum(String forumName, String descrption, ForumPolicy fp, List<String> administrators, String superUserName);
         Boolean login(String newUser, String forumName, string email);
         Boolean isSuperUser(string userName);
         int SuperUserReportNumOfForums(string superUserName);

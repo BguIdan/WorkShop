@@ -39,11 +39,11 @@ namespace Tests
             List<string> adminList = new List<string>();
             adminList.Add("admin");
             adminList.Add("admin2");
-            ForumPolicy forumPolicy = new ForumPolicy();
-            this.forum = new Forum("testForum", "descr",adminList);            
+            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
+            this.forum = new Forum("testForum", "descr",fp,adminList);            
             superUser1 = new User("tomer", "1qW", "fkfkf@wkk.com");
             SuperUserController.getInstance.addSuperUser(superUser1.email, superUser1.password, superUser1.userName);
-            superUser.createForum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "tomer");            
+            superUser.createForum("testForum", "descr",fp, adminList, "tomer");            
             Assert.IsTrue(this.forumController.registerUser("mem", "mempass", "mem@gmail.com", this.forum.forumName));
 
         }

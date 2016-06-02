@@ -46,13 +46,13 @@ namespace Tests
             modList.Add(this.userModerator.userName, new DateTime(2030, 1, 1));
             List<string> adminList = new List<string>();
             adminList.Add("admin");
-            ForumPolicy forumPolicy = new ForumPolicy();
-            this.forum = new Forum(this.forumName, "descr", adminList);
+            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
+            this.forum = new Forum(this.forumName, "descr",fp, adminList);
             superUser1 = 
                 DBClass.getInstance.getSuperUser("tomer");
             SuperUserController.getInstance.addSuperUser("fkfkf@wkk.com", "1qW", "tomer");
-            superUser.createForum("1", "1", "1", "1", null, "tomer");
-            Assert.IsTrue(superUser.createForum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "tomer"));
+            superUser.createForum("1", "1", fp, null, "tomer");
+            Assert.IsTrue(superUser.createForum("testForum", "descr", fp, adminList, "tomer"));
             //Assert.IsTrue(this.forumController.registerUser("admin", "adminpass", "admin@gmail.com", this.forumName));
             Assert.IsTrue(this.forumController.registerUser("mem", "mempass", "mem@gmail.com", this.forumName));
             Assert.IsTrue(this.forumController.registerUser("mod", "modpass", "mod@gmail.com", this.forumName));

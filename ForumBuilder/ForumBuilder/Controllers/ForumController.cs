@@ -295,7 +295,9 @@ namespace ForumBuilder.Controllers
             return true;
         }
 
-        public Boolean setForumPreferences(String forumName, String newDescription, String newForumPolicy, String newForumRules, string setterUserName)
+        public Boolean setForumPreferences(String forumName, String newDescription, string policy, bool isQuestionIdentifying,
+            int seniorityInForum, bool deletePostByModerator, int timeToPassExpiration, int minNumOfModerators,
+            bool hasCapitalInPassword, bool hasNumberInPassword, int minLengthOfPassword, string setterUserName)
         {
             bool hasSucceed = false;
             if (DB.getforumByName(forumName) == null)
@@ -310,7 +312,8 @@ namespace ForumBuilder.Controllers
             {
                 logger.logPrint("Set forum preferences failed, one or more of the arguments is null");
             }
-            else if (DB.setForumPreferences(forumName, newDescription, newForumPolicy, newForumRules)) {
+            else if (DB.setForumPreferences(forumName, newDescription, policy, isQuestionIdentifying, seniorityInForum, deletePostByModerator,
+                    timeToPassExpiration, minNumOfModerators, hasCapitalInPassword, hasNumberInPassword, minLengthOfPassword)) {
                 logger.logPrint(forumName + "preferences had changed successfully");
                 hasSucceed = true;
             }

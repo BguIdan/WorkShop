@@ -28,9 +28,10 @@ namespace ForumBuilder.Controllers
             }
         }
 
-        public Boolean createForum(String forumName, String descrption, String forumPolicy, String forumRules, List<String> administrators, String superUserName)
+        public Boolean createForum(String forumName, String descrption, ForumPolicy fp, List<String> administrators, String superUserName)
         {
-            if (forumName.Equals("") || descrption.Equals("") || forumPolicy.Equals("") || forumRules.Equals("") || administrators == null)
+            if (forumName.Equals("") || descrption.Equals("") || fp.policy.Equals("") || fp.seniorityInForum<0||
+                fp.timeToPassExpiration<30 || fp.minLengthOfPassword<0 || administrators == null)
             {
                 logger.logPrint("cannot create new forum because one or more of the fields is empty");
                 return false;
@@ -40,7 +41,7 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("create forum fail " + superUserName + " is not super user");
                 return false;
             }                
-            else if (DB.createForum(forumName, descrption, forumPolicy, forumRules))
+            else if (DB.createForum(forumName, descrption, fp))
             {
                 this.forumController.addForum(forumName);
                 foreach(String admin in administrators)
