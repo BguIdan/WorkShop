@@ -225,7 +225,7 @@ namespace PL
                 if (toChange)
                 {
                     temp = ForumRulesToSet.Text;
-                    _myforum.forumRules = temp;
+                    //_myforum.forumRules = temp;
                 }
                 MessageBox.Show("Preferences was successfully changed!");
                 setPreferencesWin.Visibility = System.Windows.Visibility.Collapsed;

@@ -132,15 +132,15 @@ namespace Database
             try
             {
                 connection = new OleDbConnection();
-                //connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\Idan\Workshop\WorkShop.git\forumDB.mdb;
-                //                                Persist Security Info=False;";
+                connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\Idan\Workshop\WorkShop.git\forumDB.mdb;
+                                                Persist Security Info=False;";
                 //connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\User\Desktop\WorkShop\forumDB.mdb;
                 //                                Persist Security Info=False;";
 
                 //connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\User\Documents\sadna\forumDB.mdb;
                 //Persist Security Info=False;";
-                connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\gal\Desktop\wsep\New Folder\project\forumDB.mdb;
-                Persist Security Info=False;";
+                //connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\gal\Desktop\wsep\New Folder\project\forumDB.mdb;
+                //Persist Security Info=False;";
                 //connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\gal\Desktop\wsep\New Folder\project\forumDB.mdb;
                 //                                Persist Security Info=False;";
 
@@ -353,7 +353,7 @@ namespace Database
                 {
                     administrators.Add(reader2.GetString(1));
                 }
-                forum = new Forum(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), administrators);
+                forum = new Forum(reader.GetString(0), reader.GetString(1), administrators);
                 closeConnectionDB();
                 List<String> members = getMembersOfForum(forumName);
                 forum.members = members;

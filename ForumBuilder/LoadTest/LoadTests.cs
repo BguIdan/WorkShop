@@ -44,7 +44,8 @@ namespace LoadTest
             adminList.Add(this.userAdmin.userName);
             Dictionary<String, DateTime> modList = new Dictionary<String, DateTime>();
             modList.Add(this.userMod.userName, new DateTime(2030, 1, 1));
-            this.forum = new Forum(this.forumName, "descr", "policy", "the first rule is that you do not talk about fight club", adminList);
+            ForumPolicy forumPolicy = new ForumPolicy();
+            this.forum = new Forum(this.forumName, "descr", adminList);
             this.superUser = new User("tomer", "1qW", "fkfkf@wkk.com");
             SuperUserController.getInstance.addSuperUser(this.superUser.email, superUser.password, superUser.userName);
             superUserController.createForum(this.forumName, "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "tomer");

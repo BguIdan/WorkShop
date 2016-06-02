@@ -49,9 +49,6 @@ namespace ForumBuilder.Common.ServiceContracts
         String getForumDescription(String forumName);
 
         [OperationContract]
-        String getForumRules(String forumName);
-
-        [OperationContract]
         ForumData getForum(String forumName);
 
         [OperationContract]

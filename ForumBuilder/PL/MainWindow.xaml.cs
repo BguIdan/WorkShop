@@ -140,5 +140,19 @@ namespace PL
             _forumsList = _fMC.getForums();
         }
 
+        private void restorePass(object sender, RoutedEventArgs e)
+        {
+            if (_choosenForum != null)
+            {
+                RestorePasswordWindow rpw = new RestorePasswordWindow(_fMC, _choosenForum);
+                this.Close();
+                rpw.Show();
+            }
+            else
+            {
+                MessageBox.Show("You have to choose forum from the list");
+            }
+        }
+
     }
 }

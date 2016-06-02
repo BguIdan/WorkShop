@@ -10,5 +10,6 @@ namespace ForumBuilder.Controllers
         Boolean sendPrivateMessage(string fromUserName, string toUserName, string content);
         List<String> getFriendList(String userName);
         List<string[]> getAllPrivateMessages(string userName);
+        string restorePassword(string userName, string ans1, string ans2);
     }
 }

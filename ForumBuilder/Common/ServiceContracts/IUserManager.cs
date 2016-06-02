@@ -24,5 +24,8 @@ namespace ForumBuilder.Common.ServiceContracts
 
         [OperationContract]
         List<string[]> getAllPrivateMessages(string userName);
+
+        [OperationContract]
+        string restorePassword(string userName, string ans1, string ans2);
     }
 }

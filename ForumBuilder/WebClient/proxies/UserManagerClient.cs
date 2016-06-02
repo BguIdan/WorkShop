@@ -58,5 +58,9 @@ namespace WebClient.proxies
             return Channel.getFriendList(userName);
         }
 
+        public string restorePassword(string userName, string ans1, string ans2)
+        {
+            return Channel.restorePassword(userName, ans1, ans2);
+        }
     }
 }

@@ -21,20 +21,16 @@ namespace ForumBuilder.Common.DataContracts
         private String _forumPolicy;
 
         [DataMember]
-        private String _forumRules;
-
-        [DataMember]
         private List<string> _subForums;
         
         [DataMember]
         private List<string> _members;
 
-        public ForumData(string forumName, string descrption, string forumPolicy, string forumRules, List<String> subForums, List<String> members)
+        public ForumData(string forumName, string descrption, string forumPolicy, List<String> subForums, List<String> members)
         {
             _forumName = forumName;
             _description = descrption;
             _forumPolicy = forumPolicy;
-            _forumRules = forumRules;
             _subForums = subForums;
             _members = members;
         }
@@ -43,12 +39,6 @@ namespace ForumBuilder.Common.DataContracts
         {
             get { return _forumPolicy; }
             set { _forumPolicy = value; }
-        }
-
-        public String forumRules
-        {
-            get { return _forumRules; }
-            set { _forumRules = value; }
         }
 
         public String description

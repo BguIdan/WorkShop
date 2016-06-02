@@ -39,7 +39,8 @@ namespace Tests
             List<string> adminList = new List<string>();
             adminList.Add("admin");
             adminList.Add("admin2");
-            this.forum = new Forum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList);            
+            ForumPolicy forumPolicy = new ForumPolicy();
+            this.forum = new Forum("testForum", "descr",adminList);            
             superUser1 = new User("tomer", "1qW", "fkfkf@wkk.com");
             SuperUserController.getInstance.addSuperUser(superUser1.email, superUser1.password, superUser1.userName);
             superUser.createForum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "tomer");            
@@ -250,16 +251,13 @@ namespace Tests
             String newPolicy = "new policy for test";
             String oldDescription = this.forumController.getForumDescription(forumName);
             String newDescr = "new description";
-            String oldRules = this.forumController.getForumRules(forumName);
             String newRules = "there are no rules";
             String adminName = this.userAdmin.userName;
             Assert.AreNotEqual(oldPolicy, newPolicy, false, "the new policy should be different from the old one");
             Assert.AreNotEqual(oldDescription, newDescr, false, "the new description should be different from the old one");
-            Assert.AreNotEqual(oldRules, newRules, false, "the new rules should be different from the old one");
             Assert.IsTrue(this.forumController.setForumPreferences(forumName, newDescr, newPolicy, newRules, adminName), "policy change should be successful");
             Assert.AreEqual(this.forumController.getForumPolicy(forumName), newPolicy, false, "the new policy should be return after the change");
-            Assert.AreEqual(this.forumController.getForumDescription(forumName), newDescr, false, "the new description should be return after the change");
-            Assert.AreEqual(this.forumController.getForumRules(forumName), newRules, false, "the new rules should be return after the change");
+            Assert.AreEqual(this.forumController.getForumDescription(forumName), newDescr, false, "the new description should be return after the change");;
         
         }
 
@@ -269,12 +267,10 @@ namespace Tests
             String forumName = this.forum.forumName;
             String oldPolicy = this.forumController.getForumPolicy(forumName);
             String oldDescr = this.forumController.getForumDescription(forumName);
-            String oldRules = this.forumController.getForumRules(forumName);
             String adminName = this.userAdmin.userName;
             Assert.IsFalse(this.forumController.setForumPreferences(forumName, null, null, null, adminName), "policy change with null should not be successful");
             Assert.AreEqual(this.forumController.getForumPolicy(forumName), oldPolicy, false, "after an unsuccessful change, the old policy should be returned");
             Assert.AreEqual(this.forumController.getForumDescription(forumName), oldDescr, false, "after an unsuccessful change, the old description should be returned");
-            Assert.AreEqual(this.forumController.getForumRules(forumName), oldRules, false, "after an unsuccessful change, the old rules should be returned");
 
         }
         
@@ -284,12 +280,10 @@ namespace Tests
             String forumName = this.forum.forumName;
             String oldPolicy = this.forumController.getForumPolicy(forumName);
             String oldDescr = this.forumController.getForumDescription(forumName);
-            String oldRules = this.forumController.getForumRules(forumName);
             String adminName = this.userAdmin.userName;
             Assert.IsTrue(this.forumController.setForumPreferences(forumName, "", "", "", adminName), "policy change with null should not be successful");
             Assert.AreEqual(this.forumController.getForumPolicy(forumName), "", false, "after an unsuccessful change, the old policy should be returned");
             Assert.AreEqual(this.forumController.getForumDescription(forumName), "", false, "after an unsuccessful change, the old description should be returned");
-            Assert.AreEqual(this.forumController.getForumRules(forumName), "", false, "after an unsuccessful change, the old rules should be returned");
         }
 
         /******************************end of change policy***********************************/

@@ -37,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Forum.cs" />
+    <Compile Include="ForumPolicy.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Post.cs" />
     <Compile Include="SubForum.cs" />
@@ -47,6 +48,7 @@
     <Reference Include="DW.CodedUI">
       <HintPath>..\packages\DW.CodedUI.2.6.2\lib\DW.CodedUI.dll</HintPath>
     </Reference>
+    <Reference Include="System" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
