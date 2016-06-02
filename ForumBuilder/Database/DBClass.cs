@@ -596,21 +596,41 @@ namespace Database
                 return false;
             }
         }
-        public bool changePolicy(string newPolicy, string forumName)
+        public bool changePolicy(string forumName, string policy, bool isQuestionIdentifying, int seniorityInForum,
+         bool deletePostByModerator, int timeToPassExpiration, int minNumOfModerators, bool hasCapitalInPassword,
+         bool hasNumberInPassword, int minLengthOfPassword)
         {
             try
             {
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "UPDATE forums SET forumPolicy='" + newPolicy + "' where forumName='" + forumName + "'";
+                command.CommandText = "UPDATE policies SET "+
+                    "policy='" + policy + "' ,"+
+                    "isQuestionIdentifying=" + isQuestionIdentifying + " ," +
+                    "seniorityInForum=" + seniorityInForum + " ," +
+                    "deletePostByModerator=" + deletePostByModerator + " ," +
+                    "timeToPassExpiration=" + timeToPassExpiration + " ," +
+                    "minNumOfModerators=" + minNumOfModerators + " ," +
+                    "hasCapitalInPassword=" + hasCapitalInPassword + " ," +
+                    "hasNumberInPassword=" + hasNumberInPassword + " ," +
+                    "minLengthOfPassword=" + minLengthOfPassword + " ," +
+                    "where forumName='" + forumName + "'";
                 command.ExecuteNonQuery();
                 closeConnectionDB();
                 foreach (Forum f in forums)
                 {
                     if (f.forumName.Equals(forumName))
                     {
-                        f.forumPolicy=newPolicy;
+                        f.forumPolicy.policy = policy;
+                        f.forumPolicy.isQuestionIdentifying = isQuestionIdentifying;
+                        f.forumPolicy.seniorityInForum = seniorityInForum;
+                        f.forumPolicy.deletePostByMderator = deletePostByModerator;
+                        f.forumPolicy.timeToPassExpiration = timeToPassExpiration;
+                        f.forumPolicy.minNumOfModerators = minNumOfModerators;
+                        f.forumPolicy.hasCapitalInPassword = hasCapitalInPassword;
+                        f.forumPolicy.hasNumberInPassword = hasNumberInPassword;
+                        f.forumPolicy.minLengthOfPassword = minLengthOfPassword;
                     }
                 }
                 return true;
@@ -844,7 +864,7 @@ namespace Database
                 return null;
             }
         }
-        public Boolean createForum(string forumName, string description, string forumPolicy, string forumRules)
+        public Boolean createForum(string forumName, string description, ForumPolicy fp)
         {
             try
             {
@@ -855,10 +875,17 @@ namespace Database
                         "VALUES (?,?,?,?)";
                 command.Parameters.AddWithValue("forumName", forumName);
                 command.Parameters.AddWithValue("description", description);
-                command.Parameters.AddWithValue("forumPolicy", forumPolicy);
-                command.Parameters.AddWithValue("forumRules", forumRules);
                 command.ExecuteNonQuery();
 
+                OleDbCommand command2 = new OleDbCommand();
+                command2.Connection = connection;
+                command2.CommandText = "INSERT INTO policies ([forumName],[policy],[isQuestionIdentifying],[seniorityInForum],"+
+                    "[deletePostByModerator],[timeToPassExpiration],[minNumOfModerators],[hasCapitalInPassword],"+
+                    "[hasNumberInPassword],[minLengthOfPassword]) " +
+                        "VALUES (?,?,?,?)";
+                command2.Parameters.AddWithValue("forumName", forumName);
+                command2.Parameters.AddWithValue("description", description);
+                command2.ExecuteNonQuery();
                 /* foreach (string admin in administrators)
                  {
                      OleDbCommand command2 = new OleDbCommand();
@@ -870,7 +897,7 @@ namespace Database
                      command2.ExecuteNonQuery();
                  }*/
                 closeConnectionDB();
-                forums.Add(new Forum(forumName, description, forumPolicy, forumRules, new List<string>()));
+                forums.Add(new Forum(forumName, description,fp,new List<string>()));
                 return true;
             }
             catch
@@ -879,23 +906,25 @@ namespace Database
                 return false;
             }
         }
-        public Boolean setForumPreferences(String forumName, String newDescription, String newForumPolicy, String newForumRules)
+        public Boolean setForumPreferences(String forumName, String newDescription, string policy, bool isQuestionIdentifying,
+            int seniorityInForum, bool deletePostByModerator, int timeToPassExpiration, int minNumOfModerators,
+            bool hasCapitalInPassword, bool hasNumberInPassword, int minLengthOfPassword)
         {
             try
             {
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "UPDATE forums SET forumPolicy='" + newForumPolicy + "', description = '" + newDescription + "', forumRules = '" + newForumRules + "' where forumName='" + forumName + "'";
+                command.CommandText = "UPDATE forums SET description = '" + newDescription + "' where forumName='" + forumName + "'";
                 command.ExecuteNonQuery();
                 closeConnectionDB();
+                changePolicy(forumName,policy, isQuestionIdentifying, seniorityInForum, deletePostByModerator,
+                    timeToPassExpiration, minNumOfModerators, hasCapitalInPassword, hasNumberInPassword, minLengthOfPassword);
                 foreach (Forum f in forums)
                 {
                     if (f.forumName.Equals(forumName))
                     {
-                        f.forumPolicy=newForumPolicy;
                         f.description = newDescription;
-                        f.forumRules = newForumRules;
                     }
                 }
                 return true;

@@ -44,11 +44,12 @@ namespace LoadTest
             adminList.Add(this.userAdmin.userName);
             Dictionary<String, DateTime> modList = new Dictionary<String, DateTime>();
             modList.Add(this.userMod.userName, new DateTime(2030, 1, 1));
-            ForumPolicy forumPolicy = new ForumPolicy();
-            this.forum = new Forum(this.forumName, "descr", adminList);
+            ForumPolicy forumPolicy = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
+            this.forum = new Forum(this.forumName, "descr",forumPolicy, adminList);
             this.superUser = new User("tomer", "1qW", "fkfkf@wkk.com");
+            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
             SuperUserController.getInstance.addSuperUser(this.superUser.email, superUser.password, superUser.userName);
-            superUserController.createForum(this.forumName, "descr", "policy", "the first rule is that you do not talk about fight club", adminList, "tomer");
+            superUserController.createForum(this.forumName, "descr",fp, adminList, "tomer");
             this.forumController.registerUser("mem", "mempass", "mem@gmail.com", this.forumName);
             this.forumController.registerUser("mod", "modpass", "mod@gmail.com", this.forumName);
             this.forumController.addSubForum(this.forumName, this.subForumName, modList, this.userAdmin.userName);

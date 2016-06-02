@@ -15,11 +15,11 @@ namespace BL_Back_End
         private List<string> _members;
         private List<string> _subForums;
 
-        public Forum(string forumName, string descrption, List<string> administrators)
+        public Forum(string forumName, string descrption,ForumPolicy policy, List<string> administrators)
         {
             _forumName = forumName;
             _description = descrption;
-            _forumPolicy = new ForumPolicy();
+            _forumPolicy = policy;
             _administrators = administrators;
             _members = new List<string>();
             _subForums = new List<string>();

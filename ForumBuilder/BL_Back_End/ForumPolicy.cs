@@ -11,12 +11,26 @@ namespace BL_Back_End
         private String _policy;
         private bool _isQuestionIdentifying;
         private int _seniorityInForum;
-        private bool _deletePostByMderator;
+        private bool _deletePostByModerator;
         private int _timeToPassExpiration;
+        private int _minNumOfModerators;
+        private bool _hasCapitalInPassword;
+        private bool _hasNumberInPassword;
+        private int _minLengthOfPassword;
 
-        public ForumPolicy()
+        public ForumPolicy(string policy,bool isQuestionIdentifying,int seniorityInForum,
+         bool deletePostByModerator,int timeToPassExpiration,int minNumOfModerators,bool hasCapitalInPassword,
+         bool hasNumberInPassword,int minLengthOfPassword)
         {
-
+            String _policy=policy;
+            bool _isQuestionIdentifying=isQuestionIdentifying;
+            int _seniorityInForum=seniorityInForum;
+            bool _deletePostByModerator=deletePostByModerator;
+            int _timeToPassExpiration=timeToPassExpiration;
+            int _minNumOfModerators=minNumOfModerators;
+            bool _hasCapitalInPassword=hasCapitalInPassword;
+            bool _hasNumberInPassword=hasNumberInPassword;
+            int _minLengthOfPassword=minLengthOfPassword;
         }
 
         public Boolean isQuestionIdentifying
@@ -27,8 +41,8 @@ namespace BL_Back_End
 
         public Boolean deletePostByMderator
         {
-            get { return _deletePostByMderator; }
-            set { _deletePostByMderator = value; }
+            get { return _deletePostByModerator; }
+            set { _deletePostByModerator = value; }
         }
 
         public int seniorityInForum
@@ -49,5 +63,56 @@ namespace BL_Back_End
             set { _policy = value; }
         }
 
+        public int minNumOfModerators
+        {
+            get
+            {
+                return _minNumOfModerators;
+            }
+
+            set
+            {
+                _minNumOfModerators = value;
+            }
+        }
+
+        public bool hasCapitalInPassword
+        {
+            get
+            {
+                return _hasCapitalInPassword;
+            }
+
+            set
+            {
+                _hasCapitalInPassword = value;
+            }
+        }
+
+        public bool hasNumberInPassword
+        {
+            get
+            {
+                return _hasNumberInPassword;
+            }
+
+            set
+            {
+                _hasNumberInPassword = value;
+            }
+        }
+
+        public int minLengthOfPassword
+        {
+            get
+            {
+                return _minLengthOfPassword;
+            }
+
+            set
+            {
+                _minLengthOfPassword = value;
+            }
+        }
     }
 }

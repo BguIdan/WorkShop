@@ -7,6 +7,7 @@ using Service;
 using System.ComponentModel.DataAnnotations;
 using ForumBuilder.Common.ServiceContracts;
 using System.Collections.Generic;
+using BL_Back_End;
 
 namespace ForumBuilder.Systems
 {
@@ -109,7 +110,8 @@ namespace ForumBuilder.Systems
             String email = "d@d.d";//getEmail();
 
             initialize(username, password, email);
-            if (!SuperUserController.getInstance.createForum("f", "f", "f", "f", new List<String>(), "idan"))
+            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
+            if (!SuperUserController.getInstance.createForum("f", "f",fp, new List<String>(), "idan"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!1");
             if (!ForumController.getInstance.registerUser("g1", "gG1", "g@g.g", "f"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!1");

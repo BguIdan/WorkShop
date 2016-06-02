@@ -71,9 +71,12 @@ namespace Service
         {
             return forumController.isMember(userName, forumName);
         }
-        public Boolean setForumPreferences(String forumName, String newDescription, String newForumPolicy, String newForumRules, String setterUserName)
+        public Boolean setForumPreferences(String forumName, String newDescription, string policy, bool isQuestionIdentifying,
+            int seniorityInForum, bool deletePostByModerator, int timeToPassExpiration, int minNumOfModerators,
+            bool hasCapitalInPassword, bool hasNumberInPassword, int minLengthOfPassword, String setterUserName)
         {
-            return forumController.setForumPreferences(forumName, newDescription, newForumPolicy, newForumRules, setterUserName);
+            return forumController.setForumPreferences(forumName, newDescription, policy, isQuestionIdentifying, seniorityInForum, deletePostByModerator,
+                    timeToPassExpiration, minNumOfModerators, hasCapitalInPassword, hasNumberInPassword, minLengthOfPassword, setterUserName);
         }
         public String getForumPolicy(String forumName)
         {
