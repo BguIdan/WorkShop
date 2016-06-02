@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using System.ServiceModel;
 using System.Runtime.Serialization;
 
-namespace Common.DataContracts
+namespace ForumBuilder.Common.DataContracts
 {
     [DataContract]
-    class ForumPolicyData
+    public class ForumPolicyData
     {
         [DataMember]
         private String _policy;
@@ -21,7 +21,7 @@ namespace Common.DataContracts
         private int _seniorityInForum;
 
         [DataMember]
-        private bool _deletePostByMderator;
+        private bool _deletePostByModerator;
 
         [DataMember]
         private int _timeToPassExpiration;
@@ -36,15 +36,15 @@ namespace Common.DataContracts
         private bool _hasNumberInPassword;
 
         [DataMember]
-        private bool _minLengthOfPassword;
+        private int _minLengthOfPassword;
 
         public ForumPolicyData(String policy, bool isQuestionIdentifying, int seniorityInForum, bool deletePostByMderator, int timeToPassExpiration,
-                                int minNumOfModerator, bool hasCapitalInPassword, bool hasNumberInPassword, bool minLengthOfPassword)
+                                int minNumOfModerator, bool hasCapitalInPassword, bool hasNumberInPassword, int minLengthOfPassword)
         {
             _policy = policy;
             _isQuestionIdentifying = isQuestionIdentifying;
             _seniorityInForum = seniorityInForum;
-            _deletePostByMderator = deletePostByMderator;
+            _deletePostByModerator = deletePostByMderator;
             _timeToPassExpiration = timeToPassExpiration;
             _minNumOfModerator = minNumOfModerator;
             _hasCapitalInPassword = hasCapitalInPassword;
@@ -58,10 +58,10 @@ namespace Common.DataContracts
             set { _isQuestionIdentifying = value; }
         }
 
-        public Boolean deletePostByMderator
+        public Boolean deletePostByModerator
         {
-            get { return _deletePostByMderator; }
-            set { _deletePostByMderator = value; }
+            get { return _deletePostByModerator; }
+            set { _deletePostByModerator = value; }
         }
 
         public int seniorityInForum
@@ -100,7 +100,7 @@ namespace Common.DataContracts
             set { _hasNumberInPassword = value; }
         }
 
-        public bool minLengthOfPassword
+        public int minLengthOfPassword
         {
             get { return _minLengthOfPassword; }
             set { _minLengthOfPassword = value; }

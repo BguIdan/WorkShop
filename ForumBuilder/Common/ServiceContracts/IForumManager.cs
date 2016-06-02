@@ -40,7 +40,7 @@ namespace ForumBuilder.Common.ServiceContracts
         Boolean isMember(String userName, String forumName);
 
         [OperationContract]
-        Boolean setForumPreferences(String forumName, String newDescription, String newForumPolicy, String newForumRules, String setterUserName);
+        Boolean setForumPreferences(String forumName, String newDescription, ForumPolicyData fpd, String setterUserName);
 
         [OperationContract]
         String getForumPolicy(String forumName);

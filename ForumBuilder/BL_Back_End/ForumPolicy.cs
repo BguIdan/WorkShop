@@ -39,7 +39,7 @@ namespace BL_Back_End
             set { _isQuestionIdentifying = value; }
         }
 
-        public Boolean deletePostByMderator
+        public Boolean deletePostByModerator
         {
             get { return _deletePostByModerator; }
             set { _deletePostByModerator = value; }

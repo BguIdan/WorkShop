@@ -20,9 +20,7 @@ namespace ForumBuilder.Controllers
         Boolean addSubForum(string forumName, string name, Dictionary<String, DateTime> moderators, string userNameAdmin);
         Boolean isAdmin(String userName, String forumName);
         Boolean isMember(String userName, String forumName);
-        Boolean setForumPreferences(String forumName, String newDescription, string policy, bool isQuestionIdentifying,
-            int seniorityInForum, bool deletePostByModerator, int timeToPassExpiration, int minNumOfModerators,
-            bool hasCapitalInPassword, bool hasNumberInPassword, int minLengthOfPassword, string setterUserName);
+        Boolean setForumPreferences(String forumName, String newDescription, ForumPolicy fp, string setterUserName);
         String getForumPolicy(String forumName);
         String getForumDescription(String forumName);
         Forum getForum(String forumName);

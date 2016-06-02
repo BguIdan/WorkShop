@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
 using ForumBuilder.Common.ServiceContracts;
+using ForumBuilder.Common.DataContracts;
 
 namespace PL.proxies
 {
@@ -34,9 +35,9 @@ namespace PL.proxies
         {
         }
 
-        public Boolean createForum(String forumName, String descrption, String forumPolicy, String forumRules, List<String> administrators, String superUserName)
+        public Boolean createForum(String forumName, String descrption, ForumPolicyData fpd, List<String> administrators, String superUserName)
         {
-            return Channel.createForum(forumName, descrption, forumPolicy, forumRules, administrators, superUserName);
+            return Channel.createForum(forumName, descrption, fpd, administrators, superUserName);
         }
 
         public Boolean initialize(String name, String password, String email)

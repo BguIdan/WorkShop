@@ -625,7 +625,7 @@ namespace Database
                         f.forumPolicy.policy = policy;
                         f.forumPolicy.isQuestionIdentifying = isQuestionIdentifying;
                         f.forumPolicy.seniorityInForum = seniorityInForum;
-                        f.forumPolicy.deletePostByMderator = deletePostByModerator;
+                        f.forumPolicy.deletePostByModerator = deletePostByModerator;
                         f.forumPolicy.timeToPassExpiration = timeToPassExpiration;
                         f.forumPolicy.minNumOfModerators = minNumOfModerators;
                         f.forumPolicy.hasCapitalInPassword = hasCapitalInPassword;
@@ -906,9 +906,7 @@ namespace Database
                 return false;
             }
         }
-        public Boolean setForumPreferences(String forumName, String newDescription, string policy, bool isQuestionIdentifying,
-            int seniorityInForum, bool deletePostByModerator, int timeToPassExpiration, int minNumOfModerators,
-            bool hasCapitalInPassword, bool hasNumberInPassword, int minLengthOfPassword)
+        public Boolean setForumPreferences(String forumName, String newDescription, ForumPolicy fp)
         {
             try
             {
@@ -918,8 +916,8 @@ namespace Database
                 command.CommandText = "UPDATE forums SET description = '" + newDescription + "' where forumName='" + forumName + "'";
                 command.ExecuteNonQuery();
                 closeConnectionDB();
-                changePolicy(forumName,policy, isQuestionIdentifying, seniorityInForum, deletePostByModerator,
-                    timeToPassExpiration, minNumOfModerators, hasCapitalInPassword, hasNumberInPassword, minLengthOfPassword);
+                changePolicy(forumName,fp.policy, fp.isQuestionIdentifying, fp.seniorityInForum, fp.deletePostByModerator,
+                    fp.timeToPassExpiration, fp.minNumOfModerators, fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword);
                 foreach (Forum f in forums)
                 {
                     if (f.forumName.Equals(forumName))

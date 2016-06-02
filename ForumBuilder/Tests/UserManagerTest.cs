@@ -9,6 +9,7 @@ using PL.notificationHost;
 using PL.proxies;
 using System;
 using System.Collections.Generic;
+using BL_Back_End;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,7 +41,8 @@ namespace Tests
             List<string> adminList = new List<string>();
             adminList.Add("admin");
             ForumData forum = new ForumData(forumName, "descr", "policy", new List<String>(), new List<String>());
-            superUserController.createForum(forumName, "descr", "policy", "the first rule is that you do not talk about fight club", adminList, superUser.userName);
+            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
+            superUserController.createForum(forumName, "descr", fp, adminList, superUser.userName);
             Assert.IsTrue(this.forumManager.registerUser(userMember.userName, userMember.password, userMember.email, forumName));
         }
 

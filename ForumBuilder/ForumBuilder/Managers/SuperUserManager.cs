@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BL_Back_End;
 using ForumBuilder.Common.ServiceContracts;
+using ForumBuilder.Common.DataContracts;
 
 namespace Service
 {
@@ -32,13 +33,12 @@ namespace Service
             }
         }
 
-        public Boolean createForum(String forumName, String descrption, string policy, bool isQuestionIdentifying,
-            int seniorityInForum, bool deletePostByModerator, int timeToPassExpiration, int minNumOfModerators,
-            bool hasCapitalInPassword, bool hasNumberInPassword, int minLengthOfPassword, List<String> administrators,
-            String superUserName)
+        public Boolean createForum(String forumName, String descrption, ForumPolicyData fpd, List<String> administrators, String superUserName)
         {
-            return superUserController.createForum(forumName, descrption, new ForumPolicy(policy, isQuestionIdentifying, seniorityInForum, deletePostByModerator,
-                    timeToPassExpiration, minNumOfModerators, hasCapitalInPassword, hasNumberInPassword, minLengthOfPassword), administrators, superUserName);
+            return superUserController.createForum(forumName, descrption, new ForumPolicy(fpd.policy,
+                fpd.isQuestionIdentifying, fpd.seniorityInForum, fpd.deletePostByModerator,
+                    fpd.timeToPassExpiration, fpd.minNumOfModerator, fpd.hasCapitalInPassword, fpd.hasNumberInPassword,
+                    fpd.minLengthOfPassword), administrators, superUserName);
         }
 
         public Boolean initialize(String name, String password, String email)

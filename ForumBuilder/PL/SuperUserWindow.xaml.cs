@@ -104,7 +104,8 @@ namespace PL
             string policy = newForumPolicy.Text;
             string administrators = newAdminUserName.Text;
             List<string> admins = administrators.Split(',').ToList();
-            Boolean isCreated = _sUMC.createForum(forumName, desc, policy, rules, admins, _myUser.userName);
+            Boolean isCreated = false;// _sUMC.createForum(forumName, desc, policy, rules, admins, _myUser.userName);
+            //TODO: fix it
             if (isCreated)
             {
                 MessageBox.Show("Forum: " + forumName + " was successfully created!");

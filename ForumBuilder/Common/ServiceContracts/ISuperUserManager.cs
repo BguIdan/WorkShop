@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
+using ForumBuilder.Common.DataContracts;
+
 
 namespace ForumBuilder.Common.ServiceContracts
 {
@@ -11,7 +13,7 @@ namespace ForumBuilder.Common.ServiceContracts
     public interface ISuperUserManager
     {
         [OperationContract]
-        Boolean createForum(String forumName, String descrption, String forumPolicy, String forumRules, List<String> administrators, String superUserName);
+        Boolean createForum(String forumName, String descrption, ForumPolicyData fpd, List<String> administrators, String superUserName);
 
         [OperationContract]
         Boolean initialize(String name, String password, String email);
