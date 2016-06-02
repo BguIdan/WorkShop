@@ -1,0 +1,7 @@
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\WebClient\bin\WebClient.dll
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\WebClient\bin\WebClient.pdb
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\WebClient\bin\Common.dll
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\WebClient\bin\Common.pdb
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\WebClient\obj\Release\WebClient.csprojResolveAssemblyReference.cache
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\WebClient\obj\Release\WebClient.dll
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\WebClient\obj\Release\WebClient.pdb

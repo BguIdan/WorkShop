@@ -135,6 +135,7 @@ namespace Database
                 s = "Provider=Microsoft.Jet.OLEDB.4.0; Data Source=" + s;
                 connection.ConnectionString = @s;
 
+
                 connection.Open();
                 connection.Close();
                 return true;
@@ -370,7 +371,7 @@ namespace Database
                 {
                     administrators.Add(reader2.GetString(1));
                 }
-                forum = new Forum(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), administrators);
+                forum = new Forum(reader.GetString(0), reader.GetString(1), administrators);
                 closeConnectionDB();
                 List<String> members = getMembersOfForum(forumName);
                 forum.members = members;

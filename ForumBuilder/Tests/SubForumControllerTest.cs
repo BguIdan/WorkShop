@@ -46,7 +46,8 @@ namespace Tests
             modList.Add(this.userModerator.userName, new DateTime(2030, 1, 1));
             List<string> adminList = new List<string>();
             adminList.Add("admin");
-            this.forum = new Forum(this.forumName, "descr", "policy", "the first rule is that you do not talk about fight club", adminList);
+            ForumPolicy forumPolicy = new ForumPolicy();
+            this.forum = new Forum(this.forumName, "descr", adminList);
             superUser1 = 
                 DBClass.getInstance.getSuperUser("tomer");
             SuperUserController.getInstance.addSuperUser("fkfkf@wkk.com", "1qW", "tomer");

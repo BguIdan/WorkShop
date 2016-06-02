@@ -51,5 +51,10 @@ namespace Service
             //TODO: complete function
             return null;
         }
+
+        public string restorePassword(string userName, string ans1, string ans2)
+        {
+            return userController.restorePassword(userName, ans1, ans2);
+        }
     }
 }

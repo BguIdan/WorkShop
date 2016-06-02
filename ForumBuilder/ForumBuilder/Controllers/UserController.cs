@@ -118,5 +118,10 @@ namespace ForumBuilder.Controllers
             }
             return messagesOfWantedUser;
         }
+        
+        public string restorePassword(string userName, string ans1, string ans2)
+        {
+            return " ";
+        }
     }
 }

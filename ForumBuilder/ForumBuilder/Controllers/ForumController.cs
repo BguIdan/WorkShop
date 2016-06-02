@@ -319,7 +319,7 @@ namespace ForumBuilder.Controllers
 
         public String getForumPolicy(String forumName)
         {
-            return DB.getforumByName(forumName).forumPolicy;
+            return DB.getforumByName(forumName).forumPolicy.policy;
         }
 
         public String getForumDescription(String forumName)
@@ -327,10 +327,6 @@ namespace ForumBuilder.Controllers
             return DB.getforumByName(forumName).description;
         }
 
-        public String getForumRules(String forumName)
-        {
-            return DB.getforumByName(forumName).forumRules;
-        }
         public Forum getForum(String forumName) 
         {
             return DB.getforumByName(forumName);

@@ -46,7 +46,7 @@ namespace Tests
             List<string> adminList = new List<string>();
             adminList.Add("admin");
             adminList.Add("admin2");
-            this.forum = new ForumData("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", new List<String>(), new List<String>());
+            this.forum = new ForumData("testForum", "descr", "policy", new List<String>(), new List<String>());
             superUserController.createForum("testForum", "descr", "policy", "the first rule is that you do not talk about fight club", adminList, superUser.userName);
             Assert.IsTrue(this.forumManager.registerUser(userMember.userName, userMember.password, userMember.email, this.forum.forumName));
         }
@@ -254,16 +254,13 @@ namespace Tests
             String newPolicy = "new policy for test";
             String oldDescription = this.forumManager.getForumDescription(forumName);
             String newDescr = "new description";
-            String oldRules = this.forumManager.getForumRules(forumName);
             String newRules = "there are no rules";
             String adminName = this.userAdmin.userName;
             Assert.AreNotEqual(oldPolicy, newPolicy, false, "the new policy should be different from the old one");
             Assert.AreNotEqual(oldDescription, newDescr, false, "the new description should be different from the old one");
-            Assert.AreNotEqual(oldRules, newRules, false, "the new rules should be different from the old one");
             Assert.IsTrue(this.forumManager.setForumPreferences(forumName, newDescr, newPolicy, newRules, adminName), "policy change should be successful");
             Assert.AreEqual(this.forumManager.getForumPolicy(forumName), newPolicy, false, "the new policy should be return after the change");
             Assert.AreEqual(this.forumManager.getForumDescription(forumName), newDescr, false, "the new description should be return after the change");
-            Assert.AreEqual(this.forumManager.getForumRules(forumName), newRules, false, "the new rules should be return after the change");
 
         }
 
@@ -273,12 +270,10 @@ namespace Tests
             String forumName = this.forum.forumName;
             String oldPolicy = this.forumManager.getForumPolicy(forumName);
             String oldDescr = this.forumManager.getForumDescription(forumName);
-            String oldRules = this.forumManager.getForumRules(forumName);
             String adminName = this.userAdmin.userName;
             Assert.IsFalse(this.forumManager.setForumPreferences(forumName, null, null, null, adminName), "policy change with null should not be successful");
             Assert.AreEqual(this.forumManager.getForumPolicy(forumName), oldPolicy, false, "after an unsuccessful change, the old policy should be returned");
             Assert.AreEqual(this.forumManager.getForumDescription(forumName), oldDescr, false, "after an unsuccessful change, the old description should be returned");
-            Assert.AreEqual(this.forumManager.getForumRules(forumName), oldRules, false, "after an unsuccessful change, the old rules should be returned");
 
         }
 
@@ -288,12 +283,10 @@ namespace Tests
             String forumName = this.forum.forumName;
             String oldPolicy = this.forumManager.getForumPolicy(forumName);
             String oldDescr = this.forumManager.getForumDescription(forumName);
-            String oldRules = this.forumManager.getForumRules(forumName);
             String adminName = this.userAdmin.userName;
             Assert.IsTrue(this.forumManager.setForumPreferences(forumName, "", "", "", adminName), "policy change with null should not be successful");
             Assert.AreEqual(this.forumManager.getForumPolicy(forumName), "", false, "after an unsuccessful change, the old policy should be returned");
             Assert.AreEqual(this.forumManager.getForumDescription(forumName), "", false, "after an unsuccessful change, the old description should be returned");
-            Assert.AreEqual(this.forumManager.getForumRules(forumName), "", false, "after an unsuccessful change, the old rules should be returned");
         }
 
         /******************************end of change policy***********************************/

@@ -24,7 +24,7 @@ namespace WebClient
             //TODO gal: remove later(including the sleep)
             //popup example
             //Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "popup", "<script>alert();</script>");
-            Thread.Sleep(500);
+            Thread.Sleep(200);
             _fMC = new ForumManagerClient(new InstanceContext(this));
             _forumsList = _fMC.getForums();
             forum_dropList.DataSource = this._forumsList;

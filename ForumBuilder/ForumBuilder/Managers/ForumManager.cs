@@ -83,14 +83,11 @@ namespace Service
         {
             return forumController.getForumDescription(forumName);
         }
-        public String getForumRules(String forumName)
-        {
-            return forumController.getForumRules(forumName);
-        }
+       
         public ForumData getForum(String forumName)
         {
             Forum temp = forumController.getForum(forumName);
-            ForumData toReturn = new ForumData(temp.forumName , temp.description , temp.forumPolicy , temp.forumRules, temp.subForums,temp.members);
+            ForumData toReturn = new ForumData(temp.forumName , temp.description , temp.forumPolicy.policy , temp.subForums,temp.members);
             return toReturn;
             
         }

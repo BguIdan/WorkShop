@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using PL.proxies;
+using ForumBuilder.Common.DataContracts;
 
 
 namespace PL
@@ -20,40 +22,61 @@ namespace PL
     /// </summary>
     public partial class RestorePasswordWindow : Window
     {
-        //private UserBL itsUserBL;
-        public RestorePasswordWindow()
+        private ForumManagerClient _fMC;
+        private UserManagerClient _uMC;
+        private string _forum;
+        private string _usrName;
+
+        public RestorePasswordWindow(ForumManagerClient forumManClient,string forum)
         {
             InitializeComponent();
-            //itsUserBL = itsUser;
+            _fMC = forumManClient;
+            _uMC = new UserManagerClient();
+            _forum = forum;
+            ForumName.Content = "ForumName:  " + forum;
         }
 
         private void SendDetails(object sender, RoutedEventArgs e)
         {
-            int userID = 0;
-            string email = null;
-
-            try
+            _usrName = usrName.Text;
+            Boolean usr = _fMC.isMember(_usrName, _forum);
+            if(!usr)
             {
-                userID = Convert.ToInt32(ID.Text);
-                //email = itsUserBL.getMail(userID);
+                MessageBox.Show("Wrong Username! Please try again.");
             }
-            catch
+            else
             {
-                MessageBox.Show("ID must be digits");
+                mainGrid.Visibility = System.Windows.Visibility.Collapsed;
+                UserName.Content = "Hello " + _usrName + " !";
+                restoreQuestions.Visibility = System.Windows.Visibility.Visible;
             }
-            if (email == null || userID == 0 )
+        }
+
+        private void submitAnswers(object sender, RoutedEventArgs e)
+        {
+            string ans1 = ansToq1.Text;;
+            string ans2= ansToq2.Text;
+
+            string pass = _uMC.restorePassword(_usrName,ans1, ans2);
+            if(pass != null)
             {
-                MessageBox.Show("Please fill all the required details");
+                MessageBox.Show("Wrong Answers! Please try again.");
             }
+            else
+            {
+                MessageBox.Show("Your password is : " + pass);
+                MainWindow aw = new MainWindow();
+                this.Close();
+                aw.Show();
+            }
+        }
 
-            //itsUserBL.restorePassword(userID, email);
-
-            MessageBox.Show("Mail sended");
-
+        private void BackToMainWindow(object sender, RoutedEventArgs e)
+        {
             MainWindow aw = new MainWindow();
             this.Close();
             aw.Show();
-
         }
+
     }
 }

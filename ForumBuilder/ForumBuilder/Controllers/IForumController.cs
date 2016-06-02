@@ -23,7 +23,6 @@ namespace ForumBuilder.Controllers
         Boolean setForumPreferences(String forumName, String newDescription, String newForumPolicy, String newForumRules, string setterUserName);
         String getForumPolicy(String forumName);
         String getForumDescription(String forumName);
-        String getForumRules(String forumName);
         Forum getForum(String forumName);
         List<String> getForums();
         int getAdminReportNumOfPOst(String AdminName, String forumName);

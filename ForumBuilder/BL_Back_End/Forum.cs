@@ -10,44 +10,35 @@ namespace BL_Back_End
     {
         private String _forumName;
         private String _description;
-        private String _forumPolicy;
-        private String _forumRules;
+        private ForumPolicy _forumPolicy;
         private List<string> _administrators;
         private List<string> _members;
         private List<string> _subForums;
 
-        public Forum(string forumName, string descrption, string forumPolicy, string forumRules, List<string> administrators)
+        public Forum(string forumName, string descrption, List<string> administrators)
         {
             _forumName = forumName;
             _description = descrption;
-            _forumPolicy = forumPolicy;
-            _forumRules = forumRules;
+            _forumPolicy = new ForumPolicy();
             _administrators = administrators;
             _members = new List<string>();
             _subForums = new List<string>();
         }
 
-        public Forum(string forumName, string descrption, string forumPolicy, string forumRules, List<string> administrators, List<string> subForums)
+        public Forum(string forumName, string descrption, ForumPolicy forumPolicy, List<string> administrators, List<string> subForums)
         {
             _forumName = forumName;
             _description = descrption;
             _forumPolicy = forumPolicy;
-            _forumRules = forumRules;
             _administrators = administrators;
             _members = new List<string>();
             _subForums = subForums;
         }
 
-        public String forumPolicy
+        public ForumPolicy forumPolicy
         {
             get { return _forumPolicy; }
             set { _forumPolicy = value; }
-        }
-
-        public String forumRules
-        {
-            get { return _forumRules; }
-            set { _forumRules = value; }
         }
 
         public String description

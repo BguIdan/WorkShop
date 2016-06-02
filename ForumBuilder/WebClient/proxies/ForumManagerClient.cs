@@ -97,11 +97,6 @@ namespace WebClient.proxies
             return Channel.getForumDescription(forumName);
         }
 
-        public String getForumRules(String forumName)
-        {
-            return Channel.getForumRules(forumName);
-        }
-
         public ForumData getForum(String forumName)
         {
             return Channel.getForum(forumName);
