@@ -11,7 +11,7 @@
         <TextBlock FontFamily="Cooper Black" Text="Enter UserName:" Margin="29,92,117,155" Height="22" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <TextBlock FontFamily="Cooper Black" Text="Enter Password:" Margin="29,120,117,127" Height="22" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <TextBox x:Name="userNameTextBox" HorizontalAlignment="Left" Height="22" Margin="192,92,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="83"/>
-        <TextBox x:Name="passwordTextBox" HorizontalAlignment="Left" Height="22" Margin="192,120,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="83"/>
+        <PasswordBox x:Name="passwordTextBox" HorizontalAlignment="Left" Height="22" Margin="192,120,0,0"  VerticalAlignment="Top" Width="83"/>
         <Label x:Name="label" Content="Super User" HorizontalAlignment="Left" Height="35" Margin="93,33,0,0" VerticalAlignment="Top" Width="101" FontFamily="cooper" FontSize="16"/>
         <TextBox x:Name="emailTextBox" HorizontalAlignment="Left" Height="22" Margin="192,147,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="83"/>
         <TextBlock FontFamily="Cooper Black" Text="Enter Email:" Margin="29,147,117,93" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
