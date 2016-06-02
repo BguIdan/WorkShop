@@ -259,6 +259,7 @@ namespace Database
         {
             try
             {
+                password = enc(password);
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
@@ -659,7 +660,7 @@ namespace Database
                 command2.CommandText = "SELECT  * FROM  users where userName='" + userName + "'";
                 OleDbDataReader reader2 = command2.ExecuteReader();
                 reader2.Read();
-                user = new User(reader2.GetString(0), reader2.GetString(1), reader2.GetString(2));
+                user = new User(reader2.GetString(0), dec(reader2.GetString(1)), reader2.GetString(2));
                 closeConnectionDB();
                 return user;
             }
@@ -669,10 +670,14 @@ namespace Database
                 return user;
             }
         }
+
+       
+
         public Boolean addUser(string userName, string password, string email)
         {
             try
             {
+                password = enc(password);
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
@@ -691,6 +696,9 @@ namespace Database
                 return false;
             }
         }
+
+        
+
         public Boolean addMemberToForum(string userName, string forumName)
         {
             try
@@ -1225,6 +1233,34 @@ namespace Database
                 closeConnectionDB();
                 return null;
             }
+        }
+        private string enc(string password)
+        {
+            char[] passArray = password.ToArray();
+            string res = "";
+            for (int i = 0; i < passArray.Length; i++)
+            {
+                passArray[i] = (char)(((int)passArray[i]) + i%5 +1);
+            }
+            for (int i = 0; i < passArray.Length; i++)
+            {
+                res = res + passArray[i];
+            }
+            return res;
+        }
+        private string dec(string password)
+        {
+            char[] passArray = password.ToArray();
+            string res = "";
+            for (int i = 0; i < passArray.Length; i++)
+            {
+                passArray[i] = (char)(((int)passArray[i]) - i%5 -1);
+            }
+            for (int i = 0; i < passArray.Length; i++)
+            {
+                res = res + passArray[i];
+            }
+            return res;
         }
         public void clear()
         {
