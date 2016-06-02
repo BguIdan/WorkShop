@@ -24,11 +24,13 @@ namespace WebClient
             //TODO gal: remove later(including the sleep)
             //popup example
             //Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "popup", "<script>alert();</script>");
-            Thread.Sleep(200);
+
+            Thread.Sleep(1500);
+
             _fMC = new ForumManagerClient(new InstanceContext(this));
             _forumsList = _fMC.getForums();
-            forum_dropList.DataSource = this._forumsList;
-            forum_dropList.DataBind();
+       //     forum_dropList.DataSource = this._forumsList;
+      //      forum_dropList.DataBind();
         }
 
         protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
@@ -43,9 +45,9 @@ namespace WebClient
 
         protected void Btn_Login_Click(object sender, EventArgs e)
         {
-            string userName = ID.Text;
-            string pass = Password.Text;
-            _choosenForum = forum_dropList.SelectedItem.Text;
+       //     string userName = ID.Text;
+         //   string pass = Password.Text;
+           /* _choosenForum = forum_dropList.SelectedItem.Text;
             if (_choosenForum != null)
             {
                 ForumData toSend = _fMC.getForum(_choosenForum);
@@ -67,11 +69,11 @@ namespace WebClient
                 {
                     showAlert("login failed");
                 }
-            }
-            else
-            {
-                showAlert("You have to choose forum from the list");
-            }
+            }*/
+          //  else
+          //  {
+          //      showAlert("You have to choose forum from the list");
+          //  }
 
         }
 
