@@ -14,8 +14,8 @@ namespace Database
         private static List<int> avilabelPostIDs = new List<int>();
         private static int maxNotAvailable = -1;
         private static DBClass singleton;
-        private static List<Forum> forums = new List<Forum>();
-        private static List<SubForum> subForums =new List<SubForum>();
+        private List<Forum> forums = new List<Forum>();
+        private List<SubForum> subForums =new List<SubForum>();
         OleDbConnection connection;
         static void Main(string[] args)
         {
@@ -105,6 +105,7 @@ namespace Database
         {
             try
             {
+                int x = -1;
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
@@ -112,15 +113,10 @@ namespace Database
                 OleDbDataReader reader = command.ExecuteReader();
                 if (reader.Read())
                 {
-                    int x = reader.GetInt32(0);
-                    closeConnectionDB();
-                    return x;
+                    x = reader.GetInt32(0);
                 }
-                else
-                {
-                    closeConnectionDB();
-                    return -1;
-                }
+                closeConnectionDB();
+                return x;
             }
             catch
             {
