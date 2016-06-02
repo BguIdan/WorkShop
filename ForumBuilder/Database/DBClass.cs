@@ -740,8 +740,6 @@ namespace Database
             }
         }
 
-       
-
         public Boolean addUser(string userName, string password, string email)
         {
             try
@@ -764,9 +762,7 @@ namespace Database
                 closeConnectionDB();
                 return false;
             }
-        }
-
-        
+        }       
 
         public Boolean addMemberToForum(string userName, string forumName)
         {
@@ -1130,6 +1126,15 @@ namespace Database
         }
         public SubForum getSubforumByThreadFirstPostId(int id)
         {
+            foreach(SubForum sf in subForums)
+            {
+                if (sf.threads.Contains(id))
+                {
+                    return sf;
+                }
+            }
+            return null;
+            /*
             try
             {
                 OpenConnectionDB();
@@ -1148,6 +1153,7 @@ namespace Database
                 closeConnectionDB();
                 return null;
             }
+            */
         }
         public Thread getThreadByFirstPostId(int postId)
         {
@@ -1186,7 +1192,7 @@ namespace Database
                 closeConnectionDB();
                 foreach (SubForum sf in subForums)
                 {
-                    if (sf.name.Equals(subForums)&&sf.forum.Equals(forumName))
+                    if (sf.name.Equals(subForumName)&&sf.forum.Equals(forumName))
                     {
                         sf.threads.Add(firstMessageId);
                     }
