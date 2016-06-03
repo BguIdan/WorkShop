@@ -1,14 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ForumWindow.aspx.cs" Inherits="WebClient.ForumWindow" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site1.Master" CodeBehind="ForumWindow.aspx.cs" Inherits="WebClient.ForumWindow" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
+<asp:Content ID="forumWindowContent" ContentPlaceHolderID="bodyHolder" runat="server">
     <h1>Sub-Forums</h1>
-    <form id="form1" runat="server">
     <div>
         <asp:menu ID="menu" Orientation="Horizontal" runat="server" Enabled="true" onmenuitemclick="NavigationMenu_MenuItemClick">
             <Items>
@@ -28,6 +21,4 @@
         <asp:Table ID="tbl_subForumList" runat="server"></asp:Table>
     </p>
     </div>
-    </form>
-</body>
-</html>
+    </asp:Content>

@@ -1,14 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MainWindow.aspx.cs" Inherits="WebClient.MainWindow" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site1.Master" CodeBehind="MainWindow.aspx.cs" Inherits="WebClient.MainWindow" %>
+<asp:Content runat="server" ID="content1" ContentPlaceHolderID="bodyHolder">
 
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <link href="Styles/bootstrap.css" rel="stylesheet" />
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server" class="form-horizontal">
+
     <div>
     <p>
         <img alt="LOGO" src="http://www.tudiabetes.org/forum/uploads/default/original/3X/3/5/35d47232d1d9cb26dcd2a226952f98137a9080c8.jpg" style="height: 186px; width: 874px" />
@@ -34,11 +28,11 @@
                              </div>
         <p>
             <asp:label AssociatedControlID="ID" runat="server" Cssclass="col-sm-2 control-label">User Name</asp:label>
-            <asp:TextBox ID="ID" type="email" runat="server" class="myText-control"></asp:TextBox>
+            <asp:TextBox ID="ID" runat="server" class="myText-control"></asp:TextBox>
         </p>
         <p>
             <asp:label AssociatedControlID="Password" runat="server" Cssclass="col-sm-2 control-label">Password</asp:label>
-            <asp:TextBox ID="Password" type="email" runat="server" class="myText-control"></asp:TextBox>
+            <asp:TextBox ID="Password" TextMode="Password" runat="server" class="myText-control"></asp:TextBox>
         </p>
              <div class="col-sm-offset-2 col-sm-10">
         <p>
@@ -48,6 +42,7 @@
         </p>
             </div>
         </div>
-    </form>
-</body>
-</html>
+
+
+</asp:Content>
+

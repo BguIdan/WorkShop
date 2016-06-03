@@ -10,33 +10,24 @@
 namespace WebClient {
     
     
-    public partial class ForumWindow {
+    public partial class Site1 {
         
         /// <summary>
-        /// menu control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Menu menu;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// lbl_forumName control.
+        /// bodyHolder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_forumName;
-        
-        /// <summary>
-        /// tbl_subForumList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tbl_subForumList;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder bodyHolder;
     }
 }

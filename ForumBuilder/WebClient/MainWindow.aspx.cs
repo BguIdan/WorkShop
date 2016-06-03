@@ -25,7 +25,7 @@ namespace WebClient
             //popup example
             //Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "popup", "<script>alert();</script>");
 
-            Thread.Sleep(1500);
+            Thread.Sleep(5800);
 
             _fMC = new ForumManagerClient(new InstanceContext(this));
             _forumsList = _fMC.getForums();
@@ -45,9 +45,18 @@ namespace WebClient
 
         protected void Btn_Login_Click(object sender, EventArgs e)
         {
-       //     string userName = ID.Text;
-         //   string pass = Password.Text;
-           /* _choosenForum = forum_dropList.SelectedItem.Text;
+            Session["UserName"] = ID.Text;
+            Session["Password"] = Password.Text;
+            try
+            {
+                _choosenForum = forum_dropList.SelectedItem.Text;
+            }
+            catch
+            {
+                showAlert("choose a forum");
+                    return;
+            }
+
             if (_choosenForum != null)
             {
                 ForumData toSend = _fMC.getForum(_choosenForum);
@@ -58,10 +67,10 @@ namespace WebClient
                     Session["ForumManagerClient"] = _fMC;
                     Response.Redirect("ForumWindow.aspx");
                 }
-                else if (_fMC.login(userName, _choosenForum, pass))
+                else if (_fMC.login(Session["UserName"].ToString(), _choosenForum, Session["Password"].ToString()))
                 {
                     Session["forumName"] = _choosenForum;
-                    Session["userName"] = userName;
+                    Session["userName"] = Session["UserName"];
                     Session["ForumManagerClient"] = _fMC;
                     Response.Redirect("ForumWindow.aspx");
                 }
@@ -69,11 +78,39 @@ namespace WebClient
                 {
                     showAlert("login failed");
                 }
-            }*/
-          //  else
-          //  {
-          //      showAlert("You have to choose forum from the list");
-          //  }
+            }
+            else
+            {
+                showAlert("plz choose a forum");
+            }
+
+            /* _choosenForum = forum_dropList.SelectedItem.Text;
+             if (_choosenForum != null)
+             {
+                 ForumData toSend = _fMC.getForum(_choosenForum);
+                 if (CheckBox_Guest.Checked)
+                 {
+                     Session["forumName"] = _choosenForum;
+                     Session["userName"] = "Guest";
+                     Session["ForumManagerClient"] = _fMC;
+                     Response.Redirect("ForumWindow.aspx");
+                 }
+                 else if (_fMC.login(userName, _choosenForum, pass))
+                 {
+                     Session["forumName"] = _choosenForum;
+                     Session["userName"] = userName;
+                     Session["ForumManagerClient"] = _fMC;
+                     Response.Redirect("ForumWindow.aspx");
+                 }
+                 else
+                 {
+                     showAlert("login failed");
+                 }
+             }*/
+            //  else
+            //  {
+            //      showAlert("You have to choose forum from the list");
+            //  }
 
         }
 
