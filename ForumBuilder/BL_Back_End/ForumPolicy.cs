@@ -22,15 +22,15 @@ namespace BL_Back_End
          bool deletePostByModerator,int timeToPassExpiration,int minNumOfModerators,bool hasCapitalInPassword,
          bool hasNumberInPassword,int minLengthOfPassword)
         {
-            String _policy=policy;
-            bool _isQuestionIdentifying=isQuestionIdentifying;
-            int _seniorityInForum=seniorityInForum;
-            bool _deletePostByModerator=deletePostByModerator;
-            int _timeToPassExpiration=timeToPassExpiration;
-            int _minNumOfModerators=minNumOfModerators;
-            bool _hasCapitalInPassword=hasCapitalInPassword;
-            bool _hasNumberInPassword=hasNumberInPassword;
-            int _minLengthOfPassword=minLengthOfPassword;
+             _policy=policy;
+             _isQuestionIdentifying=isQuestionIdentifying;
+             _seniorityInForum=seniorityInForum;
+             _deletePostByModerator=deletePostByModerator;
+             _timeToPassExpiration=timeToPassExpiration;
+             _minNumOfModerators=minNumOfModerators;
+             _hasCapitalInPassword=hasCapitalInPassword;
+             _hasNumberInPassword=hasNumberInPassword;
+             _minLengthOfPassword=minLengthOfPassword;
         }
 
         public Boolean isQuestionIdentifying

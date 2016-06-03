@@ -871,8 +871,8 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "INSERT INTO forums ([forumName],[description],[forumPolicy],[forumRules]) " +
-                        "VALUES (?,?,?,?)";
+                command.CommandText = "INSERT INTO forums ([forumName],[description]) " +
+                        "VALUES (?,?)";
                 command.Parameters.AddWithValue("forumName", forumName);
                 command.Parameters.AddWithValue("description", description);
                 command.ExecuteNonQuery();
@@ -882,9 +882,17 @@ namespace Database
                 command2.CommandText = "INSERT INTO policies ([forumName],[policy],[isQuestionIdentifying],[seniorityInForum],"+
                     "[deletePostByModerator],[timeToPassExpiration],[minNumOfModerators],[hasCapitalInPassword],"+
                     "[hasNumberInPassword],[minLengthOfPassword]) " +
-                        "VALUES (?,?,?,?)";
+                        "VALUES (?,?,?,?,?,?,?,?,?,?)";
                 command2.Parameters.AddWithValue("forumName", forumName);
-                command2.Parameters.AddWithValue("description", description);
+                command2.Parameters.AddWithValue("policy", fp.policy);
+                command2.Parameters.AddWithValue("isQuestionIdentifying", fp.isQuestionIdentifying);
+                command2.Parameters.AddWithValue("seniorityInForum", fp.seniorityInForum);
+                command2.Parameters.AddWithValue("deletePostByModerator", fp.deletePostByModerator);
+                command2.Parameters.AddWithValue("timeToPassExpiration", fp.timeToPassExpiration);
+                command2.Parameters.AddWithValue("minNumOfModerators", fp.minNumOfModerators);
+                command2.Parameters.AddWithValue("hasCapitalInPassword", fp.hasCapitalInPassword);
+                command2.Parameters.AddWithValue("hasNumberInPassword", fp.hasNumberInPassword);
+                command2.Parameters.AddWithValue("minLengthOfPassword", fp.minLengthOfPassword);
                 command2.ExecuteNonQuery();
                 /* foreach (string admin in administrators)
                  {
