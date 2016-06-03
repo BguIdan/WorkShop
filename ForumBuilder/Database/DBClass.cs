@@ -1445,7 +1445,9 @@ namespace Database
                 commands.Add("DELETE  from subForums");
                 commands.Add("DELETE  from superUsers");
                 commands.Add("DELETE  from Users");
+                commands.Add("DELETE  from policies");
                 commands.Add("DELETE  from forums");
+                
 
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
@@ -1458,7 +1460,7 @@ namespace Database
                 maxNotAvailable = -1;
                 avilabelPostIDs = new List<int>();
             }
-            catch
+            catch(Exception e)
             {
                 closeConnectionDB();
             }
