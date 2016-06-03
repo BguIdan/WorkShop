@@ -40,8 +40,10 @@ namespace Tests
             superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName);
             List<string> adminList = new List<string>();
             adminList.Add("admin");
-            ForumData forum = new ForumData(forumName, "descr", "policy", new List<String>(), new List<String>());
             ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
+            ForumPolicyData fpd = new ForumPolicyData(fp.policy, fp.isQuestionIdentifying, fp.seniorityInForum, fp.deletePostByModerator, fp.timeToPassExpiration, fp.minNumOfModerators,
+                                                        fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword);
+            ForumData forum = new ForumData(forumName, "descr", fpd, new List<String>(), new List<String>());
             superUserController.createForum(forumName, "descr", fp, adminList, superUser.userName);
             Assert.IsTrue(this.forumManager.registerUser(userMember.userName, userMember.password, userMember.email, forumName));
         }

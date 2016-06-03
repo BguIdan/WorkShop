@@ -30,12 +30,15 @@ namespace Tests
             UserData superUser = new UserData("tomer", "1qW", "fkfkf@wkk.com");
             superUserController.addSuperUser(superUser.email, superUser.password, superUser.userName);
             IForumManager forum = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
-            ForumData forumData = new ForumData("testForum", "descr", "policy", new List<String>(), new List<String>());
+            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
+            ForumPolicyData fpd = new ForumPolicyData(fp.policy, fp.isQuestionIdentifying, fp.seniorityInForum, fp.deletePostByModerator, fp.timeToPassExpiration, fp.minNumOfModerators,
+                                                        fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword);
+            ForumData forumData = new ForumData("testForum", "descr", fpd, new List<String>(), new List<String>());
             UserData userAdmin = new UserData("admin", "adminpass", "admin@gmail.com");
             superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName);
             List<string> adminList = new List<string>();
             adminList.Add(userAdmin.userName);
-            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
+            
             superUserController.createForum("testForum", "descr",fp, adminList, superUser.userName); 
             String forumName = forumData.forumName;
             String adminName = userAdmin.userName;
@@ -70,12 +73,14 @@ namespace Tests
             UserData superUser = new UserData("tomer", "1qW", "fkfkf@wkk.com");
             superUserController.addSuperUser(superUser.email, superUser.password, superUser.userName);
             IForumManager forum = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
-            ForumData forumData = new ForumData("testForum", "descr", "policy", new List<String>(), new List<String>());
+            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
+            ForumPolicyData fpd = new ForumPolicyData(fp.policy, fp.isQuestionIdentifying, fp.seniorityInForum, fp.deletePostByModerator, fp.timeToPassExpiration, fp.minNumOfModerators,
+                                                        fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword);
+            ForumData forumData = new ForumData("testForum", "descr", fpd, new List<String>(), new List<String>());
             UserData userAdmin = new UserData("admin", "adminpass", "admin@gmail.com");
             superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName);
             List<string> adminList = new List<string>();
             adminList.Add(userAdmin.userName);
-            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
             superUserController.createForum("testForum", "descr", fp, adminList, superUser.userName);
             String oldPolicy = forum.getForumPolicy(forumData.forumName);
             String newPolicy = "new policy for test";
@@ -83,8 +88,8 @@ namespace Tests
             String newDescr = "new description";
             Assert.AreNotEqual(oldPolicy, newPolicy, false, "the new policy should be different from the old one");
             Assert.AreNotEqual(oldDescription, newDescr, false, "the new description should be different from the old one");
-            ForumPolicyData fpd = new ForumPolicyData("p", true, 0, true, 180, 1, true, true, 5);
-            Assert.IsTrue(forum.setForumPreferences(forumData.forumName, newDescr, fpd, userAdmin.userName), "policy change should be successful");
+            ForumPolicyData fpd2 = new ForumPolicyData("p", true, 0, true, 180, 1, true, true, 5);
+            Assert.IsTrue(forum.setForumPreferences(forumData.forumName, newDescr, fpd2, userAdmin.userName), "policy change should be successful");
             Assert.AreEqual(forum.getForumPolicy(forumData.forumName), newPolicy, false, "the new policy should be return after the change");
             Assert.AreEqual(forum.getForumDescription(forumData.forumName), newDescr, false, "the new description should be return after the change");
             db.clear();
@@ -99,17 +104,19 @@ namespace Tests
             UserData superUser = new UserData("tomer", "1qW", "fkfkf@wkk.com");
             superUserController.addSuperUser(superUser.email, superUser.password, superUser.userName);
             IForumManager forum = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
-            ForumData forumData = new ForumData("testForum", "descr", "policy", new List<String>(), new List<String>());
+            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
+            ForumPolicyData fpd = new ForumPolicyData(fp.policy, fp.isQuestionIdentifying, fp.seniorityInForum, fp.deletePostByModerator, fp.timeToPassExpiration, fp.minNumOfModerators,
+                                                        fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword);
+            ForumData forumData = new ForumData("testForum", "descr", fpd, new List<String>(), new List<String>());
             UserData userAdmin = new UserData("admin", "adminpass", "admin@gmail.com");
             superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName);
             List<string> adminList = new List<string>();
             adminList.Add(userAdmin.userName);
-            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
-            ForumPolicyData fpd = new ForumPolicyData(null, true, -5, true, -5, -5, true, true, -5);
+            ForumPolicyData fpd2 = new ForumPolicyData(null, true, -5, true, -5, -5, true, true, -5);
             superUserController.createForum("testForum", "descr",fp, adminList, superUser.userName);
             String oldPolicy = forum.getForumPolicy(forumData.forumName);
             String oldDescr = forum.getForumDescription(forumData.forumName);
-            Assert.IsFalse(forum.setForumPreferences(forumData.forumName,"desc", fpd, forumData.forumName), "policy change with null should not be successful");
+            Assert.IsFalse(forum.setForumPreferences(forumData.forumName, "desc", fpd2, forumData.forumName), "policy change with null should not be successful");
             Assert.AreEqual(forum.getForumPolicy(forumData.forumName), oldPolicy, false, "after an unsuccessful change, the old policy should be returned");
             Assert.AreEqual(forum.getForumDescription(forumData.forumName), oldDescr, false, "after an unsuccessful change, the old description should be returned");
             db.clear();
@@ -126,17 +133,19 @@ namespace Tests
             UserData superUser = new UserData("tomer", "1qW", "fkfkf@wkk.com");
             superUserController.addSuperUser(superUser.email, superUser.password, superUser.userName);
             IForumManager forum = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
-            ForumData forumData = new ForumData("testForum", "descr", "policy", new List<String>(), new List<String>());
+            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
+            ForumPolicyData fpd = new ForumPolicyData(fp.policy, fp.isQuestionIdentifying, fp.seniorityInForum, fp.deletePostByModerator, fp.timeToPassExpiration, fp.minNumOfModerators,
+                                                        fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword);
+            ForumData forumData = new ForumData("testForum", "descr", fpd, new List<String>(), new List<String>());
             UserData userAdmin = new UserData("admin", "adminpass", "admin@gmail.com");
             superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName);
             List<string> adminList = new List<string>();
             adminList.Add(userAdmin.userName);
-            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
-            ForumPolicyData fpd = new ForumPolicyData("p", true, 0, true, 180, 1, true, true, 5);
+            ForumPolicyData fpd2 = new ForumPolicyData("p", true, 0, true, 180, 1, true, true, 5);
             superUserController.createForum("testForum", "descr", fp, adminList, superUser.userName);
             String oldPolicy = forum.getForumPolicy(forumData.forumName);
             String oldDescr = forum.getForumDescription(forumData.forumName);
-            Assert.IsTrue(forum.setForumPreferences(forumData.forumName, "",fpd, userAdmin.userName), "policy change with null should not be successful");
+            Assert.IsTrue(forum.setForumPreferences(forumData.forumName, "",fpd2, userAdmin.userName), "policy change with null should not be successful");
             Assert.AreEqual(forum.getForumPolicy(forumData.forumName), "", false, "after an unsuccessful change, the old policy should be returned");
             Assert.AreEqual(forum.getForumDescription(forumData.forumName), "", false, "after an unsuccessful change, the old description should be returned");
             db.clear();
@@ -155,12 +164,14 @@ namespace Tests
             UserData superUser = new UserData("tomer", "1qW", "fkfkf@wkk.com");
             superUserController.addSuperUser(superUser.email, superUser.password, superUser.userName);
             IForumManager forumMan = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
-            ForumData forumData = new ForumData("testForum", "descr", "policy", new List<String>(), new List<String>());
+            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
+            ForumPolicyData fpd = new ForumPolicyData(fp.policy, fp.isQuestionIdentifying, fp.seniorityInForum, fp.deletePostByModerator, fp.timeToPassExpiration, fp.minNumOfModerators,
+                                                        fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword);
+            ForumData forumData = new ForumData("testForum", "descr", fpd, new List<String>(), new List<String>());
             UserData userAdmin = new UserData("admin", "adminpass", "admin@gmail.com");
             superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName);
             List<string> adminList = new List<string>();
             adminList.Add(userAdmin.userName);
-            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
             superUserController.createForum("testForum", "descr",fp, adminList, superUser.userName);
             Assert.IsFalse(forumMan.registerUser("admin", "passWord2", "jkkkk@xc.com", forumData.forumName));
             Assert.IsTrue(forumMan.registerUser("mem1", "passWor1", "fff@xc.com", forumData.forumName));
@@ -180,12 +191,14 @@ namespace Tests
             UserData superUser = new UserData("tomer", "1qW", "fkfkf@wkk.com");
             superUserController.addSuperUser(superUser.email, superUser.password, superUser.userName);
             IForumManager forumMan = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
-            ForumData forumData = new ForumData("testForum", "descr", "policy", new List<String>(), new List<String>());
+            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
+            ForumPolicyData fpd = new ForumPolicyData(fp.policy, fp.isQuestionIdentifying, fp.seniorityInForum, fp.deletePostByModerator, fp.timeToPassExpiration, fp.minNumOfModerators,
+                                                        fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword);
+            ForumData forumData = new ForumData("testForum", "descr", fpd, new List<String>(), new List<String>());
             UserData userAdmin = new UserData("admin1", "adminpass", "admin@gmail.com");
             superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName);
             List<string> adminList = new List<string>();
             adminList.Add(userAdmin.userName);
-            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
             superUserController.createForum("testForum", "descr", fp, adminList, superUser.userName);
             IUserManager userMan = new UserManagerClient();
             Assert.IsFalse(userMan.sendPrivateMessage("admin1", "admin2", "hello"));
@@ -218,12 +231,14 @@ namespace Tests
             UserData superUser = new UserData("tomer", "1qW", "fkfkf@wkk.com");
             superUserController.addSuperUser(superUser.email, superUser.password, superUser.userName);
             IForumManager forum = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
-            ForumData forumData = new ForumData("testForum", "descr", "policy", new List<String>(), new List<String>());
+            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
+            ForumPolicyData fpd = new ForumPolicyData(fp.policy, fp.isQuestionIdentifying, fp.seniorityInForum, fp.deletePostByModerator, fp.timeToPassExpiration, fp.minNumOfModerators,
+                                                        fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword);
+            ForumData forumData = new ForumData("testForum", "descr", fpd, new List<String>(), new List<String>());
             UserData userAdmin = new UserData("admin1", "adminpass", "admin@gmail.com");
             superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName);
             List<string> adminList = new List<string>();
             adminList.Add(userAdmin.userName);
-            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
             superUserController.createForum("testForum", "descr", fp, adminList, superUser.userName);
             String subForumName = "sub";
             Assert.IsTrue(forum.addSubForum(forumData.forumName, subForumName, new Dictionary<String, DateTime>(), userAdmin.userName));
