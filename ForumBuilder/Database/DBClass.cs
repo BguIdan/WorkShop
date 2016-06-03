@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.OleDb;
 using BL_Back_End;
 using System.Data;
+using DataBase;
 
 namespace Database
 {
@@ -17,6 +18,7 @@ namespace Database
         private List<Forum> forums = new List<Forum>();
         private List<SubForum> subForums =new List<SubForum>();
         OleDbConnection connection;
+        ICache cache = new Cache();
         static void Main(string[] args)
         {
             //DBClass db = DBClass.getInstance;
