@@ -176,13 +176,6 @@ namespace PL
             else { ForumPolicyToSet.IsEnabled = false; }
         }
 
-        private void rulesChoose(object sender, RoutedEventArgs e)
-        {
-            bool toChange = rulesCheck.IsChecked.Value;
-            if (toChange) { ForumRulesToSet.IsEnabled = true; }
-            else { ForumRulesToSet.IsEnabled = false; }
-        }
-
         private void btn_SetForumPref(object sender, RoutedEventArgs e)
         {
             MyDialog.Visibility = System.Windows.Visibility.Visible;
@@ -208,27 +201,57 @@ namespace PL
 
             if (isDone.Equals("Yes"))
             {
-                string temp = "";
                 bool toChange = descCheck.IsChecked.Value;
                 if (toChange)
                 {
-                    temp = ForumDescToSet.Text;
-                    _myforum.description = temp;
+                    _myforum.description = ForumDescToSet.Text;
                 }
                 toChange = policyCheck.IsChecked.Value;
                 if (toChange)
                 {
-                    temp = ForumPolicyToSet.Text;
-                    _myforum.forumPolicy = temp;
+                    _myforum.forumPolicy.policy = ForumPolicyToSet.Text;
                 }
-                toChange = rulesCheck.IsChecked.Value;
+                toChange = qIdentifying.IsChecked.Value;
                 if (toChange)
                 {
-                    temp = ForumRulesToSet.Text;
-                    //_myforum.forumRules = temp;
+                    _myforum.forumPolicy.isQuestionIdentifying = true;
                 }
+                toChange = deleteMessages.IsChecked.Value;
+                if (toChange)
+                {
+                    _myforum.forumPolicy.isQuestionIdentifying = true;
+                }
+                int passExpirationTime = Int32.Parse(PassCombo.SelectedItem.ToString());
+                _myforum.forumPolicy.timeToPassExpiration = passExpirationTime;
+                int seniorityChoosen = Int32.Parse(TimeCombo.SelectedItem.ToString());
+                _myforum.forumPolicy.seniorityInForum = seniorityChoosen;
+                int numerOfModerators = Int32.Parse(NumberCombo.SelectedItem.ToString());
+                _myforum.forumPolicy.minNumOfModerator = numerOfModerators;
+                toChange = Capital.IsChecked.Value;
+                if (toChange)
+                {
+                    _myforum.forumPolicy.hasCapitalInPassword = true;
+                }
+                toChange = Number.IsChecked.Value;
+                if (toChange)
+                {
+                    _myforum.forumPolicy.hasNumberInPassword = true;
+                }
+                int minLengthOfPass = Int32.Parse(LengthCombo.SelectedItem.ToString());
+                _myforum.forumPolicy.minLengthOfPassword = minLengthOfPass;
                 MessageBox.Show("Preferences was successfully changed!");
+                descCheck.IsChecked = false;
+                policyCheck.IsChecked = false;
+                qIdentifying.IsChecked = false;
+                deleteMessages.IsChecked = false;
+                Capital.IsChecked = false;
+                Number.IsChecked = false;
+                PassCombo.Items.Clear();
+                TimeCombo.Items.Clear();
+                NumberCombo.Items.Clear();
+                LengthCombo.Items.Clear();
                 setPreferencesWin.Visibility = System.Windows.Visibility.Collapsed;
+                MainMenu.Visibility = System.Windows.Visibility.Visible;
             }            
         }
 
@@ -300,6 +323,66 @@ namespace PL
             ForumWindow newWin = new ForumWindow(_myforum, _userName);
             newWin.Show();
             this.Close();
+        }
+
+        private void PassComboBox_OnDropDownOpened(object sender, EventArgs e)
+        {
+            int minDays = 30;
+            int maxDays = 365;
+            for (int i = minDays; i <= maxDays; i++)
+            {
+                PassCombo.Items.Add(i);
+            }
+        }
+
+        private void PassComboBox_OnDropDownClosed(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TimeComboBox_OnDropDownOpened(object sender, EventArgs e)
+        {
+            int minDays = 0;
+            int maxDays = 365;
+            for (int i = minDays; i <= maxDays; i++)
+            {
+                TimeCombo.Items.Add(i);
+            }
+        }
+
+        private void TimeComboBox_OnDropDownClosed(object sender, EventArgs e)
+        {
+
+        }
+
+        private void NumberComboBox_OnDropDownOpened(object sender, EventArgs e)
+        {
+            int minNumOfModerators = 0;
+            int maxNumOfModerators = 10;
+            for (int i = minNumOfModerators; i <= maxNumOfModerators; i++)
+            {
+                NumberCombo.Items.Add(i);
+            }
+        }
+
+        private void NumberComboBox_OnDropDownClosed(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LengthComboBox_OnDropDownOpened(object sender, EventArgs e)
+        {
+            int minPasswordLength = 5;
+            int maxPasswordLength = 20;
+            for (int i = minPasswordLength; i <= maxPasswordLength; i++)
+            {
+               LengthCombo.Items.Add(i);
+            }
+        }
+
+        private void LengthComboBox_OnDropDownClosed(object sender, EventArgs e)
+        {
+
         }
     }
 }
