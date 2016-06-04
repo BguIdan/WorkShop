@@ -5,3 +5,4 @@ C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\ForumBuilder\obj\Debug
 C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\ForumBuilder\obj\Debug\Domain.csprojResolveAssemblyReference.cache
 C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\ForumBuilder\bin\Debug\ForumBuilder.exe
 C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\ForumBuilder\bin\Debug\ForumBuilder.pdb
+C:\Users\Aviv\Documents\WorkShop\ForumBuilder\ForumBuilder\bin\Debug\Database.exe
