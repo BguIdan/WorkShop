@@ -333,7 +333,7 @@ namespace Database
                 {
                     if (sf.name.Equals(subForumName) && sf.forum.Equals(forumName))
                     {
-                        sf.moderators.Add(newModerator,endDate);
+                        sf.moderators.Add(newModerator,new Moderator(newModerator, endDate,DateTime.Today,nominator));
                     }
                 }
                 return true;
