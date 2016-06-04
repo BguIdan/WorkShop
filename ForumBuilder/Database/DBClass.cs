@@ -136,9 +136,10 @@ namespace Database
                 s = "Provider=Microsoft.Jet.OLEDB.4.0; Data Source=" + s;
                 connection.ConnectionString = @s;
 
-
                 connection.Open();
                 connection.Close();
+                forums = getForumsForInit();
+                subForums = getSubForumsForInit();
                 return true;
             }
             catch
@@ -146,6 +147,7 @@ namespace Database
                 return false;
             }
         }
+
         public void closeConnectionDB()
         {
             try
@@ -739,7 +741,7 @@ namespace Database
                     command2.CommandText = "SELECT  * FROM  users where userName='" + userName + "'";
                     OleDbDataReader reader2 = command2.ExecuteReader();
                     reader2.Read();
-                    user = new User(reader2.GetString(0), reader2.GetString(1), reader2.GetString(2), DateTime.Parse(reader2.GetDateTime(3).ToString("dd MM yyyy")));
+                    user = new User(reader2.GetString(0), dec(reader2.GetString(1)), reader2.GetString(2), DateTime.Parse(reader2.GetDateTime(3).ToString("dd MM yyyy")));
                     closeConnectionDB();
                     return user;
                 }
@@ -1515,6 +1517,217 @@ namespace Database
             catch(Exception e)
             {
                 closeConnectionDB();
+            }
+        }
+        private List<Forum> getForumsForInit()
+        {
+            try
+            {
+                OpenConnectionDB();
+                List<Forum> forums1 = new List<Forum>();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "SELECT  forumName FROM  forums";
+                OleDbDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Forum forum = null;
+                    
+                    
+                    forums1.Add(forum);
+                }
+                closeConnectionDB();
+                return forums;
+            }
+            catch
+            {
+                closeConnectionDB();
+                return null; ;
+            }
+
+        }
+        private Forum getfbyN(string name)
+        {
+            Forum forum = null;
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command2 = new OleDbCommand();
+                command2.Connection = connection;
+                command2.CommandText = "SELECT  * FROM  forums where forums.forumName='" + name + "'";
+                OleDbDataReader reader2 = command2.ExecuteReader();
+                reader2.Read();
+                OleDbCommand command3 = new OleDbCommand();
+                command3.Connection = connection;
+                command3.CommandText = "SELECT  * FROM  forumAdministrators where forumAdministrators.forumName='" + name + "'";
+                OleDbDataReader reader3 = command3.ExecuteReader();
+                List<String> administrators = new List<String>();
+                while (reader3.Read())
+                {
+                    administrators.Add(reader3.GetString(1));
+                }
+                OleDbCommand command4 = new OleDbCommand();
+                command4.Connection = connection;
+                command4.CommandText = "SELECT  * FROM  policies where forumName='" + name + "'";
+                OleDbDataReader reader4 = command2.ExecuteReader();
+                reader4.Read();
+                ForumPolicy policy = new ForumPolicy(reader4.GetString(0), reader4.GetBoolean(1), reader4.GetInt32(2),
+                    reader4.GetBoolean(3), reader4.GetInt32(4), reader4.GetInt32(5), reader4.GetBoolean(6),
+                    reader4.GetBoolean(7), reader4.GetInt32(8));
+                forum = new Forum(reader2.GetString(0), reader2.GetString(1), policy, administrators);
+                closeConnectionDB();
+                List<String> members = getMembersOfForumOld(name);
+                forum.members = members;
+                List<String> subForums = getsubForumsNamesOfForumOld(name);
+                forum.subForums = subForums;
+                return forum;
+            }
+            catch
+            {
+                closeConnectionDB();
+                return null;
+            }
+        }
+
+        private List<string> getsubForumsNamesOfForumOld(string forumName)
+        {
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "SELECT  * FROM  subForums where forumName='" + forumName + "'";
+                OleDbDataReader reader = command.ExecuteReader();
+                List<String> subForums = new List<String>();
+                while (reader.Read())
+                {
+                    subForums.Add(reader.GetString(0));
+                }
+                closeConnectionDB();
+                return subForums;
+            }
+            catch (Exception e)
+            {
+                closeConnectionDB();
+                return null;
+            }
+        }
+
+        private List<string> getMembersOfForumOld(string forumName)
+        {
+            List<string> users = new List<string>();
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "SELECT  * FROM  members where forumName='" + forumName + "'";
+                OleDbDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    users.Add(reader.GetString(0));
+                }
+                closeConnectionDB();
+                return users;
+            }
+            catch
+            {
+                closeConnectionDB();
+                return null;
+            }
+        }
+
+        private List<SubForum> getSubForumsForInit()
+        {
+            List<SubForum> sfs = new List<SubForum>();
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "SELECT  subForumName,forumName FROM  subForums";
+                OleDbDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    sfs.Add(getSubforumOld(reader.GetString(0), reader.GetString(1)));
+                }
+                closeConnectionDB();
+                return sfs;
+            }
+            catch 
+            {
+                closeConnectionDB();
+                return null;
+            }
+        }
+
+        private SubForum getSubforumOld(string subForumName, string forumName)
+        {
+            SubForum subForum = null;
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "SELECT  * FROM  subForums where subForums.forumName='" + forumName + "' and " +
+                    "subForums.subForumName = '" + subForumName + "'";
+                OleDbDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                    subForum = new SubForum(reader.GetString(0), reader.GetString(1));
+                else
+                {
+                    return null;
+                }
+                OleDbCommand command2 = new OleDbCommand();
+                command2.Connection = connection;
+                command2.CommandText = "SELECT  * FROM  subForumModerators where subForumModerators.forumName='" + forumName + "' and " +
+                    "subForumModerators.subForumName='" + subForumName + "'";
+
+                OleDbDataReader reader2 = command2.ExecuteReader();
+                while (reader2.Read())
+                {
+                    subForum.moderators.Add(reader2.GetString(2), getModertor(reader2.GetString(2)));
+                }
+                OleDbCommand command3 = new OleDbCommand();
+                command3.Connection = connection;
+                command3.CommandText = "SELECT  * FROM  threads where forumName='" + forumName + "' and " +
+                    "subForumName='" + subForumName + "'";
+                OleDbDataReader reader3 = command3.ExecuteReader();
+                while (reader3.Read())
+                {
+                    subForum.threads.Add(reader3.GetInt32(0));
+                }
+                closeConnectionDB();
+                return subForum;
+            }
+            catch
+            {
+                closeConnectionDB();
+                return subForum;
+            }
+        }
+
+        private Moderator getModertor(string v)
+        {
+            Moderator mod = null;
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "SELECT  * FROM subForumModerators where moderatorName='"+v+"'";
+                OleDbDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    mod=new Moderator(reader.GetString(2), DateTime.Parse(reader.GetDateTime(3).ToString("dd MM yyyy")), DateTime.Parse(reader.GetDateTime(5).ToString("dd MM yyyy")), reader.GetString(4));
+                }
+                closeConnectionDB();
+                return mod;
+            }
+            catch
+            {
+                closeConnectionDB();
+                return null;
             }
         }
     }
