@@ -310,7 +310,7 @@ namespace Database
                     return false;
                 }
             }
-            catch(Exception e)
+            catch
             {
                 return false;
             }
@@ -664,8 +664,8 @@ namespace Database
                     "minNumOfModerators=" + minNumOfModerators + " ," +
                     "hasCapitalInPassword=" + hasCapitalInPassword + " ," +
                     "hasNumberInPassword=" + hasNumberInPassword + " ," +
-                    "minLengthOfPassword=" + minLengthOfPassword + " ," +
-                    "where forumName='" + forumName + "'";
+                    "minLengthOfPassword=" + minLengthOfPassword  +
+                    " where forumName='" + forumName + "'";
                 command.ExecuteNonQuery();
                 closeConnectionDB();
                 foreach (Forum f in forums)
@@ -1514,7 +1514,7 @@ namespace Database
                 maxNotAvailable = -1;
                 avilabelPostIDs = new List<int>();
             }
-            catch(Exception e)
+            catch
             {
                 closeConnectionDB();
             }
@@ -1606,7 +1606,7 @@ namespace Database
                 closeConnectionDB();
                 return subForums;
             }
-            catch (Exception e)
+            catch 
             {
                 closeConnectionDB();
                 return null;

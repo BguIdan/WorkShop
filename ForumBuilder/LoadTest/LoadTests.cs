@@ -50,8 +50,8 @@ namespace LoadTest
             ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
             SuperUserController.getInstance.addSuperUser(this.superUser.email, superUser.password, superUser.userName);
             superUserController.createForum(this.forumName, "descr",fp, adminList, "tomer");
-            this.forumController.registerUser("mem", "mempass", "mem@gmail.com", this.forumName);
-            this.forumController.registerUser("mod", "modpass", "mod@gmail.com", this.forumName);
+            this.forumController.registerUser("mem", "mempass", "mem@gmail.com","ansss","anssss", this.forumName);
+            this.forumController.registerUser("mod", "modpass", "mod@gmail.com", "ansss", "anssss", this.forumName);
             this.forumController.addSubForum(this.forumName, this.subForumName, modList, this.userAdmin.userName);
             this.subForumController.createThread("headLine", "content", this.userMember.userName, this.forumName, this.subForumName);
             List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);

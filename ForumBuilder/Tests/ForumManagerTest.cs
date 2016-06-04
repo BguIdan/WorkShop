@@ -37,8 +37,8 @@ namespace Tests
             this.superUser = new UserData("tomer", "1qW", "fkfkf@wkk.com");
             superUserController.addSuperUser(this.superUser.email, this.superUser.password, this.superUser.userName);
             this.forumManager = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
-            this.userNonMember = new UserData("nonMem", "nonmemPass", "nonmem@gmail.com");
-            this.userMember = new UserData("mem", "mempass", "mem@gmail.com");
+            this.userNonMember = new UserData("nonMem", "nonMempass1", "nonmem@gmail.com");
+            this.userMember = new UserData("mem", "Mempass1", "mem@gmail.com");
             this.userAdmin = new UserData("admin", "adminpass", "admin@gmail.com");
             this.userAdmin2 = new UserData("admin2", "adminpass2", "admin2@gmail.com");
             superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName);
@@ -51,7 +51,7 @@ namespace Tests
                                                         fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword);
             this.forum = new ForumData("testForum", "descr", fpd, new List<String>(), new List<String>());
             superUserController.createForum("testForum", "descr",fp, adminList, superUser.userName);
-            Assert.IsTrue(this.forumManager.registerUser(userMember.userName, userMember.password, userMember.email, this.forum.forumName));
+            Assert.IsTrue(this.forumManager.registerUser(userMember.userName, userMember.password, userMember.email, "ansss", "anssss", this.forum.forumName));
         }
 
         [TestCleanup]
@@ -214,7 +214,7 @@ namespace Tests
             String userNonMemberName = this.userNonMember.userName;
             String forumName = this.forum.forumName;
             Assert.IsFalse(this.forumManager.isMember(userNonMemberName, forumName), "userNonMember should not be a member");
-            Assert.IsTrue(this.forumManager.registerUser(this.userNonMember.userName, this.userNonMember.password, this.userNonMember.email, forumName), "registration of a non member should be successful");
+            Assert.IsTrue(this.forumManager.registerUser(this.userNonMember.userName, this.userNonMember.password, this.userNonMember.email, "ansss", "anssss", forumName), "registration of a non member should be successful");
             Assert.IsTrue(this.forumManager.isMember(userNonMemberName, forumName), "after registration the user should become a member");
         }
 
@@ -224,7 +224,7 @@ namespace Tests
             String userMemberName = this.userMember.userName;
             String forumName = this.forum.forumName;
             Assert.IsTrue(this.forumManager.isMember(userMemberName, forumName), "userMember should be a member in the forum");
-            Assert.IsFalse(this.forumManager.registerUser(this.userMember.userName, this.userMember.password, this.userMember.email, forumName), "the registration of a member should be unsuccessful");
+            Assert.IsFalse(this.forumManager.registerUser(this.userMember.userName, this.userMember.password, this.userMember.email, "ansss", "anssss", forumName), "the registration of a member should be unsuccessful");
             Assert.IsTrue(this.forumManager.isMember(userMemberName, forumName), "userMember should still be a member in the forum");
         }
 
@@ -235,14 +235,14 @@ namespace Tests
             String forumName = this.forum.forumName;
             Assert.IsTrue(this.forumManager.isMember(userAdminName, forumName), "userAdmin should be a member in the forum");
             Assert.IsTrue(this.forumManager.isAdmin(userAdminName, forumName), "userAdmin should be an admin in the forum");
-            Assert.IsFalse(this.forumManager.registerUser(this.userAdmin.userName, this.userAdmin.password, this.userAdmin.email, forumName), "the registration of an admin should be successful");
+            Assert.IsFalse(this.forumManager.registerUser(this.userAdmin.userName, this.userAdmin.password, this.userAdmin.email, "ansss", "anssss", forumName), "the registration of an admin should be successful");
             Assert.IsTrue(this.forumManager.isMember(userAdminName, forumName), "userAdmin should still be a member in the forum");
         }
 
         [TestMethod]
         public void test_registerUser_on_null()
         {
-            Assert.IsFalse(this.forumManager.registerUser(null, null, null, null), "registration of null should return false");
+            Assert.IsFalse(this.forumManager.registerUser(null, null, null,null,null ,null), "registration of null should return false");
         }
 
 

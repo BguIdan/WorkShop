@@ -38,11 +38,11 @@ namespace Tests
             this.forumController = ForumController.getInstance;
             this.postController = PostController.getInstance;
             this.subForumController = SubForumController.getInstance;
-            this.userNonMember = new User("nonMem", "nonmemPass", "nonmem@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
-            this.userMember = new User("mem", "mempass", "mem@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
-            this.userMod = new User("mod", "modpass", "mod@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
-            this.userAdmin = new User("admin", "adminpass", "admin@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
-            superUserController.addUser("admin", "adminpass", "admin@gmail.com", "guy");
+            this.userNonMember = new User("nonMem", "nonMempass1", "nonmem@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
+            this.userMember = new User("mem", "Mempass1", "mem@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
+            this.userMod = new User("mod", "Modpass1", "mod@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
+            this.userAdmin = new User("admin", "Adminpass1", "admin@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
+            superUserController.addUser("admin", "Adminpass1", "admin@gmail.com", "guy");
             List<string> adminList = new List<string>();
             adminList.Add(this.userAdmin.userName);
             Dictionary<String, DateTime> modList = new Dictionary<String, DateTime>();
@@ -52,8 +52,8 @@ namespace Tests
             this.superUser = new User("tomer", "1qW", "fkfkf@wkk.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
             SuperUserController.getInstance.addSuperUser(this.superUser.email, superUser.password, superUser.userName);
             superUserController.createForum(this.forumName, "descr", fp, adminList, "tomer");
-            Assert.IsTrue(this.forumController.registerUser("mem", "mempass", "mem@gmail.com", this.forumName));
-            Assert.IsTrue(this.forumController.registerUser("mod", "modpass", "mod@gmail.com", this.forumName));
+            Assert.IsTrue(this.forumController.registerUser("mem", "Mempass1", "mem@gmail.com", "ansss", "anssss", this.forumName));
+            Assert.IsTrue(this.forumController.registerUser("mod", "Modpass1", "mod@gmail.com", "ansss", "anssss", this.forumName));
             //Assert.IsTrue(this.forumController.registerUser("admin", "adminpass", "admin@gmail.com", this.forumName));
             Assert.IsTrue(this.forumController.addSubForum(this.forumName, this.subForumName, modList, this.userAdmin.userName));
             Assert.IsTrue(this.subForumController.createThread("headLine", "content", this.userMember.userName, this.forumName, this.subForumName));

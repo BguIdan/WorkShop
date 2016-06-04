@@ -39,8 +39,8 @@ namespace Tests
             this.superUser = new UserData("tomer", "1qW", "fkfkf@wkk.com");
             superUserController.addSuperUser(this.superUser.email, this.superUser.password, this.superUser.userName);
             this.forumManager = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
-            this.userNonMember = new UserData("nonMem", "nonmemPass", "nonmem@gmail.com");
-            this.userMember = new UserData("mem", "mempass", "mem@gmail.com");
+            this.userNonMember = new UserData("nonMem", "nonMempass1", "nonmem@gmail.com");
+            this.userMember = new UserData("mem", "Mempass1", "mem@gmail.com");
             this.userAdmin = new UserData("admin", "adminpass", "admin@gmail.com");
             superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName);
             List<string> adminList = new List<string>();
@@ -50,12 +50,12 @@ namespace Tests
                                                         fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword);
             this.forum = new ForumData(this.forumName, "descr", fpd, new List<String>(), new List<String>());
             superUserController.createForum(this.forum.forumName, "descr", fp, adminList, superUser.userName);
-            Assert.IsTrue(this.forumManager.registerUser(userMember.userName, userMember.password, userMember.email, this.forum.forumName));
+            Assert.IsTrue(this.forumManager.registerUser(userMember.userName, userMember.password, userMember.email, "ansss", "anssss", this.forum.forumName));
             this.postManager = new PostManagerClient();
-            this.userModerator = new UserData("mod", "modpass", "mod@gmail.com");
+            this.userModerator = new UserData("mod", "Modpass1", "mod@gmail.com");
             Dictionary<String, DateTime> modList = new Dictionary<String, DateTime>();
             modList.Add(this.userModerator.userName, new DateTime(2030, 1, 1));
-            Assert.IsTrue(ForumController.getInstance.registerUser("mod", "modPass1", "mod@gmail.com", this.forumName));
+            Assert.IsTrue(ForumController.getInstance.registerUser("mod", "Modpass11", "mod@gmail.com", "ansss", "anssss", this.forumName));
             Assert.IsTrue(this.forumManager.addSubForum(this.forumName, this.subForumName, modList, this.userAdmin.userName));
             Assert.IsTrue(SubForumController.getInstance.createThread("headLine", "content", this.userMember.userName, this.forumName, this.subForumName));
             this.subForum = new SubForumManagerClient();

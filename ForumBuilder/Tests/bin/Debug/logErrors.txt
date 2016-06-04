@@ -1,0 +1,22 @@
+Log Entry : 		04/06/2016 22:56:04
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:07
+Post contoller created
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:07
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:08
+Dismiss moderator failed, sub-forum has not enough moderators
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:08
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:09
+nominateModerator fail, To  has no permission to be moderator, he is not a member
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:09
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		04/

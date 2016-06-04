@@ -85,7 +85,7 @@ namespace ForumBuilder.Controllers
             }
             if ((ForumController.getInstance.isAdmin(nominatorUser, forumName)|| SuperUserController.getInstance.isSuperUser(nominatorUser)) && 
                 ForumController.getInstance.isMember(newModerator, forumName)&&
-                DB.getforumByName(forumName).forumPolicy.seniorityInForum<(DB.getUser(newModerator).date-DateTime.Today).Days)
+                DB.getforumByName(forumName).forumPolicy.seniorityInForum<=(DB.getUser(newModerator).date-DateTime.Today).Days)
             {
                 if (DateTime.Now.CompareTo(date) > 0)
                 {
