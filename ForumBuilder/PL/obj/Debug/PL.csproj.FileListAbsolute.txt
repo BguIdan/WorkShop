@@ -39,4 +39,3 @@ C:\Users\Aviv\Documents\WorkShop\ForumBuilder\PL\obj\Debug\DismissModerator.baml
 C:\Users\Aviv\Documents\WorkShop\ForumBuilder\PL\obj\Debug\privateMessagesWindow.baml
 C:\Users\Aviv\Documents\WorkShop\ForumBuilder\PL\obj\Debug\sendMessageWindow.baml
 C:\Users\Aviv\Documents\WorkShop\ForumBuilder\PL\obj\Debug\SuperUserLogInWindow.baml
-C:\Users\User\Desktop\WorkShop\ForumBuilder\PL\bin\Debug\PL.exe.config
