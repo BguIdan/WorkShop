@@ -37,12 +37,22 @@ namespace ForumBuilder.Controllers
                 if (forum != null)
                 {
                     DB.addSubForum(name, forumName);
+                    if (forum.forumPolicy.minNumOfModerators > moderators.Count)
+                    {
+                        logger.logPrint("Add sub-forum failed, there is not enough moderators");
+                        return false;
+                    }
                     foreach (string s in moderators.Keys)
                     {
-                        if (DB.getUser(s) == null)
+                        if (!isMember(s,forumName))
                         {
                             logger.logPrint("Add sub-forum failed, the moderator " + s + " is not member of forum",0);
                             logger.logPrint("Add sub-forum failed, the moderator " + s + " is not member of forum",2);
+                            return false;
+                        }
+                        else if ((DateTime.Today - DB.getUser(s).date).Days < forum.forumPolicy.seniorityInForum)
+                        {
+                            logger.logPrint("Add sub-forum failed, the moderator " + s + " is not enough time in forum");
                             return false;
                         }
                     }
@@ -189,13 +199,16 @@ namespace ForumBuilder.Controllers
         
         public bool registerUser(string userName, string password, string mail, string forumName)
         {
-            if (DB.getforumByName(forumName) == null)
+            Forum f=DB.getforumByName(forumName);
+            if (f == null)
             {
                 logger.logPrint("Register user faild, the forum, "+ forumName+" does not exist",0);
                 logger.logPrint("Register user faild, the forum, " + forumName + " does not exist",2);
                 return false;
             }
-            if (userName.Length > 0 && password.Length > 0 && mail.Length > 0)
+            if (userName.Length > 0 && f.forumPolicy.minLengthOfPassword<password.Length && mail.Length > 0 &&
+                (!f.forumPolicy.hasCapitalInPassword ||(f.forumPolicy.hasCapitalInPassword&&hasCapital(password)))&&
+                (!f.forumPolicy.hasNumberInPassword||(f.forumPolicy.hasNumberInPassword&&hasNumber(password))))
             {
                 User user = DB.getUser(userName);
                 if (user !=null)
@@ -217,6 +230,28 @@ namespace ForumBuilder.Controllers
             }
             logger.logPrint("Register user failed, password not strong enough",0);
             logger.logPrint("Register user failed, password not strong enough",2);
+            return false;
+        }
+
+        private bool hasNumber(string password)
+        {
+            char[] array = password.ToCharArray();
+            for (int i=0; i<array.Length;i++)
+            {
+                if (array[i] - '0' >= 0 && array[i] - '9' <= 0)
+                    return true;
+            }
+            return false;
+        }
+
+        private bool hasCapital(string password)
+        {
+            char[] array = password.ToCharArray();
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] - 'A' >= 0 && array[i] - 'Z' <= 0)
+                    return true;
+            }
             return false;
         }
 

@@ -32,7 +32,8 @@ namespace ForumBuilder.Controllers
         public Boolean createForum(String forumName, String descrption, ForumPolicy fp, List<String> administrators, String superUserName)
         {
             if (forumName.Equals("") || descrption.Equals("") || fp.policy.Equals("") || fp.seniorityInForum<0||
-                fp.timeToPassExpiration<30 || fp.minLengthOfPassword<0 || administrators == null)
+                fp.timeToPassExpiration<30 || fp.minLengthOfPassword<0 || administrators == null||
+                administrators.Count==0)
             {
                 logger.logPrint("cannot create new forum because one or more of the fields is empty",0);
                 logger.logPrint("cannot create new forum because one or more of the fields is empty",2);

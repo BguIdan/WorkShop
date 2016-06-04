@@ -692,7 +692,7 @@ namespace Database
                     command2.CommandText = "SELECT  * FROM  users where userName='" + userName + "'";
                     OleDbDataReader reader2 = command2.ExecuteReader();
                     reader2.Read();
-                    user = new User(reader2.GetString(0), reader2.GetString(1), reader2.GetString(2));
+                    user = new User(reader2.GetString(0), reader2.GetString(1), reader2.GetString(2), DateTime.Parse(reader2.GetDateTime(3).ToString("dd MM yyyy")));
                     closeConnectionDB();
                     return user;
                 }
@@ -747,7 +747,7 @@ namespace Database
                 command2.CommandText = "SELECT  * FROM  users where userName='" + userName + "'";
                 OleDbDataReader reader2 = command2.ExecuteReader();
                 reader2.Read();
-                user = new User(reader2.GetString(0), dec(reader2.GetString(1)), reader2.GetString(2));
+                user = new User(reader2.GetString(0), dec(reader2.GetString(1)), reader2.GetString(2), DateTime.Parse(reader2.GetDateTime(3).ToString("dd MM yyyy")));
                 closeConnectionDB();
                 return user;
             }
@@ -766,11 +766,12 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "INSERT INTO users ([userName],[password],[email]) " +
+                command.CommandText = "INSERT INTO users ([userName],[password],[email][dateRegisterd]) " +
                         "values(?,?,?)";
                 command.Parameters.AddWithValue("userName", userName);
                 command.Parameters.AddWithValue("password", password);
                 command.Parameters.AddWithValue("email", email);
+                command.Parameters.AddWithValue("dateRegisterd", DateTime.Today.Day + "/" + DateTime.Today.Month + "/" + DateTime.Today.Year);
                 command.ExecuteNonQuery();
                 closeConnectionDB();
                 return true;

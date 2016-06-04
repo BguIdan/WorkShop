@@ -37,6 +37,11 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Dismiss moderator failed, sub-forum does not exist",2);
                 return false;
             }
+            if (DB.getforumByName(subForum.forum).forumPolicy.minNumOfModerators <= subForum.moderators.Count)
+            {
+                logger.logPrint("Dismiss moderator failed, sub-forum has not enough moderators");
+                return false;
+            }
             else if (!ForumController.getInstance.isAdmin(dismissByAdmin, forumName) && !SuperUserController.getInstance.isSuperUser(dismissByAdmin))
             {
                 logger.logPrint("Dismiss moderator failed, "+ dismissByAdmin+" has no permission",0);
@@ -77,7 +82,9 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("sub forum does not exist",2);
                 return false;
             }
-            if ((ForumController.getInstance.isAdmin(nominatorUser, forumName)|| SuperUserController.getInstance.isSuperUser(nominatorUser)) && ForumController.getInstance.isMember(newModerator, forumName))
+            if ((ForumController.getInstance.isAdmin(nominatorUser, forumName)|| SuperUserController.getInstance.isSuperUser(nominatorUser)) && 
+                ForumController.getInstance.isMember(newModerator, forumName)&&
+                DB.getforumByName(forumName).forumPolicy.seniorityInForum<(DB.getUser(newModerator).date-DateTime.Today).Days)
             {
                 if (DateTime.Now.CompareTo(date) > 0)
                 {
@@ -92,12 +99,18 @@ namespace ForumBuilder.Controllers
                     return true;
                 }
             }
-            if(!ForumController.getInstance.isAdmin(nominatorUser, forumName)&&!SuperUserController.getInstance.isSuperUser(nominatorUser))
-                logger.logPrint("To "+nominatorUser+" has no permission to nominate moderator",0);
-            logger.logPrint("To " + nominatorUser + " has no permission to nominate moderator",2);
-            if(!ForumController.getInstance.isMember(newModerator, forumName))
-                logger.logPrint("To " + newModerator + " has no permission to be moderator, he is not a member",0);
-                logger.logPrint("To " + newModerator + " has no permission to be moderator, he is not a member",2);
+            if(!ForumController.getInstance.isAdmin(nominatorUser, forumName)&&!SuperUserController.getInstance.isSuperUser(nominatorUser)){
+                logger.logPrint("nominateModerator fail, To " + nominatorUser+" has no permission to nominate moderator",0);
+                logger.logPrint("nominateModerator fail, To " + nominatorUser+" has no permission to nominate moderator",2);
+                }
+            if(!ForumController.getInstance.isMember(newModerator, forumName)){
+                logger.logPrint("nominateModerator fail, To " + newModerator + " has no permission to be moderator, he is not a member",0);
+                logger.logPrint("nominateModerator fail, To " + newModerator + " has no permission to be moderator, he is not a member",2);
+                }
+            if(DB.getforumByName(forumName).forumPolicy.seniorityInForum > (DB.getUser(newModerator).date - DateTime.Today).Days){
+                logger.logPrint("nominateModerator fail, To " + newModerator + " has not enough seniority",0);
+                logger.logPrint("nominateModerator fail, To " + newModerator + " has not enough seniority",2);
+                }
             return false;
         }
         public SubForum getSubForum(string subForumName, string forumName)
