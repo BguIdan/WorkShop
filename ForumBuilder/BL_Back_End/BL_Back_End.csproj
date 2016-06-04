@@ -39,6 +39,7 @@
     <Compile Include="Forum.cs" />
     <Compile Include="ForumPolicy.cs" />
     <Compile Include="Message.cs" />
+    <Compile Include="Moderator.cs" />
     <Compile Include="Post.cs" />
     <Compile Include="SubForum.cs" />
     <Compile Include="Thread.cs" />

@@ -87,7 +87,8 @@ namespace ForumBuilder.Controllers
             if ((!DB.getPost(postId).writerUserName.Equals(removerName))
                 && (DB.getSuperUser(removerName)==null)
                 && (!ForumController.getInstance.isAdmin(removerName, sf.forum)
-                && (!SubForumController.getInstance.isModerator(removerName, sf.name, sf.forum))))
+                && !DB.getforumByName(sf.forum).forumPolicy.deletePostByModerator 
+                && (DB.getforumByName(sf.forum).forumPolicy.deletePostByModerator&&!SubForumController.getInstance.isModerator(removerName, sf.name, sf.forum))))
             {
                 logger.logPrint("Delete thread comment, there is no permission to that user");
                 return false;

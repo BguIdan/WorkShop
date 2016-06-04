@@ -12,21 +12,21 @@ namespace BL_Back_End
         private bool _isQuestionIdentifying;
         private int _seniorityInForum;
         private bool _deletePostByModerator;
-        private int _timeToPassExpiration;
+        private int _timeToPasswordExpiration;
         private int _minNumOfModerators;
         private bool _hasCapitalInPassword;
         private bool _hasNumberInPassword;
         private int _minLengthOfPassword;
 
         public ForumPolicy(string policy,bool isQuestionIdentifying,int seniorityInForum,
-         bool deletePostByModerator,int timeToPassExpiration,int minNumOfModerators,bool hasCapitalInPassword,
+         bool deletePostByModerator,int timeToPasswordExpiration,int minNumOfModerators,bool hasCapitalInPassword,
          bool hasNumberInPassword,int minLengthOfPassword)
         {
              _policy=policy;
              _isQuestionIdentifying=isQuestionIdentifying;
              _seniorityInForum=seniorityInForum;
              _deletePostByModerator=deletePostByModerator;
-             _timeToPassExpiration=timeToPassExpiration;
+             _timeToPasswordExpiration=timeToPasswordExpiration;//TODO: not impl
              _minNumOfModerators=minNumOfModerators;
              _hasCapitalInPassword=hasCapitalInPassword;
              _hasNumberInPassword=hasNumberInPassword;
@@ -53,8 +53,8 @@ namespace BL_Back_End
 
         public int timeToPassExpiration
         {
-            get { return _timeToPassExpiration; }
-            set { _timeToPassExpiration = value; }
+            get { return _timeToPasswordExpiration; }
+            set { _timeToPasswordExpiration = value; }
         }
 
         public string policy
