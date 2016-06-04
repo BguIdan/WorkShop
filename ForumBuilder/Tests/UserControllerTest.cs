@@ -26,13 +26,13 @@ namespace Tests
             DBClass db = DBClass.getInstance;
             db.clear();
             ForumSystem.initialize("tomer", "1qW", "fkfkf@wkk.com");
-            this.superUser = new User("tomer", "1qW", "fkfkf@wkk.com");
+            this.superUser = new User("tomer", "1qW", "fkfkf@wkk.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
             SuperUserController.getInstance.addSuperUser(this.superUser.email, this.superUser.password, this.superUser.userName);
             this.forumController = ForumController.getInstance;
             ISuperUserController superUser = SuperUserController.getInstance;
-            this.userNonMember = new User("nonMem", "nonmemPass", "nonmem@gmail.com");
-            this.userMember = new User("mem", "mempass", "mem@gmail.com");
-            this.userAdmin = new User("admin", "adminpass", "admin@gmail.com");
+            this.userNonMember = new User("nonMem", "nonmemPass", "nonmem@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
+            this.userMember = new User("mem", "mempass", "mem@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
+            this.userAdmin = new User("admin", "adminpass", "admin@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
             superUser.addUser("admin", "adminpass", "admin@gmail.com", "tomer");
             List<string> adminList = new List<string>();
             adminList.Add("admin");

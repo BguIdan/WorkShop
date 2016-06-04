@@ -26,13 +26,13 @@ namespace Tests
             DBClass db = DBClass.getInstance;
             db.clear();
             ForumSystem.initialize("guy", "AG36djs", "hello@dskkl.com");
-            this.superUser = new User("guy", "AG36djs", "hello@dskkl.com");
+            this.superUser = new User("guy", "AG36djs", "hello@dskkl.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
             SuperUserController.getInstance.addSuperUser(this.superUser.email, this.superUser.password, this.superUser.userName);
             this.forumController = ForumController.getInstance;
-            this.userNonMember = new User("nonMem", "nonmemPass", "nonmem@gmail.com");
-            this.userMember = new User("mem", "mempass", "mem@gmail.com");
-            this.userAdmin = new User("admin", "adminpass", "admin@gmail.com");
-            this.userAdmin2 = new User("admin2", "adminpass2", "admin2@gmail.com");
+            this.userNonMember = new User("nonMem", "nonmemPass", "nonmem@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
+            this.userMember = new User("mem", "mempass", "mem@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
+            this.userAdmin = new User("admin", "adminpass", "admin@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
+            this.userAdmin2 = new User("admin2", "adminpass2", "admin2@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
             ISuperUserController superUser = SuperUserController.getInstance;
             superUser.addUser("admin", "adminpass", "admin@gmail.com", "guy");
             superUser.addUser("admin2", "adminpass2", "admin2@gmail.com", "guy");
@@ -41,7 +41,7 @@ namespace Tests
             adminList.Add("admin2");
             ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
             this.forum = new Forum("testForum", "descr",fp,adminList);            
-            superUser1 = new User("tomer", "1qW", "fkfkf@wkk.com");
+            superUser1 = new User("tomer", "1qW", "fkfkf@wkk.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
             SuperUserController.getInstance.addSuperUser(superUser1.email, superUser1.password, superUser1.userName);
             superUser.createForum("testForum", "descr",fp, adminList, "tomer");            
             Assert.IsTrue(this.forumController.registerUser("mem", "mempass", "mem@gmail.com", this.forum.forumName));
