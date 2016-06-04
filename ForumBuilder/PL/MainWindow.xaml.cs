@@ -138,6 +138,10 @@ namespace PL
         private void ComboBox_OnDropDownClosed(object sender, EventArgs e)
         {
             _forumsList = _fMC.getForums();
+            if (!_fMC.getForum(comboBox.SelectedItem.ToString()).forumPolicy.isQuestionIdentifying)
+            {
+                restore.IsEnabled = false;
+            }
         }
 
         private void restorePass(object sender, RoutedEventArgs e)

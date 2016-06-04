@@ -44,9 +44,9 @@ namespace Service
         {
             return forumController.nominateAdmin(newAdmin, nominatorName, forumName);
         }
-        public Boolean registerUser(String newUser, String password, String mail, string forumName)
+        public Boolean registerUser(String newUser, String password, String mail, String ans1, String ans2, string forumName)
         {
-            return forumController.registerUser(newUser, password, mail, forumName);
+            return forumController.registerUser(newUser, password, mail, ans1, ans2, forumName);
         }
 
         public Boolean login(String user, String forumName,string password)

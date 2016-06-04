@@ -31,6 +31,8 @@ namespace PL
             InitializeComponent();
             _fMC = forumManager;
             _forumToRegister = forumName;
+            if (_fMC.getForum(forumName).forumPolicy.isQuestionIdentifying){ withQuestions.Visibility = System.Windows.Visibility.Visible; }
+            else { withoutQuestions.Visibility = System.Windows.Visibility.Visible; }
         }
 
         private void UserRegistration(object sender, RoutedEventArgs e)
@@ -38,11 +40,28 @@ namespace PL
             string userName = name.Text;
             string pass = Password.Password;
             string userMail = mail.Text;
-            /*if (mail==null || pass == null  || name == null)
+            bool suc = _fMC.registerUser(userName,pass,userMail,_forumToRegister,"", "");
+            if (suc == false)
             {
-                MessageBox.Show("Please fill all the required details, make sure password include at least 5 letters");
-            }*/
-            bool suc = _fMC.registerUser(userName,pass,userMail,_forumToRegister);
+                MessageBox.Show("Failed to register. One or more of the details is wrong");
+            }
+            else
+            {
+                MessageBox.Show(userName + "  Registration succeeded!");
+                MainWindow mw = new MainWindow();
+                mw.Show();
+                this.Close();
+            }
+        }
+
+        private void secUserRegistration(object sender, RoutedEventArgs e)
+        {
+            string userName = secname.Text;
+            string pass = secPassword.Password;
+            string userMail = secmail.Text;
+            string ans1 = ansToq1.Text;
+            string ans2 = ansToq2.Text;
+            bool suc = _fMC.registerUser(userName, pass, userMail, ans1, ans2, _forumToRegister);
             if (suc == false)
             {
                 MessageBox.Show("Failed to register. One or more of the details is wrong");

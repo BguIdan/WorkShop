@@ -10,7 +10,7 @@ namespace ForumBuilder.Controllers
         Boolean dismissAdmin(String adminToDismissed, String dismissingUserName, string forumName);
         Boolean banMember(String bannedMember, String bannerUserName, string forumName);
         Boolean nominateAdmin(String newAdmin, String nominatorName, string forumName);
-        Boolean registerUser(String newUser, String password, String mail, string forumName);
+        Boolean registerUser(String newUser, String password, String mail, string ans1, string ans2, string forumName);
         Boolean addForum(String forumName);
         Boolean login(String newUser, String forumName, string pass);
         Boolean logout(String user, String forumName);

@@ -199,7 +199,7 @@ namespace ForumBuilder.Controllers
             return false;
         }            
         
-        public bool registerUser(string userName, string password, string mail, string forumName)
+        public bool registerUser(string userName, string password, string mail, string ans1, string ans2, string forumName)
         {
             Forum f=DB.getforumByName(forumName);
             if (f == null)
@@ -223,10 +223,13 @@ namespace ForumBuilder.Controllers
                     logger.logPrint("Register user failed, " + userName + " is already taken",2);
                     return false;
                 }
-                if (DB.addUser(userName, password, mail))
+                if (ans1 != null && ans2 != null)
                 {
-                    DB.addMemberToForum(userName,forumName);
-                    return true;
+                    if (DB.addUser(userName, password, mail, ans1, ans2))
+                    {
+                        DB.addMemberToForum(userName, forumName);
+                        return true;
+                    }
                 }
                 return false;
             }

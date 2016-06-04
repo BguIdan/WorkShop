@@ -805,7 +805,7 @@ namespace Database
             }
         }
 
-        public Boolean addUser(string userName, string password, string email)
+        public Boolean addUser(string userName, string password, string email, string ans1, string ans2)
         {
             try
             {
@@ -813,12 +813,14 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "INSERT INTO users ([userName],[password],[email],[dateRegisterd]) " +
-                        "values(?,?,?,?)";
+                command.CommandText = "INSERT INTO users ([userName],[password],[email],[dateRegisterd],[ans1],[ans2]) " +
+                        "values(?,?,?,?,?,?)";
                 command.Parameters.AddWithValue("userName", userName);
                 command.Parameters.AddWithValue("password", password);
                 command.Parameters.AddWithValue("email", email);
                 command.Parameters.AddWithValue("dateRegisterd", DateTime.Today.Day + "/" + DateTime.Today.Month + "/" + DateTime.Today.Year);
+                command.Parameters.AddWithValue("ans1", ans1);
+                command.Parameters.AddWithValue("ans2", ans2);
                 command.ExecuteNonQuery();
                 closeConnectionDB();
                 return true;
