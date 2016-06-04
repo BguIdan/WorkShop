@@ -18,7 +18,8 @@ namespace ForumBuilder.Controllers
                 if (singleton == null)
                 {
                     singleton = new PostController();
-                    Systems.Logger.getInstance.logPrint("Post contoller created");
+                    Systems.Logger.getInstance.logPrint("Post contoller created",0);
+                    Systems.Logger.getInstance.logPrint("Post contoller created",2);
                 }
                 return singleton;
             }
@@ -45,28 +46,33 @@ namespace ForumBuilder.Controllers
             SubForum sf= getSubforumByPost(commentedPost);
             if (getPost(commentedPost) == null)
             {
-                logger.logPrint("Add comment failed, there is no post to comment at");
+                logger.logPrint("Add comment failed, there is no post to comment at",0);
+                logger.logPrint("Add comment failed, there is no post to comment at",2);
                 return false;
             }
             if (headLine.Equals("") && content.Equals(""))
             {
-                logger.logPrint("Add comment failed, there is no head or content in tread");
+                logger.logPrint("Add comment failed, there is no head or content in tread",0);
+                logger.logPrint("Add comment failed, there is no head or content in tread",2);
                 return false;
             }
             else if (DB.getUser(writerName) == null)
             {
-                logger.logPrint("Add comment failed, user does not exist");
+                logger.logPrint("Add comment failed, user does not exist",0);
+                logger.logPrint("Add comment failed, user does not exist",2);
                 return false;
             }
             else if(sf==null|| !ForumController.getInstance.isMember(writerName, sf.forum))
             {
-                logger.logPrint("Add comment failed, user is not a member in forum");
+                logger.logPrint("Add comment failed, user is not a member in forum",0);
+                logger.logPrint("Add comment failed, user is not a member in forum",2);
                 return false;
             }
             else
             {
                 int id = DB.getAvilableIntOfPost();
-                logger.logPrint("Create comment "+ id+" to "+commentedPost);
+                logger.logPrint("Create comment "+ id+" to "+commentedPost,0);
+                logger.logPrint("Create comment " + id + " to " + commentedPost,1);
                 return DB.addPost(writerName, id, headLine, content, commentedPost, DateTime.Now,sf.forum);
             }
         }
@@ -74,7 +80,8 @@ namespace ForumBuilder.Controllers
         {
             if (getPost(postId) == null)
             {
-                logger.logPrint("Delete comment failed, there is no post with that id");
+                logger.logPrint("Delete comment failed, there is no post with that id",0);
+                logger.logPrint("Delete comment failed, there is no post with that id",2);
                 return false;
             }
             else if (getPost(postId).parentId == -1)
@@ -89,7 +96,8 @@ namespace ForumBuilder.Controllers
                 && (!ForumController.getInstance.isAdmin(removerName, sf.forum)
                 && (!SubForumController.getInstance.isModerator(removerName, sf.name, sf.forum))))
             {
-                logger.logPrint("Delete thread comment, there is no permission to that user");
+                logger.logPrint("Delete thread comment, there is no permission to that user",0);
+                logger.logPrint("Delete thread comment, there is no permission to that user",2);
                 return false;
             }
 
@@ -113,7 +121,8 @@ namespace ForumBuilder.Controllers
             for (int i = donePosts.Count - 1; i >= 0; i--)
             {
                 hasSucceed = hasSucceed && DB.removePost(donePosts.ElementAt(i).id);
-                logger.logPrint("Remove post " +donePosts.ElementAt(i).id);
+                logger.logPrint("Remove post " +donePosts.ElementAt(i).id,0);
+                logger.logPrint("Remove post " + donePosts.ElementAt(i).id,1);
             }
             //ForumController.getInstance.sendPostDelitionNotification(DB.getPost(postId).forumName, removerName);
             return hasSucceed;
@@ -151,12 +160,14 @@ namespace ForumBuilder.Controllers
             Post p = DB.getPost(postID);
             if (p == null)
             {
-                logger.logPrint("update post failed, post id hasnt post");
+                logger.logPrint("update post failed, post id hasnt post",0);
+                logger.logPrint("update post failed, post id hasnt post",2);
                 return false;
             }
             if (!p.writerUserName.Equals(userName))
             {
-                logger.logPrint("update post failed, user is not allowed to update post");
+                logger.logPrint("update post failed, user is not allowed to update post",0);
+                logger.logPrint("update post failed, user is not allowed to update post",2);
                 return false;
             }
             else

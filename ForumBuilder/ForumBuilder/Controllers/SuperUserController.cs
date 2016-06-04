@@ -22,7 +22,8 @@ namespace ForumBuilder.Controllers
                 if (singleton == null)
                 {
                     singleton = new SuperUserController();
-                    Systems.Logger.getInstance.logPrint("Super user contoller created");
+                    Systems.Logger.getInstance.logPrint("Super user contoller created",0);
+                    Systems.Logger.getInstance.logPrint("Super user contoller created",1);
                 }
                 return singleton;
             }
@@ -33,12 +34,14 @@ namespace ForumBuilder.Controllers
             if (forumName.Equals("") || descrption.Equals("") || fp.policy.Equals("") || fp.seniorityInForum<0||
                 fp.timeToPassExpiration<30 || fp.minLengthOfPassword<0 || administrators == null)
             {
-                logger.logPrint("cannot create new forum because one or more of the fields is empty");
+                logger.logPrint("cannot create new forum because one or more of the fields is empty",0);
+                logger.logPrint("cannot create new forum because one or more of the fields is empty",2);
                 return false;
             }
             if (DB.getSuperUser(superUserName) == null)
             {
-                logger.logPrint("create forum fail " + superUserName + " is not super user");
+                logger.logPrint("create forum fail " + superUserName + " is not super user",0);
+                logger.logPrint("create forum fail " + superUserName + " is not super user",2);
                 return false;
             }                
             else if (DB.createForum(forumName, descrption, fp))
@@ -48,7 +51,8 @@ namespace ForumBuilder.Controllers
                 {
                     ForumController.getInstance.nominateAdmin(admin, superUserName,forumName);
                 }
-                logger.logPrint("Forum " + forumName + " creation success");
+                logger.logPrint("Forum " + forumName + " creation success",0);
+                logger.logPrint("Forum " + forumName + " creation success",1);
                 return true;
             }
             return false;
@@ -58,7 +62,8 @@ namespace ForumBuilder.Controllers
         {
             if (userName.Equals("") || password.Equals("") || email.Equals(""))
             {
-                logger.logPrint("one or more of the fields is missing");
+                logger.logPrint("one or more of the fields is missing",0);
+                logger.logPrint("one or more of the fields is missing",2);
                 return false;
             }
             // check if the password is strong enough
@@ -87,14 +92,16 @@ namespace ForumBuilder.Controllers
             }
             if (!(isNumExist && isSmallKeyExist && isBigKeyExist && !isKeyRepeting3Times))
             {
-                logger.logPrint("password isnt strong enough");
+                logger.logPrint("password isnt strong enough",0);
+                logger.logPrint("password isnt strong enough",2);
                 return false;
             }
             // check if the the email is in a correct format
             int index = email.IndexOf("@");
             if (index < 0 || index == email.Length - 1)
             {
-                logger.logPrint("error in email format");
+                logger.logPrint("error in email format",0);
+                logger.logPrint("error in email format",2);
                 return false;
             }
             return DB.addSuperUser(email, password, userName);
@@ -118,12 +125,14 @@ namespace ForumBuilder.Controllers
             {
                 if (DB.getUser(userName) != null)
                 {
-                    logger.logPrint("Register user faild, " + userName + " is already taken");
+                    logger.logPrint("Register user faild, " + userName + " is already taken",0);
+                    logger.logPrint("Register user faild, " + userName + " is already taken",2);
                     return false;
                 }
                 return DB.addUser(userName, password, mail);
             }
-            logger.logPrint("Register user faild, password not strong enough");
+            logger.logPrint("Register user faild, password not strong enough",0);
+            logger.logPrint("Register user faild, password not strong enough",2);
             return false;
         }
         public Boolean login(String user, String password, string email)
@@ -136,7 +145,8 @@ namespace ForumBuilder.Controllers
             }
             else
             {
-                logger.logPrint("could not login, wrong cerdintals");
+                logger.logPrint("could not login, wrong cerdintals",0);
+                logger.logPrint("could not login, wrong cerdintals",2);
                 return false;
             }
         }

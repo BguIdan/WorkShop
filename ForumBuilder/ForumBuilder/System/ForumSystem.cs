@@ -54,34 +54,41 @@ namespace ForumBuilder.Systems
                      */
                     ServiceHost forumService = new ServiceHost(typeof(ForumManager));
                     forumService.Open(); 
-                    logger.logPrint("forum service was initialized under localhost:8081");
+                    logger.logPrint("forum service was initialized under localhost:8081",0);
+                    logger.logPrint("forum service was initialized under localhost:8081",1);
 
                     ServiceHost postService = new ServiceHost(typeof(PostManager));
                     postService.Open();
-                    logger.logPrint("post service was initialized under localhost:8082");
+                    logger.logPrint("post service was initialized under localhost:8082",0);
+                    logger.logPrint("post service was initialized under localhost:8082",1);
 
                     ServiceHost subForumService = new ServiceHost(typeof(SubForumManager));
                     subForumService.Open();
-                    logger.logPrint("sub forum service was initialized under localhost:8083");
+                    logger.logPrint("sub forum service was initialized under localhost:8083",0);
+                    logger.logPrint("sub forum service was initialized under localhost:8083",1);
 
                     ServiceHost superUserService = new ServiceHost(typeof(SuperUserManager));
                     superUserService.Open();
-                    logger.logPrint("super user service was initialized under localhost:8084");
+                    logger.logPrint("super user service was initialized under localhost:8084",0);
+                    logger.logPrint("super user service was initialized under localhost:8084",1);
 
                     ServiceHost userService = new ServiceHost(typeof(UserManager));
                     userService.Open();
-                    logger.logPrint("user service was initialized under localhost:8085");
+                    logger.logPrint("user service was initialized under localhost:8085",0);
+                    logger.logPrint("user service was initialized under localhost:8085",1);
 
                   
 
                 }
                 catch (CommunicationException ce)
                 {
-                    logger.logPrint("failed to initialize services");
+                    logger.logPrint("failed to initialize services",0);
+                    logger.logPrint("failed to initialize services",2);
                     return null;
                 }
 
-                logger.logPrint("The System was initialized successully");
+                logger.logPrint("The System was initialized successully",0);
+                logger.logPrint("The System was initialized successully",1);
             }
             return getInstance;
         }
@@ -112,15 +119,15 @@ namespace ForumBuilder.Systems
             initialize(username, password, email);
             ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
             if (!SuperUserController.getInstance.createForum("f", "f",fp, new List<String>(), "idan"))
-                Console.WriteLine("!!!!!!!!!!!!!!!!!!!1");
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
             if (!ForumController.getInstance.registerUser("g1", "gG1", "g@g.g", "f"))
-                Console.WriteLine("!!!!!!!!!!!!!!!!!!!1");
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
             if (!ForumController.getInstance.registerUser("g2", "gG1", "g@g.g", "f"))
-                Console.WriteLine("!!!!!!!!!!!!!!!!!!!1");
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
             if (!ForumController.getInstance.nominateAdmin("g1", "idan", "f"))
-                Console.WriteLine("!!!!!!!!!!!!!!!!!!!1");
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
             if (!ForumController.getInstance.addSubForum("f", "f1", new Dictionary<String, DateTime>(), "g1"))
-                Console.WriteLine("!!!!!!!!!!!!!!!!!!!1");
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
 
             runServer(username, password, email);
             DBClass.getInstance.clear();
