@@ -39,7 +39,8 @@ namespace ForumBuilder.Controllers
                     DB.addSubForum(name, forumName);
                     if (forum.forumPolicy.minNumOfModerators > moderators.Count)
                     {
-                        logger.logPrint("Add sub-forum failed, there is not enough moderators");
+                        logger.logPrint("Add sub-forum failed, there is not enough moderators",0);
+                        logger.logPrint("Add sub-forum failed, there is not enough moderators",2);
                         return false;
                     }
                     foreach (string s in moderators.Keys)
@@ -52,7 +53,8 @@ namespace ForumBuilder.Controllers
                         }
                         else if ((DateTime.Today - DB.getUser(s).date).Days < forum.forumPolicy.seniorityInForum)
                         {
-                            logger.logPrint("Add sub-forum failed, the moderator " + s + " is not enough time in forum");
+                            logger.logPrint("Add sub-forum failed, the moderator " + s + " is not enough time in forum",0);
+                            logger.logPrint("Add sub-forum failed, the moderator " + s + " is not enough time in forum",2);
                             return false;
                         }
                     }

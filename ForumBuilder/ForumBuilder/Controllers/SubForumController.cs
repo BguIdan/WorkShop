@@ -39,7 +39,8 @@ namespace ForumBuilder.Controllers
             }
             if (DB.getforumByName(subForum.forum).forumPolicy.minNumOfModerators <= subForum.moderators.Count)
             {
-                logger.logPrint("Dismiss moderator failed, sub-forum has not enough moderators");
+                logger.logPrint("Dismiss moderator failed, sub-forum has not enough moderators",0);
+                logger.logPrint("Dismiss moderator failed, sub-forum has not enough moderators",2);
                 return false;
             }
             else if (!ForumController.getInstance.isAdmin(dismissByAdmin, forumName) && !SuperUserController.getInstance.isSuperUser(dismissByAdmin))
