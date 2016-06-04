@@ -117,8 +117,10 @@ namespace ForumBuilder.Systems
             String email = "d@d.d";//getEmail();
 
             initialize(username, password, email);
-            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
-            if (!SuperUserController.getInstance.createForum("f", "f",fp, new List<String>(), "idan"))
+            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180,1, true, true, 2);
+            List<String> list = new List<String>();
+            list.Add("idan");
+            if (!SuperUserController.getInstance.createForum("f", "f",fp, list, "idan"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
             if (!ForumController.getInstance.registerUser("g1", "gG1", "g@g.g", "f"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
@@ -126,7 +128,9 @@ namespace ForumBuilder.Systems
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
             if (!ForumController.getInstance.nominateAdmin("g1", "idan", "f"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
-            if (!ForumController.getInstance.addSubForum("f", "f1", new Dictionary<String, DateTime>(), "g1"))
+            Dictionary<String, DateTime> d = new Dictionary<String, DateTime>();
+            d.Add("g1", new DateTime(2017, 1, 1));
+            if (!ForumController.getInstance.addSubForum("f", "f1",d , "g1"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
 
             runServer(username, password, email);

@@ -188,7 +188,7 @@ namespace ForumBuilder.Controllers
                 {
                     logger.logPrint("admin nominated successfully",0);
                     logger.logPrint("admin nominated successfully",1);
-                    if (DB.getforumByName(forumName).administrators.Contains(nominatorName))
+                    if (DB.getforumByName(forumName).administrators.Contains(nominatorName)&&DB.getSuperUser(nominatorName)==null)
                         DB.dismissAdmin(nominatorName, forumName);
                     return true;
                 }

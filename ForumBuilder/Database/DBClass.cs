@@ -283,10 +283,14 @@ namespace Database
                 {
                     OleDbCommand command2 = new OleDbCommand();
                     command2.Connection = connection;
-                    command2.CommandText = "INSERT INTO users ([userName],[password],[email]) VALUES (?,?,?)";
+                    command2.CommandText = "INSERT INTO users ([userName],[password],[email],[dateRegisterd],[ans1],[ans2]) VALUES (?,?,?,?,?,?)";
                     command2.Parameters.AddWithValue("userName", userName);
                     command2.Parameters.AddWithValue("password", password);
                     command2.Parameters.AddWithValue("email", email);
+                    command2.Parameters.AddWithValue("dateRegisterd", DateTime.Today.Day + "/" + DateTime.Today.Month + "/" + DateTime.Today.Year);
+                    command2.Parameters.AddWithValue("ans1", "its me");
+                    command2.Parameters.AddWithValue("ans2", "the super user");
+
                     command2.ExecuteNonQuery();
                     OleDbCommand command3 = new OleDbCommand();
                     command3.Connection = connection;
@@ -304,7 +308,7 @@ namespace Database
                     return false;
                 }
             }
-            catch
+            catch(Exception e)
             {
                 return false;
             }
@@ -809,8 +813,8 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "INSERT INTO users ([userName],[password],[email][dateRegisterd]) " +
-                        "values(?,?,?)";
+                command.CommandText = "INSERT INTO users ([userName],[password],[email],[dateRegisterd]) " +
+                        "values(?,?,?,?)";
                 command.Parameters.AddWithValue("userName", userName);
                 command.Parameters.AddWithValue("password", password);
                 command.Parameters.AddWithValue("email", email);
