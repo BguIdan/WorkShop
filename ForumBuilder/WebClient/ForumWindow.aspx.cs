@@ -88,24 +88,27 @@ namespace WebClient
             {
                 case "AddSub": 
                 {
-                    Response.Redirect("AddNewSubForum.aspx");
+                    //Response.Redirect("AddNewSubForum.aspx");
                 } break;
                 case "Set": 
                 { 
-                    Response.Redirect("SetPreferences.aspx");
+                    //Response.Redirect("SetPreferences.aspx");
                 } break;
                 case "SignUP": 
                 { 
-                    SignUP(); 
+                    //SignUP(); 
                 } break;
                 case "menuLogout": 
                 { 
-                    logout(_userName); 
+                    logout(_userName);
+                    Session["userName"] = "";
+                    Session["password"] = "";
+                    Response.Redirect("MainWindow.aspx");
                 } break;
                 case "privateMessages": 
                 {
-                    Session["userName"] = this._userName;
-                    Response.Redirect("PrivateMessagesWindow.aspx");
+                 //   Session["userName"] = this._userName;
+                   // Response.Redirect("PrivateMessagesWindow.aspx");
                 } break;
             }
         }
@@ -138,7 +141,10 @@ namespace WebClient
 
         protected void clickOnSubForum(Object sender, EventArgs e)
         {//TODO gal: redirect to the subforum
-            showAlert(((Button)sender).Text + _userName);
+            //showAlert(((Button)sender).Text + _userName);
+            Session["forumName"] = lbl_forumName.Text;
+            Session["subForumName"] = ((Button)sender).Text;
+            Response.Redirect("subForumWebPage.aspx");
         }
         /*
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -203,3 +209,26 @@ namespace WebClient
 
     }
 }
+
+
+/*
+    this is a way to create a menu dont delete
+
+   <div id = "nav" >
+       < ul >
+        < li >< a href="MainWindow.aspx">Main Window</a></li>
+        <li><a href = "#" > item2 </ a ></ li >
+   
+           < li >< a href= "#" > item3 </ a >
+   
+               < ul >
+   
+                   < li >< a href= "#" > item3.1</a></li>
+                <li><a href = "#" ></ a > item3.2</li>
+            </ul>
+        </li>
+           <li><a>item4</a></li>
+       
+       </ul>
+   </div>
+   */

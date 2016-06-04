@@ -122,6 +122,10 @@ namespace ForumBuilder.Controllers
         {
             List <Post> list = new List<Post>();
             SubForum sf= SubForumController.getInstance.getSubForum(subforumName, forumName);
+            if (sf.threads == null)
+            {
+                return new List<Post>();
+            }
             foreach(int t in sf.threads)
             {
                 List<Post> donePosts = new List<Post>();
