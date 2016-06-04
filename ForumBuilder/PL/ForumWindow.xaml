@@ -5,12 +5,13 @@
     <Grid>
         <Menu Margin="0,0,0,346" Name="MainMenu" VerticalAlignment="Top">
             <MenuItem Header="Actions" Click="MenuItem_Forums">
-                <MenuItem Header="Create Sub-Forum" Name="AddSub"/>
-                <MenuItem Header="View Private Messages" Name="privateMessages"/>
-                <MenuItem Header="Set\Change Preferences" Name="Set" />
-                <MenuItem Header="Sign Up (Guest)" Name="Sign" />
+                <MenuItem Header="Create Sub-Forum" x:Name="AddSub"/>
+                <MenuItem Header="View Private Messages" x:Name="privateMessages"/>
+                <MenuItem Header="Set\Change Preferences" x:Name="Set" />
+                <MenuItem Header="Sign Up (Guest)" x:Name="Sign" />
+                <MenuItem Header="Add Friend (Guest)" x:Name="addFriend" Click="addFriend_Click" />
                 <Separator />
-                <MenuItem Header="Logout" Name="menuLogout"/>
+                <MenuItem Header="Logout" x:Name="menuLogout"/>
             </MenuItem>
             <MenuItem Header="Notifications" IsEnabled="False" >
                 <MenuItem Header="Set Notifications"/>

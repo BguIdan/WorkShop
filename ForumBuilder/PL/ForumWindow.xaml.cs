@@ -384,5 +384,12 @@ namespace PL
         {
 
         }
+
+        private void addFriend_Click(object sender, RoutedEventArgs e)
+        {
+            AddFriendWindow newWin = new AddFriendWindow(_userName, _myforum);
+            newWin.Show();
+            this.Close();
+        }
     }
 }

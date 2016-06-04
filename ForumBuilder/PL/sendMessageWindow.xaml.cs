@@ -23,9 +23,11 @@ namespace PL
         string _userName;
         Window _prevWindow;
         private UserManagerClient _um;
+        private int _count;
 
         public sendMessageWindow(string userName, Window prevWindow)
         {
+            _count = 0;
             InitializeComponent();
             _userName = userName;
             _prevWindow = prevWindow;
@@ -54,5 +56,6 @@ namespace PL
             }
 
         }
+
     }
 }
