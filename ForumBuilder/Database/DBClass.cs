@@ -570,6 +570,49 @@ namespace Database
                 return null;
             }
         }
+
+        public List<string> getAnswers(string userName)
+        {
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "SELECT  ans1 ans2 FROM  users where users.userName='" + userName + "'";
+                OleDbDataReader reader = command.ExecuteReader();
+                List<String> answers = new List<String>();
+                answers.Add(reader.GetString(4));
+                answers.Add(reader.GetString(5));
+                closeConnectionDB();
+                return answers;
+            }
+            catch
+            {
+                closeConnectionDB();
+                return null;
+            }
+        }
+
+        public string getPassword(string userName)
+        {
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "SELECT  passwod FROM  users where users.userName='" + userName + "'";
+                OleDbDataReader reader = command.ExecuteReader();
+                string password = reader.GetString(1);
+                closeConnectionDB();
+                return password;
+            }
+            catch
+            {
+                closeConnectionDB();
+                return null;
+            }
+        }
+
         public bool banMember(string bannedMember, string forumName)
         {
             try

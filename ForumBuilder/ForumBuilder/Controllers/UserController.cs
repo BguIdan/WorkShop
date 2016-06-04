@@ -132,7 +132,13 @@ namespace ForumBuilder.Controllers
         
         public string restorePassword(string userName, string ans1, string ans2)
         {
-            return " ";
+            string password = null;
+            List<String> answers = DB.getAnswers(userName);
+            if (ans1.Equals(answers[0]) && ans2.Equals(answers[1]))
+            {
+                password = DB.getPassword(userName);
+            }
+            return password;
         }
     }
 }
