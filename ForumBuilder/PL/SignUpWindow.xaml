@@ -3,14 +3,32 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="SignUpWindow" Height="425" Width="425">
     <Grid Margin="0,0,0,0">
-        <TextBlock FontSize="30" FontFamily="Cooper Black" TextWrapping="Wrap" Text="Register to Forum" VerticalAlignment="Top" Height="49" Margin="56,35,56,0" RenderTransformOrigin="0.69,0.544"/>
-        <TextBlock FontFamily="Cooper Black"  TextWrapping="Wrap" Text="Enter name :" Margin="56,138,255,235"/>
-        <TextBlock FontFamily="Cooper Black"  TextWrapping="Wrap" Text="Enter Password :" Margin="56,166,228,210"/>
-        <TextBlock FontFamily="Cooper Black"  TextWrapping="Wrap" Margin="56,190,265,183" Text="Enter Mail :"/>
-        <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Source="http://caymanroundup.com/wp-content/uploads/2014/02/register-online.jpg" Margin="56,0,0,27" Height="119" Width="119"/>
-        <TextBox Name="name" Margin="189,138,86,235" TextWrapping="Wrap" Text="" Height="22"/>
-        <PasswordBox Name="Password" Margin="189,163,86,210" Height="22"/>
-        <TextBox Name="mail" Margin="189,190,86,183" TextWrapping="Wrap" Height="22"/>
-        <Button FontFamily="Cooper Black" Content="Register" Margin="220,236,86,128" Click="UserRegistration"/>
+        <Grid Name="withoutQuestions" Visibility="Collapsed">
+            <TextBlock FontSize="30" FontFamily="Cooper Black" TextWrapping="Wrap" Text="Register to Forum" VerticalAlignment="Top" Height="49" Margin="56,35,56,0" RenderTransformOrigin="0.69,0.544"/>
+            <TextBlock FontFamily="Cooper Black"  TextWrapping="Wrap" Text="Enter name :" Margin="56,138,255,235"/>
+            <TextBlock FontFamily="Cooper Black"  TextWrapping="Wrap" Text="Enter Password :" Margin="56,166,228,210"/>
+            <TextBlock FontFamily="Cooper Black"  TextWrapping="Wrap" Margin="56,190,265,183" Text="Enter Mail :"/>
+            <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Source="http://caymanroundup.com/wp-content/uploads/2014/02/register-online.jpg" Margin="56,0,0,27" Height="119" Width="119"/>
+            <TextBox Name="name" Margin="189,138,86,235" TextWrapping="Wrap" Text="" Height="22"/>
+            <PasswordBox Name="Password" Margin="189,163,86,210" Height="22"/>
+            <TextBox Name="mail" Margin="189,190,86,183" TextWrapping="Wrap" Height="22"/>
+            <Button FontFamily="Cooper Black" Content="Register" Margin="220,236,86,128" Click="UserRegistration"/>
+        </Grid>
+
+        <Grid Name="withQuestions" Visibility="Collapsed">
+            <TextBlock FontSize="30" FontFamily="Cooper Black" TextWrapping="Wrap" Text="Register to Forum" VerticalAlignment="Top" Height="49" Margin="56,35,56,0" RenderTransformOrigin="0.69,0.544"/>
+            <TextBlock FontFamily="Cooper Black"  TextWrapping="Wrap" Text="Enter name :" Margin="15,90,296,283"/>
+            <TextBlock FontFamily="Cooper Black"  TextWrapping="Wrap" Text="Enter Password :" Margin="15,118,269,258"/>
+            <TextBlock FontFamily="Cooper Black"  TextWrapping="Wrap" Margin="15,146,306,227" Text="Enter Mail :"/>
+            <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Source="http://caymanroundup.com/wp-content/uploads/2014/02/register-online.jpg" Margin="56,0,0,27" Height="119" Width="119"/>
+            <TextBox Name="secname" Margin="264,86,20,287" TextWrapping="Wrap" Text="" Height="22"/>
+            <PasswordBox Name="secPassword" Margin="264,114,20,259" Height="22"/>
+            <TextBox Name="secmail" Margin="264,142,20,231" TextWrapping="Wrap" Height="22"/>
+            <TextBlock Name="q1" FontFamily="Cooper Black" TextWrapping="Wrap" Text="Who was your favorite teacher? :" Height="20" Margin="15,174,144,201"/>
+            <TextBlock Name="q2" FontFamily="Cooper Black" Margin="15,202,173,173" TextWrapping="Wrap" Text="What is your favorite pet? :" Height="20"/>
+            <TextBox Name="ansToq1"  Height="23" Margin="264,170,20,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBox Name="ansToq2" Height="23" Margin="264,198,20,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <Button FontFamily="Cooper Black" Content="Register" Margin="220,236,86,128" Click="secUserRegistration"/>
+        </Grid>
     </Grid>
 </Window>

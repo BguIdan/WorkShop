@@ -130,7 +130,7 @@ namespace ForumBuilder.Controllers
                     logger.logPrint("Register user faild, " + userName + " is already taken",2);
                     return false;
                 }
-                return DB.addUser(userName, password, mail);
+                return DB.addUser(userName, password, mail, " ", " ");
             }
             logger.logPrint("Register user faild, password not strong enough",0);
             logger.logPrint("Register user faild, password not strong enough",2);
