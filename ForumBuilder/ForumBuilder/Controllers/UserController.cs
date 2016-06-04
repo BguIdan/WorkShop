@@ -18,7 +18,8 @@ namespace ForumBuilder.Controllers
                 if (singleton == null)
                 {
                     singleton = new UserController();
-                    Systems.Logger.getInstance.logPrint("User contoller created");
+                    Systems.Logger.getInstance.logPrint("User contoller created",0);
+                    Systems.Logger.getInstance.logPrint("User contoller created",1);
                 }
                 return singleton;
             }
@@ -31,17 +32,20 @@ namespace ForumBuilder.Controllers
             User friendToAdd = DB.getUser(friendToAddName);
             if (user == null)
             {
-                logger.logPrint("Add friend faild, " + userName + "is not a user");
+                logger.logPrint("Add friend faild, " + userName + "is not a user",0);
+                logger.logPrint("Add friend faild, " + userName + "is not a user",2);
                 return false;
             }
             if (friendToAdd == null)
             {
-                logger.logPrint("Add friend faild, " + friendToAddName + "is not a user");
+                logger.logPrint("Add friend faild, " + friendToAddName + "is not a user",0);
+                logger.logPrint("Add friend faild, " + friendToAddName + "is not a user",2);
                 return false;
             }
             if(!ForumController.getInstance.isMembersOfSameForum(friendToAddName, userName))
             {
-                logger.logPrint("Add friend faild, " + friendToAddName + " and "+userName + " are not in the same forum");
+                logger.logPrint("Add friend faild, " + friendToAddName + " and "+userName + " are not in the same forum",0);
+                logger.logPrint("Add friend faild, " + friendToAddName + " and " + userName + " are not in the same forum",2);
                 return false;
             }
             return DB.addFriendToUser(userName, friendToAddName);            
@@ -53,17 +57,20 @@ namespace ForumBuilder.Controllers
             User friendTodelete = DB.getUser(deletedFriendName);
             if (user == null)
             {
-                logger.logPrint("Remove friend faild, " + userName + "is not a user");
+                logger.logPrint("Remove friend faild, " + userName + "is not a user",0);
+                logger.logPrint("Remove friend faild, " + userName + "is not a user",2);
                 return false;
             }
             if (friendTodelete == null)
             {
-                logger.logPrint("Remove friend faild, " + deletedFriendName + "is not a user");
+                logger.logPrint("Remove friend faild, " + deletedFriendName + "is not a user",0);
+                logger.logPrint("Remove friend faild, " + deletedFriendName + "is not a user",2);
                 return false;
             }
             if (!getFriendList(userName).Contains(deletedFriendName))
             {
-                logger.logPrint("Remove friend faild, " + userName + " and " + deletedFriendName + " are not friends");
+                logger.logPrint("Remove friend faild, " + userName + " and " + deletedFriendName + " are not friends",0);
+                logger.logPrint("Remove friend faild, " + userName + " and " + deletedFriendName + " are not friends",2);
                 return false;
             }
             return DB.removeFriendOfUser(userName, deletedFriendName);
@@ -75,22 +82,26 @@ namespace ForumBuilder.Controllers
             User reciver = DB.getUser(toUserName);
             if (sender == null)
             {
-                logger.logPrint("Send message faild, " + fromUserName + "is not a user");
+                logger.logPrint("Send message faild, " + fromUserName + "is not a user",0);
+                logger.logPrint("Send message faild, " + fromUserName + "is not a user",2);
                 return false;
             }
             else if (reciver == null)
             {
-                logger.logPrint("Send message faild, " + toUserName + "is not a user");
+                logger.logPrint("Send message faild, " + fromUserName + "is not a user",0);
+                logger.logPrint("Send message faild, " + fromUserName + "is not a user",2);
                 return false;
             }
             else if (!ForumController.getInstance.isMembersOfSameForum(fromUserName, toUserName))
             {
-                logger.logPrint("Send message faild, " + fromUserName + " and " + toUserName + " are not in the same forum");
+                logger.logPrint("Send message faild, " + fromUserName + " and " + toUserName + " are not in the same forum",0);
+                logger.logPrint("Send message faild, " + fromUserName + " and " + toUserName + " are not in the same forum",2);
                 return false;
             }
             else if (content.Equals(""))
             {
-                logger.logPrint("Send message faild, no content in message");
+                logger.logPrint("Send message faild, no content in message",0);
+                logger.logPrint("Send message faild, no content in message",2);
                 return false;
             }
             else

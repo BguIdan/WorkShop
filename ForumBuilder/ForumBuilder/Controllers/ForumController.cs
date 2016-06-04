@@ -22,7 +22,8 @@ namespace ForumBuilder.Controllers
                 if (singleton == null)
                 {
                     singleton = new ForumController();
-                    Systems.Logger.getInstance.logPrint("Forum contoller created");
+                    Systems.Logger.getInstance.logPrint("Forum contoller created",0);
+                    Systems.Logger.getInstance.logPrint("Forum contoller created",1);
                 }
                 return singleton;
             }
@@ -40,7 +41,8 @@ namespace ForumBuilder.Controllers
                     {
                         if (DB.getUser(s) == null)
                         {
-                            logger.logPrint("Add sub-forum failed, the moderator " + s + " is not member of forum"); 
+                            logger.logPrint("Add sub-forum failed, the moderator " + s + " is not member of forum",0);
+                            logger.logPrint("Add sub-forum failed, the moderator " + s + " is not member of forum",2);
                             return false;
                         }
                     }
@@ -54,7 +56,8 @@ namespace ForumBuilder.Controllers
                         }
                         else
                         {
-                            logger.logPrint("Add sub-forum failed, date is allready passed"); 
+                            logger.logPrint("Add sub-forum failed, date is allready passed",0);
+                            logger.logPrint("Add sub-forum failed, date is allready passed",2);
                             return false;
                         }
                     }
@@ -62,7 +65,8 @@ namespace ForumBuilder.Controllers
             }
             else
             {
-                logger.logPrint("Add sub-forum failed, "+ creatorName + " is not allowed"); 
+                logger.logPrint("Add sub-forum failed, "+ creatorName + " is not allowed",0);
+                logger.logPrint("Add sub-forum failed, " + creatorName + " is not allowed",2);
                 return false;
             }
             return true;
@@ -85,12 +89,14 @@ namespace ForumBuilder.Controllers
         {
             if (!isMember(bannedMember, forumName))
             {
-                logger.logPrint("Ban Member failed, " + bannedMember + " is not a member");
+                logger.logPrint("Ban Member failed, " + bannedMember + " is not a member",0);
+                logger.logPrint("Ban Member failed, " + bannedMember + " is not a member",2);
                 return false;
             }
             else if(!isAdmin(bannerUserName, forumName)&& DB.getSuperUser(bannerUserName)==null)
             {
-                logger.logPrint("Ban Member failed, " + bannedMember + " is not a admin or super user");
+                logger.logPrint("Ban Member failed, " + bannedMember + " is not a admin or super user",0);
+                logger.logPrint("Ban Member failed, " + bannedMember + " is not a admin or super user",2);
                 return false;
             }
             else 
@@ -103,12 +109,14 @@ namespace ForumBuilder.Controllers
         {
             if (!isAdmin(adminToDismissed, forumName))
             {
-                logger.logPrint("Dismiss admin failed, " + adminToDismissed + " is not a admin");
+                logger.logPrint("Dismiss admin failed, " + adminToDismissed + " is not a admin",0);
+                logger.logPrint("Dismiss admin failed, " + adminToDismissed + " is not a admin",2);
                 return false;
             }
             else if(DB.getSuperUser(dismissingUserName)==null)
             {
-                logger.logPrint("Ban Member failed, " + dismissingUserName + " is not a super user");
+                logger.logPrint("Ban Member failed, " + dismissingUserName + " is not a super user",0);
+                logger.logPrint("Ban Member failed, " + dismissingUserName + " is not a super user",2);
                 return false;
             }
             else 
@@ -151,7 +159,8 @@ namespace ForumBuilder.Controllers
         {
             if (DB.getforumByName(forumName).administrators.Contains(newAdmin))
             {
-                logger.logPrint("nominate admin fail, " + newAdmin + "is already admin");
+                logger.logPrint("nominate admin fail, " + newAdmin + "is already admin",0);
+                logger.logPrint("nominate admin fail, " + newAdmin + "is already admin",2);
                 return false;
             }
             if (DB.getUser(newAdmin) == null)
@@ -165,14 +174,16 @@ namespace ForumBuilder.Controllers
                 }
                 if (isMem&& DB.nominateAdmin(newAdmin, forumName))
                 {
-                    logger.logPrint("admin nominated successfully");
+                    logger.logPrint("admin nominated successfully",0);
+                    logger.logPrint("admin nominated successfully",1);
                     if (DB.getforumByName(forumName).administrators.Contains(nominatorName))
                         DB.dismissAdmin(nominatorName, forumName);
                     return true;
                 }
                 return false;
             }
-            logger.logPrint("nominate admin fail " + nominatorName + " is not super user");
+            logger.logPrint("nominate admin fail " + nominatorName + " is not super user",0);
+            logger.logPrint("nominate admin fail " + nominatorName + " is not super user",2);
             return false;
         }            
         
@@ -180,7 +191,8 @@ namespace ForumBuilder.Controllers
         {
             if (DB.getforumByName(forumName) == null)
             {
-                logger.logPrint("Register user faild, the forum, "+ forumName+" does not exist");
+                logger.logPrint("Register user faild, the forum, "+ forumName+" does not exist",0);
+                logger.logPrint("Register user faild, the forum, " + forumName + " does not exist",2);
                 return false;
             }
             if (userName.Length > 0 && password.Length > 0 && mail.Length > 0)
@@ -192,7 +204,8 @@ namespace ForumBuilder.Controllers
                     {
                         return DB.addMemberToForum(userName, forumName);
                     }
-                    logger.logPrint("Register user failed, "+userName+" is already taken");
+                    logger.logPrint("Register user failed, "+userName+" is already taken",0);
+                    logger.logPrint("Register user failed, " + userName + " is already taken",2);
                     return false;
                 }
                 if (DB.addUser(userName, password, mail))
@@ -202,7 +215,8 @@ namespace ForumBuilder.Controllers
                 }
                 return false;
             }
-            logger.logPrint("Register user failed, password not strong enough");
+            logger.logPrint("Register user failed, password not strong enough",0);
+            logger.logPrint("Register user failed, password not strong enough",2);
             return false;
         }
 
@@ -234,7 +248,8 @@ namespace ForumBuilder.Controllers
             }
             else
             {
-                logger.logPrint("could not login, wrong cerdintals");
+                logger.logPrint("could not login, wrong cerdintals",0);
+                logger.logPrint("could not login, wrong cerdintals",2);
                 return false;
             }
         }
@@ -300,18 +315,22 @@ namespace ForumBuilder.Controllers
             bool hasSucceed = false;
             if (DB.getforumByName(forumName) == null)
             {
-                logger.logPrint("Set forum preferences failed, Forum" + forumName + " do not exist");
+                logger.logPrint("Set forum preferences failed, Forum" + forumName + " do not exist",0);
+                logger.logPrint("Set forum preferences failed, Forum" + forumName + " do not exist",2);
             }
             else if (!isAdmin(setterUserName, forumName))
             {
-                logger.logPrint("Set forum preferences failed, " + setterUserName + " is not an admin");
+                logger.logPrint("Set forum preferences failed, " + setterUserName + " is not an admin",0);
+                logger.logPrint("Set forum preferences failed, " + setterUserName + " is not an admin",2);
             }
             else if (forumName==null|newDescription==null| setterUserName==null)
             {
-                logger.logPrint("Set forum preferences failed, one or more of the arguments is null");
+                logger.logPrint("Set forum preferences failed, one or more of the arguments is null",0);
+                logger.logPrint("Set forum preferences failed, one or more of the arguments is null",2);
             }
             else if (DB.setForumPreferences(forumName, newDescription, fp)) {
-                logger.logPrint(forumName + "preferences had changed successfully");
+                logger.logPrint(forumName + "preferences had changed successfully",0);
+                logger.logPrint(forumName + "preferences had changed successfully",1);
                 hasSucceed = true;
             }
             return hasSucceed;
