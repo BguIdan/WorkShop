@@ -407,5 +407,12 @@ namespace ForumBuilder.Controllers
             return null;
             
         }
+
+
+        public int randomSession()
+        {
+            Random random = new Random();
+            return random.Next(0, 100000000);
+        }
     }
 }
