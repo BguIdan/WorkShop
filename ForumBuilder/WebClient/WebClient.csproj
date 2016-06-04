@@ -68,6 +68,7 @@
     <Content Include="SetPreferences.aspx" />
     <Content Include="SignUpWindow.aspx" />
     <Content Include="Styles\bootstrap.css" />
+    <Content Include="subForumWebPage.aspx" />
     <Content Include="SuperUserLoginWindow.aspx" />
     <Content Include="Web.config" />
     <Content Include="MainWindow.aspx" />
@@ -130,6 +131,13 @@
     <Compile Include="Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
     </Compile>
+    <Compile Include="subForumWebPage.aspx.cs">
+      <DependentUpon>subForumWebPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="subForumWebPage.aspx.designer.cs">
+      <DependentUpon>subForumWebPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SuperUserLoginWindow.aspx.cs">
       <DependentUpon>SuperUserLoginWindow.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -154,6 +162,10 @@
     <ProjectReference Include="..\Common\ForumBuilder.common.csproj">
       <Project>{db6f5ffc-3837-455b-a666-3c117c130995}</Project>
       <Name>ForumBuilder.common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PL\PL.csproj">
+      <Project>{B690218F-8AFF-410B-B355-7967970D472B}</Project>
+      <Name>PL</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

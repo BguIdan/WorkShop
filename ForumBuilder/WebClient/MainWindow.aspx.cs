@@ -25,7 +25,7 @@ namespace WebClient
             //popup example
             //Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "popup", "<script>alert();</script>");
 
-            Thread.Sleep(5800);
+            Thread.Sleep(5000);
 
             _fMC = new ForumManagerClient(new InstanceContext(this));
             _forumsList = _fMC.getForums();
@@ -150,5 +150,17 @@ namespace WebClient
             //MessageBox.Show(content, senderName + " set you a message");
         }
 
+        protected void forum_dropList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _choosenForum = forum_dropList.SelectedItem.ToString();
+        }
+
+        protected void forum_dropList_Load(object sender, EventArgs e)
+        {
+            forum_dropList.ClearSelection();
+            while (_forumsList == null) { Thread.Sleep(20); }
+            foreach (String forumName in this._forumsList)
+                forum_dropList.Items.Add(forumName);
+        }
     }
 }

@@ -1030,6 +1030,7 @@ namespace Database
         {
             foreach (SubForum sf in subForums)
             {
+
                 if (sf.name.Equals(subForumName)&& sf.forum.Equals(forumName))
                 {
                     return sf;

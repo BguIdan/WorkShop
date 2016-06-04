@@ -13,7 +13,7 @@
             <div class="col-sm-offset-2 col-sm-10">
         <p>
             <asp:label AssociatedControlID="forum_dropList" runat="server" Cssclass="control-label">choose forum:</asp:label>
-            <asp:DropDownList ID="forum_dropList" runat="server" OnDataBinding="refreshForumList">
+            <asp:DropDownList ID="forum_dropList" runat="server" OnDataBinding="refreshForumList" OnSelectedIndexChanged="forum_dropList_SelectedIndexChanged" OnLoad="forum_dropList_Load">
             </asp:DropDownList>
         </p>
                 </div>
