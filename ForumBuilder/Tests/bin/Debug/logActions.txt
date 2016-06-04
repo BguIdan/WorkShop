@@ -1,0 +1,105 @@
+Log Entry : 		04/06/2016 22:55:44
+Forum contoller created
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:55:44
+Super user contoller created
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:55:44
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:55:44
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:55:47
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:55:47
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:55:50
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:55:50
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:55:52
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:55:52
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:55:55
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:55:55
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:55:57
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:55:57
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:00
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:00
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:04
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:04
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:07
+forum service was initialized under localhost:8081
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:07
+post service was initialized under localhost:8082
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:07
+sub forum service was initialized under localhost:8083
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:07
+super user service was initialized under localhost:8084
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:07
+user service was initialized under localhost:8085
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:07
+The System was initialized successully
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:07
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:07
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:08
+Sub-forum contoller created
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:08
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:08
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:09
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:09
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:10
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:10
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:11
+Add thread 0
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:12
+admin nominated successfully
+------

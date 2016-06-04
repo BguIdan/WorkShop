@@ -1,0 +1,26 @@
+Log Entry : 		04/06/2016 22:56:23
+Forum contoller created
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:23
+Post contoller created
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:23
+Sub-forum contoller created
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:23
+Super user contoller created
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:23
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:23
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:23
+Register user failed, password not strong enough
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:23
+Register user failed, password not strong enough
+-----------------------------------------------
+Log Entry : 		04/06/2016 22:56:23
+Add sub-forum failed, the moderator mod is not me

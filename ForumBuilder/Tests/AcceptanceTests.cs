@@ -34,7 +34,7 @@ namespace Tests
             ForumPolicyData fpd = new ForumPolicyData(fp.policy, fp.isQuestionIdentifying, fp.seniorityInForum, fp.deletePostByModerator, fp.timeToPassExpiration, fp.minNumOfModerators,
                                                         fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword);
             ForumData forumData = new ForumData("testForum", "descr", fpd, new List<String>(), new List<String>());
-            UserData userAdmin = new UserData("admin", "adminpass", "admin@gmail.com");
+            UserData userAdmin = new UserData("admin", "Adminpass1", "admin@gmail.com");
             superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName);
             List<string> adminList = new List<string>();
             adminList.Add(userAdmin.userName);
@@ -43,14 +43,14 @@ namespace Tests
             String forumName = forumData.forumName;
             String adminName = userAdmin.userName;
 
-            Assert.IsTrue(forum.registerUser("mem", "mempass", "mem@gmail.com", forumName));
-            Assert.IsTrue(forum.registerUser("mem2", "mempass", "mem@gmail.com", forumName));
+            Assert.IsTrue(forum.registerUser("mem", "Mempass1", "mem@gmail.com", "ansss", "anssss", forumName));
+            Assert.IsTrue(forum.registerUser("mem2", "Mempass1", "mem@gmail.com", "ansss", "anssss", forumName));
             Assert.IsTrue(forum.isMember("mem2", forumName), "userMember should be a member");
             Assert.IsTrue(forum.banMember("mem2", adminName, forumName), "ban of userMember should be successful");
             Assert.IsFalse(forum.isMember("mem2", forumName), "userMember should not be a member when banned");
             Assert.IsFalse(forum.isMember("mem2", forumName), "userMember should not be a member when banned");
             Assert.IsFalse(forum.isMember("nonMem", forumName), "userNonMember should not be a member");
-            Assert.IsTrue(forum.registerUser("nonMem", "pass", "email", forumName), "registration of a non member should be successful");
+            Assert.IsTrue(forum.registerUser("nonMem", "pass", "email", "ansss", "anssss", forumName), "registration of a non member should be successful");
             Assert.IsTrue(forum.isMember("nonMem", forumName), "after registration the user should become a member");
             Assert.IsTrue(forum.addSubForum(forumName, "sub", new Dictionary<String, DateTime>(), adminName));
             Assert.IsTrue(forum.isAdmin(adminName, forumName), "userAdmin should be an admin in the forum");
@@ -173,13 +173,13 @@ namespace Tests
             List<string> adminList = new List<string>();
             adminList.Add(userAdmin.userName);
             superUserController.createForum("testForum", "descr",fp, adminList, superUser.userName);
-            Assert.IsFalse(forumMan.registerUser("admin", "passWord2", "jkkkk@xc.com", forumData.forumName));
-            Assert.IsTrue(forumMan.registerUser("mem1", "passWor1", "fff@xc.com", forumData.forumName));
-            Assert.IsTrue(forumMan.registerUser("mem2", "passWor1", "fff@xc.com", forumData.forumName));
-            Assert.IsFalse(forumMan.registerUser("", "passWor1", "fff@xc.com", forumData.forumName));
-            Assert.IsFalse(forumMan.registerUser("mem2", "", "fff@xc.com", forumData.forumName));
-            Assert.IsFalse(forumMan.registerUser("mem2", "passWor1", "", forumData.forumName));
-            Assert.IsFalse(forumMan.registerUser("mem2", "passWor1", "fff@xc.com", forumData.forumName));
+            Assert.IsFalse(forumMan.registerUser("admin", "passWord2", "jkkkk@xc.com", "ansss", "anssss", forumData.forumName));
+            Assert.IsTrue(forumMan.registerUser("mem1", "passWor1", "fff@xc.com", "ansss", "anssss", forumData.forumName));
+            Assert.IsTrue(forumMan.registerUser("mem2", "passWor1", "fff@xc.com", "ansss", "anssss", forumData.forumName));
+            Assert.IsFalse(forumMan.registerUser("", "passWor1", "fff@xc.com", "ansss", "anssss", forumData.forumName));
+            Assert.IsFalse(forumMan.registerUser("mem2", "", "fff@xc.com", "ansss", "anssss", forumData.forumName));
+            Assert.IsFalse(forumMan.registerUser("mem2", "passWor1", "", "ansss", "anssss", forumData.forumName));
+            Assert.IsFalse(forumMan.registerUser("mem2", "passWor1", "fff@xc.com", "ansss", "anssss", forumData.forumName));
         }
 
         [TestMethod]
@@ -204,7 +204,7 @@ namespace Tests
             Assert.IsFalse(userMan.sendPrivateMessage("admin1", "admin2", "hello"));
             Assert.IsFalse(userMan.addFriend("admin1", "admin2"));
             Assert.IsFalse(userMan.addFriend("admin2", "admin1"));
-            Assert.IsTrue(forumMan.registerUser("admin2", "passWord2", "jkkkk@xc.com", forumData.forumName));
+            Assert.IsTrue(forumMan.registerUser("admin2", "passWord2", "jkkkk@xc.com", "ansss", "anssss", forumData.forumName));
             Assert.IsTrue(userMan.sendPrivateMessage("admin1", "admin2", "its me"));
             Assert.IsTrue(userMan.addFriend("admin1", "admin2"));
             Assert.IsTrue(userMan.addFriend("admin2", "admin1"));
@@ -212,7 +212,7 @@ namespace Tests
             Assert.IsFalse(userMan.addFriend("admin1", "mem1"));
             Assert.IsFalse(userMan.addFriend("mem1", "admin1"));
             Assert.IsFalse(userMan.sendPrivateMessage("mem1", "admin1", "i was wonder"));
-            Assert.IsTrue(forumMan.registerUser("mem1", "passWor1", "fff@xc.com", forumData.forumName));
+            Assert.IsTrue(forumMan.registerUser("mem1", "passWor1", "fff@xc.com", "ansss", "anssss", forumData.forumName));
             Assert.IsTrue(userMan.addFriend("admin1", "mem1"));
             Assert.IsTrue(userMan.addFriend("mem1", "admin1"));
             Assert.IsTrue(userMan.sendPrivateMessage("mem1", "admin1", "when the test gona be done"));
@@ -243,7 +243,7 @@ namespace Tests
             String subForumName = "sub";
             Assert.IsTrue(forum.addSubForum(forumData.forumName, subForumName, new Dictionary<String, DateTime>(), userAdmin.userName));
 
-            Assert.IsTrue(forum.registerUser("mem", "mempasS1", "mem@gmail.com", forumData.forumName));
+            Assert.IsTrue(forum.registerUser("mem", "mempasS1", "mem@gmail.com", "ansss", "anssss", forumData.forumName));
 
             ISubForumManager subForum = new SubForumManagerClient();
             Assert.IsTrue(subForum.nominateModerator("mem", userAdmin.userName, new DateTime(2030, 1, 1), subForumName, forumData.forumName), "nomination of member user should be successful");

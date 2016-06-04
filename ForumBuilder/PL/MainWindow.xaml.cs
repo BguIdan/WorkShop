@@ -84,7 +84,7 @@ namespace PL
                 suw.Show();
                 this.Close();
             }
-            catch(NullReferenceException ec)
+            catch(NullReferenceException)
             {
                 //if the forum was not successfully instantiated it will throw null reference exception
             }

@@ -29,8 +29,8 @@ namespace Tests
             this.superUser = new User("guy", "AG36djs", "hello@dskkl.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
             SuperUserController.getInstance.addSuperUser(this.superUser.email, this.superUser.password, this.superUser.userName);
             this.forumController = ForumController.getInstance;
-            this.userNonMember = new User("nonMem", "nonmemPass", "nonmem@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
-            this.userMember = new User("mem", "mempass", "mem@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
+            this.userNonMember = new User("nonMem", "nonMempass1", "nonmem@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
+            this.userMember = new User("mem", "Mempass1", "mem@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
             this.userAdmin = new User("admin", "adminpass", "admin@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
             this.userAdmin2 = new User("admin2", "adminpass2", "admin2@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
             ISuperUserController superUser = SuperUserController.getInstance;
@@ -44,7 +44,7 @@ namespace Tests
             superUser1 = new User("tomer", "1qW", "fkfkf@wkk.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
             SuperUserController.getInstance.addSuperUser(superUser1.email, superUser1.password, superUser1.userName);
             superUser.createForum("testForum", "descr",fp, adminList, "tomer");            
-            Assert.IsTrue(this.forumController.registerUser("mem", "mempass", "mem@gmail.com", this.forum.forumName));
+            Assert.IsTrue(this.forumController.registerUser("mem", "Mempass1", "mem@gmail.com", "ansss", "anssss", this.forum.forumName));
 
         }
 
@@ -208,7 +208,7 @@ namespace Tests
             String userNonMemberName = this.userNonMember.userName;
             String forumName = this.forum.forumName;
             Assert.IsFalse(this.forumController.isMember(userNonMemberName, forumName), "userNonMember should not be a member");
-            Assert.IsTrue(this.forumController.registerUser(this.userNonMember.userName, this.userNonMember.password, this.userNonMember.email, forumName), "registration of a non member should be successful");
+            Assert.IsTrue(this.forumController.registerUser(this.userNonMember.userName, this.userNonMember.password, this.userNonMember.email, "ansss", "anssss", forumName), "registration of a non member should be successful");
             Assert.IsTrue(this.forumController.isMember(userNonMemberName, forumName), "after registration the user should become a member");
         }
 
@@ -218,7 +218,7 @@ namespace Tests
             String userMemberName = this.userMember.userName;
             String forumName = this.forum.forumName;
             Assert.IsTrue(this.forumController.isMember(userMemberName, forumName), "userMember should be a member in the forum");
-            Assert.IsFalse(this.forumController.registerUser(this.userMember.userName, this.userMember.password, this.userMember.email, forumName), "the registration of a member should be unsuccessful");
+            Assert.IsFalse(this.forumController.registerUser(this.userMember.userName, this.userMember.password, this.userMember.email, "ansss", "anssss", forumName), "the registration of a member should be unsuccessful");
             Assert.IsTrue(this.forumController.isMember(userMemberName, forumName), "userMember should still be a member in the forum");
         }
 
@@ -229,14 +229,14 @@ namespace Tests
             String forumName = this.forum.forumName;
             Assert.IsTrue(this.forumController.isMember(userAdminName, forumName), "userAdmin should be a member in the forum");
             Assert.IsTrue(this.forumController.isAdmin(userAdminName, forumName), "userAdmin should be an admin in the forum");
-            Assert.IsFalse(this.forumController.registerUser(this.userAdmin.userName, this.userAdmin.password, this.userAdmin.email, forumName), "the registration of an admin should be successful");
+            Assert.IsFalse(this.forumController.registerUser(this.userAdmin.userName, this.userAdmin.password, this.userAdmin.email, "ansss", "anssss", forumName), "the registration of an admin should be successful");
             Assert.IsTrue(this.forumController.isMember(userAdminName, forumName), "userAdmin should still be a member in the forum");
         }
 
         [TestMethod]
         public void test_registerUser_on_null()
         {
-            Assert.IsFalse(this.forumController.registerUser(null, null, null,null), "registration of null should return false");
+            Assert.IsFalse(this.forumController.registerUser(null, null, null,null,null,null), "registration of null should return false");
         }
 
 
@@ -251,11 +251,10 @@ namespace Tests
             String newPolicy = "new policy for test";
             String oldDescription = this.forumController.getForumDescription(forumName);
             String newDescr = "new description";
-            String newRules = "there are no rules";
             String adminName = this.userAdmin.userName;
             Assert.AreNotEqual(oldPolicy, newPolicy, false, "the new policy should be different from the old one");
             Assert.AreNotEqual(oldDescription, newDescr, false, "the new description should be different from the old one");
-            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
+            ForumPolicy fp = new ForumPolicy(newPolicy, true, 0, true, 180, 1, true, true, 5);
             Assert.IsTrue(this.forumController.setForumPreferences(forumName, newDescr, fp, adminName), "policy change should be successful");
             Assert.AreEqual(this.forumController.getForumPolicy(forumName), newPolicy, false, "the new policy should be return after the change");
             Assert.AreEqual(this.forumController.getForumDescription(forumName), newDescr, false, "the new description should be return after the change");;

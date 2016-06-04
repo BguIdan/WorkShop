@@ -94,7 +94,7 @@ namespace DataBase
 
         public bool addSuperUser(string email, string password, string userName)
         {
-            User su = new User(userName, password, email);
+            User su = new User(userName, password, email,DateTime.Today);
             users.Add(userName, su);
             return true;
         }
@@ -102,7 +102,7 @@ namespace DataBase
         public bool nominateModerator(string newModerator, DateTime endDate, string subForumName, string forumName, String nominator)
         {
             SubForum sf = getSubForum(subForumName, forumName);
-            sf.moderators.Add(newModerator, endDate);
+            sf.moderators.Add(newModerator, new Moderator(newModerator, endDate,DateTime.Today,nominator));
             return true;
         }
 
@@ -119,7 +119,7 @@ namespace DataBase
 
         public List<string> getForums()
         {
-            return new List<string>(forums.Keys);
+            return forums.Keys.ToList();
         }
 
         //public List<String> getModertorsReport(String forumName)
@@ -180,9 +180,9 @@ namespace DataBase
             return users[userName];
         }
 
-        public Boolean addUser(string userName, string password, string email)
-        {
-            User us = new User(userName, password, email);
+        public Boolean addUser(string userName, string password, string email,string ans1, string ans2)
+        {//TODO:ans1,ans2
+            User us = new User(userName, password, email,DateTime.Today);
             users.Add(userName, us);
             return true;
         }
