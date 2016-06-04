@@ -1,5 +1,3 @@
-C:\Users\Aviv\Documents\WorkShop\ForumBuilder\ForumBuilder\bin\Debug\ForumBuilder.exe.config
-C:\Users\Aviv\Documents\WorkShop\ForumBuilder\ForumBuilder\obj\Debug\Domain.csprojResolveAssemblyReference.cache
 C:\Users\User\Desktop\git projects\ForumBuilder\ForumBuilder\obj\Debug\Domain.csprojResolveAssemblyReference.cache
 C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\ForumBuilder\bin\Debug\ForumBuilder.exe.config
 C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\ForumBuilder\obj\Debug\ForumBuilder.exe

@@ -18,7 +18,6 @@ namespace Database
         private List<Forum> forums = new List<Forum>();
         private List<SubForum> subForums =new List<SubForum>();
         OleDbConnection connection;
-        ICache cache = new Cache();
         static void Main(string[] args)
         {
             //DBClass db = DBClass.getInstance;

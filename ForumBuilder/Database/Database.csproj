@@ -50,7 +50,6 @@
   <ItemGroup>
     <Compile Include="Cache.cs" />
     <Compile Include="DBClass.cs" />
-    <Compile Include="ICache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
