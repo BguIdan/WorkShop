@@ -11,13 +11,15 @@ namespace BL_Back_End
         private String _userName;
         private String _password;
         private String _email;
+        private DateTime _dateAdd;
         private List<String> _friends; 
 
-        public User(String userName, String password, String email)
+        public User(String userName, String password, String email,DateTime dateAdd)
         {
             _userName = userName;
             _password = password;
             _email = email;
+            _dateAdd = dateAdd;
             _friends = new List<String>();
         }
 
@@ -43,6 +45,12 @@ namespace BL_Back_End
         {
             get { return _friends; }
             set { _friends = value; }
+        }
+
+        public DateTime date
+        {
+            get { return _dateAdd; }
+            set { _dateAdd = value; }
         }
     }
 }

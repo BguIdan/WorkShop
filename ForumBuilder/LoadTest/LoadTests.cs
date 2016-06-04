@@ -35,10 +35,10 @@ namespace LoadTest
             this.subForumController = SubForumController.getInstance;
             ISuperUserController superUserController = SuperUserController.getInstance;
             SuperUserController.getInstance.addSuperUser("asjdin@gmail.com", "admiAD1ass", "guy");
-            this.userNonMember = new User("nonMem", "nonmemPass", "nonmem@gmail.com");
-            this.userMember = new User("mem", "mempass", "mem@gmail.com");
-            this.userMod = new User("mod", "modpass", "mod@gmail.com");
-            this.userAdmin = new User("admin", "adminpass", "admin@gmail.com");
+            this.userNonMember = new User("nonMem", "nonmemPass", "nonmem@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
+            this.userMember = new User("mem", "mempass", "mem@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
+            this.userMod = new User("mod", "modpass", "mod@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
+            this.userAdmin = new User("admin", "adminpass", "admin@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
             superUserController.addUser("admin", "admCD3inpass", "admin@gmail.com", "guy");
             List<string> adminList = new List<string>();
             adminList.Add(this.userAdmin.userName);
@@ -46,7 +46,7 @@ namespace LoadTest
             modList.Add(this.userMod.userName, new DateTime(2030, 1, 1));
             ForumPolicy forumPolicy = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
             this.forum = new Forum(this.forumName, "descr",forumPolicy, adminList);
-            this.superUser = new User("tomer", "1qW", "fkfkf@wkk.com");
+            this.superUser = new User("tomer", "1qW", "fkfkf@wkk.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
             ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
             SuperUserController.getInstance.addSuperUser(this.superUser.email, superUser.password, superUser.userName);
             superUserController.createForum(this.forumName, "descr",fp, adminList, "tomer");

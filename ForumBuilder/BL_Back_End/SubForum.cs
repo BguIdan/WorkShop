@@ -6,14 +6,14 @@ namespace BL_Back_End
     public class SubForum
     {
         private String _name;
-        private Dictionary<String,DateTime> _moderators;
+        private Dictionary<String,Moderator> _moderators;
         private List<Int32> _threads;
         private String _forum;
 
         public SubForum(String name,String forumName)
         {
             _name = name;
-            _moderators = new Dictionary<String, DateTime>();
+            _moderators = new Dictionary<String, Moderator>();
             _threads = new List<int>();
             _forum = forumName;
         }
@@ -24,7 +24,7 @@ namespace BL_Back_End
             set { _name = value; }
         }
 
-        public Dictionary<String, DateTime> moderators
+        public Dictionary<String, Moderator> moderators
         {
             get { return _moderators; }
             set { _moderators = value; }

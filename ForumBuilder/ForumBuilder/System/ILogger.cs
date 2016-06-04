@@ -5,6 +5,6 @@ namespace ForumBuilder.Systems
 {
     public interface ILogger
     {
-        void logPrint(String contentToPrint);
+        void logPrint(String contentToPrint,int swriter);
     }
 }
