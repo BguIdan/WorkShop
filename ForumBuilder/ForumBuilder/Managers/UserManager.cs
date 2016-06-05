@@ -38,9 +38,9 @@ namespace Service
         {
             return userController.deleteFriend(userName, deletedFriend);
         }
-        public Boolean sendPrivateMessage(String fromUserName, String toUserName, String content)
+        public Boolean sendPrivateMessage(String forumName, String fromUserName, String toUserName, String content)
         {
-            return userController.sendPrivateMessage(fromUserName, toUserName, content);
+            return userController.sendPrivateMessage(forumName, fromUserName, toUserName, content);
         }
         public List<string[]> getAllPrivateMessages(String userName)
         {

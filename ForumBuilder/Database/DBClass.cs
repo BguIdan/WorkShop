@@ -274,7 +274,7 @@ namespace Database
         {
             try
             {
-                password = enc(password);
+                string password1 = enc(password);
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
@@ -289,14 +289,15 @@ namespace Database
                 {
                     OleDbCommand command2 = new OleDbCommand();
                     command2.Connection = connection;
-                    command2.CommandText = "INSERT INTO users ([userName],[password],[email],[dateRegisterd],[ans1],[ans2]) VALUES (?,?,?,?,?,?)";
+                    command2.CommandText = "INSERT INTO users ([userName],[password],[email],[dateRegisterd],[ans1],[ans2],[lastTimePasswordChanged])"+
+                        "VALUES (?,?,?,?,?,?,?)";
                     command2.Parameters.AddWithValue("userName", userName);
-                    command2.Parameters.AddWithValue("password", password);
+                    command2.Parameters.AddWithValue("password", password1);
                     command2.Parameters.AddWithValue("email", email);
                     command2.Parameters.AddWithValue("dateRegisterd", DateTime.Today.Day + "/" + DateTime.Today.Month + "/" + DateTime.Today.Year);
                     command2.Parameters.AddWithValue("ans1", "its me");
-                    command2.Parameters.AddWithValue("ans2", "the super user");
-
+                    command2.Parameters.AddWithValue("ans2", "the super user"); 
+                    command2.Parameters.AddWithValue("lastTimePasswordChanged", DateTime.Today.Day + "/" + DateTime.Today.Month + "/" + DateTime.Today.Year);
                     command2.ExecuteNonQuery();
                     OleDbCommand command3 = new OleDbCommand();
                     command3.Connection = connection;
@@ -662,8 +663,8 @@ namespace Database
             }
         }
         public bool changePolicy(string forumName, string policy, bool isQuestionIdentifying, int seniorityInForum,
-         bool deletePostByModerator, int timeToPassExpiration, int minNumOfModerators, bool hasCapitalInPassword,
-         bool hasNumberInPassword, int minLengthOfPassword)
+        bool deletePostByModerator, int timeToPassExpiration, int minNumOfModerators, bool hasCapitalInPassword,
+        bool hasNumberInPassword, int minLengthOfPassword)
         {
             try
             {
@@ -836,18 +837,19 @@ namespace Database
         {
             try
             {
-                password = enc(password);
+                string password1 = enc(password);
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "INSERT INTO users ([userName],[password],[email],[dateRegisterd],[ans1],[ans2]) " +
-                        "values(?,?,?,?,?,?)";
+                command.CommandText = "INSERT INTO users ([userName],[password],[email],[dateRegisterd],[ans1],[ans2],[lastTimePasswordChanged]) " +
+                        "values(?,?,?,?,?,?,?)";
                 command.Parameters.AddWithValue("userName", userName);
-                command.Parameters.AddWithValue("password", password);
+                command.Parameters.AddWithValue("password", password1);
                 command.Parameters.AddWithValue("email", email);
                 command.Parameters.AddWithValue("dateRegisterd", DateTime.Today.Day + "/" + DateTime.Today.Month + "/" + DateTime.Today.Year);
                 command.Parameters.AddWithValue("ans1", ans1);
-                command.Parameters.AddWithValue("ans2", ans2);
+                command.Parameters.AddWithValue("ans2", ans2); 
+                command.Parameters.AddWithValue("lastTimePasswordChanged", DateTime.Today.Day + "/" + DateTime.Today.Month + "/" + DateTime.Today.Year);
                 command.ExecuteNonQuery();
                 closeConnectionDB();
                 return cache.addUser(userName, password, email);
@@ -1584,6 +1586,28 @@ namespace Database
                 res = res + passArray[i];
             }
             return res;
+        }
+        public bool changePassword(string userName,string newPaswword)
+        {
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "UPDATE users SET " +
+                    "password='" + enc(newPaswword) + "' ," +
+                    "lastTimePasswordChanged=" + DateTime.Today.Day + "/" + DateTime.Today.Month + "/" + DateTime.Today.Year +
+                    " where userName='" + userName + "'";
+                command.ExecuteNonQuery();
+                closeConnectionDB();
+                //return true;
+                return cache.changePassword(userName, newPaswword);
+            }
+            catch
+            {
+                closeConnectionDB();
+                return false;
+            }
         }
         public void clear()
         {

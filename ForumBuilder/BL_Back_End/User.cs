@@ -12,7 +12,8 @@ namespace BL_Back_End
         private String _password;
         private String _email;
         private DateTime _dateAdd;
-        private List<String> _friends; 
+        private List<String> _friends;
+        private DateTime _lastTimeUpdatePassword; 
 
         public User(String userName, String password, String email,DateTime dateAdd)
         {
@@ -21,7 +22,9 @@ namespace BL_Back_End
             _email = email;
             _dateAdd = dateAdd;
             _friends = new List<String>();
+            _lastTimeUpdatePassword=DateTime.Today;
         }
+
 
         public String userName
         {
@@ -51,6 +54,19 @@ namespace BL_Back_End
         {
             get { return _dateAdd; }
             set { _dateAdd = value; }
+        }
+
+        public DateTime lastTimeUpdatePassword
+        {
+            get
+            {
+                return _lastTimeUpdatePassword;
+            }
+
+            set
+            {
+                _lastTimeUpdatePassword = value;
+            }
         }
     }
 }

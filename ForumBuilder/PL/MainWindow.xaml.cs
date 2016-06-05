@@ -32,7 +32,7 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
 			_fMC = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
             _forumsList = _fMC.getForums();
             this.Show();
@@ -40,6 +40,7 @@ namespace PL
 
         private void LoginPressed(object sender, RoutedEventArgs e)
         {
+            int sessionKey;
             string userName = ID.Text;
             string pass = Password.Password;
             if (_choosenForum != null)
@@ -51,15 +52,36 @@ namespace PL
                     this.Close();
                     fw.Show();
                 }
-                else if (_fMC.login(userName, _choosenForum, pass))
+                else if ((sessionKey = _fMC.login(userName, _choosenForum, pass)) > 0)
+                    //TODO gal consider additional error codes for informative error messages
                 {
+                    MessageBox.Show("Login successful! your session code for is " + sessionKey.ToString());
                     ForumWindow fw = new ForumWindow(toSend, userName);
                     this.Close();
                     fw.Show();
                 }
                 else
                 {
-                    MessageBox.Show("Oops... can't login!");
+                    switch (sessionKey)
+                    {
+                        case -1:
+                            MessageBox.Show("login failed");
+                            break;
+
+                        case -2:
+                            MessageBox.Show("user name \\ password are invalid");
+                            break;
+
+                        case -3:
+                            MessageBox.Show("you already connected via another client, " +
+                                        "please login using your session key");
+                            break;
+
+                        default:
+                            MessageBox.Show("login failed");
+                            break;
+                    }
+
                 }
             }
             else

@@ -56,7 +56,7 @@ namespace WebClient
                 showAlert("choose a forum");
                     return;
             }
-
+            int sessionKey = -1;//general login error code
             if (_choosenForum != null)
             {
                 ForumData toSend = _fMC.getForum(_choosenForum);
@@ -67,16 +67,38 @@ namespace WebClient
                     Session["ForumManagerClient"] = _fMC;
                     Response.Redirect("ForumWindow.aspx");
                 }
-                else if (_fMC.login(Session["UserName"].ToString(), _choosenForum, Session["Password"].ToString()))
+                else if ((sessionKey = _fMC.login(Session["UserName"].ToString(), _choosenForum, Session["Password"].ToString())) > 0)
+                //TODO gal consider additional error codes for informative error messages
                 {
                     Session["forumName"] = _choosenForum;
                     Session["userName"] = Session["UserName"];
                     Session["ForumManagerClient"] = _fMC;
+                    Session["sessionKey"] = sessionKey;
+                    //showAlert("Login successful! your session code for is " + sessionKey.ToString());
                     Response.Redirect("ForumWindow.aspx");
                 }
                 else
                 {
-                    showAlert("login failed");
+                    switch (sessionKey)
+                    {
+                        case -1:
+                            showAlert("login failed");
+                            break;
+                        
+                        case -2:
+                            showAlert("user name \\ password are invalid");
+                            break;
+
+                        case -3:
+                            showAlert("you already connected via another client, "+
+                                        "please login using your session key");
+                            break;
+
+                        default:
+                            showAlert("login failed");
+                            break;
+                    }
+
                 }
             }
             else

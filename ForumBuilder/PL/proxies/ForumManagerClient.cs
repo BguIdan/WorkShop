@@ -57,7 +57,7 @@ namespace PL.proxies
             return Channel.registerUser(newUser, password, mail, ans1, ans2, forumName);
         }
 
-        public Boolean login(String user, String forumName, string password)
+        public int login(String user, String forumName, string password)
         {
             return Channel.login(user, forumName, password);
         }

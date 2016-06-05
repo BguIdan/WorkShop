@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ForumBuilder.Common.DataContracts;
 using PL.proxies;
 
 namespace PL
@@ -23,11 +24,13 @@ namespace PL
         private string _userName;
         private UserManagerClient _um;
         private Window _prevWindow;
+        private String forumName;
 
-        public privateMessagesWindow(string userName, Window prevWindow)
+        public privateMessagesWindow(String forum, string userName, Window prevWindow)
         {
             InitializeComponent();
             _userName = userName;
+            forumName = forum;
             _um = new UserManagerClient();
             _prevWindow = prevWindow;
             List<string[]> privateMessages = _um.getAllPrivateMessages(_userName);
@@ -48,7 +51,7 @@ namespace PL
 
         private void sengMessageButton_Click(object sender, RoutedEventArgs e)
         {
-            sendMessageWindow newWin = new sendMessageWindow(_userName, this);
+            sendMessageWindow newWin = new sendMessageWindow(forumName, _userName, this);
             this.Visibility = Visibility.Collapsed;
             newWin.Show();
         }

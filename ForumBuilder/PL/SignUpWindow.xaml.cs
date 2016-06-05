@@ -40,7 +40,7 @@ namespace PL
             string userName = name.Text;
             string pass = Password.Password;
             string userMail = mail.Text;
-            bool suc = _fMC.registerUser(userName,pass,userMail,_forumToRegister,"", "");
+            bool suc = _fMC.registerUser(userName, pass, userMail, "", "", _forumToRegister);
             if (suc == false)
             {
                 MessageBox.Show("Failed to register. One or more of the details is wrong");
