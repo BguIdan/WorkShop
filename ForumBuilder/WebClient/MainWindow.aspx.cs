@@ -25,7 +25,7 @@ namespace WebClient
             //popup example
             //Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "popup", "<script>alert();</script>");
 
-            Thread.Sleep(6000);
+            Thread.Sleep(6500);
 
             _fMC = new ForumManagerClient(new InstanceContext(this));
             _forumsList = _fMC.getForums();
