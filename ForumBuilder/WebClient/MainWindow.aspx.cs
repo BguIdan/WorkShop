@@ -142,7 +142,7 @@ namespace WebClient
                         Session["forumName"] = _choosenForum;
                         Session["userName"] = Session["UserName"];
                         Session["ForumManagerClient"] = _fMC;
-                        Session["sessionKey"] = sessionKey;
+                        Session["sessionKey"] = -1;//TODO make sure this is the correct change(used to be "sessionKey")
                         Response.Redirect("ForumWindow.aspx");
                     }
                     else

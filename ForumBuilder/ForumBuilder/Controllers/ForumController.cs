@@ -325,7 +325,7 @@ namespace ForumBuilder.Controllers
             if ((DateTime.Today - user.lastTimeUpdatePassword).Days > time)
                 return true;
             return false;
-
+        }
         public String loginBySessionKey(int sessionKey, String user, String forumName)
         {
             User usr = DB.getUser(user);
