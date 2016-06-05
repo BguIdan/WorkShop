@@ -17,10 +17,7 @@ namespace DataBase
         private List<SubForum> subForums;
         private Dictionary<int, Thread> threads;
         private Dictionary<int, Post> posts;
-        private Dictionary<string, Moderator> moderators;
         private static Cache singleton;
-
-
 
         private Cache()
         {
@@ -185,7 +182,7 @@ namespace DataBase
             }
         }
 
-        public List<String> getModertorsReport(String forumName)
+        public List<string> getModertorsReport(String forumName)
         {
             try
             {
@@ -209,7 +206,46 @@ namespace DataBase
                     }
                     report.Add(ans);
                 }
+                return report;
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
+        public List<String> getSuperUserReportOfMembers()
+        {
+            try
+            {
+                List<string> emails = new List<string>();
+                foreach(User u in users.Values)
+                {
+                    if (!emails.Contains(u.email))
+                    {
+                        emails.Add(u.email);
+                    }
+                }
+                List<string> report = new List<string>();
+                foreach (string e in emails)
+                {
+                    foreach (User u in users.Values)
+                    {
+                        string ans = "";
+                        if (u.email.Equals(e))
+                        {
+                            foreach (Forum f in forums.Values)
+                            {
+                                if (f.members.Contains(u.userName))
+                                {
+                                    ans = "email: " + e + " user Name: " + u.userName + " in forum: " + f.forumName;
+                                    break;
+                                }
+                            }
+                        }
+                        report.Add(ans);
+                    }
+                }
                 return report;
             }
             catch
@@ -435,7 +471,6 @@ namespace DataBase
 
         }
 
-
         public bool removeFriendOfUser(string userName, string deletedFriendName)
         {
             try
@@ -498,11 +533,6 @@ namespace DataBase
 
         }
 
-        /*public int getAvilableIntOfPost()
-        {
-            return 0;
-        }*/
-
         public SubForum getSubforumByThreadFirstPostId(int id)
         {
             try
@@ -554,6 +584,7 @@ namespace DataBase
             }
 
         }
+        
         public bool addPost(String writerUserName, Int32 postID, String headLine, String content, Int32 parentId, DateTime timePublished, String forumName) 
         {
             try
@@ -644,19 +675,6 @@ namespace DataBase
 
         }
 
-        public List<String> getSuperUserReportOfMembers()
-        {
-            try
-            {
-                return null;
-            }
-            catch
-            {
-                return null;
-            }
-        
-        }
-
         private string enc(string password)
         {
             char[] passArray = password.ToArray();
@@ -687,6 +705,10 @@ namespace DataBase
             return res;
         }
 
+        /*public int getAvilableIntOfPost()
+        {
+            return 0;
+        }*/
 
 
     }
