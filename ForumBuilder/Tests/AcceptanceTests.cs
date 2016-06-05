@@ -201,21 +201,21 @@ namespace Tests
             adminList.Add(userAdmin.userName);
             superUserController.createForum("testForum", "descr", fp, adminList, superUser.userName);
             IUserManager userMan = new UserManagerClient();
-            Assert.IsFalse(userMan.sendPrivateMessage("admin1", "admin2", "hello"));
+            Assert.IsFalse(userMan.sendPrivateMessage("testForum", "admin1", "admin2", "hello"));
             Assert.IsFalse(userMan.addFriend("admin1", "admin2"));
             Assert.IsFalse(userMan.addFriend("admin2", "admin1"));
             Assert.IsTrue(forumMan.registerUser("admin2", "passWord2", "jkkkk@xc.com", "ansss", "anssss", forumData.forumName));
-            Assert.IsTrue(userMan.sendPrivateMessage("admin1", "admin2", "its me"));
+            Assert.IsTrue(userMan.sendPrivateMessage("testForum", "admin1", "admin2", "its me"));
             Assert.IsTrue(userMan.addFriend("admin1", "admin2"));
             Assert.IsTrue(userMan.addFriend("admin2", "admin1"));
             Assert.IsFalse(userMan.addFriend("admin2", "admin1"));
             Assert.IsFalse(userMan.addFriend("admin1", "mem1"));
             Assert.IsFalse(userMan.addFriend("mem1", "admin1"));
-            Assert.IsFalse(userMan.sendPrivateMessage("mem1", "admin1", "i was wonder"));
+            Assert.IsFalse(userMan.sendPrivateMessage("testForum", "mem1", "admin1", "i was wonder"));
             Assert.IsTrue(forumMan.registerUser("mem1", "passWor1", "fff@xc.com", "ansss", "anssss", forumData.forumName));
             Assert.IsTrue(userMan.addFriend("admin1", "mem1"));
             Assert.IsTrue(userMan.addFriend("mem1", "admin1"));
-            Assert.IsTrue(userMan.sendPrivateMessage("mem1", "admin1", "when the test gona be done"));
+            Assert.IsTrue(userMan.sendPrivateMessage("testForum", "mem1", "admin1", "when the test gona be done"));
         }
 
         /*************************end use case 4******************************/

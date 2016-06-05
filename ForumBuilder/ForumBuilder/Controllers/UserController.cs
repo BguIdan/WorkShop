@@ -8,6 +8,7 @@ namespace ForumBuilder.Controllers
     public class UserController : IUserController
     {
         private static UserController singleton;
+        ForumController forumController = ForumController.getInstance;
         DBClass DB = DBClass.getInstance;
         Systems.Logger logger = Systems.Logger.getInstance;
 
@@ -76,7 +77,7 @@ namespace ForumBuilder.Controllers
             return DB.removeFriendOfUser(userName, deletedFriendName);
         }
 
-        public bool sendPrivateMessage(string fromUserName, string toUserName, string content)
+        public bool sendPrivateMessage(String forumName, string fromUserName, string toUserName, string content)
         {
             User sender = DB.getUser(fromUserName);
             User reciver = DB.getUser(toUserName);
@@ -105,7 +106,10 @@ namespace ForumBuilder.Controllers
                 return false;
             }
             else
+            {
+                forumController.notifyUserOnNewPrivateMessage(forumName, fromUserName, toUserName, content);
                 return DB.addMessage(fromUserName, toUserName, content);
+            }
         }
 
         public List<String> getFriendList(String userName)

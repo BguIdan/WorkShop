@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ForumBuilder.Common.DataContracts;
 using PL.proxies;
 
 namespace PL
@@ -23,11 +24,13 @@ namespace PL
         string _userName;
         Window _prevWindow;
         private UserManagerClient _um;
+        private String forumName;
         private int _count;
 
-        public sendMessageWindow(string userName, Window prevWindow)
+        public sendMessageWindow(String forum, string userName, Window prevWindow)
         {
             _count = 0;
+            forumName = forum;
             InitializeComponent();
             _userName = userName;
             _prevWindow = prevWindow;
@@ -44,7 +47,7 @@ namespace PL
         {
             string targetUser = to.Text;
             string msgContent = content.Text;
-            if (_um.sendPrivateMessage(_userName, targetUser, msgContent))
+            if (_um.sendPrivateMessage(forumName, _userName, targetUser, msgContent))
             {
                 MessageBox.Show("message was sent successfully");
                 _prevWindow.Visibility = System.Windows.Visibility.Visible;

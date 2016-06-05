@@ -49,7 +49,7 @@ namespace Service
             return forumController.registerUser(newUser, password, mail, ans1, ans2, forumName);
         }
 
-        public Boolean login(String user, String forumName,string password)
+        public int login(String user, String forumName,string password)
         {
             return forumController.login(user, forumName, password);
         }

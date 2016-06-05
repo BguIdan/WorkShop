@@ -12,7 +12,7 @@ namespace ForumBuilder.Controllers
         Boolean nominateAdmin(String newAdmin, String nominatorName, string forumName);
         Boolean registerUser(String newUser, String password, String mail, string ans1, string ans2, string forumName);
         Boolean addForum(String forumName);
-        Boolean login(String newUser, String forumName, string pass);
+        int login(String newUser, String forumName, string pass);
         Boolean logout(String user, String forumName);
         Boolean sendThreadCreationNotification(String headLine, String content, String publisherName, String forumName, String subForumName);
         Boolean sendPostModificationNotification(String forumName, String publisherName, String title, String content);
@@ -28,5 +28,6 @@ namespace ForumBuilder.Controllers
         int getAdminReportNumOfPOst(String AdminName, String forumName);
         List<Post> getAdminReportPostOfmember(String AdminName, String forumName, String memberName);
         List<String> getAdminReport(String AdminName, String forumName);
+        void notifyUserOnNewPrivateMessage(String forumName, String sender, String addressee, String content);
     }
 }
