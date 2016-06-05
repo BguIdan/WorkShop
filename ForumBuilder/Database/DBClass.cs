@@ -1648,7 +1648,6 @@ namespace Database
             SubForum subForum = null;
             try
             {
-                OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
                 command.CommandText = "SELECT  * FROM  subForums where subForums.forumName='" + forumName + "' and " +
@@ -1679,12 +1678,10 @@ namespace Database
                 {
                     subForum.threads.Add(reader3.GetInt32(0));
                 }
-                closeConnectionDB();
                 return subForum;
             }
             catch
             {
-                closeConnectionDB();
                 return subForum;
             }
         }
@@ -1694,7 +1691,6 @@ namespace Database
             Moderator mod = null;
             try
             {
-                OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
                 command.CommandText = "SELECT  * FROM subForumModerators where moderatorName='"+v+"'";
@@ -1703,12 +1699,10 @@ namespace Database
                 {
                     mod=new Moderator(reader.GetString(2), DateTime.Parse(reader.GetDateTime(3).ToString("dd MM yyyy")), DateTime.Parse(reader.GetDateTime(5).ToString("dd MM yyyy")), reader.GetString(4));
                 }
-                closeConnectionDB();
                 return mod;
             }
             catch
             {
-                closeConnectionDB();
                 return null;
             }
         }
