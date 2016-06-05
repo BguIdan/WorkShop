@@ -38,6 +38,16 @@ namespace ForumBuilder.Common.DataContracts
         [DataMember]
         private int _minLengthOfPassword;
 
+        public ForumPolicyData()
+        {
+            _policy = " ";
+            _seniorityInForum = 0;
+            _timeToPassExpiration = 30;
+            _minNumOfModerator = 1;
+            _minLengthOfPassword = 5;
+
+        }
+
         public ForumPolicyData(String policy, bool isQuestionIdentifying, int seniorityInForum, bool deletePostByMderator, int timeToPassExpiration,
                                 int minNumOfModerator, bool hasCapitalInPassword, bool hasNumberInPassword, int minLengthOfPassword)
         {
