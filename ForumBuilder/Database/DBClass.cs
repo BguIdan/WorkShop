@@ -1617,6 +1617,7 @@ namespace Database
                 closeConnectionDB();
                 maxNotAvailable = -1;
                 avilabelPostIDs = new List<int>();
+                cache.clear();
             }
             catch
             {

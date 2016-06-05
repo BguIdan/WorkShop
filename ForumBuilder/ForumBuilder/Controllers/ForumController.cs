@@ -216,6 +216,7 @@ namespace ForumBuilder.Controllers
                 (f.forumPolicy.isQuestionIdentifying && !ans1.Equals("") && !ans2.Equals(""))))
             {
                 User user = DB.getUser(userName);
+                /*
                 if (user !=null)
                 {
                     if(user.userName.Equals(userName)&&user.password.Equals(password))
@@ -225,15 +226,12 @@ namespace ForumBuilder.Controllers
                     logger.logPrint("Register user failed, "+userName+" is already taken",0);
                     logger.logPrint("Register user failed, " + userName + " is already taken",2);
                     return false;
-                }
-                /*if (ans1 != null && ans2 != null)
-                {
-                    if (DB.addUser(userName, password, mail, ans1, ans2))
-                    {
-                        DB.addMemberToForum(userName, forumName);
-                        return true;
-                    }
                 }*/
+                if (DB.addUser(userName, password, mail, ans1, ans2))
+                {
+                    DB.addMemberToForum(userName, forumName);
+                    return true;
+                }
                 return false;
             }
             logger.logPrint("Register user failed, password not strong enough",0);
