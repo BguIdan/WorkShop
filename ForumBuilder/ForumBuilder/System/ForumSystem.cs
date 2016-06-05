@@ -123,6 +123,8 @@ namespace ForumBuilder.Systems
             list.Add("idan");
             if (!SuperUserController.getInstance.createForum("f", "f",fp, list, "idan"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
+            if (!SuperUserController.getInstance.createForum("f2", "f", fp, list, "idan"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
             if (!ForumController.getInstance.registerUser("g1", "gG1", "g@g.g","sad","bad" ,"f"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
             if (!ForumController.getInstance.registerUser("g2", "gG1", "g@g.g","good", "awesome", "f"))

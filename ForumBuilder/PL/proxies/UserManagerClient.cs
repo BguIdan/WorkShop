@@ -44,9 +44,9 @@ namespace PL.proxies
             return Channel.deleteFriend(userName, deletedFriend);
         }
 
-        public Boolean sendPrivateMessage(String fromUserName, String toUserName, String content)
+        public Boolean sendPrivateMessage(String forumName, String fromUserName, String toUserName, String content)
         {
-            return Channel.sendPrivateMessage(fromUserName, toUserName, content);
+            return Channel.sendPrivateMessage(forumName, fromUserName, toUserName, content);
         }
         public List<string[]> getAllPrivateMessages(String userName)
         {

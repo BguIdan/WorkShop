@@ -313,7 +313,7 @@ namespace PL
         private void privateMessages_Click(object sender, RoutedEventArgs e)
 
         {
-            privateMessagesWindow newWin = new privateMessagesWindow(_userName, this);
+            privateMessagesWindow newWin = new privateMessagesWindow(_myforum.forumName, _userName, this);
             this.Visibility = Visibility.Collapsed;
             newWin.Show();
         }

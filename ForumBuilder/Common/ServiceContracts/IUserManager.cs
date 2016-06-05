@@ -17,7 +17,7 @@ namespace ForumBuilder.Common.ServiceContracts
         Boolean deleteFriend(String userName, String deletedFriend);
 
         [OperationContract]
-        Boolean sendPrivateMessage(String fromUserName, String toUserName, String content);
+        Boolean sendPrivateMessage(String forumName, String fromUserName, String toUserName, String content);
 
         [OperationContract]
         List<String> getFriendList(String userName);
