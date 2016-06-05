@@ -159,10 +159,18 @@ namespace PL
 
         private void ComboBox_OnDropDownClosed(object sender, EventArgs e)
         {
-            _forumsList = _fMC.getForums();
-            if (!_fMC.getForum(comboBox.SelectedItem.ToString()).forumPolicy.isQuestionIdentifying)
+            try
             {
-                restore.IsEnabled = false;
+                _forumsList = _fMC.getForums();
+                if (!_fMC.getForum(comboBox.SelectedItem.ToString()).forumPolicy.isQuestionIdentifying)
+                {
+                    restore.IsEnabled = false;
+                }
+            }
+            catch (Exception)
+            {
+                
+                MessageBox.Show("Please choose a forum from the list");
             }
         }
 
