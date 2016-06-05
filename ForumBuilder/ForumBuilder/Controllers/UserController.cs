@@ -117,15 +117,12 @@ namespace ForumBuilder.Controllers
 
         public List<string[]> getAllPrivateMessages(string userName)
         {
-            List<Message> messageList = DB.getMessages();
+            List<Message> messageList = DB.getMessagesOfUserAsReciver(userName);
             List<string[]> messagesOfWantedUser = new List<string[]>();
             foreach(Message msg in messageList)
             {
-                if (msg.reciver.Equals(userName))
-                {
-                    string[] messageAsStringArray = { msg.sender, msg.Content };
-                    messagesOfWantedUser.Add(messageAsStringArray);
-                }
+                string[] messageAsStringArray = { msg.sender, msg.Content };
+                messagesOfWantedUser.Add(messageAsStringArray);
             }
             return messagesOfWantedUser;
         }

@@ -201,7 +201,8 @@ namespace Database
 
         public int numOfForums()
         {
-            return forums.Count;
+            return cache.numOfForums();
+            //return forums.Count;
 
             /*try
             {
@@ -253,8 +254,8 @@ namespace Database
                             sf.moderators.Remove(dismissedModerator);
                         }
                     }
-                    //return cache.dismissModerator(dismissedModerator, subForumName, forumName);
-                    return true;
+                    return cache.dismissModerator(dismissedModerator, subForumName, forumName);
+                    //return true;
                 }
                 else
                 {
@@ -304,8 +305,8 @@ namespace Database
                     command3.ExecuteNonQuery();
                     //added
                     closeConnectionDB();
-                    //return cache.addSuperUser(email, password, userName);
-                    return true;
+                    return cache.addSuperUser(email, password, userName);
+                    //return true;
                 }
                 else
                 {
@@ -346,8 +347,8 @@ namespace Database
                         sf.moderators.Add(newModerator,new Moderator(newModerator, endDate,DateTime.Today,nominator));
                     }
                 }
-                return true;
-                //return cache.nominateModerator(newModerator, endDate, subForumName, forumName, nominator);
+                //return true;
+                return cache.nominateModerator(newModerator, endDate, subForumName, forumName, nominator);
             }
             catch
             {
@@ -356,14 +357,15 @@ namespace Database
         }
         public Forum getforumByName(string forumName)
         {
-            foreach (Forum f in forums)
+            return cache.getforumByName(forumName);
+            /*foreach (Forum f in forums)
             {
                 if (f.forumName.Equals(forumName))
                 {
                     return f;
                 }
             }
-            return null;
+            return null;*/
             /*
             Forum forum = null;
             try
@@ -400,14 +402,15 @@ namespace Database
 
         public List<string> getsubForumsNamesOfForum(string forumName)
         {
-            foreach (Forum f in forums)
+            return cache.getsubForumsNamesOfForum(forumName);
+            /*foreach (Forum f in forums)
             {
                 if (f.forumName.Equals(forumName))
                 {
                     return f.subForums;
                 }
             }
-            return new List<String>();
+            return new List<String>();*/
             /*try
             {
                 OpenConnectionDB();
@@ -432,12 +435,13 @@ namespace Database
 
         public List<String> getForums()
         {
-            List<string> fss = new List<string>();
+            return cache.getForums();
+            /*List<string> fss = new List<string>();
             foreach(Forum fs in forums)
             {
                 fss.Add(fs.forumName);
             }
-            return fss;
+            return fss;*/
             /*try
             {
                 OpenConnectionDB();
@@ -560,6 +564,8 @@ namespace Database
         }
         public List<string> getUserFriends(string userName)
         {
+            return cache.getUserFriends(userName);
+            /*
             try
             {
                 OpenConnectionDB();
@@ -579,7 +585,7 @@ namespace Database
             {
                 closeConnectionDB();
                 return null;
-            }
+            }*/
         }
 
         public List<string> getAnswers(string userName)
@@ -606,7 +612,9 @@ namespace Database
 
         public string getPassword(string userName)
         {
-            try
+            return cache.getPassword(userName);
+            /*
+            trym
             {
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
@@ -622,6 +630,7 @@ namespace Database
                 closeConnectionDB();
                 return null;
             }
+            */
         }
 
         public bool banMember(string bannedMember, string forumName)
@@ -643,8 +652,8 @@ namespace Database
                         f.members.Remove(bannedMember);
                     }
                 }
-                return true;
-                //return cache.banMember( bannedMember, forumName);
+                //return true;
+                return cache.banMember( bannedMember, forumName);
             }
             catch
             {
@@ -689,10 +698,10 @@ namespace Database
                         f.forumPolicy.minLengthOfPassword = minLengthOfPassword;
                     }
                 }
-                return true;
-                //return cache.changePolicy(forumName, policy, isQuestionIdentifying, seniorityInForum,
-                    //deletePostByModerator, timeToPassExpiration, minNumOfModerators, hasCapitalInPassword,
-                    //hasNumberInPassword, minLengthOfPassword);
+                //return true;
+                return cache.changePolicy(forumName, policy, isQuestionIdentifying, seniorityInForum,
+                    deletePostByModerator, timeToPassExpiration, minNumOfModerators, hasCapitalInPassword,
+                    hasNumberInPassword, minLengthOfPassword);
             }
             catch
             {
@@ -720,8 +729,8 @@ namespace Database
                         f.administrators.Add(newAdmin);
                     }
                 }
-                return true;
-                //return cache.nominateAdmin(newAdmin, forumName);
+                //return true;
+                return cache.nominateAdmin(newAdmin, forumName);
             }
             catch
             {
@@ -731,6 +740,8 @@ namespace Database
         }
         public User getSuperUser(string userName)
         {
+            return cache.getSuperUser(userName);
+            /*
             User user = null;
             try
             {
@@ -767,6 +778,7 @@ namespace Database
                 closeConnectionDB();
                 return user;
             }
+            */
         }
         public bool dismissAdmin(string adminToDismissed, string forumName)
         {
@@ -787,7 +799,7 @@ namespace Database
                         f.administrators.Remove(adminToDismissed);
                     }
                 }
-                return true;
+                return cache.dismissAdmin(adminToDismissed,forumName);
             }
             catch
             {
@@ -797,6 +809,8 @@ namespace Database
         }
         public User getUser(string userName)
         {
+            return cache.getUser(userName);
+            /*
             User user = null;
             try
             {
@@ -815,6 +829,7 @@ namespace Database
                 closeConnectionDB();
                 return user;
             }
+            */
         }
 
         public Boolean addUser(string userName, string password, string email, string ans1, string ans2)
@@ -835,7 +850,7 @@ namespace Database
                 command.Parameters.AddWithValue("ans2", ans2);
                 command.ExecuteNonQuery();
                 closeConnectionDB();
-                return true;
+                return cache.addUser(userName, password, email);
             }
             catch
             {
@@ -864,7 +879,7 @@ namespace Database
                         f.members.Add(userName);
                     }
                 }
-                return true;
+                return cache.addMemberToForum(userName, forumName);
             }
             catch
             {
@@ -874,14 +889,15 @@ namespace Database
         }
         public List<string> getMembersOfForum(string forumName)
         {
-            foreach (Forum f in forums)
+            return cache.getMembersOfForum(forumName);
+            /*foreach (Forum f in forums)
             {
                 if (f.forumName.Equals(forumName))
                 {
                     return f.members;
                 }
             }
-            return new List<string>();
+            return new List<string>();*/
             /*List<string> users = new List<string>();
             try
             {
@@ -905,6 +921,8 @@ namespace Database
         }
         public List<string> getSimularForumsOf2users(string userName1, string userName2)
         {
+            return cache.getSimularForumsOf2users(userName1, userName2);
+            /*
             List<string> forums = new List<string>();
             try
             {
@@ -925,7 +943,7 @@ namespace Database
             {
                 closeConnectionDB();
                 return null;
-            }
+            }*/
         }
         public Boolean createForum(string forumName, string description, ForumPolicy fp)
         {
@@ -969,7 +987,7 @@ namespace Database
                  }*/
                 closeConnectionDB();
                 forums.Add(new Forum(forumName, description,fp,new List<string>()));
-                return true;
+                return cache.createForum(forumName, description, fp);
             }
             catch
             {
@@ -996,7 +1014,7 @@ namespace Database
                         f.description = newDescription;
                     }
                 }
-                return true;
+                return cache.setForumPreferences(forumName, newDescription, fp);
             }
             catch
             {
@@ -1017,7 +1035,7 @@ namespace Database
                 command.Parameters.AddWithValue("friendName", friendToAddName);
                 command.ExecuteNonQuery();
                 closeConnectionDB();
-                return true;
+                return cache.addFriendToUser(userName, friendToAddName);
             }
             catch
             {
@@ -1036,7 +1054,7 @@ namespace Database
                     "' and friendName='" + deletedFriendName + "'";
                 command.ExecuteNonQuery();
                 closeConnectionDB();
-                return true;
+                return cache.removeFriendOfUser(userName, deletedFriendName);
             }
             catch
             {
@@ -1046,7 +1064,8 @@ namespace Database
         }
         public SubForum getSubForum(string subForumName, string forumName)
         {
-            foreach (SubForum sf in subForums)
+            return cache.getSubForum(subForumName, forumName);
+            /*foreach (SubForum sf in subForums)
             {
 
                 if (sf.name.Equals(subForumName)&& sf.forum.Equals(forumName))
@@ -1054,7 +1073,7 @@ namespace Database
                     return sf;
                 }
             }
-            return null;
+            return null;*/
             /*
             SubForum subForum = null;
             try
@@ -1124,6 +1143,54 @@ namespace Database
                 return null;
             }
         }
+        public List<Message> getMessagesOfUserAsReciver(String reciverName)
+        {
+            try
+            {
+                List<Message> messages = new List<Message>();
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "SELECT  * FROM  messages where reciver='"+ reciverName + "'";
+                OleDbDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Message message = new Message(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3));
+                    messages.Add(message);
+                }
+                closeConnectionDB();
+                return messages;
+            }
+            catch
+            {
+                closeConnectionDB();
+                return null;
+            }
+        }
+        public List<Message> getMessagesOfUserAsSender(String senderName)
+        {
+            try
+            {
+                List<Message> messages = new List<Message>();
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "SELECT  * FROM  messages where sender='" + senderName + "'";
+                OleDbDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Message message = new Message(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3));
+                    messages.Add(message);
+                }
+                closeConnectionDB();
+                return messages;
+            }
+            catch
+            {
+                closeConnectionDB();
+                return null;
+            }
+        }
         public Boolean addSubForum(String subForumName, String forumName)
         {
             try
@@ -1146,7 +1213,7 @@ namespace Database
                         f.subForums.Add(subForumName);
                     }
                 }
-                return true;
+                return cache.addSubForum(subForumName, forumName);
             }
             catch
             {
@@ -1156,6 +1223,8 @@ namespace Database
         }
         public Post getPost(int postId)
         {
+            return cache.getPost(postId);
+            /*
             Post post = null;
             try
             {
@@ -1173,10 +1242,12 @@ namespace Database
             {
                 closeConnectionDB();
                 return post;
-            }
+            }*/
         }
         public List<Post> getRelatedPosts(int postId)
         {
+            return cache.getRelatedPosts(postId);
+            /*
             if (postId < 0)
             {
                 return null;
@@ -1203,9 +1274,15 @@ namespace Database
                 closeConnectionDB();
                 return curPost;
             }
+            */
         }
+        /// <summary>
+        /// ///////////////////////////////////////////////////////////////
+        /// </summary>
+        /// <returns></returns>
         public int getAvilableIntOfPost()
         {
+            //related too in catch of add post
             int res = -2;
             foreach (int p in avilabelPostIDs)
             {
@@ -1222,6 +1299,8 @@ namespace Database
         }
         public SubForum getSubforumByThreadFirstPostId(int id)
         {
+            return cache.getSubforumByThreadFirstPostId(id);
+            /*
             foreach(SubForum sf in subForums)
             {
                 if (sf.threads.Contains(id))
@@ -1230,6 +1309,7 @@ namespace Database
                 }
             }
             return null;
+            */
             /*
             try
             {
@@ -1253,6 +1333,8 @@ namespace Database
         }
         public Thread getThreadByFirstPostId(int postId)
         {
+            return cache.getThreadByFirstPostId(postId);
+            /*
             Thread thread = null;
             try
             {
@@ -1270,7 +1352,7 @@ namespace Database
             {
                 closeConnectionDB();
                 return thread;
-            }
+            }*/
         }
         public bool addThread(string forumName, string subForumName, int firstMessageId)
         {
@@ -1293,7 +1375,7 @@ namespace Database
                         sf.threads.Add(firstMessageId);
                     }
                 }
-                return true;
+                return cache.addThread(forumName, subForumName, firstMessageId);
             }
             catch
             {
@@ -1319,16 +1401,20 @@ namespace Database
                 command.Parameters.AddWithValue("forumName", forumName);
                 command.ExecuteNonQuery();
                 closeConnectionDB();
-                return true;
+                return cache.addPost(writerUserName, postID, headLine, content, parentId, timePublished, forumName);
             }
             catch
             {
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                avilabelPostIDs.Add(postID);
                 closeConnectionDB();
                 return false;
             }
         }
         public int numOfPostInForum(String forumName)
         {
+            return cache.numOfPostInForum(forumName);
+            /*
             try
             {
                 OpenConnectionDB();
@@ -1345,6 +1431,7 @@ namespace Database
                 closeConnectionDB();
                 return -1;
             }
+            */
         }
         public bool removeThread(int id)
         {
@@ -1363,7 +1450,7 @@ namespace Database
                         sf.threads.Remove(id);
                     }
                 }
-                return true;
+                return cache.removeThread(id);
             }
             catch
             {
@@ -1387,7 +1474,7 @@ namespace Database
                 {
                     avilabelPostIDs.Remove(id);
                 }
-                return true;
+                return cache. removePost(id);
             }
             catch
             {
@@ -1405,7 +1492,7 @@ namespace Database
                 command.CommandText = "UPDATE posts SET title='" + title + "' , content='" + content + "' where postID=" + postID + "";
                 command.ExecuteNonQuery();
                 closeConnectionDB();
-                return true;
+                return cache.updatePost(postID,title, content);
             }
             catch
             {
@@ -1415,6 +1502,8 @@ namespace Database
         }
         public List<Post> getMemberPosts(String memberName, String forumName)
         {
+            return cache.getMemberPosts(memberName,forumName);
+            /*
             List<Post> posts = new List<Post>();
             try
             {
@@ -1437,7 +1526,12 @@ namespace Database
                 closeConnectionDB();
                 return null;
             }
+            */
         }
+        /// <summary>
+        /// //////////////////////////////
+        /// </summary>
+        /// <returns></returns>
         public List<String> getSuperUserReportOfMembers()
         {
             List<String> users = new List<String>();
@@ -1686,14 +1780,14 @@ namespace Database
             }
         }
 
-        private Moderator getModertor(string v)
+        private Moderator getModertor(string modaeratorName)
         {
             Moderator mod = null;
             try
             {
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "SELECT  * FROM subForumModerators where moderatorName='"+v+"'";
+                command.CommandText = "SELECT  * FROM subForumModerators where moderatorName='"+modaeratorName+"'";
                 OleDbDataReader reader = command.ExecuteReader();
                 if (reader.Read())
                 {
