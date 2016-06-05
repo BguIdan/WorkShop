@@ -109,7 +109,7 @@ namespace ForumBuilder.Systems
         public static int Main(string[] args)
         {
             //TODO gal: remove later
-            //DBClass.getInstance.clear();
+            DBClass.getInstance.clear();
             var item = DBClass.getInstance;
             Console.WriteLine(  "welcome to your forum builder!\n" +
                                 "please insert your desired user name:");
@@ -118,7 +118,7 @@ namespace ForumBuilder.Systems
             String email = "d@d.d";//getEmail();
 
             initialize(username, password, email);
-            ForumPolicy fp = new ForumPolicy("p", false, 0, true, 180,1, true, true, 2);
+            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180,1, true, true, 2);
             List<String> list = new List<String>();
             list.Add("idan");
             if (!SuperUserController.getInstance.createForum("f", "f",fp, list, "idan"))
@@ -137,7 +137,7 @@ namespace ForumBuilder.Systems
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
 
             runServer(username, password, email);
-            //DBClass.getInstance.clear();
+            DBClass.getInstance.clear();
             return 0;
         }
 

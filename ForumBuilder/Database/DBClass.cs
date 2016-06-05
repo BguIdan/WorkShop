@@ -274,7 +274,7 @@ namespace Database
         {
             try
             {
-                password = enc(password);
+                string password1 = enc(password);
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
@@ -292,7 +292,7 @@ namespace Database
                     command2.CommandText = "INSERT INTO users ([userName],[password],[email],[dateRegisterd],[ans1],[ans2],[lastTimePasswordChanged])"+
                         "VALUES (?,?,?,?,?,?,?)";
                     command2.Parameters.AddWithValue("userName", userName);
-                    command2.Parameters.AddWithValue("password", password);
+                    command2.Parameters.AddWithValue("password", password1);
                     command2.Parameters.AddWithValue("email", email);
                     command2.Parameters.AddWithValue("dateRegisterd", DateTime.Today.Day + "/" + DateTime.Today.Month + "/" + DateTime.Today.Year);
                     command2.Parameters.AddWithValue("ans1", "its me");
@@ -837,14 +837,14 @@ namespace Database
         {
             try
             {
-                password = enc(password);
+                string password1 = enc(password);
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
                 command.CommandText = "INSERT INTO users ([userName],[password],[email],[dateRegisterd],[ans1],[ans2],[lastTimePasswordChanged]) " +
                         "values(?,?,?,?,?,?,?)";
                 command.Parameters.AddWithValue("userName", userName);
-                command.Parameters.AddWithValue("password", password);
+                command.Parameters.AddWithValue("password", password1);
                 command.Parameters.AddWithValue("email", email);
                 command.Parameters.AddWithValue("dateRegisterd", DateTime.Today.Day + "/" + DateTime.Today.Month + "/" + DateTime.Today.Year);
                 command.Parameters.AddWithValue("ans1", ans1);
