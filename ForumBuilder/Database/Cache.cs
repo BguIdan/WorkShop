@@ -17,7 +17,6 @@ namespace DataBase
         private List<SubForum> subForums;
         private Dictionary<int, Thread> threads;
         private Dictionary<int, Post> posts;
-        private Dictionary<string, Moderator> moderators;
         private static Cache singleton;
 
 
@@ -184,7 +183,7 @@ namespace DataBase
             }
         }
 
-        public List<String> getModertorsReport(String forumName)
+        public List<string> getModertorsReport(String forumName)
         {
             try
             {
@@ -215,6 +214,23 @@ namespace DataBase
             {
                 return null;
             }
+        }
+
+        public List<String> getSuperUserReportOfMembers()
+        {
+            try
+            {
+                List<string> report = new List<string>();
+                String ans = "email: " + "" + " user Name: " + "" + " in forum: " + "";
+
+                report.Add(ans);
+                return report;
+            }
+            catch
+            {
+                return null;
+            }
+
         }
 
         public List<string> getUserFriends(string userName)
@@ -553,6 +569,7 @@ namespace DataBase
             }
 
         }
+        
         public bool addPost(String writerUserName, Int32 postID, String headLine, String content, Int32 parentId, DateTime timePublished, String forumName) 
         {
             try
@@ -641,19 +658,6 @@ namespace DataBase
                 return null;
             }
 
-        }
-
-        public List<String> getSuperUserReportOfMembers()
-        {
-            try
-            {
-                return null;
-            }
-            catch
-            {
-                return null;
-            }
-        
         }
 
         private string enc(string password)
