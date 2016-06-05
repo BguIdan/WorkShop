@@ -283,6 +283,8 @@ namespace ForumBuilder.Controllers
             Forum temp = DB.getforumByName(forumName);
             if (usr != null && usr.password.Equals(pass) &&  temp!= null)
             {
+                if (needToChangePassword(user , forumName))
+                    return -5;
                 this.loggedInUsersByForum[forumName].Add(user);
                 this.channelsByLoggedInUsers[user] = OperationContext.Current.GetCallbackChannel<IUserNotificationsService>();
                 return true;
@@ -293,6 +295,16 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("could not login, wrong cerdintals",2);
                 return false;
             }
+        }
+
+        private bool needToChangePassword(string userName, string forumName)
+        {
+            Forum forum = DB.getforumByName(forumName);
+            int time = forum.forumPolicy.timeToPassExpiration;
+            User user = DB.getUser(userName);
+            if ((DateTime.Today - user.lastTimeUpdatePassword).Days > time)
+                return true;
+            return false;
         }
 
         public Boolean logout(String user, String forumName)
