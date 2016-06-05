@@ -8,3 +8,13 @@ C:\Users\Aviv\Documents\WorkShop\ForumBuilder\WebClient\bin\PL.pdb
 C:\Users\Aviv\Documents\WorkShop\ForumBuilder\WebClient\obj\Debug\WebClient.csprojResolveAssemblyReference.cache
 C:\Users\Aviv\Documents\WorkShop\ForumBuilder\WebClient\obj\Debug\WebClient.dll
 C:\Users\Aviv\Documents\WorkShop\ForumBuilder\WebClient\obj\Debug\WebClient.pdb
+C:\Users\User\Desktop\WorkShop\ForumBuilder\WebClient\bin\WebClient.dll.config
+C:\Users\User\Desktop\WorkShop\ForumBuilder\WebClient\bin\WebClient.dll
+C:\Users\User\Desktop\WorkShop\ForumBuilder\WebClient\bin\WebClient.pdb
+C:\Users\User\Desktop\WorkShop\ForumBuilder\WebClient\bin\Common.dll
+C:\Users\User\Desktop\WorkShop\ForumBuilder\WebClient\bin\PL.exe
+C:\Users\User\Desktop\WorkShop\ForumBuilder\WebClient\bin\Common.pdb
+C:\Users\User\Desktop\WorkShop\ForumBuilder\WebClient\bin\PL.pdb
+C:\Users\User\Desktop\WorkShop\ForumBuilder\WebClient\obj\Debug\WebClient.csprojResolveAssemblyReference.cache
+C:\Users\User\Desktop\WorkShop\ForumBuilder\WebClient\obj\Debug\WebClient.dll
+C:\Users\User\Desktop\WorkShop\ForumBuilder\WebClient\obj\Debug\WebClient.pdb

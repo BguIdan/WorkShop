@@ -19,6 +19,7 @@ namespace WebClient
         private ForumManagerClient _fm;
         private string _forumName;
         private string _subForumName;
+        private PostData[] _postByNumArray;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -33,48 +34,85 @@ namespace WebClient
             forumNameLabel.Text = _forumName;
             subForumNameLabel.Text = _subForumName;
             List<PostData> posts = _pm.getAllPosts(_forumName, _subForumName);
-            int num = 1;
+            _postByNumArray = new PostData[posts.Count()];
+            int num = 0;
             foreach(PostData post in posts)
             {
                 if (post.parentId == -1)
                 {
+                    TableRow tRow = new TableRow();
+
                     //1 field
-                    TableRow tRow1 = new TableRow();
                     TableCell tCell1 = new TableCell();
-                    Label lb1 = new Label();
-                    lb1.Text = "#"+num;
+                    Button lb1 = new Button();
+                    lb1.Click += new EventHandler(clickOnSubForum);
+                    lb1.Text = "#"+num+1;
+                    lb1.BackColor = System.Drawing.Color.White;
                     tCell1.Controls.Add(lb1);
-                    tRow1.Cells.Add(tCell1);
+                    tRow.Cells.Add(tCell1);
                     //field 2
-                    TableRow tRow2 = new TableRow();
                     TableCell tCell2 = new TableCell();
-                    Label lb2 = new Label();
+                    Button lb2 = new Button();
+                    lb2.Click += new EventHandler(clickOnSubForum);
                     lb2.Text = post.title;
+                    lb1.BackColor = System.Drawing.Color.White;
                     tCell2.Controls.Add(lb2);
-                    tRow2.Cells.Add(tCell2);
+                    tRow.Cells.Add(tCell2);
                     //field 3
-                    TableRow tRow3 = new TableRow();
                     TableCell tCell3 = new TableCell();
-                    Label lb3 = new Label();
+                    Button lb3 = new Button();
+                    lb3.Click += new EventHandler(clickOnSubForum);
                     lb3.Text = post.writerUserName;
+                    lb1.BackColor = System.Drawing.Color.White;
                     tCell3.Controls.Add(lb3);
-                    tRow3.Cells.Add(tCell3);
+                    tRow.Cells.Add(tCell3);
                     //field 4
-                    TableRow tRow4 = new TableRow();
                     TableCell tCell4 = new TableCell();
-                    Label lb4 = new Label();
+                    Button lb4 = new Button();
+                    lb4.Click += new EventHandler(clickOnSubForum);
                     lb4.Text = post.timePublished.ToString();
+                    lb1.BackColor = System.Drawing.Color.White;
                     tCell4.Controls.Add(lb4);
-                    tRow4.Cells.Add(tCell4);
-                    //ad all rows
-                    ThreadTable.Rows.Add(tRow1);
-                    ThreadTable.Rows.Add(tRow2);
-                    ThreadTable.Rows.Add(tRow3);
-                    ThreadTable.Rows.Add(tRow4);
+                    tRow.Cells.Add(tCell4);
+                    //add row
+                    ThreadTable.Rows.Add(tRow);
+                    _postByNumArray[num] = post;
+                    num++;
+                }
+            }
+            ThreadTable.BorderWidth = 3;
+            ThreadTable.BorderStyle = BorderStyle.Ridge;
+            ThreadTable.BackColor = System.Drawing.Color.White;
+            ThreadTable.ForeColor = System.Drawing.Color.Black;
+            ThreadTable.GridLines = GridLines.Both;
+            ThreadTable.Width = 300;
+
+        }
+        protected void clickOnSubForum(Object sender, EventArgs e)
+        {
+            int num = 0;
+            int id = -2;
+            foreach(TableRow row in ThreadTable.Rows)
+            {
+                foreach(TableCell cell in row.Cells)
+                {
+                    foreach(var singleControl in cell.Controls)
+                    {
+                        Button button = singleControl as Button;
+                        if (button.Equals(sender))
+                        {
+                            PostData thread = _postByNumArray[num];
+                            Session["thread"] = thread;
+                            Response.Redirect("PostsPage.aspx");
+                        }
+                    }
                 }
                 num++;
             }
-
+        }
+        private void showAlert(String content)
+        {
+            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "popup", "<script>alert(\"" + content + "\");</script>");
         }
     }
 }
