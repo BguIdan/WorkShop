@@ -109,7 +109,8 @@ namespace ForumBuilder.Systems
         public static int Main(string[] args)
         {
             //TODO gal: remove later
-            DBClass.getInstance.clear();
+            //DBClass.getInstance.clear();
+            var item = DBClass.getInstance;
             Console.WriteLine(  "welcome to your forum builder!\n" +
                                 "please insert your desired user name:");
             String username = "idan";//getUserName();
@@ -134,7 +135,7 @@ namespace ForumBuilder.Systems
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
 
             runServer(username, password, email);
-            DBClass.getInstance.clear();
+            //DBClass.getInstance.clear();
             return 0;
         }
 

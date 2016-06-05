@@ -1538,17 +1538,25 @@ namespace Database
                 command.Connection = connection;
                 command.CommandText = "SELECT  forumName FROM  forums";
                 OleDbDataReader reader = command.ExecuteReader();
+                int count = 0;
                 while (reader.Read())
                 {
-                    Forum forum = null;
-                    
-                    
+                    count++;
+                    Forum forum = getfbyN(reader.GetString(0));
                     forums1.Add(forum);
+
+                    /*OpenConnectionDB();
+                    reader = command.ExecuteReader();
+                    for(int i=0; i<count; i++)
+                    {
+                        reader.Read();
+                    }
+                    */
                 }
                 closeConnectionDB();
                 return forums;
             }
-            catch
+            catch(Exception e)
             {
                 closeConnectionDB();
                 return null; ;
@@ -1578,11 +1586,11 @@ namespace Database
                 OleDbCommand command4 = new OleDbCommand();
                 command4.Connection = connection;
                 command4.CommandText = "SELECT  * FROM  policies where forumName='" + name + "'";
-                OleDbDataReader reader4 = command2.ExecuteReader();
+                OleDbDataReader reader4 = command4.ExecuteReader();
                 reader4.Read();
-                ForumPolicy policy = new ForumPolicy(reader4.GetString(0), reader4.GetBoolean(1), reader4.GetInt32(2),
-                    reader4.GetBoolean(3), reader4.GetInt32(4), reader4.GetInt32(5), reader4.GetBoolean(6),
-                    reader4.GetBoolean(7), reader4.GetInt32(8));
+                ForumPolicy policy = new ForumPolicy(reader4.GetString(1), reader4.GetBoolean(2), reader4.GetInt32(3),
+                    reader4.GetBoolean(4), reader4.GetInt32(5), reader4.GetInt32(6), reader4.GetBoolean(7),
+                    reader4.GetBoolean(8), reader4.GetInt32(9));
                 forum = new Forum(reader2.GetString(0), reader2.GetString(1), policy, administrators);
                 closeConnectionDB();
                 List<String> members = getMembersOfForumOld(name);
