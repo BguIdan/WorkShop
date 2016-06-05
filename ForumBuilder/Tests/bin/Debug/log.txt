@@ -1,0 +1,819 @@
+Log Entry : 		05/06/2016 15:40:23
+Forum contoller created
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:23
+Super user contoller created
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:23
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:23
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:25
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:28
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:30
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:32
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:36
+Register user faild, admin1 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:38
+forum service was initialized under localhost:8081
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:38
+post service was initialized under localhost:8082
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:38
+sub forum service was initialized under localhost:8083
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:38
+super user service was initialized under localhost:8084
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:38
+user service was initialized under localhost:8085
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:38
+The System was initialized successully
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:39
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:39
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:39
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:39
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:39
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:39
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:39
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:39
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:39
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:39
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:39
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:40
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:40
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:40
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:40
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:40
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:40
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:40
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:40
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:40
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:40
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:40
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:40
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:41
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:41
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:41
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:41
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:41
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:41
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:41
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:41
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:41
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:41
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:42
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:42
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:42
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:42
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:42
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:42
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:42
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:42
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:42
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:42
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:42
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:42
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:43
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:43
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:43
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:43
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:43
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:43
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:43
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:43
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:43
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:43
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:44
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:44
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:44
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:44
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:44
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:44
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:44
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:44
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:44
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:44
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:44
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:44
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:44
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:44
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:44
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:44
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:44
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:44
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:44
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:44
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:44
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:44
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:45
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:45
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:45
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:45
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:45
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:45
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:45
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:45
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:45
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:45
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:45
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:45
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:45
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:45
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:45
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:45
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:45
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:45
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:45
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:45
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:45
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:45
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:45
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:45
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:46
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:46
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:46
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:46
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:46
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:46
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:46
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:46
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:46
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:46
+Register user faild, admin2 is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:46
+Post contoller created
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:46
+Sub-forum contoller created
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:46
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:46
+Forum forum creation success
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:46
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:46
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:47
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:47
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:47
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:47
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:47
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:48
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:48
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:48
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:48
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:48
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:48
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:49
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:49
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:49
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:49
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:49
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:50
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:50
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:50
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:50
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:50
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:50
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:51
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:51
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:51
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:51
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:51
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:51
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:52
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:52
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:52
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:52
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:52
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:52
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:52
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:52
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:52
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:53
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:53
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:53
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:53
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:53
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:53
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:53
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:53
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:53
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:53
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:53
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:53
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:54
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:54
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:54
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:54
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:54
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:54
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:54
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:54
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:54
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:54
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:54
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:55
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:55
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:55
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:55
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:55
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:55
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:55
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:55
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:55
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:55
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:55
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:56
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:56
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:56
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:56
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:56
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:56
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:56
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:56
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:56
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:56
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:56
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:56
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:57
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:57
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:57
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:57
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:57
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:57
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:57
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:57
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:57
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:57
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:57
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:57
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:58
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:58
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:58
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:58
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:58
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:58
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:58
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:58
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:58
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:58
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:59
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:59
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:59
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:59
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:59
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:59
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:59
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:59
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:59
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:59
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:59
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:59
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:41:00
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:41:00
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:41:00
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:41:00
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:41:00
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:41:00
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:41:00
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:41:00
+User contoller created
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:41:00
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:41:00
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:41:01
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:41:01
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:41:01
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:41:01
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:41:01
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:41:01
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:41:02
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:41:02
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:41:02
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:41:02
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:41:02
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:41:02
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:41:03
+Register user faild, admin is already taken
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:41:03
+Register user faild, admin is already taken
+----------------------------------------------

@@ -1,0 +1,25 @@
+Log Entry : 		05/06/2016 15:40:23
+Forum contoller created
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:23
+Super user contoller created
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:23
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:23
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:38
+forum service was initialized under localhost:8081
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:38
+post service was initialized under localhost:8082
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:38
+sub forum service was initialized under localhost:8083
+-----------------------------------------------
+Log Entry : 		05/06/2016 15:40:38
+super user service was initialized under localhost:8084
+-----------------------------------------------
+Log Entry : 		05/

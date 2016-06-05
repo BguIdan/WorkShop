@@ -19,8 +19,6 @@ namespace DataBase
         private Dictionary<int, Post> posts;
         private static Cache singleton;
 
-
-
         private Cache()
         {
           users = new Dictionary<string, User>() ;
@@ -208,7 +206,6 @@ namespace DataBase
                     }
                     report.Add(ans);
                 }
-
                 return report;
             }
             catch
@@ -221,17 +218,40 @@ namespace DataBase
         {
             try
             {
+                List<string> emails = new List<string>();
+                foreach(User u in users.Values)
+                {
+                    if (!emails.Contains(u.email))
+                    {
+                        emails.Add(u.email);
+                    }
+                }
                 List<string> report = new List<string>();
-                String ans = "email: " + "" + " user Name: " + "" + " in forum: " + "";
-
-                report.Add(ans);
+                foreach (string e in emails)
+                {
+                    foreach (User u in users.Values)
+                    {
+                        string ans = "";
+                        if (u.email.Equals(e))
+                        {
+                            foreach (Forum f in forums.Values)
+                            {
+                                if (f.members.Contains(u.userName))
+                                {
+                                    ans = "email: " + e + " user Name: " + u.userName + " in forum: " + f.forumName;
+                                    break;
+                                }
+                            }
+                        }
+                        report.Add(ans);
+                    }
+                }
                 return report;
             }
             catch
             {
                 return null;
             }
-
         }
 
         public List<string> getUserFriends(string userName)
@@ -451,7 +471,6 @@ namespace DataBase
 
         }
 
-
         public bool removeFriendOfUser(string userName, string deletedFriendName)
         {
             try
@@ -513,11 +532,6 @@ namespace DataBase
             }
 
         }
-
-        /*public int getAvilableIntOfPost()
-        {
-            return 0;
-        }*/
 
         public SubForum getSubforumByThreadFirstPostId(int id)
         {
@@ -691,6 +705,10 @@ namespace DataBase
             return res;
         }
 
+        /*public int getAvilableIntOfPost()
+        {
+            return 0;
+        }*/
 
 
     }
