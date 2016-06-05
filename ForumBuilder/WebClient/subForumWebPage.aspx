@@ -6,5 +6,5 @@
         </p>
     <asp:Label ID="subForumNameLabel" runat="server" CssClass="control-label"></asp:Label>
     </div>
-    <asp:Table ID="ThreadTable" runat="server" CssClass="table-hover"></asp:Table>
+    <asp:Table ID="ThreadTable" runat="server" ></asp:Table>
 </asp:Content>

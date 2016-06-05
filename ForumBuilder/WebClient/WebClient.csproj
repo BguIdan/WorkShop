@@ -41,6 +41,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -63,6 +64,7 @@
     <Content Include="ForumWindow.aspx" />
     <Content Include="Images\background-Tomer.jpg" />
     <Content Include="MainWindow.html" />
+    <Content Include="PostsPage.aspx" />
     <Content Include="PrivateMessagesWindow.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="SetPreferences.aspx" />
@@ -90,6 +92,13 @@
       <DependentUpon>ForumWindow.aspx</DependentUpon>
     </Compile>
     <Compile Include="notificationHost\ClientNotificationHost.cs" />
+    <Compile Include="PostsPage.aspx.cs">
+      <DependentUpon>PostsPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PostsPage.aspx.designer.cs">
+      <DependentUpon>PostsPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PrivateMessagesWindow.aspx.cs">
       <DependentUpon>PrivateMessagesWindow.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

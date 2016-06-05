@@ -2251,6 +2251,7 @@ pre code {
 }
 table {
   background-color: transparent;
+    margin-top: 0px;
 }
 caption {
   padding-top: 8px;
