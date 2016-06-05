@@ -17,7 +17,6 @@ namespace DataBase
         private List<SubForum> subForums;
         private Dictionary<int, Thread> threads;
         private Dictionary<int, Post> posts;
-        private Dictionary<int, Message> messages;
         private static Cache singleton;
 
 
@@ -28,7 +27,7 @@ namespace DataBase
           subForums = new  List<SubForum>() ;
           threads = new  Dictionary<int, Thread>() ;
           posts = new  Dictionary<int, Post>();
-          messages = new  Dictionary<int, Message>() ;
+          superUsers = new Dictionary<string, User>();
         }
 
         public static Cache getInstance
@@ -55,8 +54,9 @@ namespace DataBase
                 this.posts.Clear();
             if (this.users != null)
                 this.users.Clear();
-            if (this.messages != null)
-                this.messages.Clear();
+            if (this.superUsers != null)
+                this.superUsers.Clear();
+
         }
 
         public int getMaxIntOfPost()
@@ -74,52 +74,112 @@ namespace DataBase
 
         public int numOfForums()
         {
-            return forums.Count;
+            try
+            {
+                return forums.Count;
+            }
+            catch
+            {
+                return 0;
+            }
+
         }
 
         public bool dismissModerator(string dismissedModerator, string subForumName, string forumName)
         {
-            return getSubForum(subForumName, forumName).moderators.Remove(dismissedModerator);
+            try
+            {
+                return getSubForum(subForumName, forumName).moderators.Remove(dismissedModerator);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public SubForum getSubForum(string subForumName, string forumName)
         {
-            foreach (SubForum sf in subForums)
+            try
             {
-                if (sf.forum.Equals(forumName) && sf.name.Equals(subForumName))
-                    return sf;
+                foreach (SubForum sf in subForums)
+                {
+                    if (sf.forum.Equals(forumName) && sf.name.Equals(subForumName))
+                        return sf;
+                }
+                return null;
             }
-            return null;
+            catch
+            {
+                return null;
+            }
         }
 
         public bool addSuperUser(string email, string password, string userName)
         {
-            User su = new User(userName, password, email,DateTime.Today);
-            users.Add(userName, su);
-            return true;
+            try
+            {
+                User su = new User(userName, password, email, DateTime.Today);
+                users.Add(userName, su);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
         }
 
         public bool nominateModerator(string newModerator, DateTime endDate, string subForumName, string forumName, String nominator)
         {
-            SubForum sf = getSubForum(subForumName, forumName);
-            sf.moderators.Add(newModerator, new Moderator(newModerator, endDate,DateTime.Today,nominator));
-            return true;
+            try
+            {
+                SubForum sf = getSubForum(subForumName, forumName);
+                sf.moderators.Add(newModerator, new Moderator(newModerator, endDate, DateTime.Today, nominator));
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
         }
 
         public Forum getforumByName(string forumName)
         {
-            return forums[forumName];
+            try
+            {
+                return forums[forumName];
+            }
+            catch
+            {
+                return null;
+            }
+            
         }
 
         public List<string> getsubForumsNamesOfForum(string forumName)
         {
-            Forum f = forums[forumName];
-            return f.subForums;
+            try
+            {
+                Forum f = forums[forumName];
+                return f.subForums;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public List<string> getForums()
         {
-            return forums.Keys.ToList();
+            try
+            {
+                return forums.Keys.ToList();
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         //public List<String> getModertorsReport(String forumName)
@@ -127,144 +187,277 @@ namespace DataBase
         //   return null;
         //}
 
-        //public bool addMessage(string sender, string reciver, string content)
-        //{
-        //   return true;
-        //}
+
 
         public List<string> getUserFriends(string userName)
         {
-            return users[userName].friends;  
+            try
+            {
+                return users[userName].friends;
+            }
+            catch
+            {
+                return null;
+            }
         }
+
 
         public bool banMember(string bannedMember, string forumName)
         {
-            forums[forumName].members.Remove(bannedMember);
-            return true;
+            try
+            {
+                forums[forumName].members.Remove(bannedMember);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
         }
 
         public bool changePolicy(string forumName, string policy, bool isQuestionIdentifying, int seniorityInForum,
         bool deletePostByModerator, int timeToPassExpiration, int minNumOfModerators, bool hasCapitalInPassword,
         bool hasNumberInPassword, int minLengthOfPassword)
         {
-            forums[forumName].forumPolicy.policy = policy;
-            forums[forumName].forumPolicy.isQuestionIdentifying = isQuestionIdentifying;
-            forums[forumName].forumPolicy.seniorityInForum = seniorityInForum;
-            forums[forumName].forumPolicy.deletePostByModerator = deletePostByModerator;
-            forums[forumName].forumPolicy.timeToPassExpiration = timeToPassExpiration;
-            forums[forumName].forumPolicy.minNumOfModerators = minNumOfModerators;
-            forums[forumName].forumPolicy.hasCapitalInPassword = hasCapitalInPassword;
-            forums[forumName].forumPolicy.hasNumberInPassword = hasNumberInPassword;
-            forums[forumName].forumPolicy.minLengthOfPassword = minLengthOfPassword;
-            return true;
+            try
+            {
+                forums[forumName].forumPolicy.policy = policy;
+                forums[forumName].forumPolicy.isQuestionIdentifying = isQuestionIdentifying;
+                forums[forumName].forumPolicy.seniorityInForum = seniorityInForum;
+                forums[forumName].forumPolicy.deletePostByModerator = deletePostByModerator;
+                forums[forumName].forumPolicy.timeToPassExpiration = timeToPassExpiration;
+                forums[forumName].forumPolicy.minNumOfModerators = minNumOfModerators;
+                forums[forumName].forumPolicy.hasCapitalInPassword = hasCapitalInPassword;
+                forums[forumName].forumPolicy.hasNumberInPassword = hasNumberInPassword;
+                forums[forumName].forumPolicy.minLengthOfPassword = minLengthOfPassword;
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
         }
         
         public bool nominateAdmin(string newAdmin, string forumName)
         {
-            forums[forumName].administrators.Add(newAdmin);
-            return true;
+            try
+            {
+                forums[forumName].administrators.Add(newAdmin);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public User getSuperUser(string userName)
         {
-            return superUsers[userName];
+            try
+            {
+                return superUsers[userName];
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public bool dismissAdmin(string adminToDismissed, string forumName)
         {
-            return forums[forumName].administrators.Remove(adminToDismissed);
+            try
+            {
+                return forums[forumName].administrators.Remove(adminToDismissed);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public User getUser(string userName)
         {
-            return users[userName];
+            try
+            {
+                return users[userName];
+            }
+            catch
+            {
+                return null;
+            }
         }
 
-        public Boolean addUser(string userName, string password, string email,string ans1, string ans2)
-        {//TODO:ans1,ans2
-            User us = new User(userName, password, email,DateTime.Today);
-            users.Add(userName, us);
-            return true;
+        public Boolean addUser(string userName, string password, string email)
+        {
+            try
+            {
+                User us = new User(userName, password, email, DateTime.Today);
+                users.Add(userName, us);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
         }
 
         public Boolean addMemberToForum(string userName, string forumName) 
         {
-            forums[forumName].members.Add(userName);
-            return true;
+            try
+            {
+                forums[forumName].members.Add(userName);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
         }
 
         public List<string> getMembersOfForum(string forumName)
         {
-            return forums[forumName].members;
+            try
+            {
+                return forums[forumName].members;
+
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public List<string> getSimularForumsOf2users(string userName1, string userName2)
         {
-            List<string> simularForum = new List<string>();
-            foreach (Forum f in forums.Values)
+            try
             {
-                if (f.members.Contains(userName1) && f.members.Contains(userName2))
-                    simularForum.Add(f.forumName);
+                List<string> simularForum = new List<string>();
+                foreach (Forum f in forums.Values)
+                {
+                    if (f.members.Contains(userName1) && f.members.Contains(userName2))
+                        simularForum.Add(f.forumName);
+                }
+                return simularForum;
             }
-            return simularForum;
+            catch
+            {
+                return null;
+            }
+
         }
 
         public Boolean createForum(string forumName, string description, ForumPolicy fp)
         {
-            List<string> administrators = new  List<string>();
-            Forum f = new Forum(forumName, description, fp, administrators);
-            forums.Add(forumName, f);
-            return true;
+            try
+            {
+                List<string> administrators = new List<string>();
+                Forum f = new Forum(forumName, description, fp, administrators);
+                forums.Add(forumName, f);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
         }
 
         public Boolean setForumPreferences(String forumName, String newDescription, ForumPolicy fp)
         {
-            forums[forumName].description = newDescription;
-            forums[forumName].forumPolicy = fp;
-            return true;
+            try
+            {
+                forums[forumName].description = newDescription;
+                forums[forumName].forumPolicy = fp;
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
         }
 
         public bool addFriendToUser(string userName, string friendToAddName)
         {
-            users[userName].friends.Add(friendToAddName);
-            return true;
+            try
+            {
+                users[userName].friends.Add(friendToAddName);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
         }
 
 
         public bool removeFriendOfUser(string userName, string deletedFriendName)
         {
-            users[userName].friends.Remove(deletedFriendName);
-            return true;
+            try
+            {
+                users[userName].friends.Remove(deletedFriendName);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
         }
 
-        public List<Message> getMessages()
-        {
-            return new List<Message>(messages.Values);
-        }
         public Boolean addSubForum(String subForumName, String forumName)
         {
-            SubForum sf = new SubForum(subForumName, forumName);
-            subForums.Add(sf);
-            return true;
+            try
+            {
+                SubForum sf = new SubForum(subForumName, forumName);
+                subForums.Add(sf);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
         }
         
         public Post getPost(int postId)
         {
-            return posts[postId];
+            try
+            {
+                return posts[postId];
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public List<Post> getRelatedPosts(int postId)
         {
-            List<Post> relatedPosts = new List<Post>();
-            foreach (Post p in posts.Values)
+            try
             {
-                if (p.parentId == postId)
+                List<Post> relatedPosts = new List<Post>();
+                foreach (Post p in posts.Values)
                 {
-                    relatedPosts.Add(p);
+                    if (p.parentId == postId)
+                    {
+                        relatedPosts.Add(p);
+                    }
                 }
+                return relatedPosts;
             }
-            return relatedPosts;
+            catch
+            {
+                return null;
+            }
+
         }
+
         /*public int getAvilableIntOfPost()
         {
             return 0;
@@ -272,42 +465,72 @@ namespace DataBase
 
         public SubForum getSubforumByThreadFirstPostId(int id)
         {
-            foreach (SubForum sf in subForums)
+            try
             {
-                if (sf.threads.Contains(id))
+                foreach (SubForum sf in subForums)
                 {
-                    return sf;
+                    if (sf.threads.Contains(id))
+                    {
+                        return sf;
+                    }
                 }
+                return null;
             }
-            return null;
+            catch
+            {
+                return null;
+            }
         }
 
         public Thread getThreadByFirstPostId(int postId)
         {
-            foreach (Thread t in threads.Values)
+            try
             {
-                if (t.firstPost.id == postId)
-                    return t;
+                foreach (Thread t in threads.Values)
+                {
+                    if (t.firstPost.id == postId)
+                        return t;
+                }
+                return null;
             }
-            return null;
+            catch
+            {
+                return null;
+            }
         }
 
         public bool addThread(string forumName, string subForumName, int firstMessageId)
         {
-            Thread thread = new Thread(getPost(firstMessageId));
-            threads.Add(firstMessageId, thread);
-            getSubForum(subForumName, forumName).threads.Add(firstMessageId);
-            return true;
+            try
+            {
+                Thread thread = new Thread(getPost(firstMessageId));
+                threads.Add(firstMessageId, thread);
+                getSubForum(subForumName, forumName).threads.Add(firstMessageId);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
         }
         public bool addPost(String writerUserName, Int32 postID, String headLine, String content, Int32 parentId, DateTime timePublished, String forumName) 
         {
-            Post post = new Post(writerUserName, postID, headLine, content, parentId, timePublished, forumName);
-            posts.Add(postID, post);
-            if (parentId != -1)
+            try
             {
-                getPost(parentId).commentsIds.Add(postID);
+                Post post = new Post(writerUserName, postID, headLine, content, parentId, timePublished, forumName);
+                posts.Add(postID, post);
+                if (parentId != -1)
+                {
+                    getPost(parentId).commentsIds.Add(postID);
+                }
+                return true;
             }
-            return true;
+            catch
+            {
+                return false;
+            }
+
         }
 
         public int numOfPostInForum(String forumName)
@@ -323,38 +546,98 @@ namespace DataBase
 
         public bool removeThread(int id)
         {
-            threads.Remove(id);
-            getSubforumByThreadFirstPostId(id).threads.Remove(id);
-            return true;
+            try
+            {
+                threads.Remove(id);
+                getSubforumByThreadFirstPostId(id).threads.Remove(id);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
+
         public bool removePost(int id)
         {
-            posts.Remove(id);
-            return true;
+            try
+            {
+                posts.Remove(id);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public Boolean updatePost(int postID, String title, String content)
         {
-            posts[postID].title = title;
-            posts[postID].content = content;
-            return true;
+            try
+            {
+                posts[postID].title = title;
+                posts[postID].content = content;
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public List<Post> getMemberPosts(String memberName, String forumName)
         {
-            List<Post> memPost = new List<Post>();
-            foreach (Post p in posts.Values)
+            try
             {
-                if (p.forumName.Equals(forumName) && p.writerUserName.Equals(memberName))
-                    memPost.Add(p);
+                List<Post> memPost = new List<Post>();
+                foreach (Post p in posts.Values)
+                {
+                    if (p.forumName.Equals(forumName) && p.writerUserName.Equals(memberName))
+                        memPost.Add(p);
+                }
+                return memPost;
             }
-            return memPost;
+            catch
+            {
+                return null;
+            }
+
         }
+
      //   public List<String> getSuperUserReportOfMembers()
       //  {
+        
       //  }
 
+        private string enc(string password)
+        {
+            char[] passArray = password.ToArray();
+            string res = "";
+            for (int i = 0; i < passArray.Length; i++)
+            {
+                passArray[i] = (char)(((int)passArray[i]) + i % 5 + 1);
+            }
+            for (int i = 0; i < passArray.Length; i++)
+            {
+                res = res + passArray[i];
+            }
+            return res;
+        }
 
+        private string dec(string password)
+        {
+            char[] passArray = password.ToArray();
+            string res = "";
+            for (int i = 0; i < passArray.Length; i++)
+            {
+                passArray[i] = (char)(((int)passArray[i]) - i % 5 - 1);
+            }
+            for (int i = 0; i < passArray.Length; i++)
+            {
+                res = res + passArray[i];
+            }
+            return res;
+        }
 
 
 
