@@ -29,8 +29,8 @@ namespace WebClient
 
             _fMC = new ForumManagerClient(new InstanceContext(this));
             _forumsList = _fMC.getForums();
-       //     forum_dropList.DataSource = this._forumsList;
-      //      forum_dropList.DataBind();
+            //     forum_dropList.DataSource = this._forumsList;
+            //      forum_dropList.DataBind();
         }
 
         protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
@@ -46,64 +46,123 @@ namespace WebClient
         protected void Btn_Login_Click(object sender, EventArgs e)
         {
             Session["UserName"] = ID.Text;
-            Session["Password"] = Password.Text;
-            try
+            if (Password.Text != "")
             {
-                _choosenForum = forum_dropList.SelectedItem.Text;
-            }
-            catch
-            {
-                showAlert("choose a forum");
+                Session["Password"] = Password.Text;
+                try
+                {
+                    _choosenForum = forum_dropList.SelectedItem.Text;
+                }
+                catch
+                {
+                    showAlert("choose a forum");
                     return;
-            }
-            int sessionKey = -1;//general login error code
-            if (_choosenForum != null)
-            {
-                ForumData toSend = _fMC.getForum(_choosenForum);
-                if (CheckBox_Guest.Checked)
-                {
-                    Session["forumName"] = _choosenForum;
-                    Session["userName"] = "Guest";
-                    Session["ForumManagerClient"] = _fMC;
-                    Response.Redirect("ForumWindow.aspx");
                 }
-                else if ((sessionKey = _fMC.login(Session["UserName"].ToString(), _choosenForum, Session["Password"].ToString())) > 0)
-                //TODO gal consider additional error codes for informative error messages
+                int sessionKey = -1;//general login error code
+                if (_choosenForum != null)
                 {
-                    Session["forumName"] = _choosenForum;
-                    Session["userName"] = Session["UserName"];
-                    Session["ForumManagerClient"] = _fMC;
-                    Session["sessionKey"] = sessionKey;
-                    //showAlert("Login successful! your session code for is " + sessionKey.ToString());
-                    Response.Redirect("ForumWindow.aspx");
-                }
-                else
-                {
-                    switch (sessionKey)
+                    ForumData toSend = _fMC.getForum(_choosenForum);
+                    if (CheckBox_Guest.Checked)
                     {
-                        case -1:
-                            showAlert("login failed");
-                            break;
-                        
-                        case -2:
-                            showAlert("user name \\ password are invalid");
-                            break;
+                        Session["forumName"] = _choosenForum;
+                        Session["userName"] = "Guest";
+                        Session["ForumManagerClient"] = _fMC;
+                        Response.Redirect("ForumWindow.aspx");
+                    }
+                    else if ((sessionKey = _fMC.login(Session["UserName"].ToString(), _choosenForum, Session["Password"].ToString())) > 0)
+                    //TODO gal consider additional error codes for informative error messages
+                    {
+                        Session["forumName"] = _choosenForum;
+                        Session["userName"] = Session["UserName"];
+                        Session["ForumManagerClient"] = _fMC;
+                        Session["sessionKey"] = sessionKey;
+                        Response.Redirect("ForumWindow.aspx");
+                    }
+                    else
+                    {
+                        switch (sessionKey)
+                        {
+                            case -1:
+                                showAlert("login failed");
+                                break;
 
-                        case -3:
-                            showAlert("you already connected via another client, "+
-                                        "please login using your session key");
-                            break;
+                            case -2:
+                                showAlert("user name \\ password are invalid");
+                                break;
 
-                        default:
-                            showAlert("login failed");
-                            break;
+                            case -3:
+                                showAlert("you already connected via another client, " +
+                                            "please login using your session key");
+                                break;
+
+                            default:
+                                showAlert("login failed");
+                                break;
+                        }
                     }
 
                 }
+                else
+                {
+                    showAlert("choose a forum");
+                }
+            }
+            else if (Password.Text == "" && SessionKeyTextField.Text != "")
+            {
+                int insertedSessionKeyByInt = -1;
+                String result = "";
+                try
+                {
+                    insertedSessionKeyByInt = Int32.Parse(SessionKeyTextField.Text);
+                }
+                catch
+                {
+                    showAlert("invalid session key!, digits only");
+                }
+                try
+                {
+                    _choosenForum = forum_dropList.SelectedItem.Text;
+                }
+                catch
+                {
+                    showAlert("choose a forum");
+                    return;
+                }
+                if (_choosenForum != null)
+                {
+                    ForumData toSend = _fMC.getForum(_choosenForum);
+                    if (CheckBox_Guest.Checked)
+                    {
+                        showAlert("please clear the session key field");
+                        return;
+                    }
+                    else if ((result = _fMC.loginBySessionKey(insertedSessionKeyByInt, Session["UserName"].ToString(), _choosenForum)) == "success")
+                    //TODO gal consider additional error codes for informative error messages
+                    {
+                        Session["forumName"] = _choosenForum;
+                        Session["userName"] = Session["UserName"];
+                        Session["ForumManagerClient"] = _fMC;
+                        Session["sessionKey"] = sessionKey;
+                        Response.Redirect("ForumWindow.aspx");
+                    }
+                    else
+                    {
+                        showAlert(result);
+                        return;
+                    }
+
+                }
+                else
+                {
+                    showAlert("choose a forum");
+                    return;
+                }
+
             }
             else
             {
-                showAlert("plz choose a forum");
+                showAlert("please fill the required fields");
+                return;
             }
 
             /* _choosenForum = forum_dropList.SelectedItem.Text;
@@ -153,18 +212,18 @@ namespace WebClient
 
         public void applyPostPublishedInForumNotification(String forumName, String subForumName, String publisherName)
         {
-            showAlert("new post<br>" + publisherName + " published a post in " + forumName + 
+            showAlert("new post<br>" + publisherName + " published a post in " + forumName +
                     "'s sub-forum " + subForumName);
-         }
+        }
 
         public void applyPostModificationNotification(String forumName, String publisherName, String title, String content)
         {
-                //MessageBox.Show(publisherName + "'s post you were following in " + forumName + "was modified (" + title + ")", "post modified");
+            //MessageBox.Show(publisherName + "'s post you were following in " + forumName + "was modified (" + title + ")", "post modified");
         }
 
         public void applyPostDelitionNotification(String forumName, String publisherName)
         {
-                //MessageBox.Show(publisherName + "'s post you were following in " + forumName + "was deleted", "post deleted");
+            //MessageBox.Show(publisherName + "'s post you were following in " + forumName + "was deleted", "post deleted");
         }
 
         public void sendUserMessage(String senderName, String content)

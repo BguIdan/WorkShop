@@ -54,6 +54,11 @@ namespace Service
             return forumController.login(user, forumName, password);
         }
 
+        public String loginBySessionKey(int sessionKey, String user, String forumName)
+        {
+            return forumController.loginBySessionKey(sessionKey, user, forumName);
+        }
+
         public Boolean logout(String user, String forumName)
         {
             return forumController.logout(user, forumName);

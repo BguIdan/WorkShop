@@ -15,6 +15,7 @@ namespace ForumBuilder.Controllers
         Dictionary<String, List<String>> loggedInUsersByForum = new Dictionary<String, List<String>>();
         Dictionary<String, List<IUserNotificationsService>> channelsByLoggedInUsers = new Dictionary<String, List<IUserNotificationsService>>();
         Dictionary<String, int> clientSessionKeyByUser = new Dictionary<String,int>();
+        Dictionary<String, int> openConnectionsCounterByUser = new Dictionary<String,int>();
 
         public static ForumController getInstance
         {
@@ -287,6 +288,7 @@ namespace ForumBuilder.Controllers
                 {
                     this.loggedInUsersByForum[forumName].Add(user);
                     this.channelsByLoggedInUsers[user] = new List<IUserNotificationsService>();
+                    this.openConnectionsCounterByUser[user] = 1;
                 }
                 else
                 {
@@ -307,14 +309,54 @@ namespace ForumBuilder.Controllers
             }
         }
 
+        public String loginBySessionKey(int sessionKey, String user, String forumName)
+        {
+            User usr = DB.getUser(user);
+            Forum loggedInForum = DB.getforumByName(forumName);
+            if (usr != null && loggedInForum != null)
+            {
+                if (!loggedInUsersByForum.ContainsKey(forumName) || !this.loggedInUsersByForum[forumName].Contains(user))
+                {
+                    logger.logPrint("login error, the user was not logged in when using session key", 0);
+                    logger.logPrint("login error, the user was not logged in when using session key", 2);
+                    return "invalid session key: you logged out hence this session key is invalid";
+                }
+                if (sessionKey != this.clientSessionKeyByUser[user])
+                {
+                    logger.logPrint("login error, invalid session key", 0);
+                    logger.logPrint("login error, invalid session key", 2);
+                    return "invalid session key";
+                }
+                this.channelsByLoggedInUsers[user].Add(OperationContext.Current.GetCallbackChannel<IUserNotificationsService>());
+                this.openConnectionsCounterByUser[user]++;
+                return "success";
+            }
+            else
+            {//TODO apply error codes
+                logger.logPrint("could not login, wrong user name", 0);
+                logger.logPrint("could not login, wrong user name", 2);
+                return "wrong user name";
+            }
+
+        }
+
         public Boolean logout(String user, String forumName)
         {//TODO gal modify logout to support more than one active connection
+            //TODO gal make sure the log outs works
+            //TODO gal what about the open channels?
             if (!this.loggedInUsersByForum.ContainsKey(forumName))
                 return false;
             if (!this.loggedInUsersByForum[forumName].Contains(user))
                 return false;
-            this.loggedInUsersByForum[forumName].Remove(user);
-            this.channelsByLoggedInUsers[user] = null;
+            if (this.openConnectionsCounterByUser[user] == 1)
+            {//last open connection, session key will be discarded
+                this.loggedInUsersByForum[forumName].Remove(user);
+                this.channelsByLoggedInUsers[user].Clear();
+            }
+            else
+            {
+                this.openConnectionsCounterByUser[user]--;
+            }
             return true;
         }
 

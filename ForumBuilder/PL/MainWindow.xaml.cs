@@ -40,9 +40,10 @@ namespace PL
 
         private void LoginPressed(object sender, RoutedEventArgs e)
         {
-            int sessionKey;
+            int sessionKey = -1;
             string userName = ID.Text;
             string pass = Password.Password;
+            string sessionKeyField = sessionKeyTextBox.Text;
             if (_choosenForum != null)
             {
                 ForumData toSend = _fMC.getForum(_choosenForum);
@@ -52,13 +53,39 @@ namespace PL
                     this.Close();
                     fw.Show();
                 }
-                else if ((sessionKey = _fMC.login(userName, _choosenForum, pass)) > 0)
+                else if (pass != "" && (sessionKey = _fMC.login(userName, _choosenForum, pass)) > 0)
                     //TODO gal consider additional error codes for informative error messages
                 {
                     MessageBox.Show("Login successful! your session code for is " + sessionKey.ToString());
                     ForumWindow fw = new ForumWindow(toSend, userName);
                     this.Close();
                     fw.Show();
+                }
+                else if (pass == "" && sessionKeyField != "")
+                {
+                    String result = "";
+                    try
+                    {
+                        result = _fMC.loginBySessionKey(Int32.Parse(sessionKeyField), userName, _choosenForum);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("invalid session key!, digits only");
+                    }
+                    if (result == "success")
+                    {
+                        ForumWindow fw = new ForumWindow(toSend, userName);
+                        this.Close();
+                        fw.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show(result);
+                    }
+                }
+                else if (pass == "" && sessionKeyField == "")
+                {
+                    MessageBox.Show("please fill the required fields");
                 }
                 else
                 {
