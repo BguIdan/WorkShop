@@ -13,6 +13,7 @@ namespace ForumBuilder.Controllers
         Boolean registerUser(String newUser, String password, String mail, string ans1, string ans2, string forumName);
         Boolean addForum(String forumName);
         int login(String newUser, String forumName, string pass);
+        String loginBySessionKey(int sessionKey, String user, String forumName);
         Boolean logout(String user, String forumName);
         Boolean sendThreadCreationNotification(String headLine, String content, String publisherName, String forumName, String subForumName);
         Boolean sendPostModificationNotification(String forumName, String publisherName, String title, String content);

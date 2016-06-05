@@ -41,7 +41,8 @@ namespace WebClient
             if (!_userName.Equals("Guest"))
             {
                 int sessionKey = (int)Session["sessionKey"];
-                showAlert("Login successful! your session code for is " + sessionKey.ToString());
+                if (sessionKey > 0)
+                    showAlert("Login successful! your session code for is " + sessionKey.ToString());
             }
             _sUMC = new SuperUserManagerClient();
             InitializePermissons(_userName);

@@ -61,6 +61,11 @@ namespace PL.proxies
         {
             return Channel.login(user, forumName, password);
         }
+
+        public String loginBySessionKey(int sessionKey, String user, String forumName)
+        {
+            return Channel.loginBySessionKey(sessionKey, user, forumName);
+        }
         
         public Boolean logout(String user, String forumName)
         {

@@ -28,6 +28,9 @@ namespace ForumBuilder.Common.ServiceContracts
         int login(String newUser, String forumName,string password);
 
         [OperationContract]
+        String loginBySessionKey(int sessionKey, String user, String forumName);
+
+        [OperationContract]
         Boolean logout(String newUser, String forumName);
 
         [OperationContract]
