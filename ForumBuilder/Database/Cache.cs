@@ -122,6 +122,7 @@ namespace DataBase
             {
                 User su = new User(userName, password, email, DateTime.Today);
                 users.Add(userName, su);
+                superUsers.Add(userName, su);
                 return true;
             }
             catch

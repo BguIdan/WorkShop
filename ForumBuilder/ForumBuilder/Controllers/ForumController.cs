@@ -13,7 +13,7 @@ namespace ForumBuilder.Controllers
         DBClass DB = DBClass.getInstance;
         Systems.Logger logger = Systems.Logger.getInstance;
         Dictionary<String, List<String>> loggedInUsersByForum = new Dictionary<String, List<String>>();
-        Dictionary<String, IUserNotificationsService> channelsByLoggedInUsers= new Dictionary<String, IUserNotificationsService>();
+        Dictionary<String, IUserNotificationsService> channelsByLoggedInUsers = new Dictionary<String, IUserNotificationsService>();
 
         public static ForumController getInstance
         {
@@ -22,8 +22,8 @@ namespace ForumBuilder.Controllers
                 if (singleton == null)
                 {
                     singleton = new ForumController();
-                    Systems.Logger.getInstance.logPrint("Forum contoller created",0);
-                    Systems.Logger.getInstance.logPrint("Forum contoller created",1);
+                    Systems.Logger.getInstance.logPrint("Forum contoller created", 0);
+                    Systems.Logger.getInstance.logPrint("Forum contoller created", 1);
                 }
                 return singleton;
             }
@@ -31,7 +31,7 @@ namespace ForumBuilder.Controllers
 
         public bool addSubForum(string forumName, string name, Dictionary<String, DateTime> moderators, string creatorName)
         {
-            if (DB.getSuperUser(creatorName)!=null||isAdmin(creatorName, forumName))
+            if (DB.getSuperUser(creatorName) != null || isAdmin(creatorName, forumName))
             {
                 Forum forum = DB.getforumByName(forumName);
                 if (forum != null)
@@ -39,22 +39,22 @@ namespace ForumBuilder.Controllers
                     DB.addSubForum(name, forumName);
                     if (forum.forumPolicy.minNumOfModerators > moderators.Count)
                     {
-                        logger.logPrint("Add sub-forum failed, there is not enough moderators",0);
-                        logger.logPrint("Add sub-forum failed, there is not enough moderators",2);
+                        logger.logPrint("Add sub-forum failed, there is not enough moderators", 0);
+                        logger.logPrint("Add sub-forum failed, there is not enough moderators", 2);
                         return false;
                     }
                     foreach (string s in moderators.Keys)
                     {
-                        if (!isMember(s,forumName))
+                        if (!isMember(s, forumName))
                         {
-                            logger.logPrint("Add sub-forum failed, the moderator " + s + " is not member of forum",0);
-                            logger.logPrint("Add sub-forum failed, the moderator " + s + " is not member of forum",2);
+                            logger.logPrint("Add sub-forum failed, the moderator " + s + " is not member of forum", 0);
+                            logger.logPrint("Add sub-forum failed, the moderator " + s + " is not member of forum", 2);
                             return false;
                         }
                         else if ((DateTime.Today - DB.getUser(s).date).Days < forum.forumPolicy.seniorityInForum)
                         {
-                            logger.logPrint("Add sub-forum failed, the moderator " + s + " is not enough time in forum",0);
-                            logger.logPrint("Add sub-forum failed, the moderator " + s + " is not enough time in forum",2);
+                            logger.logPrint("Add sub-forum failed, the moderator " + s + " is not enough time in forum", 0);
+                            logger.logPrint("Add sub-forum failed, the moderator " + s + " is not enough time in forum", 2);
                             return false;
                         }
                     }
@@ -64,12 +64,12 @@ namespace ForumBuilder.Controllers
                         moderators.TryGetValue(s, out date);
                         if (date > DateTime.Now)
                         {
-                            DB.nominateModerator(s, date, name, forumName,creatorName);
+                            DB.nominateModerator(s, date, name, forumName, creatorName);
                         }
                         else
                         {
-                            logger.logPrint("Add sub-forum failed, date is allready passed",0);
-                            logger.logPrint("Add sub-forum failed, date is allready passed",2);
+                            logger.logPrint("Add sub-forum failed, date is allready passed", 0);
+                            logger.logPrint("Add sub-forum failed, date is allready passed", 2);
                             return false;
                         }
                     }
@@ -77,8 +77,8 @@ namespace ForumBuilder.Controllers
             }
             else
             {
-                logger.logPrint("Add sub-forum failed, "+ creatorName + " is not allowed",0);
-                logger.logPrint("Add sub-forum failed, " + creatorName + " is not allowed",2);
+                logger.logPrint("Add sub-forum failed, " + creatorName + " is not allowed", 0);
+                logger.logPrint("Add sub-forum failed, " + creatorName + " is not allowed", 2);
                 return false;
             }
             return true;
@@ -89,8 +89,8 @@ namespace ForumBuilder.Controllers
         }
         internal bool isMembersOfSameForum(string friendToAdd, string userName)
         {
-            if(DB.getSimularForumsOf2users(friendToAdd,userName)!=null&&
-                DB.getSimularForumsOf2users(friendToAdd,userName).Count>0)  
+            if (DB.getSimularForumsOf2users(friendToAdd, userName) != null &&
+                DB.getSimularForumsOf2users(friendToAdd, userName).Count > 0)
             {
                 return true;
             }
@@ -101,17 +101,17 @@ namespace ForumBuilder.Controllers
         {
             if (!isMember(bannedMember, forumName))
             {
-                logger.logPrint("Ban Member failed, " + bannedMember + " is not a member",0);
-                logger.logPrint("Ban Member failed, " + bannedMember + " is not a member",2);
+                logger.logPrint("Ban Member failed, " + bannedMember + " is not a member", 0);
+                logger.logPrint("Ban Member failed, " + bannedMember + " is not a member", 2);
                 return false;
             }
-            else if(!isAdmin(bannerUserName, forumName)&& DB.getSuperUser(bannerUserName)==null)
+            else if (!isAdmin(bannerUserName, forumName) && DB.getSuperUser(bannerUserName) == null)
             {
-                logger.logPrint("Ban Member failed, " + bannedMember + " is not a admin or super user",0);
-                logger.logPrint("Ban Member failed, " + bannedMember + " is not a admin or super user",2);
+                logger.logPrint("Ban Member failed, " + bannedMember + " is not a admin or super user", 0);
+                logger.logPrint("Ban Member failed, " + bannedMember + " is not a admin or super user", 2);
                 return false;
             }
-            else 
+            else
             {
                 return DB.banMember(bannedMember, forumName);
             }
@@ -121,20 +121,20 @@ namespace ForumBuilder.Controllers
         {
             if (!isAdmin(adminToDismissed, forumName))
             {
-                logger.logPrint("Dismiss admin failed, " + adminToDismissed + " is not a admin",0);
-                logger.logPrint("Dismiss admin failed, " + adminToDismissed + " is not a admin",2);
+                logger.logPrint("Dismiss admin failed, " + adminToDismissed + " is not a admin", 0);
+                logger.logPrint("Dismiss admin failed, " + adminToDismissed + " is not a admin", 2);
                 return false;
             }
-            else if(DB.getSuperUser(dismissingUserName)==null)
+            else if (DB.getSuperUser(dismissingUserName) == null)
             {
-                logger.logPrint("Ban Member failed, " + dismissingUserName + " is not a super user",0);
-                logger.logPrint("Ban Member failed, " + dismissingUserName + " is not a super user",2);
+                logger.logPrint("Ban Member failed, " + dismissingUserName + " is not a super user", 0);
+                logger.logPrint("Ban Member failed, " + dismissingUserName + " is not a super user", 2);
                 return false;
             }
-            else 
+            else
             {
                 return DB.dismissAdmin(adminToDismissed, forumName);
-            }           
+            }
         }
 
         public bool isAdmin(string userName, string forumName)
@@ -155,7 +155,7 @@ namespace ForumBuilder.Controllers
         public bool isMember(string userName, string forumName)
         {
             Forum forum = DB.getforumByName(forumName);
-            List<string> users= DB.getMembersOfForum(forumName);
+            List<string> users = DB.getMembersOfForum(forumName);
             if (users == null)
             {
                 return false;
@@ -171,46 +171,49 @@ namespace ForumBuilder.Controllers
         {
             if (DB.getforumByName(forumName).administrators.Contains(newAdmin))
             {
-                logger.logPrint("nominate admin fail, " + newAdmin + "is already admin",0);
-                logger.logPrint("nominate admin fail, " + newAdmin + "is already admin",2);
+                logger.logPrint("nominate admin fail, " + newAdmin + "is already admin", 0);
+                logger.logPrint("nominate admin fail, " + newAdmin + "is already admin", 2);
                 return false;
             }
             if (DB.getUser(newAdmin) == null)
                 return false;
-            if ((DB.getSuperUser(nominatorName) != null|| DB.getforumByName(forumName).administrators.Contains(nominatorName)))
+            if ((DB.getSuperUser(nominatorName) != null || DB.getforumByName(forumName).administrators.Contains(nominatorName)))
             {
                 bool isMem = isMember(newAdmin, forumName);
                 if (!isMem)
                 {
-                    isMem=isMem|| DB.addMemberToForum(newAdmin, forumName);
+                    isMem = isMem || DB.addMemberToForum(newAdmin, forumName);
                 }
-                if (isMem&& DB.nominateAdmin(newAdmin, forumName))
+                if (isMem && DB.nominateAdmin(newAdmin, forumName))
                 {
-                    logger.logPrint("admin nominated successfully",0);
-                    logger.logPrint("admin nominated successfully",1);
-                    if (DB.getforumByName(forumName).administrators.Contains(nominatorName)&&DB.getSuperUser(nominatorName)==null)
+                    logger.logPrint("admin nominated successfully", 0);
+                    logger.logPrint("admin nominated successfully", 1);
+                    if (DB.getforumByName(forumName).administrators.Contains(nominatorName) && DB.getSuperUser(nominatorName) == null)
                         DB.dismissAdmin(nominatorName, forumName);
                     return true;
                 }
                 return false;
             }
-            logger.logPrint("nominate admin fail " + nominatorName + " is not super user",0);
-            logger.logPrint("nominate admin fail " + nominatorName + " is not super user",2);
+            logger.logPrint("nominate admin fail " + nominatorName + " is not super user", 0);
+            logger.logPrint("nominate admin fail " + nominatorName + " is not super user", 2);
             return false;
-        }            
-        
+        }
+
         public bool registerUser(string userName, string password, string mail, string ans1, string ans2, string forumName)
         {
-            Forum f=DB.getforumByName(forumName);
+            Forum f = DB.getforumByName(forumName);
             if (f == null)
             {
-                logger.logPrint("Register user faild, the forum, "+ forumName+" does not exist",0);
-                logger.logPrint("Register user faild, the forum, " + forumName + " does not exist",2);
+                logger.logPrint("Register user faild, the forum, " + forumName + " does not exist", 0);
+                logger.logPrint("Register user faild, the forum, " + forumName + " does not exist", 2);
                 return false;
             }
-            if (userName.Length > 0 && f.forumPolicy.minLengthOfPassword<password.Length && mail.Length > 0 &&
-                (!f.forumPolicy.hasCapitalInPassword ||(f.forumPolicy.hasCapitalInPassword&&hasCapital(password)))&&
-                (!f.forumPolicy.hasNumberInPassword||(f.forumPolicy.hasNumberInPassword&&hasNumber(password))))
+            if (userName.Length > 0 && f.forumPolicy.minLengthOfPassword < password.Length && mail.Length > 0 &&
+                (!f.forumPolicy.hasCapitalInPassword || (f.forumPolicy.hasCapitalInPassword && hasCapital(password))) &&
+                (!f.forumPolicy.hasNumberInPassword || (f.forumPolicy.hasNumberInPassword && hasNumber(password))) &&
+                (ans1 != null && ans2 != null)&&
+                ((!f.forumPolicy.isQuestionIdentifying&&ans1.Equals("")&& ans2.Equals("")) || 
+                (f.forumPolicy.isQuestionIdentifying && !ans1.Equals("") && !ans2.Equals(""))))
             {
                 User user = DB.getUser(userName);
                 if (user !=null)
@@ -223,14 +226,14 @@ namespace ForumBuilder.Controllers
                     logger.logPrint("Register user failed, " + userName + " is already taken",2);
                     return false;
                 }
-                if (ans1 != null && ans2 != null)
+                /*if (ans1 != null && ans2 != null)
                 {
                     if (DB.addUser(userName, password, mail, ans1, ans2))
                     {
                         DB.addMemberToForum(userName, forumName);
                         return true;
                     }
-                }
+                }*/
                 return false;
             }
             logger.logPrint("Register user failed, password not strong enough",0);
