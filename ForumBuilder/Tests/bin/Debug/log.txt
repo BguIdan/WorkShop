@@ -1,2334 +1,2151 @@
-Log Entry : 		05/06/2016 11:10:33
+Log Entry : 		05/06/2016 16:26:48
 Forum contoller created
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:33
+Log Entry : 		05/06/2016 16:26:48
 Super user contoller created
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:34
+Log Entry : 		05/06/2016 16:26:49
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:34
+Log Entry : 		05/06/2016 16:26:49
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:36
+Log Entry : 		05/06/2016 16:26:51
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:36
+Log Entry : 		05/06/2016 16:26:51
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:39
+Log Entry : 		05/06/2016 16:26:54
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:39
+Log Entry : 		05/06/2016 16:26:54
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:41
+Log Entry : 		05/06/2016 16:26:56
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:41
+Log Entry : 		05/06/2016 16:26:56
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:44
+Log Entry : 		05/06/2016 16:26:58
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:44
+Log Entry : 		05/06/2016 16:26:58
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:46
+Log Entry : 		05/06/2016 16:27:01
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:46
+Log Entry : 		05/06/2016 16:27:01
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:49
+Log Entry : 		05/06/2016 16:27:03
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:49
+Log Entry : 		05/06/2016 16:27:03
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:51
+Log Entry : 		05/06/2016 16:27:06
 forum service was initialized under localhost:8081
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:51
+Log Entry : 		05/06/2016 16:27:06
 post service was initialized under localhost:8082
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:51
+Log Entry : 		05/06/2016 16:27:06
 sub forum service was initialized under localhost:8083
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:51
+Log Entry : 		05/06/2016 16:27:06
 super user service was initialized under localhost:8084
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:51
+Log Entry : 		05/06/2016 16:27:06
 user service was initialized under localhost:8085
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:51
+Log Entry : 		05/06/2016 16:27:06
 The System was initialized successully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:52
+Log Entry : 		05/06/2016 16:27:06
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:52
+Log Entry : 		05/06/2016 16:27:06
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:52
+Log Entry : 		05/06/2016 16:27:06
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:52
+Log Entry : 		05/06/2016 16:27:06
+testForumpreferences had changed successfully
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:07
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:07
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:07
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:07
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:08
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:08
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:08
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:08
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:08
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:09
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:09
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:09
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:09
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:09
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:09
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:10
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:10
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:10
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:11
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:11
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:11
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:11
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:11
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:11
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:12
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:12
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:12
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:13
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:13
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:13
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:13
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:13
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:13
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:27:14
 Dismiss admin failed, nonMem is not a admin
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:53
+Log Entry : 		05/06/2016 16:27:14
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:53
+Log Entry : 		05/06/2016 16:27:14
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:53
+Log Entry : 		05/06/2016 16:27:14
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:53
+Log Entry : 		05/06/2016 16:27:14
 Dismiss admin failed, mem is not a admin
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:54
+Log Entry : 		05/06/2016 16:27:14
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:54
+Log Entry : 		05/06/2016 16:27:15
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:54
+Log Entry : 		05/06/2016 16:27:15
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:55
+Log Entry : 		05/06/2016 16:27:15
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:55
+Log Entry : 		05/06/2016 16:27:15
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:55
+Log Entry : 		05/06/2016 16:27:15
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:55
+Log Entry : 		05/06/2016 16:27:15
 Dismiss admin failed,  is not a admin
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:56
+Log Entry : 		05/06/2016 16:27:16
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:56
+Log Entry : 		05/06/2016 16:27:16
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:56
+Log Entry : 		05/06/2016 16:27:16
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:56
+Log Entry : 		05/06/2016 16:27:16
 Ban Member failed,  is not a super user
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:57
+Log Entry : 		05/06/2016 16:27:16
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:57
+Log Entry : 		05/06/2016 16:27:16
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:57
+Log Entry : 		05/06/2016 16:27:16
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:57
+Log Entry : 		05/06/2016 16:27:17
 Ban Member failed, nonMem is not a member
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:58
+Log Entry : 		05/06/2016 16:27:17
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:58
+Log Entry : 		05/06/2016 16:27:17
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:58
+Log Entry : 		05/06/2016 16:27:17
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:10:59
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:10:59
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:10:59
-Forum testForum creation success
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:00
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:00
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:00
-Forum testForum creation success
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:00
+Log Entry : 		05/06/2016 16:27:17
 Ban Member failed,  is not a member
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:01
+Log Entry : 		05/06/2016 16:27:18
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:01
+Log Entry : 		05/06/2016 16:27:18
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:01
+Log Entry : 		05/06/2016 16:27:18
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:02
+Log Entry : 		05/06/2016 16:27:18
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:02
+Log Entry : 		05/06/2016 16:27:18
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:02
+Log Entry : 		05/06/2016 16:27:18
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:02
+Log Entry : 		05/06/2016 16:27:18
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:03
+Log Entry : 		05/06/2016 16:27:19
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:03
+Log Entry : 		05/06/2016 16:27:19
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:03
+Log Entry : 		05/06/2016 16:27:19
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:03
+Log Entry : 		05/06/2016 16:27:19
 nominate admin fail, adminis already admin
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:04
+Log Entry : 		05/06/2016 16:27:19
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:04
+Log Entry : 		05/06/2016 16:27:20
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:04
+Log Entry : 		05/06/2016 16:27:20
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:05
+Log Entry : 		05/06/2016 16:27:20
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:05
+Log Entry : 		05/06/2016 16:27:20
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:05
+Log Entry : 		05/06/2016 16:27:20
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:06
+Log Entry : 		05/06/2016 16:27:21
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:06
+Log Entry : 		05/06/2016 16:27:21
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:06
+Log Entry : 		05/06/2016 16:27:21
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:07
+Log Entry : 		05/06/2016 16:27:22
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:07
+Log Entry : 		05/06/2016 16:27:22
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:07
+Log Entry : 		05/06/2016 16:27:22
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:07
+Log Entry : 		05/06/2016 16:27:22
 Register user failed, password not strong enough
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:08
+Log Entry : 		05/06/2016 16:27:22
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:08
+Log Entry : 		05/06/2016 16:27:22
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:08
+Log Entry : 		05/06/2016 16:27:22
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:08
+Log Entry : 		05/06/2016 16:27:22
 Register user faild, the forum,  does not exist
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:09
+Log Entry : 		05/06/2016 16:27:23
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:09
+Log Entry : 		05/06/2016 16:27:23
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:09
+Log Entry : 		05/06/2016 16:27:23
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:09
+Log Entry : 		05/06/2016 16:27:23
 testForumpreferences had changed successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:10
+Log Entry : 		05/06/2016 16:27:24
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:10
+Log Entry : 		05/06/2016 16:27:24
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:10
+Log Entry : 		05/06/2016 16:27:24
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:10
+Log Entry : 		05/06/2016 16:27:24
 testForumpreferences had changed successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:11
+Log Entry : 		05/06/2016 16:27:24
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:11
+Log Entry : 		05/06/2016 16:27:24
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:11
+Log Entry : 		05/06/2016 16:27:24
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:12
+Log Entry : 		05/06/2016 16:27:25
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:12
+Log Entry : 		05/06/2016 16:27:25
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:12
+Log Entry : 		05/06/2016 16:27:25
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:13
+Log Entry : 		05/06/2016 16:27:26
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:13
+Log Entry : 		05/06/2016 16:27:26
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:13
+Log Entry : 		05/06/2016 16:27:26
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:13
+Log Entry : 		05/06/2016 16:27:26
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:14
+Log Entry : 		05/06/2016 16:27:26
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:14
+Log Entry : 		05/06/2016 16:27:26
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:14
+Log Entry : 		05/06/2016 16:27:27
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:15
+Log Entry : 		05/06/2016 16:27:27
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:15
+Log Entry : 		05/06/2016 16:27:27
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:15
+Log Entry : 		05/06/2016 16:27:27
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:16
+Log Entry : 		05/06/2016 16:27:28
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:16
+Log Entry : 		05/06/2016 16:27:28
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:16
+Log Entry : 		05/06/2016 16:27:28
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:16
+Log Entry : 		05/06/2016 16:27:28
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:16
+Log Entry : 		05/06/2016 16:27:28
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:17
+Log Entry : 		05/06/2016 16:27:29
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:17
+Log Entry : 		05/06/2016 16:27:29
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:17
+Log Entry : 		05/06/2016 16:27:29
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:18
+Log Entry : 		05/06/2016 16:27:30
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:18
+Log Entry : 		05/06/2016 16:27:30
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:18
+Log Entry : 		05/06/2016 16:27:30
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:19
+Log Entry : 		05/06/2016 16:27:30
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:19
+Log Entry : 		05/06/2016 16:27:30
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:19
+Log Entry : 		05/06/2016 16:27:30
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:20
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:20
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:20
-Forum testForum creation success
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:21
-Dismiss admin failed, nonMem is not a admin
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:21
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:21
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:21
-Forum testForum creation success
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:21
-Dismiss admin failed, mem is not a admin
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:22
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:22
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:22
-Forum testForum creation success
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:23
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:23
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:23
-Forum testForum creation success
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:23
-Dismiss admin failed,  is not a admin
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:24
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:24
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:24
-Forum testForum creation success
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:24
-Ban Member failed,  is not a super user
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:25
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:25
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:25
-Forum testForum creation success
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:25
-Ban Member failed, nonMem is not a member
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:26
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:26
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:26
-Forum testForum creation success
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:26
-Ban Member failed,  is not a member
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:26
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:26
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:26
-Forum testForum creation success
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:27
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:27
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:27
-Forum testForum creation success
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:28
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:28
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:28
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:28
-Forum testForum creation success
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:29
-nominate admin fail, adminis already admin
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:29
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:29
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:29
-Forum testForum creation success
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:30
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:30
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:30
-Forum testForum creation success
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:31
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:31
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:31
-Forum testForum creation success
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:32
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:32
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:32
-Forum testForum creation success
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:32
-Register user failed, password not strong enough
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:33
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:33
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:33
-Forum testForum creation success
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:33
-Register user faild, the forum,  does not exist
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:34
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:34
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:34
-Forum testForum creation success
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:34
-testForumpreferences had changed successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:35
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:35
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:35
-Forum testForum creation success
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:35
-testForumpreferences had changed successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:36
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:36
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:36
-Forum testForum creation success
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:36
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:37
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:37
-Forum testForum creation success
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:37
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:38
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:38
-Forum testForum creation success
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:38
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:38
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:38
-Forum testForum creation success
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:39
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:39
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:39
-Forum testForum creation success
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:40
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:40
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:40
-Forum testForum creation success
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:41
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:41
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:41
-Forum testForum creation success
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:42
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:42
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:42
-Forum testForum creation success
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:43
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:43
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:43
-Forum testForum creation success
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:43
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:44
-admin nominated successfully
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:44
-Forum testForum creation success
------------------------------------------------
-Log Entry : 		05/06/2016 11:11:44
+Log Entry : 		05/06/2016 16:27:31
 Post contoller created
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:44
+Log Entry : 		05/06/2016 16:27:31
 Sub-forum contoller created
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:44
+Log Entry : 		05/06/2016 16:27:31
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:44
+Log Entry : 		05/06/2016 16:27:31
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:45
+Log Entry : 		05/06/2016 16:27:31
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:45
+Log Entry : 		05/06/2016 16:27:31
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:46
+Log Entry : 		05/06/2016 16:27:32
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:46
+Log Entry : 		05/06/2016 16:27:32
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:46
+Log Entry : 		05/06/2016 16:27:32
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:47
+Log Entry : 		05/06/2016 16:27:32
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:47
+Log Entry : 		05/06/2016 16:27:33
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:47
+Log Entry : 		05/06/2016 16:27:33
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:48
+Log Entry : 		05/06/2016 16:27:33
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:48
+Log Entry : 		05/06/2016 16:27:33
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:49
+Log Entry : 		05/06/2016 16:27:34
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:49
+Log Entry : 		05/06/2016 16:27:34
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:49
+Log Entry : 		05/06/2016 16:27:34
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:49
+Log Entry : 		05/06/2016 16:27:34
 Add comment failed, user does not exist
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:50
+Log Entry : 		05/06/2016 16:27:34
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:50
+Log Entry : 		05/06/2016 16:27:34
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:50
+Log Entry : 		05/06/2016 16:27:35
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:51
+Log Entry : 		05/06/2016 16:27:35
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:51
+Log Entry : 		05/06/2016 16:27:35
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:51
+Log Entry : 		05/06/2016 16:27:35
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:52
+Log Entry : 		05/06/2016 16:27:36
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:52
+Log Entry : 		05/06/2016 16:27:36
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:53
+Log Entry : 		05/06/2016 16:27:37
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:53
+Log Entry : 		05/06/2016 16:27:37
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:53
+Log Entry : 		05/06/2016 16:27:37
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:54
+Log Entry : 		05/06/2016 16:27:37
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:54
+Log Entry : 		05/06/2016 16:27:37
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:54
+Log Entry : 		05/06/2016 16:27:37
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:55
+Log Entry : 		05/06/2016 16:27:38
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:55
+Log Entry : 		05/06/2016 16:27:38
 Add comment failed, user does not exist
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:56
+Log Entry : 		05/06/2016 16:27:38
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:56
+Log Entry : 		05/06/2016 16:27:38
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:56
+Log Entry : 		05/06/2016 16:27:39
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:57
+Log Entry : 		05/06/2016 16:27:39
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:57
+Log Entry : 		05/06/2016 16:27:39
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:57
+Log Entry : 		05/06/2016 16:27:39
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:58
+Log Entry : 		05/06/2016 16:27:40
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:58
+Log Entry : 		05/06/2016 16:27:40
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:59
+Log Entry : 		05/06/2016 16:27:40
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:59
+Log Entry : 		05/06/2016 16:27:40
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:11:59
+Log Entry : 		05/06/2016 16:27:41
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:00
+Log Entry : 		05/06/2016 16:27:41
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:00
+Log Entry : 		05/06/2016 16:27:41
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:00
+Log Entry : 		05/06/2016 16:27:41
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:01
+Log Entry : 		05/06/2016 16:27:42
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:01
+Log Entry : 		05/06/2016 16:27:42
 Add comment failed, user does not exist
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:02
+Log Entry : 		05/06/2016 16:27:42
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:02
+Log Entry : 		05/06/2016 16:27:42
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:02
+Log Entry : 		05/06/2016 16:27:42
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:02
+Log Entry : 		05/06/2016 16:27:42
 Add comment failed, there is no head or content in tread
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:03
+Log Entry : 		05/06/2016 16:27:43
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:03
+Log Entry : 		05/06/2016 16:27:43
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:03
+Log Entry : 		05/06/2016 16:27:43
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:04
+Log Entry : 		05/06/2016 16:27:43
 Add comment failed, there is no head or content in tread
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:04
+Log Entry : 		05/06/2016 16:27:44
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:04
+Log Entry : 		05/06/2016 16:27:44
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:05
+Log Entry : 		05/06/2016 16:27:44
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:05
+Log Entry : 		05/06/2016 16:27:44
 Add comment failed, there is no head or content in tread
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:06
+Log Entry : 		05/06/2016 16:27:44
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:06
+Log Entry : 		05/06/2016 16:27:44
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:06
+Log Entry : 		05/06/2016 16:27:45
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:06
+Log Entry : 		05/06/2016 16:27:45
 Add comment failed, user does not exist
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:07
+Log Entry : 		05/06/2016 16:27:45
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:07
+Log Entry : 		05/06/2016 16:27:45
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:07
+Log Entry : 		05/06/2016 16:27:46
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:08
+Log Entry : 		05/06/2016 16:27:46
 Add comment failed, there is no post to comment at
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:08
+Log Entry : 		05/06/2016 16:27:46
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:08
+Log Entry : 		05/06/2016 16:27:46
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:09
+Log Entry : 		05/06/2016 16:27:47
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:09
+Log Entry : 		05/06/2016 16:27:47
 Add comment failed, there is no post to comment at
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:10
+Log Entry : 		05/06/2016 16:27:47
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:10
+Log Entry : 		05/06/2016 16:27:47
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:10
+Log Entry : 		05/06/2016 16:27:48
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:10
+Log Entry : 		05/06/2016 16:27:48
 Add comment failed, there is no post to comment at
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:11
+Log Entry : 		05/06/2016 16:27:48
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:11
+Log Entry : 		05/06/2016 16:27:48
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:11
+Log Entry : 		05/06/2016 16:27:48
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:12
+Log Entry : 		05/06/2016 16:27:49
 Add comment failed, there is no post to comment at
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:12
+Log Entry : 		05/06/2016 16:27:49
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:12
+Log Entry : 		05/06/2016 16:27:49
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:13
+Log Entry : 		05/06/2016 16:27:49
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:13
+Log Entry : 		05/06/2016 16:27:49
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:13
+Log Entry : 		05/06/2016 16:27:50
 Remove post 1
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:14
+Log Entry : 		05/06/2016 16:27:50
 Remove post 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:14
+Log Entry : 		05/06/2016 16:27:50
 Remove thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:14
+Log Entry : 		05/06/2016 16:27:50
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:14
+Log Entry : 		05/06/2016 16:27:50
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:14
+Log Entry : 		05/06/2016 16:27:51
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:15
+Log Entry : 		05/06/2016 16:27:51
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:16
+Log Entry : 		05/06/2016 16:27:51
 Remove post 1
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:16
+Log Entry : 		05/06/2016 16:27:51
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:16
+Log Entry : 		05/06/2016 16:27:51
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:17
+Log Entry : 		05/06/2016 16:27:52
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:17
+Log Entry : 		05/06/2016 16:27:52
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:17
+Log Entry : 		05/06/2016 16:27:52
 Delete thread comment, there is no permission to that user
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:18
+Log Entry : 		05/06/2016 16:27:52
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:18
+Log Entry : 		05/06/2016 16:27:52
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:18
+Log Entry : 		05/06/2016 16:27:53
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:19
+Log Entry : 		05/06/2016 16:27:53
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:19
+Log Entry : 		05/06/2016 16:27:53
 Remove post 1
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:20
+Log Entry : 		05/06/2016 16:27:53
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:20
+Log Entry : 		05/06/2016 16:27:53
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:21
+Log Entry : 		05/06/2016 16:27:54
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:21
+Log Entry : 		05/06/2016 16:27:54
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:21
+Log Entry : 		05/06/2016 16:27:54
 Create comment 2 to 1
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:22
+Log Entry : 		05/06/2016 16:27:54
 Create comment 3 to 1
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:22
+Log Entry : 		05/06/2016 16:27:54
 Remove post 3
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:22
+Log Entry : 		05/06/2016 16:27:54
 Remove post 2
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:22
+Log Entry : 		05/06/2016 16:27:54
 Remove post 1
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:23
+Log Entry : 		05/06/2016 16:27:54
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:23
+Log Entry : 		05/06/2016 16:27:54
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:23
+Log Entry : 		05/06/2016 16:27:55
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:23
+Log Entry : 		05/06/2016 16:27:55
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:24
+Log Entry : 		05/06/2016 16:27:55
 Create comment 2 to 1
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:24
+Log Entry : 		05/06/2016 16:27:55
 Create comment 3 to 1
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:25
+Log Entry : 		05/06/2016 16:27:55
 Remove post 3
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:25
+Log Entry : 		05/06/2016 16:27:55
 Remove post 2
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:25
+Log Entry : 		05/06/2016 16:27:55
 Remove post 1
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:25
+Log Entry : 		05/06/2016 16:27:56
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:25
+Log Entry : 		05/06/2016 16:27:56
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:26
+Log Entry : 		05/06/2016 16:27:56
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:26
+Log Entry : 		05/06/2016 16:27:56
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:26
+Log Entry : 		05/06/2016 16:27:56
 Create comment 2 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:27
+Log Entry : 		05/06/2016 16:27:56
 Remove post 1
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:28
+Log Entry : 		05/06/2016 16:27:57
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:28
+Log Entry : 		05/06/2016 16:27:57
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:28
+Log Entry : 		05/06/2016 16:27:57
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:28
+Log Entry : 		05/06/2016 16:27:57
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:29
+Log Entry : 		05/06/2016 16:27:57
 Create comment 2 to 1
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:29
+Log Entry : 		05/06/2016 16:27:57
 Remove post 2
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:30
+Log Entry : 		05/06/2016 16:27:58
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:30
+Log Entry : 		05/06/2016 16:27:58
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:31
+Log Entry : 		05/06/2016 16:27:58
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:31
+Log Entry : 		05/06/2016 16:27:58
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:31
+Log Entry : 		05/06/2016 16:27:58
 Create comment 2 to 1
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:32
+Log Entry : 		05/06/2016 16:27:58
 Create comment 3 to 2
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:32
+Log Entry : 		05/06/2016 16:27:58
 Create comment 4 to 2
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:33
+Log Entry : 		05/06/2016 16:27:58
 Remove post 4
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:33
+Log Entry : 		05/06/2016 16:27:58
 Remove post 3
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:33
+Log Entry : 		05/06/2016 16:27:59
 Remove post 2
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:33
+Log Entry : 		05/06/2016 16:27:59
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:33
+Log Entry : 		05/06/2016 16:27:59
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:34
+Log Entry : 		05/06/2016 16:27:59
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:34
+Log Entry : 		05/06/2016 16:27:59
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:34
+Log Entry : 		05/06/2016 16:28:00
 Create comment 2 to 1
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:35
+Log Entry : 		05/06/2016 16:28:00
 Create comment 3 to 2
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:35
+Log Entry : 		05/06/2016 16:28:00
 Create comment 4 to 2
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:36
+Log Entry : 		05/06/2016 16:28:00
 Remove post 4
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:36
+Log Entry : 		05/06/2016 16:28:00
 Remove post 3
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:36
+Log Entry : 		05/06/2016 16:28:00
 Remove post 2
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:36
+Log Entry : 		05/06/2016 16:28:00
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:36
+Log Entry : 		05/06/2016 16:28:00
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:37
+Log Entry : 		05/06/2016 16:28:01
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:37
+Log Entry : 		05/06/2016 16:28:01
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:38
+Log Entry : 		05/06/2016 16:28:01
 Create comment 2 to 1
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:38
+Log Entry : 		05/06/2016 16:28:01
 Create comment 3 to 2
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:38
+Log Entry : 		05/06/2016 16:28:01
 Create comment 4 to 2
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:39
+Log Entry : 		05/06/2016 16:28:01
 Create comment 5 to 3
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:39
+Log Entry : 		05/06/2016 16:28:01
 Create comment 6 to 3
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:40
+Log Entry : 		05/06/2016 16:28:01
 Create comment 7 to 5
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:40
+Log Entry : 		05/06/2016 16:28:01
 Create comment 8 to 5
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:41
+Log Entry : 		05/06/2016 16:28:01
 Create comment 9 to 7
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:41
+Log Entry : 		05/06/2016 16:28:01
 Create comment 10 to 7
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:42
+Log Entry : 		05/06/2016 16:28:01
 Create comment 11 to 9
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:43
+Log Entry : 		05/06/2016 16:28:01
 Create comment 12 to 9
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:44
+Log Entry : 		05/06/2016 16:28:01
 Create comment 13 to 11
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:44
+Log Entry : 		05/06/2016 16:28:01
 Create comment 14 to 11
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:45
+Log Entry : 		05/06/2016 16:28:02
 Remove post 14
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:45
+Log Entry : 		05/06/2016 16:28:02
 Remove post 13
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:45
+Log Entry : 		05/06/2016 16:28:02
 Remove post 12
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:45
+Log Entry : 		05/06/2016 16:28:02
 Remove post 11
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:45
+Log Entry : 		05/06/2016 16:28:02
 Remove post 10
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:45
+Log Entry : 		05/06/2016 16:28:02
 Remove post 9
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:45
+Log Entry : 		05/06/2016 16:28:02
 Remove post 8
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:45
+Log Entry : 		05/06/2016 16:28:02
 Remove post 7
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:45
+Log Entry : 		05/06/2016 16:28:02
 Remove post 6
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:45
+Log Entry : 		05/06/2016 16:28:02
 Remove post 5
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:45
+Log Entry : 		05/06/2016 16:28:02
 Remove post 4
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:45
+Log Entry : 		05/06/2016 16:28:02
 Remove post 3
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:46
+Log Entry : 		05/06/2016 16:28:02
 Remove post 2
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:46
+Log Entry : 		05/06/2016 16:28:03
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:46
+Log Entry : 		05/06/2016 16:28:03
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:47
+Log Entry : 		05/06/2016 16:28:03
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:47
+Log Entry : 		05/06/2016 16:28:03
 Delete comment failed, there is no post with that id
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:47
+Log Entry : 		05/06/2016 16:28:03
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:47
+Log Entry : 		05/06/2016 16:28:03
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:48
+Log Entry : 		05/06/2016 16:28:04
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:48
+Log Entry : 		05/06/2016 16:28:04
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:49
+Log Entry : 		05/06/2016 16:28:04
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:49
+Log Entry : 		05/06/2016 16:28:04
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:49
+Log Entry : 		05/06/2016 16:28:05
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:50
+Log Entry : 		05/06/2016 16:28:05
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:50
+Log Entry : 		05/06/2016 16:28:05
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:50
+Log Entry : 		05/06/2016 16:28:05
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:51
+Log Entry : 		05/06/2016 16:28:05
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:51
+Log Entry : 		05/06/2016 16:28:05
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:51
+Log Entry : 		05/06/2016 16:28:06
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:51
+Log Entry : 		05/06/2016 16:28:06
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:52
+Log Entry : 		05/06/2016 16:28:06
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:52
+Log Entry : 		05/06/2016 16:28:06
 Add comment failed, user does not exist
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:53
+Log Entry : 		05/06/2016 16:28:07
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:53
+Log Entry : 		05/06/2016 16:28:07
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:53
+Log Entry : 		05/06/2016 16:28:07
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:53
+Log Entry : 		05/06/2016 16:28:07
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:54
+Log Entry : 		05/06/2016 16:28:07
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:54
+Log Entry : 		05/06/2016 16:28:07
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:54
+Log Entry : 		05/06/2016 16:28:08
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:55
+Log Entry : 		05/06/2016 16:28:08
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:55
+Log Entry : 		05/06/2016 16:28:08
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:55
+Log Entry : 		05/06/2016 16:28:08
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:56
+Log Entry : 		05/06/2016 16:28:09
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:56
+Log Entry : 		05/06/2016 16:28:09
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:57
+Log Entry : 		05/06/2016 16:28:09
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:57
+Log Entry : 		05/06/2016 16:28:09
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:57
+Log Entry : 		05/06/2016 16:28:09
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:57
+Log Entry : 		05/06/2016 16:28:10
 Add comment failed, user does not exist
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:58
+Log Entry : 		05/06/2016 16:28:10
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:58
+Log Entry : 		05/06/2016 16:28:10
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:58
+Log Entry : 		05/06/2016 16:28:10
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:59
+Log Entry : 		05/06/2016 16:28:10
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:59
+Log Entry : 		05/06/2016 16:28:11
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:12:59
+Log Entry : 		05/06/2016 16:28:11
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:00
+Log Entry : 		05/06/2016 16:28:11
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:00
+Log Entry : 		05/06/2016 16:28:11
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:01
+Log Entry : 		05/06/2016 16:28:12
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:01
+Log Entry : 		05/06/2016 16:28:12
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:01
+Log Entry : 		05/06/2016 16:28:12
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:01
+Log Entry : 		05/06/2016 16:28:12
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:02
+Log Entry : 		05/06/2016 16:28:12
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:02
+Log Entry : 		05/06/2016 16:28:12
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:02
+Log Entry : 		05/06/2016 16:28:13
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:03
+Log Entry : 		05/06/2016 16:28:13
 Add comment failed, user does not exist
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:03
+Log Entry : 		05/06/2016 16:28:13
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:03
+Log Entry : 		05/06/2016 16:28:13
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:04
+Log Entry : 		05/06/2016 16:28:13
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:04
+Log Entry : 		05/06/2016 16:28:14
 Add comment failed, there is no head or content in tread
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:05
+Log Entry : 		05/06/2016 16:28:14
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:05
+Log Entry : 		05/06/2016 16:28:14
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:05
+Log Entry : 		05/06/2016 16:28:14
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:05
+Log Entry : 		05/06/2016 16:28:14
 Add comment failed, there is no head or content in tread
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:06
+Log Entry : 		05/06/2016 16:28:15
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:06
+Log Entry : 		05/06/2016 16:28:15
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:06
+Log Entry : 		05/06/2016 16:28:15
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:07
+Log Entry : 		05/06/2016 16:28:15
 Add comment failed, there is no head or content in tread
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:07
+Log Entry : 		05/06/2016 16:28:16
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:07
+Log Entry : 		05/06/2016 16:28:16
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:08
+Log Entry : 		05/06/2016 16:28:16
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:08
+Log Entry : 		05/06/2016 16:28:16
 Add comment failed, user does not exist
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:08
+Log Entry : 		05/06/2016 16:28:16
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:08
+Log Entry : 		05/06/2016 16:28:16
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:09
+Log Entry : 		05/06/2016 16:28:17
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:09
+Log Entry : 		05/06/2016 16:28:17
 Add comment failed, there is no post to comment at
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:10
+Log Entry : 		05/06/2016 16:28:17
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:10
+Log Entry : 		05/06/2016 16:28:17
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:10
+Log Entry : 		05/06/2016 16:28:18
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:10
+Log Entry : 		05/06/2016 16:28:18
 Add comment failed, there is no post to comment at
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:11
+Log Entry : 		05/06/2016 16:28:18
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:11
+Log Entry : 		05/06/2016 16:28:18
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:11
+Log Entry : 		05/06/2016 16:28:18
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:11
+Log Entry : 		05/06/2016 16:28:18
 Add comment failed, there is no post to comment at
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:12
+Log Entry : 		05/06/2016 16:28:19
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:12
+Log Entry : 		05/06/2016 16:28:19
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:12
+Log Entry : 		05/06/2016 16:28:19
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:13
+Log Entry : 		05/06/2016 16:28:19
 Add comment failed, there is no post to comment at
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:13
+Log Entry : 		05/06/2016 16:28:20
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:13
+Log Entry : 		05/06/2016 16:28:20
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:14
+Log Entry : 		05/06/2016 16:28:20
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:14
+Log Entry : 		05/06/2016 16:28:20
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:15
+Log Entry : 		05/06/2016 16:28:20
 Remove post 1
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:15
+Log Entry : 		05/06/2016 16:28:20
 Remove post 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:15
+Log Entry : 		05/06/2016 16:28:20
 Remove thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:15
+Log Entry : 		05/06/2016 16:28:21
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:15
+Log Entry : 		05/06/2016 16:28:21
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:16
+Log Entry : 		05/06/2016 16:28:21
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:16
+Log Entry : 		05/06/2016 16:28:21
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:17
+Log Entry : 		05/06/2016 16:28:21
 Remove post 1
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:17
+Log Entry : 		05/06/2016 16:28:21
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:17
+Log Entry : 		05/06/2016 16:28:21
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:17
+Log Entry : 		05/06/2016 16:28:22
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:18
+Log Entry : 		05/06/2016 16:28:22
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:18
+Log Entry : 		05/06/2016 16:28:22
 Delete thread comment, there is no permission to that user
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:19
+Log Entry : 		05/06/2016 16:28:22
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:19
+Log Entry : 		05/06/2016 16:28:22
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:19
+Log Entry : 		05/06/2016 16:28:23
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:20
+Log Entry : 		05/06/2016 16:28:23
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:20
+Log Entry : 		05/06/2016 16:28:23
 Remove post 1
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:21
+Log Entry : 		05/06/2016 16:28:23
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:21
+Log Entry : 		05/06/2016 16:28:23
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:21
+Log Entry : 		05/06/2016 16:28:23
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:22
+Log Entry : 		05/06/2016 16:28:24
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:22
+Log Entry : 		05/06/2016 16:28:24
 Create comment 2 to 1
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:22
+Log Entry : 		05/06/2016 16:28:24
 Create comment 3 to 1
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:23
+Log Entry : 		05/06/2016 16:28:24
 Remove post 3
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:23
+Log Entry : 		05/06/2016 16:28:24
 Remove post 2
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:23
+Log Entry : 		05/06/2016 16:28:24
 Remove post 1
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:23
+Log Entry : 		05/06/2016 16:28:24
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:23
+Log Entry : 		05/06/2016 16:28:24
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:24
+Log Entry : 		05/06/2016 16:28:25
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:24
+Log Entry : 		05/06/2016 16:28:25
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:25
+Log Entry : 		05/06/2016 16:28:25
 Create comment 2 to 1
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:25
+Log Entry : 		05/06/2016 16:28:25
 Create comment 3 to 1
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:25
+Log Entry : 		05/06/2016 16:28:25
 Remove post 3
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:25
+Log Entry : 		05/06/2016 16:28:25
 Remove post 2
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:25
+Log Entry : 		05/06/2016 16:28:25
 Remove post 1
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:26
+Log Entry : 		05/06/2016 16:28:25
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:26
+Log Entry : 		05/06/2016 16:28:25
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:26
+Log Entry : 		05/06/2016 16:28:26
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:27
+Log Entry : 		05/06/2016 16:28:26
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:27
+Log Entry : 		05/06/2016 16:28:26
 Create comment 2 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:28
+Log Entry : 		05/06/2016 16:28:26
 Remove post 1
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:28
+Log Entry : 		05/06/2016 16:28:26
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:28
+Log Entry : 		05/06/2016 16:28:26
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:29
+Log Entry : 		05/06/2016 16:28:27
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:29
+Log Entry : 		05/06/2016 16:28:27
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:29
+Log Entry : 		05/06/2016 16:28:27
 Create comment 2 to 1
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:30
+Log Entry : 		05/06/2016 16:28:27
 Remove post 2
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:31
+Log Entry : 		05/06/2016 16:28:27
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:31
+Log Entry : 		05/06/2016 16:28:27
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:31
+Log Entry : 		05/06/2016 16:28:28
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:31
+Log Entry : 		05/06/2016 16:28:28
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:32
+Log Entry : 		05/06/2016 16:28:28
 Create comment 2 to 1
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:32
+Log Entry : 		05/06/2016 16:28:28
 Create comment 3 to 2
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:33
+Log Entry : 		05/06/2016 16:28:28
 Create comment 4 to 2
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:33
+Log Entry : 		05/06/2016 16:28:28
 Remove post 4
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:33
+Log Entry : 		05/06/2016 16:28:28
 Remove post 3
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:33
+Log Entry : 		05/06/2016 16:28:28
 Remove post 2
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:34
+Log Entry : 		05/06/2016 16:28:29
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:34
+Log Entry : 		05/06/2016 16:28:29
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:34
+Log Entry : 		05/06/2016 16:28:29
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:35
+Log Entry : 		05/06/2016 16:28:29
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:35
+Log Entry : 		05/06/2016 16:28:29
 Create comment 2 to 1
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:35
+Log Entry : 		05/06/2016 16:28:29
 Create comment 3 to 2
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:36
+Log Entry : 		05/06/2016 16:28:29
 Create comment 4 to 2
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:36
+Log Entry : 		05/06/2016 16:28:29
 Remove post 4
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:36
+Log Entry : 		05/06/2016 16:28:29
 Remove post 3
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:36
+Log Entry : 		05/06/2016 16:28:29
 Remove post 2
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:37
+Log Entry : 		05/06/2016 16:28:30
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:37
+Log Entry : 		05/06/2016 16:28:30
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:37
+Log Entry : 		05/06/2016 16:28:30
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:38
+Log Entry : 		05/06/2016 16:28:30
 Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:38
+Log Entry : 		05/06/2016 16:28:30
 Create comment 2 to 1
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:39
+Log Entry : 		05/06/2016 16:28:30
 Create comment 3 to 2
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:39
+Log Entry : 		05/06/2016 16:28:30
 Create comment 4 to 2
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:39
+Log Entry : 		05/06/2016 16:28:30
 Create comment 5 to 3
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:40
+Log Entry : 		05/06/2016 16:28:30
 Create comment 6 to 3
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:40
+Log Entry : 		05/06/2016 16:28:30
 Create comment 7 to 5
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:41
+Log Entry : 		05/06/2016 16:28:30
 Create comment 8 to 5
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:42
+Log Entry : 		05/06/2016 16:28:31
 Create comment 9 to 7
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:42
+Log Entry : 		05/06/2016 16:28:31
 Create comment 10 to 7
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:43
+Log Entry : 		05/06/2016 16:28:31
 Create comment 11 to 9
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:43
+Log Entry : 		05/06/2016 16:28:31
 Create comment 12 to 9
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:44
+Log Entry : 		05/06/2016 16:28:31
 Create comment 13 to 11
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:45
+Log Entry : 		05/06/2016 16:28:31
 Create comment 14 to 11
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:46
+Log Entry : 		05/06/2016 16:28:31
 Remove post 14
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:46
+Log Entry : 		05/06/2016 16:28:31
 Remove post 13
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:46
+Log Entry : 		05/06/2016 16:28:31
 Remove post 12
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:46
+Log Entry : 		05/06/2016 16:28:31
 Remove post 11
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:46
+Log Entry : 		05/06/2016 16:28:31
 Remove post 10
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:46
+Log Entry : 		05/06/2016 16:28:31
 Remove post 9
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:46
+Log Entry : 		05/06/2016 16:28:31
 Remove post 8
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:46
+Log Entry : 		05/06/2016 16:28:31
 Remove post 7
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:46
+Log Entry : 		05/06/2016 16:28:31
 Remove post 6
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:46
+Log Entry : 		05/06/2016 16:28:31
 Remove post 5
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:46
+Log Entry : 		05/06/2016 16:28:31
 Remove post 4
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:46
+Log Entry : 		05/06/2016 16:28:31
 Remove post 3
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:46
+Log Entry : 		05/06/2016 16:28:32
 Remove post 2
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:47
+Log Entry : 		05/06/2016 16:28:32
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:47
+Log Entry : 		05/06/2016 16:28:32
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:47
+Log Entry : 		05/06/2016 16:28:32
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:48
+Log Entry : 		05/06/2016 16:28:32
 Delete comment failed, there is no post with that id
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:48
+Log Entry : 		05/06/2016 16:28:33
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:48
+Log Entry : 		05/06/2016 16:28:33
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:48
+Log Entry : 		05/06/2016 16:28:33
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:49
+Log Entry : 		05/06/2016 16:28:33
 Dismiss moderator failed, sub-forum has not enough moderators
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:49
+Log Entry : 		05/06/2016 16:28:33
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:49
+Log Entry : 		05/06/2016 16:28:33
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:49
+Log Entry : 		05/06/2016 16:28:33
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:50
+Log Entry : 		05/06/2016 16:28:34
 Dismiss moderator failed, sub-forum has not enough moderators
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:50
+Log Entry : 		05/06/2016 16:28:34
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:50
+Log Entry : 		05/06/2016 16:28:34
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:50
+Log Entry : 		05/06/2016 16:28:34
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:51
+Log Entry : 		05/06/2016 16:28:35
 Dismiss moderator failed, sub-forum has not enough moderators
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:51
+Log Entry : 		05/06/2016 16:28:35
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:51
+Log Entry : 		05/06/2016 16:28:35
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:51
+Log Entry : 		05/06/2016 16:28:35
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:51
+Log Entry : 		05/06/2016 16:28:35
 Dismiss moderator failed, sub-forum has not enough moderators
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:52
+Log Entry : 		05/06/2016 16:28:36
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:52
+Log Entry : 		05/06/2016 16:28:36
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:52
+Log Entry : 		05/06/2016 16:28:36
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:52
+Log Entry : 		05/06/2016 16:28:36
 nominate moderator memsuccess
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:53
+Log Entry : 		05/06/2016 16:28:36
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:53
+Log Entry : 		05/06/2016 16:28:37
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:53
+Log Entry : 		05/06/2016 16:28:37
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:54
+Log Entry : 		05/06/2016 16:28:37
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:54
+Log Entry : 		05/06/2016 16:28:37
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:54
+Log Entry : 		05/06/2016 16:28:37
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:54
+Log Entry : 		05/06/2016 16:28:38
 nominateModerator fail, To  has no permission to be moderator, he is not a member
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:55
+Log Entry : 		05/06/2016 16:28:38
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:55
+Log Entry : 		05/06/2016 16:28:38
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:55
+Log Entry : 		05/06/2016 16:28:38
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:55
+Log Entry : 		05/06/2016 16:28:38
 nominateModerator fail, To  has no permission to be moderator, he is not a member
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:56
+Log Entry : 		05/06/2016 16:28:39
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:56
+Log Entry : 		05/06/2016 16:28:39
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:56
+Log Entry : 		05/06/2016 16:28:39
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:56
+Log Entry : 		05/06/2016 16:28:39
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:57
+Log Entry : 		05/06/2016 16:28:40
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:57
+Log Entry : 		05/06/2016 16:28:40
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:57
+Log Entry : 		05/06/2016 16:28:40
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:58
+Log Entry : 		05/06/2016 16:28:40
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:58
+Log Entry : 		05/06/2016 16:28:41
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:58
+Log Entry : 		05/06/2016 16:28:41
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:58
+Log Entry : 		05/06/2016 16:28:41
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:59
+Log Entry : 		05/06/2016 16:28:41
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:13:59
+Log Entry : 		05/06/2016 16:28:41
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:00
+Log Entry : 		05/06/2016 16:28:42
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:00
+Log Entry : 		05/06/2016 16:28:42
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:00
+Log Entry : 		05/06/2016 16:28:42
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:00
+Log Entry : 		05/06/2016 16:28:42
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:01
+Log Entry : 		05/06/2016 16:28:42
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:01
+Log Entry : 		05/06/2016 16:28:42
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:01
+Log Entry : 		05/06/2016 16:28:43
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:02
+Log Entry : 		05/06/2016 16:28:43
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:02
+Log Entry : 		05/06/2016 16:28:43
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:02
+Log Entry : 		05/06/2016 16:28:43
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:02
+Log Entry : 		05/06/2016 16:28:44
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:03
+Log Entry : 		05/06/2016 16:28:44
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:03
+Log Entry : 		05/06/2016 16:28:44
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:03
+Log Entry : 		05/06/2016 16:28:44
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:03
+Log Entry : 		05/06/2016 16:28:45
 Create tread failed, there is no head or content in tread
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:04
+Log Entry : 		05/06/2016 16:28:45
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:04
+Log Entry : 		05/06/2016 16:28:45
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:04
+Log Entry : 		05/06/2016 16:28:45
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:04
+Log Entry : 		05/06/2016 16:28:45
 Create tread failed, there is no head or content in tread
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:05
+Log Entry : 		05/06/2016 16:28:46
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:05
+Log Entry : 		05/06/2016 16:28:46
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:05
+Log Entry : 		05/06/2016 16:28:46
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:05
+Log Entry : 		05/06/2016 16:28:46
 Create tread failed, there is no head or content in tread
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:06
+Log Entry : 		05/06/2016 16:28:46
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:06
+Log Entry : 		05/06/2016 16:28:47
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:06
+Log Entry : 		05/06/2016 16:28:47
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:06
+Log Entry : 		05/06/2016 16:28:47
 Create tread failed, there is no head or content in tread
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:07
+Log Entry : 		05/06/2016 16:28:47
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:07
+Log Entry : 		05/06/2016 16:28:47
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:07
+Log Entry : 		05/06/2016 16:28:47
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:07
+Log Entry : 		05/06/2016 16:28:48
 Create tread failed, user does not exist
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:08
+Log Entry : 		05/06/2016 16:28:48
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:08
+Log Entry : 		05/06/2016 16:28:48
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:08
+Log Entry : 		05/06/2016 16:28:48
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:08
+Log Entry : 		05/06/2016 16:28:48
 Create tread failed, sub-forum does not exist
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:09
+Log Entry : 		05/06/2016 16:28:49
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:09
+Log Entry : 		05/06/2016 16:28:49
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:09
+Log Entry : 		05/06/2016 16:28:49
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:09
+Log Entry : 		05/06/2016 16:28:49
 Create tread failed, sub-forum does not exist
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:10
+Log Entry : 		05/06/2016 16:28:49
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:10
+Log Entry : 		05/06/2016 16:28:50
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:10
+Log Entry : 		05/06/2016 16:28:50
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:10
+Log Entry : 		05/06/2016 16:28:50
 Create tread failed, user does not exist
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:11
+Log Entry : 		05/06/2016 16:28:50
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:11
+Log Entry : 		05/06/2016 16:28:50
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:11
+Log Entry : 		05/06/2016 16:28:50
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:11
+Log Entry : 		05/06/2016 16:28:51
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:12
+Log Entry : 		05/06/2016 16:28:51
 Remove post 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:12
+Log Entry : 		05/06/2016 16:28:51
 Remove thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:12
+Log Entry : 		05/06/2016 16:28:51
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:12
+Log Entry : 		05/06/2016 16:28:51
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:12
+Log Entry : 		05/06/2016 16:28:51
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:13
+Log Entry : 		05/06/2016 16:28:52
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:13
+Log Entry : 		05/06/2016 16:28:52
 Remove post 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:13
+Log Entry : 		05/06/2016 16:28:52
 Remove thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:14
+Log Entry : 		05/06/2016 16:28:52
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:14
+Log Entry : 		05/06/2016 16:28:52
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:14
+Log Entry : 		05/06/2016 16:28:52
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:14
+Log Entry : 		05/06/2016 16:28:53
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:14
+Log Entry : 		05/06/2016 16:28:53
 Delete thread failed, there is no permission to that user
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:15
+Log Entry : 		05/06/2016 16:28:53
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:15
+Log Entry : 		05/06/2016 16:28:53
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:15
+Log Entry : 		05/06/2016 16:28:53
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:16
+Log Entry : 		05/06/2016 16:28:53
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:16
+Log Entry : 		05/06/2016 16:28:54
 Remove post 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:16
+Log Entry : 		05/06/2016 16:28:54
 Remove thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:16
+Log Entry : 		05/06/2016 16:28:54
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:17
+Log Entry : 		05/06/2016 16:28:54
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:17
+Log Entry : 		05/06/2016 16:28:54
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:17
+Log Entry : 		05/06/2016 16:28:54
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:17
+Log Entry : 		05/06/2016 16:28:55
 Delete thread failed, no thread with that id
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:18
+Log Entry : 		05/06/2016 16:28:55
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:18
+Log Entry : 		05/06/2016 16:28:55
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:18
+Log Entry : 		05/06/2016 16:28:55
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:18
+Log Entry : 		05/06/2016 16:28:55
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:18
+Log Entry : 		05/06/2016 16:28:56
 Delete thread failed, there is no permission to that user
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:19
+Log Entry : 		05/06/2016 16:28:56
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:19
+Log Entry : 		05/06/2016 16:28:56
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:19
+Log Entry : 		05/06/2016 16:28:56
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:20
+Log Entry : 		05/06/2016 16:28:56
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:20
+Log Entry : 		05/06/2016 16:28:56
 Delete thread failed, there is no permission to that user
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:20
+Log Entry : 		05/06/2016 16:28:57
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:20
+Log Entry : 		05/06/2016 16:28:57
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:21
+Log Entry : 		05/06/2016 16:28:57
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:21
+Log Entry : 		05/06/2016 16:28:57
 Dismiss moderator failed, sub-forum has not enough moderators
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:21
+Log Entry : 		05/06/2016 16:28:57
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:21
+Log Entry : 		05/06/2016 16:28:57
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:22
+Log Entry : 		05/06/2016 16:28:58
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:22
+Log Entry : 		05/06/2016 16:28:58
 Dismiss moderator failed, sub-forum has not enough moderators
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:22
+Log Entry : 		05/06/2016 16:28:58
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:22
+Log Entry : 		05/06/2016 16:28:58
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:23
+Log Entry : 		05/06/2016 16:28:59
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:23
+Log Entry : 		05/06/2016 16:28:59
 Dismiss moderator failed, sub-forum has not enough moderators
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:23
+Log Entry : 		05/06/2016 16:28:59
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:23
+Log Entry : 		05/06/2016 16:28:59
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:24
+Log Entry : 		05/06/2016 16:28:59
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:24
+Log Entry : 		05/06/2016 16:29:00
 nominateModerator fail, To  has no permission to be moderator, he is not a member
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:24
+Log Entry : 		05/06/2016 16:29:00
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:24
+Log Entry : 		05/06/2016 16:29:00
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:25
+Log Entry : 		05/06/2016 16:29:00
 Add thread 0
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:25
+Log Entry : 		05/06/2016 16:29:00
 nominateModerator fail, To  has no permission to be moderator, he is not a member
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:25
+Log Entry : 		05/06/2016 16:29:00
 User contoller created
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:25
+Log Entry : 		05/06/2016 16:29:01
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:25
+Log Entry : 		05/06/2016 16:29:01
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:26
+Log Entry : 		05/06/2016 16:29:01
 Add friend faild, nonMemis not a user
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:26
+Log Entry : 		05/06/2016 16:29:01
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:26
+Log Entry : 		05/06/2016 16:29:01
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:26
+Log Entry : 		05/06/2016 16:29:01
 Add friend faild, nonMemis not a user
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:27
+Log Entry : 		05/06/2016 16:29:02
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:27
+Log Entry : 		05/06/2016 16:29:02
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:27
+Log Entry : 		05/06/2016 16:29:02
 Add friend faild, nonMemis not a user
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:28
+Log Entry : 		05/06/2016 16:29:02
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:28
+Log Entry : 		05/06/2016 16:29:02
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:28
+Log Entry : 		05/06/2016 16:29:03
 Add friend faild, heIsNotAMemberis not a user
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:29
+Log Entry : 		05/06/2016 16:29:03
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:29
+Log Entry : 		05/06/2016 16:29:03
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:30
+Log Entry : 		05/06/2016 16:29:04
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:30
+Log Entry : 		05/06/2016 16:29:04
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:31
+Log Entry : 		05/06/2016 16:29:04
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:31
+Log Entry : 		05/06/2016 16:29:04
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:31
+Log Entry : 		05/06/2016 16:29:05
 Add friend faild, heIsNotAMemberis not a user
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:32
+Log Entry : 		05/06/2016 16:29:05
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:32
+Log Entry : 		05/06/2016 16:29:05
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:33
+Log Entry : 		05/06/2016 16:29:06
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:33
+Log Entry : 		05/06/2016 16:29:06
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:33
+Log Entry : 		05/06/2016 16:29:06
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:34
+Log Entry : 		05/06/2016 16:29:06
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:34
+Log Entry : 		05/06/2016 16:29:06
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:34
+Log Entry : 		05/06/2016 16:29:07
 Add friend faild, is not a user
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:35
+Log Entry : 		05/06/2016 16:29:07
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:35
+Log Entry : 		05/06/2016 16:29:07
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:37
+Log Entry : 		05/06/2016 16:29:08
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:37
+Log Entry : 		05/06/2016 16:29:08
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:37
+Log Entry : 		05/06/2016 16:29:08
 Remove friend faild, mem and admin are not friends
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:38
+Log Entry : 		05/06/2016 16:29:09
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:38
+Log Entry : 		05/06/2016 16:29:09
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:40
+Log Entry : 		05/06/2016 16:29:09
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:40
+Log Entry : 		05/06/2016 16:29:09
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:40
+Log Entry : 		05/06/2016 16:29:10
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:40
+Log Entry : 		05/06/2016 16:29:10
 Remove friend faild, admin and admin2 are not friends
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:41
+Log Entry : 		05/06/2016 16:29:10
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:41
+Log Entry : 		05/06/2016 16:29:10
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:42
+Log Entry : 		05/06/2016 16:29:10
 Remove friend faild, is not a user
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:42
+Log Entry : 		05/06/2016 16:29:11
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:42
+Log Entry : 		05/06/2016 16:29:11
 Forum testForum creation success
 -----------------------------------------------
-Log Entry : 		05/06/2016 11:14:42
+Log Entry : 		05/06/2016 16:29:11
 Add friend faild, nonMemis not a user
----------------------------------------------
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:29:11
+admin nominated successfully
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:29:11
+Forum testForum creation success
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:29:11
+Add friend faild, nonMemis not a user
+-----------------------------------------------
+Log Entry : 		05/06/2016 16:29:12
+admin nominated successfully
+---------------------------

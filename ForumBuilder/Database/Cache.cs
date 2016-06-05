@@ -17,7 +17,9 @@ namespace DataBase
         private List<SubForum> subForums;
         private Dictionary<int, Thread> threads;
         private Dictionary<int, Post> posts;
+        private Dictionary<string, Moderator> moderators;
         private static Cache singleton;
+
 
 
         private Cache()
@@ -120,6 +122,7 @@ namespace DataBase
             {
                 User su = new User(userName, password, email, DateTime.Today);
                 users.Add(userName, su);
+                superUsers.Add(userName, su);
                 return true;
             }
             catch
@@ -182,12 +185,38 @@ namespace DataBase
             }
         }
 
-        //public List<String> getModertorsReport(String forumName)
-        //{
-        //   return null;
-        //}
+        public List<String> getModertorsReport(String forumName)
+        {
+            try
+            {
+                List<string> report = new List<string>();
+                List<string> subforum = getsubForumsNamesOfForum(forumName);
+                foreach (string sf in subforum)
+                {
+                    string ans = "";
+                    SubForum subf = getSubForum(sf, forumName);
+                    ans += "subForum Name: " + sf + " Moderators: ";
+                    foreach (Moderator m in subf.moderators.Values)
+                    {
+                        ans += "Name:" + m.userName + ", Nominate By: " + m.nominatorName + ", at " + m.dateAdded.ToString("dd MM yyyy")+ "added posts: ";
+                        foreach (Post p in posts.Values)
+                        {
+                            if (p.writerUserName.Equals(m.userName))
+                            {
+                                ans += " " +p.title + ", " +  p.content;
+                            }
+                        }                    
+                    }
+                    report.Add(ans);
+                }
 
-
+                return report;
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
         public List<string> getUserFriends(string userName)
         {
@@ -201,6 +230,17 @@ namespace DataBase
             }
         }
 
+        public string getPassword(string userName)
+        {
+            try
+            {
+                return users[userName].password;
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
         public bool banMember(string bannedMember, string forumName)
         {
@@ -604,10 +644,18 @@ namespace DataBase
 
         }
 
-     //   public List<String> getSuperUserReportOfMembers()
-      //  {
+        public List<String> getSuperUserReportOfMembers()
+        {
+            try
+            {
+                return null;
+            }
+            catch
+            {
+                return null;
+            }
         
-      //  }
+        }
 
         private string enc(string password)
         {
