@@ -17,6 +17,7 @@ namespace Database
         private static DBClass singleton;
         private List<Forum> forums = new List<Forum>();
         private List<SubForum> subForums =new List<SubForum>();
+        Cache cache;
         OleDbConnection connection;
         static void Main(string[] args)
         {
@@ -126,7 +127,7 @@ namespace Database
             }
         }
 
-        public Boolean initializeDB()
+        private Boolean initializeDB()
         {
             try
             {
@@ -140,6 +141,7 @@ namespace Database
                 connection.Close();
                 forums = getForumsForInit();
                 subForums = getSubForumsForInit();
+                cache= Cache.getInstance;
                 return true;
             }
             catch
@@ -251,7 +253,7 @@ namespace Database
                             sf.moderators.Remove(dismissedModerator);
                         }
                     }
-                    return true;
+                    return cache.dismissModerator(dismissedModerator, subForumName, forumName);
                 }
                 else
                 {
@@ -301,7 +303,8 @@ namespace Database
                     command3.ExecuteNonQuery();
                     //added
                     closeConnectionDB();
-                    return true;
+                    return cache.addSuperUser(email, password, userName);
+                    //return true;
                 }
                 else
                 {
@@ -342,7 +345,8 @@ namespace Database
                         sf.moderators.Add(newModerator,new Moderator(newModerator, endDate,DateTime.Today,nominator));
                     }
                 }
-                return true;
+                //return true;
+                return cache.nominateModerator(newModerator, endDate, subForumName, forumName, nominator);
             }
             catch
             {
@@ -638,7 +642,8 @@ namespace Database
                         f.members.Remove(bannedMember);
                     }
                 }
-                return true;
+                //return true;
+                return cache.banMember( bannedMember, forumName);
             }
             catch
             {
@@ -683,7 +688,10 @@ namespace Database
                         f.forumPolicy.minLengthOfPassword = minLengthOfPassword;
                     }
                 }
-                return true;
+                //return true;
+                return cache.changePolicy(forumName, policy, isQuestionIdentifying, seniorityInForum,
+                    deletePostByModerator, timeToPassExpiration, minNumOfModerators, hasCapitalInPassword,
+                    hasNumberInPassword, minLengthOfPassword);
             }
             catch
             {
@@ -711,7 +719,8 @@ namespace Database
                         f.administrators.Add(newAdmin);
                     }
                 }
-                return true;
+                //return true;
+                return cache.nominateAdmin(newAdmin, forumName);
             }
             catch
             {
