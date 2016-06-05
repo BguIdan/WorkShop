@@ -142,7 +142,7 @@ namespace WebClient
         protected void clickOnSubForum(Object sender, EventArgs e)
         {//TODO gal: redirect to the subforum
             //showAlert(((Button)sender).Text + _userName);
-            Session["forumName"] = lbl_forumName.Text;
+            //Session["forumName"] = lbl_forumName.Text;
             Session["subForumName"] = ((Button)sender).Text;
             Response.Redirect("subForumWebPage.aspx");
         }

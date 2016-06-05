@@ -17,6 +17,7 @@ namespace Database
         private static DBClass singleton;
         private List<Forum> forums = new List<Forum>();
         private List<SubForum> subForums =new List<SubForum>();
+        Cache cache;
         OleDbConnection connection;
         static void Main(string[] args)
         {
@@ -126,7 +127,7 @@ namespace Database
             }
         }
 
-        public Boolean initializeDB()
+        private Boolean initializeDB()
         {
             try
             {
@@ -140,6 +141,7 @@ namespace Database
                 connection.Close();
                 forums = getForumsForInit();
                 subForums = getSubForumsForInit();
+                cache= Cache.getInstance;
                 return true;
             }
             catch
@@ -251,6 +253,7 @@ namespace Database
                             sf.moderators.Remove(dismissedModerator);
                         }
                     }
+                    //return cache.dismissModerator(dismissedModerator, subForumName, forumName);
                     return true;
                 }
                 else
@@ -301,6 +304,7 @@ namespace Database
                     command3.ExecuteNonQuery();
                     //added
                     closeConnectionDB();
+                    //return cache.addSuperUser(email, password, userName);
                     return true;
                 }
                 else
@@ -343,6 +347,7 @@ namespace Database
                     }
                 }
                 return true;
+                //return cache.nominateModerator(newModerator, endDate, subForumName, forumName, nominator);
             }
             catch
             {
@@ -639,6 +644,7 @@ namespace Database
                     }
                 }
                 return true;
+                //return cache.banMember( bannedMember, forumName);
             }
             catch
             {
@@ -684,6 +690,9 @@ namespace Database
                     }
                 }
                 return true;
+                //return cache.changePolicy(forumName, policy, isQuestionIdentifying, seniorityInForum,
+                    //deletePostByModerator, timeToPassExpiration, minNumOfModerators, hasCapitalInPassword,
+                    //hasNumberInPassword, minLengthOfPassword);
             }
             catch
             {
@@ -712,6 +721,7 @@ namespace Database
                     }
                 }
                 return true;
+                //return cache.nominateAdmin(newAdmin, forumName);
             }
             catch
             {
@@ -1521,79 +1531,56 @@ namespace Database
         }
         private List<Forum> getForumsForInit()
         {
-            try
-            {
-                OpenConnectionDB();
-                List<Forum> forums1 = new List<Forum>();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = connection;
-                command.CommandText = "SELECT  forumName FROM  forums";
-                OleDbDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    Forum forum = null;
-                    
-                    
-                    forums1.Add(forum);
-                }
-                closeConnectionDB();
-                return forums;
-            }
-            catch
-            {
-                closeConnectionDB();
-                return null; ;
-            }
-
-        }
-        private Forum getfbyN(string name)
-        {
+            OpenConnectionDB();
+            List<Forum> forums1 = new List<Forum>();
             Forum forum = null;
             try
             {
-                OpenConnectionDB();
-                OleDbCommand command2 = new OleDbCommand();
-                command2.Connection = connection;
-                command2.CommandText = "SELECT  * FROM  forums where forums.forumName='" + name + "'";
-                OleDbDataReader reader2 = command2.ExecuteReader();
-                reader2.Read();
-                OleDbCommand command3 = new OleDbCommand();
-                command3.Connection = connection;
-                command3.CommandText = "SELECT  * FROM  forumAdministrators where forumAdministrators.forumName='" + name + "'";
-                OleDbDataReader reader3 = command3.ExecuteReader();
-                List<String> administrators = new List<String>();
-                while (reader3.Read())
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "SELECT  * FROM  forums ";
+                OleDbDataReader reader = command.ExecuteReader();
+                while (reader.Read())
                 {
-                    administrators.Add(reader3.GetString(1));
+                    OleDbCommand command2 = new OleDbCommand();
+                    command2.Connection = connection;
+                    command2.CommandText = "SELECT  * FROM  forumAdministrators where forumAdministrators.forumName='" + reader.GetString(0) + "'";
+                    OleDbDataReader reader2 = command2.ExecuteReader();
+                    List<String> administrators = new List<String>();
+                    while (reader2.Read())
+                    {
+                        administrators.Add(reader2.GetString(1));
+                    }
+                    OleDbCommand command3 = new OleDbCommand();
+                    command3.Connection = connection;
+                    command3.CommandText = "SELECT  * FROM  policies where forumName='" + reader.GetString(0) + "'";
+                    OleDbDataReader reader3 = command3.ExecuteReader();
+                    reader3.Read();
+                    ForumPolicy policy = new ForumPolicy(reader3.GetString(1), reader3.GetBoolean(2), reader3.GetInt32(3),
+                        reader3.GetBoolean(4), reader3.GetInt32(5), reader3.GetInt32(6), reader3.GetBoolean(7),
+                        reader3.GetBoolean(8), reader3.GetInt32(9));
+                    forum = new Forum(reader.GetString(0), reader.GetString(1), policy, administrators);
+                    List<String> members = getMembersOfForumOld(forum.forumName);
+                    forum.members = members;
+                    List<String> subForums = getsubForumsNamesOfForumOld(forum.forumName);
+                    forum.subForums = subForums;
+                    forums1.Add(forum);
                 }
-                OleDbCommand command4 = new OleDbCommand();
-                command4.Connection = connection;
-                command4.CommandText = "SELECT  * FROM  policies where forumName='" + name + "'";
-                OleDbDataReader reader4 = command2.ExecuteReader();
-                reader4.Read();
-                ForumPolicy policy = new ForumPolicy(reader4.GetString(0), reader4.GetBoolean(1), reader4.GetInt32(2),
-                    reader4.GetBoolean(3), reader4.GetInt32(4), reader4.GetInt32(5), reader4.GetBoolean(6),
-                    reader4.GetBoolean(7), reader4.GetInt32(8));
-                forum = new Forum(reader2.GetString(0), reader2.GetString(1), policy, administrators);
                 closeConnectionDB();
-                List<String> members = getMembersOfForumOld(name);
-                forum.members = members;
-                List<String> subForums = getsubForumsNamesOfForumOld(name);
-                forum.subForums = subForums;
-                return forum;
+                return forums1;
             }
             catch
             {
                 closeConnectionDB();
                 return null;
             }
+
         }
 
         private List<string> getsubForumsNamesOfForumOld(string forumName)
         {
             try
             {
-                OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
                 command.CommandText = "SELECT  * FROM  subForums where forumName='" + forumName + "'";
@@ -1603,12 +1590,10 @@ namespace Database
                 {
                     subForums.Add(reader.GetString(0));
                 }
-                closeConnectionDB();
                 return subForums;
             }
             catch 
             {
-                closeConnectionDB();
                 return null;
             }
         }
@@ -1618,7 +1603,6 @@ namespace Database
             List<string> users = new List<string>();
             try
             {
-                OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
                 command.CommandText = "SELECT  * FROM  members where forumName='" + forumName + "'";
@@ -1627,12 +1611,10 @@ namespace Database
                 {
                     users.Add(reader.GetString(0));
                 }
-                closeConnectionDB();
                 return users;
             }
             catch
             {
-                closeConnectionDB();
                 return null;
             }
         }
@@ -1666,7 +1648,6 @@ namespace Database
             SubForum subForum = null;
             try
             {
-                OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
                 command.CommandText = "SELECT  * FROM  subForums where subForums.forumName='" + forumName + "' and " +
@@ -1697,12 +1678,10 @@ namespace Database
                 {
                     subForum.threads.Add(reader3.GetInt32(0));
                 }
-                closeConnectionDB();
                 return subForum;
             }
             catch
             {
-                closeConnectionDB();
                 return subForum;
             }
         }
@@ -1712,7 +1691,6 @@ namespace Database
             Moderator mod = null;
             try
             {
-                OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
                 command.CommandText = "SELECT  * FROM subForumModerators where moderatorName='"+v+"'";
@@ -1721,12 +1699,10 @@ namespace Database
                 {
                     mod=new Moderator(reader.GetString(2), DateTime.Parse(reader.GetDateTime(3).ToString("dd MM yyyy")), DateTime.Parse(reader.GetDateTime(5).ToString("dd MM yyyy")), reader.GetString(4));
                 }
-                closeConnectionDB();
                 return mod;
             }
             catch
             {
-                closeConnectionDB();
                 return null;
             }
         }
