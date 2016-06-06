@@ -11,7 +11,7 @@ namespace ForumBuilder.Common.ServiceContracts
     public interface IUserManager
     {
         [OperationContract]
-        Boolean addFriend(String userName, String friendToAdd);
+        String addFriend(String userName, String friendToAdd);
 
         [OperationContract]
         Boolean deleteFriend(String userName, String deletedFriend);

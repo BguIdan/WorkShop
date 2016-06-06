@@ -21,7 +21,7 @@ namespace WebClient.proxies
             return Channel.deletePost(postId, deletingUser);
         }
 
-        public Boolean addPost(String headLine, String content, String writerName, Int32 commentedPost)
+        public String addPost(String headLine, String content, String writerName, Int32 commentedPost)
         {
             return Channel.addPost(headLine, content, writerName, commentedPost);
         }

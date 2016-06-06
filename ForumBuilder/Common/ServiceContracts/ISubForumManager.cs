@@ -14,7 +14,7 @@ namespace ForumBuilder.Common.ServiceContracts
         Boolean dismissModerator(String dismissedModerator, String dismissByAdmin, String subForumName, String forumName);
 
         [OperationContract]
-        Boolean nominateModerator(String newModerator, String nominatorUser, DateTime date, String subForumName, String forumName);
+        String nominateModerator(String newModerator, String nominatorUser, DateTime date, String subForumName, String forumName);
 
         [OperationContract]
         String createThread(String headLine, String content, String writerName, String forumName, String subForumName);

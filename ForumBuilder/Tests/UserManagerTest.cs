@@ -66,7 +66,7 @@ namespace Tests
         {
             List<String> friends = this.userManager.getFriendList(this.userNonMember.userName);
             Assert.AreEqual(friends, null, "");
-            Assert.IsFalse(this.userManager.addFriend(this.userNonMember.userName, "heIsNotAMember"), "non member cannot add a friend");
+            Assert.IsFalse(this.userManager.addFriend(this.userNonMember.userName, "heIsNotAMember").Equals("friend was added successfuly"), "non member cannot add a friend");
             List<String> newFriendList = this.userManager.getFriendList(this.userNonMember.userName);
             Assert.AreEqual(newFriendList, null, "unsuccessful friend addition should not change the friend list");
         }
@@ -76,7 +76,7 @@ namespace Tests
         {
             List<String> friends = this.userManager.getFriendList(this.userNonMember.userName);
             Assert.AreEqual(friends, null, "");
-            Assert.IsFalse(this.userManager.addFriend(this.userNonMember.userName, this.userMember.userName), "non member cannot add a friend");
+            Assert.IsFalse(this.userManager.addFriend(this.userNonMember.userName, this.userMember.userName).Equals("friend was added successfuly"), "non member cannot add a friend");
             List<String> newFriendList = this.userManager.getFriendList(this.userNonMember.userName);
             Assert.AreEqual(newFriendList, null, "unsuccessful friend addition should not change the friend list");
         }
@@ -86,7 +86,7 @@ namespace Tests
         {
             List<String> friends = this.userManager.getFriendList(this.userNonMember.userName);
             Assert.AreEqual(friends, null, "");
-            Assert.IsFalse(this.userManager.addFriend(this.userNonMember.userName, this.userAdmin.userName), "non member cannot add a friend");
+            Assert.IsFalse(this.userManager.addFriend(this.userNonMember.userName, this.userAdmin.userName).Equals("friend was added successfuly"), "non member cannot add a friend");
             List<String> newFriendList = this.userManager.getFriendList(this.userNonMember.userName);
             Assert.AreEqual(newFriendList, null, "unsuccessful friend addition should not change the friend list");
         }

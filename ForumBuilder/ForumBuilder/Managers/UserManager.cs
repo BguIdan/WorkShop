@@ -30,7 +30,7 @@ namespace Service
             }
         }
 
-        public Boolean addFriend(String userName, String friendToAdd)
+        public String addFriend(String userName, String friendToAdd)
         {
             return userController.addFriend(userName, friendToAdd);
         }

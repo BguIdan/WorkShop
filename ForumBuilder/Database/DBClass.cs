@@ -481,10 +481,10 @@ namespace Database
                 OleDbDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    modertorsReport.Add(reader.GetString(0) + " , " + reader.GetString(1) + " , " +
-                        reader.GetString(2) + " , " +
-                        reader.GetDateTime(3).ToString("dd MM yyyy") + " , " +
-                        reader.GetString(4) + " , " + reader.GetString(5));
+                    modertorsReport.Add("subForum: "+reader.GetString(0) + ", \t moderator: " +
+                        reader.GetString(1) + ", \t nominator: " + reader.GetString(2) + ",\t DateAdded:" +
+                        reader.GetDateTime(3).ToString("dd MM yyyy") + ", \n post title: " +
+                        reader.GetString(4) + ", \n post content:" + reader.GetString(5));
                 }
                 closeConnectionDB();
                 return modertorsReport;

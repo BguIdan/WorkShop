@@ -74,20 +74,20 @@ namespace ForumBuilder.Controllers
             }
             return false;
         }
-        public bool nominateModerator(string newModerator, string nominatorUser, DateTime date, string subForumName, string forumName)
+        public String nominateModerator(string newModerator, string nominatorUser, DateTime date, string subForumName, string forumName)
         {
             SubForum subForum = getSubForum(subForumName, forumName);
             if (subForum == null)
             {
                 logger.logPrint("sub forum does not exist",0);
                 logger.logPrint("sub forum does not exist",2);
-                return false;
+                return "sub forum does not exist";
             }
             if (DB.getUser(newModerator) == null)
             {
                 logger.logPrint("user does not exist", 0);
                 logger.logPrint("user does not exist", 2);
-                return false;
+                return "user does not exist";
             }
             if ((ForumController.getInstance.isAdmin(nominatorUser, forumName)|| SuperUserController.getInstance.isSuperUser(nominatorUser)) && 
                 ForumController.getInstance.isMember(newModerator, forumName)&&
@@ -97,28 +97,31 @@ namespace ForumBuilder.Controllers
                 {
                     logger.logPrint("the date in nominate moderator already past",0);
                     logger.logPrint("the date in nominate moderator already past",2);
-                    return false;
+                    return "the date in nominate moderator already past";
                 }
                 if (DB.nominateModerator(newModerator, date, subForumName,forumName,nominatorUser))
                 {
                     logger.logPrint("nominate moderator " + newModerator + "success",0);
                     logger.logPrint("nominate moderator " + newModerator + "success",1);
-                    return true;
+                    return "nominate moderator succeed";
                 }
             }
             if(!ForumController.getInstance.isAdmin(nominatorUser, forumName)&&!SuperUserController.getInstance.isSuperUser(nominatorUser)){
-                logger.logPrint("nominateModerator fail, To " + nominatorUser+" has no permission to nominate moderator",0);
-                logger.logPrint("nominateModerator fail, To " + nominatorUser+" has no permission to nominate moderator",2);
+                logger.logPrint("nominate Moderator fail, To " + nominatorUser+" has no permission to nominate moderator",0);
+                logger.logPrint("nominate Moderator fail, To " + nominatorUser+" has no permission to nominate moderator",2);
+                return "nominateModerator fail, To " + nominatorUser + " has no permission to nominate moderator";
                 }
             if(!ForumController.getInstance.isMember(newModerator, forumName)){
-                logger.logPrint("nominateModerator fail, To " + newModerator + " has no permission to be moderator, he is not a member",0);
-                logger.logPrint("nominateModerator fail, To " + newModerator + " has no permission to be moderator, he is not a member",2);
+                logger.logPrint("nominate Moderator fail, To " + newModerator + " has no permission to be moderator, he is not a member",0);
+                logger.logPrint("nominate Moderator fail, To " + newModerator + " has no permission to be moderator, he is not a member",2);
+                return "nominateModerator fail, To " + newModerator + " has no permission to be moderator, he is not a member";
                 }
             if(DB.getforumByName(forumName).forumPolicy.seniorityInForum > (DB.getUser(newModerator).date - DateTime.Today).Days){
-                logger.logPrint("nominateModerator fail, To " + newModerator + " has not enough seniority",0);
-                logger.logPrint("nominateModerator fail, To " + newModerator + " has not enough seniority",2);
+                logger.logPrint("nominate Moderator fail, To " + newModerator + " has not enough seniority",0);
+                logger.logPrint("nominate Moderator fail, To " + newModerator + " has not enough seniority",2);
+                return "nominate Moderator fail, To " + newModerator + " has not enough seniority";
                 }
-            return false;
+            return "nominate Moderator fail";
         }
         public SubForum getSubForum(string subForumName, string forumName)
         {

@@ -25,13 +25,14 @@ namespace WebClient
         {
             string userName = Session["userName"].ToString();
             int threadId = ((PostData)Session["thread"]).id;
-            if (_pm.addPost(titleBox.Text, contentBox.Text, userName, threadId))
+            String addPost = _pm.addPost(titleBox.Text, contentBox.Text, userName, threadId);
+            if (addPost.Equals("comment created"))
             {
                 showAlert("post was added successfully");
                 Response.Redirect("PostsPage.aspx");
             }
             {
-                showAlert("coudn't add post");
+                showAlert(addPost);
             }
         }
         private void showAlert(String content)

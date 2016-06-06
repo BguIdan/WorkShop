@@ -44,6 +44,12 @@ namespace ForumBuilder.Controllers
                         logger.logPrint("Add sub-forum failed, " + name + " already exist", 2);
                         return "Add sub-forum failed, " + name + " already exist";
                     }
+                    if (moderators==null||moderators.Count < 1)
+                    {
+                        logger.logPrint("Add sub-forum failed, there is not enough moderators", 0);
+                        logger.logPrint("Add sub-forum failed, there is not enough moderators", 2);
+                        return "Add sub-forum failed, there is not enough moderators";
+                    }
                     foreach (string s in moderators.Keys)
                     {
                         if (!isMember(s, forumName))
@@ -499,7 +505,7 @@ namespace ForumBuilder.Controllers
         }
         public List<Post> getAdminReportPostOfmember(String AdminName, String forumName, String memberName)
         {
-            if (isAdmin(AdminName, forumName))
+            if (isAdmin(AdminName, forumName) && isMember(memberName, forumName))
                 return DB.getMemberPosts(memberName, forumName);
             return null;
         }

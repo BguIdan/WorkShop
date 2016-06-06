@@ -84,7 +84,7 @@ namespace Tests
         {
             String headLine = "head";
             String content = "content";
-            Assert.IsTrue(this.postController.addComment(headLine, content, this.userMember.userName, this.postId));
+            Assert.IsTrue(this.postController.addComment(headLine, content, this.userMember.userName, this.postId).Equals("comment created"));
             List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(posts.Count, 2);
             Post comment = posts[1];
@@ -100,7 +100,7 @@ namespace Tests
         {
             String headLine = "head";
             String content = "content";
-            Assert.IsTrue(this.postController.addComment(headLine, content, this.userAdmin.userName, this.postId));
+            Assert.IsTrue(this.postController.addComment(headLine, content, this.userAdmin.userName, this.postId).Equals("comment created"));
             List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(posts.Count, 2);
             Post comment = posts[1];
@@ -116,7 +116,7 @@ namespace Tests
         {
             String headLine = "head";
             String content = "content";
-            Assert.IsTrue(this.postController.addComment(headLine, content, this.userMod.userName, this.postId));
+            Assert.IsTrue(this.postController.addComment(headLine, content, this.userMod.userName, this.postId).Equals("comment created"));
             List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(posts.Count, 2);
             Post comment = posts[1];
@@ -132,7 +132,7 @@ namespace Tests
         {
             String headLine = "head";
             String content = "content";
-            Assert.IsFalse(this.postController.addComment(headLine, content, this.userNonMember.userName, this.postId));
+            Assert.IsFalse(this.postController.addComment(headLine, content, this.userNonMember.userName, this.postId).Equals("comment created"));
             List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(posts.Count, 1);
         }
@@ -143,7 +143,7 @@ namespace Tests
         {
             String headLine = "";
             String content = "content";
-            Assert.IsTrue(this.postController.addComment(headLine, content, this.userMember.userName, this.postId));
+            Assert.IsTrue(this.postController.addComment(headLine, content, this.userMember.userName, this.postId).Equals("comment created"));
             List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(posts.Count, 2);
             Post comment = posts[1];
@@ -159,7 +159,7 @@ namespace Tests
         {
             String headLine = "";
             String content = "content";
-            Assert.IsTrue(this.postController.addComment(headLine, content, this.userAdmin.userName, this.postId));
+            Assert.IsTrue(this.postController.addComment(headLine, content, this.userAdmin.userName, this.postId).Equals("comment created"));
             List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(posts.Count, 2);
             Post comment = posts[1];
@@ -175,7 +175,7 @@ namespace Tests
         {
             String headLine = "";
             String content = "content";
-            Assert.IsTrue(this.postController.addComment(headLine, content, this.userMod.userName, this.postId));
+            Assert.IsTrue(this.postController.addComment(headLine, content, this.userMod.userName, this.postId).Equals("comment created"));
             List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(posts.Count, 2);
             Post comment = posts[1];
@@ -191,7 +191,7 @@ namespace Tests
         {
             String headLine = "";
             String content = "content";
-            Assert.IsFalse(this.postController.addComment(headLine, content, this.userNonMember.userName, this.postId));
+            Assert.IsFalse(this.postController.addComment(headLine, content, this.userNonMember.userName, this.postId).Equals("comment created"));
             List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(posts.Count, 1);
         }
@@ -201,7 +201,7 @@ namespace Tests
         {
             String headLine = "head";
             String content = "";
-            Assert.IsTrue(this.postController.addComment(headLine, content, this.userMember.userName, this.postId));
+            Assert.IsTrue(this.postController.addComment(headLine, content, this.userMember.userName, this.postId).Equals("comment created"));
             List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(posts.Count, 2);
             Post comment = posts[1];
@@ -217,7 +217,7 @@ namespace Tests
         {
             String headLine = "head";
             String content = "";
-            Assert.IsTrue(this.postController.addComment(headLine, content, this.userAdmin.userName, this.postId));
+            Assert.IsTrue(this.postController.addComment(headLine, content, this.userAdmin.userName, this.postId).Equals("comment created"));
             List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(posts.Count, 2);
             Post comment = posts[1];
@@ -233,7 +233,7 @@ namespace Tests
         {
             String headLine = "head";
             String content = "";
-            Assert.IsTrue(this.postController.addComment(headLine, content, this.userMod.userName, this.postId));
+            Assert.IsTrue(this.postController.addComment(headLine, content, this.userMod.userName, this.postId).Equals("comment created"));
             List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(posts.Count, 2);
             Post comment = posts[1];
@@ -249,7 +249,7 @@ namespace Tests
         {
             String headLine = "head";
             String content = "";
-            Assert.IsFalse(this.postController.addComment(headLine, content, this.userNonMember.userName, this.postId));
+            Assert.IsFalse(this.postController.addComment(headLine, content, this.userNonMember.userName, this.postId).Equals("comment created"));
             List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(posts.Count, 1);
         }
@@ -259,7 +259,7 @@ namespace Tests
         {
             String headLine = "";
             String content = "";
-            Assert.IsFalse(this.postController.addComment(headLine, content, this.userMember.userName, this.postId));
+            Assert.IsFalse(this.postController.addComment(headLine, content, this.userMember.userName, this.postId).Equals("comment created"));
             List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(posts.Count, 1);
         }
@@ -269,7 +269,7 @@ namespace Tests
         {
             String headLine = "";
             String content = "";
-            Assert.IsFalse(this.postController.addComment(headLine, content, this.userAdmin.userName, this.postId));
+            Assert.IsFalse(this.postController.addComment(headLine, content, this.userAdmin.userName, this.postId).Equals("comment created"));
             List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(posts.Count, 1);
         }
@@ -279,7 +279,7 @@ namespace Tests
         {
             String headLine = "";
             String content = "";
-            Assert.IsFalse(this.postController.addComment(headLine, content, this.userMod.userName, this.postId));
+            Assert.IsFalse(this.postController.addComment(headLine, content, this.userMod.userName, this.postId).Equals("comment created"));
             List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(posts.Count, 1);
         }
@@ -289,7 +289,7 @@ namespace Tests
         {
             String headLine = "head";
             String content = "";
-            Assert.IsFalse(this.postController.addComment(headLine, content, this.userNonMember.userName, this.postId));
+            Assert.IsFalse(this.postController.addComment(headLine, content, this.userNonMember.userName, this.postId).Equals("comment created"));
             List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(posts.Count, 1);
         }
@@ -299,7 +299,7 @@ namespace Tests
         {
             String headLine = "head";
             String content = "content";
-            Assert.IsFalse(this.postController.addComment(headLine, content, this.userMember.userName, this.postId + 1));
+            Assert.IsFalse(this.postController.addComment(headLine, content, this.userMember.userName, this.postId + 1).Equals("comment created"));
             List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(posts.Count, 1);
         }
@@ -309,7 +309,7 @@ namespace Tests
         {
             String headLine = null;
             String content = "content";
-            Assert.IsFalse(this.postController.addComment(headLine, content, this.userMember.userName, this.postId + 1));
+            Assert.IsFalse(this.postController.addComment(headLine, content, this.userMember.userName, this.postId + 1).Equals("comment created"));
             List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(posts.Count, 1);
         }
@@ -319,7 +319,7 @@ namespace Tests
         {
             String headLine = "head";
             String content = null;
-            Assert.IsFalse(this.postController.addComment(headLine, content, this.userMember.userName, this.postId + 1));
+            Assert.IsFalse(this.postController.addComment(headLine, content, this.userMember.userName, this.postId + 1).Equals("comment created"));
             List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(posts.Count, 1);
         }
@@ -329,7 +329,7 @@ namespace Tests
         {
             String headLine = "head";
             String content = "content";
-            Assert.IsFalse(this.postController.addComment(headLine, content, null, this.postId + 1));
+            Assert.IsFalse(this.postController.addComment(headLine, content, null, this.postId + 1).Equals("comment created"));
             List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(posts.Count, 1);
         }
@@ -462,8 +462,8 @@ namespace Tests
             }
             Assert.IsNotNull(newPost, "the added post should exist");
             int id = newPost.id;
-            Assert.IsTrue(this.postController.addComment("head", "subcomment", this.userMember.userName, id));
-            Assert.IsTrue(this.postController.addComment("head2", "subcomment2", this.userAdmin.userName, id));
+            Assert.IsTrue(this.postController.addComment("head", "subcomment", this.userMember.userName, id).Equals("comment created"));
+            Assert.IsTrue(this.postController.addComment("head2", "subcomment2", this.userAdmin.userName, id).Equals("comment created"));
             Assert.IsTrue(this.postController.removeComment(id, this.userMember.userName).Equals("Post removed"));
             posts = this.postController.getAllPosts(this.forumName, this.subForumName);
             foreach (Post p in posts)
@@ -490,8 +490,8 @@ namespace Tests
             }
             Assert.IsNotNull(newPost, "the added post should exist");
             int id = newPost.id;
-            Assert.IsTrue(this.postController.addComment("head", "subcomment", this.userMember.userName, id));
-            Assert.IsTrue(this.postController.addComment("head2", "subcomment2", this.userAdmin.userName, id));
+            Assert.IsTrue(this.postController.addComment("head", "subcomment", this.userMember.userName, id).Equals("comment created"));
+            Assert.IsTrue(this.postController.addComment("head2", "subcomment2", this.userAdmin.userName, id).Equals("comment created"));
             Assert.IsTrue(this.postController.removeComment(id, this.userAdmin.userName).Equals("Post removed"));
             posts = this.postController.getAllPosts(this.forumName, this.subForumName);
             foreach (Post p in posts)
@@ -520,7 +520,7 @@ namespace Tests
             }
             Assert.IsNotNull(newPost, "the added post should exist");
             int parentId = newPost.id;
-            Assert.IsTrue(this.postController.addComment("head", "subcomment", this.userMember.userName, parentId));
+            Assert.IsTrue(this.postController.addComment("head", "subcomment", this.userMember.userName, parentId).Equals("comment created"));
             commentCounter++;
             posts = this.postController.getAllPosts(this.forumName, this.subForumName);
             newPost = null;
@@ -562,7 +562,7 @@ namespace Tests
             }
             Assert.IsNotNull(newPost, "the added post should exist");
             int parentId = newPost.id;
-            Assert.IsTrue(this.postController.addComment("head", "subcomment", this.userAdmin.userName, parentId));
+            Assert.IsTrue(this.postController.addComment("head", "subcomment", this.userAdmin.userName, parentId).Equals("comment created"));
             commentCounter++;
             posts = this.postController.getAllPosts(this.forumName, this.subForumName);
             newPost = null;
@@ -604,7 +604,7 @@ namespace Tests
             }
             Assert.IsNotNull(newPost, "the added post should exist");
             int parentId = newPost.id;
-            Assert.IsTrue(this.postController.addComment("head", "subcomment", this.userMember.userName, parentId));
+            Assert.IsTrue(this.postController.addComment("head", "subcomment", this.userMember.userName, parentId).Equals("comment created"));
             commentCounter++;
             posts = this.postController.getAllPosts(this.forumName, this.subForumName);
             newPost = null;
@@ -618,8 +618,8 @@ namespace Tests
             }
             Assert.IsNotNull(newPost, "the added post should exist");
             int id = newPost.id;
-            Assert.IsTrue(this.postController.addComment("head", "content", this.userMember.userName, id));
-            Assert.IsTrue(this.postController.addComment("head", "content", this.userAdmin.userName, id));
+            Assert.IsTrue(this.postController.addComment("head", "content", this.userMember.userName, id).Equals("comment created"));
+            Assert.IsTrue(this.postController.addComment("head", "content", this.userAdmin.userName, id).Equals("comment created"));
             commentCounter += 2;
             Assert.IsTrue(this.postController.removeComment(id, this.userMember.userName).Equals("Post removed"));
             commentCounter -= 3;
@@ -650,7 +650,7 @@ namespace Tests
             }
             Assert.IsNotNull(newPost, "the added post should exist");
             int parentId = newPost.id;
-            Assert.IsTrue(this.postController.addComment("head", "subcomment", this.userAdmin.userName, parentId));
+            Assert.IsTrue(this.postController.addComment("head", "subcomment", this.userAdmin.userName, parentId).Equals("comment created"));
             commentCounter++;
             posts = this.postController.getAllPosts(this.forumName, this.subForumName);
             newPost = null;
@@ -664,8 +664,8 @@ namespace Tests
             }
             Assert.IsNotNull(newPost, "the added post should exist");
             int id = newPost.id;
-            Assert.IsTrue(this.postController.addComment("head", "content", this.userMember.userName, id));
-            Assert.IsTrue(this.postController.addComment("head", "content", this.userAdmin.userName, id));
+            Assert.IsTrue(this.postController.addComment("head", "content", this.userMember.userName, id).Equals("comment created"));
+            Assert.IsTrue(this.postController.addComment("head", "content", this.userAdmin.userName, id).Equals("comment created"));
             commentCounter += 2;
             Assert.IsTrue(this.postController.removeComment(id, this.userAdmin.userName).Equals("Post removed"));
             commentCounter -= 3;
@@ -696,7 +696,7 @@ namespace Tests
             }
             Assert.IsNotNull(newPost, "the added post should exist");
             int parentId = newPost.id;
-            Assert.IsTrue(this.postController.addComment("head", "subcomment", this.userAdmin.userName, parentId));
+            Assert.IsTrue(this.postController.addComment("head", "subcomment", this.userAdmin.userName, parentId).Equals("comment created"));
             commentCounter++;
             posts = this.postController.getAllPosts(this.forumName, this.subForumName);
             newPost = null;
@@ -711,8 +711,8 @@ namespace Tests
             Assert.IsNotNull(newPost, "the added post should exist");
             int originalId = newPost.id;
             int id = newPost.id;
-            Assert.IsTrue(this.postController.addComment("head", "content", this.userMember.userName, originalId));
-            Assert.IsTrue(this.postController.addComment("head", "content", this.userAdmin.userName, originalId));
+            Assert.IsTrue(this.postController.addComment("head", "content", this.userMember.userName, originalId).Equals("comment created"));
+            Assert.IsTrue(this.postController.addComment("head", "content", this.userAdmin.userName, originalId).Equals("comment created"));
             commentCounter += 2;
             for (int i = 0; i < 5; i++)
             {
@@ -728,8 +728,8 @@ namespace Tests
                 }
                 Assert.IsNotNull(newPost, "the added post should exist");
                 id = newPost.id;
-                Assert.IsTrue(this.postController.addComment("head", "content", this.userMember.userName, id));
-                Assert.IsTrue(this.postController.addComment("head", "content", this.userAdmin.userName, id));
+                Assert.IsTrue(this.postController.addComment("head", "content", this.userMember.userName, id).Equals("comment created"));
+                Assert.IsTrue(this.postController.addComment("head", "content", this.userAdmin.userName, id).Equals("comment created"));
                 commentCounter += 2;
             }
             Assert.IsTrue(this.postController.removeComment(originalId, this.userAdmin.userName).Equals("Post removed"));
@@ -784,7 +784,7 @@ namespace Tests
             Assert.IsTrue(this.subForumController.createThread(headLine, content, this.userMember.userName, this.forumName, this.subForumName).Equals("Create tread succeed"));
             List<Post> postList = this.postController.getAllPosts(this.forumName, this.subForumName);
             Post post = postList[0];
-            Assert.IsTrue(this.postController.addComment("hii", "post to delete", this.userMember.userName, post.id));
+            Assert.IsTrue(this.postController.addComment("hii", "post to delete", this.userMember.userName, post.id).Equals("comment created"));
             postList = this.postController.getAllPosts(this.forumName, this.subForumName);
             post = postList[1];
             Assert.IsFalse(this.postController.removeComment(post.id, this.userMod.userName).Equals("Post removed"));
@@ -800,7 +800,7 @@ namespace Tests
             Assert.IsTrue(this.subForumController.createThread(headLine, content, this.userMember.userName, this.forumName, this.subForumName).Equals("Create tread succeed"));
             List<Post> postList = this.postController.getAllPosts(this.forumName, this.subForumName);
             Post post = postList[0];
-            Assert.IsTrue(this.postController.addComment("hii", "post to delete", this.userMember.userName, post.id));
+            Assert.IsTrue(this.postController.addComment("hii", "post to delete", this.userMember.userName, post.id).Equals("comment created"));
             postList = this.postController.getAllPosts(this.forumName, this.subForumName);
             post = postList[1];
             Assert.IsTrue(this.postController.removeComment(post.id, this.userMod.userName).Equals("Post removed"));

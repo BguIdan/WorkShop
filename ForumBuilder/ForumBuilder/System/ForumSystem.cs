@@ -121,9 +121,9 @@ namespace ForumBuilder.Systems
             ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180,1, true, true, 2);
             List<String> list = new List<String>();
             list.Add("idan");
-            if (!SuperUserController.getInstance.createForum("f", "f",fp, list, "idan"))
+            if (!SuperUserController.getInstance.createForum("f", "f",fp, list, "idan").Equals("Forum " + "f" + " creation success"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
-            if (!SuperUserController.getInstance.createForum("f2", "f", fp, list, "idan"))
+            if (!SuperUserController.getInstance.createForum("f2", "f", fp, list, "idan").Equals("Forum " + "f2" + " creation success"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
             if (!ForumController.getInstance.registerUser("g1", "gG1", "g@g.g","sad","bad" ,"f").Equals("Register user succeed"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!");

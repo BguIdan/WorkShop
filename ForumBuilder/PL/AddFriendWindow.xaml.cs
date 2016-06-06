@@ -36,7 +36,7 @@ namespace PL
         private void button_Click(object sender, RoutedEventArgs e)
         {
             UserManagerClient uc = new UserManagerClient();
-            if (uc.addFriend(_userName, friendName.Text))
+            if (uc.addFriend(_userName, friendName.Text).Equals("friend was added successfuly"))
             {
                 MessageBox.Show("friend was added successfuly");
                 ForumWindow newWin = new ForumWindow(_forumData, _userName);

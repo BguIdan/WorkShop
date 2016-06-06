@@ -68,7 +68,8 @@ namespace PL
             {
                 if (_parentID != -1)
                 {
-                    if (_pm.addPost(title.Text, content.Text, _userName, _parentID))
+                    String addPost = _pm.addPost(title.Text, content.Text, _userName, _parentID);
+                    if (addPost.Equals("comment created"))
                     {
                         MessageBox.Show("post was added succesfully");
                         _prevWindow.Close();
@@ -78,7 +79,7 @@ namespace PL
                     }
                     else
                     {
-                        MessageBox.Show("could not add post");
+                        MessageBox.Show(addPost);
                     }
                 }
                 else
