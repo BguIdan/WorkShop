@@ -35,7 +35,7 @@ namespace Tests
                                                         fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword);
             ForumData forumData = new ForumData("testForum", "descr", fpd, new List<String>(), new List<String>());
             UserData userAdmin = new UserData("admin", "Adminpass1", "admin@gmail.com");
-            superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName);
+            superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName).Equals("Register user " + userAdmin.userName + "Complited");
             List<string> adminList = new List<string>();
             adminList.Add(userAdmin.userName);
             
@@ -78,7 +78,7 @@ namespace Tests
                                                         fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword);
             ForumData forumData = new ForumData("testForum", "descr", fpd, new List<String>(), new List<String>());
             UserData userAdmin = new UserData("admin", "adminpass", "admin@gmail.com");
-            superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName);
+            superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName).Equals("Register user " + userAdmin.userName + "Complited");
             List<string> adminList = new List<string>();
             adminList.Add(userAdmin.userName);
             superUserController.createForum("testForum", "descr", fp, adminList, superUser.userName);
@@ -109,7 +109,7 @@ namespace Tests
                                                         fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword);
             ForumData forumData = new ForumData("testForum", "descr", fpd, new List<String>(), new List<String>());
             UserData userAdmin = new UserData("admin", "adminpass", "admin@gmail.com");
-            superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName);
+            superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName).Equals("Register user " + userAdmin.userName + "Complited");
             List<string> adminList = new List<string>();
             adminList.Add(userAdmin.userName);
             ForumPolicyData fpd2 = new ForumPolicyData(null, true, -5, true, -5, -5, true, true, -5);
@@ -138,7 +138,7 @@ namespace Tests
                                                         fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword);
             ForumData forumData = new ForumData("testForum", "descr", fpd, new List<String>(), new List<String>());
             UserData userAdmin = new UserData("admin", "adminpass", "admin@gmail.com");
-            superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName);
+            superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName).Equals("Register user " + userAdmin.userName + "Complited");
             List<string> adminList = new List<string>();
             adminList.Add(userAdmin.userName);
             ForumPolicyData fpd2 = new ForumPolicyData("p", true, 0, true, 180, 1, true, true, 5);

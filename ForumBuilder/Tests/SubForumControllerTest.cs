@@ -51,7 +51,7 @@ namespace Tests
             superUser1 = DBClass.getInstance.getSuperUser("tomer");
             SuperUserController.getInstance.addSuperUser("fkfkf@wkk.com", "1qW", "tomer");
             superUser.createForum("1", "1", fp, null, "tomer");
-            Assert.IsTrue(superUser.createForum("testForum", "descr", fp, adminList, "tomer"));
+            Assert.IsTrue(superUser.createForum("testForum", "descr", fp, adminList, "tomer").Equals("Forum " + "testForum" + " creation success"));
             //Assert.IsTrue(this.forumController.registerUser("admin", "adminpass", "admin@gmail.com", this.forumName));
             Assert.IsTrue(this.forumController.registerUser("mem", "Mempass1", "mem@gmail.com", "ansss", "anssss", this.forumName).Equals("Register user succeed"));
             Assert.IsTrue(this.forumController.registerUser("mod", "Modpass1", "mod@gmail.com", "ansss", "anssss", this.forumName).Equals("Register user succeed"));

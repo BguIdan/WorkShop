@@ -33,7 +33,7 @@ namespace Service
             }
         }
 
-        public Boolean createForum(String forumName, String descrption, ForumPolicyData fpd, List<String> administrators, String superUserName)
+        public String createForum(String forumName, String descrption, ForumPolicyData fpd, List<String> administrators, String superUserName)
         {
             return superUserController.createForum(forumName, descrption, new ForumPolicy(fpd.policy,
                 fpd.isQuestionIdentifying, fpd.seniorityInForum, fpd.deletePostByModerator,
@@ -64,7 +64,7 @@ namespace Service
             return superUserController.getSuperUserReportOfMembers(superUserName);
         }
 
-        public Boolean addUser(string userName, string password, string mail, string superUserName)
+        public String addUser(string userName, string password, string mail, string superUserName)
         {
             return superUserController.addUser(userName,  password,  mail,  superUserName);
         }
