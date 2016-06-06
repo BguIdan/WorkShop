@@ -81,6 +81,7 @@ namespace PL
                 
         private void MenuItem_Forums(object sender, RoutedEventArgs e)
         {
+            usersComboBox.Visibility = Visibility.Collapsed;
             MenuItem menuItem = e.Source as MenuItem;
             switch (menuItem.Name)
             {
@@ -94,6 +95,7 @@ namespace PL
 
         private void MenuItem_View(object sender, RoutedEventArgs e)
         {
+            usersComboBox.Visibility = Visibility.Collapsed;
             MenuItem menuItem = e.Source as MenuItem;
             switch (menuItem.Name)
             {
@@ -438,7 +440,7 @@ namespace PL
 
         private void usersComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            List<PostData> posts = _fMC.getAdminReportPostOfmember(_userName, _myforum.ToString(), usersComboBox.Text);
+            List<PostData> posts = _fMC.getAdminReportPostOfmember(_userName, _myforum.forumName, usersComboBox.Text);
             foreach(PostData post in posts)
             {
                 Expander exp = new Expander();
@@ -461,7 +463,7 @@ namespace PL
 
         private void usersComboBox_DropDownClosed(object sender, EventArgs e)
         {
-            List<PostData> posts = _fMC.getAdminReportPostOfmember(_userName, _myforum.ToString(), usersComboBox.Text);
+            List<PostData> posts = _fMC.getAdminReportPostOfmember(_userName, _myforum.forumName, usersComboBox.Text);
             if (posts == null)
                 return;
             foreach (PostData post in posts)

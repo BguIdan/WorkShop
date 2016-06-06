@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\User\Desktop\WorkShop\ForumBuilder\PL\App.xaml
-12-1737846738
+13-1555314099
 
-26912103736
+271633588850
 151611307574
-AddFriendWindow.xaml;addPostAndThreadWindow.xaml;DismissModerator.xaml;ForumWindow.xaml;MainWindow.xaml;privateMessagesWindow.xaml;RestorePasswordWindow.xaml;sendMessageWindow.xaml;SignUpWindow.xaml;SubForumWindow.xaml;SuperUserLogInWindow.xaml;SuperUserWindow.xaml;
+AddFriendWindow.xaml;AddModerator.xaml;addPostAndThreadWindow.xaml;DismissModerator.xaml;ForumWindow.xaml;MainWindow.xaml;privateMessagesWindow.xaml;RestorePasswordWindow.xaml;sendMessageWindow.xaml;SignUpWindow.xaml;SubForumWindow.xaml;SuperUserLogInWindow.xaml;SuperUserWindow.xaml;
 
 False
 
