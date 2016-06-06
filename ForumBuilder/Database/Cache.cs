@@ -194,7 +194,7 @@ namespace DataBase
                     SubForum subf = getSubForum(sf, forumName);
                     foreach (Moderator m in subf.moderators.Values)
                     {
-                        ans += "subForum: " + sf + ", \t moderator: " + m.userName + ", \t nominator: " + m.nominatorName + ",\t DateAdded:" + m.dateAdded.ToString("dd MM yyyy") + "added posts:";
+                        ans += "subForum: " + sf + ", \t moderator: " + m.userName + ", \t nominator: " + m.nominatorName + ",\t DateAdded:" + m.dateAdded.ToString("dd MM yyyy") + "\t added posts:";
                         foreach (Post p in posts.Values)
                         {
                             if (p.writerUserName.Equals(m.userName))

@@ -79,15 +79,21 @@ namespace ForumBuilder.Controllers
                         logger.logPrint("Add sub-forum failed, there is not enough moderators", 2);
                         return "Add sub-forum failed, there is not enough moderators according to forum policy";
                     }
-                    DB.addSubForum(name, forumName);
-                    foreach (string s in moderators.Keys)
+                    if (DB.addSubForum(name, forumName))
                     {
-                        DateTime date;
-                        moderators.TryGetValue(s, out date);
-                        SubForumController.getInstance.nominateModerator(s, creatorName,date, name, forumName);
+                        foreach (string s in moderators.Keys)
+                        {
+                            DateTime date;
+                            moderators.TryGetValue(s, out date);
+                            SubForumController.getInstance.nominateModerator(s, creatorName, date, name, forumName);
+                        }
+                        logger.logPrint("Add sub-forum failed", 0);
+                        logger.logPrint("Add sub-forum failed", 2);
+                        return "sub-forum added";
                     }
+                    return "sub-forum failed";
                 }
-                return "sub-forum added";
+                return "sub-forum failed";
             }
             else
             {

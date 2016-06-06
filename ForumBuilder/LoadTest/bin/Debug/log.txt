@@ -1,26 +1,28 @@
-Log Entry : 		06/06/2016 20:40:20
+Log Entry : 		06/06/2016 22:43:52
 Forum contoller created
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:40:20
+Log Entry : 		06/06/2016 22:43:52
 Post contoller created
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:40:20
+Log Entry : 		06/06/2016 22:43:52
 Sub-forum contoller created
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:40:20
+Log Entry : 		06/06/2016 22:43:52
 Super user contoller created
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:40:21
+Log Entry : 		06/06/2016 22:43:52
 admin nominated successfully
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:40:21
+Log Entry : 		06/06/2016 22:43:52
 Forum forum creation success
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:40:21
-Register user failed, user is not qualified
+Log Entry : 		06/06/2016 22:43:52
+Register user succeed
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:40:21
-Register user failed, user is not qualified
+Log Entry : 		06/06/2016 22:43:52
+Register user succeed
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:40:21
-Add sub-forum failed, the moderator mod is not member of fo
+Log Entry : 		06/06/2016 22:43:52
+nominate moderator modsuccess
+-----------------------------------------------
+Log Entry : 		06/06/201
