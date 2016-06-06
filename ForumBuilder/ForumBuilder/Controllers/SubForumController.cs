@@ -158,9 +158,11 @@ namespace ForumBuilder.Controllers
             int id = DB.getAvilableIntOfPost();
             logger.logPrint("Add thread " + id,0);
             logger.logPrint("Add thread " + id,1);
-            this.forumController.sendThreadCreationNotification(headLine, content, writerName, forumName, subForumName);
             if (DB.addPost(writerName, id, headLine, content, -1, timePublished, forumName) && DB.addThread(forumName, subForumName, id))
+            {
+                this.forumController.sendThreadCreationNotification(headLine, content, writerName, forumName, subForumName);
                 return "Create tread succeed";
+            }
             return "Create tread failed";
 
         }
