@@ -13,7 +13,7 @@ namespace ForumBuilder.Common.ServiceContracts
     public interface ISuperUserManager
     {
         [OperationContract]
-        Boolean createForum(String forumName, String descrption, ForumPolicyData fpd, List<String> administrators, String superUserName);
+        String createForum(String forumName, String descrption, ForumPolicyData fpd, List<String> administrators, String superUserName);
 
         [OperationContract]
         Boolean initialize(String name, String password, String email);
@@ -31,6 +31,6 @@ namespace ForumBuilder.Common.ServiceContracts
         List<String> getSuperUserReportOfMembers(string superUserName);
 
         [OperationContract]
-        Boolean addUser(string userName, string password, string mail, string superUserName);
+        String addUser(string userName, string password, string mail, string superUserName);
     }
 }

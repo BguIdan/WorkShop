@@ -110,10 +110,11 @@ namespace PL
             string desc = newForumDescription.Text;
             string administrators = newAdminUserName.Text;
             List<string> admins = administrators.Split(',').ToList();
-            Boolean isCreated = _sUMC.createForum(forumName, desc, new ForumPolicyData() , admins, _myUser.userName);
+            string created = _sUMC.createForum(forumName, desc, new ForumPolicyData() , admins, _myUser.userName);
+            Boolean isCreated = created.Equals("Forum " + forumName + " creation success");
             if (isCreated)
             {
-                MessageBox.Show("Forum: " + forumName + " was successfully created!");
+                MessageBox.Show("Forum " + forumName + " creation success");
                 createForumDialog.Visibility = System.Windows.Visibility.Visible;
                 createForumDialog.Focusable = true;
             }
@@ -237,11 +238,11 @@ namespace PL
             string name = userName.Text;
             string pass = Password.Password;
             string userMail = email.Text;
-
-            bool succ = _sUMC.addUser(name, pass, userMail, _myUser.userName);
+            string addUser= _sUMC.addUser(name, pass, userMail, _myUser.userName);
+            bool succ = addUser.Equals("Register user " + name + "Complited");
             if (!succ)
             {
-                MessageBox.Show("Failed to create user!");
+                MessageBox.Show(addUser);
             }
             else
             {
