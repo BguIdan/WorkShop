@@ -1,360 +1,360 @@
-Log Entry : 		06/06/2016 20:40:40
+Log Entry : 		06/06/2016 22:18:51
 Dismiss admin failed, nonMem is not a admin
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:40:41
+Log Entry : 		06/06/2016 22:18:52
 Dismiss admin failed, mem is not a admin
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:40:42
+Log Entry : 		06/06/2016 22:18:54
 Dismiss admin failed,  is not a admin
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:40:43
+Log Entry : 		06/06/2016 22:18:55
 Ban Member failed,  is not a super user
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:40:44
+Log Entry : 		06/06/2016 22:18:55
 Ban Member failed, nonMem is not a member
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:40:47
+Log Entry : 		06/06/2016 22:18:58
 Ban Member failed,  is not a member
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:40:49
+Log Entry : 		06/06/2016 22:19:01
 nominate admin fail, adminis already admin
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:40:52
+Log Entry : 		06/06/2016 22:19:04
 Register user failed, mem is already taken
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:40:53
+Log Entry : 		06/06/2016 22:19:05
 Register user failed, user is not qualified
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:40:53
+Log Entry : 		06/06/2016 22:19:05
 Register user faild, the forum,  does not exist
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:40:54
+Log Entry : 		06/06/2016 22:19:06
 Register user failed, user is not qualified
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:40:55
+Log Entry : 		06/06/2016 22:19:07
 Register user failed, user is not qualified
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:40:56
+Log Entry : 		06/06/2016 22:19:08
 Register user failed, user is not qualified
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:40:58
+Log Entry : 		06/06/2016 22:19:10
 Register user failed, user is not qualified
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:40:59
+Log Entry : 		06/06/2016 22:19:11
 Register user failed, user is not qualified
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:41:00
+Log Entry : 		06/06/2016 22:19:13
 Register user failed, user is not qualified
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:41:07
+Log Entry : 		06/06/2016 22:19:24
 Dismiss admin failed, nonMem is not a admin
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:41:07
+Log Entry : 		06/06/2016 22:19:25
 Dismiss admin failed, mem is not a admin
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:41:08
+Log Entry : 		06/06/2016 22:19:26
 Dismiss admin failed,  is not a admin
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:41:09
+Log Entry : 		06/06/2016 22:19:27
 Ban Member failed,  is not a super user
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:41:09
+Log Entry : 		06/06/2016 22:19:28
 Ban Member failed, nonMem is not a member
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:41:10
+Log Entry : 		06/06/2016 22:19:28
 Ban Member failed,  is not a member
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:41:11
+Log Entry : 		06/06/2016 22:19:30
 nominate admin fail, adminis already admin
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:41:13
+Log Entry : 		06/06/2016 22:19:33
 Register user failed, mem is already taken
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:41:13
+Log Entry : 		06/06/2016 22:19:33
 Register user failed, user is not qualified
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:41:14
+Log Entry : 		06/06/2016 22:19:34
 Register user faild, the forum,  does not exist
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:41:20
+Log Entry : 		06/06/2016 22:19:44
 Post contoller created
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:41:24
-Add comment failed, user does not exist
------------------------------------------------
-Log Entry : 		06/06/2016 20:41:27
-Add comment failed, user does not exist
------------------------------------------------
-Log Entry : 		06/06/2016 20:41:32
-Add comment failed, user does not exist
------------------------------------------------
-Log Entry : 		06/06/2016 20:41:33
-Add comment failed, there is no head or content in tread
------------------------------------------------
-Log Entry : 		06/06/2016 20:41:34
-Add comment failed, there is no head or content in tread
------------------------------------------------
-Log Entry : 		06/06/2016 20:41:35
-Add comment failed, there is no head or content in tread
------------------------------------------------
-Log Entry : 		06/06/2016 20:41:36
-Add comment failed, user does not exist
------------------------------------------------
-Log Entry : 		06/06/2016 20:41:37
-Add comment failed, there is no post to comment at
------------------------------------------------
-Log Entry : 		06/06/2016 20:41:37
-Add comment failed, there is no post to comment at
------------------------------------------------
-Log Entry : 		06/06/2016 20:41:38
-Add comment failed, there is no post to comment at
------------------------------------------------
-Log Entry : 		06/06/2016 20:41:39
-Add comment failed, there is no post to comment at
------------------------------------------------
-Log Entry : 		06/06/2016 20:41:43
-Delete thread comment, there is no permission to that user
------------------------------------------------
-Log Entry : 		06/06/2016 20:41:55
-Delete comment failed, there is no post with that id
------------------------------------------------
-Log Entry : 		06/06/2016 20:41:57
-Delete thread comment, there is no permission to that user
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:02
-Add comment failed, user does not exist
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:06
-Add comment failed, user does not exist
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:09
-Add comment failed, user does not exist
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:10
-Add comment failed, there is no head or content in tread
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:11
-Add comment failed, there is no head or content in tread
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:12
-Add comment failed, there is no head or content in tread
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:13
-Add comment failed, user does not exist
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:14
-Add comment failed, there is no post to comment at
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:14
-Add comment failed, there is no post to comment at
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:15
-Add comment failed, there is no post to comment at
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:16
-Add comment failed, there is no post to comment at
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:19
-Delete thread comment, there is no permission to that user
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:31
-Delete comment failed, there is no post with that id
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:31
-cannot create new forum because one or more of the fields is empty
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:32
-cannot create new forum because one or more of the fields is empty
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:33
-Dismiss moderator failed, sub-forum has not enough moderators
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:33
-cannot create new forum because one or more of the fields is empty
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:34
-Dismiss moderator failed, sub-forum has not enough moderators
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:34
-cannot create new forum because one or more of the fields is empty
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:34
-Dismiss moderator failed, sub-forum has not enough moderators
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:35
-cannot create new forum because one or more of the fields is empty
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:36
-cannot create new forum because one or more of the fields is empty
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:36
-cannot create new forum because one or more of the fields is empty
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:37
-user does not exist
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:37
-cannot create new forum because one or more of the fields is empty
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:37
-user does not exist
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:38
-cannot create new forum because one or more of the fields is empty
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:38
-nominate Moderator fail, To mem has not enough seniority
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:38
-cannot create new forum because one or more of the fields is empty
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:39
-nominate Moderator fail, To mem has not enough seniority
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:39
-cannot create new forum because one or more of the fields is empty
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:40
-cannot create new forum because one or more of the fields is empty
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:40
-cannot create new forum because one or more of the fields is empty
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:41
-cannot create new forum because one or more of the fields is empty
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:42
-cannot create new forum because one or more of the fields is empty
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:42
-cannot create new forum because one or more of the fields is empty
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:43
-cannot create new forum because one or more of the fields is empty
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:43
-Create tread failed, there is no head or content in tread
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:43
-cannot create new forum because one or more of the fields is empty
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:44
-Create tread failed, there is no head or content in tread
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:44
-cannot create new forum because one or more of the fields is empty
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:44
-Create tread failed, there is no head or content in tread
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:45
-cannot create new forum because one or more of the fields is empty
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:45
-Create tread failed, there is no head or content in tread
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:45
-cannot create new forum because one or more of the fields is empty
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:46
-Create tread failed, user does not exist
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:46
-cannot create new forum because one or more of the fields is empty
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:46
-Create tread failed, sub-forum does not exist
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:46
-cannot create new forum because one or more of the fields is empty
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:47
-Create tread failed, sub-forum does not exist
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:47
-cannot create new forum because one or more of the fields is empty
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:47
-Create tread failed, user does not exist
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:48
-cannot create new forum because one or more of the fields is empty
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:48
-cannot create new forum because one or more of the fields is empty
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:49
-cannot create new forum because one or more of the fields is empty
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:50
-Delete thread failed, there is no permission to that user
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:50
-cannot create new forum because one or more of the fields is empty
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:51
-cannot create new forum because one or more of the fields is empty
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:51
+Log Entry : 		06/06/2016 22:19:46
 Delete thread failed, no thread with that id
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:42:51
+Log Entry : 		06/06/2016 22:19:48
+Delete thread failed, no thread with that id
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:19:49
+Delete thread failed, no thread with that id
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:19:50
+Delete thread failed, no thread with that id
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:19:51
+Delete thread failed, no thread with that id
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:19:52
+Delete thread failed, no thread with that id
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:20:05
+Add comment failed, user does not exist
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:20:09
+Add comment failed, user does not exist
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:20:14
+Add comment failed, user does not exist
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:20:15
+Add comment failed, there is no head or content in tread
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:20:16
+Add comment failed, there is no head or content in tread
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:20:17
+Add comment failed, there is no head or content in tread
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:20:18
+Add comment failed, user does not exist
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:20:18
+Add comment failed, there is no post to comment at
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:20:19
+Add comment failed, there is no post to comment at
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:20:20
+Add comment failed, there is no post to comment at
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:20:20
+Add comment failed, there is no post to comment at
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:20:24
+Delete thread comment, there is no permission to that user
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:20:34
+Delete comment failed, there is no post with that id
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:20:36
+Delete thread comment, there is no permission to that user
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:20:40
+Add comment failed, user does not exist
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:20:43
+Add comment failed, user does not exist
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:20:46
+Add comment failed, user does not exist
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:20:47
+Add comment failed, there is no head or content in tread
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:20:47
+Add comment failed, there is no head or content in tread
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:20:48
+Add comment failed, there is no head or content in tread
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:20:49
+Add comment failed, user does not exist
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:20:49
+Add comment failed, there is no post to comment at
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:20:50
+Add comment failed, there is no post to comment at
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:20:50
+Add comment failed, there is no post to comment at
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:20:51
+Add comment failed, there is no post to comment at
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:20:53
+Delete thread comment, there is no permission to that user
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:01
+Delete comment failed, there is no post with that id
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:01
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:42:52
-Delete thread failed, there is no permission to that user
------------------------------------------------
-Log Entry : 		06/06/2016 20:42:52
+Log Entry : 		06/06/2016 22:21:02
 cannot create new forum because one or more of the fields is empty
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:42:53
+Log Entry : 		06/06/2016 22:21:02
+Dismiss moderator failed, sub-forum has not enough moderators
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:02
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:03
+Dismiss moderator failed, sub-forum has not enough moderators
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:03
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:03
+Dismiss moderator failed, sub-forum has not enough moderators
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:03
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:04
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:05
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:05
+user does not exist
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:05
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:06
+user does not exist
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:06
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:06
+nominate Moderator fail, To mem has not enough seniority
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:07
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:07
+nominate Moderator fail, To mem has not enough seniority
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:07
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:08
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:09
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:10
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:11
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:12
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:13
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:13
+Create tread failed, there is no head or content in tread
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:14
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:14
+Create tread failed, there is no head or content in tread
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:15
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:15
+Create tread failed, there is no head or content in tread
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:16
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:16
+Create tread failed, there is no head or content in tread
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:17
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:17
+Create tread failed, user does not exist
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:18
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:18
+Create tread failed, sub-forum does not exist
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:19
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:19
+Create tread failed, sub-forum does not exist
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:20
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:20
+Create tread failed, user does not exist
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:20
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:22
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:23
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:24
 Delete thread failed, there is no permission to that user
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:42:53
+Log Entry : 		06/06/2016 22:21:24
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:25
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:26
+Delete thread failed, no thread with that id
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:26
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:27
+Delete thread failed, there is no permission to that user
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:27
+cannot create new forum because one or more of the fields is empty
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:28
+Delete thread failed, there is no permission to that user
+-----------------------------------------------
+Log Entry : 		06/06/2016 22:21:29
 Dismiss moderator failed, sub-forum has not enough moderators
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:42:54
+Log Entry : 		06/06/2016 22:21:30
 Dismiss moderator failed, sub-forum has not enough moderators
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:42:55
+Log Entry : 		06/06/2016 22:21:31
 Dismiss moderator failed, sub-forum has not enough moderators
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:42:55
+Log Entry : 		06/06/2016 22:21:32
 user does not exist
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:42:56
+Log Entry : 		06/06/2016 22:21:33
 user does not exist
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:42:56
+Log Entry : 		06/06/2016 22:21:33
 Add friend faild, nonMemis not a user
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:42:57
+Log Entry : 		06/06/2016 22:21:34
 Add friend faild, nonMemis not a user
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:42:57
+Log Entry : 		06/06/2016 22:21:35
 Add friend faild, nonMemis not a user
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:42:58
+Log Entry : 		06/06/2016 22:21:35
 Add friend faild, heIsNotAMemberis not a user
 -----------------------------------------------
-Log Entry : 		06/06/2016 20:43:00
+Log Entry : 		06/06/2016 22:21:38
 Add friend faild, heIsNotAMemberis not a user
------------------------------------------------
-Log Entry : 		06/06/2016 20:43:01
-Add friend faild, is not a user
------------------------------------------------
-Log Entry : 		06/06/2016 20:43:02
-Remove friend faild, mem and admin are not friends
------------------------------------------------
-Log Entry : 		06/06/2016 20:43:04
-Remove friend faild, admin and admin2 are not friends
------------------------------------------------
-Log Entry : 		06/06/2016 20:43:04
-Remove friend faild, is not a user
------------------------------------------------
-Log Entry : 		06/06/2016 20:43:05
-Add friend faild, nonMemis not a user
------------------------------------------------
-Log Entry : 		06/06/2016 20:43:05
-Add friend faild, nonMemis not a user
----------------------------------
+-----------
