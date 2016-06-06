@@ -15,6 +15,7 @@
             </MenuItem>
             <MenuItem Header="View" Name="View" Click="MenuItem_View">
                 <MenuItem Header="View Forum Report" Name="viewReports"/>
+                <MenuItem Header="View Posts of User Report" Name="viewUserPosts"/>
             </MenuItem>
             <MenuItem Header="Notifications" IsEnabled="False" >
                 <MenuItem Header="Set Notifications"/>
@@ -78,6 +79,7 @@
             <ListBox Name="reportListBox" HorizontalAlignment="Left" Margin="21,130,0,55" Width="347"/>
             <Button x:Name="backButton2" Content="Back" FontFamily="cooper black" Height="27" Margin="146,333,147,0" VerticalAlignment="Top" Click="backButton_Click"/>
         </Grid>
+        <ComboBox x:Name="usersComboBox" Visibility="Collapsed" HorizontalAlignment="Left" Margin="22,108,0,0" VerticalAlignment="Top" Width="120" DropDownOpened="usersComboBox_DropDownOpened" DropDownClosed="usersComboBox_DropDownClosed"/>
 
     </Grid>
 </Window>
