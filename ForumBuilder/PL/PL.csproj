@@ -64,6 +64,9 @@
     <Compile Include="AddFriendWindow.xaml.cs">
       <DependentUpon>AddFriendWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddModerator.xaml.cs">
+      <DependentUpon>AddModerator.xaml</DependentUpon>
+    </Compile>
     <Compile Include="addPostAndThreadWindow.xaml.cs">
       <DependentUpon>addPostAndThreadWindow.xaml</DependentUpon>
     </Compile>
@@ -101,6 +104,10 @@
       <DependentUpon>SuperUserWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="AddFriendWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddModerator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

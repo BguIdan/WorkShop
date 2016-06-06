@@ -103,7 +103,9 @@ namespace PL
                             MessageBox.Show("you already connected via another client, " +
                                         "please login using your session key");
                             break;
-
+                        case -5:
+                            MessageBox.Show("password is out of date. please change to a new password");
+                            break;
                         default:
                             MessageBox.Show("login failed");
                             break;
