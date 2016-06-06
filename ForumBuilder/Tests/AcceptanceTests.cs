@@ -246,7 +246,7 @@ namespace Tests
             Assert.IsTrue(forum.registerUser("mem", "mempasS1", "mem@gmail.com", "ansss", "anssss", forumData.forumName).Equals("Register user succeed"));
 
             ISubForumManager subForum = new SubForumManagerClient();
-            Assert.IsTrue(subForum.nominateModerator("mem", userAdmin.userName, new DateTime(2030, 1, 1), subForumName, forumData.forumName), "nomination of member user should be successful");
+            Assert.IsTrue(subForum.nominateModerator("mem", userAdmin.userName, new DateTime(2030, 1, 1), subForumName, forumData.forumName).Equals("nominate moderator succeed"), "nomination of member user should be successful");
             Assert.IsTrue(SubForumController.getInstance.isModerator("mem", subForumName, forumData.forumName), "member should be moderator after his successful numonation");
         }
 
