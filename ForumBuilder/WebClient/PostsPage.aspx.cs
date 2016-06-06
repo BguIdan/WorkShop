@@ -107,7 +107,12 @@ namespace WebClient
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AddPost.aspx");
+            Response.Redirect("AddPostPage.aspx");
+        }
+
+        protected void backButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("subForumWebPage.aspx");
         }
     }
 }

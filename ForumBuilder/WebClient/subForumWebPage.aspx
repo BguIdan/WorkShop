@@ -11,4 +11,6 @@
     <br />
     <br />
     <asp:Button ID="addThreadButton" runat="server" Text="Add Thread" OnClick="addThreadButton_Click" Font-Bold="true" />
+    <asp:Button ID="backButton" runat="server" Text="back" OnClick="backButton_Click"/>
+
 </asp:Content>

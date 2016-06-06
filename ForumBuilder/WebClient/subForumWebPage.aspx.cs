@@ -119,5 +119,10 @@ namespace WebClient
         {
             Response.Redirect("AddThreadPage.aspx");
         }
+
+        protected void backButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ForumWindow.aspx");
+        }
     }
 }

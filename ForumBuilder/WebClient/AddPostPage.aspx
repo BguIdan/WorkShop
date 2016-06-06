@@ -19,4 +19,5 @@
     <div>
         <asp:Button ID="Button1" runat="server" Text="Add" OnClick="Button1_Click" />
     </div>
+    <asp:Button ID="backButton" runat="server" Text="back" OnClick="backButton_Click"/>
 </asp:Content>

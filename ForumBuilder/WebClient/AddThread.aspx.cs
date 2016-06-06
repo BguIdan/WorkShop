@@ -38,5 +38,9 @@ namespace WebClient
         {
             Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "popup", "<script>alert(\"" + content + "\");</script>");
         }
+        protected void backButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("subForumWebPage.aspx");
+        }
     }
 }

@@ -28,7 +28,7 @@ namespace WebClient
             if (_pm.addPost(titleBox.Text, contentBox.Text, userName, threadId))
             {
                 showAlert("post was added successfully");
-                Response.Redirect("PostPage.aspx");
+                Response.Redirect("PostsPage.aspx");
             }
             {
                 showAlert("coudn't add post");
@@ -37,6 +37,11 @@ namespace WebClient
         private void showAlert(String content)
         {
             Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "popup", "<script>alert(\"" + content + "\");</script>");
+        }
+
+        protected void backButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("PostsPage.aspx");
         }
     }
 }
