@@ -780,14 +780,14 @@ namespace Tests
             String headLine = "head";
             String content = "content";
             ForumPolicy newfp = new ForumPolicy("p", true, 2, false, 180, 2, true, true, 5);
-            Assert.IsTrue(forumController.setForumPreferences(this.forumName, "new Des", newfp, userAdmin.userName));
-            Assert.IsTrue(this.subForumController.createThread(headLine, content, this.userMember.userName, this.forumName, this.subForumName));
+            Assert.IsTrue(forumController.setForumPreferences(this.forumName, "new Des", newfp, userAdmin.userName).Equals("preferences had changed successfully"));
+            Assert.IsTrue(this.subForumController.createThread(headLine, content, this.userMember.userName, this.forumName, this.subForumName).Equals("Create tread succeed"));
             List<Post> postList = this.postController.getAllPosts(this.forumName, this.subForumName);
             Post post = postList[0];
             Assert.IsTrue(this.postController.addComment("hii", "post to delete", this.userMember.userName, post.id));
             postList = this.postController.getAllPosts(this.forumName, this.subForumName);
             post = postList[1];
-            Assert.IsFalse(this.postController.removeComment(post.id, this.userMod.userName));
+            Assert.IsFalse(this.postController.removeComment(post.id, this.userMod.userName).Equals("Post removed"));
         }
 
         [TestMethod]
@@ -796,14 +796,14 @@ namespace Tests
             String headLine = "head";
             String content = "content";
             ForumPolicy newfp = new ForumPolicy("p", true, 2, true, 180, 2, true, true, 5);
-            Assert.IsTrue(forumController.setForumPreferences(this.forumName, "new Des", newfp, userAdmin.userName));
-            Assert.IsTrue(this.subForumController.createThread(headLine, content, this.userMember.userName, this.forumName, this.subForumName));
+            Assert.IsTrue(forumController.setForumPreferences(this.forumName, "new Des", newfp, userAdmin.userName).Equals("preferences had changed successfully"));
+            Assert.IsTrue(this.subForumController.createThread(headLine, content, this.userMember.userName, this.forumName, this.subForumName).Equals("Create tread succeed"));
             List<Post> postList = this.postController.getAllPosts(this.forumName, this.subForumName);
             Post post = postList[0];
             Assert.IsTrue(this.postController.addComment("hii", "post to delete", this.userMember.userName, post.id));
             postList = this.postController.getAllPosts(this.forumName, this.subForumName);
             post = postList[1];
-            Assert.IsTrue(this.postController.removeComment(post.id, this.userMod.userName));
+            Assert.IsTrue(this.postController.removeComment(post.id, this.userMod.userName).Equals("Post removed"));
         }
 
 

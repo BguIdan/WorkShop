@@ -39,4 +39,3 @@ D:\Idan\Workshop\WorkShop.git\ForumBuilder\PL\obj\Debug\PL.Properties.Resources.
 D:\Idan\Workshop\WorkShop.git\ForumBuilder\PL\obj\Debug\PL.csproj.GenerateResource.Cache
 D:\Idan\Workshop\WorkShop.git\ForumBuilder\PL\obj\Debug\PL.exe
 D:\Idan\Workshop\WorkShop.git\ForumBuilder\PL\obj\Debug\PL.pdb
-C:\Users\User\Documents\WorkShop\ForumBuilder\PL\bin\Debug\PL.exe.config

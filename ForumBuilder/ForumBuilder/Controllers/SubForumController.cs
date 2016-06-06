@@ -83,6 +83,12 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("sub forum does not exist",2);
                 return false;
             }
+            if (DB.getUser(newModerator) == null)
+            {
+                logger.logPrint("user does not exist", 0);
+                logger.logPrint("user does not exist", 2);
+                return false;
+            }
             if ((ForumController.getInstance.isAdmin(nominatorUser, forumName)|| SuperUserController.getInstance.isSuperUser(nominatorUser)) && 
                 ForumController.getInstance.isMember(newModerator, forumName)&&
                 DB.getforumByName(forumName).forumPolicy.seniorityInForum<=(DB.getUser(newModerator).date-DateTime.Today).Days)
