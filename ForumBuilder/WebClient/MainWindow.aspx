@@ -34,6 +34,10 @@
             <asp:label AssociatedControlID="Password" runat="server" Cssclass="col-sm-2 control-label">Password</asp:label>
             <asp:TextBox ID="Password" TextMode="Password" runat="server" class="myText-control"></asp:TextBox>
         </p>
+        <p>
+            <asp:label AssociatedControlID="SessionKeyTextField" runat="server" Cssclass="col-sm-2 control-label">Session Key:</asp:label>
+            <asp:TextBox ID="SessionKeyTextField" TextMode="Number" runat="server" class="myText-control"></asp:TextBox>
+        </p>
              <div class="col-sm-offset-2 col-sm-10">
         <p>
             <asp:Button ID="Btn_ImSuperUser" class="btn btn-default" runat="server" Text="Im A Super User" OnClick="Btn_ImSuperUser_Click" />

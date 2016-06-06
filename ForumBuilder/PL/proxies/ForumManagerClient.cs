@@ -47,19 +47,24 @@ namespace PL.proxies
             return Channel.banMember(bannedMember, bannerUserName, forumName);
         }
 
-        public Boolean nominateAdmin(String newAdmin, String nominatorName, String forumName)
+        public String nominateAdmin(String newAdmin, String nominatorName, String forumName)
         {
             return Channel.nominateAdmin(newAdmin, nominatorName, forumName);
         }
 
-        public Boolean registerUser(String newUser, String password, String mail, String ans1, String ans2, String forumName)
+        public String registerUser(String newUser, String password, String mail, String ans1, String ans2, String forumName)
         {
             return Channel.registerUser(newUser, password, mail, ans1, ans2, forumName);
         }
 
-        public Boolean login(String user, String forumName, string password)
+        public int login(String user, String forumName, string password)
         {
             return Channel.login(user, forumName, password);
+        }
+
+        public String loginBySessionKey(int sessionKey, String user, String forumName)
+        {
+            return Channel.loginBySessionKey(sessionKey, user, forumName);
         }
         
         public Boolean logout(String user, String forumName)
@@ -67,7 +72,7 @@ namespace PL.proxies
             return Channel.logout(user, forumName);
         }
 
-        public Boolean addSubForum(String forumName, String name, Dictionary<String, DateTime> moderators, String userNameAdmin)
+        public String addSubForum(String forumName, String name, Dictionary<String, DateTime> moderators, String userNameAdmin)
         {
             return Channel.addSubForum(forumName, name, moderators, userNameAdmin);
         }

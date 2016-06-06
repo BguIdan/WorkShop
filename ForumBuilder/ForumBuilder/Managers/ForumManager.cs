@@ -40,18 +40,23 @@ namespace Service
         {
             return forumController.banMember(bannedMember, bannerUserName, forumName);
         }
-        public Boolean nominateAdmin(String newAdmin, String nominatorName, String forumName)
+        public String nominateAdmin(String newAdmin, String nominatorName, String forumName)
         {
             return forumController.nominateAdmin(newAdmin, nominatorName, forumName);
         }
-        public Boolean registerUser(String newUser, String password, String mail, String ans1, String ans2, string forumName)
+        public String registerUser(String newUser, String password, String mail, String ans1, String ans2, string forumName)
         {
             return forumController.registerUser(newUser, password, mail, ans1, ans2, forumName);
         }
 
-        public Boolean login(String user, String forumName,string password)
+        public int login(String user, String forumName,string password)
         {
             return forumController.login(user, forumName, password);
+        }
+
+        public String loginBySessionKey(int sessionKey, String user, String forumName)
+        {
+            return forumController.loginBySessionKey(sessionKey, user, forumName);
         }
 
         public Boolean logout(String user, String forumName)
@@ -59,7 +64,7 @@ namespace Service
             return forumController.logout(user, forumName);
         }
 
-        public Boolean addSubForum(String forumName, String name, Dictionary<String, DateTime> moderators, String userNameAdmin)
+        public String addSubForum(String forumName, String name, Dictionary<String, DateTime> moderators, String userNameAdmin)
         {
             return forumController.addSubForum(forumName, name, moderators, userNameAdmin);
         }

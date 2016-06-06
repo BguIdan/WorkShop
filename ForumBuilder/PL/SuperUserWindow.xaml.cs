@@ -26,6 +26,7 @@ namespace PL
         private SuperUserManagerClient _sUMC;
         private ForumManagerClient _fMC;
         private UserData _myUser;
+        private ForumData _fData;
 
         public SuperUserWindow(String userName, String password, String email)
         {
@@ -33,6 +34,21 @@ namespace PL
             _sUMC = new SuperUserManagerClient();
             _fMC = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
             _myUser = new UserData(userName, password, email);
+        }
+
+        private void MenuItem_View(object sender, RoutedEventArgs e)
+        {
+            MenuItem menuItem = e.Source as MenuItem;
+            switch (menuItem.Name)
+            {
+                case "ViewForums": { showForumList(); } break;
+            }
+
+        }
+
+        private void showForumList()
+        {
+
         }
 
         private void MenuItem_Actions(object sender, RoutedEventArgs e)
@@ -54,75 +70,154 @@ namespace PL
             this.Close();
         }
 
-        private void MenuItem_View(object sender, RoutedEventArgs e)
-        {
-            MenuItem menuItem = e.Source as MenuItem;
-            switch (menuItem.Name)
-            {
-                case "ViewForums": { showForumList(); } break;
-            }
-
-        }
-
-        private void showForumList()
-        {
-
-        }
 
         private void createNewForum()
         {
-            MainMenu.Visibility = System.Windows.Visibility.Collapsed;
             setPreferencesWin.Visibility = System.Windows.Visibility.Collapsed;
             createUserWin.Visibility = System.Windows.Visibility.Collapsed;
             createForum.Visibility = System.Windows.Visibility.Visible;
-            backButton.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void setPreferences()
         {
-            MainMenu.Visibility = System.Windows.Visibility.Collapsed;
             createForum.Visibility = System.Windows.Visibility.Collapsed;
             createUserWin.Visibility = System.Windows.Visibility.Collapsed;
             setPreferencesWin.Visibility = System.Windows.Visibility.Visible;
-            backButton.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void createUser()
         {
-            MainMenu.Visibility = System.Windows.Visibility.Collapsed;
             createForum.Visibility = System.Windows.Visibility.Collapsed;
             setPreferencesWin.Visibility = System.Windows.Visibility.Collapsed;
             createUserWin.Visibility = System.Windows.Visibility.Visible;
-            backButton.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void btn_CreateNewForum(object sender, RoutedEventArgs e)
         {
             string forumName = newForumName.Text;
             string desc = newForumDescription.Text;
-            string rules = newForumRules.Text;
-            string policy = newForumPolicy.Text;
             string administrators = newAdminUserName.Text;
             List<string> admins = administrators.Split(',').ToList();
-            Boolean isCreated = false;// _sUMC.createForum(forumName, desc, policy, rules, admins, _myUser.userName);
-            //TODO: fix it
+            Boolean isCreated = _sUMC.createForum(forumName, desc, new ForumPolicyData() , admins, _myUser.userName);
             if (isCreated)
             {
                 MessageBox.Show("Forum: " + forumName + " was successfully created!");
-                ForumData newForum = _fMC.getForum(forumName);
-                MainMenu.Visibility = System.Windows.Visibility.Visible;
-                createForum.Visibility = System.Windows.Visibility.Collapsed;
-
-                //TODO: direct to the new forum window
-                //TODO: send mail to every forum manager?
+                createForumDialog.Visibility = System.Windows.Visibility.Visible;
+                createForumDialog.Focusable = true;
             }
             else { MessageBox.Show("Something went wrong the forum wasn't created, try again."); }
         }
 
+        private void btn_toSetPref(object sender, RoutedEventArgs e)
+        {
+            var btn = sender as Button;
+            if (btn.Name.Equals("yesBtn"))
+            {
+                createForum.Visibility = System.Windows.Visibility.Collapsed;
+                createForumDialog.Visibility = System.Windows.Visibility.Collapsed;
+                createForumDialog.Focusable = false;
+                setPreferencesWin.Visibility = System.Windows.Visibility.Visible;
+            }
+            else 
+            { 
+                createForum.Visibility = System.Windows.Visibility.Collapsed;
+                createForumDialog.Visibility = System.Windows.Visibility.Collapsed;
+                createForumDialog.Focusable = false;
+                newForumName.Clear();
+                newForumDescription.Clear();
+                newAdminUserName.Clear();
+            }
+        }
+
         private void btn_SetForumPref(object sender, RoutedEventArgs e)
         {
+            setPreferencesWin.Focusable = false;
+            MyDialog.Visibility = System.Windows.Visibility.Visible;
+            MyDialog.Focusable = true;
+        }
+
+        private void btn_ToSetForumPref(object sender, RoutedEventArgs e)
+        {
+            String temp = "";
+            var btn = sender as Button;
+            if (btn.Name.Equals("yesButton"))
+            {
+                temp = yesButton.Content.ToString();
+            }
+            else { temp = noButton.Content.ToString(); }
+            setPref(temp);
+        }
+
+        private void setPref(String isDone)
+        {
+            MyDialog.Focusable = false;
+            MyDialog.Visibility = System.Windows.Visibility.Collapsed;
             string forumToSet = ForumNameToSet.Text;
-            //TODO: direct to the forum window
+            if (!forumToSet.Equals("")) { _fData = _fMC.getForum(forumToSet); }
+            if (isDone.Equals("Yes"))
+            {
+                if (_fData != null)
+                {
+                    bool toChange = descCheck.IsChecked.Value;
+                    if (toChange)
+                    {
+                        _fData.description = ForumDescToSet.Text;
+                    }
+                    toChange = policyCheck.IsChecked.Value;
+                    if (toChange)
+                    {
+                        _fData.forumPolicy.policy = ForumPolicyToSet.Text;
+                    }
+                    toChange = qIdentifying.IsChecked.Value;
+                    if (toChange)
+                    {
+                        _fData.forumPolicy.isQuestionIdentifying = true;
+                    }
+                    toChange = deleteMessages.IsChecked.Value;
+                    if (toChange)
+                    {
+                        _fData.forumPolicy.isQuestionIdentifying = true;
+                    }
+                    int passExpirationTime = Int32.Parse(PassCombo.SelectedItem.ToString());
+                    _fData.forumPolicy.timeToPassExpiration = passExpirationTime;
+                    int seniorityChoosen = Int32.Parse(TimeCombo.SelectedItem.ToString());
+                    _fData.forumPolicy.seniorityInForum = seniorityChoosen;
+                    int numerOfModerators = Int32.Parse(NumberCombo.SelectedItem.ToString());
+                    _fData.forumPolicy.minNumOfModerator = numerOfModerators;
+                    toChange = Capital.IsChecked.Value;
+                    if (toChange)
+                    {
+                        _fData.forumPolicy.hasCapitalInPassword = true;
+                    }
+                    toChange = Number.IsChecked.Value;
+                    if (toChange)
+                    {
+                        _fData.forumPolicy.hasNumberInPassword = true;
+                    }
+                    int minLengthOfPass = Int32.Parse(LengthCombo.SelectedItem.ToString());
+                    _fData.forumPolicy.minLengthOfPassword = minLengthOfPass;
+                    MessageBox.Show("Preferences was successfully changed!");
+                    descCheck.IsChecked = false;
+                    policyCheck.IsChecked = false;
+                    qIdentifying.IsChecked = false;
+                    deleteMessages.IsChecked = false;
+                    Capital.IsChecked = false;
+                    Number.IsChecked = false;
+                    PassCombo.Items.Clear();
+                    TimeCombo.Items.Clear();
+                    NumberCombo.Items.Clear();
+                    LengthCombo.Items.Clear();
+                    setPreferencesWin.Visibility = System.Windows.Visibility.Collapsed;
+                }
+                else { MessageBox.Show("You have to write forum name in order to edit it's preferences"); }
+            }
+        }
+
+        private void backButton_Click(object sender, RoutedEventArgs e)
+        {
+            SuperUserWindow newWin = new SuperUserWindow(_myUser.userName, _myUser.password, _myUser.email);
+            newWin.Show();
+            this.Close();
         }
 
         private void btn_CreateNewUser(object sender, RoutedEventArgs e)
@@ -144,12 +239,80 @@ namespace PL
             }
         }
 
-        private void backButton_Click(object sender, RoutedEventArgs e)
+        private void descChoose(object sender, RoutedEventArgs e)
         {
-            SuperUserWindow newWin = new SuperUserWindow(_myUser.userName, _myUser.password, _myUser.email);
-            newWin.Show();
-            this.Close();
+            bool toChange = descCheck.IsChecked.Value;
+            if (toChange) { ForumDescToSet.IsEnabled = true; }
+            else { ForumDescToSet.IsEnabled = false; }
         }
+
+        private void policyChoose(object sender, RoutedEventArgs e)
+        {
+            bool toChange = policyCheck.IsChecked.Value;
+            if (toChange) { ForumPolicyToSet.IsEnabled = true; }
+            else { ForumPolicyToSet.IsEnabled = false; }
+        }
+
+        private void PassComboBox_OnDropDownOpened(object sender, EventArgs e)
+        {
+            int minDays = 30;
+            int maxDays = 365;
+            for (int i = minDays; i <= maxDays; i++)
+            {
+                PassCombo.Items.Add(i);
+            }
+        }
+
+        private void PassComboBox_OnDropDownClosed(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TimeComboBox_OnDropDownOpened(object sender, EventArgs e)
+        {
+            int minDays = 0;
+            int maxDays = 365;
+            for (int i = minDays; i <= maxDays; i++)
+            {
+                TimeCombo.Items.Add(i);
+            }
+        }
+
+        private void TimeComboBox_OnDropDownClosed(object sender, EventArgs e)
+        {
+
+        }
+
+        private void NumberComboBox_OnDropDownOpened(object sender, EventArgs e)
+        {
+            int minNumOfModerators = 0;
+            int maxNumOfModerators = 10;
+            for (int i = minNumOfModerators; i <= maxNumOfModerators; i++)
+            {
+                NumberCombo.Items.Add(i);
+            }
+        }
+
+        private void NumberComboBox_OnDropDownClosed(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LengthComboBox_OnDropDownOpened(object sender, EventArgs e)
+        {
+            int minPasswordLength = 5;
+            int maxPasswordLength = 20;
+            for (int i = minPasswordLength; i <= maxPasswordLength; i++)
+            {
+                LengthCombo.Items.Add(i);
+            }
+        }
+
+        private void LengthComboBox_OnDropDownClosed(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
         

@@ -491,6 +491,7 @@ namespace DataBase
             {
                 SubForum sf = new SubForum(subForumName, forumName);
                 subForums.Add(sf);
+                forums[forumName].subForums.Add(subForumName);
                 return true;
             }
             catch
@@ -703,6 +704,20 @@ namespace DataBase
                 res = res + passArray[i];
             }
             return res;
+        }
+
+        internal bool changePassword(string userName, string newPaswword)
+        {
+            try
+            {
+                users[userName].password = newPaswword;
+                users[userName].lastTimeUpdatePassword = DateTime.Today;
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         /*public int getAvilableIntOfPost()

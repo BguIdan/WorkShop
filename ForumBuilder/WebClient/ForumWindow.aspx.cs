@@ -38,6 +38,12 @@ namespace WebClient
             this._myforum = _fMC.getForum(_chosenForum);
             lbl_forumName.Text = "ForumName:  " + _chosenForum;
             _userName = (String)Session["userName"];
+            if (!_userName.Equals("Guest"))
+            {
+                int sessionKey = (int)Session["sessionKey"];
+                if (sessionKey > 0)
+                    showAlert("Login successful! your session code for is " + sessionKey.ToString());
+            }
             _sUMC = new SuperUserManagerClient();
             InitializePermissons(_userName);
             TableRow row = new TableRow();

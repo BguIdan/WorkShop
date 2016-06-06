@@ -80,7 +80,7 @@ namespace ForumBuilder.Systems
                   
 
                 }
-                catch (CommunicationException ce)
+                catch (CommunicationException)
                 {
                     logger.logPrint("failed to initialize services",0);
                     logger.logPrint("failed to initialize services",2);
@@ -109,7 +109,7 @@ namespace ForumBuilder.Systems
         public static int Main(string[] args)
         {
             //TODO gal: remove later
-            //DBClass.getInstance.clear();
+            DBClass.getInstance.clear();
             var item = DBClass.getInstance;
             Console.WriteLine(  "welcome to your forum builder!\n" +
                                 "please insert your desired user name:");
@@ -118,24 +118,26 @@ namespace ForumBuilder.Systems
             String email = "d@d.d";//getEmail();
 
             initialize(username, password, email);
-            ForumPolicy fp = new ForumPolicy("p", false, 0, true, 180,1, true, true, 2);
+            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180,1, true, true, 2);
             List<String> list = new List<String>();
             list.Add("idan");
             if (!SuperUserController.getInstance.createForum("f", "f",fp, list, "idan"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
-            if (!ForumController.getInstance.registerUser("g1", "gG1", "g@g.g","sad","bad" ,"f"))
+            if (!SuperUserController.getInstance.createForum("f2", "f", fp, list, "idan"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
-            if (!ForumController.getInstance.registerUser("g2", "gG1", "g@g.g","good", "awesome", "f"))
+            if (!ForumController.getInstance.registerUser("g1", "gG1", "g@g.g","sad","bad" ,"f").Equals("Register user succeed"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
-            if (!ForumController.getInstance.nominateAdmin("g1", "idan", "f"))
+            if (!ForumController.getInstance.registerUser("g2", "gG1", "g@g.g","good", "awesome", "f").Equals("Register user succeed"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
+            if (!ForumController.getInstance.nominateAdmin("g1", "idan", "f").Equals("admin nominated successfully"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
             Dictionary<String, DateTime> d = new Dictionary<String, DateTime>();
             d.Add("g1", new DateTime(2017, 1, 1));
-            if (!ForumController.getInstance.addSubForum("f", "f1",d , "g1"))
+            if (!ForumController.getInstance.addSubForum("f", "f1",d , "g1").Equals("sub-forum added"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
 
             runServer(username, password, email);
-            //DBClass.getInstance.clear();
+            DBClass.getInstance.clear();
             return 0;
         }
 
