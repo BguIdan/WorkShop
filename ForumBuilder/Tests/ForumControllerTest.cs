@@ -41,7 +41,7 @@ namespace Tests
             adminList.Add("admin2");
             ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
             this.forum = new Forum("testForum", "descr",fp,adminList);            
-            superUser1 = new User("tomer", "1qW", "fkfkf@wkk.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
+            superUser1 = new User("tomer", "1qW23", "fkfkf@wkk.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
             SuperUserController.getInstance.addSuperUser(superUser1.email, superUser1.password, superUser1.userName);
             superUser.createForum("testForum", "descr",fp, adminList, "tomer");            
             Assert.IsTrue(this.forumController.registerUser("mem", "Mempass1", "mem@gmail.com", "ansss", "anssss", this.forum.forumName).Equals("Register user succeed"));
@@ -239,6 +239,64 @@ namespace Tests
             Assert.IsFalse(this.forumController.registerUser(null, null, null,null,null,null).Equals("Register user succeed"), "registration of null should return false");
         }
 
+         [TestMethod]
+        public void test_registerUser_with_shorter_password_then_needed()
+       {
+           String forumName = this.forum.forumName;
+           Assert.IsFalse(this.forumController.registerUser("newUser", "123", "use@gmail.com", "", "", forumName));
+
+       }
+
+         [TestMethod]
+         public void test_registerUser_without_answers_where_needed()
+         {
+             String forumName = this.forum.forumName;
+             String adminName = this.userAdmin.userName;
+             ForumPolicy fp = new ForumPolicy("new policy", true, 0, true, 365, 1, false, false, 5);
+             Assert.IsTrue(this.forumController.setForumPreferences(forumName, "newDescr", fp, adminName), "policy change should be successful");
+             Assert.IsFalse(this.forumController.registerUser("newUser", "123", "use@gmail.com", "", "", forumName));
+         }
+         [TestMethod]
+         public void test_registerUser_without_one_answer_where_needed()
+         {
+             String forumName = this.forum.forumName;
+             String adminName = this.userAdmin.userName;
+             ForumPolicy fp = new ForumPolicy("new policy", true, 0, true, 365, 1, false, false, 5);
+             Assert.IsTrue(this.forumController.setForumPreferences(forumName, "newDescr", fp, adminName), "policy change should be successful");
+             Assert.IsFalse(this.forumController.registerUser("newUser", "123", "use@gmail.com", "sss", "", forumName));
+         }
+
+
+         [TestMethod]
+         public void test_registerUser_with_answers_where_needed()
+         {
+             String forumName = this.forum.forumName;
+             String adminName = this.userAdmin.userName;
+             ForumPolicy fp = new ForumPolicy("new policy", true, 0, true, 365, 1, false, false, 5);
+             Assert.IsTrue(this.forumController.setForumPreferences(forumName, "newDescr", fp, adminName), "policy change should be successful");
+             Assert.IsTrue(this.forumController.registerUser("newUser", "123452", "use@gmail.com", "ans1", "ans2", forumName));
+         }
+
+         [TestMethod]
+         public void test_registerUser_without_number_in_password_where_needed()
+         {
+             String forumName = this.forum.forumName;
+             String adminName = this.userAdmin.userName;
+             ForumPolicy fp = new ForumPolicy("new policy", true, 0, true, 365, 1, false, true, 5);
+             Assert.IsTrue(this.forumController.setForumPreferences(forumName, "newDescr", fp, adminName), "policy change should be successful");
+             Assert.IsFalse(this.forumController.registerUser("newUser", "asssdf", "use@gmail.com", "", "", forumName));
+         }
+
+         [TestMethod]
+         public void test_registerUser_without_capital_in_password_where_needed()
+         {
+             String forumName = this.forum.forumName;
+             String adminName = this.userAdmin.userName;
+             ForumPolicy fp = new ForumPolicy("new policy", true, 0, true, 365, 1, true, false, 5);
+             Assert.IsTrue(this.forumController.setForumPreferences(forumName, "newDescr", fp, adminName), "policy change should be successful");
+             Assert.IsFalse(this.forumController.registerUser("newUser", "asssdf", "use@gmail.com", "", "", forumName));
+         }
+
 
         /******************************end of register user***********************************/
 
@@ -254,12 +312,22 @@ namespace Tests
             String adminName = this.userAdmin.userName;
             Assert.AreNotEqual(oldPolicy, newPolicy, false, "the new policy should be different from the old one");
             Assert.AreNotEqual(oldDescription, newDescr, false, "the new description should be different from the old one");
-            ForumPolicy fp = new ForumPolicy(newPolicy, true, 0, true, 180, 1, true, true, 5);
+            ForumPolicy fp = new ForumPolicy(newPolicy, true, 0, true, 180, 1, true, true, 2);
             Assert.IsTrue(this.forumController.setForumPreferences(forumName, newDescr, fp, adminName).Equals("preferences had changed successfully"), "policy change should be successful");
             Assert.AreEqual(this.forumController.getForumPolicy(forumName), newPolicy, false, "the new policy should be return after the change");
             Assert.AreEqual(this.forumController.getForumDescription(forumName), newDescr, false, "the new description should be return after the change");;
-        
         }
+
+        [TestMethod]
+        public void test_setForumPreferences_some_policy()
+        {
+            String forumName = this.forum.forumName;
+            String adminName = this.userAdmin.userName;
+            ForumPolicy fp = new ForumPolicy("new policy", false, 0, true, 365, 1, false, false, 5);
+            Assert.IsTrue(this.forumController.setForumPreferences(forumName, "newDescr", fp, adminName), "policy change should be successful");
+            Assert.IsFalse(this.forumController.registerUser("newUser", "123", "use@gmail.com", "", "", forumName));
+        }
+
 
         
         public void test_setForumPreferences_with_null()
@@ -418,6 +486,10 @@ namespace Tests
 
 */
         /******************************end of dismiss member***********************************/
+
+
+
+
 
 
     }
