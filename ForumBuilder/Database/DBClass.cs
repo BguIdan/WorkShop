@@ -474,22 +474,22 @@ namespace Database
                 command.Connection = connection;
                 command.CommandText = "SELECT subForumModerators.subForumName," +
                     "subForumModerators.moderatorName,subForumModerators.nominator," +
-                    "subForumModerators.dateAdded,posts.title,posts.content FROM" +
+                    "subForumModerators.dateAdded,posts.title,posts.content FROM " +
                     "subForumModerators,posts where subForumModerators.forumName='" +
-                    forumName + "' and posts.forumName=subForumModerators.forumName" +
+                    forumName + "' and posts.forumName=subForumModerators.forumName " +
                     "and posts.writerUserName=subForumModerators.moderatorName";
                 OleDbDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    modertorsReport.Add(reader.GetString(0) + "," + reader.GetString(1) + "," +
-                        reader.GetString(2) + "," +
-                        reader.GetDateTime(3).ToString("dd MM yyyy") + "," +
-                        reader.GetString(4) + "," + reader.GetString(5));
+                    modertorsReport.Add(reader.GetString(0) + " , " + reader.GetString(1) + " , " +
+                        reader.GetString(2) + " , " +
+                        reader.GetDateTime(3).ToString("dd MM yyyy") + " , " +
+                        reader.GetString(4) + " , " + reader.GetString(5));
                 }
                 closeConnectionDB();
                 return modertorsReport;
             }
-            catch
+            catch(Exception e)
             {
                 closeConnectionDB();
                 return null; ;
@@ -1542,12 +1542,12 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "SELECT  (users.email,users.userName,members.forumName) FROM  users,members where users.username=members.userName" +
+                command.CommandText = "SELECT  users.email,users.userName,members.forumName FROM  users,members where users.username=members.userName" +
                     " ORDER BY users.email";
                 OleDbDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    String user = "email: " + reader.GetString(0) + " user Name: " + reader.GetString(1) + " in forum: " + reader.GetString(2);
+                    String user = "Email : " + reader.GetString(0) + "  UserName : " + reader.GetString(1) + "  In forum : " + reader.GetString(2);
                     users.Add(user);
                 }
                 closeConnectionDB();

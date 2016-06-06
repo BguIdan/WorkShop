@@ -1,16 +1,16 @@
-﻿<Window x:Class="PL.AddFriendWindow"
+﻿<Window x:Class="PL.AddFriendWindow" ResizeMode="CanResize" Background="Ivory"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="AddFriendWindow" Height="300" Width="300">
+        Title="AddFriendWindow" Height="300" Width="320">
     <Grid>
         <Label x:Name="senfMessageLabel" FontFamily="cooper black" FontSize="30" Content="Add a Friend" HorizontalAlignment="Left" Height="44" Margin="37,10,0,0" VerticalAlignment="Top" Width="223"/>
-        <TextBox x:Name="friendName" FontFamily="ariel" HorizontalAlignment="Left" Height="32" Margin="129,99,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="153" TextChanged="to_TextChanged"/>
-        <Label x:Name="label" Content="Friend's User Name" HorizontalAlignment="Left" Margin="10,99,0,0" VerticalAlignment="Top" Height="32"/>
-        <Button x:Name="button" Content="Add" HorizontalAlignment="Left" Height="33" Margin="80,192,0,0" VerticalAlignment="Top" Width="131" Click="button_Click"/>
-
+        <TextBox x:Name="friendName" FontFamily="ariel" HorizontalAlignment="Left" Height="23" Margin="162,101,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="to_TextChanged"/>
+        <Label x:Name="label" FontFamily="cooper black" Content="Friend's User Name:" HorizontalAlignment="Left" Margin="10,99,0,0" VerticalAlignment="Top" Height="23" Width="135"/>
+        <Button x:Name="button" FontFamily="cooper black" Content="Add" HorizontalAlignment="Left" Height="27" Margin="162,203,0,0" VerticalAlignment="Top" Width="98" Click="button_Click"/>
+        <Button x:Name="backbutton" FontFamily="cooper black" Content="Back" HorizontalAlignment="Left" Height="27" Margin="37,203,0,0" VerticalAlignment="Top" Width="98" Click="button_back"/>
     </Grid>
 </Window>
