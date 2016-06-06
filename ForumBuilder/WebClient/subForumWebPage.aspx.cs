@@ -36,7 +36,7 @@ namespace WebClient
             List<PostData> posts = _pm.getAllPosts(_forumName, _subForumName);
             _postByNumArray = new PostData[posts.Count()];
             int num = 0;
-            foreach(PostData post in posts)
+            foreach (PostData post in posts)
             {
                 if (post.parentId == -1)
                 {
@@ -46,7 +46,7 @@ namespace WebClient
                     TableCell tCell1 = new TableCell();
                     Button lb1 = new Button();
                     lb1.Click += new EventHandler(clickOnSubForum);
-                    lb1.Text = "#"+num+1;
+                    lb1.Text = "#" + num + 1;
                     lb1.BackColor = System.Drawing.Color.White;
                     tCell1.Controls.Add(lb1);
                     tRow.Cells.Add(tCell1);
@@ -92,11 +92,11 @@ namespace WebClient
         {
             int num = 0;
             int id = -2;
-            foreach(TableRow row in ThreadTable.Rows)
+            foreach (TableRow row in ThreadTable.Rows)
             {
-                foreach(TableCell cell in row.Cells)
+                foreach (TableCell cell in row.Cells)
                 {
-                    foreach(var singleControl in cell.Controls)
+                    foreach (var singleControl in cell.Controls)
                     {
                         Button button = singleControl as Button;
                         if (button.Equals(sender))
@@ -113,6 +113,16 @@ namespace WebClient
         private void showAlert(String content)
         {
             Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "popup", "<script>alert(\"" + content + "\");</script>");
+        }
+
+        protected void addThreadButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AddThreadPage.aspx");
+        }
+
+        protected void backButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ForumWindow.aspx");
         }
     }
 }

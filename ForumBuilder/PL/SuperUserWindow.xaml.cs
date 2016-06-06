@@ -41,14 +41,23 @@ namespace PL
             MenuItem menuItem = e.Source as MenuItem;
             switch (menuItem.Name)
             {
-                case "ViewForums": { showForumList(); } break;
+                case "viewReports": { showList(); } break;
             }
 
         }
 
-        private void showForumList()
+        private void showList()
         {
-
+            setPreferencesWin.Visibility = System.Windows.Visibility.Collapsed;
+            createUserWin.Visibility = System.Windows.Visibility.Collapsed;
+            createForum.Visibility = System.Windows.Visibility.Collapsed;
+            viewGrid.Visibility = System.Windows.Visibility.Visible;
+            List<String> members = _sUMC.getSuperUserReportOfMembers(_myUser.userName);
+            numOfFOrums.Text = "Number of forums :  " + (_sUMC.SuperUserReportNumOfForums(_myUser.userName)).ToString();
+            foreach (string member in members)
+            {
+                memberListBox.Items.Add(member);
+            }
         }
 
         private void MenuItem_Actions(object sender, RoutedEventArgs e)
@@ -75,6 +84,7 @@ namespace PL
         {
             setPreferencesWin.Visibility = System.Windows.Visibility.Collapsed;
             createUserWin.Visibility = System.Windows.Visibility.Collapsed;
+            viewGrid.Visibility = System.Windows.Visibility.Collapsed;
             createForum.Visibility = System.Windows.Visibility.Visible;
         }
 
@@ -82,6 +92,7 @@ namespace PL
         {
             createForum.Visibility = System.Windows.Visibility.Collapsed;
             createUserWin.Visibility = System.Windows.Visibility.Collapsed;
+            viewGrid.Visibility = System.Windows.Visibility.Collapsed;
             setPreferencesWin.Visibility = System.Windows.Visibility.Visible;
         }
 
@@ -89,6 +100,7 @@ namespace PL
         {
             createForum.Visibility = System.Windows.Visibility.Collapsed;
             setPreferencesWin.Visibility = System.Windows.Visibility.Collapsed;
+            viewGrid.Visibility = System.Windows.Visibility.Collapsed;
             createUserWin.Visibility = System.Windows.Visibility.Visible;
         }
 

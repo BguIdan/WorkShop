@@ -55,6 +55,9 @@ namespace PL
             {
                 AddSub.IsEnabled = false;
                 Set.IsEnabled = false;
+                privateMessages.IsEnabled = false;
+                addFriend.IsEnabled = false;
+                View.IsEnabled = false;
             }
             // a member but not an admin
             else if (!_fMC.isAdmin(userName, _myforum.forumName) && !_sUMC.isSuperUser(userName))
@@ -62,6 +65,7 @@ namespace PL
                 AddSub.IsEnabled = false;
                 Set.IsEnabled = false;
                 Sign.IsEnabled = false;
+                View.IsEnabled = false;
             }
             // an admin
             else if (!_sUMC.isSuperUser(userName))
@@ -88,7 +92,29 @@ namespace PL
             }
         }
 
+        private void MenuItem_View(object sender, RoutedEventArgs e)
+        {
+            MenuItem menuItem = e.Source as MenuItem;
+            switch (menuItem.Name)
+            {
+                case "viewReports": { showReport(); } break;
+            }
+        }
 
+        private void showReport()
+        {
+            mainGrid.Visibility = System.Windows.Visibility.Collapsed;
+            MyDialog.Visibility = System.Windows.Visibility.Collapsed;
+            setPreferencesWin.Visibility = System.Windows.Visibility.Collapsed;
+            AddSubForum.Visibility = System.Windows.Visibility.Collapsed;
+            viewGrid.Visibility = System.Windows.Visibility.Visible;
+            List<String> moderaorsReports = _fMC.getAdminReport(_userName, _myforum.forumName);
+            numOfPosts.Text = "Number of Posts :  " + (_fMC.getAdminReportNumOfPOst(_userName, _myforum.forumName)).ToString();
+            foreach (string report in moderaorsReports)
+            {
+                reportListBox.Items.Add(report);
+            }
+        }
 
         private void logout(String nameLogout)
         {
@@ -124,6 +150,7 @@ namespace PL
             MainMenu.Visibility = System.Windows.Visibility.Collapsed;
             mainGrid.Visibility = System.Windows.Visibility.Collapsed;
             MyDialog.Visibility = System.Windows.Visibility.Collapsed;
+            viewGrid.Visibility = System.Windows.Visibility.Collapsed;
             setPreferencesWin.Visibility = System.Windows.Visibility.Collapsed;
             for (int i = 0; i < _myforum.members.Count; i++)
             {
@@ -151,6 +178,7 @@ namespace PL
             mainGrid.Visibility = System.Windows.Visibility.Collapsed;
             MyDialog.Visibility = System.Windows.Visibility.Collapsed;
             AddSubForum.Visibility = System.Windows.Visibility.Collapsed;
+            viewGrid.Visibility = System.Windows.Visibility.Collapsed;
             setPreferencesWin.Visibility = System.Windows.Visibility.Visible;
             backButton.Visibility = System.Windows.Visibility.Visible;
         }
@@ -392,5 +420,6 @@ namespace PL
             newWin.Show();
             this.Close();
         }
+
     }
 }

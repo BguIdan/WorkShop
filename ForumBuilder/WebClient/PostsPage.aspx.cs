@@ -104,5 +104,15 @@ namespace WebClient
             PostsTable.ForeColor = System.Drawing.Color.Black;
             PostsTable.GridLines = GridLines.Both;
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AddPostPage.aspx");
+        }
+
+        protected void backButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("subForumWebPage.aspx");
+        }
     }
 }

@@ -53,5 +53,12 @@ namespace PL
         {
 
         }
+
+        private void button_back(object sender, RoutedEventArgs e)
+        {
+            ForumWindow mw = new ForumWindow(_forumData, _userName);
+            mw.Show();
+            this.Close();
+        }
     }
 }
