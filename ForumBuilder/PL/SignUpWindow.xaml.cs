@@ -40,10 +40,11 @@ namespace PL
             string userName = name.Text;
             string pass = Password.Password;
             string userMail = mail.Text;
-            bool suc = _fMC.registerUser(userName, pass, userMail, "", "", _forumToRegister);
+            string register = _fMC.registerUser(userName, pass, userMail, "", "", _forumToRegister); 
+            bool suc = _fMC.registerUser(userName, pass, userMail, "", "", _forumToRegister).Equals("Register user succeed");
             if (suc == false)
             {
-                MessageBox.Show("Failed to register. One or more of the details is wrong");
+                MessageBox.Show(register);
             }
             else
             {
@@ -61,7 +62,8 @@ namespace PL
             string userMail = secmail.Text;
             string ans1 = ansToq1.Text;
             string ans2 = ansToq2.Text;
-            bool suc = _fMC.registerUser(userName, pass, userMail, ans1, ans2, _forumToRegister);
+            String register= _fMC.registerUser(userName, pass, userMail, ans1, ans2, _forumToRegister);
+            bool suc = _fMC.registerUser(userName, pass, userMail, ans1, ans2, _forumToRegister).Equals("Register user succeed");
             if (suc == false)
             {
                 MessageBox.Show("Failed to register. One or more of the details is wrong");

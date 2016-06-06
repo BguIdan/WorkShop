@@ -25,11 +25,9 @@ namespace PL
         Window _prevWindow;
         private UserManagerClient _um;
         private String forumName;
-        private int _count;
 
         public sendMessageWindow(String forum, string userName, Window prevWindow)
         {
-            _count = 0;
             forumName = forum;
             InitializeComponent();
             _userName = userName;

@@ -39,7 +39,7 @@ namespace Tests
             ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
             SuperUserController.getInstance.addSuperUser("fkfkf@wkk.com", "1qW", "tomer");
             superUser.createForum(ForumName, "descr", fp, adminList, "tomer");
-            Assert.IsTrue(this.forumController.registerUser("mem", "Mempass1", "mem@gmail.com", "ansss", "anssss", this.ForumName));
+            Assert.IsTrue(this.forumController.registerUser("mem", "Mempass1", "mem@gmail.com", "ansss", "anssss", this.ForumName).Equals("Register user succeed"));
  //           Assert.IsTrue(this.forumController.registerUser("admin", "adminpass", "admin@gmail.com", this.ForumName));
             
             
@@ -104,7 +104,7 @@ namespace Tests
             String newMemberName = "mem2";
             List<String> friends = this.userController.getFriendList(this.userMember.userName);
             Assert.AreEqual(friends.Count, 0, "initial friend list should be empty");
-            Assert.IsTrue(this.forumController.registerUser(newMemberName, "Mempass12", "mem2@gmail.com", "ansss", "anssss", this.ForumName));
+            Assert.IsTrue(this.forumController.registerUser(newMemberName, "Mempass12", "mem2@gmail.com", "ansss", "anssss", this.ForumName).Equals("Register user succeed"));
             Assert.IsTrue(this.userController.addFriend(this.userMember.userName, newMemberName), "member should be able to add new friend(member)");
             List<String> newFriendList = this.userController.getFriendList(this.userMember.userName);
             Assert.AreEqual(newFriendList.Count, 1, "friend list size should increase from 0 to 1");
@@ -138,7 +138,7 @@ namespace Tests
             String newMemberName = "mem2";
             List<String> friends = this.userController.getFriendList(this.userAdmin.userName);
             Assert.AreEqual(friends.Count, 0, "initial friend list should be empty");
-            Assert.IsTrue(this.forumController.registerUser(newMemberName, "Mempass12", "mem2@gmail.com", "ansss", "anssss", this.ForumName));
+            Assert.IsTrue(this.forumController.registerUser(newMemberName, "Mempass12", "mem2@gmail.com", "ansss", "anssss", this.ForumName).Equals("Register user succeed"));
             Assert.IsTrue(this.userController.addFriend(this.userAdmin.userName, newMemberName), "admin should be able to add new friend(member)");
             List<String> newFriendList = this.userController.getFriendList(this.userAdmin.userName);
             Assert.AreEqual(newFriendList.Count, 1, "friend list size should increase from 0 to 1");
@@ -151,8 +151,8 @@ namespace Tests
             String adminName = "admin2";
             List<String> friends = this.userController.getFriendList(this.userAdmin.userName);
             Assert.AreEqual(friends.Count, 0, "initial friend list should be empty");
-            Assert.IsTrue(this.forumController.registerUser(adminName, "Adminpass1", "admin@gmail.com", "ansss", "anssss", this.ForumName));
-            Assert.IsTrue(this.forumController.nominateAdmin(adminName, this.userAdmin.userName, this.ForumName));
+            Assert.IsTrue(this.forumController.registerUser(adminName, "Adminpass1", "admin@gmail.com", "ansss", "anssss", this.ForumName).Equals("Register user succeed"));
+            Assert.IsTrue(this.forumController.nominateAdmin(adminName, this.userAdmin.userName, this.ForumName).Equals("admin nominated successfully"));
             Assert.IsTrue(this.userController.addFriend(this.userAdmin.userName, adminName), "admin should be able to add new friend(admin)");
             List<String> newFriendList = this.userController.getFriendList(this.userAdmin.userName);
             Assert.AreEqual(newFriendList.Count, 1, "friend list size should increase from 0 to 1");
@@ -179,7 +179,7 @@ namespace Tests
             String newMemberName = "mem2";
             List<String> friends = this.userController.getFriendList(this.userMember.userName);
             Assert.AreEqual(friends.Count, 0, "initial friend list should be empty");
-            Assert.IsTrue(this.forumController.registerUser(newMemberName, "Mempass12", "mem2@gmail.com", "ansss", "anssss", this.ForumName));
+            Assert.IsTrue(this.forumController.registerUser(newMemberName, "Mempass12", "mem2@gmail.com", "ansss", "anssss", this.ForumName).Equals("Register user succeed"));
             Assert.IsTrue(this.userController.addFriend(userMember.userName, newMemberName));
             Assert.IsTrue(this.userController.deleteFriend(this.userMember.userName, newMemberName), "member should be able to add new friend(member)");
             Assert.IsTrue(this.userController.addFriend(userMember.userName, newMemberName));
@@ -214,7 +214,7 @@ namespace Tests
             String newMemberName = "mem2";
             List<String> friends = this.userController.getFriendList(this.userAdmin.userName);
             Assert.AreEqual(friends.Count, 0, "initial friend list should be empty");
-            Assert.IsTrue(this.forumController.registerUser(newMemberName, "Mempass12", "mem2@gmail.com", "ansss", "anssss", this.ForumName));
+            Assert.IsTrue(this.forumController.registerUser(newMemberName, "Mempass12", "mem2@gmail.com", "ansss", "anssss", this.ForumName).Equals("Register user succeed"));
             Assert.IsTrue(this.userController.addFriend(userAdmin.userName, newMemberName));
             Assert.IsTrue(this.userController.deleteFriend(this.userAdmin.userName, newMemberName), "admin should be able to add new friend(member)");
             Assert.IsTrue(this.userController.addFriend(userAdmin.userName, newMemberName));
@@ -233,8 +233,8 @@ namespace Tests
             String adminName = "admin2";
             List<String> friends = this.userController.getFriendList(this.userAdmin.userName);
             Assert.AreEqual(friends.Count, 0, "initial friend list should be empty");
-            Assert.IsTrue(this.forumController.registerUser(adminName, "Adminpass1", "admin@gmail.com", "ansss", "anssss", this.ForumName));
-            Assert.IsTrue(this.forumController.nominateAdmin(adminName, this.userAdmin.userName, this.ForumName));
+            Assert.IsTrue(this.forumController.registerUser(adminName, "Adminpass1", "admin@gmail.com", "ansss", "anssss", this.ForumName).Equals("Register user succeed"));
+            Assert.IsTrue(this.forumController.nominateAdmin(adminName, this.userAdmin.userName, this.ForumName).Equals("admin nominated successfully"));
             Assert.IsFalse(this.userController.deleteFriend(this.userAdmin.userName, adminName), "admin should be able to add new friend(admin)");
             Assert.IsTrue(this.userController.addFriend(userAdmin.userName, adminName));
             List<String> newFriendList = this.userController.getFriendList(this.userAdmin.userName);

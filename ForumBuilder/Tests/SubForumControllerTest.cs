@@ -54,9 +54,9 @@ namespace Tests
             superUser.createForum("1", "1", fp, null, "tomer");
             Assert.IsTrue(superUser.createForum("testForum", "descr", fp, adminList, "tomer"));
             //Assert.IsTrue(this.forumController.registerUser("admin", "adminpass", "admin@gmail.com", this.forumName));
-            Assert.IsTrue(this.forumController.registerUser("mem", "Mempass1", "mem@gmail.com", "ansss", "anssss", this.forumName));
-            Assert.IsTrue(this.forumController.registerUser("mod", "Modpass1", "mod@gmail.com", "ansss", "anssss", this.forumName));
-            Assert.IsTrue(this.forumController.addSubForum(this.forum.forumName, this.subForumName, modList, this.userAdmin.userName));
+            Assert.IsTrue(this.forumController.registerUser("mem", "Mempass1", "mem@gmail.com", "ansss", "anssss", this.forumName).Equals("Register user succeed"));
+            Assert.IsTrue(this.forumController.registerUser("mod", "Modpass1", "mod@gmail.com", "ansss", "anssss", this.forumName).Equals("Register user succeed"));
+            Assert.IsTrue(this.forumController.addSubForum(this.forum.forumName, this.subForumName, modList, this.userAdmin.userName).Equals("sub-forum added"));
             this.subForum = SubForumController.getInstance;
 
         }

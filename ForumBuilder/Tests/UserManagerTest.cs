@@ -45,7 +45,7 @@ namespace Tests
                                                         fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword);
             ForumData forum = new ForumData(forumName, "descr", fpd, new List<String>(), new List<String>());
             superUserController.createForum(forumName, "descr", fp, adminList, superUser.userName);
-            Assert.IsTrue(this.forumManager.registerUser(userMember.userName, userMember.password, userMember.email, "ansss", "anssss", forumName));
+            Assert.IsTrue(this.forumManager.registerUser(userMember.userName, userMember.password, userMember.email, "ansss", "anssss", forumName).Equals("Register user succeed"));
         }
 
         [TestCleanup]
