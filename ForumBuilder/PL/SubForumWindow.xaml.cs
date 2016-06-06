@@ -299,7 +299,9 @@ namespace PL
 
         private void addModeratorButton_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            AddModerator newWin = new AddModerator(sForumName.Content.ToString(), _userName, forumName.Content.ToString());
+            newWin.Show();
+            this.Close();
         }
 
         private void dismissModerator_Click(object sender, RoutedEventArgs e, bool whaToDo)
