@@ -80,7 +80,7 @@ namespace ForumBuilder.Systems
                   
 
                 }
-                catch (CommunicationException ce)
+                catch (CommunicationException)
                 {
                     logger.logPrint("failed to initialize services",0);
                     logger.logPrint("failed to initialize services",2);
@@ -125,15 +125,15 @@ namespace ForumBuilder.Systems
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
             if (!SuperUserController.getInstance.createForum("f2", "f", fp, list, "idan"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
-            if (!ForumController.getInstance.registerUser("g1", "gG1", "g@g.g","sad","bad" ,"f"))
+            if (!ForumController.getInstance.registerUser("g1", "gG1", "g@g.g","sad","bad" ,"f").Equals("Register user succeed"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
-            if (!ForumController.getInstance.registerUser("g2", "gG1", "g@g.g","good", "awesome", "f"))
+            if (!ForumController.getInstance.registerUser("g2", "gG1", "g@g.g","good", "awesome", "f").Equals("Register user succeed"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
-            if (!ForumController.getInstance.nominateAdmin("g1", "idan", "f"))
+            if (!ForumController.getInstance.nominateAdmin("g1", "idan", "f").Equals("admin nominated successfully"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
             Dictionary<String, DateTime> d = new Dictionary<String, DateTime>();
             d.Add("g1", new DateTime(2017, 1, 1));
-            if (!ForumController.getInstance.addSubForum("f", "f1",d , "g1"))
+            if (!ForumController.getInstance.addSubForum("f", "f1",d , "g1").Equals("sub-forum added"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
 
             runServer(username, password, email);

@@ -54,14 +54,14 @@ namespace Tests
                                                           fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword);
               this.forum = new ForumData(this.forumName, "descr", fpd, new List<String>(), new List<string>());
               superUserController.createForum(this.forum.forumName, "descr", fp, adminList, superUser.userName);
-              Assert.IsTrue(this.forumManager.registerUser(userMember.userName, userMember.password, userMember.email, "ansss", "anssss", this.forum.forumName));
+              Assert.IsTrue(this.forumManager.registerUser(userMember.userName, userMember.password, userMember.email, "ansss", "anssss", this.forum.forumName).Equals("Register user succeed"));
               this.postManager = new PostManagerClient();
               this.subForumManager = new SubForumManagerClient();
               this.userMod = new UserData("mod", "Modpass1", "mod@gmail.com");
               Dictionary<String, DateTime> modList = new Dictionary<String, DateTime>();
               modList.Add(this.userMod.userName, new DateTime(2030, 1, 1));
-              Assert.IsTrue(ForumController.getInstance.registerUser("mod", "Modpass11", "mod@gmail.com", "ansss", "anssss", this.forumName));
-              Assert.IsTrue(this.forumManager.addSubForum(this.forumName, this.subForumName, modList, this.userAdmin.userName));
+              Assert.IsTrue(ForumController.getInstance.registerUser("mod", "Modpass11", "mod@gmail.com", "ansss", "anssss", this.forumName).Equals("Register user succeed"));
+              Assert.IsTrue(this.forumManager.addSubForum(this.forumName, this.subForumName, modList, this.userAdmin.userName).Equals("sub-forum added"));
               Assert.IsTrue(SubForumController.getInstance.createThread("headLine", "content", this.userMember.userName, this.forumName, this.subForumName));
               List<Post> posts = PostController.getInstance.getAllPosts(this.forumName, this.subForumName);
               Assert.AreEqual(posts.Count, 1);

@@ -19,10 +19,10 @@ namespace ForumBuilder.Common.ServiceContracts
         Boolean banMember(String bannedMember, String bannerUserName, String forumName);
 
         [OperationContract]
-        Boolean nominateAdmin(String newAdmin, String nominatorName, String forumName);
+        String nominateAdmin(String newAdmin, String nominatorName, String forumName);
 
         [OperationContract]
-        Boolean registerUser(String newUser, String password, String mail, String ans1, String ans2, String forumName);
+        String registerUser(String newUser, String password, String mail, String ans1, String ans2, String forumName);
 
         [OperationContract]
         int login(String newUser, String forumName,string password);
@@ -34,7 +34,7 @@ namespace ForumBuilder.Common.ServiceContracts
         Boolean logout(String newUser, String forumName);
 
         [OperationContract]
-        Boolean addSubForum(String forumName, String name, Dictionary<String, DateTime> moderators, String userNameAdmin);
+        String addSubForum(String forumName, String name, Dictionary<String, DateTime> moderators, String userNameAdmin);
 
         [OperationContract]
         Boolean isAdmin(String userName, String forumName);

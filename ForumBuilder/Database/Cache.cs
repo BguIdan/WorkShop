@@ -491,6 +491,7 @@ namespace DataBase
             {
                 SubForum sf = new SubForum(subForumName, forumName);
                 subForums.Add(sf);
+                forums[forumName].subForums.Add(subForumName);
                 return true;
             }
             catch

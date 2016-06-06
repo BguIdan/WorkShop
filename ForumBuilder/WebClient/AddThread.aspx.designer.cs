@@ -10,43 +10,43 @@
 namespace WebClient {
     
     
-    public partial class subForumWebPage {
+    public partial class AddThread {
         
         /// <summary>
-        /// forumNameLabel control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label forumNameLabel;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// subForumNameLabel control.
+        /// Title control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label subForumNameLabel;
+        protected global::System.Web.UI.WebControls.TextBox Title;
         
         /// <summary>
-        /// ThreadTable control.
+        /// Content control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table ThreadTable;
+        protected global::System.Web.UI.WebControls.TextBox Content;
         
         /// <summary>
-        /// addThreadButton control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button addThreadButton;
+        protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
         /// backButton control.
