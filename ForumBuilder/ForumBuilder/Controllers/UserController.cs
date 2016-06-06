@@ -57,7 +57,7 @@ namespace ForumBuilder.Controllers
             return "Add friend faild";            
         }
 
-        public bool deleteFriend(string userName, string deletedFriendName)
+        public String deleteFriend(string userName, string deletedFriendName)
         {
             User user = DB.getUser(userName);
             User friendTodelete = DB.getUser(deletedFriendName);
@@ -65,24 +65,28 @@ namespace ForumBuilder.Controllers
             {
                 logger.logPrint("Remove friend faild, " + userName + "is not a user",0);
                 logger.logPrint("Remove friend faild, " + userName + "is not a user",2);
-                return false;
+                return "Remove friend faild, " + userName + "is not a user";
             }
             if (friendTodelete == null)
             {
                 logger.logPrint("Remove friend faild, " + deletedFriendName + "is not a user",0);
                 logger.logPrint("Remove friend faild, " + deletedFriendName + "is not a user",2);
-                return false;
+                return "Remove friend faild, " + deletedFriendName + "is not a user";
             }
             if (!getFriendList(userName).Contains(deletedFriendName))
             {
                 logger.logPrint("Remove friend faild, " + userName + " and " + deletedFriendName + " are not friends",0);
                 logger.logPrint("Remove friend faild, " + userName + " and " + deletedFriendName + " are not friends",2);
-                return false;
+                return "Remove friend faild, " + userName + " and " + deletedFriendName + " are not friends";
             }
-            return DB.removeFriendOfUser(userName, deletedFriendName);
+            if (DB.removeFriendOfUser(userName, deletedFriendName))
+            {
+                return "Remove friend Succeeded";
+            }
+            return "Remove friend faild";
         }
 
-        public bool sendPrivateMessage(String forumName, string fromUserName, string toUserName, string content)
+        public String sendPrivateMessage(String forumName, string fromUserName, string toUserName, string content)
         {
             User sender = DB.getUser(fromUserName);
             User reciver = DB.getUser(toUserName);
@@ -90,30 +94,34 @@ namespace ForumBuilder.Controllers
             {
                 logger.logPrint("Send message faild, " + fromUserName + "is not a user",0);
                 logger.logPrint("Send message faild, " + fromUserName + "is not a user",2);
-                return false;
+                return "Send message faild, " + fromUserName + "is not a user";
             }
             else if (reciver == null)
             {
                 logger.logPrint("Send message faild, " + fromUserName + "is not a user",0);
                 logger.logPrint("Send message faild, " + fromUserName + "is not a user",2);
-                return false;
+                return "Send message faild, " + fromUserName + "is not a user";
             }
             else if (!ForumController.getInstance.isMembersOfSameForum(fromUserName, toUserName))
             {
                 logger.logPrint("Send message faild, " + fromUserName + " and " + toUserName + " are not in the same forum",0);
                 logger.logPrint("Send message faild, " + fromUserName + " and " + toUserName + " are not in the same forum",2);
-                return false;
+                return "Send message faild, " + fromUserName + " and " + toUserName + " are not in the same forum";
             }
             else if (content.Equals(""))
             {
                 logger.logPrint("Send message faild, no content in message",0);
                 logger.logPrint("Send message faild, no content in message",2);
-                return false;
+                return ("Send message faild, no content in message");
             }
             else
             {
                 forumController.notifyUserOnNewPrivateMessage(forumName, fromUserName, toUserName, content);
-                return DB.addMessage(fromUserName, toUserName, content);
+                if(DB.addMessage(fromUserName, toUserName, content))
+                {
+                    return "message was sent successfully";
+                }
+                return "Send message faild";
             }
         }
 

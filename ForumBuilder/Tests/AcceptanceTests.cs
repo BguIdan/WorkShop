@@ -201,21 +201,21 @@ namespace Tests
             adminList.Add(userAdmin.userName);
             superUserController.createForum("testForum", "descr", fp, adminList, superUser.userName);
             IUserManager userMan = new UserManagerClient();
-            Assert.IsFalse(userMan.sendPrivateMessage("testForum", "admin1", "admin2", "hello"));
+            Assert.IsFalse(userMan.sendPrivateMessage("testForum", "admin1", "admin2", "hello").Equals("message was sent successfully"));
             Assert.IsFalse(userMan.addFriend("admin1", "admin2").Equals("friend was added successfuly"));
             Assert.IsFalse(userMan.addFriend("admin2", "admin1").Equals("friend was added successfuly"));
             Assert.IsTrue(forumMan.registerUser("admin2", "passWord2", "jkkkk@xc.com", "ansss", "anssss", forumData.forumName).Equals("Register user succeed"));
-            Assert.IsTrue(userMan.sendPrivateMessage("testForum", "admin1", "admin2", "its me"));
+            Assert.IsTrue(userMan.sendPrivateMessage("testForum", "admin1", "admin2", "its me").Equals("message was sent successfully"));
             Assert.IsTrue(userMan.addFriend("admin1", "admin2").Equals("friend was added successfuly"));
             Assert.IsTrue(userMan.addFriend("admin2", "admin1").Equals("friend was added successfuly"));
             Assert.IsFalse(userMan.addFriend("admin2", "admin1").Equals("friend was added successfuly"));
             Assert.IsFalse(userMan.addFriend("admin1", "mem1").Equals("friend was added successfuly"));
             Assert.IsFalse(userMan.addFriend("mem1", "admin1").Equals("friend was added successfuly"));
-            Assert.IsFalse(userMan.sendPrivateMessage("testForum", "mem1", "admin1", "i was wonder"));
+            Assert.IsFalse(userMan.sendPrivateMessage("testForum", "mem1", "admin1", "i was wonder").Equals("message was sent successfully"));
             Assert.IsTrue(forumMan.registerUser("mem1", "passWor1", "fff@xc.com", "ansss", "anssss", forumData.forumName).Equals("Register user succeed"));
             Assert.IsTrue(userMan.addFriend("admin1", "mem1").Equals("friend was added successfuly"));
             Assert.IsTrue(userMan.addFriend("mem1", "admin1").Equals("friend was added successfuly"));
-            Assert.IsTrue(userMan.sendPrivateMessage("testForum", "mem1", "admin1", "when the test gona be done"));
+            Assert.IsTrue(userMan.sendPrivateMessage("testForum", "mem1", "admin1", "when the test gona be done").Equals("message was sent successfully"));
         }
 
         /*************************end use case 4******************************/
