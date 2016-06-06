@@ -11,6 +11,9 @@
                 <Separator/>
                 <MenuItem Header="Logout" Name="logoutMenu"/>
             </MenuItem>
+            <MenuItem Header="View" Click="MenuItem_View">
+                <MenuItem Header="View Forums Reports" Name="viewReports" />
+            </MenuItem>
         </Menu>
 
         <Grid Name="createForum" Visibility="Collapsed" Margin="0,0,0,0">
@@ -78,5 +81,10 @@
             <Button Name="noButton" Click="btn_ToSetForumPref" FontFamily="Cooper Black" Content="No" Margin="155,68,41,10" />
         </Grid>
 
+        <Grid Name="viewGrid" Visibility="Collapsed">
+            <TextBlock Name="headline" FontSize="24" FontFamily="Cooper Black" TextWrapping="Wrap" VerticalAlignment="Top" Text="Reports" Height="25" Margin="142,42,143,0"/>
+            <TextBlock Name="numOfFOrums" FontSize="14" FontFamily="Cooper Black" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" Margin="21,82,160,0"/>
+            <ListBox Name="memberListBox" HorizontalAlignment="Left" Margin="21,130,0,25" Width="347"/>
+        </Grid>
     </Grid>
 </Window>
