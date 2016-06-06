@@ -61,6 +61,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AddNewSubForum.aspx" />
+    <Content Include="AddPostPage.aspx" />
+    <Content Include="AddThread.aspx" />
+    <Content Include="AddThreadPage.aspx" />
     <Content Include="ForumWindow.aspx" />
     <Content Include="Images\background-Tomer.jpg" />
     <Content Include="MainWindow.html" />
@@ -83,6 +86,27 @@
     </Compile>
     <Compile Include="AddNewSubForum.aspx.designer.cs">
       <DependentUpon>AddNewSubForum.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddPostPage.aspx.cs">
+      <DependentUpon>AddPostPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddPostPage.aspx.designer.cs">
+      <DependentUpon>AddPostPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddThread.aspx.cs">
+      <DependentUpon>AddThread.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddThread.aspx.designer.cs">
+      <DependentUpon>AddThread.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddThreadPage.aspx.cs">
+      <DependentUpon>AddThreadPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddThreadPage.aspx.designer.cs">
+      <DependentUpon>AddThreadPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="ForumWindow.aspx.cs">
       <DependentUpon>ForumWindow.aspx</DependentUpon>

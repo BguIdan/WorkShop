@@ -9,5 +9,5 @@
     </div>
     <asp:Table ID="PostsTable" runat="server" CssClass="table-hover" ></asp:Table>
 
-
+    <asp:Button ID="Button1" runat="server" Text="Add Post" OnClick="Button1_Click" />
 </asp:Content>
