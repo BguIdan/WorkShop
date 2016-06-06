@@ -21,9 +21,8 @@
         </DockPanel>
         <Label Content="ForumName:" FontSize="16"  Name="forumName" FontFamily="Cooper Black" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top" Width="341" Height="37"/>
         <Label Content="Sub-ForumName:" FontSize="16" Name="sForumName" FontFamily="Cooper Black" HorizontalAlignment="Left" Margin="25,68,0,0" VerticalAlignment="Top" Width="341" Height="35"/>
-        <TextBlock Name="threadTextBox" FontSize="16" FontFamily="cooper black" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center"
-            	Text="   Threads" Visibility="Visible" Height="36" Margin="155,108,109,0"
-            	RenderTransformOrigin="0.78,0.757" Width="128"/>
+        <TextBlock Name="threadTextBox" FontSize="16" FontFamily="cooper black" TextWrapping="Wrap" VerticalAlignment="Top"
+            	Text="Threads" Visibility="Visible" Height="36" Margin="162,108,161,0"/>
         <DataGrid x:Name="threadView" 
                   AutoGenerateColumns="True" Margin="0,160,0,0" SelectionChanged="ThreadView_SelectionChanged" Loaded="DataGrid_Loaded">
 

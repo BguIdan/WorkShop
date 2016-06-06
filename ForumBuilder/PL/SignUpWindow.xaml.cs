@@ -44,7 +44,7 @@ namespace PL
             bool suc = register.Equals("Register user succeed");
             if (suc == false)
             {
-                MessageBox.Show(register);
+                MessageBox.Show(register + " Please try again!");
             }
             else
             {

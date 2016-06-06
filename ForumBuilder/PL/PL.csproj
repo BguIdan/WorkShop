@@ -70,6 +70,9 @@
     <Compile Include="addPostAndThreadWindow.xaml.cs">
       <DependentUpon>addPostAndThreadWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChangePasswordWindow.xaml.cs">
+      <DependentUpon>ChangePasswordWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DismissModerator.xaml.cs">
       <DependentUpon>DismissModerator.xaml</DependentUpon>
     </Compile>
@@ -112,6 +115,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="addPostAndThreadWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChangePasswordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
