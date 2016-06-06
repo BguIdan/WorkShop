@@ -22,9 +22,6 @@ namespace WebClient
         protected void Page_Load(object sender, EventArgs e)
         {
             //TODO gal: remove later(including the sleep)
-            //popup example
-            //Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "popup", "<script>alert();</script>");
-
             Thread.Sleep(1000);
 
             _fMC = new ForumManagerClient(new InstanceContext(this));

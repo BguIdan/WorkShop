@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ServiceModel;
 using ForumBuilder.Common.ServiceContracts;
+using ForumBuilder.Common.ClientServiceContracts;
 using BL_Back_End;
 using ForumBuilder.Common.DataContracts;
 
@@ -61,6 +63,11 @@ namespace Service
 
         public Boolean logout(String user, String forumName)
         {
+            /*OperationContext.Current.OperationCompleted += delegate(object sender, EventArgs e) 
+            {
+                OperationContext.Current.Channel.Close();
+                OperationContext.Current.GetCallbackChannel<IUserNotificationsService>().
+                };*/
             return forumController.logout(user, forumName);
         }
 
