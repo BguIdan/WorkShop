@@ -75,6 +75,13 @@ namespace PL
                 mw.Show();
                 this.Close();
             }
+        }
+
+        private void backToMain(object sender, RoutedEventArgs e)
+        {
+            MainWindow mw = new MainWindow();
+            mw.Show();
+            this.Close();
         } 
     }
 }

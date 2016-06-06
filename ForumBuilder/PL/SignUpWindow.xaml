@@ -8,11 +8,12 @@
             <TextBlock FontFamily="Cooper Black"  TextWrapping="Wrap" Text="Enter name :" Margin="56,138,255,235"/>
             <TextBlock FontFamily="Cooper Black"  TextWrapping="Wrap" Text="Enter Password :" Margin="56,166,228,210"/>
             <TextBlock FontFamily="Cooper Black"  TextWrapping="Wrap" Margin="56,190,265,183" Text="Enter Mail :"/>
-            <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Source="http://caymanroundup.com/wp-content/uploads/2014/02/register-online.jpg" Margin="56,0,0,27" Height="119" Width="119"/>
+            <Image VerticalAlignment="Bottom" Source="http://caymanroundup.com/wp-content/uploads/2014/02/register-online.jpg" Margin="149,0,149,27" Height="119"/>
             <TextBox Name="name" Margin="189,138,86,235" TextWrapping="Wrap" Text="" Height="22"/>
             <PasswordBox Name="Password" Margin="189,163,86,210" Height="22"/>
             <TextBox Name="mail" Margin="189,190,86,183" TextWrapping="Wrap" Height="22"/>
-            <Button FontFamily="Cooper Black" Content="Register" Margin="220,236,86,128" Click="UserRegistration"/>
+            <Button FontFamily="Cooper Black" Width="100" Content="Register" Margin="290,337,27,27" Click="secUserRegistration"/>
+            <Button FontFamily="Cooper Black" Width="100" Content="Back" Margin="27,337,290,27" Click="backToMain"/>
         </Grid>
 
         <Grid Name="withQuestions" Visibility="Collapsed">
@@ -20,7 +21,7 @@
             <TextBlock FontFamily="Cooper Black"  TextWrapping="Wrap" Text="Enter name :" Margin="15,90,296,283"/>
             <TextBlock FontFamily="Cooper Black"  TextWrapping="Wrap" Text="Enter Password :" Margin="15,118,269,258"/>
             <TextBlock FontFamily="Cooper Black"  TextWrapping="Wrap" Margin="15,146,306,227" Text="Enter Mail :"/>
-            <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Source="http://caymanroundup.com/wp-content/uploads/2014/02/register-online.jpg" Margin="56,0,0,27" Height="119" Width="119"/>
+            <Image VerticalAlignment="Bottom" Source="http://caymanroundup.com/wp-content/uploads/2014/02/register-online.jpg" Margin="149,0,149,27" Height="119"/>
             <TextBox Name="secname" Margin="264,86,20,287" TextWrapping="Wrap" Text="" Height="22"/>
             <PasswordBox Name="secPassword" Margin="264,114,20,259" Height="22"/>
             <TextBox Name="secmail" Margin="264,142,20,231" TextWrapping="Wrap" Height="22"/>
@@ -28,7 +29,8 @@
             <TextBlock Name="q2" FontFamily="Cooper Black" Margin="15,202,173,173" TextWrapping="Wrap" Text="What is your favorite pet? :" Height="20"/>
             <TextBox Name="ansToq1"  Height="23" Margin="264,170,20,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
             <TextBox Name="ansToq2" Height="23" Margin="264,198,20,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-            <Button FontFamily="Cooper Black" Content="Register" Margin="220,236,86,128" Click="secUserRegistration"/>
+            <Button FontFamily="Cooper Black" Width="100" Content="Register" Margin="290,337,27,27" Click="secUserRegistration"/>
+            <Button FontFamily="Cooper Black" Width="100" Content="Back" Margin="27,337,290,27" Click="backToMain"/>
         </Grid>
     </Grid>
 </Window>
