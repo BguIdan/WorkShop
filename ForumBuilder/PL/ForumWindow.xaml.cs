@@ -281,10 +281,11 @@ namespace PL
             }
             Dictionary<String, DateTime> dic = new Dictionary<string, DateTime>();
             dic.Add(userName, timeToSend);
-            Boolean isAdded = _fMC.addSubForum(_myforum.forumName, sub_ForumName, dic, _userName);
+            string ansAdd = _fMC.addSubForum(_myforum.forumName, sub_ForumName, dic, _userName);
+            Boolean isAdded = ansAdd.Equals("sub-forum added");
             if (isAdded == false)
             {
-                MessageBox.Show(userName + " can not be a moderator, try someone else.");
+                MessageBox.Show(ansAdd);
             }
             else
             {

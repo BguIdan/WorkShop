@@ -14,8 +14,8 @@ namespace ForumBuilder.Controllers
         Systems.Logger logger = Systems.Logger.getInstance;
         Dictionary<String, List<String>> loggedInUsersByForum = new Dictionary<String, List<String>>();
         Dictionary<String, List<IUserNotificationsService>> channelsByLoggedInUsers = new Dictionary<String, List<IUserNotificationsService>>();
-        Dictionary<String, int> clientSessionKeyByUser = new Dictionary<String,int>();
-        Dictionary<String, int> openConnectionsCounterByUser = new Dictionary<String,int>();
+        Dictionary<String, int> clientSessionKeyByUser = new Dictionary<String, int>();
+        Dictionary<String, int> openConnectionsCounterByUser = new Dictionary<String, int>();
 
         public static ForumController getInstance
         {
@@ -31,19 +31,18 @@ namespace ForumBuilder.Controllers
             }
         }
 
-        public bool addSubForum(string forumName, string name, Dictionary<String, DateTime> moderators, string creatorName)
+        public String addSubForum(string forumName, string name, Dictionary<String, DateTime> moderators, string creatorName)
         {
             if (DB.getSuperUser(creatorName) != null || isAdmin(creatorName, forumName))
             {
                 Forum forum = DB.getforumByName(forumName);
                 if (forum != null)
                 {
-                    DB.addSubForum(name, forumName);
-                    if (forum.forumPolicy.minNumOfModerators > moderators.Count)
+                    if (forum.subForums.Contains(name))
                     {
-                        logger.logPrint("Add sub-forum failed, there is not enough moderators", 0);
-                        logger.logPrint("Add sub-forum failed, there is not enough moderators", 2);
-                        return false;
+                        logger.logPrint("Add sub-forum failed, "+name+ " already exist", 0);
+                        logger.logPrint("Add sub-forum failed, " + name + " already exist", 2);
+                        return "Add sub-forum failed, " + name + " already exist";
                     }
                     foreach (string s in moderators.Keys)
                     {
@@ -51,39 +50,45 @@ namespace ForumBuilder.Controllers
                         {
                             logger.logPrint("Add sub-forum failed, the moderator " + s + " is not member of forum", 0);
                             logger.logPrint("Add sub-forum failed, the moderator " + s + " is not member of forum", 2);
-                            return false;
+                            return "Add sub-forum failed, the moderator " + s + " is not member of forum";
                         }
                         else if ((DateTime.Today - DB.getUser(s).date).Days < forum.forumPolicy.seniorityInForum)
                         {
                             logger.logPrint("Add sub-forum failed, the moderator " + s + " is not enough time in forum", 0);
                             logger.logPrint("Add sub-forum failed, the moderator " + s + " is not enough time in forum", 2);
-                            return false;
+                            return "Add sub-forum failed, the moderator " + s + " is not enough time in forum";
+                        }
+                        DateTime date;
+                        moderators.TryGetValue(s, out date);
+                        if (date < DateTime.Now)
+                        {
+                            logger.logPrint("Add sub-forum failed, date is already passed", 0);
+                            logger.logPrint("Add sub-forum failed, date is already passed", 2);
+                            return "Add sub-forum failed, date of moderator" + s + " is already passed";
                         }
                     }
+                    if (forum.forumPolicy.minNumOfModerators > moderators.Count)
+                    {
+                        logger.logPrint("Add sub-forum failed, there is not enough moderators", 0);
+                        logger.logPrint("Add sub-forum failed, there is not enough moderators", 2);
+                        return "Add sub-forum failed, there is not enough moderators according to forum policy";
+                    }
+                    DB.addSubForum(name, forumName);
                     foreach (string s in moderators.Keys)
                     {
                         DateTime date;
                         moderators.TryGetValue(s, out date);
-                        if (date > DateTime.Now)
-                        {
-                            DB.nominateModerator(s, date, name, forumName, creatorName);
-                        }
-                        else
-                        {
-                            logger.logPrint("Add sub-forum failed, date is allready passed", 0);
-                            logger.logPrint("Add sub-forum failed, date is allready passed", 2);
-                            return false;
-                        }
+                        SubForumController.getInstance.nominateModerator(s, creatorName,date, name, forumName);
                     }
                 }
+                return "sub-forum added";
             }
             else
             {
                 logger.logPrint("Add sub-forum failed, " + creatorName + " is not allowed", 0);
                 logger.logPrint("Add sub-forum failed, " + creatorName + " is not allowed", 2);
-                return false;
+                return "Add sub-forum failed, " + creatorName + " is not allowed";
             }
-            return true;
         }
         public List<String> getForums()
         {
@@ -169,16 +174,16 @@ namespace ForumBuilder.Controllers
             return false;
         }
 
-        public bool nominateAdmin(string newAdmin, string nominatorName, string forumName)
+        public String nominateAdmin(string newAdmin, string nominatorName, string forumName)
         {
             if (DB.getforumByName(forumName).administrators.Contains(newAdmin))
             {
                 logger.logPrint("nominate admin fail, " + newAdmin + "is already admin", 0);
                 logger.logPrint("nominate admin fail, " + newAdmin + "is already admin", 2);
-                return false;
+                return "nominate admin fail, " + newAdmin + "is already admin";
             }
             if (DB.getUser(newAdmin) == null)
-                return false;
+                return "nominate admin fail, " + newAdmin + "is not a user";
             if ((DB.getSuperUser(nominatorName) != null || DB.getforumByName(forumName).administrators.Contains(nominatorName)))
             {
                 bool isMem = isMember(newAdmin, forumName);
@@ -192,39 +197,34 @@ namespace ForumBuilder.Controllers
                     logger.logPrint("admin nominated successfully", 1);
                     if (DB.getforumByName(forumName).administrators.Contains(nominatorName) && DB.getSuperUser(nominatorName) == null)
                         DB.dismissAdmin(nominatorName, forumName);
-                    return true;
+                    return "admin nominated successfully";
                 }
-                return false;
+                //return false;
             }
             logger.logPrint("nominate admin fail " + nominatorName + " is not super user", 0);
             logger.logPrint("nominate admin fail " + nominatorName + " is not super user", 2);
-            return false;
+            return "nominate admin fail " + nominatorName + " is not super user";
         }
 
-        public bool registerUser(string userName, string password, string mail, string ans1, string ans2, string forumName)
+        public String registerUser(string userName, string password, string mail, string ans1, string ans2, string forumName)
         {
             Forum f = DB.getforumByName(forumName);
             if (f == null)
             {
                 logger.logPrint("Register user faild, the forum, " + forumName + " does not exist", 0);
                 logger.logPrint("Register user faild, the forum, " + forumName + " does not exist", 2);
-                return false;
+                return "Register user faild, the forum, " + forumName + " does not exist";
             }
             if (userName.Length > 0 && f.forumPolicy.minLengthOfPassword < password.Length && mail.Length > 0 &&
                 (!f.forumPolicy.hasCapitalInPassword || (f.forumPolicy.hasCapitalInPassword && hasCapital(password))) &&
                 (!f.forumPolicy.hasNumberInPassword || (f.forumPolicy.hasNumberInPassword && hasNumber(password))) &&
-                (ans1 != null && ans2 != null)&&
-                ((!f.forumPolicy.isQuestionIdentifying&&ans1.Equals("")&& ans2.Equals("")) || 
+                (ans1 != null && ans2 != null) &&
+                ((!f.forumPolicy.isQuestionIdentifying && ans1.Equals("") && ans2.Equals("")) ||
                 (f.forumPolicy.isQuestionIdentifying && !ans1.Equals("") && !ans2.Equals(""))))
             {
                 User user = DB.getUser(userName);
                 /*
                 if (user !=null)
-                (!f.forumPolicy.hasNumberInPassword || (f.forumPolicy.hasNumberInPassword && hasNumber(password))))
-            {
-                User user = DB.getUser(userName);
-                if (user != null)
-
                 {
                     if (user.userName.Equals(userName) && user.password.Equals(password))
                     {
@@ -234,16 +234,24 @@ namespace ForumBuilder.Controllers
                     logger.logPrint("Register user failed, " + userName + " is already taken", 2);
                     return false;
                 }*/
+                if (user != null)
+                {
+                    logger.logPrint("Register user failed, " + userName + " is already taken", 0);
+                    logger.logPrint("Register user failed, " + userName + " is already taken", 2);
+                    return "Register user failed, " + userName + " is already taken";
+                }
                 if (DB.addUser(userName, password, mail, ans1, ans2))
                 {
                     DB.addMemberToForum(userName, forumName);
-                    return true;
+                    logger.logPrint("Register user succeed", 0);
+                    logger.logPrint("Register user succeed", 1);
+                    return "Register user succeed";
                 }
-                return false;
+                return "Register user failed"; 
             }
-            logger.logPrint("Register user failed, password not strong enough", 0);
-            logger.logPrint("Register user failed, password not strong enough", 2);
-            return false;
+            logger.logPrint("Register user failed, user is not qualified", 0);
+            logger.logPrint("Register user failed, user is not qualified", 2);
+            return "Register user failed, user is not qualified";
         }
 
         private bool hasNumber(string password)
@@ -290,7 +298,7 @@ namespace ForumBuilder.Controllers
             Forum loggedInForum = DB.getforumByName(forumName);
             if (usr != null && usr.password.Equals(pass) && loggedInForum != null)
             {
-                if (needToChangePassword(user , forumName))
+                if (needToChangePassword(user, forumName))
                     return -5;
                 if (!this.loggedInUsersByForum[forumName].Contains(user))
                 {
@@ -521,7 +529,7 @@ namespace ForumBuilder.Controllers
             List<IUserNotificationsService> addresseeChannels = this.channelsByLoggedInUsers[addressee];
             if (addresseeChannels != null)
             {
-                foreach(IUserNotificationsService channel in addresseeChannels)
+                foreach (IUserNotificationsService channel in addresseeChannels)
                 {
                     channel.sendUserMessage(sender, content);
                 }
