@@ -260,7 +260,7 @@ namespace Tests
             String adminName = this.userAdmin.userName;
             Assert.AreNotEqual(oldPolicy, newPolicy, false, "the new policy should be different from the old one");
             Assert.AreNotEqual(oldDescription, newDescr, false, "the new description should be different from the old one");
-            ForumPolicyData fpd = new ForumPolicyData("p", true, 0, true, 180, 1, true, true, 5);
+            ForumPolicyData fpd = new ForumPolicyData("new policy for test", true, 0, true, 180, 1, true, true, 5);
             Assert.IsTrue(this.forumManager.setForumPreferences(forumName, newDescr,fpd, adminName).Equals("preferences had changed successfully"), "policy change should be successful");
             Assert.AreEqual(this.forumManager.getForumPolicy(forumName), newPolicy, false, "the new policy should be return after the change");
             Assert.AreEqual(this.forumManager.getForumDescription(forumName), newDescr, false, "the new description should be return after the change");
