@@ -8,9 +8,12 @@
         Title="AddModerator" Height="300" Width="300">
     <Grid>
         <Label x:Name="label" FontFamily="cooper black" FontSize="30" Content="Add Moderator" HorizontalAlignment="Left" Margin="30,34,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="addButton" Content="Add" HorizontalAlignment="Left" Margin="105,199,0,0" VerticalAlignment="Top" Width="75" Click="addButton_Click"/>
+        <Button x:Name="addButton" Content="Add" HorizontalAlignment="Left" Margin="153,216,0,0" VerticalAlignment="Top" Width="75" Click="addButton_Click"/>
         <Label x:Name="label1" Content="Moderator Name" HorizontalAlignment="Left" Margin="10,131,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="moderatortextBox" HorizontalAlignment="Left" Height="23" Margin="128,135,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="backButton" Content="Back" HorizontalAlignment="Left" Margin="47,217,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.374,0.387" Click="backButton_Click"/>
+        <ComboBox x:Name="durationComboBox" DropDownOpened="comboBox_DropDownOpened" HorizontalAlignment="Left" Margin="128,163,0,0" VerticalAlignment="Top" Width="120" Height="31"/>
+        <Label x:Name="duration" Content="Duration" HorizontalAlignment="Left" Margin="10,163,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
