@@ -208,6 +208,7 @@ namespace PL
                     }
                     int minLengthOfPass = Int32.Parse(LengthCombo.SelectedItem.ToString());
                     _fData.forumPolicy.minLengthOfPassword = minLengthOfPass;
+                    _fMC.setForumPreferences(_fData.forumName, _fData.description, _fData.forumPolicy, _myUser.userName);
                     MessageBox.Show("Preferences was successfully changed!");
                     descCheck.IsChecked = false;
                     policyCheck.IsChecked = false;
@@ -297,7 +298,7 @@ namespace PL
 
         private void NumberComboBox_OnDropDownOpened(object sender, EventArgs e)
         {
-            int minNumOfModerators = 0;
+            int minNumOfModerators = 1;
             int maxNumOfModerators = 10;
             for (int i = minNumOfModerators; i <= maxNumOfModerators; i++)
             {

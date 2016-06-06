@@ -98,11 +98,25 @@ namespace PL
             switch (menuItem.Name)
             {
                 case "viewReports": { showReport(); } break;
+                case "viewUserPosts": { userPostsView(); } break;
             }
+        }
+
+        private void userPostsView()
+        {
+            reportListBox.Items.Clear();
+            mainGrid.Visibility = System.Windows.Visibility.Collapsed;
+            MyDialog.Visibility = System.Windows.Visibility.Collapsed;
+            setPreferencesWin.Visibility = System.Windows.Visibility.Collapsed;
+            AddSubForum.Visibility = System.Windows.Visibility.Collapsed;
+            viewGrid.Visibility = System.Windows.Visibility.Visible;
+            usersComboBox.Visibility = Visibility.Visible;
+
         }
 
         private void showReport()
         {
+            reportListBox.Items.Clear();
             mainGrid.Visibility = System.Windows.Visibility.Collapsed;
             MyDialog.Visibility = System.Windows.Visibility.Collapsed;
             setPreferencesWin.Visibility = System.Windows.Visibility.Collapsed;
@@ -267,6 +281,7 @@ namespace PL
                 }
                 int minLengthOfPass = Int32.Parse(LengthCombo.SelectedItem.ToString());
                 _myforum.forumPolicy.minLengthOfPassword = minLengthOfPass;
+                _fMC.setForumPreferences(_myforum.forumName, _myforum.description, _myforum.forumPolicy, _userName);
                 MessageBox.Show("Preferences was successfully changed!");
                 descCheck.IsChecked = false;
                 policyCheck.IsChecked = false;
@@ -386,7 +401,7 @@ namespace PL
 
         private void NumberComboBox_OnDropDownOpened(object sender, EventArgs e)
         {
-            int minNumOfModerators = 0;
+            int minNumOfModerators = 1;
             int maxNumOfModerators = 10;
             for (int i = minNumOfModerators; i <= maxNumOfModerators; i++)
             {
@@ -421,5 +436,41 @@ namespace PL
             this.Close();
         }
 
+        private void usersComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            List<PostData> posts = _fMC.getAdminReportPostOfmember(_userName, _myforum.ToString(), usersComboBox.Text);
+            foreach(PostData post in posts)
+            {
+                Expander exp = new Expander();
+                exp.Header = post.title;
+                exp.Content = post.content;
+                reportListBox.Items.Add(exp);
+            }
+        }
+
+        private void usersComboBox_DropDownOpened(object sender, EventArgs e)
+        {
+            usersComboBox.Items.Clear();
+            for (int i = 0; i < _myforum.members.Count; i++)
+            {
+                ComboBoxItem newItem = new ComboBoxItem();
+                newItem.Content = _myforum.members.ElementAt(i);
+                usersComboBox.Items.Add(newItem);
+            }
+        }
+
+        private void usersComboBox_DropDownClosed(object sender, EventArgs e)
+        {
+            List<PostData> posts = _fMC.getAdminReportPostOfmember(_userName, _myforum.ToString(), usersComboBox.Text);
+            if (posts == null)
+                return;
+            foreach (PostData post in posts)
+            {
+                Expander exp = new Expander();
+                exp.Header = post.title;
+                exp.Content = post.content;
+                reportListBox.Items.Add(exp);
+            }
+        }
     }
 }
