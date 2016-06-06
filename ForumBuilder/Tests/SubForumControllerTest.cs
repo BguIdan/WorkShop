@@ -195,7 +195,7 @@ namespace Tests
         public void test_nominateModerator_on_member()
         {
             String memberName = this.userMember.userName;
-            Assert.IsTrue(this.subForum.nominateModerator(memberName, this.userAdmin.userName, new DateTime(2030, 1, 1), this.subForumName, this.forumName), "nomination of member user should be successful");
+            Assert.IsTrue(this.subForum.nominateModerator(memberName, this.userAdmin.userName, new DateTime(2030, 1, 1), this.subForumName, this.forumName).Equals("nominate moderator succeed"), "nomination of member user should be successful");
             Assert.IsTrue(this.subForum.isModerator(memberName, this.subForumName, this.forumName), "member should be moderator after his successful numonation");
         }
 
@@ -203,20 +203,20 @@ namespace Tests
         public void test_nominateModerator_on_moderator()
         {
             String moderatorName = this.userModerator.userName;
-            Assert.IsFalse(this.subForum.nominateModerator(moderatorName, this.userAdmin.userName, new DateTime(2030, 1, 1), this.subForumName, this.forumName), "nomination of moderator that already exists should not be successful");
+            Assert.IsFalse(this.subForum.nominateModerator(moderatorName, this.userAdmin.userName, new DateTime(2030, 1, 1), this.subForumName, this.forumName).Equals("nominate moderator succeed"), "nomination of moderator that already exists should not be successful");
             Assert.IsTrue(this.subForum.isModerator(moderatorName, this.subForumName, this.forumName), "moderator user should still br a moderator");
         }
 
         [TestMethod]
         public void test_nominateModerator_on_null()
         {
-            Assert.IsFalse(this.subForum.nominateModerator(null, this.userAdmin.userName, new DateTime(2030, 1, 1), this.subForumName, this.forumName), "nomination of null should not be successful");
+            Assert.IsFalse(this.subForum.nominateModerator(null, this.userAdmin.userName, new DateTime(2030, 1, 1), this.subForumName, this.forumName).Equals("nominate moderator succeed"), "nomination of null should not be successful");
         }
 
         [TestMethod]
         public void test_nominateModerator_on_empty_string_name()
         {
-            Assert.IsFalse(this.subForum.nominateModerator("", this.userAdmin.userName, new DateTime(2030, 1, 1), this.subForumName, this.forumName), "nomination with empty string as name should not be successful");
+            Assert.IsFalse(this.subForum.nominateModerator("", this.userAdmin.userName, new DateTime(2030, 1, 1), this.subForumName, this.forumName).Equals("nominate moderator succeed"), "nomination with empty string as name should not be successful");
         }
         
         [TestMethod]
@@ -225,7 +225,7 @@ namespace Tests
             ForumPolicy newfp = new ForumPolicy("p", true, 2, true, 180, 1, true, true, 5);
             Assert.IsTrue(forumController.setForumPreferences(this.forumName, "new Des", newfp, userAdmin.userName).Equals("preferences had changed successfully"));
             this.userMember = new User("mem", "Mempass1", "mem@gmail.com", new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day));
-            Assert.IsFalse(this.subForum.nominateModerator(this.userMember.userName, this.userAdmin.userName, new DateTime(2030, 1, 1), this.subForumName, this.forumName), "nomination with empty string as name should not be successful");
+            Assert.IsFalse(this.subForum.nominateModerator(this.userMember.userName, this.userAdmin.userName, new DateTime(2030, 1, 1), this.subForumName, this.forumName).Equals("nominate moderator succeed"), "nomination with empty string as name should not be successful");
         }
 
         [TestMethod]
@@ -234,7 +234,7 @@ namespace Tests
             ForumPolicy newfp = new ForumPolicy("p", true, 2, true, 180, 2, true, true, 5);
             Assert.IsTrue(forumController.setForumPreferences(this.forumName, "new Des", newfp, userAdmin.userName).Equals("preferences had changed successfully"));
             this.userMember = new User("mem", "Mempass1", "mem@gmail.com", new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day));
-            Assert.IsFalse(this.subForum.nominateModerator(this.userMember.userName, this.userAdmin.userName, new DateTime(2030, 1, 1), this.subForumName, this.forumName), "nomination with empty string as name should not be successful");
+            Assert.IsFalse(this.subForum.nominateModerator(this.userMember.userName, this.userAdmin.userName, new DateTime(2030, 1, 1), this.subForumName, this.forumName).Equals("nominate moderator succeed"), "nomination with empty string as name should not be successful");
         }
 
 

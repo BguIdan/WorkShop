@@ -37,7 +37,7 @@ namespace Service
         {
             return postController.removeComment(postId, deletingUser);
         }
-        public Boolean addPost(String headLine, String content, String writerName, Int32 commentedPost)
+        public String addPost(String headLine, String content, String writerName, Int32 commentedPost)
         {
             return postController.addComment(headLine, content, writerName, commentedPost);
         }

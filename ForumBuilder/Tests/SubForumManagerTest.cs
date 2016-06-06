@@ -130,13 +130,13 @@ namespace Tests
         [TestMethod]
         public void test_nominateModerator_on_null()
         {
-            Assert.IsFalse(this.subForum.nominateModerator(null, this.userAdmin.userName, new DateTime(2030, 1, 1), this.subForumName, this.forumName), "nomination of null should not be successful");
+            Assert.IsFalse(this.subForum.nominateModerator(null, this.userAdmin.userName, new DateTime(2030, 1, 1), this.subForumName, this.forumName).Equals("nominate moderator succeed"), "nomination of null should not be successful");
         }
 
         [TestMethod]
         public void test_nominateModerator_on_empty_string_name()
         {
-            Assert.IsFalse(this.subForum.nominateModerator("", this.userAdmin.userName, new DateTime(2030, 1, 1), this.subForumName, this.forumName), "nomination with empty string as name should not be successful");
+            Assert.IsFalse(this.subForum.nominateModerator("", this.userAdmin.userName, new DateTime(2030, 1, 1), this.subForumName, this.forumName).Equals("nominate moderator succeed"), "nomination with empty string as name should not be successful");
         }
 
 

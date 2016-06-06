@@ -498,7 +498,7 @@ namespace ForumBuilder.Controllers
         }
         public List<Post> getAdminReportPostOfmember(String AdminName, String forumName, String memberName)
         {
-            if (isAdmin(AdminName, forumName))
+            if (isAdmin(AdminName, forumName) && isMember(memberName, forumName))
                 return DB.getMemberPosts(memberName, forumName);
             return null;
         }

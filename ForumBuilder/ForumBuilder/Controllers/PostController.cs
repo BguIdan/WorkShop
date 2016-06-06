@@ -41,39 +41,41 @@ namespace ForumBuilder.Controllers
             return DB.getPost(postId);
         }
 
-        public Boolean addComment(String headLine, String content, String writerName, int commentedPost)
+        public String addComment(String headLine, String content, String writerName, int commentedPost)
         {
             SubForum sf= getSubforumByPost(commentedPost);
             if (getPost(commentedPost) == null)
             {
                 logger.logPrint("Add comment failed, there is no post to comment at",0);
                 logger.logPrint("Add comment failed, there is no post to comment at",2);
-                return false;
+                return "Add comment failed, there is no post to comment at";
             }
             if (headLine.Equals("") && content.Equals(""))
             {
                 logger.logPrint("Add comment failed, there is no head or content in tread",0);
                 logger.logPrint("Add comment failed, there is no head or content in tread",2);
-                return false;
+                return "Add comment failed, there is no head or content in tread";
             }
             else if (DB.getUser(writerName) == null)
             {
                 logger.logPrint("Add comment failed, user does not exist",0);
                 logger.logPrint("Add comment failed, user does not exist",2);
-                return false;
+                return "Add comment failed, user does not exist";
             }
             else if(sf==null|| !ForumController.getInstance.isMember(writerName, sf.forum))
             {
                 logger.logPrint("Add comment failed, user is not a member in forum",0);
                 logger.logPrint("Add comment failed, user is not a member in forum",2);
-                return false;
+                return "Add comment failed, user is not a member in forum";
             }
             else
             {
                 int id = DB.getAvilableIntOfPost();
                 logger.logPrint("Create comment "+ id+" to "+commentedPost,0);
                 logger.logPrint("Create comment " + id + " to " + commentedPost,1);
-                return DB.addPost(writerName, id, headLine, content, commentedPost, DateTime.Now,sf.forum);
+                if (DB.addPost(writerName, id, headLine, content, commentedPost, DateTime.Now, sf.forum))
+                    return "comment created";
+                return "Create comment failed";
             }
         }
         public String removeComment(int postId, String removerName)
