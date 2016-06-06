@@ -10,6 +10,7 @@ namespace ForumBuilder.Controllers
     {
         private static PostController singleton;
         DBClass DB = DBClass.getInstance;
+        ForumController forumController = ForumController.getInstance;
         Systems.Logger logger = Systems.Logger.getInstance;
         public static PostController getInstance
         {
@@ -73,8 +74,10 @@ namespace ForumBuilder.Controllers
                 int id = DB.getAvilableIntOfPost();
                 logger.logPrint("Create comment "+ id+" to "+commentedPost,0);
                 logger.logPrint("Create comment " + id + " to " + commentedPost,1);
-                if (DB.addPost(writerName, id, headLine, content, commentedPost, DateTime.Now, sf.forum))
+                if (DB.addPost(writerName, id, headLine, content, commentedPost, DateTime.Now, sf.forum)){
+                	this.forumController.sendThreadCreationNotification(headLine, content, writerName, sf.forum, sf.name);
                     return "comment created";
+				}
                 return "Create comment failed";
             }
         }
@@ -104,6 +107,22 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Delete thread comment, there is no permission to that user",2);
                 return "Delete thread comment, there is no permission to that user";
             }
+//user notification mechanism
+            List<String> usersToBeNotifiedForThreadDelition = new List<String>();
+            Post deletedPost = getPost(postId);
+            List<Post> siblingPosts = DB.getRelatedPosts(deletedPost.parentId);
+            foreach (Post post in siblingPosts)
+            {
+                if (!usersToBeNotifiedForThreadDelition.Contains(post.writerUserName))
+                {
+                    usersToBeNotifiedForThreadDelition.Add(post.writerUserName);
+                }
+            }
+            foreach (String username in usersToBeNotifiedForThreadDelition)
+            {
+                this.forumController.sendPostDelitionNotification(sf.forum, deletedPost.writerUserName, username);
+            }
+/////////////////////////
 
             //find the posts that have to delete
             List<Post> donePosts = new List<Post>();
@@ -180,7 +199,23 @@ namespace ForumBuilder.Controllers
             }
             else
             {
-                ForumController.getInstance.sendPostModificationNotification(DB.getPost(postID).forumName, userName, title, content);
+
+        //user notification mechanism
+                List<String> usersToBeNotifiedForThreadModification = new List<String>();
+                Post modifiedPost = getPost(postID);
+                List<Post> siblingPosts = DB.getRelatedPosts(modifiedPost.parentId);
+                foreach (Post post in siblingPosts)
+                {
+                    if (!usersToBeNotifiedForThreadModification.Contains(post.writerUserName))
+                    {
+                        usersToBeNotifiedForThreadModification.Add(post.writerUserName);
+                    }
+                }
+                foreach (String username in usersToBeNotifiedForThreadModification)
+                {
+                    this.forumController.sendPostModificationNotification(modifiedPost.forumName, modifiedPost.writerUserName, modifiedPost.title, username);
+                }
+        /////////////////////////
                 return DB.updatePost(postID, title, content);
             }
         }

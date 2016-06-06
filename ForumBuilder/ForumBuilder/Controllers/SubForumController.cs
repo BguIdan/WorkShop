@@ -188,6 +188,7 @@ namespace ForumBuilder.Controllers
                 List<Post> donePosts = new List<Post>();
                 List<Post> undonePosts = new List<Post>();
                 undonePosts.Add(DB.getPost(firstPostId));
+                Post deletedPost = undonePosts[0];
                 while (undonePosts.Count != 0)
                 {
                     Post post = undonePosts.ElementAt(0);
@@ -200,12 +201,18 @@ namespace ForumBuilder.Controllers
                     }
                     donePosts.Add(post);
                 }
+                List<String> usersToBeNotifiedForThreadDelition = new List<String>();
                 DB.removeThread(firstPostId);
                 for (int i =donePosts.Count-1; i>=0;i--)
                 {
+                    usersToBeNotifiedForThreadDelition.Add(donePosts.ElementAt(i).writerUserName);                
                     DB.removePost(donePosts.ElementAt(i).id);
                     logger.logPrint("Remove post " + donePosts.ElementAt(i).id,0);
                     logger.logPrint("Remove post " + donePosts.ElementAt(i).id,1);
+                }
+                foreach (String username in usersToBeNotifiedForThreadDelition)
+                {
+                    this.forumController.sendPostDelitionNotification(sf.forum, deletedPost.writerUserName, username);
                 }
                 logger.logPrint("Remove thread " + firstPostId,0);
                 logger.logPrint("Remove thread " + firstPostId,1);

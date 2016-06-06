@@ -16,8 +16,8 @@ namespace ForumBuilder.Controllers
         String loginBySessionKey(int sessionKey, String user, String forumName);
         Boolean logout(String user, String forumName);
         Boolean sendThreadCreationNotification(String headLine, String content, String publisherName, String forumName, String subForumName);
-        Boolean sendPostModificationNotification(String forumName, String publisherName, String title, String content);
-        Boolean sendPostDelitionNotification(String forumName, String publisherName);
+        Boolean sendPostModificationNotification(String forumName, String publisherName, String title, String notifiedUser);
+        Boolean sendPostDelitionNotification(String forumName, String publisherName, String notifiedUser);
         String addSubForum(string forumName, string name, Dictionary<String, DateTime> moderators, string userNameAdmin);
         Boolean isAdmin(String userName, String forumName);
         Boolean isMember(String userName, String forumName);

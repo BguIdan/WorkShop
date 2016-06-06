@@ -367,9 +367,7 @@ namespace ForumBuilder.Controllers
         }
 
         public Boolean logout(String user, String forumName)
-        {//TODO gal modify logout to support more than one active connection
-            //TODO gal make sure the log outs works
-            //TODO gal what about the open channels?
+        {   //TODO gal what about the open channels?
             if (!this.loggedInUsersByForum.ContainsKey(forumName))
                 return false;
             if (!this.loggedInUsersByForum[forumName].Contains(user))
@@ -406,38 +404,40 @@ namespace ForumBuilder.Controllers
             return true;
         }
 
-        public Boolean sendPostModificationNotification(String forumName, String publisherName, String title, String content)
+        public Boolean sendPostModificationNotification(String forumName, String publisherName, String title, String notifiedUser)
         {
             if (loggedInUsersByForum == null)
-                this.loggedInUsersByForum = new Dictionary<String, List<String>>();
+                return false;
             List<String> loggedInUsers = this.loggedInUsersByForum[forumName];
             if (loggedInUsers == null)
                 return false;
-            foreach (String userName in loggedInUsers)
+            if (loggedInUsers.Contains(notifiedUser))
             {
-                if (channelsByLoggedInUsers[userName] != null)
+                List<IUserNotificationsService> channels = this.channelsByLoggedInUsers[notifiedUser];
+                if (channels != null)
                 {
-                    foreach (IUserNotificationsService channel in channelsByLoggedInUsers[userName])
+                    foreach (IUserNotificationsService channel in channels)
                     {
-                        channel.applyPostModificationNotification(forumName, publisherName, title, content);
+                        channel.applyPostDelitionNotification(forumName, publisherName);
                     }
                 }
             }
             return true;
         }
 
-        public Boolean sendPostDelitionNotification(String forumName, String publisherName)
+        public Boolean sendPostDelitionNotification(String forumName, String publisherName, String notifiedUser)
         {
             if (loggedInUsersByForum == null)
-                this.loggedInUsersByForum = new Dictionary<String, List<String>>();
+                return false;
             List<String> loggedInUsers = this.loggedInUsersByForum[forumName];
             if (loggedInUsers == null)
                 return false;
-            foreach (String userName in loggedInUsers)
+            if (loggedInUsers.Contains(notifiedUser))
             {
-                if (channelsByLoggedInUsers[userName] != null)
+                List<IUserNotificationsService> channels = this.channelsByLoggedInUsers[notifiedUser];
+                if (channels != null)
                 {
-                    foreach (IUserNotificationsService channel in channelsByLoggedInUsers[userName])
+                    foreach (IUserNotificationsService channel in channels)
                     {
                         channel.applyPostDelitionNotification(forumName, publisherName);
                     }
@@ -487,7 +487,8 @@ namespace ForumBuilder.Controllers
 
         public Forum getForum(String forumName)
         {
-            return DB.getforumByName(forumName);
+            Forum f = DB.getforumByName(forumName);
+            return f;
         }
 
         public int getAdminReportNumOfPOst(String AdminName, String forumName)
