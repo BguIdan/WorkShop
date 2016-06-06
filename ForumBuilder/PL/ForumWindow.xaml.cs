@@ -25,13 +25,13 @@ namespace PL
 
     public partial class ForumWindow : Window
     {
-        
+
         private ForumData _myforum;
         private String _subForumChosen;
         private ForumManagerClient _fMC;
         private string _userName;
         private SuperUserManagerClient _sUMC;
-              
+
         public ForumWindow(ForumData forum, string userName)
         {
             InitializeComponent();
@@ -42,7 +42,7 @@ namespace PL
             _sUMC = new SuperUserManagerClient();
             InitializePermissons(userName);
             //initializing the subForumListBox
-            foreach(string subForum in _myforum.subForums)
+            foreach (string subForum in _myforum.subForums)
             {
                 subForumsListBox.Items.Add(subForum);
             }
@@ -75,10 +75,10 @@ namespace PL
             //  a super user
             else
             {
-               // all open 
+                // all open 
             }
         }
-                
+
         private void MenuItem_Forums(object sender, RoutedEventArgs e)
         {
             usersComboBox.Visibility = Visibility.Collapsed;
@@ -160,7 +160,7 @@ namespace PL
             SubForumWindow sfw = new SubForumWindow(_myforum.forumName, _subForumChosen, _userName);
             sfw.ShowDialog();
         }
-        
+
         private void addNewSubForum()
         {
             MainMenu.Visibility = System.Windows.Visibility.Collapsed;
@@ -201,7 +201,7 @@ namespace PL
 
         private void SignUP()
         {
-            SignUpWindow sU = new SignUpWindow(_fMC,_myforum.forumName);
+            SignUpWindow sU = new SignUpWindow(_fMC, _myforum.forumName);
             sU.Show();
             this.Close();
         }
@@ -297,7 +297,7 @@ namespace PL
                 LengthCombo.Items.Clear();
                 setPreferencesWin.Visibility = System.Windows.Visibility.Collapsed;
                 MainMenu.Visibility = System.Windows.Visibility.Visible;
-            }            
+            }
         }
 
 
@@ -422,7 +422,7 @@ namespace PL
             int maxPasswordLength = 20;
             for (int i = minPasswordLength; i <= maxPasswordLength; i++)
             {
-               LengthCombo.Items.Add(i);
+                LengthCombo.Items.Add(i);
             }
         }
 
@@ -441,7 +441,7 @@ namespace PL
         private void usersComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             List<PostData> posts = _fMC.getAdminReportPostOfmember(_userName, _myforum.forumName, usersComboBox.Text);
-            foreach(PostData post in posts)
+            foreach (PostData post in posts)
             {
                 Expander exp = new Expander();
                 exp.Header = post.title;
@@ -463,15 +463,16 @@ namespace PL
 
         private void usersComboBox_DropDownClosed(object sender, EventArgs e)
         {
-            List<PostData> posts = _fMC.getAdminReportPostOfmember(_userName, _myforum.forumName, usersComboBox.Text);
-            if (posts == null)
-                return;
-            foreach (PostData post in posts)
+            if (!(usersComboBox.Text).Equals(""))
             {
-                Expander exp = new Expander();
-                exp.Header = post.title;
-                exp.Content = post.content;
-                reportListBox.Items.Add(exp);
+                List<PostData> posts = _fMC.getAdminReportPostOfmember(_userName, _myforum.forumName, usersComboBox.Text);
+                foreach (PostData post in posts)
+                {
+                    Expander exp = new Expander();
+                    exp.Header = post.title;
+                    exp.Content = post.content;
+                    reportListBox.Items.Add(exp);
+                }
             }
         }
     }

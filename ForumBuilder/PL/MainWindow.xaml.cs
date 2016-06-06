@@ -198,7 +198,6 @@ namespace PL
             }
             catch (Exception)
             {
-                
                 MessageBox.Show("Please choose a forum from the list");
             }
         }

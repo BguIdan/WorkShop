@@ -49,7 +49,12 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Add friend faild, " + friendToAddName + " and " + userName + " are not in the same forum",2);
                 return "Add friend faild, " + friendToAddName + " and " + userName + " are not in the same forum";
             }
-
+            if (DB.getUserFriends(userName).Contains(friendToAddName))
+            {
+                logger.logPrint("Add friend faild, " + userName + " and " + friendToAddName + " are already friends", 0);
+                logger.logPrint("Add friend faild, " + userName + " and " + friendToAddName + " are already friends", 2);
+                return "Add friend faild, " + userName + " and " + friendToAddName + " are already friends";
+            }
             if (DB.addFriendToUser(userName, friendToAddName))
             {
                 return "friend was added successfuly";
@@ -153,6 +158,29 @@ namespace ForumBuilder.Controllers
                 password = DB.getPassword(userName);
             }
             return password;
+        }
+
+        public string setNewPassword(string userName, string forumName, string password)
+        {
+            Forum forum = forumController.getForum(forumName); 
+            if (forumController.isMember(userName, forumName)&&forum!=null)
+            {
+                if (forum.forumPolicy.minLengthOfPassword < password.Length &&
+                (!forum.forumPolicy.hasCapitalInPassword || (forum.forumPolicy.hasCapitalInPassword && forumController.hasCapital(password))) &&
+                (!forum.forumPolicy.hasNumberInPassword || (forum.forumPolicy.hasNumberInPassword && forumController.hasNumber(password))))
+                {
+                    DB.setPassword(userName, password);
+                    logger.logPrint("change password succeed", 0);
+                    logger.logPrint("change password succeed", 1);
+                    return "change password succeed";
+                }
+                logger.logPrint("change password failed, password is not storng enough according to forum policy", 0);
+                logger.logPrint("change password failed, password is not storng enough according to forum policy", 2);
+                return "change password failed, password is not storng enough according to forum policy";
+            }
+            logger.logPrint("change password failed, " + userName + " is not a member in " + forumName, 0);
+            logger.logPrint("change password failed, " + userName + " is not a member in " + forumName, 2);
+            return "change password failed, "+userName + " is not a member in " + forumName;
         }
     }
 }

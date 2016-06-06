@@ -62,5 +62,10 @@ namespace PL.proxies
         {
             return Channel.restorePassword(userName, ans1, ans2);
         }
+
+        public string setNewPassword(string userName, string forumName, string password)
+        {
+            return Channel.setNewPassword(userName, forumName, password);
+        }
     }
 }

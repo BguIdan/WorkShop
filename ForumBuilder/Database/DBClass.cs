@@ -221,6 +221,30 @@ namespace Database
                 return -1;
             }*/
         }
+
+        public bool setPassword(string userName, string password)
+        {
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "UPDATE users SET " +
+                    "password='" + password + "' "  +
+                    "lastTimePasswordChanged= "+ DateTime.Today.Day + "/" + DateTime.Today.Month + "/" + DateTime.Today.Year+
+                    " where userName='" + userName + "'";
+                command.ExecuteNonQuery();
+                closeConnectionDB();
+                //return true;
+                return cache.setPassword(userName, password);
+            }
+            catch
+            {
+                closeConnectionDB();
+                return false;
+            }
+        }
+
         public bool dismissModerator(string dismissedModerator, string subForumName, string forumName)
         {
             try

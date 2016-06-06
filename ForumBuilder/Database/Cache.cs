@@ -314,7 +314,16 @@ namespace DataBase
             }
 
         }
-        
+
+        internal bool setPassword(string userName, string password)
+        {
+            users[userName].password = password;
+            users[userName].lastTimeUpdatePassword = DateTime.Today;
+            superUsers[userName].password = password;
+            superUsers[userName].lastTimeUpdatePassword = DateTime.Today;
+            return true;
+        }
+
         public bool nominateAdmin(string newAdmin, string forumName)
         {
             try
