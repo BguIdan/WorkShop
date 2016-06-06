@@ -253,6 +253,12 @@ namespace ForumBuilder.Controllers
                     logger.logPrint("Register user failed, " + userName + " is already taken", 2);
                     return "Register user failed, " + userName + " is already taken";
                 }
+                if (userName.Equals(""))
+                {
+                    logger.logPrint("Register user failed, no name entered", 0);
+                    logger.logPrint("Register user failed, no name entered", 2);
+                    return "Register user failed, no name entered";
+                }
                 if (DB.addUser(userName, password, mail, ans1, ans2))
                 {
                     DB.addMemberToForum(userName, forumName);
@@ -267,7 +273,7 @@ namespace ForumBuilder.Controllers
             return "Register user failed, user is not qualified";
         }
 
-        private bool hasNumber(string password)
+        public bool hasNumber(string password)
         {
             char[] array = password.ToCharArray();
             for (int i = 0; i < array.Length; i++)
@@ -278,7 +284,7 @@ namespace ForumBuilder.Controllers
             return false;
         }
 
-        private bool hasCapital(string password)
+        public bool hasCapital(string password)
         {
             char[] array = password.ToCharArray();
             for (int i = 0; i < array.Length; i++)

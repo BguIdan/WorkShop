@@ -27,5 +27,8 @@ namespace ForumBuilder.Common.ServiceContracts
 
         [OperationContract]
         string restorePassword(string userName, string ans1, string ans2);
+
+        [OperationContract]
+        string setNewPassword(string userName, string forumName, string password);
     }
 }

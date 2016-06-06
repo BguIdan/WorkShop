@@ -49,8 +49,7 @@ namespace Service
         }
         public Boolean isModerator(string name, string subForumName, string forumName)
         {
-            //TODO: complete function
-            return false;
+            return subForumController.isModerator(name, subForumName, forumName);
         }
     }
 }
