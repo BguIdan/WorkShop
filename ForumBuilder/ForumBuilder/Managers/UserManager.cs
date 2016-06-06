@@ -34,11 +34,11 @@ namespace Service
         {
             return userController.addFriend(userName, friendToAdd);
         }
-        public Boolean deleteFriend(String userName, String deletedFriend)
+        public String deleteFriend(String userName, String deletedFriend)
         {
             return userController.deleteFriend(userName, deletedFriend);
         }
-        public Boolean sendPrivateMessage(String forumName, String fromUserName, String toUserName, String content)
+        public String sendPrivateMessage(String forumName, String fromUserName, String toUserName, String content)
         {
             return userController.sendPrivateMessage(forumName, fromUserName, toUserName, content);
         }

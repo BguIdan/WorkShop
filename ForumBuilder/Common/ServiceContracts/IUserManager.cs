@@ -14,10 +14,10 @@ namespace ForumBuilder.Common.ServiceContracts
         String addFriend(String userName, String friendToAdd);
 
         [OperationContract]
-        Boolean deleteFriend(String userName, String deletedFriend);
+        String deleteFriend(String userName, String deletedFriend);
 
         [OperationContract]
-        Boolean sendPrivateMessage(String forumName, String fromUserName, String toUserName, String content);
+        String sendPrivateMessage(String forumName, String fromUserName, String toUserName, String content);
 
         [OperationContract]
         List<String> getFriendList(String userName);
