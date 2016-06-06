@@ -27,7 +27,7 @@ namespace ForumBuilder.Controllers
 
         }
         
-        public bool addFriend(string userName, string friendToAddName)
+        public String addFriend(string userName, string friendToAddName)
         {
             User user = DB.getUser(userName);
             User friendToAdd = DB.getUser(friendToAddName);
@@ -35,21 +35,26 @@ namespace ForumBuilder.Controllers
             {
                 logger.logPrint("Add friend faild, " + userName + "is not a user",0);
                 logger.logPrint("Add friend faild, " + userName + "is not a user",2);
-                return false;
+                return "Add friend faild, " + userName + "is not a user";
             }
             if (friendToAdd == null)
             {
                 logger.logPrint("Add friend faild, " + friendToAddName + "is not a user",0);
                 logger.logPrint("Add friend faild, " + friendToAddName + "is not a user",2);
-                return false;
+                return "Add friend faild, " + friendToAddName + "is not a user";
             }
             if(!ForumController.getInstance.isMembersOfSameForum(friendToAddName, userName))
             {
                 logger.logPrint("Add friend faild, " + friendToAddName + " and "+userName + " are not in the same forum",0);
                 logger.logPrint("Add friend faild, " + friendToAddName + " and " + userName + " are not in the same forum",2);
-                return false;
+                return "Add friend faild, " + friendToAddName + " and " + userName + " are not in the same forum";
             }
-            return DB.addFriendToUser(userName, friendToAddName);            
+
+            if (DB.addFriendToUser(userName, friendToAddName))
+            {
+                return "friend was added successfuly";
+            }
+            return "Add friend faild";            
         }
 
         public bool deleteFriend(string userName, string deletedFriendName)

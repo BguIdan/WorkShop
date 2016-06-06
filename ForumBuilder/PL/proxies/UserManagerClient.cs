@@ -34,7 +34,7 @@ namespace PL.proxies
         {
         }
 
-        public Boolean addFriend(String userName, String friendToAdd)
+        public String addFriend(String userName, String friendToAdd)
         {
             return Channel.addFriend(userName, friendToAdd);
         }
