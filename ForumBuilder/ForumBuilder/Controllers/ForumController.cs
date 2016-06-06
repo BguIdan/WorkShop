@@ -182,7 +182,14 @@ namespace ForumBuilder.Controllers
 
         public String nominateAdmin(string newAdmin, string nominatorName, string forumName)
         {
-            if (DB.getforumByName(forumName).administrators.Contains(newAdmin))
+            Forum forum = DB.getforumByName(forumName);
+            if (forum == null)
+            {
+                logger.logPrint("nominate admin fail, forum does not exist", 0);
+                logger.logPrint("nominate admin fail, forum does not exist", 2);
+                return "nominate admin fail, forum does not exist";
+            }
+            if (forum.administrators.Contains(newAdmin))
             {
                 logger.logPrint("nominate admin fail, " + newAdmin + "is already admin", 0);
                 logger.logPrint("nominate admin fail, " + newAdmin + "is already admin", 2);

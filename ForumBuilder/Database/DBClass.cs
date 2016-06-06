@@ -131,6 +131,7 @@ namespace Database
         {
             try
             {
+                cache = Cache.getInstance;
                 connection = new OleDbConnection();
                 string s =System.IO.Directory.GetCurrentDirectory();
                 s = s.Substring(0, s.IndexOf("ForumBuilder"))+ "forumDB.mdb; Persist Security Info = False;";
@@ -141,7 +142,6 @@ namespace Database
                 connection.Close();
                 forums = getForumsForInit();
                 subForums = getSubForumsForInit();
-                cache= Cache.getInstance;
                 return true;
             }
             catch
@@ -466,6 +466,8 @@ namespace Database
         }
         public List<String> getModertorsReport(String forumName)
         {
+            return cache.getModertorsReport(forumName);
+            /*
             try
             {
                 OpenConnectionDB();
@@ -493,7 +495,7 @@ namespace Database
             {
                 closeConnectionDB();
                 return null; ;
-            }
+            }*/
         }
         /*public Forum getForumByMember(string userName)
         {
@@ -1536,7 +1538,8 @@ namespace Database
         /// <returns></returns>
         public List<String> getSuperUserReportOfMembers()
         {
-            List<String> users = new List<String>();
+            return cache.getSuperUserReportOfMembers();
+            /*List<String> users = new List<String>();
             try
             {
                 OpenConnectionDB();
@@ -1557,7 +1560,7 @@ namespace Database
             {
                 closeConnectionDB();
                 return null;
-            }
+            }*/
         }
         private string enc(string password)
         {
