@@ -56,7 +56,6 @@ namespace LoadTest
             this.subForumController.createThread("headLine", "content", this.userMember.userName, this.forumName, this.subForumName);
             List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
             this.postId = posts[0].id;
-
             String headLine = "head";
             String content = "content";
             this.postController.addComment(headLine, content, this.userMember.userName, this.postId);

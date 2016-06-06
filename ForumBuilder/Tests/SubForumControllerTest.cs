@@ -48,8 +48,7 @@ namespace Tests
             adminList.Add("admin");
             ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
             this.forum = new Forum(this.forumName, "descr",fp, adminList);
-            superUser1 = 
-                DBClass.getInstance.getSuperUser("tomer");
+            superUser1 = DBClass.getInstance.getSuperUser("tomer");
             SuperUserController.getInstance.addSuperUser("fkfkf@wkk.com", "1qW", "tomer");
             superUser.createForum("1", "1", fp, null, "tomer");
             Assert.IsTrue(superUser.createForum("testForum", "descr", fp, adminList, "tomer"));
@@ -219,6 +218,25 @@ namespace Tests
         {
             Assert.IsFalse(this.subForum.nominateModerator("", this.userAdmin.userName, new DateTime(2030, 1, 1), this.subForumName, this.forumName), "nomination with empty string as name should not be successful");
         }
+        
+        [TestMethod]
+        public void test_nominateModerator_when_seniority_to_short()
+        {
+            ForumPolicy newfp = new ForumPolicy("p", true, 2, true, 180, 1, true, true, 5);
+            Assert.IsTrue(forumController.setForumPreferences(this.forumName, "new Des", newfp, userAdmin.userName));
+            this.userMember = new User("mem", "Mempass1", "mem@gmail.com", new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day));
+            Assert.IsFalse(this.subForum.nominateModerator(this.userMember.userName, this.userAdmin.userName, new DateTime(2030, 1, 1), this.subForumName, this.forumName), "nomination with empty string as name should not be successful");
+        }
+
+        [TestMethod]
+        public void test_nominateModerator_not_enough_moderators()
+        {
+            ForumPolicy newfp = new ForumPolicy("p", true, 2, true, 180, 2, true, true, 5);
+            Assert.IsTrue(forumController.setForumPreferences(this.forumName, "new Des", newfp, userAdmin.userName));
+            this.userMember = new User("mem", "Mempass1", "mem@gmail.com", new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day));
+            Assert.IsFalse(this.subForum.nominateModerator(this.userMember.userName, this.userAdmin.userName, new DateTime(2030, 1, 1), this.subForumName, this.forumName), "nomination with empty string as name should not be successful");
+        }
+
 
 
         /******************************end of nominate moderator***************************************/
@@ -596,6 +614,7 @@ namespace Tests
         }
 
         /*******************************end of delete thread*****************************************/
+
 
         private bool areListsEqual<T>(List<T> list1, List<T> list2)
         {
