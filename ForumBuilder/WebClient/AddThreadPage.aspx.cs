@@ -25,13 +25,14 @@ namespace WebClient
             string userName = Session["userName"].ToString();
             string forumName = Session["forumName"].ToString();
             string sForumName = Session["subForumName"].ToString();
-            if (_sm.createThread(TextBox1.Text, TextBox2.Text, userName,forumName,sForumName))
+            String createTread = _sm.createThread(TextBox1.Text, TextBox2.Text, userName, forumName, sForumName);
+            if (createTread.Equals("Create tread succeed"))
             {
                 showAlert("thread was added successfully");
                 Response.Redirect("subForumWebPage.aspx");
             }
             {
-                showAlert("coudn't add message");
+                showAlert(createTread);
             }
         }
         private void showAlert(String content)

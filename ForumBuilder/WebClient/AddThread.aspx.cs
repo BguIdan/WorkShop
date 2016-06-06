@@ -24,14 +24,15 @@ namespace WebClient
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            if (_sm.createThread(Title.Text, Content.Text, Session["userName"].ToString(),
-                Session["forumName"].ToString(), Session["subFoumName"].ToString()))
+            String createTread = _sm.createThread(Title.Text, Content.Text, Session["userName"].ToString(),
+                Session["forumName"].ToString(), Session["subFoumName"].ToString());
+            if (createTread.Equals("Create tread succeed"))
             {
                 showAlert("thread was added successfully");
                 Response.Redirect("subForumWebPage.aspx");
             }
             {
-                showAlert("coudn't add message");
+                showAlert(createTread);
             }
         }
         private void showAlert(String content)
