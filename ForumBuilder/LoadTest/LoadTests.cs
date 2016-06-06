@@ -39,7 +39,7 @@ namespace LoadTest
             this.userMember = new User("mem", "mempass", "mem@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
             this.userMod = new User("mod", "modpass", "mod@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
             this.userAdmin = new User("admin", "adminpass", "admin@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
-            superUserController.addUser("admin", "admCD3inpass", "admin@gmail.com", "guy");
+            superUserController.addUser("admin", "admCD3inpass", "admin@gmail.com", "guy").Equals("Register user " + "admin" + "Complited");
             List<string> adminList = new List<string>();
             adminList.Add(this.userAdmin.userName);
             Dictionary<String, DateTime> modList = new Dictionary<String, DateTime>();
@@ -54,8 +54,9 @@ namespace LoadTest
             this.forumController.registerUser("mod", "modpass", "mod@gmail.com", "ansss", "anssss", this.forumName);
             this.forumController.addSubForum(this.forumName, this.subForumName, modList, this.userAdmin.userName);
             this.subForumController.createThread("headLine", "content", this.userMember.userName, this.forumName, this.subForumName);
-            List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
-            this.postId = posts[0].id;
+            List<Post> postList = this.postController.getAllPosts(this.forumName, this.subForumName);
+            Assert.AreEqual(postList.Count, 1);
+            this.postId = postList[0].id;
             String headLine = "head";
             String content = "content";
             this.postController.addComment(headLine, content, this.userMember.userName, this.postId);

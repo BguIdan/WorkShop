@@ -34,17 +34,17 @@ namespace PL.proxies
         {
         }
 
-        public Boolean addFriend(String userName, String friendToAdd)
+        public String addFriend(String userName, String friendToAdd)
         {
             return Channel.addFriend(userName, friendToAdd);
         }
 
-        public Boolean deleteFriend(String userName, String deletedFriend)
+        public String deleteFriend(String userName, String deletedFriend)
         {
             return Channel.deleteFriend(userName, deletedFriend);
         }
 
-        public Boolean sendPrivateMessage(String forumName, String fromUserName, String toUserName, String content)
+        public String sendPrivateMessage(String forumName, String fromUserName, String toUserName, String content)
         {
             return Channel.sendPrivateMessage(forumName, fromUserName, toUserName, content);
         }
@@ -61,6 +61,11 @@ namespace PL.proxies
         public string restorePassword(string userName, string ans1, string ans2)
         {
             return Channel.restorePassword(userName, ans1, ans2);
+        }
+
+        public string setNewPassword(string userName, string forumName, string password)
+        {
+            return Channel.setNewPassword(userName, forumName, password);
         }
     }
 }

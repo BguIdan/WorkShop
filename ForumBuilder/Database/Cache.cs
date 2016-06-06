@@ -192,15 +192,14 @@ namespace DataBase
                 {
                     string ans = "";
                     SubForum subf = getSubForum(sf, forumName);
-                    ans += "subForum Name: " + sf + " Moderators: ";
                     foreach (Moderator m in subf.moderators.Values)
                     {
-                        ans += "Name:" + m.userName + ", Nominate By: " + m.nominatorName + ", at " + m.dateAdded.ToString("dd MM yyyy")+ "added posts: ";
+                        ans += "subForum: " + sf + ", \t moderator: " + m.userName + ", \t nominator: " + m.nominatorName + ",\t DateAdded:" + m.dateAdded.ToString("dd MM yyyy") + "added posts:";
                         foreach (Post p in posts.Values)
                         {
                             if (p.writerUserName.Equals(m.userName))
                             {
-                                ans += " " +p.title + ", " +  p.content;
+                                ans += " \n\t post title: " + p.title + " \n\t post content:" + p.content;
                             }
                         }                    
                     }
@@ -238,7 +237,7 @@ namespace DataBase
                             {
                                 if (f.members.Contains(u.userName))
                                 {
-                                    ans = "email: " + e + " user Name: " + u.userName + " in forum: " + f.forumName;
+                                    ans = "Email : " + e + "  UserName : " + u.userName + "  In forum : " + f.forumName;
                                     break;
                                 }
                             }
@@ -315,7 +314,16 @@ namespace DataBase
             }
 
         }
-        
+
+        internal bool setPassword(string userName, string password)
+        {
+            users[userName].password = password;
+            users[userName].lastTimeUpdatePassword = DateTime.Today;
+            superUsers[userName].password = password;
+            superUsers[userName].lastTimeUpdatePassword = DateTime.Today;
+            return true;
+        }
+
         public bool nominateAdmin(string newAdmin, string forumName)
         {
             try

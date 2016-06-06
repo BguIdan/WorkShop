@@ -131,6 +131,7 @@ namespace Database
         {
             try
             {
+                cache = Cache.getInstance;
                 connection = new OleDbConnection();
                 string s =System.IO.Directory.GetCurrentDirectory();
                 s = s.Substring(0, s.IndexOf("ForumBuilder"))+ "forumDB.mdb; Persist Security Info = False;";
@@ -141,7 +142,6 @@ namespace Database
                 connection.Close();
                 forums = getForumsForInit();
                 subForums = getSubForumsForInit();
-                cache= Cache.getInstance;
                 return true;
             }
             catch
@@ -221,6 +221,30 @@ namespace Database
                 return -1;
             }*/
         }
+
+        public bool setPassword(string userName, string password)
+        {
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "UPDATE users SET " +
+                    "password='" + password + "' "  +
+                    "lastTimePasswordChanged= "+ DateTime.Today.Day + "/" + DateTime.Today.Month + "/" + DateTime.Today.Year+
+                    " where userName='" + userName + "'";
+                command.ExecuteNonQuery();
+                closeConnectionDB();
+                //return true;
+                return cache.setPassword(userName, password);
+            }
+            catch
+            {
+                closeConnectionDB();
+                return false;
+            }
+        }
+
         public bool dismissModerator(string dismissedModerator, string subForumName, string forumName)
         {
             try
@@ -466,6 +490,8 @@ namespace Database
         }
         public List<String> getModertorsReport(String forumName)
         {
+            return cache.getModertorsReport(forumName);
+            /*
             try
             {
                 OpenConnectionDB();
@@ -481,10 +507,10 @@ namespace Database
                 OleDbDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    modertorsReport.Add(reader.GetString(0) + " , " + reader.GetString(1) + " , " +
-                        reader.GetString(2) + " , " +
-                        reader.GetDateTime(3).ToString("dd MM yyyy") + " , " +
-                        reader.GetString(4) + " , " + reader.GetString(5));
+                    modertorsReport.Add("subForum: "+reader.GetString(0) + ", \t moderator: " +
+                        reader.GetString(1) + ", \t nominator: " + reader.GetString(2) + ",\t DateAdded:" +
+                        reader.GetDateTime(3).ToString("dd MM yyyy") + ", \n post title: " +
+                        reader.GetString(4) + ", \n post content:" + reader.GetString(5));
                 }
                 closeConnectionDB();
                 return modertorsReport;
@@ -493,7 +519,7 @@ namespace Database
             {
                 closeConnectionDB();
                 return null; ;
-            }
+            }*/
         }
         /*public Forum getForumByMember(string userName)
         {
@@ -1536,7 +1562,8 @@ namespace Database
         /// <returns></returns>
         public List<String> getSuperUserReportOfMembers()
         {
-            List<String> users = new List<String>();
+            return cache.getSuperUserReportOfMembers();
+            /*List<String> users = new List<String>();
             try
             {
                 OpenConnectionDB();
@@ -1557,7 +1584,7 @@ namespace Database
             {
                 closeConnectionDB();
                 return null;
-            }
+            }*/
         }
         private string enc(string password)
         {

@@ -110,10 +110,11 @@ namespace PL
             string desc = newForumDescription.Text;
             string administrators = newAdminUserName.Text;
             List<string> admins = administrators.Split(',').ToList();
-            Boolean isCreated = _sUMC.createForum(forumName, desc, new ForumPolicyData() , admins, _myUser.userName);
+            string created = _sUMC.createForum(forumName, desc, new ForumPolicyData() , admins, _myUser.userName);
+            Boolean isCreated = created.Equals("Forum " + forumName + " creation success");
             if (isCreated)
             {
-                MessageBox.Show("Forum: " + forumName + " was successfully created!");
+                MessageBox.Show("Forum " + forumName + " creation success");
                 createForumDialog.Visibility = System.Windows.Visibility.Visible;
                 createForumDialog.Focusable = true;
             }
@@ -208,6 +209,7 @@ namespace PL
                     }
                     int minLengthOfPass = Int32.Parse(LengthCombo.SelectedItem.ToString());
                     _fData.forumPolicy.minLengthOfPassword = minLengthOfPass;
+                    _fMC.setForumPreferences(_fData.forumName, _fData.description, _fData.forumPolicy, _myUser.userName);
                     MessageBox.Show("Preferences was successfully changed!");
                     descCheck.IsChecked = false;
                     policyCheck.IsChecked = false;
@@ -237,11 +239,11 @@ namespace PL
             string name = userName.Text;
             string pass = Password.Password;
             string userMail = email.Text;
-
-            bool succ = _sUMC.addUser(name, pass, userMail, _myUser.userName);
+            string addUser= _sUMC.addUser(name, pass, userMail, _myUser.userName);
+            bool succ = addUser.Equals("Register user " + name + "Complited");
             if (!succ)
             {
-                MessageBox.Show("Failed to create user!");
+                MessageBox.Show(addUser);
             }
             else
             {
@@ -297,7 +299,7 @@ namespace PL
 
         private void NumberComboBox_OnDropDownOpened(object sender, EventArgs e)
         {
-            int minNumOfModerators = 0;
+            int minNumOfModerators = 1;
             int maxNumOfModerators = 10;
             for (int i = minNumOfModerators; i <= maxNumOfModerators; i++)
             {

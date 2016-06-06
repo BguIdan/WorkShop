@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\User\Desktop\WorkShop\ForumBuilder\BL_Back_End\bin\Debug\BL_Back_End.exe.config
 C:\Users\User\Desktop\WorkShop\ForumBuilder\BL_Back_End\bin\Debug\BL_Back_End.exe
 C:\Users\User\Desktop\WorkShop\ForumBuilder\BL_Back_End\bin\Debug\BL_Back_End.pdb
@@ -8,3 +9,14 @@ C:\Users\User\Desktop\WorkShop\ForumBuilder\BL_Back_End\bin\Debug\DW.CodedUI.xml
 C:\Users\User\Desktop\WorkShop\ForumBuilder\BL_Back_End\obj\Debug\BL_Back_End.csprojResolveAssemblyReference.cache
 C:\Users\User\Desktop\WorkShop\ForumBuilder\BL_Back_End\obj\Debug\BL_Back_End.exe
 C:\Users\User\Desktop\WorkShop\ForumBuilder\BL_Back_End\obj\Debug\BL_Back_End.pdb
+=======
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\BL_Back_End\bin\Debug\BL_Back_End.exe.config
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\BL_Back_End\bin\Debug\BL_Back_End.exe
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\BL_Back_End\bin\Debug\BL_Back_End.pdb
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\BL_Back_End\bin\Debug\DW.CodedUI.dll
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\BL_Back_End\bin\Debug\DW.CodedUI.pdb
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\BL_Back_End\bin\Debug\DW.CodedUI.xml
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\BL_Back_End\obj\Debug\BL_Back_End.csprojResolveAssemblyReference.cache
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\BL_Back_End\obj\Debug\BL_Back_End.exe
+D:\Idan\Workshop\WorkShop.git\ForumBuilder\BL_Back_End\obj\Debug\BL_Back_End.pdb
+>>>>>>> refs/remotes/origin/master

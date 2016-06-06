@@ -11,13 +11,13 @@ namespace ForumBuilder.Common.ServiceContracts
     public interface IUserManager
     {
         [OperationContract]
-        Boolean addFriend(String userName, String friendToAdd);
+        String addFriend(String userName, String friendToAdd);
 
         [OperationContract]
-        Boolean deleteFriend(String userName, String deletedFriend);
+        String deleteFriend(String userName, String deletedFriend);
 
         [OperationContract]
-        Boolean sendPrivateMessage(String forumName, String fromUserName, String toUserName, String content);
+        String sendPrivateMessage(String forumName, String fromUserName, String toUserName, String content);
 
         [OperationContract]
         List<String> getFriendList(String userName);
@@ -27,5 +27,8 @@ namespace ForumBuilder.Common.ServiceContracts
 
         [OperationContract]
         string restorePassword(string userName, string ans1, string ans2);
+
+        [OperationContract]
+        string setNewPassword(string userName, string forumName, string password);
     }
 }

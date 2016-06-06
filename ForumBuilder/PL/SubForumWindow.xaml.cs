@@ -285,6 +285,7 @@ namespace PL
             switch (menuItem.Name)
             {
                 case "addPostButton": { addPostButton_Click(sender, e); } break;
+                case "addModeratorButton": { addModeratorButton_Click(sender, e); } break;
                 case "deleteMessageButton": { deleteMessageButton_Click(sender, e); } break;
                 case "backButton": { back_Click(sender, e); } break;
                 case "logOutButton": { logOut(sender, e); } break;
@@ -295,6 +296,14 @@ namespace PL
 
             }
         }
+
+        private void addModeratorButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddModerator newWin = new AddModerator(sForumName.Content.ToString(), _userName, forumName.Content.ToString());
+            newWin.Show();
+            this.Close();
+        }
+
         private void dismissModerator_Click(object sender, RoutedEventArgs e, bool whaToDo)
         {
             DismissModerator newWin = new DismissModerator(this, _userName, forumName.Content.ToString(), sForumName.Content.ToString(), whaToDo);

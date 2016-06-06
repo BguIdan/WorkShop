@@ -104,7 +104,6 @@ namespace PL
                             break;
                         case -5:
                             MessageBox.Show("Your password has expierd! it's time to change password");
-
                             break;
                         default:
                             MessageBox.Show("login failed");
@@ -198,7 +197,6 @@ namespace PL
             }
             catch (Exception)
             {
-                
                 MessageBox.Show("Please choose a forum from the list");
             }
         }

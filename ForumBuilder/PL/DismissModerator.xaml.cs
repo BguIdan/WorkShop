@@ -65,7 +65,8 @@ namespace PL
                     MessageBox.Show("error");
                     return;
                 }
-                if (_sf.nominateModerator(textBox.Text, _userName, DateTime.Now.AddDays(durationAsInt), _subForumName, _forumName))
+                string nominate = _sf.nominateModerator(textBox.Text, _userName, DateTime.Now.AddDays(durationAsInt), _subForumName, _forumName);
+                if (nominate.Equals("nominate moderator succeed"))
                 {
                     MessageBox.Show("moderator was added");
                     _oldWin.Show();
@@ -73,7 +74,7 @@ namespace PL
                 }
                 else
                 {
-                    MessageBox.Show("error");
+                    MessageBox.Show(nominate);
                 }
             }
             else

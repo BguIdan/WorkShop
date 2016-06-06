@@ -42,7 +42,8 @@ namespace WebClient
             {
                 int sessionKey = (int)Session["sessionKey"];
                 if (sessionKey > 0)
-                    showAlert("Login successful! your session code for is " + sessionKey.ToString());
+                    //showAlert("Login successful! your session code for is " + sessionKey.ToString());
+                    mySessionKey.Text = "your session key is: "+sessionKey.ToString();
             }
             _sUMC = new SuperUserManagerClient();
             InitializePermissons(_userName);
@@ -146,8 +147,7 @@ namespace WebClient
         }
 
         protected void clickOnSubForum(Object sender, EventArgs e)
-        {//TODO gal: redirect to the subforum
-            //showAlert(((Button)sender).Text + _userName);
+        {   //showAlert(((Button)sender).Text + _userName);
             //Session["forumName"] = lbl_forumName.Text;
             Session["subForumName"] = ((Button)sender).Text;
             Response.Redirect("subForumWebPage.aspx");
@@ -179,7 +179,6 @@ namespace WebClient
 
 
         /*back button back to the forum window
-         * TODO gal: should the forum data be passed?
         protected void backButton_Click(object sender, EventArgs e)
         {
             Session["forumData"] = _myforum;

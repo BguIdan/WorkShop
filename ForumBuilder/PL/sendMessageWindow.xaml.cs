@@ -45,7 +45,7 @@ namespace PL
         {
             string targetUser = to.Text;
             string msgContent = content.Text;
-            if (_um.sendPrivateMessage(forumName, _userName, targetUser, msgContent))
+            if (_um.sendPrivateMessage(forumName, _userName, targetUser, msgContent).Equals("message was sent successfully"))
             {
                 MessageBox.Show("message was sent successfully");
                 _prevWindow.Visibility = System.Windows.Visibility.Visible;

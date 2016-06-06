@@ -35,7 +35,7 @@ namespace Service
         {
             return subForumController.dismissModerator(dismissedModerator, dismissByAdmin, subForumName, forumName);
         }
-        public Boolean nominateModerator(String newModerator, String nominatorUser, DateTime date, String subForumName, String forumName)
+        public String nominateModerator(String newModerator, String nominatorUser, DateTime date, String subForumName, String forumName)
         {
             return subForumController.nominateModerator(newModerator, nominatorUser, date, subForumName, forumName);
         }
@@ -49,8 +49,7 @@ namespace Service
         }
         public Boolean isModerator(string name, string subForumName, string forumName)
         {
-            //TODO: complete function
-            return false;
+            return subForumController.isModerator(name, subForumName, forumName);
         }
     }
 }

@@ -44,6 +44,12 @@ namespace ForumBuilder.Controllers
                         logger.logPrint("Add sub-forum failed, " + name + " already exist", 2);
                         return "Add sub-forum failed, " + name + " already exist";
                     }
+                    if (moderators==null||moderators.Count < 1)
+                    {
+                        logger.logPrint("Add sub-forum failed, there is not enough moderators", 0);
+                        logger.logPrint("Add sub-forum failed, there is not enough moderators", 2);
+                        return "Add sub-forum failed, there is not enough moderators";
+                    }
                     foreach (string s in moderators.Keys)
                     {
                         if (!isMember(s, forumName))
@@ -176,7 +182,14 @@ namespace ForumBuilder.Controllers
 
         public String nominateAdmin(string newAdmin, string nominatorName, string forumName)
         {
-            if (DB.getforumByName(forumName).administrators.Contains(newAdmin))
+            Forum forum = DB.getforumByName(forumName);
+            if (forum == null)
+            {
+                logger.logPrint("nominate admin fail, forum does not exist", 0);
+                logger.logPrint("nominate admin fail, forum does not exist", 2);
+                return "nominate admin fail, forum does not exist";
+            }
+            if (forum.administrators.Contains(newAdmin))
             {
                 logger.logPrint("nominate admin fail, " + newAdmin + "is already admin", 0);
                 logger.logPrint("nominate admin fail, " + newAdmin + "is already admin", 2);
@@ -240,6 +253,12 @@ namespace ForumBuilder.Controllers
                     logger.logPrint("Register user failed, " + userName + " is already taken", 2);
                     return "Register user failed, " + userName + " is already taken";
                 }
+                if (userName.Equals(""))
+                {
+                    logger.logPrint("Register user failed, no name entered", 0);
+                    logger.logPrint("Register user failed, no name entered", 2);
+                    return "Register user failed, no name entered";
+                }
                 if (DB.addUser(userName, password, mail, ans1, ans2))
                 {
                     DB.addMemberToForum(userName, forumName);
@@ -254,7 +273,7 @@ namespace ForumBuilder.Controllers
             return "Register user failed, user is not qualified";
         }
 
-        private bool hasNumber(string password)
+        public bool hasNumber(string password)
         {
             char[] array = password.ToCharArray();
             for (int i = 0; i < array.Length; i++)
@@ -265,7 +284,7 @@ namespace ForumBuilder.Controllers
             return false;
         }
 
-        private bool hasCapital(string password)
+        public bool hasCapital(string password)
         {
             char[] array = password.ToCharArray();
             for (int i = 0; i < array.Length; i++)
@@ -367,9 +386,7 @@ namespace ForumBuilder.Controllers
         }
 
         public Boolean logout(String user, String forumName)
-        {//TODO gal modify logout to support more than one active connection
-            //TODO gal make sure the log outs works
-            //TODO gal what about the open channels?
+        {   //TODO gal what about the open channels?
             if (!this.loggedInUsersByForum.ContainsKey(forumName))
                 return false;
             if (!this.loggedInUsersByForum[forumName].Contains(user))
@@ -406,38 +423,40 @@ namespace ForumBuilder.Controllers
             return true;
         }
 
-        public Boolean sendPostModificationNotification(String forumName, String publisherName, String title, String content)
+        public Boolean sendPostModificationNotification(String forumName, String publisherName, String title, String notifiedUser)
         {
             if (loggedInUsersByForum == null)
-                this.loggedInUsersByForum = new Dictionary<String, List<String>>();
+                return false;
             List<String> loggedInUsers = this.loggedInUsersByForum[forumName];
             if (loggedInUsers == null)
                 return false;
-            foreach (String userName in loggedInUsers)
+            if (loggedInUsers.Contains(notifiedUser))
             {
-                if (channelsByLoggedInUsers[userName] != null)
+                List<IUserNotificationsService> channels = this.channelsByLoggedInUsers[notifiedUser];
+                if (channels != null)
                 {
-                    foreach (IUserNotificationsService channel in channelsByLoggedInUsers[userName])
+                    foreach (IUserNotificationsService channel in channels)
                     {
-                        channel.applyPostModificationNotification(forumName, publisherName, title, content);
+                        channel.applyPostDelitionNotification(forumName, publisherName);
                     }
                 }
             }
             return true;
         }
 
-        public Boolean sendPostDelitionNotification(String forumName, String publisherName)
+        public Boolean sendPostDelitionNotification(String forumName, String publisherName, String notifiedUser)
         {
             if (loggedInUsersByForum == null)
-                this.loggedInUsersByForum = new Dictionary<String, List<String>>();
+                return false;
             List<String> loggedInUsers = this.loggedInUsersByForum[forumName];
             if (loggedInUsers == null)
                 return false;
-            foreach (String userName in loggedInUsers)
+            if (loggedInUsers.Contains(notifiedUser))
             {
-                if (channelsByLoggedInUsers[userName] != null)
+                List<IUserNotificationsService> channels = this.channelsByLoggedInUsers[notifiedUser];
+                if (channels != null)
                 {
-                    foreach (IUserNotificationsService channel in channelsByLoggedInUsers[userName])
+                    foreach (IUserNotificationsService channel in channels)
                     {
                         channel.applyPostDelitionNotification(forumName, publisherName);
                     }
@@ -487,7 +506,8 @@ namespace ForumBuilder.Controllers
 
         public Forum getForum(String forumName)
         {
-            return DB.getforumByName(forumName);
+            Forum f = DB.getforumByName(forumName);
+            return f;
         }
 
         public int getAdminReportNumOfPOst(String AdminName, String forumName)
@@ -498,7 +518,7 @@ namespace ForumBuilder.Controllers
         }
         public List<Post> getAdminReportPostOfmember(String AdminName, String forumName, String memberName)
         {
-            if (isAdmin(AdminName, forumName))
+            if (isAdmin(AdminName, forumName) && isMember(memberName, forumName))
                 return DB.getMemberPosts(memberName, forumName);
             return null;
         }

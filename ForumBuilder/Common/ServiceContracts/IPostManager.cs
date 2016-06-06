@@ -17,7 +17,7 @@ namespace ForumBuilder.Common.ServiceContracts
         String deletePost(Int32 postId, String deletingUser);
 
         [OperationContract]
-        Boolean addPost(String headLine, String content, String writerName, Int32 commentedPost);
+        String addPost(String headLine, String content, String writerName, Int32 commentedPost);
         
         [OperationContract]
         List<PostData> getAllPosts(String forumName, String subforumName);

@@ -35,7 +35,7 @@ namespace Tests
                                                         fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword);
             ForumData forumData = new ForumData("testForum", "descr", fpd, new List<String>(), new List<String>());
             UserData userAdmin = new UserData("admin", "Adminpass1", "admin@gmail.com");
-            superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName);
+            superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName).Equals("Register user " + userAdmin.userName + "Complited");
             List<string> adminList = new List<string>();
             adminList.Add(userAdmin.userName);
             
@@ -78,7 +78,7 @@ namespace Tests
                                                         fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword);
             ForumData forumData = new ForumData("testForum", "descr", fpd, new List<String>(), new List<String>());
             UserData userAdmin = new UserData("admin", "adminpass", "admin@gmail.com");
-            superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName);
+            superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName).Equals("Register user " + userAdmin.userName + "Complited");
             List<string> adminList = new List<string>();
             adminList.Add(userAdmin.userName);
             superUserController.createForum("testForum", "descr", fp, adminList, superUser.userName);
@@ -109,7 +109,7 @@ namespace Tests
                                                         fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword);
             ForumData forumData = new ForumData("testForum", "descr", fpd, new List<String>(), new List<String>());
             UserData userAdmin = new UserData("admin", "adminpass", "admin@gmail.com");
-            superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName);
+            superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName).Equals("Register user " + userAdmin.userName + "Complited");
             List<string> adminList = new List<string>();
             adminList.Add(userAdmin.userName);
             ForumPolicyData fpd2 = new ForumPolicyData(null, true, -5, true, -5, -5, true, true, -5);
@@ -138,7 +138,7 @@ namespace Tests
                                                         fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword);
             ForumData forumData = new ForumData("testForum", "descr", fpd, new List<String>(), new List<String>());
             UserData userAdmin = new UserData("admin", "adminpass", "admin@gmail.com");
-            superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName);
+            superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName).Equals("Register user " + userAdmin.userName + "Complited");
             List<string> adminList = new List<string>();
             adminList.Add(userAdmin.userName);
             ForumPolicyData fpd2 = new ForumPolicyData("p", true, 0, true, 180, 1, true, true, 5);
@@ -201,21 +201,21 @@ namespace Tests
             adminList.Add(userAdmin.userName);
             superUserController.createForum("testForum", "descr", fp, adminList, superUser.userName);
             IUserManager userMan = new UserManagerClient();
-            Assert.IsFalse(userMan.sendPrivateMessage("testForum", "admin1", "admin2", "hello"));
-            Assert.IsFalse(userMan.addFriend("admin1", "admin2"));
-            Assert.IsFalse(userMan.addFriend("admin2", "admin1"));
+            Assert.IsFalse(userMan.sendPrivateMessage("testForum", "admin1", "admin2", "hello").Equals("message was sent successfully"));
+            Assert.IsFalse(userMan.addFriend("admin1", "admin2").Equals("friend was added successfuly"));
+            Assert.IsFalse(userMan.addFriend("admin2", "admin1").Equals("friend was added successfuly"));
             Assert.IsTrue(forumMan.registerUser("admin2", "passWord2", "jkkkk@xc.com", "ansss", "anssss", forumData.forumName).Equals("Register user succeed"));
-            Assert.IsTrue(userMan.sendPrivateMessage("testForum", "admin1", "admin2", "its me"));
-            Assert.IsTrue(userMan.addFriend("admin1", "admin2"));
-            Assert.IsTrue(userMan.addFriend("admin2", "admin1"));
-            Assert.IsFalse(userMan.addFriend("admin2", "admin1"));
-            Assert.IsFalse(userMan.addFriend("admin1", "mem1"));
-            Assert.IsFalse(userMan.addFriend("mem1", "admin1"));
-            Assert.IsFalse(userMan.sendPrivateMessage("testForum", "mem1", "admin1", "i was wonder"));
+            Assert.IsTrue(userMan.sendPrivateMessage("testForum", "admin1", "admin2", "its me").Equals("message was sent successfully"));
+            Assert.IsTrue(userMan.addFriend("admin1", "admin2").Equals("friend was added successfuly"));
+            Assert.IsTrue(userMan.addFriend("admin2", "admin1").Equals("friend was added successfuly"));
+            Assert.IsFalse(userMan.addFriend("admin2", "admin1").Equals("friend was added successfuly"));
+            Assert.IsFalse(userMan.addFriend("admin1", "mem1").Equals("friend was added successfuly"));
+            Assert.IsFalse(userMan.addFriend("mem1", "admin1").Equals("friend was added successfuly"));
+            Assert.IsFalse(userMan.sendPrivateMessage("testForum", "mem1", "admin1", "i was wonder").Equals("message was sent successfully"));
             Assert.IsTrue(forumMan.registerUser("mem1", "passWor1", "fff@xc.com", "ansss", "anssss", forumData.forumName).Equals("Register user succeed"));
-            Assert.IsTrue(userMan.addFriend("admin1", "mem1"));
-            Assert.IsTrue(userMan.addFriend("mem1", "admin1"));
-            Assert.IsTrue(userMan.sendPrivateMessage("testForum", "mem1", "admin1", "when the test gona be done"));
+            Assert.IsTrue(userMan.addFriend("admin1", "mem1").Equals("friend was added successfuly"));
+            Assert.IsTrue(userMan.addFriend("mem1", "admin1").Equals("friend was added successfuly"));
+            Assert.IsTrue(userMan.sendPrivateMessage("testForum", "mem1", "admin1", "when the test gona be done").Equals("message was sent successfully"));
         }
 
         /*************************end use case 4******************************/
@@ -246,7 +246,7 @@ namespace Tests
             Assert.IsTrue(forum.registerUser("mem", "mempasS1", "mem@gmail.com", "ansss", "anssss", forumData.forumName).Equals("Register user succeed"));
 
             ISubForumManager subForum = new SubForumManagerClient();
-            Assert.IsTrue(subForum.nominateModerator("mem", userAdmin.userName, new DateTime(2030, 1, 1), subForumName, forumData.forumName), "nomination of member user should be successful");
+            Assert.IsTrue(subForum.nominateModerator("mem", userAdmin.userName, new DateTime(2030, 1, 1), subForumName, forumData.forumName).Equals("nominate moderator succeed"), "nomination of member user should be successful");
             Assert.IsTrue(SubForumController.getInstance.isModerator("mem", subForumName, forumData.forumName), "member should be moderator after his successful numonation");
         }
 

@@ -25,13 +25,13 @@ namespace PL
 
     public partial class ForumWindow : Window
     {
-        
+
         private ForumData _myforum;
         private String _subForumChosen;
         private ForumManagerClient _fMC;
         private string _userName;
         private SuperUserManagerClient _sUMC;
-              
+
         public ForumWindow(ForumData forum, string userName)
         {
             InitializeComponent();
@@ -42,7 +42,7 @@ namespace PL
             _sUMC = new SuperUserManagerClient();
             InitializePermissons(userName);
             //initializing the subForumListBox
-            foreach(string subForum in _myforum.subForums)
+            foreach (string subForum in _myforum.subForums)
             {
                 subForumsListBox.Items.Add(subForum);
             }
@@ -75,12 +75,13 @@ namespace PL
             //  a super user
             else
             {
-               // all open 
+                // all open 
             }
         }
-                
+
         private void MenuItem_Forums(object sender, RoutedEventArgs e)
         {
+            usersComboBox.Visibility = Visibility.Collapsed;
             MenuItem menuItem = e.Source as MenuItem;
             switch (menuItem.Name)
             {
@@ -94,15 +95,30 @@ namespace PL
 
         private void MenuItem_View(object sender, RoutedEventArgs e)
         {
+            usersComboBox.Visibility = Visibility.Collapsed;
             MenuItem menuItem = e.Source as MenuItem;
             switch (menuItem.Name)
             {
                 case "viewReports": { showReport(); } break;
+                case "viewUserPosts": { userPostsView(); } break;
             }
+        }
+
+        private void userPostsView()
+        {
+            reportListBox.Items.Clear();
+            mainGrid.Visibility = System.Windows.Visibility.Collapsed;
+            MyDialog.Visibility = System.Windows.Visibility.Collapsed;
+            setPreferencesWin.Visibility = System.Windows.Visibility.Collapsed;
+            AddSubForum.Visibility = System.Windows.Visibility.Collapsed;
+            viewGrid.Visibility = System.Windows.Visibility.Visible;
+            usersComboBox.Visibility = Visibility.Visible;
+
         }
 
         private void showReport()
         {
+            reportListBox.Items.Clear();
             mainGrid.Visibility = System.Windows.Visibility.Collapsed;
             MyDialog.Visibility = System.Windows.Visibility.Collapsed;
             setPreferencesWin.Visibility = System.Windows.Visibility.Collapsed;
@@ -144,7 +160,7 @@ namespace PL
             SubForumWindow sfw = new SubForumWindow(_myforum.forumName, _subForumChosen, _userName);
             sfw.ShowDialog();
         }
-        
+
         private void addNewSubForum()
         {
             MainMenu.Visibility = System.Windows.Visibility.Collapsed;
@@ -185,7 +201,7 @@ namespace PL
 
         private void SignUP()
         {
-            SignUpWindow sU = new SignUpWindow(_fMC,_myforum.forumName);
+            SignUpWindow sU = new SignUpWindow(_fMC, _myforum.forumName);
             sU.Show();
             this.Close();
         }
@@ -267,6 +283,7 @@ namespace PL
                 }
                 int minLengthOfPass = Int32.Parse(LengthCombo.SelectedItem.ToString());
                 _myforum.forumPolicy.minLengthOfPassword = minLengthOfPass;
+                _fMC.setForumPreferences(_myforum.forumName, _myforum.description, _myforum.forumPolicy, _userName);
                 MessageBox.Show("Preferences was successfully changed!");
                 descCheck.IsChecked = false;
                 policyCheck.IsChecked = false;
@@ -280,7 +297,7 @@ namespace PL
                 LengthCombo.Items.Clear();
                 setPreferencesWin.Visibility = System.Windows.Visibility.Collapsed;
                 MainMenu.Visibility = System.Windows.Visibility.Visible;
-            }            
+            }
         }
 
 
@@ -386,7 +403,7 @@ namespace PL
 
         private void NumberComboBox_OnDropDownOpened(object sender, EventArgs e)
         {
-            int minNumOfModerators = 0;
+            int minNumOfModerators = 1;
             int maxNumOfModerators = 10;
             for (int i = minNumOfModerators; i <= maxNumOfModerators; i++)
             {
@@ -405,7 +422,7 @@ namespace PL
             int maxPasswordLength = 20;
             for (int i = minPasswordLength; i <= maxPasswordLength; i++)
             {
-               LengthCombo.Items.Add(i);
+                LengthCombo.Items.Add(i);
             }
         }
 
@@ -421,5 +438,42 @@ namespace PL
             this.Close();
         }
 
+        private void usersComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            List<PostData> posts = _fMC.getAdminReportPostOfmember(_userName, _myforum.forumName, usersComboBox.Text);
+            foreach (PostData post in posts)
+            {
+                Expander exp = new Expander();
+                exp.Header = post.title;
+                exp.Content = post.content;
+                reportListBox.Items.Add(exp);
+            }
+        }
+
+        private void usersComboBox_DropDownOpened(object sender, EventArgs e)
+        {
+            usersComboBox.Items.Clear();
+            for (int i = 0; i < _myforum.members.Count; i++)
+            {
+                ComboBoxItem newItem = new ComboBoxItem();
+                newItem.Content = _myforum.members.ElementAt(i);
+                usersComboBox.Items.Add(newItem);
+            }
+        }
+
+        private void usersComboBox_DropDownClosed(object sender, EventArgs e)
+        {
+            if (!(usersComboBox.Text).Equals(""))
+            {
+                List<PostData> posts = _fMC.getAdminReportPostOfmember(_userName, _myforum.forumName, usersComboBox.Text);
+                foreach (PostData post in posts)
+                {
+                    Expander exp = new Expander();
+                    exp.Header = post.title;
+                    exp.Content = post.content;
+                    reportListBox.Items.Add(exp);
+                }
+            }
+        }
     }
 }

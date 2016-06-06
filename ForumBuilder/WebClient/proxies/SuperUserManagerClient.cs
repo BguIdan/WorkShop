@@ -36,7 +36,7 @@ namespace WebClient.proxies
         {
         }
 
-        public Boolean createForum(String forumName, String descrption, ForumPolicyData fpd, List<String> administrators, String superUserName)
+        public String createForum(String forumName, String descrption, ForumPolicyData fpd, List<String> administrators, String superUserName)
         {
             return Channel.createForum(forumName, descrption,fpd, administrators, superUserName);
         }
@@ -65,7 +65,7 @@ namespace WebClient.proxies
             return Channel.getSuperUserReportOfMembers(superUserName);
         }
 
-        public Boolean addUser(string userName, string password, string mail, string superUserName)
+        public String addUser(string userName, string password, string mail, string superUserName)
         {
             return Channel.addUser(userName, password, mail, superUserName);
         }

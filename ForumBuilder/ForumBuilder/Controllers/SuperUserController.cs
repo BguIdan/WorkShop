@@ -29,7 +29,7 @@ namespace ForumBuilder.Controllers
             }
         }
 
-        public Boolean createForum(String forumName, String descrption, ForumPolicy fp, List<String> administrators, String superUserName)
+        public String createForum(String forumName, String descrption, ForumPolicy fp, List<String> administrators, String superUserName)
         {
             if (forumName.Equals("") || descrption.Equals("") || fp.policy.Equals("") || fp.seniorityInForum<0||
                 fp.timeToPassExpiration<30 || fp.minLengthOfPassword<0 || administrators == null||
@@ -37,13 +37,13 @@ namespace ForumBuilder.Controllers
             {
                 logger.logPrint("cannot create new forum because one or more of the fields is empty",0);
                 logger.logPrint("cannot create new forum because one or more of the fields is empty",2);
-                return false;
+                return "cannot create new forum because one or more of the fields is empty";
             }
             if (DB.getSuperUser(superUserName) == null)
             {
                 logger.logPrint("create forum fail " + superUserName + " is not super user",0);
                 logger.logPrint("create forum fail " + superUserName + " is not super user",2);
-                return false;
+                return "create forum fail " + superUserName + " is not super user";
             }                
             else if (DB.createForum(forumName, descrption, fp))
             {
@@ -54,9 +54,9 @@ namespace ForumBuilder.Controllers
                 }
                 logger.logPrint("Forum " + forumName + " creation success",0);
                 logger.logPrint("Forum " + forumName + " creation success",1);
-                return true;
+                return "Forum " + forumName + " creation success";
             }
-            return false;
+            return "Forum " + forumName + " creation failed";
         }
 
         public bool addSuperUser(string email, string password, string userName)
@@ -116,11 +116,11 @@ namespace ForumBuilder.Controllers
             }
             return true;
         }
-        public bool addUser(string userName, string password, string mail, string superUserName)
+        public String addUser(string userName, string password, string mail, string superUserName)
         {
             if (!isSuperUser(superUserName))
             {
-                return false;
+                return superUserName +"is not a superUser";
             }
             if (userName.Length > 0 && password.Length > 0 && mail.Length > 0)
             {
@@ -128,13 +128,17 @@ namespace ForumBuilder.Controllers
                 {
                     logger.logPrint("Register user faild, " + userName + " is already taken",0);
                     logger.logPrint("Register user faild, " + userName + " is already taken",2);
-                    return false;
+                    return "Register user faild, " + userName + " is already taken";
                 }
-                return DB.addUser(userName, password, mail, " ", " ");
+                if (DB.addUser(userName, password, mail, " ", " "))
+                {
+                    return  "Register user " + userName + "Complited" ;
+                }
+                return "fail to add user";
             }
             logger.logPrint("Register user faild, password not strong enough",0);
             logger.logPrint("Register user faild, password not strong enough",2);
-            return false;
+            return "Register user faild, password not strong enough";
         }
         public Boolean login(String user, String password, string email)
         {
