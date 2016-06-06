@@ -119,47 +119,50 @@ namespace ForumBuilder.Controllers
             return DB.getSubForum(subForumName, forumName);
         }
 
-        public bool createThread(String headLine, String content, String writerName,  String forumName, String subForumName)
+        public String createThread(String headLine, String content, String writerName,  String forumName, String subForumName)
         {
             DateTime timePublished = DateTime.Now;
             if (headLine==null || content==null||(headLine.Equals("")&& content.Equals("")))
             {
                 logger.logPrint("Create tread failed, there is no head or content in tread",0);
                 logger.logPrint("Create tread failed, there is no head or content in tread",2);
-                return false;
+                return "Create tread failed, there is no head or content in tread";
             }
             else if (DB.getUser(writerName) == null)
             {
                 logger.logPrint("Create tread failed, user does not exist",0);
                 logger.logPrint("Create tread failed, user does not exist",2);
-                return false;
+                return "Create tread failed, user does not exist";
             }
             else if (DB.getSubForum(subForumName,forumName)== null)
             {
                 logger.logPrint("Create tread failed, sub-forum does not exist",0);
                 logger.logPrint("Create tread failed, sub-forum does not exist",2);
-                return false;
+                return "Create tread failed, sub-forum does not exist";
             }
             else if (!ForumController.getInstance.isMember(writerName, forumName))
             {
                 logger.logPrint("Create tread failed, user "+ writerName+" is not memberin forum "+ forumName,0);
                 logger.logPrint("Create tread failed, user " + writerName + " is not memberin forum " + forumName,2);
-                return false;
+                return "Create tread failed, user " + writerName + " is not memberin forum " + forumName;
             }
             int id = DB.getAvilableIntOfPost();
             logger.logPrint("Add thread " + id,0);
             logger.logPrint("Add thread " + id,1);
             this.forumController.sendThreadCreationNotification(headLine, content, writerName, forumName, subForumName);
-            return DB.addPost(writerName, id, headLine, content, -1, timePublished,forumName) && DB.addThread( forumName, subForumName, id);
+            if (DB.addPost(writerName, id, headLine, content, -1, timePublished, forumName) && DB.addThread(forumName, subForumName, id))
+                return "Create tread succeed";
+            return "Create tread failed";
+
         }
 
-        public bool deleteThread(int firstPostId,string removerName)
+        public String deleteThread(int firstPostId,string removerName)
         {
             if (DB.getThreadByFirstPostId(firstPostId) == null)
             {
                 logger.logPrint("Delete thread failed, no thread with that id",0);
                 logger.logPrint("Delete thread failed, no thread with that id",2);
-                return false;
+                return "Delete thread failed, no thread with that id";
             }
             SubForum sf= DB.getSubforumByThreadFirstPostId(firstPostId);
             if ((!DB.getPost(firstPostId).writerUserName.Equals(removerName))
@@ -169,7 +172,7 @@ namespace ForumBuilder.Controllers
             {
                 logger.logPrint("Delete thread failed, there is no permission to that user",0);
                 logger.logPrint("Delete thread failed, there is no permission to that user",2);
-                return false;
+                return "Delete thread failed, there is no permission to that user";
             }
             else
             {
@@ -188,17 +191,16 @@ namespace ForumBuilder.Controllers
                     }
                     donePosts.Add(post);
                 }
-                bool hasSucceed= true;
-                hasSucceed = hasSucceed && DB.removeThread(firstPostId);
+                DB.removeThread(firstPostId);
                 for (int i =donePosts.Count-1; i>=0;i--)
                 {
-                    hasSucceed = hasSucceed && DB.removePost(donePosts.ElementAt(i).id);
+                    DB.removePost(donePosts.ElementAt(i).id);
                     logger.logPrint("Remove post " + donePosts.ElementAt(i).id,0);
                     logger.logPrint("Remove post " + donePosts.ElementAt(i).id,1);
                 }
                 logger.logPrint("Remove thread " + firstPostId,0);
                 logger.logPrint("Remove thread " + firstPostId,1);
-                return hasSucceed;
+                return "Thread removed";
             } 
         }
     }

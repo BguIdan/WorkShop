@@ -62,7 +62,7 @@ namespace Tests
               modList.Add(this.userMod.userName, new DateTime(2030, 1, 1));
               Assert.IsTrue(ForumController.getInstance.registerUser("mod", "Modpass11", "mod@gmail.com", "ansss", "anssss", this.forumName).Equals("Register user succeed"));
               Assert.IsTrue(this.forumManager.addSubForum(this.forumName, this.subForumName, modList, this.userAdmin.userName).Equals("sub-forum added"));
-              Assert.IsTrue(SubForumController.getInstance.createThread("headLine", "content", this.userMember.userName, this.forumName, this.subForumName));
+              Assert.IsTrue(SubForumController.getInstance.createThread("headLine", "content", this.userMember.userName, this.forumName, this.subForumName).Equals("Create tread succeed"));
               List<Post> posts = PostController.getInstance.getAllPosts(this.forumName, this.subForumName);
               Assert.AreEqual(posts.Count, 1);
               this.postId = posts[0].id;
@@ -361,7 +361,7 @@ namespace Tests
               }
               Assert.IsNotNull(newPost, "the added post should exist");
               int id = newPost.id;
-              Assert.IsTrue(this.postManager.deletePost(id, this.userMember.userName));
+              Assert.IsTrue(this.postManager.deletePost(id, this.userMember.userName).Equals("Post removed"));
               posts = this.postManager.getAllPosts(this.forumName, this.subForumName);
               foreach (PostData p in posts)
               {
@@ -385,7 +385,7 @@ namespace Tests
               }
               Assert.IsNotNull(newPost, "the added post should exist");
               int id = newPost.id;
-              Assert.IsTrue(this.postManager.deletePost(id, this.userAdmin.userName));
+              Assert.IsTrue(this.postManager.deletePost(id, this.userAdmin.userName).Equals("Post removed"));
               posts = this.postManager.getAllPosts(this.forumName, this.subForumName);
               foreach (PostData p in posts)
               {
@@ -409,7 +409,7 @@ namespace Tests
               }
               Assert.IsNotNull(newPost, "the added post should exist");
               int id = newPost.id;
-              Assert.IsFalse(this.postManager.deletePost(id, this.userMember.userName));
+              Assert.IsFalse(this.postManager.deletePost(id, this.userMember.userName).Equals("Post removed"));
               posts = this.postManager.getAllPosts(this.forumName, this.subForumName);
               newPost = null;
               foreach (PostData p in posts)
@@ -439,7 +439,7 @@ namespace Tests
               }
               Assert.IsNotNull(newPost, "the added post should exist");
               int id = newPost.id;
-              Assert.IsTrue(this.postManager.deletePost(id, this.userAdmin.userName));
+              Assert.IsTrue(this.postManager.deletePost(id, this.userAdmin.userName).Equals("Post removed"));
               posts = this.postManager.getAllPosts(this.forumName, this.subForumName);
               newPost = null;
               foreach (PostData p in posts)
@@ -471,7 +471,7 @@ namespace Tests
               int id = newPost.id;
               Assert.IsTrue(this.postManager.addPost("head", "subcomment", this.userMember.userName, id));
               Assert.IsTrue(this.postManager.addPost("head2", "subcomment2", this.userAdmin.userName, id));
-              Assert.IsTrue(this.postManager.deletePost(id, this.userMember.userName));
+              Assert.IsTrue(this.postManager.deletePost(id, this.userMember.userName).Equals("Post removed"));
               posts = this.postManager.getAllPosts(this.forumName, this.subForumName);
               foreach (PostData p in posts)
               {
@@ -499,7 +499,7 @@ namespace Tests
               int id = newPost.id;
               Assert.IsTrue(this.postManager.addPost("head", "subcomment", this.userMember.userName, id));
               Assert.IsTrue(this.postManager.addPost("head2", "subcomment2", this.userAdmin.userName, id));
-              Assert.IsTrue(this.postManager.deletePost(id, this.userAdmin.userName));
+              Assert.IsTrue(this.postManager.deletePost(id, this.userAdmin.userName).Equals("Post removed"));
               posts = this.postManager.getAllPosts(this.forumName, this.subForumName);
               foreach (PostData p in posts)
               {
@@ -541,7 +541,7 @@ namespace Tests
               }
               Assert.IsNotNull(newPost, "the added post should exist");
               int id = newPost.id;
-              Assert.IsTrue(this.postManager.deletePost(id, this.userMember.userName));
+              Assert.IsTrue(this.postManager.deletePost(id, this.userMember.userName).Equals("Post removed"));
               commentCounter--;
               posts = this.postManager.getAllPosts(this.forumName, this.subForumName);
               Assert.AreEqual(posts.Count, commentCounter);
@@ -583,7 +583,7 @@ namespace Tests
               }
               Assert.IsNotNull(newPost, "the added post should exist");
               int id = newPost.id;
-              Assert.IsTrue(this.postManager.deletePost(id, this.userAdmin.userName));
+              Assert.IsTrue(this.postManager.deletePost(id, this.userAdmin.userName).Equals("Post removed"));
               commentCounter--;
               posts = this.postManager.getAllPosts(this.forumName, this.subForumName);
               Assert.AreEqual(posts.Count, commentCounter);
@@ -628,7 +628,7 @@ namespace Tests
               Assert.IsTrue(this.postManager.addPost("head", "content", this.userMember.userName, id));
               Assert.IsTrue(this.postManager.addPost("head", "content", this.userAdmin.userName, id));
               commentCounter += 2;
-              Assert.IsTrue(this.postManager.deletePost(id, this.userMember.userName));
+              Assert.IsTrue(this.postManager.deletePost(id, this.userMember.userName).Equals("Post removed"));
               commentCounter -= 3;
               posts = this.postManager.getAllPosts(this.forumName, this.subForumName);
               Assert.AreEqual(posts.Count, commentCounter);
@@ -674,7 +674,7 @@ namespace Tests
               Assert.IsTrue(this.postManager.addPost("head", "content", this.userMember.userName, id));
               Assert.IsTrue(this.postManager.addPost("head", "content", this.userAdmin.userName, id));
               commentCounter += 2;
-              Assert.IsTrue(this.postManager.deletePost(id, this.userAdmin.userName));
+              Assert.IsTrue(this.postManager.deletePost(id, this.userAdmin.userName).Equals("Post removed"));
               commentCounter -= 3;
               posts = this.postManager.getAllPosts(this.forumName, this.subForumName);
               Assert.AreEqual(posts.Count, commentCounter);
@@ -739,7 +739,7 @@ namespace Tests
                   Assert.IsTrue(this.postManager.addPost("head", "content", this.userAdmin.userName, id));
                   commentCounter += 2;
               }
-              Assert.IsTrue(this.postManager.deletePost(originalId, this.userAdmin.userName));
+              Assert.IsTrue(this.postManager.deletePost(originalId, this.userAdmin.userName).Equals("Post removed"));
               commentCounter -= 13;
               posts = this.postManager.getAllPosts(this.forumName, this.subForumName);
               Assert.AreEqual(commentCounter, posts.Count);
@@ -774,7 +774,7 @@ namespace Tests
                   else
                       invalidId++;
               }
-              Assert.IsFalse(this.postManager.deletePost(invalidId, this.userMember.userName));
+              Assert.IsFalse(this.postManager.deletePost(invalidId, this.userMember.userName).Equals("Post removed"));
               List<PostData> postsAfter = this.postManager.getAllPosts(this.forumName, this.subForumName);
               Assert.AreEqual(postsPre.Count, postsAfter.Count);
           }

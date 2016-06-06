@@ -14,7 +14,7 @@ namespace ForumBuilder.Common.ServiceContracts
     public interface IPostManager
     {
         [OperationContract]
-        Boolean deletePost(Int32 postId, String deletingUser);
+        String deletePost(Int32 postId, String deletingUser);
 
         [OperationContract]
         Boolean addPost(String headLine, String content, String writerName, Int32 commentedPost);

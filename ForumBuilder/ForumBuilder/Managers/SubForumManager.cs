@@ -39,11 +39,11 @@ namespace Service
         {
             return subForumController.nominateModerator(newModerator, nominatorUser, date, subForumName, forumName);
         }
-        public bool createThread(String headLine, String content, String writerName, String forumName, String subForumName)
+        public String createThread(String headLine, String content, String writerName, String forumName, String subForumName)
         {
             return subForumController.createThread(headLine, content, writerName, forumName, subForumName);
         }
-        public bool deleteThread(int firstPostId, string removerName)
+        public String deleteThread(int firstPostId, string removerName)
         {
             return subForumController.deleteThread(firstPostId, removerName);
         }

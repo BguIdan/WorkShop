@@ -89,7 +89,7 @@ namespace Tests
             Assert.AreNotEqual(oldPolicy, newPolicy, false, "the new policy should be different from the old one");
             Assert.AreNotEqual(oldDescription, newDescr, false, "the new description should be different from the old one");
             ForumPolicyData fpd2 = new ForumPolicyData("p", true, 0, true, 180, 1, true, true, 5);
-            Assert.IsTrue(forum.setForumPreferences(forumData.forumName, newDescr, fpd2, userAdmin.userName), "policy change should be successful");
+            Assert.IsTrue(forum.setForumPreferences(forumData.forumName, newDescr, fpd2, userAdmin.userName).Equals("preferences had changed successfully"), "policy change should be successful");
             Assert.AreEqual(forum.getForumPolicy(forumData.forumName), newPolicy, false, "the new policy should be return after the change");
             Assert.AreEqual(forum.getForumDescription(forumData.forumName), newDescr, false, "the new description should be return after the change");
             db.clear();
@@ -116,7 +116,7 @@ namespace Tests
             superUserController.createForum("testForum", "descr",fp, adminList, superUser.userName);
             String oldPolicy = forum.getForumPolicy(forumData.forumName);
             String oldDescr = forum.getForumDescription(forumData.forumName);
-            Assert.IsFalse(forum.setForumPreferences(forumData.forumName, "desc", fpd2, forumData.forumName), "policy change with null should not be successful");
+            Assert.IsFalse(forum.setForumPreferences(forumData.forumName, "desc", fpd2, forumData.forumName).Equals("preferences had changed successfully"), "policy change with null should not be successful");
             Assert.AreEqual(forum.getForumPolicy(forumData.forumName), oldPolicy, false, "after an unsuccessful change, the old policy should be returned");
             Assert.AreEqual(forum.getForumDescription(forumData.forumName), oldDescr, false, "after an unsuccessful change, the old description should be returned");
             db.clear();
@@ -145,7 +145,7 @@ namespace Tests
             superUserController.createForum("testForum", "descr", fp, adminList, superUser.userName);
             String oldPolicy = forum.getForumPolicy(forumData.forumName);
             String oldDescr = forum.getForumDescription(forumData.forumName);
-            Assert.IsTrue(forum.setForumPreferences(forumData.forumName, "",fpd2, userAdmin.userName), "policy change with null should not be successful");
+            Assert.IsTrue(forum.setForumPreferences(forumData.forumName, "",fpd2, userAdmin.userName).Equals("preferences had changed successfully"), "policy change with null should not be successful");
             Assert.AreEqual(forum.getForumPolicy(forumData.forumName), "", false, "after an unsuccessful change, the old policy should be returned");
             Assert.AreEqual(forum.getForumDescription(forumData.forumName), "", false, "after an unsuccessful change, the old description should be returned");
             db.clear();

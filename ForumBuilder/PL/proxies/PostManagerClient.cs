@@ -16,7 +16,7 @@ namespace PL.proxies
 
         }
 
-        public Boolean deletePost(Int32 postId, String deletingUser)
+        public String deletePost(Int32 postId, String deletingUser)
         {
             return Channel.deletePost(postId, deletingUser);
         }

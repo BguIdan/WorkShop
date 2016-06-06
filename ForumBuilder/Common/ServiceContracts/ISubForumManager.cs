@@ -17,10 +17,10 @@ namespace ForumBuilder.Common.ServiceContracts
         Boolean nominateModerator(String newModerator, String nominatorUser, DateTime date, String subForumName, String forumName);
 
         [OperationContract]
-        bool createThread(String headLine, String content, String writerName, String forumName, String subForumName);
+        String createThread(String headLine, String content, String writerName, String forumName, String subForumName);
 
         [OperationContract]
-        bool deleteThread(int firstPostId, string removerName);
+        String deleteThread(int firstPostId, string removerName);
                 
         [OperationContract]
         Boolean isModerator(string name, string subForumName, string forumName);
