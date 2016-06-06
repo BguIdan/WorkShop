@@ -60,7 +60,7 @@
             <Button Name="noBtn" Click="btn_toSetPref" FontFamily="Cooper Black" Content="No" Margin="155,68,41,10" />
         </Grid>
         <Grid Name="AddSubForum" Visibility="Collapsed" Margin="10,24,10,0">
-            <Button x:Name="backButton1" Content="Back" FontFamily="cooper black" HorizontalAlignment="Left" Height="27" Margin="49,274,0,0" VerticalAlignment="Top" Width="99" Click="backButton_Click"/>
+            <Button x:Name="backButton1" Content="Back" FontFamily="cooper black" HorizontalAlignment="Left" Margin="49,274,0,0" Width="99" Click="backButton_Click" Height="27" VerticalAlignment="Top"/>
             <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Text="Please enter forum name and select a member to be a moderator:" VerticalAlignment="Top" Height="27" Margin="44,84,110,0"/>
             <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Margin="48,148,201,0" Text="Sub-Forum Name:"/>
             <TextBox Name="subForumName" Margin="195,148,57,180" TextWrapping="Wrap"/>
@@ -68,7 +68,7 @@
             <ComboBox x:Name="comboBox" Margin="195,174,57,154"/>
             <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Margin="48,200,201,116" Text="Managing Duration Time: (In Days)"/>
             <ComboBox x:Name="comboBoxDuration" Margin="195,212,57,116"/>
-            <Button FontFamily="Cooper Black" Content="Create" Margin="195,274,57,45" Click="btn_createSub"/>
+            <Button FontFamily="Cooper Black" Height="27" Content="Create" Margin="195,274,57,0" Click="btn_createSub" VerticalAlignment="Top"/>
             <TextBlock FontSize="30" FontFamily="Broadway" TextWrapping="Wrap" Text="Create Sub-Forum" Margin="30,18,30,282"/>
         </Grid>
 
