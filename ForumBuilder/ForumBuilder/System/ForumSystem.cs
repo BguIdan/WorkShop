@@ -90,6 +90,11 @@ namespace ForumBuilder.Systems
                 logger.logPrint("The System was initialized successully",0);
                 logger.logPrint("The System was initialized successully",1);
             }
+            else
+            {
+                SuperUserController superUserController = SuperUserController.getInstance;
+                superUserController.addSuperUser(email, password, userName);
+            }
             return getInstance;
         }
         private static void sendmail(string email)

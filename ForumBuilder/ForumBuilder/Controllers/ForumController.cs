@@ -437,7 +437,7 @@ namespace ForumBuilder.Controllers
                 {
                     foreach (IUserNotificationsService channel in channels)
                     {
-                        channel.applyPostDelitionNotification(forumName, publisherName);
+                        channel.applyPostModificationNotification(forumName, publisherName, title);
                     }
                 }
             }

@@ -192,7 +192,7 @@ namespace WebClient
             //TODO failed to effect the web page dynamically (gal)
         }
 
-        public void applyPostModificationNotification(String forumName, String publisherName, String title, String content)
+        public void applyPostModificationNotification(String forumName, String publisherName, String title)
         {
             //MessageBox.Show(publisherName + "'s post you were following in " + forumName + "was modified (" + title + ")", "post modified");
         }

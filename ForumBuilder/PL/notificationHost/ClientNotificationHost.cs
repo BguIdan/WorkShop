@@ -17,7 +17,7 @@ namespace PL.notificationHost
                     "'s sub-forum " + subForumName, "new post");
          }
 
-        public void applyPostModificationNotification(String forumName, String publisherName, String title, String content)
+        public void applyPostModificationNotification(String forumName, String publisherName, String title)
         {
                 MessageBox.Show(publisherName + "'s post you were following in " + forumName + " was modified (" + title + ")", "post modified");
         }

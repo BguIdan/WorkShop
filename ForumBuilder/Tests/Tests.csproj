@@ -60,11 +60,13 @@
     <Compile Include="AcceptanceTests.cs" />
     <Compile Include="ForumControllerTest.cs" />
     <Compile Include="ForumManagerTest.cs" />
+    <Compile Include="InteractivityTest.cs" />
     <Compile Include="PostControllerTest.cs" />
     <Compile Include="PostManagerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SubForumControllerTest.cs" />
     <Compile Include="SubForumManagerTest.cs" />
+    <Compile Include="TestableUserNotifications.cs" />
     <Compile Include="UserControllerTest.cs" />
     <Compile Include="UserManagerTest.cs" />
   </ItemGroup>
