@@ -87,7 +87,7 @@ namespace WebClient.proxies
             return Channel.isMember(userName, forumName);
         }
 
-        public Boolean setForumPreferences(String forumName, String newDescription, ForumPolicyData fpd, String setterUserName)
+        public String setForumPreferences(String forumName, String newDescription, ForumPolicyData fpd, String setterUserName)
         {
             return Channel.setForumPreferences(forumName, newDescription,  fpd, setterUserName);
         }

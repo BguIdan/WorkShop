@@ -83,7 +83,8 @@ namespace PL
                 }
                 else
                 {
-                    if (_sf.createThread(title.Text, content.Text, _userName, _forumName, _subForumName))
+                    String createTread = _sf.createThread(title.Text, content.Text, _userName, _forumName, _subForumName);
+                    if (createTread.Equals("Create tread succeed"))
                     {
                         MessageBox.Show("thread was added succesfully");
                         _prevWindow.Close();
@@ -93,7 +94,7 @@ namespace PL
                     }
                     else
                     {
-                        MessageBox.Show("could not add thread");
+                        MessageBox.Show(createTread);
                     }
                 }
             }

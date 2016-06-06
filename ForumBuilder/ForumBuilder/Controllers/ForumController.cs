@@ -446,31 +446,33 @@ namespace ForumBuilder.Controllers
             return true;
         }
 
-        public Boolean setForumPreferences(String forumName, String newDescription, ForumPolicy fp, string setterUserName)
+        public String setForumPreferences(String forumName, String newDescription, ForumPolicy fp, string setterUserName)
         {
-            bool hasSucceed = false;
             if (DB.getforumByName(forumName) == null)
             {
                 logger.logPrint("Set forum preferences failed, Forum" + forumName + " do not exist", 0);
                 logger.logPrint("Set forum preferences failed, Forum" + forumName + " do not exist", 2);
+                return "Set forum preferences failed, Forum" + forumName + " do not exist";
             }
             else if (!isAdmin(setterUserName, forumName))
             {
                 logger.logPrint("Set forum preferences failed, " + setterUserName + " is not an admin", 0);
                 logger.logPrint("Set forum preferences failed, " + setterUserName + " is not an admin", 2);
+                return "Set forum preferences failed, " + setterUserName + " is not an admin";
             }
             else if (forumName == null | newDescription == null | setterUserName == null)
             {
                 logger.logPrint("Set forum preferences failed, one or more of the arguments is null", 0);
                 logger.logPrint("Set forum preferences failed, one or more of the arguments is null", 2);
+                return "Set forum preferences failed, one or more of the arguments is null";
             }
             else if (DB.setForumPreferences(forumName, newDescription, fp))
             {
                 logger.logPrint(forumName + "preferences had changed successfully", 0);
                 logger.logPrint(forumName + "preferences had changed successfully", 1);
-                hasSucceed = true;
+                return "preferences had changed successfully";
             }
-            return hasSucceed;
+            return "preferences change faild";
         }
 
         public String getForumPolicy(String forumName)

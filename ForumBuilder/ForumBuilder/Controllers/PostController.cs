@@ -76,19 +76,21 @@ namespace ForumBuilder.Controllers
                 return DB.addPost(writerName, id, headLine, content, commentedPost, DateTime.Now,sf.forum);
             }
         }
-        public Boolean removeComment(int postId, String removerName)
+        public String removeComment(int postId, String removerName)
         {
             if (getPost(postId) == null)
             {
                 logger.logPrint("Delete comment failed, there is no post with that id",0);
                 logger.logPrint("Delete comment failed, there is no post with that id",2);
-                return false;
+                return "Delete comment failed, there is no post with that id";
             }
             else if (getPost(postId).parentId == -1)
             {
                 //logger.logPrint("Delete comment failed, this is not a comment");
                 //return false;
-                return SubForumController.getInstance.deleteThread(postId, removerName);
+                if(SubForumController.getInstance.deleteThread(postId, removerName).Equals("Thread removed"))
+                    return "Post removed";
+                return "Post remove failed";
             }
             SubForum sf = getSubforumByPost(postId);
             if ((!DB.getPost(postId).writerUserName.Equals(removerName))
@@ -98,7 +100,7 @@ namespace ForumBuilder.Controllers
             {
                 logger.logPrint("Delete thread comment, there is no permission to that user",0);
                 logger.logPrint("Delete thread comment, there is no permission to that user",2);
-                return false;
+                return "Delete thread comment, there is no permission to that user";
             }
 
             //find the posts that have to delete
@@ -125,7 +127,7 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Remove post " + donePosts.ElementAt(i).id,1);
             }
             //ForumController.getInstance.sendPostDelitionNotification(DB.getPost(postId).forumName, removerName);
-            return hasSucceed;
+            return "Post removed";
         }
         public List<Post> getAllPosts(String forumName, String subforumName)
         {

@@ -33,7 +33,7 @@ namespace Service
             }
         }
 
-        public Boolean deletePost(Int32 postId, String deletingUser)
+        public String deletePost(Int32 postId, String deletingUser)
         {
             return postController.removeComment(postId, deletingUser);
         }

@@ -76,7 +76,7 @@ namespace Service
         {
             return forumController.isMember(userName, forumName);
         }
-        public Boolean setForumPreferences(String forumName, String newDescription, ForumPolicyData fpd, String setterUserName)
+        public String setForumPreferences(String forumName, String newDescription, ForumPolicyData fpd, String setterUserName)
         {
             ForumPolicy fp = new ForumPolicy(fpd.policy,fpd.isQuestionIdentifying,fpd.seniorityInForum,fpd.deletePostByModerator,
                 fpd.timeToPassExpiration,fpd.minNumOfModerator,fpd.hasCapitalInPassword,fpd.hasNumberInPassword,fpd.minLengthOfPassword);
