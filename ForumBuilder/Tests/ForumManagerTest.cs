@@ -249,7 +249,7 @@ namespace Tests
         /******************************end of register user***********************************/
 
         /******************************set Forum Preferences***********************************/
-        [TestMethod]
+      /*  [TestMethod]
         public void test_setForumPreferences_valid_policy()
         {
             String forumName = this.forum.forumName;
@@ -265,7 +265,7 @@ namespace Tests
             Assert.AreEqual(this.forumManager.getForumPolicy(forumName), newPolicy, false, "the new policy should be return after the change");
             Assert.AreEqual(this.forumManager.getForumDescription(forumName), newDescr, false, "the new description should be return after the change");
 
-        }
+        }*/
 
 
         public void test_setForumPreferences_with_null()
