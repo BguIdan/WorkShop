@@ -11,7 +11,7 @@ namespace ForumBuilder.Common.ServiceContracts
     public interface ISubForumManager
     {
         [OperationContract]
-        Boolean dismissModerator(String dismissedModerator, String dismissByAdmin, String subForumName, String forumName);
+        String dismissModerator(String dismissedModerator, String dismissByAdmin, String subForumName, String forumName);
 
         [OperationContract]
         String nominateModerator(String newModerator, String nominatorUser, DateTime date, String subForumName, String forumName);

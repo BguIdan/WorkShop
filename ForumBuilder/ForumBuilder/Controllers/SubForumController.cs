@@ -28,38 +28,40 @@ namespace ForumBuilder.Controllers
                 return singleton;
             }
         }
-        public bool dismissModerator(string dismissedModerator, string dismissByAdmin, string subForumName, string forumName)
+        public String dismissModerator(string dismissedModerator, string dismissByAdmin, string subForumName, string forumName)
         {
             SubForum subForum = getSubForum(subForumName, forumName);
             if (subForum == null)
             {
                 logger.logPrint("Dismiss moderator failed, sub-forum does not exist",0);
                 logger.logPrint("Dismiss moderator failed, sub-forum does not exist",2);
-                return false;
+                return "Dismiss moderator failed, sub-forum does not exist";
             }
-            if (DB.getforumByName(subForum.forum).forumPolicy.minNumOfModerators >= subForum.moderators.Count)
+            if (DB.getforumByName(subForum.forum).forumPolicy.minNumOfModerators >= subForum.moderators.Count|| subForum.moderators.Count==1)
             {
                 logger.logPrint("Dismiss moderator failed, sub-forum has not enough moderators",0);
                 logger.logPrint("Dismiss moderator failed, sub-forum has not enough moderators",2);
-                return false;
+                return "Dismiss moderator failed, sub-forum has not enough moderators";
             }
             else if (!ForumController.getInstance.isAdmin(dismissByAdmin, forumName) && !SuperUserController.getInstance.isSuperUser(dismissByAdmin))
             {
                 logger.logPrint("Dismiss moderator failed, "+ dismissByAdmin+" has no permission",0);
                 logger.logPrint("Dismiss moderator failed, " + dismissByAdmin + " has no permission",2);
-                return false;
+                return "Dismiss moderator failed, " + dismissByAdmin + " has no permission";
             }
             else if(!isModerator(dismissedModerator, subForumName, forumName))
             {
                 logger.logPrint("Dismiss moderator failed, " + dismissedModerator + " is not a moderator",0);
                 logger.logPrint("Dismiss moderator failed, " + dismissedModerator + " is not a moderator",2);
-                return false;
+                return "Dismiss moderator failed, " + dismissedModerator + " is not a moderator";
             }
             else
             {
                 logger.logPrint("Dismiss moderator "+ dismissedModerator,0);
                 logger.logPrint("Dismiss moderator " + dismissedModerator,2);
-                return DB.dismissModerator(dismissedModerator, subForumName, forumName);
+                if (DB.dismissModerator(dismissedModerator, subForumName, forumName))
+                    return "Moderator dismissed";
+                return "Dismiss failed";
             }
         }
         public bool isModerator(string name, string subForumName, string forumName)
@@ -88,6 +90,12 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("user does not exist", 0);
                 logger.logPrint("user does not exist", 2);
                 return "user does not exist";
+            }
+            if (isModerator(newModerator, subForumName, forumName))
+            {
+                logger.logPrint("user is already moderator", 0);
+                logger.logPrint("user is already moderator", 2);
+                return "user is already moderator";
             }
             if ((ForumController.getInstance.isAdmin(nominatorUser, forumName)|| SuperUserController.getInstance.isSuperUser(nominatorUser)) && 
                 ForumController.getInstance.isMember(newModerator, forumName)&&

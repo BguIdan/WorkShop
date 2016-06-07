@@ -91,7 +91,6 @@ namespace WebClient
         protected void clickOnSubForum(Object sender, EventArgs e)
         {
             int num = 0;
-            int id = -2;
             foreach (TableRow row in ThreadTable.Rows)
             {
                 foreach (TableCell cell in row.Cells)

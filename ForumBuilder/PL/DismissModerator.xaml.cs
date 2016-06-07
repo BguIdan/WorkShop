@@ -44,7 +44,8 @@ namespace PL
 
         private void dismissButton_Click(object sender, RoutedEventArgs e)
         {
-                if (_sf.dismissModerator(textBox.Text, _userName, _subForumName, _forumName))
+            string dismiss = _sf.dismissModerator(textBox.Text, _userName, _subForumName, _forumName);
+                if (dismiss.Equals("Moderator dismissed"))
                 {
                     MessageBox.Show("moderator was dismissed");
                     _oldWin.Show();
@@ -52,7 +53,7 @@ namespace PL
                 }
                 else
                 {
-                    MessageBox.Show("error");
+                    MessageBox.Show(dismiss);
                 }
         }
     }

@@ -34,7 +34,7 @@ namespace PL.proxies
         {
         }
 
-        public Boolean dismissModerator(String dismissedModerator, String dismissByAdmin, String subForumName, String forumName)
+        public String dismissModerator(String dismissedModerator, String dismissByAdmin, String subForumName, String forumName)
         {
             return Channel.dismissModerator(dismissedModerator, dismissByAdmin, subForumName, forumName);
         }

@@ -91,21 +91,21 @@ namespace Tests
         {
             String memberUserName = this.userMember.userName;
             Assert.IsFalse(this.subForum.isModerator(memberUserName, this.subForumName, this.forumName), "the moderatorList list should not contain the non moderator member");
-            Assert.IsFalse(subForum.dismissModerator(memberUserName, this.userAdmin.userName, this.subForumName, this.forumName), "dismiss moderator on non moderator should return false");
+            Assert.IsFalse(subForum.dismissModerator(memberUserName, this.userAdmin.userName, this.subForumName, this.forumName).Equals("Moderator dismissed"), "dismiss moderator on non moderator should return false");
             Assert.IsFalse(this.subForum.isModerator(memberUserName, this.subForumName, this.forumName), "the moderatorList list should not contain the non moderator member");
         }
 
         [TestMethod]
         public void test_dismissModerator_on_null()
         {
-            Assert.IsFalse(subForum.dismissModerator(null, this.userAdmin.userName, this.subForumName, this.forumName), "dismiss moderator on null should return false");
+            Assert.IsFalse(subForum.dismissModerator(null, this.userAdmin.userName, this.subForumName, this.forumName).Equals("Moderator dismissed"), "dismiss moderator on null should return false");
         }
 
         [TestMethod]
         public void test_dismissModerator_on_empty_string()
         {
 
-            Assert.IsFalse(subForum.dismissModerator("", this.userAdmin.userName, this.subForumName, this.forumName), "dismiss moderator on an empty string should return false");
+            Assert.IsFalse(subForum.dismissModerator("", this.userAdmin.userName, this.subForumName, this.forumName).Equals("Moderator dismissed"), "dismiss moderator on an empty string should return false");
         }
 
 

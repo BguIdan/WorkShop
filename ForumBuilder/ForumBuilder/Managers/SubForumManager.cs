@@ -31,7 +31,7 @@ namespace Service
             }
         }
 
-        public Boolean dismissModerator(String dismissedModerator, String dismissByAdmin, String subForumName, String forumName)
+        public String dismissModerator(String dismissedModerator, String dismissByAdmin, String subForumName, String forumName)
         {
             return subForumController.dismissModerator(dismissedModerator, dismissByAdmin, subForumName, forumName);
         }
