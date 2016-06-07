@@ -242,7 +242,8 @@ namespace DataBase
                                 }
                             }
                         }
-                        report.Add(ans);
+                        if(!ans.Equals(""))
+                            report.Add(ans);
                     }
                 }
                 return report;

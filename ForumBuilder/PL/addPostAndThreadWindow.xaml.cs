@@ -110,7 +110,8 @@ namespace PL
 
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
-            _prevWindow.Visibility = System.Windows.Visibility.Visible;
+            SubForumWindow newWin = new SubForumWindow(_forumName, _subForumName, _userName);
+            newWin.Show();
             this.Close();
         }
     }

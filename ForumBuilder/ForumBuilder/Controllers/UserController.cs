@@ -153,6 +153,8 @@ namespace ForumBuilder.Controllers
         {
             string password = null;
             List<String> answers = DB.getAnswers(userName);
+            if (answers == null)
+                return null;
             if (ans1.Equals(answers[0]) && ans2.Equals(answers[1]))
             {
                 password = DB.getPassword(userName);

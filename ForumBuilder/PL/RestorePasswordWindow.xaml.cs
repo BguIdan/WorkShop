@@ -58,7 +58,7 @@ namespace PL
             string ans2= ansToq2.Text;
 
             string pass = _uMC.restorePassword(_usrName,ans1, ans2);
-            if(pass != null)
+            if(pass == null)
             {
                 MessageBox.Show("Wrong Answers! Please try again.");
             }
