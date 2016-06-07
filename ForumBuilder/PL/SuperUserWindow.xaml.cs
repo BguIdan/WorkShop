@@ -191,12 +191,21 @@ namespace PL
                     {
                         _fData.forumPolicy.isQuestionIdentifying = true;
                     }
-                    int passExpirationTime = Int32.Parse(PassCombo.SelectedItem.ToString());
-                    _fData.forumPolicy.timeToPassExpiration = passExpirationTime;
-                    int seniorityChoosen = Int32.Parse(TimeCombo.SelectedItem.ToString());
-                    _fData.forumPolicy.seniorityInForum = seniorityChoosen;
-                    int numerOfModerators = Int32.Parse(NumberCombo.SelectedItem.ToString());
-                    _fData.forumPolicy.minNumOfModerator = numerOfModerators;
+                    if (!PassCombo.Text.Equals(""))
+                    {
+                        int passExpirationTime = Int32.Parse(PassCombo.SelectedItem.ToString());
+                        _fData.forumPolicy.timeToPassExpiration = passExpirationTime;
+                    }
+                    if (!TimeCombo.Text.Equals(""))
+                    {
+                        int seniorityChoosen = Int32.Parse(TimeCombo.SelectedItem.ToString());
+                        _fData.forumPolicy.seniorityInForum = seniorityChoosen;
+                    }
+                    if (!NumberCombo.Text.Equals(""))
+                    {
+                        int numerOfModerators = Int32.Parse(NumberCombo.SelectedItem.ToString());
+                        _fData.forumPolicy.minNumOfModerator = numerOfModerators;
+                    }
                     toChange = Capital.IsChecked.Value;
                     if (toChange)
                     {
@@ -207,8 +216,11 @@ namespace PL
                     {
                         _fData.forumPolicy.hasNumberInPassword = true;
                     }
-                    int minLengthOfPass = Int32.Parse(LengthCombo.SelectedItem.ToString());
-                    _fData.forumPolicy.minLengthOfPassword = minLengthOfPass;
+                    if (!LengthCombo.Text.Equals(""))
+                    {
+                        int minLengthOfPass = Int32.Parse(LengthCombo.SelectedItem.ToString());
+                        _fData.forumPolicy.minLengthOfPassword = minLengthOfPass;
+                    }
                     _fMC.setForumPreferences(_fData.forumName, _fData.description, _fData.forumPolicy, _myUser.userName);
                     MessageBox.Show("Preferences was successfully changed!");
                     descCheck.IsChecked = false;
@@ -269,6 +281,7 @@ namespace PL
 
         private void PassComboBox_OnDropDownOpened(object sender, EventArgs e)
         {
+            PassCombo.Items.Clear();
             int minDays = 30;
             int maxDays = 365;
             for (int i = minDays; i <= maxDays; i++)
@@ -277,13 +290,9 @@ namespace PL
             }
         }
 
-        private void PassComboBox_OnDropDownClosed(object sender, EventArgs e)
-        {
-
-        }
-
         private void TimeComboBox_OnDropDownOpened(object sender, EventArgs e)
         {
+            TimeCombo.Items.Clear();
             int minDays = 0;
             int maxDays = 365;
             for (int i = minDays; i <= maxDays; i++)
@@ -292,13 +301,9 @@ namespace PL
             }
         }
 
-        private void TimeComboBox_OnDropDownClosed(object sender, EventArgs e)
-        {
-
-        }
-
         private void NumberComboBox_OnDropDownOpened(object sender, EventArgs e)
         {
+            NumberCombo.Items.Clear();
             int minNumOfModerators = 1;
             int maxNumOfModerators = 10;
             for (int i = minNumOfModerators; i <= maxNumOfModerators; i++)
@@ -307,24 +312,15 @@ namespace PL
             }
         }
 
-        private void NumberComboBox_OnDropDownClosed(object sender, EventArgs e)
-        {
-
-        }
-
         private void LengthComboBox_OnDropDownOpened(object sender, EventArgs e)
         {
+            LengthCombo.Items.Clear();
             int minPasswordLength = 5;
             int maxPasswordLength = 20;
             for (int i = minPasswordLength; i <= maxPasswordLength; i++)
             {
                 LengthCombo.Items.Add(i);
             }
-        }
-
-        private void LengthComboBox_OnDropDownClosed(object sender, EventArgs e)
-        {
-
         }
 
     }

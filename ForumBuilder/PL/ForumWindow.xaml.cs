@@ -42,10 +42,13 @@ namespace PL
             _sUMC = new SuperUserManagerClient();
             InitializePermissons(userName);
             //initializing the subForumListBox
-            foreach (string subForum in _myforum.subForums)
+            if (_myforum != null)
             {
-                subForumsListBox.Items.Add(subForum);
-            }
+                foreach (string subForum in _myforum.subForums)
+                {
+                    subForumsListBox.Items.Add(subForum);
+                }
+            } 
         }
 
         private void InitializePermissons(string userName)
@@ -265,12 +268,21 @@ namespace PL
                 {
                     _myforum.forumPolicy.isQuestionIdentifying = true;
                 }
-                int passExpirationTime = Int32.Parse(PassCombo.SelectedItem.ToString());
-                _myforum.forumPolicy.timeToPassExpiration = passExpirationTime;
-                int seniorityChoosen = Int32.Parse(TimeCombo.SelectedItem.ToString());
-                _myforum.forumPolicy.seniorityInForum = seniorityChoosen;
-                int numerOfModerators = Int32.Parse(NumberCombo.SelectedItem.ToString());
-                _myforum.forumPolicy.minNumOfModerator = numerOfModerators;
+                if (!PassCombo.Text.Equals(""))
+                {
+                    int passExpirationTime = Int32.Parse(PassCombo.SelectedItem.ToString());
+                    _myforum.forumPolicy.timeToPassExpiration = passExpirationTime;
+                }
+                if (!TimeCombo.Text.Equals(""))
+                {
+                    int seniorityChoosen = Int32.Parse(TimeCombo.SelectedItem.ToString());
+                    _myforum.forumPolicy.seniorityInForum = seniorityChoosen;
+                }
+                if (!NumberCombo.Text.Equals(""))
+                {
+                    int numerOfModerators = Int32.Parse(NumberCombo.SelectedItem.ToString());
+                    _myforum.forumPolicy.minNumOfModerator = numerOfModerators;
+                }
                 toChange = Capital.IsChecked.Value;
                 if (toChange)
                 {
@@ -281,8 +293,11 @@ namespace PL
                 {
                     _myforum.forumPolicy.hasNumberInPassword = true;
                 }
-                int minLengthOfPass = Int32.Parse(LengthCombo.SelectedItem.ToString());
-                _myforum.forumPolicy.minLengthOfPassword = minLengthOfPass;
+                if (!LengthCombo.Text.Equals(""))
+                {
+                    int minLengthOfPass = Int32.Parse(LengthCombo.SelectedItem.ToString());
+                    _myforum.forumPolicy.minLengthOfPassword = minLengthOfPass;
+                }
                 _fMC.setForumPreferences(_myforum.forumName, _myforum.description, _myforum.forumPolicy, _userName);
                 MessageBox.Show("Preferences was successfully changed!");
                 descCheck.IsChecked = false;
@@ -307,10 +322,9 @@ namespace PL
             int unlimited = 120;
             DateTime timeToSend = DateTime.Now;
             String sub_ForumName = subForumName.Text;
-            // TODO: add to option for more than one moderator
             String userName = comboBox.Text;
             String timeDuration = comboBoxDuration.Text;
-            if (timeDuration == null || userName == null || sub_ForumName == null || sub_ForumName.Equals(""))
+            if (timeDuration.Equals("") || userName == null || sub_ForumName == null || sub_ForumName.Equals(""))
             {
                 MessageBox.Show("error has accured");
                 return;
@@ -338,10 +352,6 @@ namespace PL
                 ForumWindow newWin = new ForumWindow(_fMC.getForum(_myforum.forumName), _userName);
                 this.Close();
                 newWin.Show();
-
-                //MainMenu.Visibility = System.Windows.Visibility.Visible;
-                //mainGrid.Visibility = System.Windows.Visibility.Visible;
-                //AddSubForum.Visibility = System.Windows.Visibility.Collapsed;
             }
         }
 
@@ -373,6 +383,7 @@ namespace PL
 
         private void PassComboBox_OnDropDownOpened(object sender, EventArgs e)
         {
+            PassCombo.Items.Clear();
             int minDays = 30;
             int maxDays = 365;
             for (int i = minDays; i <= maxDays; i++)
@@ -381,13 +392,9 @@ namespace PL
             }
         }
 
-        private void PassComboBox_OnDropDownClosed(object sender, EventArgs e)
-        {
-
-        }
-
         private void TimeComboBox_OnDropDownOpened(object sender, EventArgs e)
         {
+            TimeCombo.Items.Clear();
             int minDays = 0;
             int maxDays = 365;
             for (int i = minDays; i <= maxDays; i++)
@@ -396,13 +403,9 @@ namespace PL
             }
         }
 
-        private void TimeComboBox_OnDropDownClosed(object sender, EventArgs e)
-        {
-
-        }
-
         private void NumberComboBox_OnDropDownOpened(object sender, EventArgs e)
         {
+            NumberCombo.Items.Clear();
             int minNumOfModerators = 1;
             int maxNumOfModerators = 10;
             for (int i = minNumOfModerators; i <= maxNumOfModerators; i++)
@@ -411,24 +414,15 @@ namespace PL
             }
         }
 
-        private void NumberComboBox_OnDropDownClosed(object sender, EventArgs e)
-        {
-
-        }
-
         private void LengthComboBox_OnDropDownOpened(object sender, EventArgs e)
         {
+            LengthCombo.Items.Clear();
             int minPasswordLength = 5;
             int maxPasswordLength = 20;
             for (int i = minPasswordLength; i <= maxPasswordLength; i++)
             {
                 LengthCombo.Items.Add(i);
             }
-        }
-
-        private void LengthComboBox_OnDropDownClosed(object sender, EventArgs e)
-        {
-
         }
 
         private void addFriend_Click(object sender, RoutedEventArgs e)

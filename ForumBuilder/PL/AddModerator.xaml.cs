@@ -43,17 +43,41 @@ namespace PL
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
             string moderatorName = moderatortextBox.Text;
-            string res = _sm.nominateModerator(moderatorName, _userName, DateTime.Now.AddYears(120), _subforum, _forum);
-            if(res.Equals("nominate moderator succeed"))
+            int unlimited = 120;
+            int time = 1;
+            DateTime timeToSend = DateTime.Now;
+            string timeDuration = durationComboBox.Text;
+            switch (timeDuration)
+            {
+                case "":
+                    MessageBox.Show("You have to choose time from the list!");
+                    break;
+                case "UnLimited":
+                    timeToSend = DateTime.Now.AddYears(unlimited);
+                    howToProcced(moderatorName, timeToSend);
+                    break;
+                default:
+                    time = int.Parse(timeDuration);
+                    timeToSend = DateTime.Now.AddDays(time);
+                    howToProcced(moderatorName, timeToSend);
+                    break;
+            }
+            
+        }
+
+        private void howToProcced(string moderator, DateTime time)
+        {
+            string res = _sm.nominateModerator(moderator, _userName, time, _subforum, _forum);
+            if (res.Equals("nominate moderator succeed"))
             {
                 MessageBox.Show("moderator was added successfully");
+                SubForumWindow sb = new SubForumWindow(_forum, _subforum, _userName);
+                sb.Show();
+                this.Close();
             }
             else
             {
                 MessageBox.Show(res);
-                SubForumWindow newWin = new SubForumWindow(_forum, _subforum, _userName);
-                newWin.Show();
-                this.Close();
             }
         }
 
@@ -68,7 +92,7 @@ namespace PL
         {
             durationComboBox.Items.Clear();
             durationComboBox.Items.Add("Unlimited");
-            int minDays = 0;
+            int minDays = 1;
             int maxDays = 365;
             for (int i = minDays; i <= maxDays; i++)
             {

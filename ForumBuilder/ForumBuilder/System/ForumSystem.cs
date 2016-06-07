@@ -132,9 +132,9 @@ namespace ForumBuilder.Systems
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
             if (!ForumController.getInstance.registerUser("g1", "gG1", "g@g.g","sad","bad" ,"f").Equals("Register user succeed"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
-            if (!ForumController.getInstance.registerUser("g2", "gG1", "g@g.g","good", "awesome", "f").Equals("Register user succeed"))
+            if (!ForumController.getInstance.registerUser("g2", "gG1", "a@a.a","good", "awesome", "f").Equals("Register user succeed"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
-            if (!ForumController.getInstance.registerUser("g3", "gG1", "g@g.g", "good", "awesome", "f2").Equals("Register user succeed"))
+            if (!ForumController.getInstance.registerUser("g3", "gG1", "b@b.b", "good", "awesome", "f2").Equals("Register user succeed"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
             if (!ForumController.getInstance.nominateAdmin("g1", "idan", "f").Equals("admin nominated successfully"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
