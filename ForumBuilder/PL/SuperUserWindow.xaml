@@ -19,13 +19,13 @@
         <Grid Name="createForum" Visibility="Collapsed" Margin="0,0,0,0">
             <TextBlock FontSize="30" FontFamily="Broadway" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Create New Forum"  Height="47" Width="326" Margin="26,12,20,287"/>
             <TextBlock FontFamily="Cooper Black" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Forum Name:" VerticalAlignment="Top" Height="18" Width="99" Margin="43,93,0,0"/>
-            <TextBox Name="newForumName" Height="22" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="195,88,57,0"/>
+            <TextBox Name="newForumName" Height="22" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="0,88,57,0" HorizontalAlignment="Right" Width="140"/>
             <TextBlock FontFamily="Cooper Black" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="99" Margin="43,123,0,0" Text="Description:"/>
-            <TextBox Name="newForumDescription" TextWrapping="Wrap" Text="" Margin="195,118,57,206"/>
+            <TextBox Name="newForumDescription" TextWrapping="Wrap" Text="" Margin="0,118,57,0" Height="23" VerticalAlignment="Top" HorizontalAlignment="Right" Width="140"/>
             <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Margin="43,153,202,0" Text="Admins userNames:"/>
             <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Foreground="Red" VerticalAlignment="Top" Height="18" Margin="43,175,126,0" Text="* seperate names with a comma"/>
-            <TextBox Name="newAdminUserName" TextWrapping="Wrap" Text="" Margin="195,148,57,176"/>
-            <Button FontFamily="Cooper Black" Content="Create Forum" Margin="195,255,57,62" Height="29" Click="btn_CreateNewForum"/>
+            <TextBox Name="newAdminUserName" TextWrapping="Wrap" Text="" Margin="0,148,57,0" Height="23" VerticalAlignment="Top" HorizontalAlignment="Right" Width="140"/>
+            <Button FontFamily="Cooper Black" Content="Create Forum" Margin="0,267,57,0" Click="btn_CreateNewForum" HorizontalAlignment="Right" Width="140" Height="29" VerticalAlignment="Top"/>
         </Grid>
 
         <Grid Name="setPreferencesWin" Visibility="Collapsed" Margin="0,0,0,0">
@@ -44,16 +44,16 @@
             <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Margin="48,185,79,165" Text="Moderator can delete members messages"/>
             <CheckBox  Name="deleteMessages" IsChecked="False" Margin="18,186,356,164"/>
             <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Margin="48,211,155,0" Text="Time for Password to Expire:"/>
-            <ComboBox Name="PassCombo" HorizontalAlignment="Left" Margin="314,211,35,141" Width="43" DropDownOpened="PassComboBox_OnDropDownOpened" DropDownClosed="PassComboBox_OnDropDownClosed"/>
+            <ComboBox Name="PassCombo" HorizontalAlignment="Left" Margin="314,211,35,141" Width="43" DropDownOpened="PassComboBox_OnDropDownOpened"/>
             <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Margin="48,237,92,114" Text="Minimum time in forum to be moderator:"/>
-            <ComboBox Name="TimeCombo" HorizontalAlignment="Left" Margin="314,237,0,114" Width="43" DropDownOpened="TimeComboBox_OnDropDownOpened" DropDownClosed="TimeComboBox_OnDropDownClosed"/>
+            <ComboBox Name="TimeCombo" HorizontalAlignment="Left" Margin="314,237,0,114" Width="43" DropDownOpened="TimeComboBox_OnDropDownOpened"/>
             <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Margin="48,263,92,88" Text="Minimum number of moderators :"/>
-            <ComboBox Name="NumberCombo" HorizontalAlignment="Left" Margin="314,263,0,0" VerticalAlignment="Top" Width="43" Height="19" DropDownOpened="NumberComboBox_OnDropDownOpened" DropDownClosed="NumberComboBox_OnDropDownClosed"/>
+            <ComboBox Name="NumberCombo" HorizontalAlignment="Left" Margin="314,263,0,0" VerticalAlignment="Top" Width="43" Height="19" DropDownOpened="NumberComboBox_OnDropDownOpened"/>
             <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Margin="48,289,201,61" Text="Password Limitations:"/>
             <CheckBox Name="Capital" IsChecked="False" Content="Capital Letter" FontFamily="Cooper Black" HorizontalAlignment="Left" Margin="48,313,0,42" Width="109"/>
             <CheckBox Name="Number" IsChecked="False" Content="Number"  FontFamily="Cooper Black" Margin="168,313,154,42"/>
             <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Margin="252,313,84,42" Text="Length:"/>
-            <ComboBox Name="LengthCombo" HorizontalAlignment="Left" Margin="314,309,0,0" VerticalAlignment="Top" Width="43" Height="19" DropDownOpened="LengthComboBox_OnDropDownOpened" DropDownClosed="LengthComboBox_OnDropDownClosed" />
+            <ComboBox Name="LengthCombo" HorizontalAlignment="Left" Margin="314,309,0,0" VerticalAlignment="Top" Width="43" Height="19" DropDownOpened="LengthComboBox_OnDropDownOpened"/>
             <Button Name="setPrefBtn" FontFamily="Cooper Black" Content="Set Preferences" Margin="195,343,57,7" Width="115" Click="btn_SetForumPref" />
             <Button Name="backBtn" Content="Back" FontFamily="cooper black" HorizontalAlignment="Left" Margin="58,343,0,7" Width="99" Click="backButton_Click"/>
         </Grid>

@@ -41,9 +41,13 @@ namespace ForumBuilder.Common.DataContracts
         public ForumPolicyData()
         {
             _policy = " ";
+            _isQuestionIdentifying = false;
             _seniorityInForum = 0;
+            _deletePostByModerator = false;
             _timeToPassExpiration = 30;
             _minNumOfModerator = 1;
+            _hasCapitalInPassword = false;
+            _hasNumberInPassword = false;
             _minLengthOfPassword = 5;
 
         }
