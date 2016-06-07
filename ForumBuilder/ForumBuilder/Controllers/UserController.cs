@@ -43,6 +43,12 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Add friend faild, " + friendToAddName + "is not a user",2);
                 return "Add friend faild, " + friendToAddName + "is not a user";
             }
+            if (friendToAddName.Equals(userName) )
+            {
+                logger.logPrint("Add friend faild, " + friendToAddName + " can't add himself", 0);
+                logger.logPrint("Add friend faild, " + friendToAddName + " can't add himself", 2);
+                return "Add friend faild, " + friendToAddName + " can't add himself";
+            }
             if(!ForumController.getInstance.isMembersOfSameForum(friendToAddName, userName))
             {
                 logger.logPrint("Add friend faild, " + friendToAddName + " and "+userName + " are not in the same forum",0);
@@ -107,7 +113,7 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Send message faild, " + fromUserName + "is not a user",2);
                 return "Send message faild, " + fromUserName + "is not a user";
             }
-            else if (!ForumController.getInstance.isMembersOfSameForum(fromUserName, toUserName))
+            else if (!ForumController.getInstance.isMembersOfSameForum(fromUserName, toUserName) && !SuperUserController.getInstance.isSuperUser(sender.userName) )
             {
                 logger.logPrint("Send message faild, " + fromUserName + " and " + toUserName + " are not in the same forum",0);
                 logger.logPrint("Send message faild, " + fromUserName + " and " + toUserName + " are not in the same forum",2);
@@ -121,9 +127,9 @@ namespace ForumBuilder.Controllers
             }
             else
             {
-                forumController.notifyUserOnNewPrivateMessage(forumName, fromUserName, toUserName, content);
                 if(DB.addMessage(fromUserName, toUserName, content))
                 {
+                    forumController.notifyUserOnNewPrivateMessage(forumName, fromUserName, toUserName, content);
                     return "message was sent successfully";
                 }
                 return "Send message faild";

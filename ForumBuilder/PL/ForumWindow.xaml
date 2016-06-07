@@ -6,7 +6,7 @@
         <Menu Margin="0,0,0,346" Name="MainMenu" VerticalAlignment="Top">
             <MenuItem Header="Actions" Click="MenuItem_Forums">
                 <MenuItem Header="Create Sub-Forum" x:Name="AddSub"/>
-                <MenuItem Header="View Private Messages" x:Name="privateMessages"/>
+                <MenuItem Header="Send\View Private Messages" x:Name="privateMessages"/>
                 <MenuItem Header="Set\Change Preferences" x:Name="Set" />
                 <MenuItem Header="Sign Up (Guest)" x:Name="Sign" />
                 <MenuItem Header="Add Friend" x:Name="addFriend" Click="addFriend_Click" />

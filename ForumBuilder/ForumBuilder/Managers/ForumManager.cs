@@ -101,6 +101,10 @@ namespace Service
         public ForumData getForum(String forumName)
         {
             Forum temp = forumController.getForum(forumName);
+            if (temp == null)
+            {
+                return null;
+            }
             ForumPolicyData fpd = new ForumPolicyData(temp.forumPolicy.policy, temp.forumPolicy.isQuestionIdentifying, temp.forumPolicy.seniorityInForum, temp.forumPolicy.deletePostByModerator,
                                                       temp.forumPolicy.timeToPassExpiration, temp.forumPolicy.minNumOfModerators, temp.forumPolicy.hasCapitalInPassword, temp.forumPolicy.hasNumberInPassword,
                                                       temp.forumPolicy.minLengthOfPassword);
