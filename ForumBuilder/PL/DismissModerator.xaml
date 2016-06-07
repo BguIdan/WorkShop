@@ -21,7 +21,6 @@
         <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="30" Margin="40,125,0,0" TextWrapping="Wrap" Text="moderator to dismiss" VerticalAlignment="Top" Width="210"/>
         <Button x:Name="dismissButton" Content="Dismiss" FontFamily="Cooper Black" HorizontalAlignment="Left" Height="29" Margin="166,195,0,0" VerticalAlignment="Top" Width="84" Click="dismissButton_Click"/>
         <Button x:Name="backButton" Content="Back" FontFamily="Cooper Black" HorizontalAlignment="Left" Height="29" Margin="40,195,0,0" VerticalAlignment="Top" Width="82" Click="backButton_Click"/>
-        <TextBox x:Name="duration" HorizontalAlignment="Left" Height="30" Margin="40,160,0,0" TextWrapping="Wrap" Text="duration" VerticalAlignment="Top" Width="210"/>
 
     </Grid>
 </Window>

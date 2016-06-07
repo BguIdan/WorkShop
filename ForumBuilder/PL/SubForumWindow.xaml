@@ -7,10 +7,9 @@
             <Menu DockPanel.Dock="Top" Height="50"  Width="392">
                 <MenuItem Header="Action" Click="MenuItem_Click">
                     <MenuItem Header="Add Thread " Name="addPostButton"/>
-                    <MenuItem Header="Add Moderator " Name="addModeratorButton"/>
-                    <MenuItem Header="View Private Messages" Name="privateMessages"/>
-                    <MenuItem Header="Nominate Moderator" Name="nominateModerator"/>
+                    <MenuItem Header="Nominate Moderator " Name="addModeratorButton"/>
                     <MenuItem Header="Dismiss Moderator" Name="dismissModerator"/>
+                    <MenuItem Header="View Private Messages" Name="privateMessages"/>
                     <MenuItem Header="Edit Message" Name="editMassege"/>
                     <MenuItem Header="Delete" Name="deleteMessageButton"/>
                     <MenuItem Header="Back" Name="backButton" />

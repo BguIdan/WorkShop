@@ -25,9 +25,8 @@ namespace PL
         private string _userName;
         private string _forumName;
         private string _subForumName;
-        private bool _whatToDo;//false = dismiss true = add
 
-        public DismissModerator(Window oldWin, string userName, string forumName, string subForumName, bool whatoDo)
+        public DismissModerator(Window oldWin, string userName, string forumName, string subForumName)
         {
             InitializeComponent();
             _sf = new SubForumManagerClient();
@@ -35,14 +34,6 @@ namespace PL
             _userName = userName;
             _forumName = forumName;
             _subForumName = subForumName;
-            _whatToDo = whatoDo;
-            duration.Visibility = Visibility.Collapsed;
-            if (whatoDo)
-            {
-                duration.Visibility = Visibility.Visible;
-                textBox.Text = "moderator to add";
-                dismissButton.Content = "Add";
-            }
         }
 
         private void backButton_Click(object sender, RoutedEventArgs e)
@@ -53,32 +44,6 @@ namespace PL
 
         private void dismissButton_Click(object sender, RoutedEventArgs e)
         {
-            if (_whatToDo)
-            {
-                int durationAsInt = 120;
-                try
-                {
-                    durationAsInt = int.Parse(duration.Text);
-                }
-                catch
-                {
-                    MessageBox.Show("error");
-                    return;
-                }
-                string nominate = _sf.nominateModerator(textBox.Text, _userName, DateTime.Now.AddDays(durationAsInt), _subForumName, _forumName);
-                if (nominate.Equals("nominate moderator succeed"))
-                {
-                    MessageBox.Show("moderator was added");
-                    _oldWin.Show();
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show(nominate);
-                }
-            }
-            else
-            {
                 if (_sf.dismissModerator(textBox.Text, _userName, _subForumName, _forumName))
                 {
                     MessageBox.Show("moderator was dismissed");
@@ -89,7 +54,6 @@ namespace PL
                 {
                     MessageBox.Show("error");
                 }
-            }
         }
     }
 }

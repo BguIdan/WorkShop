@@ -291,8 +291,7 @@ namespace PL
                 case "logOutButton": { logOut(sender, e); } break;
                 case "privateMessages": { privateMessages_Click(sender, e); } break;
                 case "editMassege": { editMessage_Click(sender, e); } break;
-                case "dismissModerator": { dismissModerator_Click(sender, e, false); } break;
-                case "nominateModerator": { dismissModerator_Click(sender, e, true); } break;
+                case "dismissModerator": { dismissModerator_Click(sender, e); } break;
 
             }
         }
@@ -304,9 +303,9 @@ namespace PL
             this.Close();
         }
 
-        private void dismissModerator_Click(object sender, RoutedEventArgs e, bool whaToDo)
+        private void dismissModerator_Click(object sender, RoutedEventArgs e)
         {
-            DismissModerator newWin = new DismissModerator(this, _userName, forumName.Content.ToString(), sForumName.Content.ToString(), whaToDo);
+            DismissModerator newWin = new DismissModerator(this, _userName, forumName.Content.ToString(), sForumName.Content.ToString());
             newWin.Show();
             this.Visibility = Visibility.Collapsed;
         }
