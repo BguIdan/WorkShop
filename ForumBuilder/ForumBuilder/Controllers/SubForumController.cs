@@ -37,7 +37,7 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Dismiss moderator failed, sub-forum does not exist",2);
                 return false;
             }
-            if (DB.getforumByName(subForum.forum).forumPolicy.minNumOfModerators <= subForum.moderators.Count)
+            if (DB.getforumByName(subForum.forum).forumPolicy.minNumOfModerators >= subForum.moderators.Count)
             {
                 logger.logPrint("Dismiss moderator failed, sub-forum has not enough moderators",0);
                 logger.logPrint("Dismiss moderator failed, sub-forum has not enough moderators",2);
