@@ -485,7 +485,7 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Set forum preferences failed, " + setterUserName + " is not an admin", 2);
                 return "Set forum preferences failed, " + setterUserName + " is not an admin";
             }
-            else if (forumName == null | newDescription == null | setterUserName == null)
+            else if (forumName == null | newDescription == null | setterUserName == null|fp==null)
             {
                 logger.logPrint("Set forum preferences failed, one or more of the arguments is null", 0);
                 logger.logPrint("Set forum preferences failed, one or more of the arguments is null", 2);

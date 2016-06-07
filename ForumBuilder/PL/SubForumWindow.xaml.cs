@@ -275,8 +275,8 @@ namespace PL
         private void addPostButton_Click(object sender, RoutedEventArgs e)
         {
             addPostAndThreadWindow win = new addPostAndThreadWindow(this, _patentId, _userName, forumName.Content.ToString(), sForumName.Content.ToString());
-            this.Visibility = Visibility.Collapsed;
             win.Show();
+            this.Close();
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
