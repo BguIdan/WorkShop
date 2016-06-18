@@ -563,5 +563,10 @@ namespace ForumBuilder.Controllers
                 }
             }
         }
+
+        public int getUserSessionKey(string username)
+        {
+            return clientSessionKeyByUser[username];
+        }
     }
 }

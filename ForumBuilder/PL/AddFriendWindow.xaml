@@ -7,10 +7,12 @@
         mc:Ignorable="d"
         Title="AddFriendWindow" Height="300" Width="320">
     <Grid>
-        <Label x:Name="senfMessageLabel" FontFamily="cooper black" FontSize="30" Content="Add a Friend" HorizontalAlignment="Left" Height="44" Margin="37,10,0,0" VerticalAlignment="Top" Width="223"/>
-        <TextBox x:Name="friendName" FontFamily="ariel" HorizontalAlignment="Left" Height="23" Margin="162,101,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="to_TextChanged"/>
-        <Label x:Name="label" FontFamily="cooper black" Content="Friend's User Name:" HorizontalAlignment="Left" Margin="10,99,0,0" VerticalAlignment="Top" Height="23" Width="135"/>
-        <Button x:Name="button" FontFamily="cooper black" Content="Add" HorizontalAlignment="Left" Height="27" Margin="162,203,0,0" VerticalAlignment="Top" Width="98" Click="button_Click"/>
-        <Button x:Name="backbutton" FontFamily="cooper black" Content="Back" HorizontalAlignment="Left" Height="27" Margin="37,203,0,0" VerticalAlignment="Top" Width="98" Click="button_back"/>
+        <Label x:Name="senfMessageLabel" FontFamily="cooper black" FontSize="30" Content="Add a Friend" Height="44" Margin="44,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="223"/>
+        <Label x:Name="usr" FontFamily="cooper black" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top" Height="22" Width="180"/>
+        <Label x:Name="session" FontFamily="cooper black" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" Height="22" Width="180"/>
+        <TextBox x:Name="friendName" FontFamily="ariel" Height="23" Margin="162,132,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" TextChanged="to_TextChanged" HorizontalAlignment="Left" Width="120"/>
+        <Label x:Name="label" FontFamily="cooper black" Content="Friend's User Name:" HorizontalAlignment="Left" Margin="10,130,0,0" VerticalAlignment="Top" Height="23" Width="135"/>
+        <Button x:Name="button" FontFamily="cooper black" Content="Add" Height="25" Margin="184,203,0,0" VerticalAlignment="Top" Click="button_Click" HorizontalAlignment="Left" Width="98"/>
+        <Button x:Name="backbutton" FontFamily="cooper black" Content="Back" HorizontalAlignment="Left" Height="25" Margin="10,203,0,0" VerticalAlignment="Top" Width="98" Click="button_back"/>
     </Grid>
 </Window>

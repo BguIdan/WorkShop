@@ -22,54 +22,26 @@ namespace PL
 
         public int Id
         {
-            get
-            {
-                return _id;
-            }
-
-            set
-            {
-                _id = value;
-            }
+            get { return _id;}
+            set{ _id = value;}
         }
 
         public string Title
         {
-            get
-            {
-                return _title;
-            }
-
-            set
-            {
-                _title = value;
-            }
+            get{ return _title;}
+            set{ _title = value;}
         }
 
         public string Writer
         {
-            get
-            {
-                return _writer;
-            }
-
-            set
-            {
-                _writer = value;
-            }
+            get{ return _writer;}
+            set{ _writer = value;}
         }
 
         public string Time
         {
-            get
-            {
-                return _time;
-            }
-
-            set
-            {
-                _time = value;
-            }
+            get{ return _time;}
+            set{ _time = value;}
         }
 
         public dataContainer()
@@ -94,15 +66,23 @@ namespace PL
         private string _userName;
         private int _patentId;//used for adding post;
         private List<dataContainer> dataOfEachPost;
+        private int _sessionKey;
+        private string _forumName;
+        private string _subName;
 
-        public SubForumWindow(string fName, string sfName, string userName)//forum subforum names and userName
+        public SubForumWindow(string fName, string sfName, string userName, int skey)//forum subforum names and userName
         {
             InitializeComponent();
             _fm = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
             _pm = new PostManagerClient();
-            forumName.Content = fName;
-            sForumName.Content = sfName;
+            forumName.Content = "ForumName: " + fName;
+            sForumName.Content = "Sub-ForumName: " + sfName;
             _userName = userName;
+            UsrMenu.Header = "UserName: " + userName;
+            sessionMenu.Header = "Session key: " + skey;
+            _sessionKey = skey;
+            _forumName = fName;
+            _subName = sfName;
             _patentId = -1;
             dataOfEachPost = new List<dataContainer>();
         }
@@ -115,7 +95,7 @@ namespace PL
             {
                 return;
             }
-            List<PostData> posts = _pm.getAllPosts(forumName.Content.ToString(), sForumName.Content.ToString());
+            List<PostData> posts = _pm.getAllPosts(_forumName, _subName);
             foreach (PostData pd1 in posts)
             {
                 if (pd1.id == selected.Id)//needs to show the thread of this post
@@ -176,7 +156,7 @@ namespace PL
 
         private void DataGrid_Loaded(object sender, RoutedEventArgs e)
         {
-            List<PostData> posts = _pm.getAllPosts(forumName.Content.ToString(), sForumName.Content.ToString());
+            List<PostData> posts = _pm.getAllPosts(_forumName, _subName);
             var table = new List<dataContainer>();
             foreach (PostData pd in posts)
             {
@@ -213,7 +193,7 @@ namespace PL
             }
             else//needs to go back to previous page
             {
-                ForumWindow newWin = new ForumWindow(_fm.getForum(forumName.Content.ToString()), _userName);
+                ForumWindow newWin = new ForumWindow(_fm.getForum(_forumName), _userName);
                 newWin.Show();
                 this.Close();
             }
@@ -246,7 +226,7 @@ namespace PL
                 return;
             }
             dataContainer selected = dataOfEachPost[index];
-            List<PostData> posts = _pm.getAllPosts(forumName.Content.ToString(), sForumName.Content.ToString());
+            List<PostData> posts = _pm.getAllPosts(_forumName, _subName);
             PostData postToDelete = null;
             foreach (PostData pd in posts)
             {
@@ -261,7 +241,7 @@ namespace PL
                 listBox.Items.RemoveAt(index);
                 if (index == 0)
                 {
-                    SubForumWindow newWin = new SubForumWindow(forumName.Content.ToString(), sForumName.Content.ToString(), _userName);
+                    SubForumWindow newWin = new SubForumWindow(_forumName, _subName, _userName, _sessionKey);
                     newWin.Show();
                     this.Close();
                 }
@@ -274,7 +254,7 @@ namespace PL
 
         private void addPostButton_Click(object sender, RoutedEventArgs e)
         {
-            addPostAndThreadWindow win = new addPostAndThreadWindow(this, _patentId, _userName, forumName.Content.ToString(), sForumName.Content.ToString());
+            addPostAndThreadWindow win = new addPostAndThreadWindow(this, _patentId, _userName, _forumName, _subName);
             win.Show();
             this.Close();
         }
@@ -298,14 +278,14 @@ namespace PL
 
         private void addModeratorButton_Click(object sender, RoutedEventArgs e)
         {
-            AddModerator newWin = new AddModerator(sForumName.Content.ToString(), _userName, forumName.Content.ToString());
+            AddModerator newWin = new AddModerator(_subName, _userName, _forumName, _sessionKey);
             newWin.Show();
             this.Close();
         }
 
         private void dismissModerator_Click(object sender, RoutedEventArgs e)
         {
-            DismissModerator newWin = new DismissModerator(this, _userName, forumName.Content.ToString(), sForumName.Content.ToString());
+            DismissModerator newWin = new DismissModerator(this, _userName, _forumName, _subName);
             newWin.Show();
             this.Visibility = Visibility.Collapsed;
         }
@@ -337,7 +317,7 @@ namespace PL
                 return;
             }
             dataContainer selected = dataOfEachPost[index];
-            List<PostData> posts = _pm.getAllPosts(forumName.Content.ToString(), sForumName.Content.ToString());
+            List<PostData> posts = _pm.getAllPosts(_forumName, _subName);
             PostData postToEdit = null;
             foreach (PostData pd in posts)
             {
@@ -348,7 +328,7 @@ namespace PL
             }
             if (postToEdit != null)//if the wanted post exists
             {
-                addPostAndThreadWindow newWin = new addPostAndThreadWindow(postToEdit, _userName, forumName.Content.ToString(), sForumName.Content.ToString());
+                addPostAndThreadWindow newWin = new addPostAndThreadWindow(postToEdit, _userName, _forumName, _subName);
                 newWin.Show();
                 this.Close();
             }
@@ -361,17 +341,22 @@ namespace PL
         private void privateMessages_Click(object sender, RoutedEventArgs e)
 
         {
-            privateMessagesWindow newWin = new privateMessagesWindow(forumName.Content.ToString(), _userName, this);
-            this.Visibility = Visibility.Collapsed;
-            newWin.Show();
+             privateMessagesWindow newWin = new privateMessagesWindow(_forumName, _userName, this, _sessionKey);
+              this.Visibility = Visibility.Collapsed;
+              newWin.Show();
         }
 
         private void logOut(object sender, RoutedEventArgs e)
         {
-            _fm.logout(_userName, forumName.Content.ToString());
+            _fm.logout(_userName, _forumName);
             MainWindow newWin = new MainWindow();
             newWin.Show();
             this.Close();
+        }
+
+        public int Sessionkey
+        {
+            get { return _sessionKey; }
         }
     }
 }

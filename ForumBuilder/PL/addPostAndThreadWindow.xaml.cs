@@ -21,7 +21,7 @@ namespace PL
     /// </summary>
     public partial class addPostAndThreadWindow : Window
     {
-        private Window _prevWindow;
+        private SubForumWindow _prevWindow;
         private int _parentID;
         private PostManagerClient _pm;
         private SubForumManagerClient _sf;
@@ -30,7 +30,7 @@ namespace PL
         private string _subForumName;
         private PostData _postToEdit;
 
-        public addPostAndThreadWindow(Window prevWindow, int parrentId, string userName, string forumName, string subForumName)//-1 for new thread
+        public addPostAndThreadWindow(SubForumWindow prevWindow, int parrentId, string userName, string forumName, string subForumName)//-1 for new thread
         {
             InitializeComponent();
             _forumName = forumName;
@@ -38,13 +38,15 @@ namespace PL
             _subForumName = subForumName;
             _prevWindow = prevWindow;
             _parentID = parrentId;
+            usr.Content = "UserName: " + userName;
+            key.Content = "Session key: " + prevWindow.Sessionkey;
             if (parrentId == -1)
             {
-                whatToAdd.Content = "add new thread";
+                whatToAdd.Content = "Add new thread";
             }
             else
             {
-                whatToAdd.Content = "add new post";
+                whatToAdd.Content = "Add new post";
             }
             _pm = new PostManagerClient();
             _userName = userName;
@@ -72,8 +74,8 @@ namespace PL
                     if (addPost.Equals("comment created"))
                     {
                         MessageBox.Show("post was added succesfully");
+                        SubForumWindow newWin = new SubForumWindow(_forumName, _subForumName, _userName, _prevWindow.Sessionkey);
                         _prevWindow.Close();
-                        SubForumWindow newWin = new SubForumWindow(_forumName, _subForumName, _userName);
                         this.Close();
                         newWin.Show();
                     }
@@ -88,8 +90,8 @@ namespace PL
                     if (createTread.Equals("Create tread succeed"))
                     {
                         MessageBox.Show("thread was added succesfully");
+                        SubForumWindow newWin = new SubForumWindow(_forumName, _subForumName, _userName, _prevWindow.Sessionkey);
                         _prevWindow.Close();
-                        SubForumWindow newWin = new SubForumWindow(_forumName, _subForumName, _userName);
                         this.Close();
                         newWin.Show();
                     }
@@ -102,7 +104,8 @@ namespace PL
             else
             {
                 _pm.updatePost(_postToEdit.id, title.Text, content.Text, _userName);
-                SubForumWindow newWin = new SubForumWindow(_forumName, _subForumName, _userName);
+                SubForumWindow newWin = new SubForumWindow(_forumName, _subForumName, _userName, _prevWindow.Sessionkey);
+                _prevWindow.Close();
                 newWin.Show();
                 this.Close();
             }
@@ -110,7 +113,7 @@ namespace PL
 
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
-            SubForumWindow newWin = new SubForumWindow(_forumName, _subForumName, _userName);
+            SubForumWindow newWin = new SubForumWindow(_forumName, _subForumName, _userName, _prevWindow.Sessionkey);
             newWin.Show();
             this.Close();
         }

@@ -43,7 +43,7 @@ namespace PL
             int sessionKey = -1;
             string userName = ID.Text;
             string pass = Password.Password;
-            string sessionKeyField = sessionKeyTextBox.Text;
+            //string sessionKeyField = sessionKeyTextBox.Text;
             if (_choosenForum != null)
             {
                 ForumData toSend = _fMC.getForum(_choosenForum);
@@ -60,7 +60,7 @@ namespace PL
                     this.Close();
                     fw.Show();
                 }
-                else if (pass == "" && sessionKeyField != "")
+                /*else if (pass == "" && sessionKeyField != "")
                 {
                     String result = "";
                     try
@@ -81,8 +81,8 @@ namespace PL
                     {
                         MessageBox.Show(result);
                     }
-                }
-                else if (pass == "" && sessionKeyField == "")
+                }*/
+                else if (pass == "" ) //&& sessionKeyField == "")
                 {
                     MessageBox.Show("please fill the required fields");
                 }
@@ -91,16 +91,20 @@ namespace PL
                     switch (sessionKey)
                     {
                         case -1:
+                            // TODO: need to explain why the login failed
                             MessageBox.Show("login failed");
                             break;
 
                         case -2:
-                            MessageBox.Show("user name \\ password are invalid");
+                            MessageBox.Show("user name or password are invalid");
                             break;
 
                         case -3:
-                            MessageBox.Show("you already connected via another client, " +
-                                        "please login using your session key");
+                            MessageBox.Show("you are already connected via another client, " +
+                                            "please login using your session key");
+                            SessionKeyWindow sk = new SessionKeyWindow(userName, _choosenForum);
+                            sk.Show();
+                            this.Close();
                             break;
                         case -5:
                             MessageBox.Show("Your password has expierd! it's time to change password");
@@ -161,6 +165,7 @@ namespace PL
                 Password.IsEnabled = false;
                 superUserViewButton.IsEnabled = false;
                 signUP.IsEnabled = false;
+                restore.IsEnabled = false;
             }
             else 
             {
@@ -168,6 +173,7 @@ namespace PL
                 Password.IsEnabled = true;
                 superUserViewButton.IsEnabled = true;
                 signUP.IsEnabled = true;
+                restore.IsEnabled = true;
             }
         }
         private void superUserViewButton_Click(object sender, RoutedEventArgs e)

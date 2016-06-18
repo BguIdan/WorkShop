@@ -31,6 +31,7 @@ namespace PL
         private ForumManagerClient _fMC;
         private string _userName;
         private SuperUserManagerClient _sUMC;
+        private int _sessionKey;
 
         public ForumWindow(ForumData forum, string userName)
         {
@@ -38,7 +39,12 @@ namespace PL
             _myforum = forum;
             _fMC = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
             _userName = userName;
+            _sessionKey = _fMC.getUserSessionKey(_userName);
             ForumName.Content = "ForumName:  " + _myforum.forumName;
+            UsrName.Content = "UserName:  " + userName;
+            UsrMenu.Header = "UserName: " + userName;
+            session.Content = "Session key:  " + _sessionKey;
+            sessionMenu.Header = "Session key: " + _sessionKey;
             _sUMC = new SuperUserManagerClient();
             InitializePermissons(userName);
             //initializing the subForumListBox
@@ -160,13 +166,12 @@ namespace PL
             var grid = sender as DataGrid;
             var selected = grid.SelectedItems;
             _subForumChosen = selected.ToString();
-            SubForumWindow sfw = new SubForumWindow(_myforum.forumName, _subForumChosen, _userName);
+            SubForumWindow sfw = new SubForumWindow(_myforum.forumName, _subForumChosen, _userName, _sessionKey);
             sfw.ShowDialog();
         }
 
         private void addNewSubForum()
         {
-            MainMenu.Visibility = System.Windows.Visibility.Collapsed;
             mainGrid.Visibility = System.Windows.Visibility.Collapsed;
             MyDialog.Visibility = System.Windows.Visibility.Collapsed;
             viewGrid.Visibility = System.Windows.Visibility.Collapsed;
@@ -193,7 +198,6 @@ namespace PL
 
         private void setPreferences()
         {
-            MainMenu.Visibility = System.Windows.Visibility.Collapsed;
             mainGrid.Visibility = System.Windows.Visibility.Collapsed;
             MyDialog.Visibility = System.Windows.Visibility.Collapsed;
             AddSubForum.Visibility = System.Windows.Visibility.Collapsed;
@@ -311,7 +315,6 @@ namespace PL
                 NumberCombo.Items.Clear();
                 LengthCombo.Items.Clear();
                 setPreferencesWin.Visibility = System.Windows.Visibility.Collapsed;
-                MainMenu.Visibility = System.Windows.Visibility.Visible;
             }
         }
 
@@ -360,7 +363,7 @@ namespace PL
             // Get SelectedItems from DataGrid.
 
             _subForumChosen = subForumsListBox.SelectedItem.ToString();
-            SubForumWindow sfw = new SubForumWindow(_myforum.forumName, _subForumChosen, _userName);
+            SubForumWindow sfw = new SubForumWindow(_myforum.forumName, _subForumChosen, _userName, _sessionKey);
             sfw.Show();
             this.Close();
         }
@@ -369,7 +372,7 @@ namespace PL
         private void privateMessages_Click(object sender, RoutedEventArgs e)
 
         {
-            privateMessagesWindow newWin = new privateMessagesWindow(_myforum.forumName, _userName, this);
+            privateMessagesWindow newWin = new privateMessagesWindow(_myforum.forumName, _userName, this, _sessionKey);
             this.Visibility = Visibility.Collapsed;
             newWin.Show();
         }
@@ -427,7 +430,7 @@ namespace PL
 
         private void addFriend_Click(object sender, RoutedEventArgs e)
         {
-            AddFriendWindow newWin = new AddFriendWindow(_userName, _myforum);
+            AddFriendWindow newWin = new AddFriendWindow(_userName, _myforum, _sessionKey);
             newWin.Show();
             this.Close();
         }

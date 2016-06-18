@@ -3,28 +3,28 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="SubForumWindow" Height="400" Width="400">
     <Grid>
-        <DockPanel Margin="0,0,0,343">
-            <Menu DockPanel.Dock="Top" Height="50"  Width="392">
-                <MenuItem Header="Action" Click="MenuItem_Click">
-                    <MenuItem Header="Add Thread " Name="addPostButton"/>
-                    <MenuItem Header="Nominate Moderator " Name="addModeratorButton"/>
-                    <MenuItem Header="Dismiss Moderator" Name="dismissModerator"/>
-                    <MenuItem Header="View Private Messages" Name="privateMessages"/>
-                    <MenuItem Header="Edit Message" Name="editMassege"/>
-                    <MenuItem Header="Delete" Name="deleteMessageButton"/>
-                    <MenuItem Header="Back" Name="backButton" />
-                    <Separator />
-                    <MenuItem Header="Log Out" Name="logOutButton"/>
-                </MenuItem>
-            </Menu>
-        </DockPanel>
-        <Label Content="ForumName:" FontSize="16"  Name="forumName" FontFamily="Cooper Black" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top" Width="341" Height="37"/>
-        <Label Content="Sub-ForumName:" FontSize="16" Name="sForumName" FontFamily="Cooper Black" HorizontalAlignment="Left" Margin="25,68,0,0" VerticalAlignment="Top" Width="341" Height="35"/>
-        <TextBlock Name="threadTextBox" FontSize="16" FontFamily="cooper black" TextWrapping="Wrap" VerticalAlignment="Top"
-            	Text="Threads" Visibility="Visible" Height="36" Margin="162,108,161,0"/>
+        <Menu Margin="0,0,0,336" Name="MainMenu" VerticalAlignment="Top" Height="20">
+            <MenuItem Header="Action" Click="MenuItem_Click">
+                 <MenuItem Header="Add Thread " Name="addPostButton"/>
+                 <MenuItem Header="Nominate Moderator " Name="addModeratorButton"/>
+                 <MenuItem Header="Dismiss Moderator" Name="dismissModerator"/>
+                 <MenuItem Header="View Private Messages" Name="privateMessages"/>
+                 <MenuItem Header="Edit Message" Name="editMassege"/>
+                 <MenuItem Header="Delete" Name="deleteMessageButton"/>
+                 <MenuItem Header="Back" Name="backButton" />
+                 <Separator />
+                 <MenuItem Header="Log Out" Name="logOutButton"/>
+            </MenuItem>
+            <Separator Width="30" />
+            <MenuItem  Name="UsrMenu" Width="120" IsCheckable="False" Cursor="None" HorizontalAlignment="Right"/>
+            <MenuItem  Name="sessionMenu" Width="140" IsCheckable="False" Cursor="None" HorizontalAlignment="Right"/>
+        </Menu>
+        <Label FontSize="16"  Name="forumName" FontFamily="Cooper Black" HorizontalAlignment="Left" Margin="20,30,0,0" VerticalAlignment="Top" Width="341" Height="30"/>
+        <Label FontSize="16" Name="sForumName" FontFamily="Cooper Black" HorizontalAlignment="Left" Margin="20,68,0,0" VerticalAlignment="Top" Width="341" Height="30"/>
+        <TextBlock Name="threadTextBox" FontSize="14" FontFamily="cooper black" TextWrapping="Wrap" VerticalAlignment="Top"
+            	Text="Threads" Visibility="Visible" Height="28" Margin="158,110,0,0" HorizontalAlignment="Left" Width="76"/>
         <DataGrid x:Name="threadView" 
                   AutoGenerateColumns="True" Margin="0,160,0,0" SelectionChanged="ThreadView_SelectionChanged" Loaded="DataGrid_Loaded">
-
         </DataGrid>
         <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="209" Margin="0,160,0,0" VerticalAlignment="Top" Width="392"/>
     </Grid>

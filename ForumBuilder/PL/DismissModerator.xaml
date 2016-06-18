@@ -7,20 +7,11 @@
         mc:Ignorable="d"
         Title="DismissModerator" Height="300" Width="300">
     <Grid>
-        <Label x:Name="dismissModerator" Content="Dismiss Moderator" HorizontalAlignment="Left" Height="38" Margin="19,40,0,0" VerticalAlignment="Top" Width="258" FontFamily="cooper black" FontSize="25
-               " RenderTransformOrigin="0.5,0.5">
-            <Label.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-0.139"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Label.RenderTransform>
-        </Label>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="30" Margin="40,125,0,0" TextWrapping="Wrap" Text="moderator to dismiss" VerticalAlignment="Top" Width="210"/>
-        <Button x:Name="dismissButton" Content="Dismiss" FontFamily="Cooper Black" HorizontalAlignment="Left" Height="29" Margin="166,195,0,0" VerticalAlignment="Top" Width="84" Click="dismissButton_Click"/>
-        <Button x:Name="backButton" Content="Back" FontFamily="Cooper Black" HorizontalAlignment="Left" Height="29" Margin="40,195,0,0" VerticalAlignment="Top" Width="82" Click="backButton_Click"/>
-
+        <Label x:Name="dismissModerator" Content="Dismiss Moderator" HorizontalAlignment="Left" Height="38" Margin="20,25,0,0" VerticalAlignment="Top" Width="258" FontFamily="cooper black" FontSize="25" />
+        <Label x:Name="user" HorizontalAlignment="Left" Height="22" Margin="20,80,0,0" VerticalAlignment="Top" Width="258" FontFamily="cooper black" />
+        <Label x:Name="key" HorizontalAlignment="Left" Height="22" Margin="20,110,0,0" VerticalAlignment="Top" Width="258" FontFamily="cooper black" />
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="30" Margin="40,160,0,0" TextWrapping="Wrap" Text="moderator to dismiss" VerticalAlignment="Top" Width="210"/>
+        <Button x:Name="dismissButton" Content="Dismiss" FontFamily="Cooper Black" HorizontalAlignment="Left" Height="25" Margin="166,220,0,0" VerticalAlignment="Top" Width="84" Click="dismissButton_Click"/>
+        <Button x:Name="backButton" Content="Back" FontFamily="Cooper Black" HorizontalAlignment="Left" Height="25" Margin="40,220,0,0" VerticalAlignment="Top" Width="82" Click="backButton_Click"/>
     </Grid>
 </Window>

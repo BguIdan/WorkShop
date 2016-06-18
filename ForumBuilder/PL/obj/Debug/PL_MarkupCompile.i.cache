@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Idan\Workshop\WorkShop.git\ForumBuilder\PL\App.xaml
-14-95331683
+15-1514541791
 
-28660607157
+29-579286344
 15861599564
-AddFriendWindow.xaml;AddModerator.xaml;addPostAndThreadWindow.xaml;ChangePasswordWindow.xaml;DismissModerator.xaml;ForumWindow.xaml;MainWindow.xaml;privateMessagesWindow.xaml;RestorePasswordWindow.xaml;sendMessageWindow.xaml;SignUpWindow.xaml;SubForumWindow.xaml;SuperUserLogInWindow.xaml;SuperUserWindow.xaml;
+AddFriendWindow.xaml;AddModerator.xaml;addPostAndThreadWindow.xaml;ChangePasswordWindow.xaml;DismissModerator.xaml;ForumWindow.xaml;MainWindow.xaml;privateMessagesWindow.xaml;RestorePasswordWindow.xaml;sendMessageWindow.xaml;SessionKeyWindow.xaml;SignUpWindow.xaml;SubForumWindow.xaml;SuperUserLogInWindow.xaml;SuperUserWindow.xaml;
 
-False
+True
 

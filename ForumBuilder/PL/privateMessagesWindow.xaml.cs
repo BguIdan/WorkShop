@@ -26,13 +26,15 @@ namespace PL
         private Window _prevWindow;
         private String forumName;
 
-        public privateMessagesWindow(String forum, string userName, Window prevWindow)
+        public privateMessagesWindow(String forum, string userName, Window prevWindow, int key)
         {
             InitializeComponent();
             _userName = userName;
             forumName = forum;
             _um = new UserManagerClient();
             _prevWindow = prevWindow;
+            usr.Content = "UserName:  " + userName;
+            session.Content = "Session key:  " + key;
             List<string[]> privateMessages = _um.getAllPrivateMessages(_userName);
             foreach (string[] msg in privateMessages)
             {

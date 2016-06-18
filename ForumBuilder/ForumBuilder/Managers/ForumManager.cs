@@ -136,5 +136,10 @@ namespace Service
         {
             return forumController.getAdminReport(AdminName, forumName);
         }
+
+        public int getUserSessionKey(string username)
+        {
+            return forumController.getUserSessionKey(username);
+        }
     }
 }

@@ -65,5 +65,8 @@ namespace ForumBuilder.Common.ServiceContracts
 
         [OperationContract]
         List<String> getAdminReport(String AdminName, String forumName);
+
+        [OperationContract]
+        int getUserSessionKey(string username);
     }
 }

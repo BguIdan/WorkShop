@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="sendMessageWindow" Height="300" Width="300">
     <Grid>
-        <TextBox x:Name="to" FontFamily="ariel" HorizontalAlignment="Left" Height="32" Margin="30,75,0,0" TextWrapping="Wrap" Text="to" VerticalAlignment="Top" Width="223" />
-        <TextBox x:Name="content" FontFamily="ariel" HorizontalAlignment="Left" Height="97" Margin="30,130,0,0" TextWrapping="Wrap" Text="content" VerticalAlignment="Top" Width="223" />
+        <TextBox x:Name="to" FontFamily="ariel" HorizontalAlignment="Left" Height="24" Margin="30,75,0,0" TextWrapping="Wrap" Text="to" VerticalAlignment="Top" Width="223" />
+        <TextBox x:Name="content" FontFamily="ariel" HorizontalAlignment="Left" Height="97" Margin="30,126,0,0" TextWrapping="Wrap" Text="content" VerticalAlignment="Top" Width="223" />
         <Label x:Name="senfMessageLabel" FontSize="30" Content="Send Message" HorizontalAlignment="Left" Height="44" Margin="30,10,0,0" VerticalAlignment="Top" Width="223"/>
         <Button x:Name="sendMessage" Content="send" HorizontalAlignment="Left" Height="25" Margin="167,232,0,0" VerticalAlignment="Top" Width="86" RenderTransformOrigin="0.201,-0.246" Click="sendMessage_Click"/>
         <Button x:Name="backButton" Content="back" HorizontalAlignment="Left" Height="25" Margin="30,232,0,0" VerticalAlignment="Top" Width="86" RenderTransformOrigin="0.201,-0.246" Click="backButton_Click"/>

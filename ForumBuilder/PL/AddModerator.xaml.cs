@@ -25,19 +25,21 @@ namespace PL
         private string _userName;
         private string _subforum;
         private string _forum;
-
+        private int _sKey;
         private SubForumManagerClient _sm;
         private ForumManagerClient _fMC;
 
-        public AddModerator(string subForum, string userName, string forum)
+        public AddModerator(string subForum, string userName, string forum, int sKey)
         {
             InitializeComponent();
             _userName = userName;
             _subforum = subForum;
             _forum = forum;
+            _sKey = sKey;
             _sm = new SubForumManagerClient();
             _fMC = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
-
+            usrLabel.Content = "UserName:  " + userName;
+            sKeyLabel.Content = "Session key:  " + sKey;
         }
 
         private void addButton_Click(object sender, RoutedEventArgs e)
@@ -71,7 +73,7 @@ namespace PL
             if (res.Equals("nominate moderator succeed"))
             {
                 MessageBox.Show("moderator was added successfully");
-                SubForumWindow sb = new SubForumWindow(_forum, _subforum, _userName);
+                SubForumWindow sb = new SubForumWindow(_forum, _subforum, _userName, _sKey);
                 sb.Show();
                 this.Close();
             }
@@ -83,7 +85,7 @@ namespace PL
 
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
-            SubForumWindow newWin = new SubForumWindow(_forum, _subforum, _userName);
+            SubForumWindow newWin = new SubForumWindow(_forum, _subforum, _userName, _sKey);
             newWin.Show();
             this.Close();
         }

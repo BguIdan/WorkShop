@@ -21,12 +21,12 @@ namespace PL
     public partial class DismissModerator : Window
     {
         private SubForumManagerClient _sf;
-        private Window _oldWin;
+        private SubForumWindow _oldWin;
         private string _userName;
         private string _forumName;
         private string _subForumName;
 
-        public DismissModerator(Window oldWin, string userName, string forumName, string subForumName)
+        public DismissModerator(SubForumWindow oldWin, string userName, string forumName, string subForumName)
         {
             InitializeComponent();
             _sf = new SubForumManagerClient();
@@ -34,6 +34,8 @@ namespace PL
             _userName = userName;
             _forumName = forumName;
             _subForumName = subForumName;
+            user.Content = "UserName:  " + userName;
+            key.Content = "Session key:  " + oldWin.Sessionkey;
         }
 
         private void backButton_Click(object sender, RoutedEventArgs e)

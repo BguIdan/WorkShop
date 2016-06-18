@@ -25,12 +25,13 @@ namespace PL
         private string _userName;
         private ForumData _forumData;
 
-        public AddFriendWindow(string userName, ForumData forumData)
+        public AddFriendWindow(string userName, ForumData forumData, int key)
         {
             InitializeComponent();
             _userName = userName;
             _forumData = forumData;
-
+            usr.Content = "UserName:  " + userName;
+            session.Content = "Session key:  " + key;
         }
 
         private void button_Click(object sender, RoutedEventArgs e)

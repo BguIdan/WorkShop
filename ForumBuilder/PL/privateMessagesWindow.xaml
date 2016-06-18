@@ -5,12 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="privateMessagesWindow" Height="313.75" Width="300">
+        Title="privateMessagesWindow" Height="315" Width="300">
     <Grid>
-        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="180" Margin="10,66,0,0" VerticalAlignment="Top" Width="272"/>
-        <Label x:Name="privateMsgLabel" FontFamily="cooper black" FontSize="30" Content="Private Messages" HorizontalAlignment="Left" Height="51" Margin="10,10,0,0" VerticalAlignment="Top" Width="272"/>
-        <Button x:Name="backButton" FontFamily="cooper black" Content="back" HorizontalAlignment="Left" Height="18" Margin="43,251,0,0" VerticalAlignment="Top" Width="95" RenderTransformOrigin="0.905,-1.486" Click="backButton_Click"/>
-        <Button x:Name="sengMessageButton" FontFamily="cooper black" Content="send message" HorizontalAlignment="Left" Height="18" Margin="154,251,0,0" VerticalAlignment="Top" Width="95" RenderTransformOrigin="0.905,-1.486" Click="sengMessageButton_Click"/>
+        <ListBox x:Name="listBox" Height="150" Margin="6,96,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="272"/>
+        <Label x:Name="privateMsgLabel" FontFamily="cooper black" FontSize="30" Content="Private Messages" HorizontalAlignment="Left" Height="46" Margin="10,10,0,0" VerticalAlignment="Top" Width="272"/>
+        <Label x:Name="usr" FontFamily="cooper black" HorizontalAlignment="Left" Height="24" Margin="8,62,0,0" VerticalAlignment="Top" Width="110"/>
+        <Label x:Name="session" FontFamily="cooper black" HorizontalAlignment="Left" Height="24" Margin="125,62,0,0" VerticalAlignment="Top" Width="150"/>
+        <Button x:Name="backButton" FontFamily="cooper black" Content="back" HorizontalAlignment="Left" Height="20" Margin="43,254,0,0" VerticalAlignment="Top" Width="95" Click="backButton_Click"/>
+        <Button x:Name="sengMessageButton" FontFamily="cooper black" Content="send message" HorizontalAlignment="Left" Height="20" Margin="154,254,0,0" VerticalAlignment="Top" Width="95" Click="sengMessageButton_Click"/>
 
     </Grid>
 </Window>

@@ -94,6 +94,9 @@
     <Compile Include="sendMessageWindow.xaml.cs">
       <DependentUpon>sendMessageWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SessionKeyWindow.xaml.cs">
+      <DependentUpon>SessionKeyWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
     </Compile>
@@ -151,6 +154,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="sendMessageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SessionKeyWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
