@@ -39,12 +39,15 @@ namespace PL
             _myforum = forum;
             _fMC = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
             _userName = userName;
-            _sessionKey = _fMC.getUserSessionKey(_userName);
+            if (_userName != "Guest")
+            {
+                _sessionKey = _fMC.getUserSessionKey(_userName);
+                session.Content = "Session key:  " + _sessionKey;
+                sessionMenu.Header = "Session key: " + _sessionKey;
+            }
             ForumName.Content = "ForumName:  " + _myforum.forumName;
             UsrName.Content = "UserName:  " + userName;
             UsrMenu.Header = "UserName: " + userName;
-            session.Content = "Session key:  " + _sessionKey;
-            sessionMenu.Header = "Session key: " + _sessionKey;
             _sUMC = new SuperUserManagerClient();
             InitializePermissons(userName);
             //initializing the subForumListBox

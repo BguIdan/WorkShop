@@ -124,5 +124,10 @@ namespace WebClient.proxies
         {
             return Channel.getAdminReport( AdminName, forumName);
         }
+
+        public int getUserSessionKey(string username)
+        {
+            return Channel.getUserSessionKey(username);
+        }
     }
 }
