@@ -45,6 +45,10 @@ namespace PL
                 session.Content = "Session key:  " + _sessionKey;
                 sessionMenu.Header = "Session key: " + _sessionKey;
             }
+            if (_userName == "Guest")
+            {
+                sessionMenu.Header = "Session key: " + 0;
+            }
             ForumName.Content = "ForumName:  " + _myforum.forumName;
             UsrName.Content = "UserName:  " + userName;
             UsrMenu.Header = "UserName: " + userName;
