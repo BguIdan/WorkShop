@@ -142,6 +142,7 @@ namespace PL
             viewGrid.Visibility = System.Windows.Visibility.Visible;
             List<String> moderaorsReports = _fMC.getAdminReport(_userName, _myforum.forumName);
             numOfPosts.Text = "Number of Posts :  " + (_fMC.getAdminReportNumOfPOst(_userName, _myforum.forumName)).ToString();
+            //reportListBox.Items.Clear();
             foreach (string report in moderaorsReports)
             {
                 reportListBox.Items.Add(report);
@@ -465,6 +466,7 @@ namespace PL
 
         private void usersComboBox_DropDownClosed(object sender, EventArgs e)
         {
+            reportListBox.Items.Clear();
             if (!(usersComboBox.Text).Equals(""))
             {
                 List<PostData> posts = _fMC.getAdminReportPostOfmember(_userName, _myforum.forumName, usersComboBox.Text);

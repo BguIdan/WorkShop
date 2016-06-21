@@ -185,11 +185,9 @@ namespace PL
         {
             if (listBox.Visibility == Visibility.Visible)
             {
-                listBox.Visibility = Visibility.Collapsed;
-                addPostButton.Header = "add Thread";
-                threadView.Visibility = Visibility.Visible;
-                threadTextBox.Text = "   Threads";
-                _patentId = -1;
+                SubForumWindow newWin = new SubForumWindow(_forumName, _subName, _userName, _sessionKey);
+                newWin.Show();
+                this.Close();
             }
             else//needs to go back to previous page
             {
