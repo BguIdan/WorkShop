@@ -103,7 +103,7 @@ namespace PL
             {
                 case "AddSub": { addNewSubForum(); } break;
                 case "Set": { setPreferences(); } break;
-                case "SignUP": { SignUP(); } break;
+                case "Sign": { SignUP(); } break;
                 case "menuLogout": { logout(_userName); } break;
                 case "privateMessages": { privateMessages_Click(sender, e); } break;
             }
