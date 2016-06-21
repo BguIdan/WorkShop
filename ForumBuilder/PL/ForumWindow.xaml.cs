@@ -183,12 +183,6 @@ namespace PL
             MyDialog.Visibility = System.Windows.Visibility.Collapsed;
             viewGrid.Visibility = System.Windows.Visibility.Collapsed;
             setPreferencesWin.Visibility = System.Windows.Visibility.Collapsed;
-            for (int i = 0; i < _myforum.members.Count; i++)
-            {
-                ComboBoxItem newItem = new ComboBoxItem();
-                newItem.Content = _myforum.members.ElementAt(i);
-                comboBox.Items.Add(newItem);
-            }
             ComboBoxItem newFirstItem = new ComboBoxItem();
             newFirstItem.Content = "UnLimited";
             comboBoxDuration.Items.Add(newFirstItem);
@@ -332,9 +326,10 @@ namespace PL
             int unlimited = 120;
             DateTime timeToSend = DateTime.Now;
             String sub_ForumName = subForumName.Text;
-            String userName = comboBox.Text;
+            string moderators = moderatorsTextBox.Text;
+            List<string> moderatorList = moderators.Split(',').ToList();
             String timeDuration = comboBoxDuration.Text;
-            if (timeDuration.Equals("") || userName == null || sub_ForumName == null || sub_ForumName.Equals(""))
+            if (timeDuration.Equals("") || moderators == null || sub_ForumName == null || sub_ForumName.Equals(""))
             {
                 MessageBox.Show("error has accured");
                 return;
@@ -349,7 +344,10 @@ namespace PL
                 timeToSend = DateTime.Now.AddYears(unlimited);
             }
             Dictionary<String, DateTime> dic = new Dictionary<string, DateTime>();
-            dic.Add(userName, timeToSend);
+            foreach (string userName in moderatorList)
+            {
+                dic.Add(userName, timeToSend);
+            }
             string ansAdd = _fMC.addSubForum(_myforum.forumName, sub_ForumName, dic, _userName);
             Boolean isAdded = ansAdd.Equals("sub-forum added");
             if (isAdded == false)
@@ -358,7 +356,7 @@ namespace PL
             }
             else
             {
-                MessageBox.Show("Sub-Forum " + sub_ForumName + " was successfully created and " + userName + " is the Sub-Forum moderator.");
+                MessageBox.Show("Sub-Forum " + sub_ForumName + " was successfully created and " + moderators + " are the Sub-Forum moderators.");
                 ForumWindow newWin = new ForumWindow(_fMC.getForum(_myforum.forumName), _userName);
                 this.Close();
                 newWin.Show();
