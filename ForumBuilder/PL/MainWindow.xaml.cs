@@ -144,18 +144,6 @@ namespace PL
             }
         }
 
-        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                _choosenForum = comboBox.SelectedItem.ToString();
-            }
-            catch (Exception excep)
-            {
-                MessageBox.Show(excep.ToString());
-            }
-        }
-
         private void guestChoose(object sender, RoutedEventArgs e)
         {
             bool toChange = guestCheck.IsChecked.Value;
@@ -193,6 +181,14 @@ namespace PL
 
         private void ComboBox_OnDropDownClosed(object sender, EventArgs e)
         {
+            try
+            {
+                _choosenForum = comboBox.SelectedItem.ToString();
+            }
+            catch (Exception excep)
+            {
+                MessageBox.Show(excep.ToString());
+            }
             try
             {
                 _forumsList = _fMC.getForums();
