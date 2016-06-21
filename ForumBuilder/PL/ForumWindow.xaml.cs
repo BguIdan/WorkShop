@@ -143,18 +143,17 @@ namespace PL
             List<String> moderaorsReports = _fMC.getAdminReport(_userName, _myforum.forumName);
             numOfPosts.Text = "Number of Posts :  " + (_fMC.getAdminReportNumOfPOst(_userName, _myforum.forumName)).ToString();
             //reportListBox.Items.Clear();
-            double height = 0;
-       
+      
             foreach (string report in moderaorsReports)
             {
                 //Console.WriteLine(report);
                 int lengthOfAddedPosts = 12;
                 int indexOfAddedPosts = report.IndexOf("added posts:");
-                string beforeposts = report.Substring(0, indexOfAddedPosts);
+                string beforeposts = report.Substring(0, indexOfAddedPosts+ lengthOfAddedPosts);
                 string remainingReport = report.Substring(indexOfAddedPosts + lengthOfAddedPosts);
                 int indexOfPostTitle = remainingReport.IndexOf("post title:");
                 int indexOfPostContent = remainingReport.IndexOf("post content:");
-                ListBox singleModeratorPosts = new ListBox();
+                reportListBox.Items.Add(beforeposts);
                 while (indexOfPostTitle >= 0)
                 {
                     Expander exp = new Expander();
@@ -168,13 +167,9 @@ namespace PL
                     remainingReport = remainingReport.Substring(indexOfPostTitle);
                     indexOfPostTitle = remainingReport.IndexOf("post title:");
                     indexOfPostContent = remainingReport.IndexOf("post content:");
-                    singleModeratorPosts.Items.Add(exp);
+                    reportListBox.Items.Add(exp);
                 }
-                reportListBox.Items.Add(beforeposts);
-                reportListBox.Items.Add(singleModeratorPosts);
-                height = height + singleModeratorPosts.Height;
             }
-            reportListBox.Height = height;
         }
 
         private void logout(String nameLogout)
