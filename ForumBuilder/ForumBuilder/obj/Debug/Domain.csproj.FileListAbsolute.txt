@@ -1,1 +1,2 @@
 C:\Users\User\Desktop\git projects\ForumBuilder\ForumBuilder\obj\Debug\Domain.csprojResolveAssemblyReference.cache
+C:\Users\User\Desktop\WorkShop\ForumBuilder\ForumBuilder\bin\Debug\ForumBuilder.exe.config

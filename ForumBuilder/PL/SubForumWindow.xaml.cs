@@ -9,10 +9,7 @@ using PL.notificationHost;
 
 namespace PL
 {
-    /// <summary>
-    /// Interaction logic for SubForumWindow.xaml
-    /// </summary>
-    /// 
+
     public class dataContainer
     {
         private int _id;
