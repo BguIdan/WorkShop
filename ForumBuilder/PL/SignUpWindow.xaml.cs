@@ -66,7 +66,7 @@ namespace PL
             bool suc = register.Equals("Register user succeed");
             if (suc == false)
             {
-                MessageBox.Show("Failed to register. One or more of the details is wrong");
+                MessageBox.Show(register+ " Please try again!");
             }
             else
             {

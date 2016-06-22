@@ -225,7 +225,7 @@ namespace ForumBuilder.Controllers
             return "nominate admin fail " + nominatorName + " is not super user";
         }
 
-        public String registerUser(string userName, string password, string mail, string ans1, string ans2, string forumName)
+        public String registerUser(string userName, string password, String mail, string ans1, string ans2, string forumName)
         {
             Forum f = DB.getforumByName(forumName);
             if (f == null)
@@ -234,12 +234,26 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Register user faild, the forum, " + forumName + " does not exist", 2);
                 return "Register user faild, the forum, " + forumName + " does not exist";
             }
+            if(mail.Length ==0|| mail.IndexOf('@')<=0|| mail.Substring(mail.IndexOf('@')+1).IndexOf('.')<= 0)
+            {
+                logger.logPrint("Register user faild, mail format is wrong", 0);
+                logger.logPrint("Register user faild, mail format is wrong", 2);
+                return "Register user faild, mail format is wrong";
+            }
+            if(!((ans1 != null && ans2 != null) &&
+                ((!f.forumPolicy.isQuestionIdentifying && ans1.Equals("") && ans2.Equals("")) ||
+                (f.forumPolicy.isQuestionIdentifying && !ans1.Equals("") && !ans2.Equals("")))))
+            {
+                logger.logPrint("Register user faild, ansers are worng acording to forum policy", 0);
+                logger.logPrint("Register user faild, ansers are worng acording to forum policy", 2);
+                return "Register user faild, ansers are worng acording to forum policy";
+            }
             if (userName.Length > 0 && f.forumPolicy.minLengthOfPassword < password.Length && mail.Length > 0 &&
                 (!f.forumPolicy.hasCapitalInPassword || (f.forumPolicy.hasCapitalInPassword && hasCapital(password))) &&
-                (!f.forumPolicy.hasNumberInPassword || (f.forumPolicy.hasNumberInPassword && hasNumber(password))) &&
-                (ans1 != null && ans2 != null) &&
-                ((!f.forumPolicy.isQuestionIdentifying && ans1.Equals("") && ans2.Equals("")) ||
-                (f.forumPolicy.isQuestionIdentifying && !ans1.Equals("") && !ans2.Equals(""))))
+                (!f.forumPolicy.hasNumberInPassword || (f.forumPolicy.hasNumberInPassword && hasNumber(password)))) //&&
+                //(ans1 != null && ans2 != null) &&
+                //((!f.forumPolicy.isQuestionIdentifying && ans1.Equals("") && ans2.Equals("")) ||
+                //(f.forumPolicy.isQuestionIdentifying && !ans1.Equals("") && !ans2.Equals(""))))
             {
                 User user = DB.getUser(userName);
                 /*
@@ -272,11 +286,11 @@ namespace ForumBuilder.Controllers
                     logger.logPrint("Register user succeed", 1);
                     return "Register user succeed";
                 }
-                return "Register user failed"; 
+                return "Register user failed, there was problem to conecting DB"; 
             }
-            logger.logPrint("Register user failed, user is not qualified", 0);
-            logger.logPrint("Register user failed, user is not qualified", 2);
-            return "Register user failed, user is not qualified";
+            logger.logPrint("Register user failed, password is not good enough acording to dorum policy", 0);
+            logger.logPrint("Register user failed, password is not good enough acording to dorum policy", 2);
+            return "Register user failed, password is not good enough acording to dorum policy";
         }
 
         public bool hasNumber(string password)

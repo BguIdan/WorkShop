@@ -316,6 +316,11 @@ namespace DataBase
 
         }
 
+        internal void intialLists(List<Forum> forums, List<SubForum> subForums, List<User> users, List<string> superUsers, List<Thread> threads, List<Post> posts)
+        {
+            throw new NotImplementedException();
+        }
+
         internal bool setPassword(string userName, string password)
         {
             users[userName].password = password;

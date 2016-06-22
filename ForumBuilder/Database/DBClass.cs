@@ -142,12 +142,102 @@ namespace Database
                 connection.Close();
                 forums = getForumsForInit();
                 subForums = getSubForumsForInit();
+                //initialAddToCache();
                 return true;
             }
             catch
             {
                 return false;
             }
+        }
+
+        private void initialAddToCache()
+        {
+            List<User> users = new List<User>();
+            User user = null;
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command2 = new OleDbCommand();
+                command2.Connection = connection;
+                command2.CommandText = "SELECT  * FROM  users";
+                OleDbDataReader reader2 = command2.ExecuteReader();
+                while (reader2.Read())
+                {
+                    user = new User(reader2.GetString(0), dec(reader2.GetString(1)), reader2.GetString(2), DateTime.Parse(reader2.GetDateTime(3).ToString("dd MM yyyy")));
+                    users.Add(user);
+                }
+                closeConnectionDB();
+            }
+            catch
+            {
+                closeConnectionDB();
+                users=null;
+            }
+            List<String> superUsers = new List<String>();
+            user = null;
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "SELECT  * FROM  superUsers";
+                OleDbDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    superUsers.Add(reader.GetString(0));
+                }
+                closeConnectionDB();
+            }
+            catch
+            {
+                closeConnectionDB();
+                superUsers=null;
+            }
+            List<Thread> threads = new List<Thread>();
+            Thread thread = null;
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "SELECT  * FROM  posts where parentPostID=" + -1 + "";
+                OleDbDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    thread = new Thread(new Post(reader.GetString(1), reader.GetInt32(0), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), DateTime.Parse(reader.GetDateTime(5).ToString("dd MM yyyy")), reader.GetString(6)));
+                    threads.Add(thread);
+                }
+                closeConnectionDB();
+            }
+            catch
+            {
+                closeConnectionDB();
+                threads = null;
+            }
+            List<Post> posts = new List<Post>();
+            Post post = null;
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "SELECT  * FROM  posts";
+                OleDbDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    post = new Post(reader.GetString(1), reader.GetInt32(0), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), DateTime.Parse(reader.GetDateTime(5).ToString("dd MM yyyy")), reader.GetString(6));
+                    posts.Add(post);
+                }
+                closeConnectionDB();
+                
+            }
+            catch
+            {
+                closeConnectionDB();
+                posts = null;
+            }
+            cache.intialLists(forums, subForums,users,superUsers, threads,posts);
         }
 
         public void closeConnectionDB()
