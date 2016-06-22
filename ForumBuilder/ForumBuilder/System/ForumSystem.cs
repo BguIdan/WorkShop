@@ -114,7 +114,7 @@ namespace ForumBuilder.Systems
         public static int Main(string[] args)
         {
             //TODO gal: remove later
-            DBClass.getInstance.clear();
+            //DBClass.getInstance.clear();
             var item = DBClass.getInstance;
             Console.WriteLine(  "welcome to your forum builder!\n" +
                                 "please insert your desired user name:");
@@ -127,24 +127,24 @@ namespace ForumBuilder.Systems
             List<String> list = new List<String>();
             list.Add("idan");
             if (!SuperUserController.getInstance.createForum("f", "f",fp, list, "idan").Equals("Forum " + "f" + " creation success"))
-                Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!1");
             if (!SuperUserController.getInstance.createForum("f2", "f", fp, list, "idan").Equals("Forum " + "f2" + " creation success"))
-                Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!2");
             if (!ForumController.getInstance.registerUser("g1", "gG1", "g@g.g","sad","bad" ,"f").Equals("Register user succeed"))
-                Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!3");
             if (!ForumController.getInstance.registerUser("g2", "gG1", "a@a.a","good", "awesome", "f").Equals("Register user succeed"))
-                Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!4");
             if (!ForumController.getInstance.registerUser("g3", "gG1", "b@b.b", "good", "awesome", "f2").Equals("Register user succeed"))
-                Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!5");
             if (!ForumController.getInstance.nominateAdmin("g1", "idan", "f").Equals("admin nominated successfully"))
-                Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!6");
             Dictionary<String, DateTime> d = new Dictionary<String, DateTime>();
             d.Add("g1", new DateTime(2017, 1, 1));
             if (!ForumController.getInstance.addSubForum("f", "f1",d , "g1").Equals("sub-forum added"))
-                Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
+                //Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
 
             runServer(username, password, email);
-            DBClass.getInstance.clear();
+            //DBClass.getInstance.clear();
             return 0;
         }
 
