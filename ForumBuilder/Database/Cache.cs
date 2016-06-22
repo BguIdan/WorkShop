@@ -11,22 +11,22 @@ namespace DataBase
 {
     public class Cache
     {
-        private Dictionary<string, User> users;
-        private Dictionary<string, User> superUsers;
-        private Dictionary<string, Forum> forums;
-        private List<SubForum> subForums;
-        private Dictionary<int, Thread> threads;
-        private Dictionary<int, Post> posts;
+        private Dictionary<string, User> _users;
+        private Dictionary<string, User> _superUsers;
+        private Dictionary<string, Forum> _forums;
+        private List<SubForum> _subForums;
+        private Dictionary<int, Thread> _threads;
+        private Dictionary<int, Post> _posts;
         private static Cache singleton;
 
         private Cache()
         {
-          users = new Dictionary<string, User>() ;
-          forums = new Dictionary<string, Forum>() ;
-          subForums = new  List<SubForum>() ;
-          threads = new  Dictionary<int, Thread>() ;
-          posts = new  Dictionary<int, Post>();
-          superUsers = new Dictionary<string, User>();
+          _users = new Dictionary<string, User>() ;
+          _forums = new Dictionary<string, Forum>() ;
+          _subForums = new  List<SubForum>() ;
+          _threads = new  Dictionary<int, Thread>() ;
+          _posts = new  Dictionary<int, Post>();
+          _superUsers = new Dictionary<string, User>();
         }
 
         public static Cache getInstance
@@ -43,25 +43,52 @@ namespace DataBase
 
         public void clear()
         {
-            if (this.forums != null)
-                this.forums.Clear();
-            if (this.subForums != null)
-                this.subForums.Clear();
-            if (this.threads != null)
-                this.threads.Clear();
-            if (this.posts != null)
-                this.posts.Clear();
-            if (this.users != null)
-                this.users.Clear();
-            if (this.superUsers != null)
-                this.superUsers.Clear();
+            if (this._forums != null)
+                this._forums.Clear();
+            if (this._subForums != null)
+                this._subForums.Clear();
+            if (this._threads != null)
+                this._threads.Clear();
+            if (this._posts != null)
+                this._posts.Clear();
+            if (this._users != null)
+                this._users.Clear();
+            if (this._superUsers != null)
+                this._superUsers.Clear();
 
+        }
+        internal void intialLists(List<Forum> forums, List<SubForum> subForums, List<User> users, List<string> superUsers, List<Thread> threads, List<Post> posts)
+        {
+            foreach(Forum f in forums)
+            {
+                _forums.Add(f.forumName, f);
+            }
+            foreach (SubForum sf in subForums)
+            {
+                _subForums.Add(sf);
+            }
+            foreach (User u in users)
+            {
+                _users.Add(u.userName, u);
+                if (superUsers.Contains(u.userName))
+                {
+                    _superUsers.Add(u.userName, u);
+                }
+            }
+            foreach (Thread t in threads)
+            {
+                _threads.Add(t.firstPost.id, t);
+            }
+            foreach (Post p in posts)
+            {
+                _posts.Add(p.id, p);
+            }
         }
 
         public int getMaxIntOfPost()
         {
             int maxPost = 0;
-            foreach (int p in posts.Keys)
+            foreach (int p in _posts.Keys)
             {
                 if (p > maxPost)
                 {
@@ -75,7 +102,7 @@ namespace DataBase
         {
             try
             {
-                return forums.Count;
+                return _forums.Count;
             }
             catch
             {
@@ -100,7 +127,7 @@ namespace DataBase
         {
             try
             {
-                foreach (SubForum sf in subForums)
+                foreach (SubForum sf in _subForums)
                 {
                     if (sf.forum.Equals(forumName) && sf.name.Equals(subForumName))
                         return sf;
@@ -118,8 +145,8 @@ namespace DataBase
             try
             {
                 User su = new User(userName, password, email, DateTime.Today);
-                users.Add(userName, su);
-                superUsers.Add(userName, su);
+                _users.Add(userName, su);
+                _superUsers.Add(userName, su);
                 return true;
             }
             catch
@@ -148,7 +175,7 @@ namespace DataBase
         {
             try
             {
-                return forums[forumName];
+                return _forums[forumName];
             }
             catch
             {
@@ -161,7 +188,7 @@ namespace DataBase
         {
             try
             {
-                Forum f = forums[forumName];
+                Forum f = _forums[forumName];
                 return f.subForums;
             }
             catch
@@ -174,7 +201,7 @@ namespace DataBase
         {
             try
             {
-                return forums.Keys.ToList();
+                return _forums.Keys.ToList();
             }
             catch
             {
@@ -195,7 +222,7 @@ namespace DataBase
                     foreach (Moderator m in subf.moderators.Values)
                     {
                         ans += "subForum: " + sf + ", \t moderator: " + m.userName + ", \t nominator: " + m.nominatorName + ",\t DateAdded:" + m.dateAdded.ToString("dd MM yyyy") + "\t added posts:";
-                        foreach (Post p in posts.Values)
+                        foreach (Post p in _posts.Values)
                         {
                             if (p.writerUserName.Equals(m.userName))
                             {
@@ -218,7 +245,7 @@ namespace DataBase
             try
             {
                 List<string> emails = new List<string>();
-                foreach(User u in users.Values)
+                foreach(User u in _users.Values)
                 {
                     if (!emails.Contains(u.email))
                     {
@@ -228,12 +255,12 @@ namespace DataBase
                 List<string> report = new List<string>();
                 foreach (string e in emails)
                 {
-                    foreach (User u in users.Values)
+                    foreach (User u in _users.Values)
                     {
                         string ans = "";
                         if (u.email.Equals(e))
                         {
-                            foreach (Forum f in forums.Values)
+                            foreach (Forum f in _forums.Values)
                             {
                                 if (f.members.Contains(u.userName))
                                 {
@@ -258,7 +285,7 @@ namespace DataBase
         {
             try
             {
-                return users[userName].friends;
+                return _users[userName].friends;
             }
             catch
             {
@@ -270,7 +297,7 @@ namespace DataBase
         {
             try
             {
-                return users[userName].password;
+                return _users[userName].password;
             }
             catch
             {
@@ -282,7 +309,7 @@ namespace DataBase
         {
             try
             {
-                forums[forumName].members.Remove(bannedMember);
+                _forums[forumName].members.Remove(bannedMember);
                 return true;
             }
             catch
@@ -298,15 +325,15 @@ namespace DataBase
         {
             try
             {
-                forums[forumName].forumPolicy.policy = policy;
-                forums[forumName].forumPolicy.isQuestionIdentifying = isQuestionIdentifying;
-                forums[forumName].forumPolicy.seniorityInForum = seniorityInForum;
-                forums[forumName].forumPolicy.deletePostByModerator = deletePostByModerator;
-                forums[forumName].forumPolicy.timeToPassExpiration = timeToPassExpiration;
-                forums[forumName].forumPolicy.minNumOfModerators = minNumOfModerators;
-                forums[forumName].forumPolicy.hasCapitalInPassword = hasCapitalInPassword;
-                forums[forumName].forumPolicy.hasNumberInPassword = hasNumberInPassword;
-                forums[forumName].forumPolicy.minLengthOfPassword = minLengthOfPassword;
+                _forums[forumName].forumPolicy.policy = policy;
+                _forums[forumName].forumPolicy.isQuestionIdentifying = isQuestionIdentifying;
+                _forums[forumName].forumPolicy.seniorityInForum = seniorityInForum;
+                _forums[forumName].forumPolicy.deletePostByModerator = deletePostByModerator;
+                _forums[forumName].forumPolicy.timeToPassExpiration = timeToPassExpiration;
+                _forums[forumName].forumPolicy.minNumOfModerators = minNumOfModerators;
+                _forums[forumName].forumPolicy.hasCapitalInPassword = hasCapitalInPassword;
+                _forums[forumName].forumPolicy.hasNumberInPassword = hasNumberInPassword;
+                _forums[forumName].forumPolicy.minLengthOfPassword = minLengthOfPassword;
                 return true;
             }
             catch
@@ -316,17 +343,12 @@ namespace DataBase
 
         }
 
-        internal void intialLists(List<Forum> forums, List<SubForum> subForums, List<User> users, List<string> superUsers, List<Thread> threads, List<Post> posts)
-        {
-            throw new NotImplementedException();
-        }
-
         internal bool setPassword(string userName, string password)
         {
-            users[userName].password = password;
-            users[userName].lastTimeUpdatePassword = DateTime.Today;
-            superUsers[userName].password = password;
-            superUsers[userName].lastTimeUpdatePassword = DateTime.Today;
+            _users[userName].password = password;
+            _users[userName].lastTimeUpdatePassword = DateTime.Today;
+            _superUsers[userName].password = password;
+            _superUsers[userName].lastTimeUpdatePassword = DateTime.Today;
             return true;
         }
 
@@ -334,7 +356,7 @@ namespace DataBase
         {
             try
             {
-                forums[forumName].administrators.Add(newAdmin);
+                _forums[forumName].administrators.Add(newAdmin);
                 return true;
             }
             catch
@@ -347,7 +369,7 @@ namespace DataBase
         {
             try
             {
-                return superUsers[userName];
+                return _superUsers[userName];
             }
             catch
             {
@@ -359,7 +381,7 @@ namespace DataBase
         {
             try
             {
-                return forums[forumName].administrators.Remove(adminToDismissed);
+                return _forums[forumName].administrators.Remove(adminToDismissed);
             }
             catch
             {
@@ -371,7 +393,7 @@ namespace DataBase
         {
             try
             {
-                return users[userName];
+                return _users[userName];
             }
             catch
             {
@@ -384,7 +406,7 @@ namespace DataBase
             try
             {
                 User us = new User(userName, password, email, DateTime.Today);
-                users.Add(userName, us);
+                _users.Add(userName, us);
                 return true;
             }
             catch
@@ -398,7 +420,7 @@ namespace DataBase
         {
             try
             {
-                forums[forumName].members.Add(userName);
+                _forums[forumName].members.Add(userName);
                 return true;
             }
             catch
@@ -412,7 +434,7 @@ namespace DataBase
         {
             try
             {
-                return forums[forumName].members;
+                return _forums[forumName].members;
 
             }
             catch
@@ -426,7 +448,7 @@ namespace DataBase
             try
             {
                 List<string> simularForum = new List<string>();
-                foreach (Forum f in forums.Values)
+                foreach (Forum f in _forums.Values)
                 {
                     if (f.members.Contains(userName1) && f.members.Contains(userName2))
                         simularForum.Add(f.forumName);
@@ -446,7 +468,7 @@ namespace DataBase
             {
                 List<string> administrators = new List<string>();
                 Forum f = new Forum(forumName, description, fp, administrators);
-                forums.Add(forumName, f);
+                _forums.Add(forumName, f);
                 return true;
             }
             catch
@@ -460,8 +482,8 @@ namespace DataBase
         {
             try
             {
-                forums[forumName].description = newDescription;
-                forums[forumName].forumPolicy = fp;
+                _forums[forumName].description = newDescription;
+                _forums[forumName].forumPolicy = fp;
                 return true;
             }
             catch
@@ -475,7 +497,7 @@ namespace DataBase
         {
             try
             {
-                users[userName].friends.Add(friendToAddName);
+                _users[userName].friends.Add(friendToAddName);
                 return true;
             }
             catch
@@ -489,7 +511,7 @@ namespace DataBase
         {
             try
             {
-                users[userName].friends.Remove(deletedFriendName);
+                _users[userName].friends.Remove(deletedFriendName);
                 return true;
             }
             catch
@@ -504,8 +526,8 @@ namespace DataBase
             try
             {
                 SubForum sf = new SubForum(subForumName, forumName);
-                subForums.Add(sf);
-                forums[forumName].subForums.Add(subForumName);
+                _subForums.Add(sf);
+                _forums[forumName].subForums.Add(subForumName);
                 return true;
             }
             catch
@@ -519,7 +541,7 @@ namespace DataBase
         {
             try
             {
-                return posts[postId];
+                return _posts[postId];
             }
             catch
             {
@@ -532,7 +554,7 @@ namespace DataBase
             try
             {
                 List<Post> relatedPosts = new List<Post>();
-                foreach (Post p in posts.Values)
+                foreach (Post p in _posts.Values)
                 {
                     if (p.parentId == postId)
                     {
@@ -552,7 +574,7 @@ namespace DataBase
         {
             try
             {
-                foreach (SubForum sf in subForums)
+                foreach (SubForum sf in _subForums)
                 {
                     if (sf.threads.Contains(id))
                     {
@@ -571,7 +593,7 @@ namespace DataBase
         {
             try
             {
-                foreach (Thread t in threads.Values)
+                foreach (Thread t in _threads.Values)
                 {
                     if (t.firstPost.id == postId)
                         return t;
@@ -589,7 +611,7 @@ namespace DataBase
             try
             {
                 Thread thread = new Thread(getPost(firstMessageId));
-                threads.Add(firstMessageId, thread);
+                _threads.Add(firstMessageId, thread);
                 getSubForum(subForumName, forumName).threads.Add(firstMessageId);
                 return true;
             }
@@ -605,7 +627,7 @@ namespace DataBase
             try
             {
                 Post post = new Post(writerUserName, postID, headLine, content, parentId, timePublished, forumName);
-                posts.Add(postID, post);
+                _posts.Add(postID, post);
                 if (parentId != -1)
                 {
                     getPost(parentId).commentsIds.Add(postID);
@@ -622,7 +644,7 @@ namespace DataBase
         public int numOfPostInForum(String forumName)
         {
             int count = 0;
-            foreach (Post p in posts.Values)
+            foreach (Post p in _posts.Values)
             {
                 if (p.forumName.Equals(forumName))
                     count++;
@@ -634,7 +656,7 @@ namespace DataBase
         {
             try
             {
-                threads.Remove(id);
+                _threads.Remove(id);
                 getSubforumByThreadFirstPostId(id).threads.Remove(id);
                 return true;
             }
@@ -648,7 +670,7 @@ namespace DataBase
         {
             try
             {
-                posts.Remove(id);
+                _posts.Remove(id);
                 return true;
             }
             catch
@@ -661,8 +683,8 @@ namespace DataBase
         {
             try
             {
-                posts[postID].title = title;
-                posts[postID].content = content;
+                _posts[postID].title = title;
+                _posts[postID].content = content;
                 return true;
             }
             catch
@@ -676,7 +698,7 @@ namespace DataBase
             try
             {
                 List<Post> memPost = new List<Post>();
-                foreach (Post p in posts.Values)
+                foreach (Post p in _posts.Values)
                 {
                     if (p.forumName.Equals(forumName) && p.writerUserName.Equals(memberName))
                         memPost.Add(p);
@@ -724,8 +746,8 @@ namespace DataBase
         {
             try
             {
-                users[userName].password = newPaswword;
-                users[userName].lastTimeUpdatePassword = DateTime.Today;
+                _users[userName].password = newPaswword;
+                _users[userName].lastTimeUpdatePassword = DateTime.Today;
                 return true;
             }
             catch (Exception)

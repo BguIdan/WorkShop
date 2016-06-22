@@ -142,7 +142,7 @@ namespace Database
                 connection.Close();
                 forums = getForumsForInit();
                 subForums = getSubForumsForInit();
-                //initialAddToCache();
+                initialAddToCache();
                 return true;
             }
             catch
