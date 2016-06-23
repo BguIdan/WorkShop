@@ -1735,6 +1735,59 @@ namespace Database
                 return false;
             }
         }
+
+        public void NotifyOfflineUser(string forumName, string userName, string content)
+        {
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "INSERT INTO offlineNotify ([userName],[forumName],[notification])"+
+                    " values (?,?,?)";
+                OleDbDataReader reader = command.ExecuteReader();
+                
+                closeConnectionDB();
+            }
+            catch
+            {
+                closeConnectionDB();
+            }
+        }
+
+        public List<string> clearOfflineNotifications(string forumName, string userName)
+        {
+            List<String> notifications = new List<string>();
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "SELECT notification FROM offlineNotify where userName='"+userName+
+                    "' forumName='"+forumName+"'";
+                OleDbDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    notifications.Add(reader.GetString(0));
+                }
+                closeConnectionDB();
+
+                OpenConnectionDB();
+                OleDbCommand command1 = new OleDbCommand();
+                command1.Connection = connection;
+                command1.CommandText = "DELETE  from offlineNotify where userName='" + userName +
+                    "' forumName='" + forumName + "'";
+                command.ExecuteNonQuery();
+                closeConnectionDB();
+                return notifications;
+            }
+            catch
+            {
+                closeConnectionDB();
+                return null;
+            }
+        }
+
         public void clear()
         {
             try
@@ -1743,6 +1796,7 @@ namespace Database
                 List<String> commands = new List<string>();
                 forums = new List<Forum>();
                 subForums = new List<SubForum>();
+                commands.Add("DELETE  from offlineNotify");
                 commands.Add("DELETE  from members");
                 commands.Add("DELETE  from forumadministrators");
                 commands.Add("DELETE  from messages");

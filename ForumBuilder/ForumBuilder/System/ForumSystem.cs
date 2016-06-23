@@ -76,9 +76,6 @@ namespace ForumBuilder.Systems
                     userService.Open();
                     logger.logPrint("user service was initialized under localhost:8085",0);
                     logger.logPrint("user service was initialized under localhost:8085",1);
-
-                  
-
                 }
                 catch (CommunicationException)
                 {
