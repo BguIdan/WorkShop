@@ -37,7 +37,7 @@ namespace PL
             _forumName = forumName;
             _password = password;
             _whatToDo = whatToDo;
-            if(_whatToDo == -5)
+            if(_whatToDo == -5|| _whatToDo ==- 7)
             {
                 setPassGrid.Visibility = Visibility.Visible;
                 setIdentifyingQuestionsGrid.Visibility = Visibility.Collapsed;
