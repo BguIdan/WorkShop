@@ -321,7 +321,7 @@ namespace DataBase
 
         public bool changePolicy(string forumName, string policy, bool isQuestionIdentifying, int seniorityInForum,
         bool deletePostByModerator, int timeToPassExpiration, int minNumOfModerators, bool hasCapitalInPassword,
-        bool hasNumberInPassword, int minLengthOfPassword)
+        bool hasNumberInPassword, int minLengthOfPassword, int notificationsType, List<String> selectiveNotificationsUsers)
         {
             try
             {
@@ -334,6 +334,13 @@ namespace DataBase
                 _forums[forumName].forumPolicy.hasCapitalInPassword = hasCapitalInPassword;
                 _forums[forumName].forumPolicy.hasNumberInPassword = hasNumberInPassword;
                 _forums[forumName].forumPolicy.minLengthOfPassword = minLengthOfPassword;
+                _forums[forumName].forumPolicy.notificationsType = notificationsType;
+                _forums[forumName].forumPolicy.selectiveNotificationsUsers = new List<string>();
+                foreach (String mem in selectiveNotificationsUsers)
+                {
+                    _forums[forumName].forumPolicy.selectiveNotificationsUsers.Add(mem);
+                }
+                _forums[forumName].forumPolicy.selectiveNotificationsUsers = selectiveNotificationsUsers;
                 return true;
             }
             catch
@@ -434,7 +441,10 @@ namespace DataBase
         {
             try
             {
-                return _forums[forumName].members;
+                List<String> mems = new List<string>();
+                foreach (String mem in _forums[forumName].members)
+                    mems.Add(mem);
+                return mems;
 
             }
             catch
