@@ -193,15 +193,8 @@ namespace PL
             try
             {
                 _choosenForum = comboBox.SelectedItem.ToString();
-            }
-            catch (Exception excep)
-            {
-                MessageBox.Show(excep.ToString());
-            }
-            try
-            {
                 _forumsList = _fMC.getForums();
-                if (!_fMC.getForum(comboBox.SelectedItem.ToString()).forumPolicy.isQuestionIdentifying)
+                if (!_fMC.getForum(_choosenForum).forumPolicy.isQuestionIdentifying)
                 {
                     restore.IsEnabled = false;
                 }
