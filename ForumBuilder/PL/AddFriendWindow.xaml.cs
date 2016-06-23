@@ -40,7 +40,7 @@ namespace PL
             if (uc.addFriend(_userName, friendName.Text).Equals("friend was added successfuly"))
             {
                 MessageBox.Show("friend was added successfuly");
-                ForumWindow newWin = new ForumWindow(_forumData, _userName);
+                ForumWindow newWin = new ForumWindow(_forumData, _userName, new notificationHost.ClientNotificationHost());
                 newWin.Show();
                 this.Close();
             }
@@ -57,7 +57,7 @@ namespace PL
 
         private void button_back(object sender, RoutedEventArgs e)
         {
-            ForumWindow mw = new ForumWindow(_forumData, _userName);
+            ForumWindow mw = new ForumWindow(_forumData, _userName, new notificationHost.ClientNotificationHost());
             mw.Show();
             this.Close();
         }

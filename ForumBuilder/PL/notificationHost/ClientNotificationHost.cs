@@ -6,16 +6,31 @@ using System.Threading.Tasks;
 using ForumBuilder.Common.ClientServiceContracts;
 using System.ServiceModel;
 using System.Windows;
+using System.Threading;
 
 namespace PL.notificationHost
 {
     public class ClientNotificationHost : IUserNotificationsService
     {
+        private RefreshedWindow _currentWindow;
+        
+        public void updateWindow(Window window)
+        {
+            if (window is RefreshedWindow)
+                _currentWindow = (RefreshedWindow)window;
+            else
+                _currentWindow = null;
+        }
+
         public void applyPostPublishedInForumNotification(String forumName, String subForumName, String publisherName)
         {
-                MessageBox.Show(publisherName + " published a post in " + forumName + 
-                    "'s sub-forum " + subForumName, "new post");
-         }
+            MessageBox.Show(publisherName + " published a post in " + forumName + 
+                "'s sub-forum " + subForumName, "new post");
+            if(_currentWindow != null)
+                _currentWindow.refresh();
+            SubForumWindow._generalFlag++;
+            Thread.CurrentThread.Interrupt();
+        }
 
         public void applyPostModificationNotification(String forumName, String publisherName, String title)
         {

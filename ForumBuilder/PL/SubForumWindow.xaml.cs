@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using ForumBuilder.Common.DataContracts;
+using ForumBuilder.Common.ClientServiceContracts;
 using PL.proxies;
 using System.ServiceModel;
 using PL.notificationHost;
+using System.Threading.Tasks;
+using System.Threading;
+using System.ComponentModel;
 
 namespace PL
 {
@@ -56,7 +60,7 @@ namespace PL
 
     }
 
-    public partial class SubForumWindow : Window
+    public partial class SubForumWindow : Window, IUserNotificationsService
     {
         private PostManagerClient _pm;
         private ForumManagerClient _fm;
@@ -68,11 +72,17 @@ namespace PL
         private int _sessionKey;
         private string _forumName;
         private string _subName;
+        private ClientNotificationHost _cnh;
+        public static int _generalFlag = 0;
+        private int _myFlage;
+        private dataContainer _selected;
 
-        public SubForumWindow(string fName, string sfName, string userName, int skey)//forum subforum names and userName
+        public SubForumWindow(string fName, string sfName, string userName, int skey, ClientNotificationHost cnh)//forum subforum names and userName
         {
             InitializeComponent();
-            _fm = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
+            _cnh = cnh;
+            _myFlage = _generalFlag;
+            _fm = new ForumManagerClient(new InstanceContext(_cnh));
             _pm = new PostManagerClient();
             _sfm = new SubForumManagerClient();
             _sUMC = new SuperUserManagerClient();
@@ -113,12 +123,81 @@ namespace PL
             {
                 // all open
             }
+            _cnh.updateWindow(this);
+            Window window = this;
+            _selected = null;
+
+            BackgroundWorker wrk = new BackgroundWorker();
+            wrk.WorkerReportsProgress = true;
+            wrk.DoWork += (a, b) =>
+            {
+                while (_generalFlag <= _myFlage)
+                {
+
+                }
+            };
+
+            wrk.RunWorkerCompleted += (s, e) =>
+            {
+
+                //               Thread.Sleep(500);
+                _myFlage++;
+                if (listBox.Visibility == Visibility.Collapsed)
+                {
+                    DataGrid_Loaded(this, null);
+                }
+                else
+                {
+                    listBox.Items.Clear();
+                    selectionChangedHelp(_selected);
+                }
+                wrk.RunWorkerAsync();
+
+            };
+            wrk.RunWorkerAsync();
+      /*      Thread thread = new Thread(() =>
+            {
+                while (_generalFlag <= _myFlage)
+                {
+
+                }
+                _myFlage++;
+                SubForumWindow newWin = new SubForumWindow(_forumName, _subName, _userName, _sessionKey, _cnh);
+                newWin.Show();
+                //this.Hide();
+
+                //newWin.Closed += (sender2, e2) =>
+                //newWin.Dispatcher.InvokeShutdown();
+
+                System.Windows.Threading.Dispatcher.Run();
+            });
+
+            thread.SetApartmentState(ApartmentState.STA);
+
+            thread.Start();*/
+
+        }
+        public void doTask()
+        {
+            while (_generalFlag <= _myFlage)
+            {
+
+            }
+            DataGrid_Loaded(this, null);
         }
 
         private void ThreadView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var grid = sender as DataGrid;
             var selected = grid.SelectedItem as dataContainer;
+            _selected = selected;
+            selectionChangedHelp(selected);
+
+
+        }
+
+        private void selectionChangedHelp(dataContainer selected)
+        {
             if (selected == null)
             {
                 return;
@@ -203,13 +282,13 @@ namespace PL
         {
             if (listBox.Visibility == Visibility.Visible)
             {
-                SubForumWindow newWin = new SubForumWindow(_forumName, _subName, _userName, _sessionKey);
+                SubForumWindow newWin = new SubForumWindow(_forumName, _subName, _userName, _sessionKey, _cnh);
                 newWin.Show();
                 this.Close();
             }
             else//needs to go back to previous page
             {
-                ForumWindow newWin = new ForumWindow(_fm.getForum(_forumName), _userName);
+                ForumWindow newWin = new ForumWindow(_fm.getForum(_forumName), _userName, _cnh);
                 newWin.Show();
                 this.Close();
             }
@@ -282,7 +361,7 @@ namespace PL
 
         private void addPostButton_Click(object sender, RoutedEventArgs e)
         {
-            addPostAndThreadWindow win = new addPostAndThreadWindow(this, _patentId, _userName, _forumName, _subName);
+            addPostAndThreadWindow win = new addPostAndThreadWindow(this, _patentId, _userName, _forumName, _subName, _cnh);
             win.Show();
             this.Close();
         }
@@ -386,5 +465,27 @@ namespace PL
         {
             get { return _sessionKey; }
         }
+
+        public void applyPostPublishedInForumNotification(String forumName, String subForumName, String publisherName)
+        {
+            MessageBox.Show(publisherName + " published a post in " + forumName +
+                "'s sub-forum " + subForumName, "new post");
+        }
+
+        public void applyPostModificationNotification(String forumName, String publisherName, String title)
+        {
+            MessageBox.Show(publisherName + "'s post you were following in " + forumName + " was modified (" + title + ")", "post modified");
+        }
+
+        public void applyPostDelitionNotification(String forumName, String publisherName)
+        {
+            MessageBox.Show(publisherName + "'s post you were following in " + forumName + " was deleted", "post deleted");
+        }
+
+        public void sendUserMessage(String senderName, String content)
+        {
+            MessageBox.Show(content, senderName + " set you a message");
+        }
+
     }
 }

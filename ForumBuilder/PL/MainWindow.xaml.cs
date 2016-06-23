@@ -28,12 +28,14 @@ namespace PL
         private List<string> _forumsList;
         private String _choosenForum;
         private ForumManagerClient _fMC;
+        private ClientNotificationHost _cnh;
 
         public MainWindow()
         {
             InitializeComponent();
             Thread.Sleep(2000);
-			_fMC = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
+            _cnh = new ClientNotificationHost();
+            _fMC = new ForumManagerClient(new InstanceContext(_cnh));
             _forumsList = _fMC.getForums();
             this.Show();
         }
@@ -49,7 +51,7 @@ namespace PL
                 ForumData toSend = _fMC.getForum(_choosenForum);
                 if (guestCheck.IsChecked.Value)
                 {
-                    ForumWindow fw = new ForumWindow(toSend, "Guest");
+                    ForumWindow fw = new ForumWindow(toSend, "Guest", _cnh);
                     this.Close();
                     fw.Show();
                 }
@@ -66,7 +68,7 @@ namespace PL
                     }
 
                     MessageBox.Show("Login successful! your session code for is " + sessionKey.ToString());
-                    ForumWindow fw = new ForumWindow(toSend, userName);
+                    ForumWindow fw = new ForumWindow(toSend, userName, _cnh);
                     this.Close();
                     fw.Show();
                 }

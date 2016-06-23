@@ -51,7 +51,7 @@ namespace PL
             if (result == "success")
             {
                 ForumData toSend = _fMC.getForum(_forumName);
-                ForumWindow fw = new ForumWindow(toSend, _userName);
+                ForumWindow fw = new ForumWindow(toSend, _userName, new ClientNotificationHost());
                 this.Close();
                 fw.Show();
             }

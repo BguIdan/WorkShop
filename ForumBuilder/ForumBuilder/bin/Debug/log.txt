@@ -1,0 +1,57 @@
+Log Entry : 		23/06/2016 23:17:00
+Forum contoller created
+-----------------------------------------------
+Log Entry : 		23/06/2016 23:17:00
+Super user contoller created
+-----------------------------------------------
+Log Entry : 		23/06/2016 23:17:02
+forum service was initialized under localhost:8081
+-----------------------------------------------
+Log Entry : 		23/06/2016 23:17:02
+post service was initialized under localhost:8082
+-----------------------------------------------
+Log Entry : 		23/06/2016 23:17:02
+sub forum service was initialized under localhost:8083
+-----------------------------------------------
+Log Entry : 		23/06/2016 23:17:02
+super user service was initialized under localhost:8084
+-----------------------------------------------
+Log Entry : 		23/06/2016 23:17:02
+user service was initialized under localhost:8085
+-----------------------------------------------
+Log Entry : 		23/06/2016 23:17:02
+The System was initialized successully
+-----------------------------------------------
+Log Entry : 		23/06/2016 23:17:02
+Register user failed, g1 is already taken
+-----------------------------------------------
+Log Entry : 		23/06/2016 23:17:02
+Register user failed, g2 is already taken
+-----------------------------------------------
+Log Entry : 		23/06/2016 23:17:02
+Register user failed, g3 is already taken
+-----------------------------------------------
+Log Entry : 		23/06/2016 23:17:02
+nominate admin fail, g1is already admin
+-----------------------------------------------
+Log Entry : 		23/06/2016 23:17:02
+Add sub-forum failed, f1 already exist
+-----------------------------------------------
+Log Entry : 		23/06/2016 23:17:48
+Post contoller created
+-----------------------------------------------
+Log Entry : 		23/06/2016 23:17:48
+Sub-forum contoller created
+-----------------------------------------------
+Log Entry : 		23/06/2016 23:18:02
+Add thread 4
+-----------------------------------------------
+Log Entry : 		23/06/2016 23:18:25
+Create comment 5 to 0
+-----------------------------------------------
+Log Entry : 		23/06/2016 23:18:44
+Create comment 6 to 1
+-----------------------------------------------
+Log Entry : 		23/06/2016 23:19:44
+Create comment 7 to 1
+-----------------------------------------------

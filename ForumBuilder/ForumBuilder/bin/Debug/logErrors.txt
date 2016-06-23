@@ -1,0 +1,18 @@
+Log Entry : 		23/06/2016 23:17:02
+Register user failed, g1 is already taken
+-----------------------------------------------
+Log Entry : 		23/06/2016 23:17:02
+Register user failed, g2 is already taken
+-----------------------------------------------
+Log Entry : 		23/06/2016 23:17:02
+Register user failed, g3 is already taken
+-----------------------------------------------
+Log Entry : 		23/06/2016 23:17:02
+nominate admin fail, g1is already admin
+-----------------------------------------------
+Log Entry : 		23/06/2016 23:17:02
+Add sub-forum failed, f1 already exist
+-----------------------------------------------
+Log Entry : 		23/06/2016 23:17:48
+Post contoller created
+-----------------------------------------------

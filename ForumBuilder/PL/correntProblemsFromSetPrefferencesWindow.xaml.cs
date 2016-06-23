@@ -97,7 +97,7 @@ namespace PL
             {
                 MessageBox.Show("Login successful! your session code for is " + sessionKey.ToString());
                 ForumData forum = _fMC.getForum(_forumName);
-                ForumWindow fw = new ForumWindow(forum, _userName);
+                ForumWindow fw = new ForumWindow(forum, _userName, new ClientNotificationHost());
                 this.Close();
                 fw.Show();
             }
