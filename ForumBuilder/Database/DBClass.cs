@@ -707,11 +707,24 @@ namespace Database
             }*/
         }
 
-        public bool setAnswers(string forumName, string userName, string ans1, string ans2)
+        public bool setAnswers(string userName, string ans1, string ans2)
         {
-            ///TODO: GUY
-            //TODO: GUY
-            return true;
+            try
+            {
+                OpenConnectionDB();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "UPDATE users SET ans1 = '" + ans1 + "' ,ans2 = '" + ans2 +
+                    "' , where userName='" + userName + "'";
+                command.ExecuteNonQuery();
+                closeConnectionDB();
+                return true;
+            }
+            catch
+            {
+                closeConnectionDB();
+                return false;
+            }
         }
 
         public List<string> getAnswers(string userName)
