@@ -803,7 +803,7 @@ namespace Database
         }
         public bool changePolicy(string forumName, string policy, bool isQuestionIdentifying, int seniorityInForum,
         bool deletePostByModerator, int timeToPassExpiration, int minNumOfModerators, bool hasCapitalInPassword,
-        bool hasNumberInPassword, int minLengthOfPassword)
+        bool hasNumberInPassword, int minLengthOfPassword, int notificationsType,List<String> selectiveNotificationsUsers)
         {
             try
             {
@@ -819,10 +819,22 @@ namespace Database
                     "minNumOfModerators=" + minNumOfModerators + " ," +
                     "hasCapitalInPassword=" + hasCapitalInPassword + " ," +
                     "hasNumberInPassword=" + hasNumberInPassword + " ," +
-                    "minLengthOfPassword=" + minLengthOfPassword  +
+                    "minLengthOfPassword=" + minLengthOfPassword  +" ,"+
+                    "notificationsType=" + notificationsType +
                     " where forumName='" + forumName + "'";
                 command.ExecuteNonQuery();
                 closeConnectionDB();
+                foreach (String mem in selectiveNotificationsUsers)
+                {
+                    OpenConnectionDB();
+                    OleDbCommand command2 = new OleDbCommand();
+                    command2.Connection = connection;
+                    command2.CommandText = "UPDATE members SET " +
+                        "selectiveNotificationsUser='" + true + "' " +
+                        " where forumName='" + forumName + "' and userName ='"+mem+"'";
+                    command2.ExecuteNonQuery();
+                    closeConnectionDB();
+                }
                 foreach (Forum f in forums)
                 {
                     if (f.forumName.Equals(forumName))
@@ -836,12 +848,18 @@ namespace Database
                         f.forumPolicy.hasCapitalInPassword = hasCapitalInPassword;
                         f.forumPolicy.hasNumberInPassword = hasNumberInPassword;
                         f.forumPolicy.minLengthOfPassword = minLengthOfPassword;
+                        f.forumPolicy.notificationsType = notificationsType;
+                        f.forumPolicy.selectiveNotificationsUsers = new List<string>();
+                        foreach (String mem in selectiveNotificationsUsers)
+                        {
+                            f.forumPolicy.selectiveNotificationsUsers.Add(mem);
+                        }
                     }
                 }
                 //return true;
                 return cache.changePolicy(forumName, policy, isQuestionIdentifying, seniorityInForum,
                     deletePostByModerator, timeToPassExpiration, minNumOfModerators, hasCapitalInPassword,
-                    hasNumberInPassword, minLengthOfPassword);
+                    hasNumberInPassword, minLengthOfPassword, notificationsType, selectiveNotificationsUsers);
             }
             catch
             {
@@ -1103,8 +1121,8 @@ namespace Database
                 command2.Connection = connection;
                 command2.CommandText = "INSERT INTO policies ([forumName],[policy],[isQuestionIdentifying],[seniorityInForum],"+
                     "[deletePostByModerator],[timeToPassExpiration],[minNumOfModerators],[hasCapitalInPassword],"+
-                    "[hasNumberInPassword],[minLengthOfPassword]) " +
-                        "VALUES (?,?,?,?,?,?,?,?,?,?)";
+                    "[hasNumberInPassword],[minLengthOfPassword],[notificationsType]) " +
+                        "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
                 command2.Parameters.AddWithValue("forumName", forumName);
                 command2.Parameters.AddWithValue("policy", fp.policy);
                 command2.Parameters.AddWithValue("isQuestionIdentifying", fp.isQuestionIdentifying);
@@ -1115,6 +1133,7 @@ namespace Database
                 command2.Parameters.AddWithValue("hasCapitalInPassword", fp.hasCapitalInPassword);
                 command2.Parameters.AddWithValue("hasNumberInPassword", fp.hasNumberInPassword);
                 command2.Parameters.AddWithValue("minLengthOfPassword", fp.minLengthOfPassword);
+                command2.Parameters.AddWithValue("notificationsType", fp.notificationsType);
                 command2.ExecuteNonQuery();
                 /* foreach (string admin in administrators)
                  {
@@ -1147,7 +1166,7 @@ namespace Database
                 command.ExecuteNonQuery();
                 closeConnectionDB();
                 changePolicy(forumName,fp.policy, fp.isQuestionIdentifying, fp.seniorityInForum, fp.deletePostByModerator,
-                    fp.timeToPassExpiration, fp.minNumOfModerators, fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword);
+                    fp.timeToPassExpiration, fp.minNumOfModerators, fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword,fp.notificationsType,fp.selectiveNotificationsUsers);
                 foreach (Forum f in forums)
                 {
                     if (f.forumName.Equals(forumName))
@@ -1759,11 +1778,14 @@ namespace Database
                 command.Connection = connection;
                 command.CommandText = "INSERT INTO offlineNotify ([userName],[forumName],[notification])"+
                     " values (?,?,?)";
+                command.Parameters.AddWithValue("userName", userName);
+                command.Parameters.AddWithValue("forumName", forumName);
+                command.Parameters.AddWithValue("notification", content);
                 OleDbDataReader reader = command.ExecuteReader();
                 
                 closeConnectionDB();
             }
-            catch
+            catch(Exception e)
             {
                 closeConnectionDB();
             }
@@ -1871,10 +1893,9 @@ namespace Database
                     reader3.Read();
                     ForumPolicy policy = new ForumPolicy(reader3.GetString(1), reader3.GetBoolean(2), reader3.GetInt32(3),
                         reader3.GetBoolean(4), reader3.GetInt32(5), reader3.GetInt32(6), reader3.GetBoolean(7),
-                        reader3.GetBoolean(8), reader3.GetInt32(9), 0, new List<string>());//TODO gal selective notes
+                        reader3.GetBoolean(8), reader3.GetInt32(9), reader3.GetInt32(10), new List<string>());
                     forum = new Forum(reader.GetString(0), reader.GetString(1), policy, administrators);
-                    List<String> members = getMembersOfForumOld(forum.forumName);
-                    forum.members = members;
+                    forum=addMembersOfForumOld(forum);
                     List<String> subForums = getsubForumsNamesOfForumOld(forum.forumName);
                     forum.subForums = subForums;
                     forums1.Add(forum);
@@ -1882,7 +1903,7 @@ namespace Database
                 closeConnectionDB();
                 return forums1;
             }
-            catch
+            catch(Exception e)
             {
                 closeConnectionDB();
                 return null;
@@ -1911,20 +1932,21 @@ namespace Database
             }
         }
 
-        private List<string> getMembersOfForumOld(string forumName)
+        private Forum addMembersOfForumOld(Forum forum)
         {
-            List<string> users = new List<string>();
             try
             {
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "SELECT  * FROM  members where forumName='" + forumName + "'";
+                command.CommandText = "SELECT  * FROM  members where forumName='" + forum.forumName + "'";
                 OleDbDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    users.Add(reader.GetString(0));
+                    forum.members.Add(reader.GetString(0));
+                    if(reader.GetBoolean(2))
+                        forum.forumPolicy.selectiveNotificationsUsers.Add(reader.GetString(0));
                 }
-                return users;
+                return forum;
             }
             catch
             {
