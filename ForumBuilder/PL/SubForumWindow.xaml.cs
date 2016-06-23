@@ -346,7 +346,7 @@ namespace PL
                     listBox.Items.RemoveAt(index);
                     if (index == 0)
                     {
-                        SubForumWindow newWin = new SubForumWindow(_forumName, _subName, _userName, _sessionKey);
+                        SubForumWindow newWin = new SubForumWindow(_forumName, _subName, _userName, _sessionKey, _cnh);
                         newWin.Show();
                         this.Close();
                     }
