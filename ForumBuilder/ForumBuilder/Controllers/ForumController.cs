@@ -597,6 +597,8 @@ namespace ForumBuilder.Controllers
             }
             bool isForumHaveQuestionsIdentifing = forum.forumPolicy.isQuestionIdentifying;
             List<string> userQuestions = DB.getAnswers(userName);
+            if (userQuestions == null)
+                return false;
             bool isUserHaveQuestionsIdentifing = !(userQuestions.Count == 2 && userQuestions.Contains(""));
             if (isForumHaveQuestionsIdentifing && !isUserHaveQuestionsIdentifing)
                 return true;
