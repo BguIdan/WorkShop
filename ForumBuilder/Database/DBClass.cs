@@ -705,6 +705,13 @@ namespace Database
             }*/
         }
 
+        public bool setAnswers(string forumName, string userName, string ans1, string ans2)
+        {
+            ///TODO: GUY
+            //TODO: GUY
+            return true;
+        }
+
         public List<string> getAnswers(string userName)
         {
             try

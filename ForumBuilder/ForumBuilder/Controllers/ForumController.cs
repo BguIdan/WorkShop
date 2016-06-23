@@ -597,10 +597,15 @@ namespace ForumBuilder.Controllers
             }
             bool isForumHaveQuestionsIdentifing = forum.forumPolicy.isQuestionIdentifying;
             List<string> userQuestions = DB.getAnswers(userName);
-            bool isUserHaveQuestionsIdentifing = !(userQuestions.Count == 1 && userQuestions.Contains(""));
+            bool isUserHaveQuestionsIdentifing = !(userQuestions.Count == 2 && userQuestions.Contains(""));
             if (isForumHaveQuestionsIdentifing && !isUserHaveQuestionsIdentifing)
                 return true;
             return false;
+        }
+
+        public bool setAnswers(string forumName, string userName, string ans1, string ans2)
+        {
+            return DB.setAnswers(forumName, userName, ans1, ans2);
         }
     }
 }
