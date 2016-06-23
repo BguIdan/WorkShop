@@ -337,6 +337,10 @@ namespace ForumBuilder.Controllers
             Forum loggedInForum = DB.getforumByName(forumName);
             if (usr != null && usr.password.Equals(pass) && loggedInForum != null)
             {
+                if (needsToAddQuestions(user, forumName))
+                {
+                    return -6;
+                }
                 if (needToChangePassword(user, forumName))
                     return -5;
                 if (!this.loggedInUsersByForum[forumName].Contains(user))
@@ -581,6 +585,22 @@ namespace ForumBuilder.Controllers
         public int getUserSessionKey(string username)
         {
             return clientSessionKeyByUser[username];
+        }
+
+        public Boolean needsToAddQuestions (string userName, string forumName)
+        {
+            Forum forum = getForum(forumName);
+            
+            if(userName==null || forum == null)
+            {
+                return false;
+            }
+            bool isForumHaveQuestionsIdentifing = forum.forumPolicy.isQuestionIdentifying;
+            List<string> userQuestions = DB.getAnswers(userName);
+            bool isUserHaveQuestionsIdentifing = !(userQuestions.Count == 1 && userQuestions.Contains(""));
+            if (isForumHaveQuestionsIdentifing && !isUserHaveQuestionsIdentifing)
+                return true;
+            return false;
         }
     }
 }

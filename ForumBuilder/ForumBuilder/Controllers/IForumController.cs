@@ -31,5 +31,6 @@ namespace ForumBuilder.Controllers
         List<String> getAdminReport(String AdminName, String forumName);
         void notifyUserOnNewPrivateMessage(String forumName, String sender, String addressee, String content);
         int getUserSessionKey(string username);
+        Boolean needsToAddQuestions(string userName, string forumName);
     }
 }
