@@ -54,7 +54,7 @@ namespace PL
                 case "":
                     MessageBox.Show("You have to choose time from the list!");
                     break;
-                case "UnLimited":
+                case "Unlimited":
                     timeToSend = DateTime.Now.AddYears(unlimited);
                     howToProcced(moderatorName, timeToSend);
                     break;

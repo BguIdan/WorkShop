@@ -100,8 +100,8 @@ namespace ForumBuilder.Controllers
             SubForum sf = getSubforumByPost(postId);
             if ((!DB.getPost(postId).writerUserName.Equals(removerName))
                 && (DB.getSuperUser(removerName)==null)
-                && (!ForumController.getInstance.isAdmin(removerName, sf.forum)
-                && !(DB.getforumByName(sf.forum).forumPolicy.deletePostByModerator&&SubForumController.getInstance.isModerator(removerName, sf.name, sf.forum))))
+                && !(ForumController.getInstance.isAdmin(removerName, sf.forum))
+                && !(DB.getforumByName(sf.forum).forumPolicy.deletePostByModerator && SubForumController.getInstance.isModerator(removerName, sf.name, sf.forum)))
             {
                 logger.logPrint("Delete post failed, there is no permission to that user", 0);
                 logger.logPrint("Delete post failed, there is no permission to that user", 2);

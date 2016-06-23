@@ -188,6 +188,8 @@ namespace ForumBuilder.Controllers
                 &&(!SuperUserController.getInstance.isSuperUser(removerName))
                 && (!ForumController.getInstance.isAdmin(removerName, sf.forum)
                 && !(DB.getforumByName(sf.forum).forumPolicy.deletePostByModerator&&isModerator(removerName, sf.name, sf.forum))))
+                && (!isModerator(removerName,sf.name,sf.forum)))
+                && !(DB.getforumByName(sf.forum).forumPolicy.deletePostByModerator ))
             {
                 logger.logPrint("Delete post failed, there is no permission to that user", 0);
                 logger.logPrint("Delete post failed, there is no permission to that user", 2);
