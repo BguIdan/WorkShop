@@ -73,7 +73,7 @@ namespace PL
             if (res.Equals("nominate moderator succeed"))
             {
                 MessageBox.Show("moderator was added successfully");
-                SubForumWindow sb = new SubForumWindow(_forum, _subforum, _userName, _sKey);
+                SubForumWindow sb = new SubForumWindow(_forum, _subforum, _userName, _sKey, new ClientNotificationHost());
                 sb.Show();
                 this.Close();
             }
@@ -85,7 +85,7 @@ namespace PL
 
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
-            SubForumWindow newWin = new SubForumWindow(_forum, _subforum, _userName, _sKey);
+            SubForumWindow newWin = new SubForumWindow(_forum, _subforum, _userName, _sKey, new ClientNotificationHost());
             newWin.Show();
             this.Close();
         }

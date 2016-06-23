@@ -32,12 +32,14 @@ namespace PL
         private string _userName;
         private SuperUserManagerClient _sUMC;
         private int _sessionKey;
+        private ClientNotificationHost _cnh;
 
-        public ForumWindow(ForumData forum, string userName)
+        public ForumWindow(ForumData forum, string userName ,ClientNotificationHost cnh)
         {
             InitializeComponent();
+            _cnh = cnh;
             _myforum = forum;
-            _fMC = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
+            _fMC = new ForumManagerClient(new InstanceContext(_cnh));
             _userName = userName;
             if (_userName != "Guest")
             {
@@ -197,7 +199,7 @@ namespace PL
             var grid = sender as DataGrid;
             var selected = grid.SelectedItems;
             _subForumChosen = selected.ToString();
-            SubForumWindow sfw = new SubForumWindow(_myforum.forumName, _subForumChosen, _userName, _sessionKey);
+            SubForumWindow sfw = new SubForumWindow(_myforum.forumName, _subForumChosen, _userName, _sessionKey, _cnh);
             sfw.ShowDialog();
         }
 
@@ -392,7 +394,7 @@ namespace PL
             else
             {
                 MessageBox.Show("Sub-Forum " + sub_ForumName + " was successfully created and " + moderators + " are the Sub-Forum moderators.");
-                ForumWindow newWin = new ForumWindow(_fMC.getForum(_myforum.forumName), _userName);
+                ForumWindow newWin = new ForumWindow(_fMC.getForum(_myforum.forumName), _userName, _cnh);
                 this.Close();
                 newWin.Show();
             }
@@ -403,7 +405,7 @@ namespace PL
             // Get SelectedItems from DataGrid.
 
             _subForumChosen = subForumsListBox.SelectedItem.ToString();
-            SubForumWindow sfw = new SubForumWindow(_myforum.forumName, _subForumChosen, _userName, _sessionKey);
+            SubForumWindow sfw = new SubForumWindow(_myforum.forumName, _subForumChosen, _userName, _sessionKey, _cnh);
             sfw.Show();
             this.Close();
         }
@@ -419,7 +421,7 @@ namespace PL
 
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
-            ForumWindow newWin = new ForumWindow(_myforum, _userName);
+            ForumWindow newWin = new ForumWindow(_myforum, _userName, _cnh);
             newWin.Show();
             this.Close();
         }

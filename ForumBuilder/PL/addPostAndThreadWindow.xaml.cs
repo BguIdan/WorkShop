@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using PL.proxies;
 using ForumBuilder.Common.DataContracts;
+using PL.notificationHost;
 
 namespace PL
 {
@@ -29,10 +30,12 @@ namespace PL
         private string _forumName;
         private string _subForumName;
         private PostData _postToEdit;
+        private ClientNotificationHost _cnh;
 
-        public addPostAndThreadWindow(SubForumWindow prevWindow, int parrentId, string userName, string forumName, string subForumName)//-1 for new thread
+        public addPostAndThreadWindow(SubForumWindow prevWindow, int parrentId, string userName, string forumName, string subForumName, ClientNotificationHost cnh)//-1 for new thread
         {
             InitializeComponent();
+            _cnh = cnh;
             _forumName = forumName;
             _sf = new SubForumManagerClient();
             _subForumName = subForumName;
@@ -74,7 +77,7 @@ namespace PL
                     if (addPost.Equals("comment created"))
                     {
                         MessageBox.Show("post was added succesfully");
-                        SubForumWindow newWin = new SubForumWindow(_forumName, _subForumName, _userName, _prevWindow.Sessionkey);
+                        SubForumWindow newWin = new SubForumWindow(_forumName, _subForumName, _userName, _prevWindow.Sessionkey, _cnh);
                         _prevWindow.Close();
                         this.Close();
                         newWin.Show();
@@ -90,7 +93,7 @@ namespace PL
                     if (createTread.Equals("Create tread succeed"))
                     {
                         MessageBox.Show("thread was added succesfully");
-                        SubForumWindow newWin = new SubForumWindow(_forumName, _subForumName, _userName, _prevWindow.Sessionkey);
+                        SubForumWindow newWin = new SubForumWindow(_forumName, _subForumName, _userName, _prevWindow.Sessionkey, _cnh);
                         _prevWindow.Close();
                         this.Close();
                         newWin.Show();
@@ -104,7 +107,7 @@ namespace PL
             else
             {
                 _pm.updatePost(_postToEdit.id, title.Text, content.Text, _userName);
-                SubForumWindow newWin = new SubForumWindow(_forumName, _subForumName, _userName, _prevWindow.Sessionkey);
+                SubForumWindow newWin = new SubForumWindow(_forumName, _subForumName, _userName, _prevWindow.Sessionkey, _cnh);
                 _prevWindow.Close();
                 newWin.Show();
                 this.Close();
@@ -113,7 +116,7 @@ namespace PL
 
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
-            SubForumWindow newWin = new SubForumWindow(_forumName, _subForumName, _userName, _prevWindow.Sessionkey);
+            SubForumWindow newWin = new SubForumWindow(_forumName, _subForumName, _userName, _prevWindow.Sessionkey, _cnh);
             newWin.Show();
             this.Close();
         }

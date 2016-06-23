@@ -91,6 +91,7 @@
     <Compile Include="proxies\SubForumManagerClient.cs" />
     <Compile Include="proxies\SuperUserManagerClient.cs" />
     <Compile Include="proxies\UserManagerClient.cs" />
+    <Compile Include="RefreshedWindow.cs" />
     <Compile Include="RestorePasswordWindow.xaml.cs">
       <DependentUpon>RestorePasswordWindow.xaml</DependentUpon>
     </Compile>
