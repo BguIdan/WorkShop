@@ -179,7 +179,7 @@ namespace ForumBuilder.Controllers
             }
             if (forumController.isMember(userName, forumName)&&forum!=null)
             {
-                if (forum.forumPolicy.minLengthOfPassword < password.Length &&
+                if (forum.forumPolicy.minLengthOfPassword <= password.Length &&
                 (!forum.forumPolicy.hasCapitalInPassword || (forum.forumPolicy.hasCapitalInPassword && forumController.hasCapital(password))) &&
                 (!forum.forumPolicy.hasNumberInPassword || (forum.forumPolicy.hasNumberInPassword && forumController.hasNumber(password))))
                 {

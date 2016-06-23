@@ -31,8 +31,14 @@ namespace PL
             InitializeComponent();
             _fMC = forumManager;
             _forumToRegister = forumName;
-            if (_fMC.getForum(forumName).forumPolicy.isQuestionIdentifying){ withQuestions.Visibility = System.Windows.Visibility.Visible; }
-            else { withoutQuestions.Visibility = System.Windows.Visibility.Visible; }
+            if (_fMC.getForum(forumName).forumPolicy.isQuestionIdentifying){ 
+                withQuestions.Visibility = System.Windows.Visibility.Visible;
+                withoutQuestions.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            else { 
+                withoutQuestions.Visibility = System.Windows.Visibility.Visible;
+                withQuestions.Visibility = System.Windows.Visibility.Collapsed;
+            }
         }
 
         private void UserRegistration(object sender, RoutedEventArgs e)
