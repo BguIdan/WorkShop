@@ -61,6 +61,7 @@ namespace PL
         private PostManagerClient _pm;
         private ForumManagerClient _fm;
         private SubForumManagerClient _sfm;
+        private SuperUserManagerClient _sUMC;
         private string _userName;
         private int _patentId;//used for adding post;
         private List<dataContainer> dataOfEachPost;
@@ -74,6 +75,7 @@ namespace PL
             _fm = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
             _pm = new PostManagerClient();
             _sfm = new SubForumManagerClient();
+            _sUMC = new SuperUserManagerClient();
             forumName.Content = "ForumName: " + fName;
             sForumName.Content = "Sub-ForumName: " + sfName;
             _userName = userName;
@@ -84,6 +86,33 @@ namespace PL
             _subName = sfName;
             _patentId = -1;
             dataOfEachPost = new List<dataContainer>();
+            InitializePermissons(userName);
+        }
+
+        private void InitializePermissons(string userName)
+        {
+            ForumData fd = _fm.getForum(_forumName);
+            // a guest
+            if (userName.Equals("Guest"))
+            {
+                addPostButton.IsEnabled = false;
+                addModeratorButton.IsEnabled = false;
+                privateMessages.IsEnabled = false;
+                dismissModerator.IsEnabled = false;
+                editMassege.IsEnabled = false;
+                deleteMessageButton.IsEnabled = false;
+            }
+            // a member but not an admin
+            else if (!_fm.isAdmin(userName, fd.forumName) && !_sUMC.isSuperUser(userName))
+            {
+                addModeratorButton.IsEnabled = false;
+                dismissModerator.IsEnabled = false;
+            }
+            // an admin or super user
+            else
+            {
+                // all open
+            }
         }
 
         private void ThreadView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -138,17 +167,7 @@ namespace PL
             listBox.Visibility = Visibility.Visible;
         }
 
-        private void MenuItem_Coupon(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void setNotifications(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void viewCoupons(object sender, RoutedEventArgs e)
         {
 
         }

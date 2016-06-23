@@ -40,11 +40,13 @@ namespace PL
             if(_whatToDo == -5|| _whatToDo ==- 7)
             {
                 setPassGrid.Visibility = Visibility.Visible;
+                backButton.Visibility = Visibility.Visible;
                 setIdentifyingQuestionsGrid.Visibility = Visibility.Collapsed;
             }
             else
             {
                 setPassGrid.Visibility = Visibility.Collapsed;
+                backButton.Visibility = Visibility.Visible;
                 setIdentifyingQuestionsGrid.Visibility = Visibility.Visible;
             }
         }
