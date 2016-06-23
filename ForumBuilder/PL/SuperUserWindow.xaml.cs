@@ -231,6 +231,21 @@ namespace PL
                         int minLengthOfPass = Int32.Parse(LengthCombo.SelectedItem.ToString());
                         _fData.forumPolicy.minLengthOfPassword = minLengthOfPass;
                     }
+
+                    if (radBtnNotificationModeOnline.IsChecked.Value)
+                        _fData.forumPolicy.notificationsType = ForumPolicyData.ONLINE_NOTIFICATIONS_TPYE;
+                    else if (radBtnNotificationModeOffline.IsChecked.Value)
+                        _fData.forumPolicy.notificationsType = ForumPolicyData.OFFLINE_NOTIFICATIONS_TPYE;
+                    if (radBtnNotificationModeSelective.IsChecked.Value)
+                    {
+                        _fData.forumPolicy.notificationsType = ForumPolicyData.SELECTIVE_NOTIFICATIONS_TPYE;
+                        _fData.forumPolicy.selectiveNotificationsUsers.Clear();
+                        foreach (Object item in lstBox_SelectedUsersToBeNotified.SelectedItems)
+                        {
+                            _fData.forumPolicy.selectiveNotificationsUsers.Add(item as String);
+                        }
+                    }
+
                     _fMC.setForumPreferences(_fData.forumName, _fData.description, _fData.forumPolicy, _myUser.userName);
                     MessageBox.Show("Preferences was successfully changed!");
                     descCheck.IsChecked = false;
@@ -377,6 +392,20 @@ namespace PL
                 MessageBox.Show("Please choose a forum from the list");
             }
         }
+
+        private void selectiveNotificationsCheckedEventHandler(object sender, RoutedEventArgs e)
+        {
+            if (_fData == null)
+            {
+                _fData = _fMC.getForum(_currentForum);
+            }
+            lstBox_SelectedUsersToBeNotified.Items.Clear();
+            foreach (string userName in _fData.members)
+            {
+                lstBox_SelectedUsersToBeNotified.Items.Add(userName);
+            }
+        }
+
     }
 }
         
