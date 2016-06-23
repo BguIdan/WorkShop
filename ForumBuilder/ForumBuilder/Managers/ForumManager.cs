@@ -141,5 +141,10 @@ namespace Service
         {
             return forumController.getUserSessionKey(username);
         }
+
+        public bool setAnswers(string forumName, string userName, string ans1, string ans2)
+        {
+            return forumController.setAnswers(forumName, userName, ans1, ans2);
+        }
     }
 }

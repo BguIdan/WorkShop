@@ -129,5 +129,10 @@ namespace WebClient.proxies
         {
             return Channel.getUserSessionKey(username);
         }
+
+        public bool setAnswers(string forumName, string userName, string ans1, string ans2)
+        {
+            return Channel.setAnswers(forumName, userName, ans1, ans2);
+        }
     }
 }

@@ -108,6 +108,15 @@ namespace PL
                             break;
                         case -5:
                             MessageBox.Show("Your password has expierd! it's time to change password");
+                            correntProblemsFromSetPrefferencesWindow newWin3 = new correntProblemsFromSetPrefferencesWindow(userName, _choosenForum, pass, sessionKey);
+                            newWin3.Show();
+                            this.Close();
+                            break;
+                        case -6:
+                            MessageBox.Show("needs to add new identifying questions");
+                            correntProblemsFromSetPrefferencesWindow newWin4 = new correntProblemsFromSetPrefferencesWindow(userName, _choosenForum, pass, sessionKey);
+                            newWin4.Show();
+                            this.Close();
                             break;
                         default:
                             MessageBox.Show("login failed");

@@ -13,6 +13,9 @@ namespace ForumBuilder.Common.ServiceContracts
     public interface IForumManager
     {
         [OperationContract]
+        bool setAnswers(string forumName, string userName, string ans1, string ans2);
+
+        [OperationContract]
         Boolean dismissAdmin(String adminToDismissed, String dismissingUserName, String forumName);
 
         [OperationContract]
