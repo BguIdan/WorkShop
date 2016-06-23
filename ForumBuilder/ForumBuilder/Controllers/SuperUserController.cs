@@ -31,6 +31,7 @@ namespace ForumBuilder.Controllers
 
         public String createForum(String forumName, String descrption, ForumPolicy fp, List<String> administrators, String superUserName)
         {
+
             if (forumName.Equals("") || descrption.Equals("") || fp.policy.Equals("") || fp.seniorityInForum<0||
                 fp.timeToPassExpiration<30 || fp.minLengthOfPassword<0 || administrators == null||
                 administrators.Count==0)
@@ -44,8 +45,28 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("create forum fail " + superUserName + " is not super user",0);
                 logger.logPrint("create forum fail " + superUserName + " is not super user",2);
                 return "create forum fail " + superUserName + " is not super user";
-            }                
-            else if (DB.createForum(forumName, descrption, fp))
+            }    
+            foreach(String user in administrators)
+            {
+                if (!isSuperUser(user)) {
+                    if (DB.getUser(user) == null)
+                    {
+                        logger.logPrint("create forum fail admin does not exist", 0);
+                        logger.logPrint("create forum fail admin does not exist", 2);
+                        return "create forum fail admin does not exist";
+                    }
+                    foreach (string f in forumController.getForums())
+                    {
+                        if (forumController.getForum(f).members.Contains(user))
+                        {
+                            logger.logPrint("create forum fail admin already member in anouther forum", 0);
+                            logger.logPrint("create forum fail admin already member in anouther forum", 2);
+                            return "create forum fail admin already member in anouther forum";
+                        }
+                    }
+                }
+            }            
+            if (DB.createForum(forumName, descrption, fp))
             {
                 this.forumController.addForum(forumName);
                 foreach(String admin in administrators)

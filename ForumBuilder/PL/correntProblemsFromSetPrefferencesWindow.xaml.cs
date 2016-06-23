@@ -53,7 +53,7 @@ namespace PL
         {
             string newPass = setPassTextBox.Text;
             UserManagerClient um = new UserManagerClient();
-            string response = um.setNewPassword(_userName, _forumName, newPass);
+            string response = um.setNewPassword(_userName, _forumName, newPass, _password);
             if (response.Equals("change password succeed"))
             {
                 login(newPass);
