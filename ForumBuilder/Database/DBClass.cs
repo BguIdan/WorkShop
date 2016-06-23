@@ -714,11 +714,12 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "SELECT  ans1 ans2 FROM  users where users.userName='" + userName + "'";
+                command.CommandText = "SELECT  ans1,ans2 FROM  users where users.userName='" + userName + "'";
                 OleDbDataReader reader = command.ExecuteReader();
                 List<String> answers = new List<String>();
-                answers.Add(reader.GetString(4));
-                answers.Add(reader.GetString(5));
+                reader.Read();
+                answers.Add(reader.GetString(0));
+                answers.Add(reader.GetString(1));
                 closeConnectionDB();
                 return answers;
             }
