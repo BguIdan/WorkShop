@@ -151,15 +151,21 @@ namespace ForumBuilder.Controllers
                     logger.logPrint("Register user faild, " + userName + " is already taken",2);
                     return "Register user faild, " + userName + " is already taken";
                 }
+                if (mail.IndexOf('@') <= 0 || mail.Substring(mail.IndexOf('@') + 1).IndexOf('.') <= 0)
+                {
+                    logger.logPrint("Register user faild, " + userName + " is already taken", 0);
+                    logger.logPrint("Register user faild, " + userName + " is already taken", 2);
+                    return "Register user faild, " + mail + " is not a valid mail address!";
+                }
                 if (DB.addUser(userName, password, mail, " ", " "))
                 {
-                    return  "Register user " + userName + "Complited" ;
+                    return "Register user " + userName + "completed";
                 }
                 return "fail to add user";
             }
             logger.logPrint("Register user faild, password not strong enough",0);
             logger.logPrint("Register user faild, password not strong enough",2);
-            return "Register user faild, password not strong enough";
+            return "Register user failed, one or more of the fields is empty";
         }
         public Boolean login(String user, String password, string email)
         {
