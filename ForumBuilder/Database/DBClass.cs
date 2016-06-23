@@ -237,7 +237,9 @@ namespace Database
                 closeConnectionDB();
                 posts = null;
             }
-            cache.intialLists(forums, subForums,users,superUsers, threads,posts);
+            List<Forum> fs = getForumsForInit();
+            List<SubForum> sfs = getSubForumsForInit();
+            cache.intialLists(fs, sfs,users,superUsers, threads,posts);
         }
 
         public void closeConnectionDB()

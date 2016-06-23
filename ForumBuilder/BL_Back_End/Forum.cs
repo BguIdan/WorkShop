@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace BL_Back_End
 {
-    public class Forum
+    public class 
+        Forum
     {
         private String _forumName;
         private String _description;
