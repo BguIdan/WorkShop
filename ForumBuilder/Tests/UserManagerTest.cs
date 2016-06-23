@@ -42,7 +42,7 @@ namespace Tests
             adminList.Add("admin");
             ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5, 0, new List<string>());
             ForumPolicyData fpd = new ForumPolicyData(fp.policy, fp.isQuestionIdentifying, fp.seniorityInForum, fp.deletePostByModerator, fp.timeToPassExpiration, fp.minNumOfModerators,
-                                                        fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword);
+                                                        fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword, 0, new List<string>());
             ForumData forum = new ForumData(forumName, "descr", fpd, new List<String>(), new List<String>());
             superUserController.createForum(forumName, "descr", fp, adminList, superUser.userName);
             Assert.IsTrue(this.forumManager.registerUser(userMember.userName, userMember.password, userMember.email, "ansss", "anssss", forumName).Equals("Register user succeed"));

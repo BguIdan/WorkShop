@@ -441,7 +441,14 @@ namespace ForumBuilder.Controllers
                 return false;
             foreach (String userName in loggedInUsers)
             {
-                if (channelsByLoggedInUsers[userName] != null)
+                if (channelsByLoggedInUsers[userName] != null &&
+                    (forumPolicy.notificationsType == ForumPolicy.SELECTIVE_NOTIFICATIONS_TPYE && 
+                                forumPolicy.selectiveNotificationsUsers.Contains(userName)
+                      //selective notifications is enabled and the current user is included
+                     ||
+                     forumPolicy.notificationsType != ForumPolicy.SELECTIVE_NOTIFICATIONS_TPYE)
+                     //offline/online notifications are enabled so all of the online users will be notified
+                    )
                 {
                     foreach (IUserNotificationsService channel in channelsByLoggedInUsers[userName])
                     {

@@ -108,7 +108,7 @@ namespace Service
             }
             ForumPolicyData fpd = new ForumPolicyData(temp.forumPolicy.policy, temp.forumPolicy.isQuestionIdentifying, temp.forumPolicy.seniorityInForum, temp.forumPolicy.deletePostByModerator,
                                                       temp.forumPolicy.timeToPassExpiration, temp.forumPolicy.minNumOfModerators, temp.forumPolicy.hasCapitalInPassword, temp.forumPolicy.hasNumberInPassword,
-                                                      temp.forumPolicy.minLengthOfPassword);
+                                                      temp.forumPolicy.minLengthOfPassword, temp.forumPolicy.notificationsType, temp.forumPolicy.selectiveNotificationsUsers);
             ForumData toReturn = new ForumData(temp.forumName, temp.description, fpd , temp.subForums, temp.members);
             return toReturn;
             

@@ -58,7 +58,11 @@ namespace PL
                     if (toSend.forumPolicy.notificationsType == ForumPolicyData.OFFLINE_NOTIFICATIONS_TPYE)
                     {
                         List<string> offlineNotifications = _fMC.getOfflineNotifications(_choosenForum, userName, sessionKey);
-                        MessageBox.Show(offlineNotifications[0]);
+                        if (offlineNotifications != null && offlineNotifications.Count > 0)
+                        {
+                            OfflineNotificationsWindow offlineNotificationsWindow = new OfflineNotificationsWindow(offlineNotifications);
+                            offlineNotificationsWindow.Show();
+                        }
                     }
 
                     MessageBox.Show("Login successful! your session code for is " + sessionKey.ToString());

@@ -56,8 +56,8 @@
             <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Margin="48,339,0,0" Text="Notifications Mode:" HorizontalAlignment="Left" Width="252" Height="20" VerticalAlignment="Top"/>
             <RadioButton x:Name="radBtnNotificationModeOnline" GroupName="notificationGroupMode" IsChecked="True" Margin="171,340,0,0" FontFamily="Cooper Black" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="62" MinHeight="15">Online</RadioButton>
             <RadioButton x:Name="radBtnNotificationModeOffline" GroupName="notificationGroupMode" Margin="240,340,0,0" FontFamily="Cooper Black" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="64" MinHeight="15">Offline</RadioButton>
-            <RadioButton x:Name="radBtnNotificationModeSelective" GroupName="notificationGroupMode" Margin="171,360,0,0" FontFamily="Cooper Black" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="70" MinHeight="15">Selective</RadioButton>
-            <ListBox x:Name="lstBoxSelectedUsersToBeNotified" Margin="254,360,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="60" Width="130" MinHeight="60" MinWidth="130"></ListBox>
+            <RadioButton x:Name="radBtnNotificationModeSelective" GroupName="notificationGroupMode" Margin="171,360,0,0" FontFamily="Cooper Black" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="70" MinHeight="15" Checked="selectiveNotificationsCheckedEventHandler">Selective</RadioButton>
+            <ListBox x:Name="lstBox_SelectedUsersToBeNotified" Margin="254,360,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="60" Width="130" MinHeight="60" MinWidth="130" SelectionMode="Multiple"></ListBox>
             <Button Name="setPrefBtn" FontFamily="Cooper Black" Content="Set Preferences" Margin="208,434,0,0" Width="115" Click="btn_SetForumPref" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" />
             <Button Name="backButton" Content="Back" FontFamily="cooper black" HorizontalAlignment="Left" Margin="58,434,0,0" Width="99" Click="backButton_Click" Height="20" VerticalAlignment="Top"/>
         </Grid>

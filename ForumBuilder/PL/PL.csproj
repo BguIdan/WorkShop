@@ -83,6 +83,9 @@
       <DependentUpon>ForumWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="notificationHost\ClientNotificationHost.cs" />
+    <Compile Include="OfflineNotificationsWindow.xaml.cs">
+      <DependentUpon>OfflineNotificationsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="privateMessagesWindow.xaml.cs">
       <DependentUpon>privateMessagesWindow.xaml</DependentUpon>
     </Compile>
@@ -152,6 +155,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="OfflineNotificationsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="privateMessagesWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

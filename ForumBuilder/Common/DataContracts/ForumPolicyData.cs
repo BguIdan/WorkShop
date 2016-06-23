@@ -67,7 +67,8 @@ namespace ForumBuilder.Common.DataContracts
         }
 
         public ForumPolicyData(String policy, bool isQuestionIdentifying, int seniorityInForum, bool deletePostByMderator, int timeToPassExpiration,
-                                int minNumOfModerator, bool hasCapitalInPassword, bool hasNumberInPassword, int minLengthOfPassword)
+                                int minNumOfModerator, bool hasCapitalInPassword, bool hasNumberInPassword, int minLengthOfPassword, int notificationsType,
+                                List<string> selectiveNotificationsUsers)
         {
             _policy = policy;
             _isQuestionIdentifying = isQuestionIdentifying;
@@ -78,7 +79,7 @@ namespace ForumBuilder.Common.DataContracts
             _hasCapitalInPassword = hasCapitalInPassword;
             _hasNumberInPassword = hasCapitalInPassword;
             _minLengthOfPassword = minLengthOfPassword;
-            _notificationsType = ONLINE_NOTIFICATIONS_TPYE;
+            _notificationsType = notificationsType;
             _selectiveNotificationsUsers = (selectiveNotificationsUsers != null) ? new List<String>(selectiveNotificationsUsers) : new List<string>();
         }
 

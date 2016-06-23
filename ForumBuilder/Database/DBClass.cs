@@ -473,7 +473,7 @@ namespace Database
             }
         }
         public Forum getforumByName(string forumName)
-        {
+            {
             return cache.getforumByName(forumName);
             /*foreach (Forum f in forums)
             {
@@ -823,6 +823,12 @@ namespace Database
                     "notificationsType=" + notificationsType +
                     " where forumName='" + forumName + "'";
                 command.ExecuteNonQuery();
+
+                OleDbCommand command3 = new OleDbCommand();
+                command3.Connection = connection;
+                command3.CommandText = "UPDATE members SET " +
+                        "selectiveNotificationsUser=No ";
+                command3.ExecuteNonQuery();
                 closeConnectionDB();
                 foreach (String mem in selectiveNotificationsUsers)
                 {
@@ -830,7 +836,7 @@ namespace Database
                     OleDbCommand command2 = new OleDbCommand();
                     command2.Connection = connection;
                     command2.CommandText = "UPDATE members SET " +
-                        "selectiveNotificationsUser='" + true + "' " +
+                        "selectiveNotificationsUser=Yes " +
                         " where forumName='" + forumName + "' and userName ='"+mem+"'";
                     command2.ExecuteNonQuery();
                     closeConnectionDB();
@@ -1800,7 +1806,7 @@ namespace Database
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
                 command.CommandText = "SELECT notification FROM offlineNotify where userName='"+userName+
-                    "' forumName='"+forumName+"'";
+                    "' and forumName='"+forumName+"'";
                 OleDbDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
@@ -1812,7 +1818,7 @@ namespace Database
                 OleDbCommand command1 = new OleDbCommand();
                 command1.Connection = connection;
                 command1.CommandText = "DELETE  from offlineNotify where userName='" + userName +
-                    "' forumName='" + forumName + "'";
+                    "' and forumName='" + forumName + "'";
                 command.ExecuteNonQuery();
                 closeConnectionDB();
                 return notifications;

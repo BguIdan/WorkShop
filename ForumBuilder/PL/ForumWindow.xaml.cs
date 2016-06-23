@@ -339,7 +339,11 @@ namespace PL
                 if (radBtnNotificationModeSelective.IsChecked.Value)
                 { 
                     _myforum.forumPolicy.notificationsType = ForumPolicyData.SELECTIVE_NOTIFICATIONS_TPYE;
-                    _myforum.forumPolicy.selectiveNotificationsUsers = new List<String>();//TODO gal selective nots
+                    _myforum.forumPolicy.selectiveNotificationsUsers.Clear();
+                    foreach (Object item in lstBox_SelectedUsersToBeNotified.SelectedItems)
+                    {
+                        _myforum.forumPolicy.selectiveNotificationsUsers.Add(item as String);
+                    }
                 }
 
                 _fMC.setForumPreferences(_myforum.forumName, _myforum.description, _myforum.forumPolicy, _userName);
@@ -516,6 +520,14 @@ namespace PL
                     exp.Content = post.content;
                     reportListBox.Items.Add(exp);
                 }
+            }
+        }
+
+        private void selectiveNotificationsCheckedEventHandler(object sender, RoutedEventArgs e)
+        {
+            foreach (string userName in _myforum.members)
+            {
+                lstBox_SelectedUsersToBeNotified.Items.Add(userName);
             }
         }
     }
