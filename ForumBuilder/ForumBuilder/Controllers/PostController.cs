@@ -103,9 +103,9 @@ namespace ForumBuilder.Controllers
                 && (!ForumController.getInstance.isAdmin(removerName, sf.forum)
                 && !(DB.getforumByName(sf.forum).forumPolicy.deletePostByModerator&&SubForumController.getInstance.isModerator(removerName, sf.name, sf.forum))))
             {
-                logger.logPrint("Delete thread comment, there is no permission to that user",0);
-                logger.logPrint("Delete thread comment, there is no permission to that user",2);
-                return "Delete thread comment, there is no permission to that user";
+                logger.logPrint("Delete post failed, there is no permission to that user", 0);
+                logger.logPrint("Delete post failed, there is no permission to that user", 2);
+                return "Delete post failed, there is no permission to that user";
             }
 //user notification mechanism
             List<String> usersToBeNotifiedForThreadDelition = new List<String>();

@@ -120,7 +120,7 @@ namespace ForumBuilder.Systems
             String email = "d@d.d";//getEmail();
 
             initialize(username, password, email);
-            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180,1, true, true, 2);
+            ForumPolicy fp = new ForumPolicy("p", true, 0, false, 180,1, true, true, 2);
             List<String> list = new List<String>();
             list.Add("idan");
             if (!SuperUserController.getInstance.createForum("f", "f",fp, list, "idan").Equals("Forum " + "f" + " creation success"))

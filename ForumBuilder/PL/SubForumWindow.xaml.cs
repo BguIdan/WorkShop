@@ -60,6 +60,7 @@ namespace PL
     {
         private PostManagerClient _pm;
         private ForumManagerClient _fm;
+        private SubForumManagerClient _sfm;
         private string _userName;
         private int _patentId;//used for adding post;
         private List<dataContainer> dataOfEachPost;
@@ -72,6 +73,7 @@ namespace PL
             InitializeComponent();
             _fm = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
             _pm = new PostManagerClient();
+            _sfm = new SubForumManagerClient();
             forumName.Content = "ForumName: " + fName;
             sForumName.Content = "Sub-ForumName: " + sfName;
             _userName = userName;
@@ -232,14 +234,26 @@ namespace PL
             }
             if (postToDelete != null)
             {
-                _pm.deletePost(postToDelete.id, _userName);
-                listBox.Items.RemoveAt(index);
-                if (index == 0)
+                string ans;
+                if (postToDelete.parentId == -1)
                 {
-                    SubForumWindow newWin = new SubForumWindow(_forumName, _subName, _userName, _sessionKey);
-                    newWin.Show();
-                    this.Close();
+                    ans = _sfm.deleteThread(postToDelete.id, _userName);
                 }
+                else
+                {
+                    ans = _pm.deletePost(postToDelete.id, _userName);
+                }
+                if (ans != "Delete post failed, there is no permission to that user")
+                {
+                    listBox.Items.RemoveAt(index);
+                    if (index == 0)
+                    {
+                        SubForumWindow newWin = new SubForumWindow(_forumName, _subName, _userName, _sessionKey);
+                        newWin.Show();
+                        this.Close();
+                    }
+                }
+                else { MessageBox.Show(ans); }
             }
             else
             {
