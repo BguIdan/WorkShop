@@ -248,7 +248,7 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Register user faild, ansers are worng acording to forum policy", 2);
                 return "Register user faild, ansers are worng acording to forum policy";
             }
-            if (userName.Length > 0 && f.forumPolicy.minLengthOfPassword < password.Length && mail.Length > 0 &&
+            if (userName.Length > 0 && f.forumPolicy.minLengthOfPassword <= password.Length && mail.Length > 0 &&
                 (!f.forumPolicy.hasCapitalInPassword || (f.forumPolicy.hasCapitalInPassword && hasCapital(password))) &&
                 (!f.forumPolicy.hasNumberInPassword || (f.forumPolicy.hasNumberInPassword && hasNumber(password)))) //&&
                 //(ans1 != null && ans2 != null) &&

@@ -7,10 +7,10 @@
         mc:Ignorable="d"
         Title="correntProblemsFromSetPrefferencesWindow" Height="350" Width="400">
     <Grid>
-        <Grid Name="setPassGrid" Visibility="Collapsed">
+        <Grid Name="setPassGrid" Visibility="Visible">
             <Label x:Name="label" FontSize="26" FontFamily="cooper black" Content="Set Password" Height="43" Margin="97,67,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="198"/>
             <Label x:Name="label1" FontFamily="cooper black" Content="Enter new password:" HorizontalAlignment="Left" Height="26" Margin="43,176,0,0" VerticalAlignment="Top" Width="142"/>
-            <TextBox x:Name="setPassTextBox" HorizontalAlignment="Left" Height="23" Margin="220,179,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="135"/>
+            <PasswordBox x:Name="setPassTextBox" HorizontalAlignment="Left" Height="23" Margin="220,179,0,0" VerticalAlignment="Top" Width="135"/>
             <Button x:Name="setPasswordButton" FontFamily="cooper black" Content="Set Password" HorizontalAlignment="Left" Margin="235,264,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="1.086,-1.011" Height="24" Click="setPasswordButton_Click"/>
         </Grid>
         <Grid Name="setIdentifyingQuestionsGrid" Visibility="Collapsed">

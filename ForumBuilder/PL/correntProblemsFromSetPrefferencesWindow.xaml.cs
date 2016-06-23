@@ -53,7 +53,7 @@ namespace PL
 
         private void setPasswordButton_Click(object sender, RoutedEventArgs e)
         {
-            string newPass = setPassTextBox.Text;
+            string newPass = setPassTextBox.Password;
             UserManagerClient um = new UserManagerClient();
             string response = um.setNewPassword(_userName, _forumName, newPass, _password);
             if (response.Equals("change password succeed"))
