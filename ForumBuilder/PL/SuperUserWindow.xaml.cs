@@ -262,7 +262,7 @@ namespace PL
             string pass = Password.Password;
             string userMail = email.Text;
             string addUser = _sUMC.addUser(name, pass, userMail, _myUser.userName);
-            bool succ = addUser.Equals("Register user " + name + "Complited");
+            bool succ = addUser.Equals("Register user " + name + "completed");
             if (!succ)
             {
                 MessageBox.Show(addUser);

@@ -21,7 +21,7 @@
             <MenuItem  Name="UsrMenu" Width="120" IsCheckable="False" Cursor="None" HorizontalAlignment="Right"/>
             <MenuItem  Name="sessionMenu" Width="140" IsCheckable="False" Cursor="None" HorizontalAlignment="Right"/>
         </Menu>
-        <Grid Name="mainGrid" Visibility="Visible">
+        <Grid Name="mainGrid" Visibility="Collapsed">
             <Label Name="ForumName" FontSize="22" FontFamily="Cooper Black" Margin="0,30,0,0" Height="32" VerticalAlignment="Top"/>
             <Label Name="UsrName" FontSize="12" FontFamily="Cooper Black" Margin="10,70,203,0" Height="24" VerticalAlignment="Top"/>
             <Label Name="session" FontSize="12" FontFamily="Cooper Black" Margin="194,70,0,0" Height="24" VerticalAlignment="Top"/>
@@ -67,11 +67,11 @@
             <Button Name="yesBtn" Click="btn_toSetPref" FontFamily="Cooper Black" Content="Yes" Margin="41,68,0,0" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="74" />
             <Button Name="noBtn" Click="btn_toSetPref" FontFamily="Cooper Black" Content="No" Margin="0,68,41,0" Height="22" VerticalAlignment="Top" HorizontalAlignment="Right" Width="74" />
         </Grid>
-        <Grid Name="AddSubForum" Visibility="Collapsed" Margin="0,24,0,0" HorizontalAlignment="Right" Width="382">
+        <Grid Name="AddSubForum" Visibility="Visible" Margin="0,24,0,0" HorizontalAlignment="Right" Width="382">
             <Button x:Name="backButton1" Content="Back" FontFamily="cooper black" HorizontalAlignment="Left" Margin="49,274,0,0" Width="99" Click="backButton_Click" Height="22" VerticalAlignment="Top"/>
             <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Text="Please enter forum name and select a member to be a moderator:" VerticalAlignment="Top" Height="28" Margin="44,84,0,0" HorizontalAlignment="Left" Width="228"/>
             <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Margin="48,148,0,0" Text="Sub-Forum Name:" HorizontalAlignment="Left" Width="123"/>
-            <TextBox Name="subForumName" Margin="205,148,0,0" TextWrapping="Wrap" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120"/>
+            <TextBox Name="subForumName" Margin="205,148,0,0" TextWrapping="Wrap" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120"/>
             <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Margin="48,174,0,0" Text="Forum Member:" HorizontalAlignment="Left" Width="100" Height="20" VerticalAlignment="Top"/>
             <TextBox Name="moderatorsTextBox" TextWrapping="Wrap" Text="" Margin="205,174,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120"/>
             <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Margin="48,200,0,0" Text="Managing Duration Time: (In Days)" HorizontalAlignment="Left" Width="123" Height="30" VerticalAlignment="Top"/>
