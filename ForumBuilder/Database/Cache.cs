@@ -354,8 +354,11 @@ namespace DataBase
         {
             _users[userName].password = password;
             _users[userName].lastTimeUpdatePassword = DateTime.Today;
-            _superUsers[userName].password = password;
-            _superUsers[userName].lastTimeUpdatePassword = DateTime.Today;
+            if (_superUsers.ContainsKey(userName))
+            {
+                _superUsers[userName].password = password;
+                _superUsers[userName].lastTimeUpdatePassword = DateTime.Today;
+            }
             return true;
         }
 

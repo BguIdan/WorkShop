@@ -321,16 +321,12 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "UPDATE users SET " +
-                    "password='" + password + "' "  +
-                    "lastTimePasswordChanged= "+ DateTime.Today.Day + "/" + DateTime.Today.Month + "/" + DateTime.Today.Year+
-                    " where userName='" + userName + "'";
+                command.CommandText = "UPDATE users SET users.[password] = '" + enc(password) + "', users.lastTimePasswordChanged = #" + DateTime.Today.Month + " / " + DateTime.Today.Day + " / " + DateTime.Today.Year + "# WHERE(((users.userName) = '" + userName + "'))";
                 command.ExecuteNonQuery();
                 closeConnectionDB();
-                //return true;
                 return cache.setPassword(userName, password);
             }
-            catch
+            catch(Exception e)
             {
                 closeConnectionDB();
                 return false;
