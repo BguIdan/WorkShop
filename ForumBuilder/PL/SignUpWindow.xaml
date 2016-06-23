@@ -12,7 +12,7 @@
             <TextBox Name="name" Margin="189,138,0,0" TextWrapping="Wrap" Text="" Height="22" HorizontalAlignment="Left" Width="142" VerticalAlignment="Top"/>
             <PasswordBox Name="Password" Margin="189,163,0,0" Height="22" HorizontalAlignment="Left" Width="142" VerticalAlignment="Top"/>
             <TextBox Name="mail" Margin="189,190,0,0" TextWrapping="Wrap" Height="22" HorizontalAlignment="Left" Width="142" VerticalAlignment="Top"/>
-            <Button FontFamily="Cooper Black" Width="100" Content="Register" Margin="290,340,0,0" Click="secUserRegistration" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top"/>
+            <Button FontFamily="Cooper Black" Width="100" Content="Register" Margin="290,340,0,0" Click="UserRegistration" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top"/>
             <Button FontFamily="Cooper Black" Width="100" Content="Back" Margin="27,340,0,0" Click="backToMain" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top"/>
         </Grid>
 
