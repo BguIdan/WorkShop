@@ -39,7 +39,7 @@ namespace Tests
             List<string> adminList = new List<string>();
             adminList.Add("admin");
             adminList.Add("admin2");
-            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
+            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5, 0, new List<string>());
             this.forum = new Forum("testForum", "descr",fp,adminList);            
             superUser1 = new User("tomer", "1qW23", "fkfkf@wkk.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
             SuperUserController.getInstance.addSuperUser(superUser1.email, superUser1.password, superUser1.userName);
@@ -252,7 +252,7 @@ namespace Tests
          {
              String forumName = this.forum.forumName;
              String adminName = this.userAdmin.userName;
-             ForumPolicy fp = new ForumPolicy("new policy", true, 0, true, 365, 1, false, false, 5);
+             ForumPolicy fp = new ForumPolicy("new policy", true, 0, true, 365, 1, false, false, 5, 0, new List<string>());
              Assert.IsTrue(this.forumController.setForumPreferences(forumName, "newDescr", fp, adminName).Equals("preferences had changed successfully"), "policy change should be successful");
              Assert.IsFalse(this.forumController.registerUser("newUser", "123", "use@gmail.com", "", "", forumName).Equals("Register user succeed"));
          }
@@ -261,7 +261,7 @@ namespace Tests
          {
              String forumName = this.forum.forumName;
              String adminName = this.userAdmin.userName;
-             ForumPolicy fp = new ForumPolicy("new policy", true, 0, true, 365, 1, false, false, 5);
+             ForumPolicy fp = new ForumPolicy("new policy", true, 0, true, 365, 1, false, false, 5, 0, new List<string>());
              Assert.IsTrue(this.forumController.setForumPreferences(forumName, "newDescr", fp, adminName).Equals("preferences had changed successfully"), "policy change should be successful");
              Assert.IsFalse(this.forumController.registerUser("newUser", "123", "use@gmail.com", "sss", "", forumName).Equals("Register user succeed"));
          }
@@ -272,7 +272,7 @@ namespace Tests
          {
              String forumName = this.forum.forumName;
              String adminName = this.userAdmin.userName;
-             ForumPolicy fp = new ForumPolicy("new policy", true, 0, true, 365, 1, false, false, 5);
+             ForumPolicy fp = new ForumPolicy("new policy", true, 0, true, 365, 1, false, false, 5, 0, new List<string>());
              Assert.IsTrue(this.forumController.setForumPreferences(forumName, "newDescr", fp, adminName).Equals("preferences had changed successfully"), "policy change should be successful");
              Assert.IsTrue(this.forumController.registerUser("newUser", "123452", "use@gmail.com", "ans1", "ans2", forumName).Equals("Register user succeed"));
          }
@@ -282,7 +282,7 @@ namespace Tests
          {
              String forumName = this.forum.forumName;
              String adminName = this.userAdmin.userName;
-             ForumPolicy fp = new ForumPolicy("new policy", true, 0, true, 365, 1, false, true, 5);
+             ForumPolicy fp = new ForumPolicy("new policy", true, 0, true, 365, 1, false, true, 5, 0, new List<string>());
              Assert.IsTrue(this.forumController.setForumPreferences(forumName, "newDescr", fp, adminName).Equals("preferences had changed successfully"), "policy change should be successful");
              Assert.IsFalse(this.forumController.registerUser("newUser", "asssdf", "use@gmail.com", "", "", forumName).Equals("Register user succeed"));
          }
@@ -292,7 +292,7 @@ namespace Tests
          {
              String forumName = this.forum.forumName;
              String adminName = this.userAdmin.userName;
-             ForumPolicy fp = new ForumPolicy("new policy", true, 0, true, 365, 1, true, false, 5);
+             ForumPolicy fp = new ForumPolicy("new policy", true, 0, true, 365, 1, true, false, 5, 0, new List<string>());
              Assert.IsTrue(this.forumController.setForumPreferences(forumName, "newDescr", fp, adminName).Equals("preferences had changed successfully"), "policy change should be successful");
              Assert.IsFalse(this.forumController.registerUser("newUser", "asssdf", "use@gmail.com", "", "", forumName).Equals("Register user succeed"));
          }
@@ -312,7 +312,7 @@ namespace Tests
             String adminName = this.userAdmin.userName;
             Assert.AreNotEqual(oldPolicy, newPolicy, false, "the new policy should be different from the old one");
             Assert.AreNotEqual(oldDescription, newDescr, false, "the new description should be different from the old one");
-            ForumPolicy fp = new ForumPolicy(newPolicy, true, 0, true, 180, 1, true, true, 2);
+            ForumPolicy fp = new ForumPolicy(newPolicy, true, 0, true, 180, 1, true, true, 2, 0, new List<string>());
             Assert.IsTrue(this.forumController.setForumPreferences(forumName, newDescr, fp, adminName).Equals("preferences had changed successfully"), "policy change should be successful");
             Assert.AreEqual(this.forumController.getForumPolicy(forumName), newPolicy, false, "the new policy should be return after the change");
             Assert.AreEqual(this.forumController.getForumDescription(forumName), newDescr, false, "the new description should be return after the change");;
@@ -323,7 +323,7 @@ namespace Tests
         {
             String forumName = this.forum.forumName;
             String adminName = this.userAdmin.userName;
-            ForumPolicy fp = new ForumPolicy("new policy", false, 0, true, 365, 1, false, false, 5);
+            ForumPolicy fp = new ForumPolicy("new policy", false, 0, true, 365, 1, false, false, 5, 0, new List<string>());
             Assert.IsTrue(this.forumController.setForumPreferences(forumName, "newDescr", fp, adminName).Equals("preferences had changed successfully"), "policy change should be successful");
             Assert.IsFalse(this.forumController.registerUser("newUser", "123", "use@gmail.com", "", "", forumName).Equals("Register user succeed"));
         }
@@ -336,7 +336,7 @@ namespace Tests
             String oldPolicy = this.forumController.getForumPolicy(forumName);
             String oldDescr = this.forumController.getForumDescription(forumName);
             String adminName = this.userAdmin.userName;
-            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
+            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5, 0, new List<string>());
             Assert.IsFalse(this.forumController.setForumPreferences(forumName, null, fp, adminName).Equals("preferences had changed successfully"), "policy change with null should not be successful");
             Assert.AreEqual(this.forumController.getForumPolicy(forumName), oldPolicy, false, "after an unsuccessful change, the old policy should be returned");
             Assert.AreEqual(this.forumController.getForumDescription(forumName), oldDescr, false, "after an unsuccessful change, the old description should be returned");
@@ -350,7 +350,7 @@ namespace Tests
             String oldPolicy = this.forumController.getForumPolicy(forumName);
             String oldDescr = this.forumController.getForumDescription(forumName);
             String adminName = this.userAdmin.userName;
-            ForumPolicy fp = new ForumPolicy("", true, 0, true, 180, 1, true, true, 5);
+            ForumPolicy fp = new ForumPolicy("", true, 0, true, 180, 1, true, true, 5, 0, new List<string>());
             Assert.IsTrue(this.forumController.setForumPreferences(forumName, "", fp, adminName).Equals("preferences had changed successfully"), "policy change with null should not be successful");
             Assert.AreEqual(this.forumController.getForumPolicy(forumName), "", false, "after an unsuccessful change, the old policy should be returned");
             Assert.AreEqual(this.forumController.getForumDescription(forumName), "", false, "after an unsuccessful change, the old description should be returned");

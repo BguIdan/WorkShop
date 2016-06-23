@@ -38,7 +38,7 @@ namespace Service
             return superUserController.createForum(forumName, descrption, new ForumPolicy(fpd.policy,
                 fpd.isQuestionIdentifying, fpd.seniorityInForum, fpd.deletePostByModerator,
                     fpd.timeToPassExpiration, fpd.minNumOfModerator, fpd.hasCapitalInPassword, fpd.hasNumberInPassword,
-                    fpd.minLengthOfPassword), administrators, superUserName);
+                    fpd.minLengthOfPassword, 0, new List<string>()), administrators, superUserName);
         }
 
         public Boolean initialize(String name, String password, String email)

@@ -429,6 +429,7 @@ namespace ForumBuilder.Controllers
 
         public Boolean sendThreadCreationNotification(String headLine, String content, String publisherName, String forumName, String subForumName)
         {
+            ForumPolicy forumPolicy = DB.getforumByName(forumName).forumPolicy;
             if (loggedInUsersByForum == null)
                 this.loggedInUsersByForum = new Dictionary<String, List<String>>();
             List<String> loggedInUsers = this.loggedInUsersByForum[forumName];
@@ -444,11 +445,25 @@ namespace ForumBuilder.Controllers
                     }
                 }
             }
+            if (forumPolicy.notificationsType == ForumPolicy.OFFLINE_NOTIFICATIONS_TPYE)
+            {
+                List<string> offlineUsers = DB.getMembersOfForum(forumName);
+                foreach (String user in loggedInUsers)
+                {
+                    offlineUsers.Remove(user);
+                }
+                foreach (String offUser in offlineUsers)
+                {
+                    DB.NotifyOfflineUser(forumName, offUser,
+                        publisherName + " published a post in " + forumName + "'s sub-forum " + subForumName);
+                }
+            }
             return true;
         }
 
         public Boolean sendPostModificationNotification(String forumName, String publisherName, String title, String notifiedUser)
         {
+            ForumPolicy forumPolicy = DB.getforumByName(forumName).forumPolicy;
             if (loggedInUsersByForum == null)
                 return false;
             List<String> loggedInUsers = this.loggedInUsersByForum[forumName];
@@ -465,11 +480,17 @@ namespace ForumBuilder.Controllers
                     }
                 }
             }
+            else if (forumPolicy.notificationsType == ForumPolicy.OFFLINE_NOTIFICATIONS_TPYE)
+            {
+                    DB.NotifyOfflineUser(forumName, notifiedUser,
+                        publisherName + "'s post you were following in " + forumName + " was modified (" + title + ")");
+            }
             return true;
         }
 
         public Boolean sendPostDelitionNotification(String forumName, String publisherName, String notifiedUser)
         {
+            ForumPolicy forumPolicy = DB.getforumByName(forumName).forumPolicy;
             if (loggedInUsersByForum == null)
                 return false;
             List<String> loggedInUsers = this.loggedInUsersByForum[forumName];
@@ -485,6 +506,11 @@ namespace ForumBuilder.Controllers
                         channel.applyPostDelitionNotification(forumName, publisherName);
                     }
                 }
+            }
+            else if (forumPolicy.notificationsType == ForumPolicy.OFFLINE_NOTIFICATIONS_TPYE)
+            {
+                DB.NotifyOfflineUser(forumName, notifiedUser,
+                    publisherName + "'s post you were following in " + forumName + " was deleted");
             }
             return true;
         }
@@ -569,6 +595,7 @@ namespace ForumBuilder.Controllers
 
         public void notifyUserOnNewPrivateMessage(String forumName, String sender, String addressee, String content)
         {
+            ForumPolicy forumPolicy = DB.getforumByName(forumName).forumPolicy;
             List<String> currentlyLoggedInUsers = this.loggedInUsersByForum[forumName];
             if (currentlyLoggedInUsers == null || !currentlyLoggedInUsers.Contains(addressee))
                 return;
@@ -580,12 +607,18 @@ namespace ForumBuilder.Controllers
                     channel.sendUserMessage(sender, content);
                 }
             }
+            else if (forumPolicy.notificationsType == ForumPolicy.OFFLINE_NOTIFICATIONS_TPYE)
+            {
+                DB.NotifyOfflineUser(forumName, addressee,
+                    sender + "'s post you were following in " + forumName + " was deleted");
+            }
         }
 
         public int getUserSessionKey(string username)
         {
             return clientSessionKeyByUser[username];
         }
+
 
         public Boolean needsToAddQuestions (string userName, string forumName)
         {
@@ -610,6 +643,20 @@ namespace ForumBuilder.Controllers
             if (ans1 == null || ans2 == null || ans1.Equals("") || ans2.Equals(""))
                 return false;
             return DB.setAnswers(userName, ans1, ans2);
+		}
+
+            
+        public List<string> getOfflineNotifications(String forumName, String userName, int sessionKey)
+        {
+            Forum forum = DB.getforumByName(forumName);
+            if (forum == null || forum.forumPolicy.notificationsType != ForumPolicy.OFFLINE_NOTIFICATIONS_TPYE)
+            {
+                return new List<string>();
+            }
+            if (sessionKey == clientSessionKeyByUser[userName])//authentication succeeded
+                return DB.clearOfflineNotifications(forumName, userName);
+            else 
+                return new List<string>();
         }
     }
 }

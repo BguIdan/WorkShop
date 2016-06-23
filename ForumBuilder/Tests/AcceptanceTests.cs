@@ -30,7 +30,7 @@ namespace Tests
             UserData superUser = new UserData("tomer", "1qW", "fkfkf@wkk.com");
             superUserController.addSuperUser(superUser.email, superUser.password, superUser.userName);
             IForumManager forum = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
-            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
+            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5, 0, new List<string>());
             ForumPolicyData fpd = new ForumPolicyData(fp.policy, fp.isQuestionIdentifying, fp.seniorityInForum, fp.deletePostByModerator, fp.timeToPassExpiration, fp.minNumOfModerators,
                                                         fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword);
             ForumData forumData = new ForumData("testForum", "descr", fpd, new List<String>(), new List<String>());
@@ -73,7 +73,7 @@ namespace Tests
             UserData superUser = new UserData("tomer", "1qW", "fkfkf@wkk.com");
             superUserController.addSuperUser(superUser.email, superUser.password, superUser.userName);
             IForumManager forum = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
-            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
+            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5, 0, new List<string>());
             ForumPolicyData fpd = new ForumPolicyData(fp.policy, fp.isQuestionIdentifying, fp.seniorityInForum, fp.deletePostByModerator, fp.timeToPassExpiration, fp.minNumOfModerators,
                                                         fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword);
             ForumData forumData = new ForumData("testForum", "descr", fpd, new List<String>(), new List<String>());
@@ -104,7 +104,7 @@ namespace Tests
             UserData superUser = new UserData("tomer", "1qW", "fkfkf@wkk.com");
             superUserController.addSuperUser(superUser.email, superUser.password, superUser.userName);
             IForumManager forum = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
-            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
+            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5, 0, new List<string>());
             ForumPolicyData fpd = new ForumPolicyData(fp.policy, fp.isQuestionIdentifying, fp.seniorityInForum, fp.deletePostByModerator, fp.timeToPassExpiration, fp.minNumOfModerators,
                                                         fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword);
             ForumData forumData = new ForumData("testForum", "descr", fpd, new List<String>(), new List<String>());
@@ -133,7 +133,7 @@ namespace Tests
             UserData superUser = new UserData("tomer", "1qW", "fkfkf@wkk.com");
             superUserController.addSuperUser(superUser.email, superUser.password, superUser.userName);
             IForumManager forum = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
-            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
+            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5, 0, new List<string>());
             ForumPolicyData fpd = new ForumPolicyData(fp.policy, fp.isQuestionIdentifying, fp.seniorityInForum, fp.deletePostByModerator, fp.timeToPassExpiration, fp.minNumOfModerators,
                                                         fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword);
             ForumData forumData = new ForumData("testForum", "descr", fpd, new List<String>(), new List<String>());
@@ -164,7 +164,7 @@ namespace Tests
             UserData superUser = new UserData("tomer", "1qW", "fkfkf@wkk.com");
             superUserController.addSuperUser(superUser.email, superUser.password, superUser.userName);
             IForumManager forumMan = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
-            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
+            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5, 0, new List<string>());
             ForumPolicyData fpd = new ForumPolicyData(fp.policy, fp.isQuestionIdentifying, fp.seniorityInForum, fp.deletePostByModerator, fp.timeToPassExpiration, fp.minNumOfModerators,
                                                         fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword);
             ForumData forumData = new ForumData("testForum", "descr", fpd, new List<String>(), new List<String>());
@@ -191,7 +191,7 @@ namespace Tests
             UserData superUser = new UserData("tomer", "1qW", "fkfkf@wkk.com");
             superUserController.addSuperUser(superUser.email, superUser.password, superUser.userName);
             IForumManager forumMan = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
-            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
+            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5, 0, new List<string>());
             ForumPolicyData fpd = new ForumPolicyData(fp.policy, fp.isQuestionIdentifying, fp.seniorityInForum, fp.deletePostByModerator, fp.timeToPassExpiration, fp.minNumOfModerators,
                                                         fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword);
             ForumData forumData = new ForumData("testForum", "descr", fpd, new List<String>(), new List<String>());
@@ -231,7 +231,7 @@ namespace Tests
             UserData superUser = new UserData("tomer", "1qW", "fkfkf@wkk.com");
             superUserController.addSuperUser(superUser.email, superUser.password, superUser.userName);
             IForumManager forum = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
-            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
+            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5, 0, new List<string>());
             ForumPolicyData fpd = new ForumPolicyData(fp.policy, fp.isQuestionIdentifying, fp.seniorityInForum, fp.deletePostByModerator, fp.timeToPassExpiration, fp.minNumOfModerators,
                                                         fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword);
             ForumData forumData = new ForumData("testForum", "descr", fpd, new List<String>(), new List<String>());

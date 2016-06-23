@@ -86,7 +86,8 @@ namespace Service
         public String setForumPreferences(String forumName, String newDescription, ForumPolicyData fpd, String setterUserName)
         {
             ForumPolicy fp = new ForumPolicy(fpd.policy,fpd.isQuestionIdentifying,fpd.seniorityInForum,fpd.deletePostByModerator,
-                fpd.timeToPassExpiration,fpd.minNumOfModerator,fpd.hasCapitalInPassword,fpd.hasNumberInPassword,fpd.minLengthOfPassword);
+                fpd.timeToPassExpiration,fpd.minNumOfModerator,fpd.hasCapitalInPassword,fpd.hasNumberInPassword,fpd.minLengthOfPassword,
+                fpd.notificationsType, fpd.selectiveNotificationsUsers);
             return forumController.setForumPreferences(forumName, newDescription, fp, setterUserName);
         }
         public String getForumPolicy(String forumName)
@@ -142,9 +143,17 @@ namespace Service
             return forumController.getUserSessionKey(username);
         }
 
+
         public bool setAnswers(string forumName, string userName, string ans1, string ans2)
         {
             return forumController.setAnswers(forumName, userName, ans1, ans2);
         }
+
+
+        public List<string> getOfflineNotifications(String forumName, String userName, int sessionKey)
+        {
+            return forumController.getOfflineNotifications(forumName, userName, sessionKey);
+        }
+        
     }
 }

@@ -71,5 +71,8 @@ namespace ForumBuilder.Common.ServiceContracts
 
         [OperationContract]
         int getUserSessionKey(string username);
+
+        [OperationContract]
+        List<string> getOfflineNotifications(String forumName, String userName, int sessionKey);
     }
 }

@@ -46,7 +46,7 @@ namespace Tests
             modList.Add(this.userModerator.userName, new DateTime(2030, 1, 1));
             List<string> adminList = new List<string>();
             adminList.Add("admin");
-            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
+            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5, 0, new List<string>());
             this.forum = new Forum(this.forumName, "descr",fp, adminList);
             superUser1 = DBClass.getInstance.getSuperUser("tomer");
             SuperUserController.getInstance.addSuperUser("fkfkf@wkk.com", "1qW", "tomer");
@@ -222,7 +222,7 @@ namespace Tests
         [TestMethod]
         public void test_nominateModerator_when_seniority_to_short()
         {
-            ForumPolicy newfp = new ForumPolicy("p", true, 2, true, 180, 1, true, true, 5);
+            ForumPolicy newfp = new ForumPolicy("p", true, 2, true, 180, 1, true, true, 5, 0, new List<string>());
             Assert.IsTrue(forumController.setForumPreferences(this.forumName, "new Des", newfp, userAdmin.userName).Equals("preferences had changed successfully"));
             this.userMember = new User("mem", "Mempass1", "mem@gmail.com", new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day));
             Assert.IsFalse(this.subForum.nominateModerator(this.userMember.userName, this.userAdmin.userName, new DateTime(2030, 1, 1), this.subForumName, this.forumName).Equals("nominate moderator succeed"), "nomination with empty string as name should not be successful");
@@ -231,7 +231,7 @@ namespace Tests
         [TestMethod]
         public void test_nominateModerator_not_enough_moderators()
         {
-            ForumPolicy newfp = new ForumPolicy("p", true, 2, true, 180, 2, true, true, 5);
+            ForumPolicy newfp = new ForumPolicy("p", true, 2, true, 180, 2, true, true, 5, 0, new List<string>());
             Assert.IsTrue(forumController.setForumPreferences(this.forumName, "new Des", newfp, userAdmin.userName).Equals("preferences had changed successfully"));
             this.userMember = new User("mem", "Mempass1", "mem@gmail.com", new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day));
             Assert.IsFalse(this.subForum.nominateModerator(this.userMember.userName, this.userAdmin.userName, new DateTime(2030, 1, 1), this.subForumName, this.forumName).Equals("nominate moderator succeed"), "nomination with empty string as name should not be successful");

@@ -6,11 +6,18 @@ using System.Threading.Tasks;
 using System.ServiceModel;
 using System.Runtime.Serialization;
 
+
 namespace ForumBuilder.Common.DataContracts
 {
+
     [DataContract]
     public class ForumPolicyData
     {
+
+        public const int ONLINE_NOTIFICATIONS_TPYE = 0;
+        public const int OFFLINE_NOTIFICATIONS_TPYE = 1;
+        public const int SELECTIVE_NOTIFICATIONS_TPYE = 2;
+
         [DataMember]
         private String _policy;
 
@@ -38,6 +45,12 @@ namespace ForumBuilder.Common.DataContracts
         [DataMember]
         private int _minLengthOfPassword;
 
+        [DataMember]
+        private int _notificationsType;
+
+        [DataMember]
+        private List<String> _selectiveNotificationsUsers;
+
         public ForumPolicyData()
         {
             _policy = " ";
@@ -49,6 +62,7 @@ namespace ForumBuilder.Common.DataContracts
             _hasCapitalInPassword = false;
             _hasNumberInPassword = false;
             _minLengthOfPassword = 5;
+            _notificationsType = ONLINE_NOTIFICATIONS_TPYE;
 
         }
 
@@ -64,6 +78,7 @@ namespace ForumBuilder.Common.DataContracts
             _hasCapitalInPassword = hasCapitalInPassword;
             _hasNumberInPassword = hasCapitalInPassword;
             _minLengthOfPassword = minLengthOfPassword;
+            _notificationsType = ONLINE_NOTIFICATIONS_TPYE;
         }
 
         public Boolean isQuestionIdentifying
@@ -118,6 +133,18 @@ namespace ForumBuilder.Common.DataContracts
         {
             get { return _minLengthOfPassword; }
             set { _minLengthOfPassword = value; }
+        }
+
+        public int notificationsType
+        {
+            get { return _notificationsType; }
+            set { _notificationsType = value; }
+        }
+
+        public List<String> selectiveNotificationsUsers
+        {
+            get { return _selectiveNotificationsUsers; }
+            set { _selectiveNotificationsUsers = new List<String>(value); }
         }
 
     }

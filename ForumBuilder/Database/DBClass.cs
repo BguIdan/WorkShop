@@ -1871,7 +1871,7 @@ namespace Database
                     reader3.Read();
                     ForumPolicy policy = new ForumPolicy(reader3.GetString(1), reader3.GetBoolean(2), reader3.GetInt32(3),
                         reader3.GetBoolean(4), reader3.GetInt32(5), reader3.GetInt32(6), reader3.GetBoolean(7),
-                        reader3.GetBoolean(8), reader3.GetInt32(9));
+                        reader3.GetBoolean(8), reader3.GetInt32(9), 0, new List<string>());//TODO gal selective notes
                     forum = new Forum(reader.GetString(0), reader.GetString(1), policy, administrators);
                     List<String> members = getMembersOfForumOld(forum.forumName);
                     forum.members = members;
@@ -2019,5 +2019,6 @@ namespace Database
                 return null;
             }
         }
+
     }
 }
