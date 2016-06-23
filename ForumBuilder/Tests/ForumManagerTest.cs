@@ -46,7 +46,7 @@ namespace Tests
             List<string> adminList = new List<string>();
             adminList.Add("admin");
             adminList.Add("admin2");
-            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
+            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5, 0, new List<string>());
             ForumPolicyData fpd = new ForumPolicyData(fp.policy, fp.isQuestionIdentifying, fp.seniorityInForum, fp.deletePostByModerator, fp.timeToPassExpiration, fp.minNumOfModerators,
                                                         fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword);
             this.forum = new ForumData("testForum", "descr", fpd, new List<String>(), new List<String>());

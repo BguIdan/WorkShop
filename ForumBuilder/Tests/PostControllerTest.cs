@@ -47,7 +47,7 @@ namespace Tests
             adminList.Add(this.userAdmin.userName);
             Dictionary<String, DateTime> modList = new Dictionary<String, DateTime>();
             modList.Add(this.userMod.userName, new DateTime(2030, 1, 1));
-            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
+            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5, 0, new List<string>());
             this.forum = new Forum(this.forumName, "descr",fp, adminList);
             this.superUser = new User("tomer", "1qW", "fkfkf@wkk.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
             SuperUserController.getInstance.addSuperUser(this.superUser.email, superUser.password, superUser.userName);
@@ -779,7 +779,7 @@ namespace Tests
         {
             String headLine = "head";
             String content = "content";
-            ForumPolicy newfp = new ForumPolicy("p", true, 2, false, 180, 2, true, true, 5);
+            ForumPolicy newfp = new ForumPolicy("p", true, 2, false, 180, 2, true, true, 5, 0, new List<string>());
             Assert.IsTrue(forumController.setForumPreferences(this.forumName, "new Des", newfp, userAdmin.userName).Equals("preferences had changed successfully"));
             Assert.IsTrue(this.subForumController.createThread(headLine, content, this.userMember.userName, this.forumName, this.subForumName).Equals("Create tread succeed"));
             List<Post> postList = this.postController.getAllPosts(this.forumName, this.subForumName);
@@ -795,7 +795,7 @@ namespace Tests
         {
             String headLine = "head";
             String content = "content";
-            ForumPolicy newfp = new ForumPolicy("p", true, 2, true, 180, 2, true, true, 5);
+            ForumPolicy newfp = new ForumPolicy("p", true, 2, true, 180, 2, true, true, 5, 0, new List<string>());
             Assert.IsTrue(forumController.setForumPreferences(this.forumName, "new Des", newfp, userAdmin.userName).Equals("preferences had changed successfully"));
             Assert.IsTrue(this.subForumController.createThread(headLine, content, this.userMember.userName, this.forumName, this.subForumName).Equals("Create tread succeed"));
             List<Post> postList = this.postController.getAllPosts(this.forumName, this.subForumName);

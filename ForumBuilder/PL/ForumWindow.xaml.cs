@@ -327,6 +327,17 @@ namespace PL
                     int minLengthOfPass = Int32.Parse(LengthCombo.SelectedItem.ToString());
                     _myforum.forumPolicy.minLengthOfPassword = minLengthOfPass;
                 }
+
+                if (radBtnNotificationModeOnline.IsChecked.Value)
+                    _myforum.forumPolicy.notificationsType = ForumPolicyData.ONLINE_NOTIFICATIONS_TPYE;
+                else if (radBtnNotificationModeOffline.IsChecked.Value)
+                    _myforum.forumPolicy.notificationsType = ForumPolicyData.OFFLINE_NOTIFICATIONS_TPYE;
+                if (radBtnNotificationModeSelective.IsChecked.Value)
+                { 
+                    _myforum.forumPolicy.notificationsType = ForumPolicyData.SELECTIVE_NOTIFICATIONS_TPYE;
+                    _myforum.forumPolicy.selectiveNotificationsUsers = new List<String>();//TODO gal selective nots
+                }
+
                 _fMC.setForumPreferences(_myforum.forumName, _myforum.description, _myforum.forumPolicy, _userName);
                 MessageBox.Show("Preferences was successfully changed!");
                 descCheck.IsChecked = false;

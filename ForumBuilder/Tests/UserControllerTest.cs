@@ -36,7 +36,7 @@ namespace Tests
             superUser.addUser("admin", "adminpass", "admin@gmail.com", "tomer");
             List<string> adminList = new List<string>();
             adminList.Add("admin");
-            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5);
+            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5, 0, new List<string>());
             SuperUserController.getInstance.addSuperUser("fkfkf@wkk.com", "1qW", "tomer");
             superUser.createForum(ForumName, "descr", fp, adminList, "tomer");
             Assert.IsTrue(this.forumController.registerUser("mem", "Mempass1", "mem@gmail.com", "ansss", "anssss", this.ForumName).Equals("Register user succeed"));

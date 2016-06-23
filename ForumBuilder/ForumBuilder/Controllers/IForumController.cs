@@ -33,5 +33,6 @@ namespace ForumBuilder.Controllers
         int getUserSessionKey(string username);
         Boolean needsToAddQuestions(string userName, string forumName);
         bool setAnswers(string forumName, string userName, string ans1, string ans2);
+        List<string> getOfflineNotifications(String forumName, String userName, int sessionKey);
     }
 }

@@ -55,6 +55,12 @@ namespace PL
                 }
                 else if (pass != "" && (sessionKey = _fMC.login(userName, _choosenForum, pass)) > 0)
                 {
+                    if (toSend.forumPolicy.notificationsType == ForumPolicyData.OFFLINE_NOTIFICATIONS_TPYE)
+                    {
+                        List<string> offlineNotifications = _fMC.getOfflineNotifications(_choosenForum, userName, sessionKey);
+                        MessageBox.Show(offlineNotifications[0]);
+                    }
+
                     MessageBox.Show("Login successful! your session code for is " + sessionKey.ToString());
                     ForumWindow fw = new ForumWindow(toSend, userName);
                     this.Close();

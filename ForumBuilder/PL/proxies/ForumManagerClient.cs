@@ -134,5 +134,10 @@ namespace PL.proxies
         {
             return Channel.getUserSessionKey(username);
         }
+
+        public List<string> getOfflineNotifications(String forumName, String userName, int sessionKey)
+        {
+            return Channel.getOfflineNotifications(forumName, userName, sessionKey);
+        }
     }
 }
