@@ -605,7 +605,9 @@ namespace ForumBuilder.Controllers
 
         public bool setAnswers(string forumName, string userName, string ans1, string ans2)
         {
-            return DB.setAnswers(forumName, userName, ans1, ans2);
+            if (ans1 == null || ans2 == null || ans1.Equals("") || ans2.Equals(""))
+                return false;
+            return DB.setAnswers(userName, ans1, ans2);
         }
     }
 }
