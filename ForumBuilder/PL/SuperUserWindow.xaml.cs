@@ -124,7 +124,7 @@ namespace PL
                 createForumDialog.Visibility = System.Windows.Visibility.Visible;
                 createForumDialog.Focusable = true;
             }
-            else { MessageBox.Show("Something went wrong the forum wasn't created, try again."); }
+            else { MessageBox.Show(created); }
         }
 
         private void btn_toSetPref(object sender, RoutedEventArgs e)

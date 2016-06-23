@@ -714,8 +714,8 @@ namespace Database
                 OpenConnectionDB();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "UPDATE users SET ans1 = '" + ans1 + "' ,ans2 = '" + ans2 +
-                    "' , where userName='" + userName + "'";
+                command.CommandText = "UPDATE users SET ans1='" + ans1 + "' ,ans2 = '" + ans2 +
+                    "' where userName='" + userName + "'";
                 command.ExecuteNonQuery();
                 closeConnectionDB();
                 return true;
