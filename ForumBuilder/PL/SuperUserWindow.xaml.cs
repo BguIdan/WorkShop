@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,6 +28,8 @@ namespace PL
         private ForumManagerClient _fMC;
         private UserData _myUser;
         private ForumData _fData;
+        private string _currentForum;
+        private List<string> _forumsList;
 
         public SuperUserWindow(String userName, String password, String email)
         {
@@ -34,6 +37,8 @@ namespace PL
             _sUMC = new SuperUserManagerClient();
             _fMC = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
             _myUser = new UserData(userName, password, email);
+            _currentForum = "";
+            _forumsList = _fMC.getForums();
         }
 
         private void MenuItem_View(object sender, RoutedEventArgs e)
@@ -93,7 +98,8 @@ namespace PL
             createForum.Visibility = System.Windows.Visibility.Collapsed;
             createUserWin.Visibility = System.Windows.Visibility.Collapsed;
             viewGrid.Visibility = System.Windows.Visibility.Collapsed;
-            setPreferencesWin.Visibility = System.Windows.Visibility.Visible;
+            beforeSetPref.Visibility = System.Windows.Visibility.Visible;
+            beforeSetPref.Focusable = false;
         }
 
         private void createUser()
@@ -106,15 +112,15 @@ namespace PL
 
         private void btn_CreateNewForum(object sender, RoutedEventArgs e)
         {
-            string forumName = newForumName.Text;
+            _currentForum = newForumName.Text;
             string desc = newForumDescription.Text;
             string administrators = newAdminUserName.Text;
             List<string> admins = administrators.Split(',').ToList();
-            string created = _sUMC.createForum(forumName, desc, new ForumPolicyData() , admins, _myUser.userName);
-            Boolean isCreated = created.Equals("Forum " + forumName + " creation success");
+            string created = _sUMC.createForum(_currentForum, desc, new ForumPolicyData(), admins, _myUser.userName);
+            Boolean isCreated = created.Equals("Forum " + _currentForum + " creation success");
             if (isCreated)
             {
-                MessageBox.Show("Forum " + forumName + " creation success");
+                MessageBox.Show("Forum " + _currentForum + " creation success");
                 createForumDialog.Visibility = System.Windows.Visibility.Visible;
                 createForumDialog.Focusable = true;
             }
@@ -130,9 +136,14 @@ namespace PL
                 createForumDialog.Visibility = System.Windows.Visibility.Collapsed;
                 createForumDialog.Focusable = false;
                 setPreferencesWin.Visibility = System.Windows.Visibility.Visible;
+                ForumData fd = _fMC.getForum(_currentForum);
+                qIdentifying.IsChecked = fd.forumPolicy.isQuestionIdentifying;
+                deleteMessages.IsChecked = fd.forumPolicy.deletePostByModerator;
+                Capital.IsChecked = fd.forumPolicy.hasCapitalInPassword;
+                Number.IsChecked = fd.forumPolicy.hasNumberInPassword;
             }
-            else 
-            { 
+            else
+            {
                 createForum.Visibility = System.Windows.Visibility.Collapsed;
                 createForumDialog.Visibility = System.Windows.Visibility.Collapsed;
                 createForumDialog.Focusable = false;
@@ -165,8 +176,7 @@ namespace PL
         {
             MyDialog.Focusable = false;
             MyDialog.Visibility = System.Windows.Visibility.Collapsed;
-            string forumToSet = ForumNameToSet.Text;
-            if (!forumToSet.Equals("")) { _fData = _fMC.getForum(forumToSet); }
+            if (!_currentForum.Equals("")) { _fData = _fMC.getForum(_currentForum); }
             if (isDone.Equals("Yes"))
             {
                 if (_fData != null)
@@ -181,15 +191,15 @@ namespace PL
                     {
                         _fData.forumPolicy.policy = ForumPolicyToSet.Text;
                     }
-                    toChange = qIdentifying.IsChecked.Value;
+                    toChange = (qIdentifying.IsChecked.Value != _fData.forumPolicy.isQuestionIdentifying);
                     if (toChange)
                     {
-                        _fData.forumPolicy.isQuestionIdentifying = true;
+                        _fData.forumPolicy.isQuestionIdentifying = qIdentifying.IsChecked.Value;
                     }
-                    toChange = deleteMessages.IsChecked.Value;
+                    toChange = (deleteMessages.IsChecked.Value != _fData.forumPolicy.deletePostByModerator);
                     if (toChange)
                     {
-                        _fData.forumPolicy.isQuestionIdentifying = true;
+                        _fData.forumPolicy.isQuestionIdentifying = deleteMessages.IsChecked.Value;
                     }
                     if (!PassCombo.Text.Equals(""))
                     {
@@ -206,15 +216,15 @@ namespace PL
                         int numerOfModerators = Int32.Parse(NumberCombo.SelectedItem.ToString());
                         _fData.forumPolicy.minNumOfModerator = numerOfModerators;
                     }
-                    toChange = Capital.IsChecked.Value;
+                    toChange = (Capital.IsChecked.Value != _fData.forumPolicy.hasCapitalInPassword);
                     if (toChange)
                     {
-                        _fData.forumPolicy.hasCapitalInPassword = true;
+                        _fData.forumPolicy.hasCapitalInPassword = Capital.IsChecked.Value;
                     }
-                    toChange = Number.IsChecked.Value;
+                    toChange = (Number.IsChecked.Value != _fData.forumPolicy.hasNumberInPassword);
                     if (toChange)
                     {
-                        _fData.forumPolicy.hasNumberInPassword = true;
+                        _fData.forumPolicy.hasNumberInPassword = Number.IsChecked.Value;
                     }
                     if (!LengthCombo.Text.Equals(""))
                     {
@@ -251,7 +261,7 @@ namespace PL
             string name = userName.Text;
             string pass = Password.Password;
             string userMail = email.Text;
-            string addUser= _sUMC.addUser(name, pass, userMail, _myUser.userName);
+            string addUser = _sUMC.addUser(name, pass, userMail, _myUser.userName);
             bool succ = addUser.Equals("Register user " + name + "Complited");
             if (!succ)
             {
@@ -323,6 +333,47 @@ namespace PL
             }
         }
 
+        private void btn_back(object sender, RoutedEventArgs e)
+        {
+            beforeSetPref.Visibility = System.Windows.Visibility.Collapsed;
+            beforeSetPref.Focusable = false;
+        }
+
+        private void btn_continue(object sender, RoutedEventArgs e)
+        {
+            ForumData fd = _fMC.getForum(_currentForum);
+            if (fd != null)
+            {
+                beforeSetPref.Visibility = System.Windows.Visibility.Collapsed;
+                beforeSetPref.Focusable = false;
+                setPreferencesWin.Visibility = System.Windows.Visibility.Visible;
+                qIdentifying.IsChecked = fd.forumPolicy.isQuestionIdentifying;
+                deleteMessages.IsChecked = fd.forumPolicy.deletePostByModerator;
+                Capital.IsChecked = fd.forumPolicy.hasCapitalInPassword;
+                Number.IsChecked = fd.forumPolicy.hasNumberInPassword;
+            }
+            else { MessageBox.Show("Please choose a forum in order to edit it"); }
+        }
+
+        private void ComboBox_OnDropDownOpened(object sender, EventArgs e)
+        {
+            comboBox.Items.Clear();
+            while (_forumsList == null) { Thread.Sleep(20); }
+            foreach (String forumName in this._forumsList)
+                comboBox.Items.Add(forumName);
+        }
+
+        private void ComboBox_OnDropDownClosed(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentForum = comboBox.SelectedItem.ToString();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please choose a forum from the list");
+            }
+        }
     }
 }
         

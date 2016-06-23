@@ -229,6 +229,10 @@ namespace PL
             viewGrid.Visibility = System.Windows.Visibility.Collapsed;
             setPreferencesWin.Visibility = System.Windows.Visibility.Visible;
             backButton.Visibility = System.Windows.Visibility.Visible;
+            qIdentifying.IsChecked = _myforum.forumPolicy.isQuestionIdentifying;
+            deleteMessages.IsChecked = _myforum.forumPolicy.deletePostByModerator;
+            Capital.IsChecked = _myforum.forumPolicy.hasCapitalInPassword;
+            Number.IsChecked = _myforum.forumPolicy.hasNumberInPassword;
         }
 
         private void SignUP()
@@ -287,15 +291,15 @@ namespace PL
                 {
                     _myforum.forumPolicy.policy = ForumPolicyToSet.Text;
                 }
-                toChange = qIdentifying.IsChecked.Value;
+                toChange = (qIdentifying.IsChecked.Value != _myforum.forumPolicy.isQuestionIdentifying);
                 if (toChange)
                 {
-                    _myforum.forumPolicy.isQuestionIdentifying = true;
+                    _myforum.forumPolicy.isQuestionIdentifying = qIdentifying.IsChecked.Value;
                 }
-                toChange = deleteMessages.IsChecked.Value;
+                toChange = (deleteMessages.IsChecked.Value != _myforum.forumPolicy.deletePostByModerator);
                 if (toChange)
                 {
-                    _myforum.forumPolicy.isQuestionIdentifying = true;
+                    _myforum.forumPolicy.deletePostByModerator = deleteMessages.IsChecked.Value;
                 }
                 if (!PassCombo.Text.Equals(""))
                 {
@@ -312,15 +316,15 @@ namespace PL
                     int numerOfModerators = Int32.Parse(NumberCombo.SelectedItem.ToString());
                     _myforum.forumPolicy.minNumOfModerator = numerOfModerators;
                 }
-                toChange = Capital.IsChecked.Value;
+                toChange = (Capital.IsChecked.Value != _myforum.forumPolicy.hasCapitalInPassword);
                 if (toChange)
                 {
-                    _myforum.forumPolicy.hasCapitalInPassword = true;
+                    _myforum.forumPolicy.hasCapitalInPassword = Capital.IsChecked.Value;
                 }
-                toChange = Number.IsChecked.Value;
+                toChange = (Number.IsChecked.Value != _myforum.forumPolicy.hasNumberInPassword);
                 if (toChange)
                 {
-                    _myforum.forumPolicy.hasNumberInPassword = true;
+                    _myforum.forumPolicy.hasNumberInPassword = Number.IsChecked.Value;
                 }
                 if (!LengthCombo.Text.Equals(""))
                 {
@@ -340,6 +344,7 @@ namespace PL
                 NumberCombo.Items.Clear();
                 LengthCombo.Items.Clear();
                 setPreferencesWin.Visibility = System.Windows.Visibility.Collapsed;
+                mainGrid.Visibility = System.Windows.Visibility.Visible;
             }
         }
 
