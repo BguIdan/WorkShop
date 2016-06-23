@@ -26,6 +26,7 @@
             <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Foreground="Red" VerticalAlignment="Top" Height="20" Margin="43,175,0,0" Text="* seperate names with a comma" HorizontalAlignment="Left" Width="223"/>
             <TextBox Name="newAdminUserName" TextWrapping="Wrap" Text="" Margin="195,148,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="140"/>
             <Button FontFamily="Cooper Black" Content="Create Forum" Margin="214,267,0,0" Click="btn_CreateNewForum" HorizontalAlignment="Left" Width="121" Height="26" VerticalAlignment="Top"/>
+            <Button FontFamily="Cooper Black" Content="Back" Margin="43,267,0,0" Click="btn_back" HorizontalAlignment="Left" Width="121" Height="26" VerticalAlignment="Top"/>
         </Grid>
 
         <Grid Name="setPreferencesWin" Visibility="Collapsed" Margin="0,0,0,0">
@@ -63,8 +64,9 @@
             <PasswordBox Name="Password" Margin="195,118,0,0" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140"/>
             <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Text="Email: " Margin="43,153,0,0" HorizontalAlignment="Left" Width="99" Height="20" VerticalAlignment="Top"/>
             <TextBox Name="email" Height="20" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="195,148,0,0" HorizontalAlignment="Left" Width="140"/>
-            <Button FontFamily="Cooper Black" Content="Create User" Margin="210,262,0,0" Click="btn_CreateNewUser" HorizontalAlignment="Left" Width="122" Height="26" VerticalAlignment="Top"/>
+            <Button FontFamily="Cooper Black" Content="Create User" Margin="213,262,0,0" Click="btn_CreateNewUser" HorizontalAlignment="Left" Width="122" Height="26" VerticalAlignment="Top"/>
             <TextBlock FontSize="30" FontFamily="Broadway" TextWrapping="Wrap" Text="Create New User"  Height="40" Margin="60,30,0,0" HorizontalAlignment="Left" Width="272" VerticalAlignment="Top"/>
+            <Button FontFamily="Cooper Black" Content="Back" Margin="43,262,0,0" Click="btn_back" HorizontalAlignment="Left" Width="121" Height="26" VerticalAlignment="Top"/>
         </Grid>
 
         <Grid Name="createForumDialog" Visibility="Collapsed" Margin="61,135,0,0" Background="Silver" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left" Width="270">
@@ -89,7 +91,8 @@
         <Grid Name="viewGrid" Visibility="Collapsed">
             <TextBlock Name="headline" FontSize="24" FontFamily="Cooper Black" TextWrapping="Wrap" VerticalAlignment="Top" Text="Reports" Height="25" Margin="142,42,0,0" HorizontalAlignment="Left" Width="107"/>
             <TextBlock Name="numOfFOrums" FontSize="14" FontFamily="Cooper Black" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" Margin="21,82,0,0" HorizontalAlignment="Left" Width="211"/>
-            <ListBox Name="memberListBox" HorizontalAlignment="Left" Margin="21,130,0,0" Width="347" Height="215" VerticalAlignment="Top"/>
+            <ListBox Name="memberListBox" HorizontalAlignment="Left" Margin="21,125,0,0" Width="347" Height="197" VerticalAlignment="Top"/>
+            <Button FontFamily="Cooper Black" Content="Back" Margin="135,334,0,0" Click="btn_back" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="121"/>
         </Grid>
     </Grid>
 </Window>

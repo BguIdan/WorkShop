@@ -3,15 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="SignUpWindow" Height="425" Width="425">
     <Grid Margin="0,0,0,0">
-        <Grid Name="withoutQuestions" Visibility="Collapsed">
+        <Grid Name="withoutQuestions" Visibility="Visible">
             <TextBlock FontSize="30" FontFamily="Cooper Black" TextWrapping="Wrap" Text="Register to Forum" VerticalAlignment="Top" Height="49" Margin="56,35,0,0" RenderTransformOrigin="0.69,0.544" HorizontalAlignment="Left" Width="305"/>
             <TextBlock FontFamily="Cooper Black"  TextWrapping="Wrap" Text="Enter name :" Margin="56,138,0,0" HorizontalAlignment="Left" Width="106" Height="22" VerticalAlignment="Top"/>
-            <TextBlock FontFamily="Cooper Black"  TextWrapping="Wrap" Text="Enter Password :" Margin="56,166,228,210"/>
-            <TextBlock FontFamily="Cooper Black"  TextWrapping="Wrap" Margin="56,190,0,0" Text="Enter Mail :" HorizontalAlignment="Left" Width="96" Height="22" VerticalAlignment="Top"/>
+            <TextBlock FontFamily="Cooper Black"  TextWrapping="Wrap" Text="Enter Password :" Margin="56,166,0,0" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="133"/>
+            <TextBlock FontFamily="Cooper Black"  TextWrapping="Wrap" Margin="56,195,0,0" Text="Enter Mail :" HorizontalAlignment="Left" Width="96" Height="22" VerticalAlignment="Top"/>
             <Image Source="http://caymanroundup.com/wp-content/uploads/2014/02/register-online.jpg" Margin="149,246,0,0" HorizontalAlignment="Left" Width="119" Height="119" VerticalAlignment="Top"/>
-            <TextBox Name="name" Margin="189,138,0,0" TextWrapping="Wrap" Text="" Height="22" HorizontalAlignment="Left" Width="142" VerticalAlignment="Top"/>
+            <TextBox Name="name" Margin="189,135,0,0" TextWrapping="Wrap" Text="" Height="22" HorizontalAlignment="Left" Width="142" VerticalAlignment="Top"/>
             <PasswordBox Name="Password" Margin="189,163,0,0" Height="22" HorizontalAlignment="Left" Width="142" VerticalAlignment="Top"/>
-            <TextBox Name="mail" Margin="189,190,0,0" TextWrapping="Wrap" Height="22" HorizontalAlignment="Left" Width="142" VerticalAlignment="Top"/>
+            <TextBox Name="mail" Margin="189,192,0,0" TextWrapping="Wrap" Height="22" HorizontalAlignment="Left" Width="142" VerticalAlignment="Top"/>
             <Button FontFamily="Cooper Black" Width="100" Content="Register" Margin="290,340,0,0" Click="UserRegistration" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top"/>
             <Button FontFamily="Cooper Black" Width="100" Content="Back" Margin="27,340,0,0" Click="backToMain" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top"/>
         </Grid>

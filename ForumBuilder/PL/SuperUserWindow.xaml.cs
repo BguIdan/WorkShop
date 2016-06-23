@@ -199,7 +199,7 @@ namespace PL
                     toChange = (deleteMessages.IsChecked.Value != _fData.forumPolicy.deletePostByModerator);
                     if (toChange)
                     {
-                        _fData.forumPolicy.isQuestionIdentifying = deleteMessages.IsChecked.Value;
+                        _fData.forumPolicy.deletePostByModerator = deleteMessages.IsChecked.Value;
                     }
                     if (!PassCombo.Text.Equals(""))
                     {
@@ -245,7 +245,7 @@ namespace PL
                     LengthCombo.Items.Clear();
                     setPreferencesWin.Visibility = System.Windows.Visibility.Collapsed;
                 }
-                else { MessageBox.Show("You have to write forum name in order to edit it's preferences"); }
+                else { MessageBox.Show("Preferences didn't changed please try again."); }
             }
         }
 
@@ -337,6 +337,9 @@ namespace PL
         {
             beforeSetPref.Visibility = System.Windows.Visibility.Collapsed;
             beforeSetPref.Focusable = false;
+            createForum.Visibility = System.Windows.Visibility.Collapsed;
+            createUserWin.Visibility = System.Windows.Visibility.Collapsed;
+            viewGrid.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void btn_continue(object sender, RoutedEventArgs e)
