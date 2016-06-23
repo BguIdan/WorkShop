@@ -288,9 +288,9 @@ namespace ForumBuilder.Controllers
                 }
                 return "Register user failed, there was problem to conecting DB"; 
             }
-            logger.logPrint("Register user failed, password is not good enough acording to dorum policy", 0);
-            logger.logPrint("Register user failed, password is not good enough acording to dorum policy", 2);
-            return "Register user failed, password is not good enough acording to dorum policy";
+            logger.logPrint("Register user failed, password is not good enough acording to forum policy", 0);
+            logger.logPrint("Register user failed, password is not good enough acording to forum policy", 2);
+            return "Register user failed, password is not good enough acording to forum policy";
         }
 
         public bool hasNumber(string password)
@@ -343,6 +343,10 @@ namespace ForumBuilder.Controllers
                 }
                 if (needToChangePassword(user, forumName))
                     return -5;
+                if (!(loggedInForum.forumPolicy.minLengthOfPassword < pass.Length &&
+                (!loggedInForum.forumPolicy.hasCapitalInPassword || (loggedInForum.forumPolicy.hasCapitalInPassword && hasCapital(pass))) &&
+                (!loggedInForum.forumPolicy.hasNumberInPassword || (loggedInForum.forumPolicy.hasNumberInPassword && hasNumber(pass)))))
+                    return -7;
                 if (!this.loggedInUsersByForum[forumName].Contains(user))
                 {
                     this.loggedInUsersByForum[forumName].Add(user);

@@ -11,6 +11,6 @@ namespace ForumBuilder.Controllers
         List<String> getFriendList(String userName);
         List<string[]> getAllPrivateMessages(string userName);
         string restorePassword(string userName, string ans1, string ans2);
-        string setNewPassword(string userName, string forumName, string password);
+        string setNewPassword(string userName, string forumName, string password, string oldPassword);
     }
 }

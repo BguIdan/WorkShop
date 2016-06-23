@@ -124,6 +124,12 @@ namespace PL
                             newWin4.Show();
                             this.Close();
                             break;
+                        case -7:
+                            MessageBox.Show("you have to change password, policy  changed");
+                            correntProblemsFromSetPrefferencesWindow newWin5 = new correntProblemsFromSetPrefferencesWindow(userName, _choosenForum, pass, sessionKey);
+                            newWin5.Show();
+                            this.Close();
+                            break;
                         default:
                             MessageBox.Show("login failed");
                             break;

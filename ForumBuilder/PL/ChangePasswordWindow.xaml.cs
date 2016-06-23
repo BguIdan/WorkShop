@@ -23,12 +23,14 @@ namespace PL
         private UserManagerClient _uMC;
         private String _forum;
         private String _userName;
+        private string _oldPassword;
 
-        public ChangePasswordWindow(String forum, String usrName)
+        public ChangePasswordWindow(String forum, String usrName, string oldPassword)
         {
             InitializeComponent();
             _forum = forum;
             _userName = usrName;
+            _oldPassword = oldPassword;
         }
 
         private void backToMain(object sender, RoutedEventArgs e)
@@ -41,7 +43,7 @@ namespace PL
         private void changeBtn(object sender, RoutedEventArgs e)
         {
             string pass = NewPassword.Password;
-            string ans = _uMC.setNewPassword(_userName, _forum, pass);
+            string ans = _uMC.setNewPassword(_userName, _forum, pass,_oldPassword);
             if (!ans.Equals("change password succeed"))
             {
                 MessageBox.Show(ans + " Please try again!");

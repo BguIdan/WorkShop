@@ -168,9 +168,15 @@ namespace ForumBuilder.Controllers
             return password;
         }
 
-        public string setNewPassword(string userName, string forumName, string password)
+        public string setNewPassword(string userName, string forumName, string password,string oldPassword)
         {
-            Forum forum = forumController.getForum(forumName); 
+            Forum forum = forumController.getForum(forumName);
+            if (!DB.getPassword(userName).Equals(oldPassword))
+            {
+                logger.logPrint("change password failed, fake user with rong password tried to enter", 0);
+                logger.logPrint("change password failed, fake user with rong password tried to enter", 2);
+                return "change password failed, fake user with rong password tried to enter";
+            }
             if (forumController.isMember(userName, forumName)&&forum!=null)
             {
                 if (forum.forumPolicy.minLengthOfPassword < password.Length &&

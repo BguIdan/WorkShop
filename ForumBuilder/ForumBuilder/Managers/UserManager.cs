@@ -56,9 +56,9 @@ namespace Service
         {
             return userController.restorePassword(userName, ans1, ans2);
         }
-        public string setNewPassword(string userName, string forumName, string password)
+        public string setNewPassword(string userName, string forumName, string password, string oldPassword)
         {
-            return userController.setNewPassword(userName, forumName, password);
+            return userController.setNewPassword(userName, forumName, password, oldPassword);
         }
     }
 }

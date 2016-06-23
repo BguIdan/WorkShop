@@ -1785,7 +1785,7 @@ namespace Database
                 
                 closeConnectionDB();
             }
-            catch(Exception e)
+            catch
             {
                 closeConnectionDB();
             }
@@ -1903,7 +1903,7 @@ namespace Database
                 closeConnectionDB();
                 return forums1;
             }
-            catch(Exception e)
+            catch
             {
                 closeConnectionDB();
                 return null;
