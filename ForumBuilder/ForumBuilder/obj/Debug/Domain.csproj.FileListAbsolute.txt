@@ -1,1 +1,16 @@
 C:\Users\User\Desktop\git projects\ForumBuilder\ForumBuilder\obj\Debug\Domain.csprojResolveAssemblyReference.cache
+C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\ForumBuilder\bin\Debug\ForumBuilder.exe.config
+C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\ForumBuilder\bin\Debug\ForumBuilder.exe
+C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\ForumBuilder\bin\Debug\ForumBuilder.pdb
+C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\ForumBuilder\bin\Debug\BL_Back_End.exe
+C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\ForumBuilder\bin\Debug\Common.dll
+C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\ForumBuilder\bin\Debug\Database.exe
+C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\ForumBuilder\bin\Debug\DW.CodedUI.dll
+C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\ForumBuilder\bin\Debug\BL_Back_End.pdb
+C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\ForumBuilder\bin\Debug\Common.pdb
+C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\ForumBuilder\bin\Debug\Database.pdb
+C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\ForumBuilder\bin\Debug\DW.CodedUI.pdb
+C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\ForumBuilder\bin\Debug\DW.CodedUI.xml
+C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\ForumBuilder\obj\Debug\Domain.csprojResolveAssemblyReference.cache
+C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\ForumBuilder\obj\Debug\ForumBuilder.exe
+C:\Users\gal\Desktop\wsep\New Folder\project\ForumBuilder\ForumBuilder\obj\Debug\ForumBuilder.pdb

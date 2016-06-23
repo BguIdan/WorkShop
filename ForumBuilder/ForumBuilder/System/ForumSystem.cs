@@ -129,16 +129,16 @@ namespace ForumBuilder.Systems
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!2");
             if (!ForumController.getInstance.registerUser("g1", "gG1", "g@g.g","sad","bad" ,"f").Equals("Register user succeed"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!3");
-            if (!ForumController.getInstance.registerUser("g2", "gG1", "a@a.a","good", "awesome", "f").Equals("Register user succeed"))
+            if (!ForumController.getInstance.registerUser("g2", "gG1", "g@g.g","good", "awesome", "f").Equals("Register user succeed"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!4");
-            if (!ForumController.getInstance.registerUser("g3", "gG1", "b@b.b", "good", "awesome", "f2").Equals("Register user succeed"))
+            if (!ForumController.getInstance.registerUser("g3", "gG1", "g@g.g", "good", "awesome", "f2").Equals("Register user succeed"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!5");
             if (!ForumController.getInstance.nominateAdmin("g1", "idan", "f").Equals("admin nominated successfully"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!6");
             Dictionary<String, DateTime> d = new Dictionary<String, DateTime>();
             d.Add("g1", new DateTime(2017, 1, 1));
             if (!ForumController.getInstance.addSubForum("f", "f1",d , "g1").Equals("sub-forum added"))
-                //Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
 
             runServer(username, password, email);
             //DBClass.getInstance.clear();

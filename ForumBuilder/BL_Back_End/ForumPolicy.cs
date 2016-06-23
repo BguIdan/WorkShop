@@ -38,7 +38,7 @@ namespace BL_Back_End
              _hasNumberInPassword=hasNumberInPassword;
              _minLengthOfPassword=minLengthOfPassword;
              _notificationsType = notificationsType;
-             _selectiveNotificationsUsers = new List<String>(selectiveNotificationsUsers);
+             _selectiveNotificationsUsers = (selectiveNotificationsUsers != null) ? new List<String>(selectiveNotificationsUsers) : new List<string>();
         }
 
         public Boolean isQuestionIdentifying
@@ -144,7 +144,7 @@ namespace BL_Back_End
             }
             set 
             { 
-                _selectiveNotificationsUsers = new List<String>(value); 
+                _selectiveNotificationsUsers = (value != null) ? new List<String>(value) : new List<string>(); 
             }
         }
 

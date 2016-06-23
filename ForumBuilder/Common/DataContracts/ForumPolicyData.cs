@@ -63,7 +63,7 @@ namespace ForumBuilder.Common.DataContracts
             _hasNumberInPassword = false;
             _minLengthOfPassword = 5;
             _notificationsType = ONLINE_NOTIFICATIONS_TPYE;
-
+            _selectiveNotificationsUsers = new List<string>();
         }
 
         public ForumPolicyData(String policy, bool isQuestionIdentifying, int seniorityInForum, bool deletePostByMderator, int timeToPassExpiration,
@@ -79,6 +79,7 @@ namespace ForumBuilder.Common.DataContracts
             _hasNumberInPassword = hasCapitalInPassword;
             _minLengthOfPassword = minLengthOfPassword;
             _notificationsType = ONLINE_NOTIFICATIONS_TPYE;
+            _selectiveNotificationsUsers = (selectiveNotificationsUsers != null) ? new List<String>(selectiveNotificationsUsers) : new List<string>();
         }
 
         public Boolean isQuestionIdentifying
@@ -144,7 +145,7 @@ namespace ForumBuilder.Common.DataContracts
         public List<String> selectiveNotificationsUsers
         {
             get { return _selectiveNotificationsUsers; }
-            set { _selectiveNotificationsUsers = new List<String>(value); }
+            set { _selectiveNotificationsUsers = (value != null) ? new List<String>(value) : new List<string>(); }
         }
 
     }
