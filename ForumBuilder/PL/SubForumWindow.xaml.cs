@@ -79,6 +79,7 @@ namespace PL
        // public static bool _isPost = false
         private int _myDeletedPostThreadFlag;
         private dataContainer _selected;
+        public static int x = 0;
 
         public SubForumWindow(string fName, string sfName, string userName, String skey, ClientNotificationHost cnh)//forum subforum names and userName
         {
@@ -109,39 +110,42 @@ namespace PL
             _cnh.updateWindow(this);
             Window window = this;
             _selected = null;
-
-            BackgroundWorker wrk = new BackgroundWorker();
-            wrk.WorkerReportsProgress = true;
-            wrk.DoWork += (a, b) =>
+            if (x == 0)
             {
-                while (_generalAddedPostThreadFlag <= _myAddedPostThreadFlag && _generalDeletedPostThreadFlag<= _myDeletedPostThreadFlag)
+                BackgroundWorker wrk = new BackgroundWorker();
+                wrk.WorkerReportsProgress = true;
+                wrk.DoWork += (a, b) =>
                 {
+                    while (_generalAddedPostThreadFlag <= _myAddedPostThreadFlag && _generalDeletedPostThreadFlag <= _myDeletedPostThreadFlag)
+                    {
 
-                }
-            };
-            wrk.RunWorkerCompleted += (s, e) =>
-            {
-                if (_generalAddedPostThreadFlag > _myAddedPostThreadFlag)
+                    }
+                };
+                wrk.RunWorkerCompleted += (s, e) =>
                 {
-                    _myAddedPostThreadFlag++;
-                }
-                else
-                {
-                    _myDeletedPostThreadFlag++;
-                }
-                if (listBox.Visibility == Visibility.Collapsed)
-                {
-                    DataGrid_Loaded(this, null);
-                }
-                else
-                {
-                    listBox.Items.Clear();
-                    selectionChangedHelp(_selected);
-                }
+                    if (_generalAddedPostThreadFlag > _myAddedPostThreadFlag)
+                    {
+                        _myAddedPostThreadFlag++;
+                    }
+                    else
+                    {
+                        _myDeletedPostThreadFlag++;
+                    }
+                    if (listBox.Visibility == Visibility.Collapsed)
+                    {
+                        DataGrid_Loaded(this, null);
+                    }
+                    else
+                    {
+                        listBox.Items.Clear();
+                        selectionChangedHelp(_selected);
+                    }
+                    wrk.RunWorkerAsync();
+
+                };
                 wrk.RunWorkerAsync();
-                
-            };
-            wrk.RunWorkerAsync();
+            }
+            x++;
         }
 
         private void InitializePermissons(string userName)

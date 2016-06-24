@@ -1,33 +1,51 @@
-Log Entry : 		24/06/2016 11:49:31
+Log Entry : 		24/06/2016 13:18:18
 Forum contoller created
 -----------------------------------------------
-Log Entry : 		24/06/2016 11:49:31
+Log Entry : 		24/06/2016 13:18:18
 Super user contoller created
 -----------------------------------------------
-Log Entry : 		24/06/2016 11:49:34
+Log Entry : 		24/06/2016 13:18:20
 forum service was initialized under localhost:8081
 -----------------------------------------------
-Log Entry : 		24/06/2016 11:49:34
+Log Entry : 		24/06/2016 13:18:20
 post service was initialized under localhost:8082
 -----------------------------------------------
-Log Entry : 		24/06/2016 11:49:34
+Log Entry : 		24/06/2016 13:18:20
 sub forum service was initialized under localhost:8083
 -----------------------------------------------
-Log Entry : 		24/06/2016 11:49:34
+Log Entry : 		24/06/2016 13:18:20
 super user service was initialized under localhost:8084
 -----------------------------------------------
-Log Entry : 		24/06/2016 11:49:34
+Log Entry : 		24/06/2016 13:18:20
 user service was initialized under localhost:8085
 -----------------------------------------------
-Log Entry : 		24/06/2016 11:49:34
+Log Entry : 		24/06/2016 13:18:20
 The System was initialized successully
 -----------------------------------------------
-Log Entry : 		24/06/2016 11:49:56
+Log Entry : 		24/06/2016 13:18:33
 Sub-forum contoller created
 -----------------------------------------------
-Log Entry : 		24/06/2016 11:50:00
-Create comment 1 to 0
+Log Entry : 		24/06/2016 13:18:35
+Add thread 0
 -----------------------------------------------
-Log Entry : 		24/06/2016 11:50:36
-Remove post 1
+Log Entry : 		24/06/2016 13:18:50
+Add thread 1
+-----------------------------------------------
+Log Entry : 		24/06/2016 13:19:26
+Add thread 2
+-----------------------------------------------
+Log Entry : 		24/06/2016 13:19:33
+Add thread 3
+-----------------------------------------------
+Log Entry : 		24/06/2016 13:19:40
+Add thread 4
+-----------------------------------------------
+Log Entry : 		24/06/2016 13:19:46
+Add thread 5
+-----------------------------------------------
+Log Entry : 		24/06/2016 13:20:05
+Remove post 0
+-----------------------------------------------
+Log Entry : 		24/06/2016 13:20:05
+Remove thread 0
 -----------------------------------------------

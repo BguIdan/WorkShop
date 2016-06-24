@@ -77,8 +77,9 @@ namespace PL
                     if (addPost.Equals("comment created"))
                     {
                         MessageBox.Show("post was added succesfully");
-                        SubForumWindow newWin = new SubForumWindow(_forumName, _subForumName, _userName, _prevWindow.Sessionkey, _cnh);
                         _prevWindow.Close();
+                        SubForumWindow newWin = new SubForumWindow(_forumName, _subForumName, _userName, _prevWindow.Sessionkey, _cnh);
+                        
                         this.Close();
                         newWin.Show();
                     }
@@ -93,8 +94,9 @@ namespace PL
                     if (createTread.Equals("Create tread succeed"))
                     {
                         MessageBox.Show("thread was added succesfully");
-                        SubForumWindow newWin = new SubForumWindow(_forumName, _subForumName, _userName, _prevWindow.Sessionkey, _cnh);
                         _prevWindow.Close();
+                        SubForumWindow newWin = new SubForumWindow(_forumName, _subForumName, _userName, _prevWindow.Sessionkey, _cnh);
+                        
                         this.Close();
                         newWin.Show();
                     }
