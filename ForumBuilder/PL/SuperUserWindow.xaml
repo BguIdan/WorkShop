@@ -34,26 +34,26 @@
             <CheckBox Name="descCheck" IsChecked="False" Margin="18,108,0,0" Click="descChoose" HorizontalAlignment="Left" Width="20" Height="21" VerticalAlignment="Top" />
             <CheckBox Name="policyCheck" IsChecked="False" Margin="18,134,0,0" Click="policyChoose" HorizontalAlignment="Left" Width="20" Height="21" VerticalAlignment="Top" />
             <CheckBox Name="qIdentifying" IsChecked="False" Margin="18,160,0,0" HorizontalAlignment="Left" Width="20" Height="21" VerticalAlignment="Top" />
-            <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Text="Please Select what would you like to change:" Margin="18,70,0,0" HorizontalAlignment="Left" Width="282" Height="21" VerticalAlignment="Top"/>
-            <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Margin="48,107,0,0" Text="Forum Description:" Height="18" VerticalAlignment="Top" HorizontalAlignment="Left" Width="143"/>
+            <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Text="Please Select what would you like to change:" Margin="18,70,0,0" HorizontalAlignment="Left" Width="282" Height="22" VerticalAlignment="Top"/>
+            <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Margin="48,107,0,0" Text="Forum Description:" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="143"/>
             <TextBox Name="ForumDescToSet" Margin="217,107,0,0" TextWrapping="Wrap" IsEnabled="False" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="140"/>
             <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Margin="48,133,0,0" Text="Forum Policy:" Height="18" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120"/>
             <TextBox Name="ForumPolicyToSet" Height="22" Margin="217,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" HorizontalAlignment="Left" Width="140"/>
-            <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Margin="48,159,0,0" Text="Identifying Questions" HorizontalAlignment="Left" Width="143"/>
-            <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Margin="48,185,0,0" Text="Moderator can delete members messages" HorizontalAlignment="Left" Width="265" Height="20" VerticalAlignment="Top"/>
-            <CheckBox  Name="deleteMessages" IsChecked="False" Margin="18,186,0,0" HorizontalAlignment="Left" Width="20" Height="20" VerticalAlignment="Top"/>
-            <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Margin="48,211,0,0" Text="Time for Password to Expire:" HorizontalAlignment="Left" Width="189"/>
-            <ComboBox Name="PassCombo" HorizontalAlignment="Left" Margin="314,211,0,0" Width="43" DropDownOpened="PassComboBox_OnDropDownOpened" Height="18" VerticalAlignment="Top"/>
-            <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Margin="48,237,0,0" Text="Minimum time in forum to be moderator:" Height="19" VerticalAlignment="Top" HorizontalAlignment="Left" Width="252"/>
-            <ComboBox Name="TimeCombo" HorizontalAlignment="Left" Margin="314,237,0,0" Width="43" DropDownOpened="TimeComboBox_OnDropDownOpened" Height="19" VerticalAlignment="Top"/>
-            <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Margin="48,263,0,0" Text="Minimum number of moderators :" HorizontalAlignment="Left" Width="252" Height="19" VerticalAlignment="Top"/>
-            <ComboBox Name="NumberCombo" HorizontalAlignment="Left" Margin="314,263,0,0" VerticalAlignment="Top" Width="43" Height="19" DropDownOpened="NumberComboBox_OnDropDownOpened"/>
-            <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Margin="48,289,0,0" Text="Password Limitations:" HorizontalAlignment="Left" Width="143" Height="20" VerticalAlignment="Top"/>
+            <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" VerticalAlignment="Top" Height="22" Margin="48,159,0,0" Text="Identifying Questions" HorizontalAlignment="Left" Width="143"/>
+            <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Margin="48,185,0,0" Text="Moderator can delete members messages" HorizontalAlignment="Left" Width="265" Height="22" VerticalAlignment="Top"/>
+            <CheckBox  Name="deleteMessages" IsChecked="False" Margin="18,186,0,0" HorizontalAlignment="Left" Width="20" Height="22" VerticalAlignment="Top"/>
+            <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" VerticalAlignment="Top" Height="22" Margin="48,211,0,0" Text="Time for Password to Expire:" HorizontalAlignment="Left" Width="189"/>
+            <ComboBox Name="PassCombo" HorizontalAlignment="Left" Margin="314,211,0,0" Width="43" DropDownOpened="PassComboBox_OnDropDownOpened" Height="22" VerticalAlignment="Top"/>
+            <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Margin="48,237,0,0" Text="Minimum time in forum to be moderator:" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="252"/>
+            <ComboBox Name="TimeCombo" HorizontalAlignment="Left" Margin="314,237,0,0" Width="43" DropDownOpened="TimeComboBox_OnDropDownOpened" Height="22" VerticalAlignment="Top"/>
+            <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Margin="48,263,0,0" Text="Minimum number of moderators :" HorizontalAlignment="Left" Width="252" Height="22" VerticalAlignment="Top"/>
+            <ComboBox Name="NumberCombo" HorizontalAlignment="Left" Margin="314,263,0,0" VerticalAlignment="Top" Width="43" Height="22" DropDownOpened="NumberComboBox_OnDropDownOpened"/>
+            <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Margin="48,289,0,0" Text="Password Limitations:" HorizontalAlignment="Left" Width="143" Height="22" VerticalAlignment="Top"/>
             <CheckBox Name="Capital" IsChecked="False" Content="Capital Letter" FontFamily="Cooper Black" HorizontalAlignment="Left" Margin="48,313,0,0" Width="109" Height="15" VerticalAlignment="Top"/>
             <CheckBox Name="Number" IsChecked="False" Content="Number"  FontFamily="Cooper Black" Margin="168,313,0,0" HorizontalAlignment="Left" Width="70" Height="15" VerticalAlignment="Top"/>
             <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Margin="252,313,0,0" Text="Length:" HorizontalAlignment="Left" Width="56" Height="15" VerticalAlignment="Top"/>
             <ComboBox Name="LengthCombo" HorizontalAlignment="Left" Margin="314,309,0,0" VerticalAlignment="Top" Width="43" Height="19" DropDownOpened="LengthComboBox_OnDropDownOpened"/>
-            <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Margin="48,339,0,0" Text="Notifications Mode:" HorizontalAlignment="Left" Width="252" Height="20" VerticalAlignment="Top"/>
+            <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Margin="48,339,0,0" Text="Notifications Mode:" HorizontalAlignment="Left" Width="252" Height="22" VerticalAlignment="Top"/>
             <RadioButton x:Name="radBtnNotificationModeOnline" GroupName="notificationGroupMode" IsChecked="True" Margin="171,340,0,0" FontFamily="Cooper Black" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="62" MinHeight="15">Online</RadioButton>
             <RadioButton x:Name="radBtnNotificationModeOffline" GroupName="notificationGroupMode" Margin="240,340,0,0" FontFamily="Cooper Black" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="64" MinHeight="15">Offline</RadioButton>
             <RadioButton x:Name="radBtnNotificationModeSelective" GroupName="notificationGroupMode" Margin="171,360,0,0" FontFamily="Cooper Black" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="70" MinHeight="15" Checked="selectiveNotificationsCheckedEventHandler">Selective</RadioButton>
@@ -81,13 +81,13 @@
         </Grid>
 
         <Grid Name="MyDialog" Visibility="Collapsed" Margin="61,135,0,0" Background="Silver" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left" Width="270">
-            <TextBlock FontFamily="Cooper Black" VerticalAlignment="Top" Height="18" Text="Do you want to save changes?" Margin="41,18,0,0" HorizontalAlignment="Left" Width="192" />
+            <TextBlock FontFamily="Cooper Black" VerticalAlignment="Top" Height="22" Text="Do you want to save changes?" Margin="41,18,0,0" HorizontalAlignment="Left" Width="192" />
             <Button Name="yesButton" Click="btn_ToSetForumPref" FontFamily="Cooper Black" Content="Yes" Margin="41,68,0,0" HorizontalAlignment="Left" Width="74" Height="22" VerticalAlignment="Top" />
             <Button Name="noButton" Click="btn_ToSetForumPref" FontFamily="Cooper Black" Content="No" Margin="155,68,0,0" HorizontalAlignment="Left" Width="74" Height="22" VerticalAlignment="Top" />
         </Grid>
 
         <Grid Name="beforeSetPref" Visibility="Collapsed" Margin="52,135,0,0" Background="Silver" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left" Width="288">
-            <TextBlock FontFamily="Cooper Black" VerticalAlignment="Top" Height="18" Text="Choose forum name to edit:" Margin="9,27,0,0" HorizontalAlignment="Left" Width="176" />
+            <TextBlock FontFamily="Cooper Black" VerticalAlignment="Top" Height="22" Text="Choose forum name to edit:" Margin="9,27,0,0" HorizontalAlignment="Left" Width="176" />
             <ComboBox Name="comboBox" Margin="195,27,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" DropDownOpened="ComboBox_OnDropDownOpened" DropDownClosed="ComboBox_OnDropDownClosed" Height="18" Width="73"/>
             <Button Name="back" Click="backButton_Click" FontFamily="Cooper Black" Content="Back" Margin="33,68,0,0" HorizontalAlignment="Left" Width="74" Height="22" VerticalAlignment="Top" />
             <Button Name="continue" Click="btn_continue" FontFamily="Cooper Black" Content="Continue" Margin="181,68,0,0" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="74" />

@@ -9,13 +9,13 @@
         <TextBlock FontFamily="Cooper Black" Text="Enter UserName:" Margin="22,234,0,0" Height="22" HorizontalAlignment="Left" VerticalAlignment="Top" Width="122"/>
         <TextBlock FontFamily="Cooper Black" Text="Enter Password:" Margin="22,262,0,0" Height="22" HorizontalAlignment="Left" VerticalAlignment="Top" Width="122"/>
         <ComboBox x:Name="comboBox" Margin="174,170,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" DropDownOpened="ComboBox_OnDropDownOpened" DropDownClosed="ComboBox_OnDropDownClosed" Height="26" Width="225"/>
-        <CheckBox Name="guestCheck" IsChecked="False" Margin="278,206,0,0" Click="guestChoose" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="46"/>
+        <CheckBox Name="guestCheck" IsChecked="False" Margin="278,206,0,0" Click="guestChoose" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="46"/>
         <TextBox Name="ID" Margin="174,234,0,0" TextWrapping="Wrap" Text="" Height="22" HorizontalAlignment="Left" VerticalAlignment="Top" Width="225"/>
         <PasswordBox Name="Password" Margin="174,262,0,0" Height="22" HorizontalAlignment="Left" VerticalAlignment="Top" Width="225"/>
         <Button x:Name="superUserViewButton" FontFamily="Cooper Black" Content="Im A Super User" Margin="54,326,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="superUserViewButton_Click" Height="26" Width="117"/>
         <Button Name="login" FontFamily="Cooper Black" Content="Login"  Margin="176,326,0,0" Click="LoginPressed" HorizontalAlignment="Left" VerticalAlignment="Top" Width="71" Height="26"/>
         <Button Name="signUP" FontFamily="Cooper Black" Content="Sign Up" Margin="252,326,0,0" Click="SignUpUser" HorizontalAlignment="Left" VerticalAlignment="Top" Width="72" Height="26"/>
         <Button Name="restore" FontFamily="Cooper Black" Content="Restore Password" Margin="329,326,0,0" Click="restorePass" HorizontalAlignment="Left" VerticalAlignment="Top" Width="147" Height="26"/>
-        <TextBlock Name="guest" FontFamily="Cooper Black" Text="As Guest" Margin="200,206,0,0" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="73"/>
+        <TextBlock Name="guest" FontFamily="Cooper Black" Text="As Guest" Margin="200,206,0,0" Height="22" HorizontalAlignment="Left" VerticalAlignment="Top" Width="73"/>
     </Grid>
 </Window>
