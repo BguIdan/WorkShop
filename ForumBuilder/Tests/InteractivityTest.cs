@@ -111,7 +111,7 @@ namespace Tests
             //interactivity_test_thread_creation_by_member();
             Assert.AreEqual("Thread removed", this.subForumManager.deleteThread(postId, this.userMember.userName));
             System.Threading.Thread.Sleep(100);
-            Assert.AreEqual(1, notifications.deletedCounter);
+            Assert.AreEqual(1, notifications.deletedCounter-2);
         }
 
         [TestMethod]
@@ -120,7 +120,7 @@ namespace Tests
             //interactivity_test_thread_creation_by_admin();
             Assert.AreEqual("Thread removed", this.subForumManager.deleteThread(postId, this.userAdmin.userName));
             System.Threading.Thread.Sleep(100);
-            Assert.AreEqual(1, notifications.deletedCounter);
+            Assert.AreEqual(1, notifications.deletedCounter-2);
         }
 
         [TestMethod]
@@ -129,7 +129,7 @@ namespace Tests
             //interactivity_test_thread_creation_by_member();
             Assert.AreEqual("Post removed", this.postManager.deletePost(postId, this.userMember.userName));
             System.Threading.Thread.Sleep(100);
-            Assert.AreEqual(1, notifications.deletedCounter);
+            Assert.AreEqual(1, notifications.deletedCounter-2);
         }
 
         [TestMethod]
@@ -138,7 +138,7 @@ namespace Tests
             //interactivity_test_thread_creation_by_admin();
             Assert.AreEqual("Post removed", this.postManager.deletePost(postId, this.userAdmin.userName));
             System.Threading.Thread.Sleep(100);
-            Assert.AreEqual(1, notifications.deletedCounter);
+            Assert.AreEqual(1, notifications.deletedCounter-2);
         }
 
         [TestMethod]
@@ -148,7 +148,7 @@ namespace Tests
             this.postManager.addPost("head", "cont", this.userAdmin.userName, this.postId);
             Assert.AreEqual("Post removed", this.postManager.deletePost(postId, this.userMember.userName));
             System.Threading.Thread.Sleep(100);
-            Assert.AreEqual(2, notifications.deletedCounter);
+            Assert.AreEqual(2, notifications.deletedCounter-2);
         }
 
         [TestMethod]
@@ -158,7 +158,7 @@ namespace Tests
             this.postManager.addPost("head", "cont", this.userMember.userName, this.postId);
             Assert.AreEqual("Post removed", this.postManager.deletePost(postId, this.userAdmin.userName));
             System.Threading.Thread.Sleep(100);
-            Assert.AreEqual(2, notifications.deletedCounter);
+            Assert.AreEqual(2, notifications.deletedCounter-2);
         }
 
         [TestMethod]
