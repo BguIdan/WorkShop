@@ -120,25 +120,123 @@ namespace ForumBuilder.Systems
             String email = "d@d.d";//getEmail();
 
             initialize(username, password, email);
-            ForumPolicy fp = new ForumPolicy("p", true, 0, false, 180,1, true, true, 2, 0, new List<string>());
+            ForumPolicy fp1 = new ForumPolicy("policy sport", true, 0, true, 30 ,1, true, true, 5, 0, new List<string>());
+            ForumPolicy fp2 = new ForumPolicy("polocy music", false, 0, false, 180, 2, false, false, 5, 1, new List<string>());
             List<String> list = new List<String>();
             list.Add("idan");
-            if (!SuperUserController.getInstance.createForum("f", "f",fp, list, "idan").Equals("Forum " + "f" + " creation success"))
+            if (!SuperUserController.getInstance.createForum("Sport", "all about sport", fp1, list, "idan").Equals("Forum " + "Sport" + " creation success"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!1");
-            if (!SuperUserController.getInstance.createForum("f2", "f", fp, list, "idan").Equals("Forum " + "f2" + " creation success"))
+            if (!SuperUserController.getInstance.createForum("Music", "all about music", fp2, list, "idan").Equals("Forum " + "Music" + " creation success"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!2");
-            if (!ForumController.getInstance.registerUser("g1", "gG1", "g@g.g","sad","bad" ,"f").Equals("Register user succeed"))
+            
+            if (!ForumController.getInstance.registerUser("g1", "gG1234", "g@g.g", "sad", "bad", "Sport").Equals("Register user succeed"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!3");
-            if (!ForumController.getInstance.registerUser("g2", "gG1", "g@g.g","good", "awesome", "f").Equals("Register user succeed"))
+            if (!ForumController.getInstance.registerUser("g2", "gG1234", "g@g.g", "good", "awesome", "Sport").Equals("Register user succeed"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!4");
-            if (!ForumController.getInstance.registerUser("g3", "gG1", "g@g.g", "good", "awesome", "f2").Equals("Register user succeed"))
-                Console.WriteLine("!!!!!!!!!!!!!!!!!!!5");
-            if (!ForumController.getInstance.nominateAdmin("g1", "idan", "f").Equals("admin nominated successfully"))
+            if (!ForumController.getInstance.registerUser("g3", "gG1234", "g@g.g", "good", "awesome", "Sport").Equals("Register user succeed"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!5");      
+            if (!ForumController.getInstance.registerUser("admin_of_sport", "gG1234", "as@as.as", "sad", "bad", "Sport").Equals("Register user succeed"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!6");
-            Dictionary<String, DateTime> d = new Dictionary<String, DateTime>();
-            d.Add("g1", new DateTime(2017, 1, 1));
-            if (!ForumController.getInstance.addSubForum("f", "f1",d , "g1").Equals("sub-forum added"))
-                Console.WriteLine("!!!!!!!!!!!!!!!!!!!");
+            if (!ForumController.getInstance.registerUser("user_of_sport", "gG1234", "us@us.us", "sad", "bad", "Sport").Equals("Register user succeed"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!7");
+            if (!ForumController.getInstance.registerUser("mod_of_basketball", "gG1234", "ms@ms.ms", "sad", "bad", "Sport").Equals("Register user succeed"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!8");
+            if (!ForumController.getInstance.registerUser("mod_of_football", "gG1234", "mf@mf.mf", "sad", "bad", "Sport").Equals("Register user succeed"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!9");
+            if (!ForumController.getInstance.registerUser("admin_of_music", "gG1234", "am@am.am", "", "", "Music").Equals("Register user succeed"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!10");
+            if (!ForumController.getInstance.registerUser("user_of_music", "gG1234", "um@um.um", "", "", "Music").Equals("Register user succeed"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!11");
+            if (!ForumController.getInstance.registerUser("mod1_of_guitar", "gG1234", "m1g@m1g.m1g", "", "", "Music").Equals("Register user succeed"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!12");
+            if (!ForumController.getInstance.registerUser("mod2_of_guitar", "gG1234", "m2g@m2g.m2g", "", "", "Music").Equals("Register user succeed"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!13");
+            if (!ForumController.getInstance.registerUser("mod1_of_concert", "gG1234", "m1c@m1c.m1c", "", "", "Music").Equals("Register user succeed"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!14");
+            if (!ForumController.getInstance.registerUser("mod2_of_concert", "gG1234", "m2c@m2c.m2c", "", "", "Music").Equals("Register user succeed"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!15");
+
+            if (!ForumController.getInstance.nominateAdmin("admin_of_sport", "idan", "Sport").Equals("admin nominated successfully"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!16");
+            if (!ForumController.getInstance.nominateAdmin("admin_of_music", "idan", "Music").Equals("admin nominated successfully"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!17");
+
+
+            Dictionary<String, DateTime> mod_basketball = new Dictionary<String, DateTime>();
+            mod_basketball.Add("mod_of_basketball", new DateTime(2017, 1, 1));
+            if (!ForumController.getInstance.addSubForum("Sport", "basketball", mod_basketball, "admin_of_sport").Equals("sub-forum added"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!18");
+            Dictionary<String, DateTime> mod_football = new Dictionary<String, DateTime>();
+            mod_football.Add("mod_of_football", new DateTime(2017, 1, 1));
+            if (!ForumController.getInstance.addSubForum("Sport", "football", mod_football, "admin_of_sport").Equals("sub-forum added"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!19");
+            Dictionary<String, DateTime> mod_guitar = new Dictionary<String, DateTime>();
+            mod_guitar.Add("mod1_of_guitar", new DateTime(2017, 1, 1));
+            mod_guitar.Add("mod2_of_guitar", new DateTime(2017, 1, 1));
+            if (!ForumController.getInstance.addSubForum("Music", "guitar", mod_guitar, "admin_of_music").Equals("sub-forum added"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!20");
+            Dictionary<String, DateTime> mod_concert = new Dictionary<String, DateTime>();
+            mod_concert.Add("mod1_of_concert", new DateTime(2017, 1, 1));
+            mod_concert.Add("mod2_of_concert", new DateTime(2017, 1, 1));
+            if (!ForumController.getInstance.addSubForum("Music", "concert", mod_concert, "admin_of_music").Equals("sub-forum added"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!21");
+
+            if (!SubForumController.getInstance.createThread("headline1", "content1", "user_of_music", "Music", "guitar").Equals("Create tread succeed"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!22");
+            if (!SubForumController.getInstance.createThread("headline2", "content2", "admin_of_music", "Music", "guitar").Equals("Create tread succeed"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!23");
+            if (!SubForumController.getInstance.createThread("headline3", "content3", "mod1_of_concert", "Music", "concert").Equals("Create tread succeed"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!24");
+            if (!SubForumController.getInstance.createThread("headline4", "content4", "mod2_of_concert", "Music", "concert").Equals("Create tread succeed"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!25");
+            if (!SubForumController.getInstance.createThread("headline5", "content5", "user_of_sport", "Sport", "basketball").Equals("Create tread succeed"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!26");
+            if (!SubForumController.getInstance.createThread("headline6", "content6", "admin_of_sport", "Sport", "basketball").Equals("Create tread succeed"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!27");
+            if (!SubForumController.getInstance.createThread("headline7", "content7", "mod_of_basketball", "Sport", "football").Equals("Create tread succeed"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!28");
+            if (!SubForumController.getInstance.createThread("headline8", "content8", "mod_of_football", "Sport", "football").Equals("Create tread succeed"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!29");
+
+            if (!PostController.getInstance.addComment("headline1", "content1", "admin_of_music", 0).Equals("comment created"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!30");
+            if (!PostController.getInstance.addComment("headline2", "content2", "admin_of_music", 0).Equals("comment created"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!31");
+
+            if (!PostController.getInstance.addComment("headline3", "content3", "mod1_of_guitar", 1).Equals("comment created"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!32");
+            if (!PostController.getInstance.addComment("headline4", "content4", "mod2_of_guitar", 1).Equals("comment created"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!33");
+
+            if (!PostController.getInstance.addComment("headline5", "content5", "mod2_of_concert", 2).Equals("comment created"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!32");
+            if (!PostController.getInstance.addComment("headline6", "content6", "mod1_of_concert", 2).Equals("comment created"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!33");
+
+            if (!PostController.getInstance.addComment("headline7", "content7", "admin_of_music", 3).Equals("comment created"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!34");
+            if (!PostController.getInstance.addComment("headline8", "content8", "user_of_music", 3).Equals("comment created"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!35");
+
+            if (!PostController.getInstance.addComment("headline1", "content1", "admin_of_sport", 4).Equals("comment created"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!36");
+            if (!PostController.getInstance.addComment("headline2", "content2", "user_of_sport", 4).Equals("comment created"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!37");
+
+            if (!PostController.getInstance.addComment("headline3", "content3", "admin_of_sport", 5).Equals("comment created"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!38");
+            if (!PostController.getInstance.addComment("headline4", "content4", "user_of_sport", 5).Equals("comment created"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!39");
+
+            if (!PostController.getInstance.addComment("headline5", "content5", "mod_of_basketball", 6).Equals("comment created"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!40");
+            if (!PostController.getInstance.addComment("headline6", "content6", "user_of_sport", 6).Equals("comment created"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!41");
+
+            if (!PostController.getInstance.addComment("headline7", "content7", "admin_of_sport", 7).Equals("comment created"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!42");
+            if (!PostController.getInstance.addComment("headline8", "content8", "mod_of_football", 7).Equals("comment created"))
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!43");
 
             runServer(username, password, email);
             //DBClass.getInstance.clear();
