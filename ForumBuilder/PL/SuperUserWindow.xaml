@@ -26,7 +26,7 @@
             <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Foreground="Red" VerticalAlignment="Top" Height="22" Margin="43,175,0,0" Text="* seperate names with a comma" HorizontalAlignment="Left" Width="223"/>
             <TextBox Name="newAdminUserName" TextWrapping="Wrap" Text="" Margin="195,148,0,0" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="140"/>
             <Button FontFamily="Cooper Black" Content="Create Forum" Margin="214,267,0,0" Click="btn_CreateNewForum" HorizontalAlignment="Left" Width="121" Height="26" VerticalAlignment="Top"/>
-            <Button FontFamily="Cooper Black" Content="Back" Margin="43,267,0,0" Click="btn_back" HorizontalAlignment="Left" Width="121" Height="26" VerticalAlignment="Top"/>
+            <Button FontFamily="Cooper Black" Content="Back" Margin="43,267,0,0" Click="backButton_Click" HorizontalAlignment="Left" Width="121" Height="26" VerticalAlignment="Top"/>
         </Grid>
 
         <Grid Name="setPreferencesWin" Visibility="Collapsed" Margin="0,0,0,0">
@@ -71,7 +71,7 @@
             <TextBox Name="email" Height="22" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="195,148,0,0" HorizontalAlignment="Left" Width="140"/>
             <Button FontFamily="Cooper Black" Content="Create User" Margin="213,262,0,0" Click="btn_CreateNewUser" HorizontalAlignment="Left" Width="122" Height="26" VerticalAlignment="Top"/>
             <TextBlock FontSize="30" FontFamily="Broadway" TextWrapping="Wrap" Text="Create New User"  Height="40" Margin="60,30,0,0" HorizontalAlignment="Left" Width="272" VerticalAlignment="Top"/>
-            <Button FontFamily="Cooper Black" Content="Back" Margin="43,262,0,0" Click="btn_back" HorizontalAlignment="Left" Width="121" Height="26" VerticalAlignment="Top"/>
+            <Button FontFamily="Cooper Black" Content="Back" Margin="43,262,0,0" Click="backButton_Click" HorizontalAlignment="Left" Width="121" Height="26" VerticalAlignment="Top"/>
         </Grid>
 
         <Grid Name="createForumDialog" Visibility="Collapsed" Margin="61,135,0,0" Background="Silver" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left" Width="270">
@@ -89,7 +89,7 @@
         <Grid Name="beforeSetPref" Visibility="Collapsed" Margin="52,135,0,0" Background="Silver" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left" Width="288">
             <TextBlock FontFamily="Cooper Black" VerticalAlignment="Top" Height="18" Text="Choose forum name to edit:" Margin="9,27,0,0" HorizontalAlignment="Left" Width="176" />
             <ComboBox Name="comboBox" Margin="195,27,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" DropDownOpened="ComboBox_OnDropDownOpened" DropDownClosed="ComboBox_OnDropDownClosed" Height="18" Width="73"/>
-            <Button Name="back" Click="btn_back" FontFamily="Cooper Black" Content="Back" Margin="33,68,0,0" HorizontalAlignment="Left" Width="74" Height="22" VerticalAlignment="Top" />
+            <Button Name="back" Click="backButton_Click" FontFamily="Cooper Black" Content="Back" Margin="33,68,0,0" HorizontalAlignment="Left" Width="74" Height="22" VerticalAlignment="Top" />
             <Button Name="continue" Click="btn_continue" FontFamily="Cooper Black" Content="Continue" Margin="181,68,0,0" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="74" />
         </Grid>
 
@@ -97,7 +97,7 @@
             <TextBlock Name="headline" FontSize="24" FontFamily="Cooper Black" TextWrapping="Wrap" VerticalAlignment="Top" Text="Reports" Height="25" Margin="142,42,0,0" HorizontalAlignment="Left" Width="107"/>
             <TextBlock Name="numOfFOrums" FontSize="14" FontFamily="Cooper Black" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" Margin="21,82,0,0" HorizontalAlignment="Left" Width="211"/>
             <ListBox Name="memberListBox" HorizontalAlignment="Left" Margin="21,125,0,0" Width="347" Height="197" VerticalAlignment="Top"/>
-            <Button FontFamily="Cooper Black" Content="Back" Margin="135,334,0,0" Click="btn_back" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="121"/>
+            <Button FontFamily="Cooper Black" Content="Back" Margin="135,334,0,0" Click="backButton_Click" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="121"/>
         </Grid>
     </Grid>
 </Window>

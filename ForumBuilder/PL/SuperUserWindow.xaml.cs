@@ -121,10 +121,18 @@ namespace PL
             if (isCreated)
             {
                 MessageBox.Show("Forum " + _currentForum + " creation success");
+                newForumName.Clear();
+                newForumDescription.Clear();
+                newAdminUserName.Clear();
                 createForumDialog.Visibility = System.Windows.Visibility.Visible;
                 createForumDialog.Focusable = true;
             }
-            else { MessageBox.Show(created); }
+            else { 
+                MessageBox.Show(created);
+                newForumName.Clear();
+                newForumDescription.Clear();
+                newAdminUserName.Clear();
+            }
         }
 
         private void btn_toSetPref(object sender, RoutedEventArgs e)
@@ -181,6 +189,12 @@ namespace PL
             {
                 if (_fData != null)
                 {
+                    ForumDescToSet.Text = _fData.description;
+                    ForumPolicyToSet.Text = _fData.forumPolicy.policy;
+                    PassCombo.Items.Add(_fData.forumPolicy.timeToPassExpiration);
+                    TimeCombo.Items.Add(_fData.forumPolicy.seniorityInForum);
+                    NumberCombo.Items.Add(_fData.forumPolicy.minNumOfModerator);
+                    LengthCombo.Items.Add(_fData.forumPolicy.minLengthOfPassword);
                     bool toChange = descCheck.IsChecked.Value;
                     if (toChange)
                     {
@@ -285,6 +299,9 @@ namespace PL
             else
             {
                 MessageBox.Show(name + "  creation succeeded!");
+                userName.Clear();
+                Password.Clear();
+                email.Clear();
                 MainMenu.Visibility = System.Windows.Visibility.Visible;
                 createUserWin.Visibility = System.Windows.Visibility.Collapsed;
             }
@@ -348,14 +365,14 @@ namespace PL
             }
         }
 
-        private void btn_back(object sender, RoutedEventArgs e)
+        /*private void btn_back(object sender, RoutedEventArgs e)
         {
             beforeSetPref.Visibility = System.Windows.Visibility.Collapsed;
             beforeSetPref.Focusable = false;
             createForum.Visibility = System.Windows.Visibility.Collapsed;
             createUserWin.Visibility = System.Windows.Visibility.Collapsed;
             viewGrid.Visibility = System.Windows.Visibility.Collapsed;
-        }
+        }*/
 
         private void btn_continue(object sender, RoutedEventArgs e)
         {
