@@ -99,7 +99,7 @@ namespace PL
             createUserWin.Visibility = System.Windows.Visibility.Collapsed;
             viewGrid.Visibility = System.Windows.Visibility.Collapsed;
             beforeSetPref.Visibility = System.Windows.Visibility.Visible;
-            beforeSetPref.Focusable = false;
+            beforeSetPref.Focusable = true;
         }
 
         private void createUser()
@@ -149,6 +149,22 @@ namespace PL
                 deleteMessages.IsChecked = fd.forumPolicy.deletePostByModerator;
                 Capital.IsChecked = fd.forumPolicy.hasCapitalInPassword;
                 Number.IsChecked = fd.forumPolicy.hasNumberInPassword;
+                if (fd.description != "")
+                {
+                    ForumDescToSet.Text = fd.description;
+                }
+                if (fd.forumPolicy.policy != "")
+                {
+                    ForumPolicyToSet.Text = fd.forumPolicy.policy;
+                }
+                PassCombo.Items.Add(fd.forumPolicy.timeToPassExpiration);
+                PassCombo.SelectedItem = fd.forumPolicy.timeToPassExpiration;
+                TimeCombo.Items.Add(fd.forumPolicy.seniorityInForum);
+                TimeCombo.SelectedItem = fd.forumPolicy.seniorityInForum;
+                NumberCombo.Items.Add(fd.forumPolicy.minNumOfModerator);
+                NumberCombo.SelectedItem = fd.forumPolicy.minNumOfModerator;
+                LengthCombo.Items.Add(fd.forumPolicy.minLengthOfPassword);
+                LengthCombo.SelectedItem = fd.forumPolicy.minLengthOfPassword;
             }
             else
             {
@@ -189,12 +205,6 @@ namespace PL
             {
                 if (_fData != null)
                 {
-                    ForumDescToSet.Text = _fData.description;
-                    ForumPolicyToSet.Text = _fData.forumPolicy.policy;
-                    PassCombo.Items.Add(_fData.forumPolicy.timeToPassExpiration);
-                    TimeCombo.Items.Add(_fData.forumPolicy.seniorityInForum);
-                    NumberCombo.Items.Add(_fData.forumPolicy.minNumOfModerator);
-                    LengthCombo.Items.Add(_fData.forumPolicy.minLengthOfPassword);
                     bool toChange = descCheck.IsChecked.Value;
                     if (toChange)
                     {
@@ -386,6 +396,22 @@ namespace PL
                 deleteMessages.IsChecked = fd.forumPolicy.deletePostByModerator;
                 Capital.IsChecked = fd.forumPolicy.hasCapitalInPassword;
                 Number.IsChecked = fd.forumPolicy.hasNumberInPassword;
+                if (fd.description != "")
+                {
+                    ForumDescToSet.Text = fd.description;
+                }
+                if (fd.forumPolicy.policy != "")
+                {
+                    ForumPolicyToSet.Text = fd.forumPolicy.policy;
+                }
+                PassCombo.Items.Add(fd.forumPolicy.timeToPassExpiration);
+                PassCombo.SelectedItem = fd.forumPolicy.timeToPassExpiration;
+                TimeCombo.Items.Add(fd.forumPolicy.seniorityInForum);
+                TimeCombo.SelectedItem = fd.forumPolicy.seniorityInForum;
+                NumberCombo.Items.Add(fd.forumPolicy.minNumOfModerator);
+                NumberCombo.SelectedItem = fd.forumPolicy.minNumOfModerator;
+                LengthCombo.Items.Add(fd.forumPolicy.minLengthOfPassword);
+                LengthCombo.SelectedItem = fd.forumPolicy.minLengthOfPassword;
             }
             else { MessageBox.Show("Please choose a forum in order to edit it"); }
         }
