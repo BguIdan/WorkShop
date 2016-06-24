@@ -326,7 +326,7 @@ namespace Database
                 closeConnectionDB();
                 return cache.setPassword(userName, password);
             }
-            catch(Exception e)
+            catch
             {
                 closeConnectionDB();
                 return false;

@@ -42,7 +42,7 @@ namespace PL
 
         private void LoginPressed(object sender, RoutedEventArgs e)
         {
-            int sessionKey = -1;
+            String sessionKey = "";
             string userName = ID.Text;
             string pass = Password.Password;
             //string sessionKeyField = sessionKeyTextBox.Text;
@@ -51,15 +51,15 @@ namespace PL
                 ForumData toSend = _fMC.getForum(_choosenForum);
                 if (guestCheck.IsChecked.Value)
                 {
-                    ForumWindow fw = new ForumWindow(toSend, "Guest", _cnh);
+                    ForumWindow fw = new ForumWindow(toSend, "Guest", _cnh, sessionKey);
                     this.Close();
                     fw.Show();
                 }
-                else if (pass != "" && (sessionKey = _fMC.login(userName, _choosenForum, pass)) > 0)
+                else if (pass != "" && (sessionKey = _fMC.login(userName, _choosenForum, pass)).Contains(","))
                 {
                     if (toSend.forumPolicy.notificationsType == ForumPolicyData.OFFLINE_NOTIFICATIONS_TPYE)
                     {
-                        List<string> offlineNotifications = _fMC.getOfflineNotifications(_choosenForum, userName, sessionKey);
+                        List<string> offlineNotifications = _fMC.getOfflineNotifications(_choosenForum, userName, Int32.Parse(sessionKey.Substring(0,sessionKey.IndexOf(","))));
                         if (offlineNotifications != null && offlineNotifications.Count > 0)
                         {
                             OfflineNotificationsWindow offlineNotificationsWindow = new OfflineNotificationsWindow(offlineNotifications);
@@ -67,8 +67,8 @@ namespace PL
                         }
                     }
 
-                    MessageBox.Show("Login successful! your session code for is " + sessionKey.ToString());
-                    ForumWindow fw = new ForumWindow(toSend, userName, _cnh);
+                    MessageBox.Show("Login successful! your session code for is " +sessionKey.Substring(0, sessionKey.IndexOf(",")));
+                    ForumWindow fw = new ForumWindow(toSend, userName, _cnh,sessionKey);
                     this.Close();
                     fw.Show();
                 }
@@ -102,35 +102,35 @@ namespace PL
                 {
                     switch (sessionKey)
                     {
-                        case -1:
+                        case "-1":
                             // TODO: need to explain why the login failed
                             MessageBox.Show("login failed");
                             break;
 
-                        case -2:
+                        case "-2":
                             MessageBox.Show("user name or password are invalid");
                             break;
 
-                        case -3:
+                        case "-3":
                             MessageBox.Show("you are already connected via another client, " +
                                             "please login using your session key");
                             SessionKeyWindow sk = new SessionKeyWindow(userName, _choosenForum);
                             sk.Show();
                             this.Close();
                             break;
-                        case -5:
+                        case "-5":
                             MessageBox.Show("Your password has expierd! it's time to change password");
                             correntProblemsFromSetPrefferencesWindow newWin3 = new correntProblemsFromSetPrefferencesWindow(userName, _choosenForum, pass, sessionKey);
                             newWin3.Show();
                             this.Close();
                             break;
-                        case -6:
+                        case "-6":
                             MessageBox.Show("needs to add new identifying questions");
                             correntProblemsFromSetPrefferencesWindow newWin4 = new correntProblemsFromSetPrefferencesWindow(userName, _choosenForum, pass, sessionKey);
                             newWin4.Show();
                             this.Close();
                             break;
-                        case -7:
+                        case "-7":
                             MessageBox.Show("you have to change password, policy  changed");
                             correntProblemsFromSetPrefferencesWindow newWin5 = new correntProblemsFromSetPrefferencesWindow(userName, _choosenForum, pass, sessionKey);
                             newWin5.Show();

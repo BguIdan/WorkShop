@@ -27,9 +27,9 @@ namespace PL
         private string _userName;
         private string _forumName;
         private string _password;
-        private int _whatToDo;
+        private String _whatToDo;
 
-        public correntProblemsFromSetPrefferencesWindow(string userName, string forumName, string password, int whatToDo)
+        public correntProblemsFromSetPrefferencesWindow(string userName, string forumName, string password, String whatToDo)
         {
             InitializeComponent();
             _fMC = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
@@ -37,7 +37,7 @@ namespace PL
             _forumName = forumName;
             _password = password;
             _whatToDo = whatToDo;
-            if(_whatToDo == -5|| _whatToDo ==- 7)
+            if(_whatToDo.Equals("-5")|| _whatToDo.Equals("- 7"))
             {
                 setPassGrid.Visibility = Visibility.Visible;
                 backButton.Visibility = Visibility.Visible;
@@ -90,14 +90,13 @@ namespace PL
 
         private void login(string password)
         {
-            int sessionKey = -1;
-            int response = _fMC.login(_userName, _forumName, password);
+            String sessionKey = _fMC.login(_userName, _forumName, password);
 
-            if ((sessionKey = response) > 0)
+            if (sessionKey.Contains(","))
             {
                 MessageBox.Show("Login successful! your session code for is " + sessionKey.ToString());
                 ForumData forum = _fMC.getForum(_forumName);
-                ForumWindow fw = new ForumWindow(forum, _userName, new ClientNotificationHost());
+                ForumWindow fw = new ForumWindow(forum, _userName, new ClientNotificationHost(),sessionKey);
                 this.Close();
                 fw.Show();
             }
@@ -106,36 +105,42 @@ namespace PL
                 MainWindow newWin = new MainWindow();
                 switch (sessionKey)
                 {
-                    case -1:
+                    case "-1":
                         // TODO: need to explain why the login failed
                         MessageBox.Show("login failed");
                         newWin.Show();
                         this.Close();
                         break;
 
-                    case -2:
+                    case "-2":
                         MessageBox.Show("user name or password are invalid");
                         newWin.Show();
                         this.Close();
                         break;
 
-                    case -3:
+                    case "-3":
                         MessageBox.Show("you are already connected via another client, " +
                                         "please login using your session key");
                         SessionKeyWindow sk = new SessionKeyWindow(_userName, _forumName);
                         sk.Show();
                         this.Close();
                         break;
-                    case -5:
+                    case "-5":
                         MessageBox.Show("Your password has expierd! it's time to change password");
                         correntProblemsFromSetPrefferencesWindow newWin3 = new correntProblemsFromSetPrefferencesWindow(_userName, _forumName, password, sessionKey);
                         newWin3.Show();
                         this.Close();
                         break;
-                    case -6:
+                    case "-6":
                         MessageBox.Show("needs to add new identifying questions");
                         correntProblemsFromSetPrefferencesWindow newWin4 = new correntProblemsFromSetPrefferencesWindow(_userName, _forumName, password, sessionKey);
                         newWin4.Show();
+                        this.Close();
+                        break;
+                    case "-7":
+                        MessageBox.Show("you have to change password, policy  changed");
+                        correntProblemsFromSetPrefferencesWindow newWin5 = new correntProblemsFromSetPrefferencesWindow(_userName, _forumName, password, sessionKey);
+                        newWin5.Show();
                         this.Close();
                         break;
                     default:

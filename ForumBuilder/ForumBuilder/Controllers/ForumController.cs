@@ -17,6 +17,7 @@ namespace ForumBuilder.Controllers
         Dictionary<String, int> Sessions = new Dictionary<String, int>();
         Dictionary<String, List<string>> clientSessionKeyByUser = new Dictionary<String, List<string>>();
         Dictionary<String, int> openConnectionsCounterByUser = new Dictionary<String, int>();
+        List<int> occupied=new List<int>();
 
         public static ForumController getInstance
         {
@@ -363,7 +364,7 @@ namespace ForumBuilder.Controllers
                 this.channelsByLoggedInUsers[user+ "," + sessionKey]=OperationContext.Current.GetCallbackChannel<IUserNotificationsService>();
                 string session;
                 //this.clientSessionKeyByUser[user] = sessionKey;
-                if (clientSessionKeyByUser[user] == null)
+                if (!clientSessionKeyByUser.ContainsKey(user) )
                 {
                     clientSessionKeyByUser[user] = new List<string>();
                 }
@@ -377,6 +378,7 @@ namespace ForumBuilder.Controllers
                 }
                 clientSessionKeyByUser[user].Add(session);
                 Sessions[user]=(sessionKey);
+                occupied.Add(sessionKey);
                 return session;
             }
             else
@@ -441,7 +443,7 @@ namespace ForumBuilder.Controllers
             if (this.openConnectionsCounterByUser[user] == 1)
             {//last open connection, session key will be discarded
                 this.loggedInUsersByForum[forumName].Remove(user);
-                this.channelsByLoggedInUsers.Remove(user+ "," + allSession.Substring(allSession.IndexOf(",")));
+                this.channelsByLoggedInUsers.Remove(user+ allSession.Substring(allSession.IndexOf(",")));
                 Sessions.Remove(user);
                 clientSessionKeyByUser.Remove(user);
                 openConnectionsCounterByUser.Remove(user);
@@ -450,7 +452,7 @@ namespace ForumBuilder.Controllers
             {
                 //GUY
                 this.openConnectionsCounterByUser[user]--;
-                this.channelsByLoggedInUsers.Remove(user + "," + allSession.Substring(allSession.IndexOf(",")));
+                this.channelsByLoggedInUsers.Remove(user+ allSession.Substring(allSession.IndexOf(",")));
                 clientSessionKeyByUser[user].Remove(allSession);
             }
             return true;
@@ -466,25 +468,19 @@ namespace ForumBuilder.Controllers
                 return false;
             foreach (String userName in loggedInUsers)
             {
-                foreach (String key in channelsByLoggedInUsers.Keys)
+                if (//channelsByLoggedInUsers[userName] != null &&
+                    (forumPolicy.notificationsType == ForumPolicy.SELECTIVE_NOTIFICATIONS_TPYE &&
+                                forumPolicy.selectiveNotificationsUsers.Contains(userName)
+                     //selective notifications is enabled and the current user is included
+                     ||
+                     forumPolicy.notificationsType != ForumPolicy.SELECTIVE_NOTIFICATIONS_TPYE)
+                    //offline/online notifications are enabled so all of the online users will be notified
+                    )
                 {
-                    if (key.Substring(0,key.IndexOf(",")).Equals(userName))
+                    foreach (IUserNotificationsService channel in getUserChannels(userName))
                     {
-                        string sess = key.Substring(key.IndexOf(","));
-                        if (channelsByLoggedInUsers[userName+sess ] != null &&
-                            (forumPolicy.notificationsType == ForumPolicy.SELECTIVE_NOTIFICATIONS_TPYE &&
-                                        forumPolicy.selectiveNotificationsUsers.Contains(userName)
-                             //selective notifications is enabled and the current user is included
-                             ||
-                             forumPolicy.notificationsType != ForumPolicy.SELECTIVE_NOTIFICATIONS_TPYE)
-                            //offline/online notifications are enabled so all of the online users will be notified
-                            )
-                        {
-                            foreach (IUserNotificationsService channel in channelsByLoggedInUsers[userName+ sess])
-                            {
-                                channel.applyPostPublishedInForumNotification(forumName, subForumName, publisherName);
-                            }
-                        }
+                        if(channel != null)
+                            channel.applyPostPublishedInForumNotification(forumName, subForumName, publisherName);
                     }
                 }
             }
@@ -514,7 +510,7 @@ namespace ForumBuilder.Controllers
                 return false;
             if (loggedInUsers.Contains(notifiedUser))
             {
-                List<IUserNotificationsService> channels = this.channelsByLoggedInUsers[notifiedUser];
+                List<IUserNotificationsService> channels = this.getUserChannels(notifiedUser);
                 if (channels != null)
                 {
                     foreach (IUserNotificationsService channel in channels)
@@ -541,7 +537,7 @@ namespace ForumBuilder.Controllers
                 return false;
             if (loggedInUsers.Contains(notifiedUser))
             {
-                List<IUserNotificationsService> channels = this.channelsByLoggedInUsers[notifiedUser];
+                List<IUserNotificationsService> channels = this.getUserChannels(notifiedUser);
                 if (channels != null)
                 {
                     foreach (IUserNotificationsService channel in channels)
@@ -628,7 +624,7 @@ namespace ForumBuilder.Controllers
         {
             Random random = new Random();
             int result = random.Next(0, 100000000);
-            while (this.Sessions.ContainsValue(result))
+            while (occupied.Contains(result))
             {
                 result = random.Next(1, 100000000);
             }
@@ -642,7 +638,7 @@ namespace ForumBuilder.Controllers
             List<String> currentlyLoggedInUsers = this.loggedInUsersByForum[forumName];
             if (currentlyLoggedInUsers == null || !currentlyLoggedInUsers.Contains(addressee))
                 return;
-            List<IUserNotificationsService> addresseeChannels = this.channelsByLoggedInUsers[addressee];
+            List<IUserNotificationsService> addresseeChannels = this.getUserChannels(addressee);
             if (addresseeChannels != null)
             {
                 foreach (IUserNotificationsService channel in addresseeChannels)

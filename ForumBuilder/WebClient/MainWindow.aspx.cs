@@ -55,7 +55,7 @@ namespace WebClient
                     showAlert("choose a forum");
                     return;
                 }
-                int sessionKey = -1;//general login error code
+                String sessionKey = "-1";//general login error code
                 if (_choosenForum != null)
                 {
                     ForumData toSend = _fMC.getForum(_choosenForum);
@@ -66,7 +66,7 @@ namespace WebClient
                         Session["ForumManagerClient"] = _fMC;
                         Response.Redirect("ForumWindow.aspx");
                     }
-                    else if ((sessionKey = _fMC.login(Session["UserName"].ToString(), _choosenForum, Session["Password"].ToString())) > 0)
+                    else if ((sessionKey = _fMC.login(Session["UserName"].ToString(), _choosenForum, Session["Password"].ToString())).Contains(","))
                     //TODO gal consider additional error codes for informative error messages
                     {
                         Session["forumName"] = _choosenForum;
@@ -79,15 +79,15 @@ namespace WebClient
                     {
                         switch (sessionKey)
                         {
-                            case -1:
+                            case "-1":
                                 showAlert("login failed");
                                 break;
 
-                            case -2:
+                            case "-2":
                                 showAlert("user name \\ password are invalid");
                                 break;
 
-                            case -3:
+                            case "-3":
                                 showAlert("you already connected via another client, " +
                                             "please login using your session key");
                                 break;
