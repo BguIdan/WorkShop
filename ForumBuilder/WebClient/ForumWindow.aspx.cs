@@ -132,7 +132,8 @@ namespace WebClient
             // an fourom member
             else
             {
-                _fMC.logout(nameLogout, _myforum.forumName);
+                ///TODO shouldnt be null
+                _fMC.logout(nameLogout, _myforum.forumName, null);//TODO shouldnt be null
                 Response.Redirect("MainWindow.aspx");
             }
         }
@@ -197,7 +198,7 @@ namespace WebClient
             //MessageBox.Show(publisherName + "'s post you were following in " + forumName + "was modified (" + title + ")", "post modified");
         }
 
-        public void applyPostDelitionNotification(String forumName, String publisherName)
+        public void applyPostDelitionNotification(String forumName, String publisherName, bool toSendMessage)
         {
             //MessageBox.Show(publisherName + "'s post you were following in " + forumName + "was deleted", "post deleted");
         }

@@ -28,8 +28,7 @@ namespace PL.notificationHost
                 "'s sub-forum " + subForumName, "new post");
             if(_currentWindow != null)
                 _currentWindow.refresh();
-            SubForumWindow._generalFlag++;
-            Thread.CurrentThread.Interrupt();
+            SubForumWindow._generalAddedPostThreadFlag++;
         }
 
         public void applyPostModificationNotification(String forumName, String publisherName, String title)
@@ -37,9 +36,16 @@ namespace PL.notificationHost
                 MessageBox.Show(publisherName + "'s post you were following in " + forumName + " was modified (" + title + ")", "post modified");
         }
 
-        public void applyPostDelitionNotification(String forumName, String publisherName)
+        public void applyPostDelitionNotification(String forumName, String publisherName, bool toSendMessage)
         {
+            if (toSendMessage)
+            {
                 MessageBox.Show(publisherName + "'s post you were following in " + forumName + " was deleted", "post deleted");
+            }
+            else
+            {
+                SubForumWindow._generalDeletedPostThreadFlag++;
+            }
         }
 
         public void sendUserMessage(String senderName, String content)
