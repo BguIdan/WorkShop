@@ -33,7 +33,7 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
-            Thread.Sleep(2000);
+            //Thread.Sleep(500);
             _cnh = new ClientNotificationHost();
             _fMC = new ForumManagerClient(new InstanceContext(_cnh));
             _forumsList = _fMC.getForums();
