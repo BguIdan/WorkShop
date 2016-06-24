@@ -76,6 +76,7 @@ namespace PL
         public static int _generalAddedPostThreadFlag = 0;
         private int _myAddedPostThreadFlag;
         public static int _generalDeletedPostThreadFlag = 0;
+       // public static bool _isPost = false
         private int _myDeletedPostThreadFlag;
         private dataContainer _selected;
 
@@ -222,11 +223,18 @@ namespace PL
                     }
                 }
             }
-            threadView.Visibility = Visibility.Collapsed;
-            threadTextBox.Text = "   Posts";
-            addPostButton.Header = "add post";
-            addPostButton.Visibility = Visibility.Visible;
-            listBox.Visibility = Visibility.Visible;
+            if (!listBox.Items.IsEmpty)
+            {
+                threadView.Visibility = Visibility.Collapsed;
+                threadTextBox.Text = "   Posts";
+                addPostButton.Header = "add post";
+                addPostButton.Visibility = Visibility.Visible;
+                listBox.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                DataGrid_Loaded(this, null);
+            }
         }
 
         private void setNotifications(object sender, RoutedEventArgs e)

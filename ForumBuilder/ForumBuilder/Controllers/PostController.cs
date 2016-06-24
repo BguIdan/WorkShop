@@ -122,7 +122,7 @@ namespace ForumBuilder.Controllers
             {
                 this.forumController.sendPostDelitionNotification(sf.forum, deletedPost.writerUserName, username, true);
             }
-/////////////////////////
+            /////////////////////////
 
             //find the posts that have to delete
             List<Post> donePosts = new List<Post>();
@@ -148,6 +148,7 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Remove post " + donePosts.ElementAt(i).id,1);
             }
             //ForumController.getInstance.sendPostDelitionNotification(DB.getPost(postId).forumName, removerName);
+            this.forumController.sendPostDelitionNotification(sf.forum, deletedPost.writerUserName, null, false);
             return "Post removed";
         }
         public List<Post> getAllPosts(String forumName, String subforumName)
