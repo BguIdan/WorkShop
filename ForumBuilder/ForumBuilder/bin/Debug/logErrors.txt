@@ -1,18 +1,12 @@
-Log Entry : 		24/06/2016 13:43:05
-Register user failed, password is not good enough acording to forum policy
------------------------------------------------
-Log Entry : 		24/06/2016 13:43:05
-Register user failed, password is not good enough acording to forum policy
------------------------------------------------
-Log Entry : 		24/06/2016 13:43:05
-Register user failed, g3 is already taken
------------------------------------------------
-Log Entry : 		24/06/2016 13:43:05
-nominate admin fail, g1is already admin
------------------------------------------------
-Log Entry : 		24/06/2016 13:43:05
-Add sub-forum failed, f1 already exist
------------------------------------------------
-Log Entry : 		24/06/2016 13:44:14
+Log Entry : 				24/06/2016 16:51:31
 Post contoller created
------------------------------------------------
+-------------------------------------------------------------------------------------
+Log Entry : 				24/06/2016 16:52:17
+could not login, wrong credentials
+-------------------------------------------------------------------------------------
+Log Entry : 				24/06/2016 16:52:21
+could not login, wrong credentials
+-------------------------------------------------------------------------------------
+Log Entry : 				24/06/2016 16:55:20
+Delete post failed, there is no permission to that user
+-------------------------------------------------------------------------------------
