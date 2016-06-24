@@ -119,8 +119,15 @@ namespace ForumBuilder.Systems
             String password = "idanA1";//getUserPassword();
             String email = "d@d.d";//getEmail();
 
-            initialize(username, password, email);
-            ForumPolicy fp1 = new ForumPolicy("policy sport", true, 0, true, 30 ,1, true, true, 5, 0, new List<string>());
+            initialize(username, password, email);            
+            //setUpDB();
+            runServer(username, password, email);
+            //DBClass.getInstance.clear();
+            return 0;
+        }
+        private static void setUpDB()
+        {
+            ForumPolicy fp1 = new ForumPolicy("policy sport", true, 0, true, 30, 1, true, true, 5, 0, new List<string>());
             ForumPolicy fp2 = new ForumPolicy("polocy music", false, 0, false, 180, 2, false, false, 5, 1, new List<string>());
             List<String> list = new List<String>();
             list.Add("idan");
@@ -237,12 +244,7 @@ namespace ForumBuilder.Systems
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!42");
             if (!PostController.getInstance.addComment("headline8", "content8", "mod_of_football", 7).Equals("comment created"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!43");
-
-            runServer(username, password, email);
-            //DBClass.getInstance.clear();
-            return 0;
         }
-
         private static String getUserName()
         {
             String userName = Console.ReadLine();

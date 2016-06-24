@@ -463,7 +463,9 @@ namespace ForumBuilder.Controllers
             ForumPolicy forumPolicy = DB.getforumByName(forumName).forumPolicy;
             if (loggedInUsersByForum == null)
                 this.loggedInUsersByForum = new Dictionary<String, List<String>>();
-            List<String> loggedInUsers = this.loggedInUsersByForum[forumName];
+            List<String> loggedInUsers=null;
+            if (loggedInUsersByForum.ContainsKey(forumName)) 
+                loggedInUsers = this.loggedInUsersByForum[forumName];
             if (loggedInUsers == null)
                 return false;
             foreach (String userName in loggedInUsers)
