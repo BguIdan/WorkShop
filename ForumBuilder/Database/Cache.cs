@@ -228,9 +228,11 @@ namespace DataBase
                             {
                                 ans += " \n\t post title: " + p.title + " \n\t post content:" + p.content;
                             }
-                        }                    
+                        }
+                        report.Add(ans);
+                        ans = "";
                     }
-                    report.Add(ans);
+                    
                 }
                 return report;
             }
