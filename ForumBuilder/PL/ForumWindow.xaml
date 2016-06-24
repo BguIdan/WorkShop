@@ -72,10 +72,11 @@
             <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Text="Please enter forum name and select a member to be a moderator:" VerticalAlignment="Top" Height="28" Margin="44,84,0,0" HorizontalAlignment="Left" Width="228"/>
             <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Margin="48,148,0,0" Text="Sub-Forum Name:" HorizontalAlignment="Left" Width="123"/>
             <TextBox Name="subForumName" Margin="205,148,0,0" TextWrapping="Wrap" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120"/>
-            <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Margin="48,174,0,0" Text="Forum Member:" HorizontalAlignment="Left" Width="100" Height="20" VerticalAlignment="Top"/>
-            <TextBox Name="moderatorsTextBox" TextWrapping="Wrap" Text="" Margin="205,174,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120"/>
-            <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Margin="48,200,0,0" Text="Managing Duration Time: (In Days)" HorizontalAlignment="Left" Width="123" Height="30" VerticalAlignment="Top"/>
-            <ComboBox x:Name="comboBoxDuration" Margin="205,205,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120"/>
+            <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Margin="48,210,0,0" Text="Forum Member:" HorizontalAlignment="Left" Width="100" Height="22" VerticalAlignment="Top"/>
+            <TextBox Name="moderatorsTextBox" TextWrapping="Wrap" Text="" Margin="205,208,0,0" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120"/>
+            <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Margin="48,174,0,0" Text="Managing Duration Time: (In Days)" HorizontalAlignment="Left" Width="123" Height="30" VerticalAlignment="Top"/>
+            <ComboBox x:Name="comboBoxDuration" Margin="205,177,0,0" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120"/>
+            <TextBlock FontFamily="Cooper Black" TextWrapping="Wrap" Foreground="Red" VerticalAlignment="Top" Height="22" Margin="44,238,0,0" Text="* seperate names with a comma" HorizontalAlignment="Left" Width="223"/>
             <Button FontFamily="Cooper Black" Height="20" Content="Create" Margin="219,274,0,0" Click="btn_createSub" VerticalAlignment="Top" HorizontalAlignment="Left" Width="106"/>
             <TextBlock FontSize="30" FontFamily="Broadway" TextWrapping="Wrap" Text="Create Sub-Forum" Margin="30,18,0,0" Height="46" VerticalAlignment="Top" HorizontalAlignment="Left" Width="322"/>
         </Grid>
