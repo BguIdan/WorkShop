@@ -34,7 +34,7 @@ namespace PL
             _um = new UserManagerClient();
             _prevWindow = prevWindow;
             usr.Content = "UserName:  " + userName;
-            session.Content = "Session key:  " + key;
+            session.Content = "Session key:  " + key.Substring(0,key.IndexOf(","));
             List<string[]> privateMessages = _um.getAllPrivateMessages(_userName);
             foreach (string[] msg in privateMessages)
             {

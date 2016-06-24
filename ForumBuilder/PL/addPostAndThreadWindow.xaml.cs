@@ -42,7 +42,7 @@ namespace PL
             _prevWindow = prevWindow;
             _parentID = parrentId;
             usr.Content = "UserName: " + userName;
-            key.Content = "Session key: " + prevWindow.Sessionkey;
+            key.Content = "Session key: " + prevWindow.Sessionkey.Substring(0, prevWindow.Sessionkey.IndexOf(","));
             if (parrentId == -1)
             {
                 whatToAdd.Content = "Add new thread";

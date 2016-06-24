@@ -35,7 +35,7 @@ namespace PL
             _forumName = forumName;
             _subForumName = subForumName;
             user.Content = "UserName:  " + userName;
-            key.Content = "Session key:  " + oldWin.Sessionkey;
+            key.Content = "Session key:  " + oldWin.Sessionkey.Substring(0, oldWin.Sessionkey.IndexOf(","));
         }
 
         private void backButton_Click(object sender, RoutedEventArgs e)
