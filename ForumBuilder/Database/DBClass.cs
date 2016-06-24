@@ -238,6 +238,20 @@ namespace Database
                 closeConnectionDB();
                 posts = null;
             }
+            int max = -1;
+            foreach(Post p in posts)
+            {
+                max = Math.Max(p.id, max);
+            }
+            for(int i = 0; i <= max; i++)
+            {
+                avilabelPostIDs.Add(i);
+            }
+            foreach (Post p in posts)
+            {
+                avilabelPostIDs.Remove(p.id);
+            }
+            maxNotAvailable = max;
             List<Forum> fs = getForumsForInit();
             List<SubForum> sfs = getSubForumsForInit();
             cache.intialLists(fs, sfs,users,superUsers, threads,posts);
@@ -263,56 +277,10 @@ namespace Database
             {
             }
         }
-        /*public Boolean MemberConnect(String userName, String password, String forumName)
-        {
-            OpenConnectionDB();
-            OleDbCommand command = new OleDbCommand();
-            command.Connection = connection;
-            command.CommandText = "SELECT  * FROM  members,users where users.userName='"
-                + userName+ "' and user.userName=members.memberName and users.password='"
-                + password+ "' and members.forumName='" + forumName+ "' and members.isConnected=False";
-            OleDbDataReader reader = command.ExecuteReader();
-            int count = 0;
-            while (reader.Read())
-            {
-                count++;
-            }
-            if (count == 1)
-            {
-                //set user connected
-                //user is connected
-                closeConnectionDB();
-                return true;
-            }
-            else
-            {
-                //user is already connected or there was a problem with one or more of the args
-                closeConnectionDB();
-                return false;
-            }
-        }*/
 
         public int numOfForums()
         {
             return cache.numOfForums();
-            //return forums.Count;
-
-            /*try
-            {
-                OpenConnectionDB();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = connection;
-                command.CommandText = "SELECT  Count(forumName) FROM  forums";
-                OleDbDataReader reader = command.ExecuteReader();
-                reader.Read();
-                closeConnectionDB();
-                return reader.GetInt32(0);
-            }
-            catch
-            {
-                closeConnectionDB();
-                return -1;
-            }*/
         }
 
         public bool setPassword(string userName, string password)
@@ -472,190 +440,22 @@ namespace Database
         public Forum getforumByName(string forumName)
             {
             return cache.getforumByName(forumName);
-            /*foreach (Forum f in forums)
-            {
-                if (f.forumName.Equals(forumName))
-                {
-                    return f;
-                }
-            }
-            return null;*/
-            /*
-            Forum forum = null;
-            try
-            {
-                OpenConnectionDB();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = connection;
-                command.CommandText = "SELECT  * FROM  forums where forums.forumName='" + forumName + "'";
-                OleDbDataReader reader = command.ExecuteReader();
-                reader.Read();
-                OleDbCommand command2 = new OleDbCommand();
-                command2.Connection = connection;
-                command2.CommandText = "SELECT  * FROM  forumAdministrators where forumAdministrators.forumName='" + forumName + "'";
-                OleDbDataReader reader2 = command2.ExecuteReader();
-                List<String> administrators = new List<String>();
-                while (reader2.Read())
-                {
-                    administrators.Add(reader2.GetString(1));
-                }
-                forum = new Forum(reader.GetString(0), reader.GetString(1), administrators);
-                closeConnectionDB();
-                List<String> members = getMembersOfForum(forumName);
-                forum.members = members;
-                List<String> subForums = getsubForumsNamesOfForum(forumName);
-                forum.subForums = subForums;
-                return forum;
-            }
-            catch
-            {
-                closeConnectionDB();
-                return forum;
-            }*/
         }
 
         public List<string> getsubForumsNamesOfForum(string forumName)
         {
             return cache.getsubForumsNamesOfForum(forumName);
-            /*foreach (Forum f in forums)
-            {
-                if (f.forumName.Equals(forumName))
-                {
-                    return f.subForums;
-                }
-            }
-            return new List<String>();*/
-            /*try
-            {
-                OpenConnectionDB();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = connection;
-                command.CommandText = "SELECT  * FROM  subForums where forumName='" + forumName + "'";
-                OleDbDataReader reader = command.ExecuteReader();
-                List<String> subForums = new List<String>();
-                while (reader.Read())
-                {
-                    subForums.Add(reader.GetString(0));
-                }
-                closeConnectionDB();
-                return subForums;
-            }
-            catch (Exception e)
-            {
-                closeConnectionDB();
-                return null;
-            }*/
+            
         }
 
         public List<String> getForums()
         {
             return cache.getForums();
-            /*List<string> fss = new List<string>();
-            foreach(Forum fs in forums)
-            {
-                fss.Add(fs.forumName);
-            }
-            return fss;*/
-            /*try
-            {
-                OpenConnectionDB();
-                List<String> forums = new List<String>();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = connection;
-                command.CommandText = "SELECT  forumName FROM  forums";
-                OleDbDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    forums.Add(reader.GetString(0));
-                }
-                closeConnectionDB();
-                return forums;
-            }
-            catch
-            {
-                closeConnectionDB();
-                return null; ;
-            }*/
         }
         public List<String> getModertorsReport(String forumName)
         {
             return cache.getModertorsReport(forumName);
-            /*
-            try
-            {
-                OpenConnectionDB();
-                List<String> modertorsReport = new List<String>();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = connection;
-                command.CommandText = "SELECT subForumModerators.subForumName," +
-                    "subForumModerators.moderatorName,subForumModerators.nominator," +
-                    "subForumModerators.dateAdded,posts.title,posts.content FROM " +
-                    "subForumModerators,posts where subForumModerators.forumName='" +
-                    forumName + "' and posts.forumName=subForumModerators.forumName " +
-                    "and posts.writerUserName=subForumModerators.moderatorName";
-                OleDbDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    modertorsReport.Add("subForum: "+reader.GetString(0) + ", \t moderator: " +
-                        reader.GetString(1) + ", \t nominator: " + reader.GetString(2) + ",\t DateAdded:" +
-                        reader.GetDateTime(3).ToString("dd MM yyyy") + ", \n post title: " +
-                        reader.GetString(4) + ", \n post content:" + reader.GetString(5));
-                }
-                closeConnectionDB();
-                return modertorsReport;
-            }
-            catch(Exception e)
-            {
-                closeConnectionDB();
-                return null; ;
-            }*/
         }
-        /*public Forum getForumByMember(string userName)
-        {
-            Forum forum = null;
-            try
-            {
-                OpenConnectionDB();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = connection;
-                command.CommandText = "SELECT  * FROM  forums where users.userName='" + userName + "' and users.forumName=forums.forumName";
-                OleDbDataReader reader = command.ExecuteReader();
-                int count = 0;
-                String forumName="";
-                while (reader.Read())
-                {
-                    count++;
-                    forumName = reader.GetString(0);
-                }
-                if (count == 1)
-                {
-                    reader = command.ExecuteReader();
-                    reader.Read();
-                    OleDbCommand command2 = new OleDbCommand();
-                    command2.Connection = connection;
-                    command2.CommandText = "SELECT  * FROM  forums where forumAdministartors.forumName='" + forumName + "'";
-                    OleDbDataReader reader2 = command2.ExecuteReader();
-                    List<String> administrators = new List<String>();
-                    while (reader2.Read())
-                    {
-                        administrators.Add(reader2.GetString(1));
-                    }
-                    forum = new Forum(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), administrators);
-                    return forum;
-                }
-                else
-                {
-                    //not exist
-                    closeConnectionDB();
-                    return forum;
-                }
-            }
-            catch 
-            {
-                closeConnectionDB();
-                return forum;
-            }
-        }*/
         public bool addMessage(string sender, string reciver, string content)
         {
             try
@@ -681,27 +481,6 @@ namespace Database
         public List<string> getUserFriends(string userName)
         {
             return cache.getUserFriends(userName);
-            /*
-            try
-            {
-                OpenConnectionDB();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = connection;
-                command.CommandText = "SELECT  * FROM  friendOf where friendOf.userName='" + userName + "'";
-                OleDbDataReader reader = command.ExecuteReader();
-                List<String> friends = new List<String>();
-                while (reader.Read())
-                {
-                    friends.Add(reader.GetString(1));
-                }
-                closeConnectionDB();
-                return friends;
-            }
-            catch
-            {
-                closeConnectionDB();
-                return null;
-            }*/
         }
 
         public bool setAnswers(string userName, string ans1, string ans2)
@@ -750,24 +529,6 @@ namespace Database
         public string getPassword(string userName)
         {
             return cache.getPassword(userName);
-            /*
-            trym
-            {
-                OpenConnectionDB();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = connection;
-                command.CommandText = "SELECT  passwod FROM  users where users.userName='" + userName + "'";
-                OleDbDataReader reader = command.ExecuteReader();
-                string password = reader.GetString(1);
-                closeConnectionDB();
-                return password;
-            }
-            catch
-            {
-                closeConnectionDB();
-                return null;
-            }
-            */
         }
 
         public bool banMember(string bannedMember, string forumName)
@@ -902,44 +663,6 @@ namespace Database
         public User getSuperUser(string userName)
         {
             return cache.getSuperUser(userName);
-            /*
-            User user = null;
-            try
-            {
-                OpenConnectionDB();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = connection;
-                command.CommandText = "SELECT  * FROM  superUsers where superUserName='" + userName + "'";
-                OleDbDataReader reader = command.ExecuteReader();
-                int count = 0;
-                while (reader.Read())
-                {
-                    count++;
-                }
-                if (count == 1)
-                {
-                    OleDbCommand command2 = new OleDbCommand();
-                    command2.Connection = connection;
-                    command2.CommandText = "SELECT  * FROM  users where userName='" + userName + "'";
-                    OleDbDataReader reader2 = command2.ExecuteReader();
-                    reader2.Read();
-                    user = new User(reader2.GetString(0), dec(reader2.GetString(1)), reader2.GetString(2), DateTime.Parse(reader2.GetDateTime(3).ToString("dd MM yyyy")));
-                    closeConnectionDB();
-                    return user;
-                }
-                else
-                {
-                    //not exist
-                    closeConnectionDB();
-                    return user;
-                }
-            }
-            catch
-            {
-                closeConnectionDB();
-                return user;
-            }
-            */
         }
         public bool dismissAdmin(string adminToDismissed, string forumName)
         {
@@ -971,26 +694,6 @@ namespace Database
         public User getUser(string userName)
         {
             return cache.getUser(userName);
-            /*
-            User user = null;
-            try
-            {
-                OpenConnectionDB();
-                OleDbCommand command2 = new OleDbCommand();
-                command2.Connection = connection;
-                command2.CommandText = "SELECT  * FROM  users where userName='" + userName + "'";
-                OleDbDataReader reader2 = command2.ExecuteReader();
-                reader2.Read();
-                user = new User(reader2.GetString(0), dec(reader2.GetString(1)), reader2.GetString(2), DateTime.Parse(reader2.GetDateTime(3).ToString("dd MM yyyy")));
-                closeConnectionDB();
-                return user;
-            }
-            catch
-            {
-                closeConnectionDB();
-                return user;
-            }
-            */
         }
 
         public Boolean addUser(string userName, string password, string email, string ans1, string ans2)
@@ -1052,60 +755,10 @@ namespace Database
         public List<string> getMembersOfForum(string forumName)
         {
             return cache.getMembersOfForum(forumName);
-            /*foreach (Forum f in forums)
-            {
-                if (f.forumName.Equals(forumName))
-                {
-                    return f.members;
-                }
-            }
-            return new List<string>();*/
-            /*List<string> users = new List<string>();
-            try
-            {
-                OpenConnectionDB();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = connection;
-                command.CommandText = "SELECT  * FROM  members where forumName='" + forumName + "'";
-                OleDbDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    users.Add(reader.GetString(0));
-                }
-                closeConnectionDB();
-                return users;
-            }
-            catch
-            {
-                closeConnectionDB();
-                return null;
-            }*/
         }
         public List<string> getSimularForumsOf2users(string userName1, string userName2)
         {
             return cache.getSimularForumsOf2users(userName1, userName2);
-            /*
-            List<string> forums = new List<string>();
-            try
-            {
-                OpenConnectionDB();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = connection;
-                command.CommandText = "SELECT  * FROM  members AS m1,members AS m2 where m1.forumName=m2.forumName" +
-                    " and m1.userName='" + userName1 + "' and m2.userName='" + userName2 + "'";
-                OleDbDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    forums.Add(reader.GetString(1));
-                }
-                closeConnectionDB();
-                return forums;
-            }
-            catch
-            {
-                closeConnectionDB();
-                return null;
-            }*/
         }
         public Boolean createForum(string forumName, string description, ForumPolicy fp)
         {
@@ -1138,16 +791,6 @@ namespace Database
                 command2.Parameters.AddWithValue("minLengthOfPassword", fp.minLengthOfPassword);
                 command2.Parameters.AddWithValue("notificationsType", fp.notificationsType);
                 command2.ExecuteNonQuery();
-                /* foreach (string admin in administrators)
-                 {
-                     OleDbCommand command2 = new OleDbCommand();
-                     command2.Connection = connection;
-                     command2.CommandText = "INSERT INTO forumAdministrators ([forumName], [administratorName]) " +
-                             "VALUES (?,?)";
-                     command2.Parameters.AddWithValue("forumName", forumName);
-                     command2.Parameters.AddWithValue("administratorName", admin);
-                     command2.ExecuteNonQuery();
-                 }*/
                 closeConnectionDB();
                 forums.Add(new Forum(forumName, description,fp,new List<string>()));
                 return cache.createForum(forumName, description, fp);
@@ -1228,59 +871,6 @@ namespace Database
         public SubForum getSubForum(string subForumName, string forumName)
         {
             return cache.getSubForum(subForumName, forumName);
-            /*foreach (SubForum sf in subForums)
-            {
-
-                if (sf.name.Equals(subForumName)&& sf.forum.Equals(forumName))
-                {
-                    return sf;
-                }
-            }
-            return null;*/
-            /*
-            SubForum subForum = null;
-            try
-            {
-                OpenConnectionDB();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = connection;
-                command.CommandText = "SELECT  * FROM  subForums where subForums.forumName='" + forumName + "' and " +
-                    "subForums.subForumName = '" + subForumName + "'";
-                OleDbDataReader reader = command.ExecuteReader();
-                if (reader.Read())
-                    subForum = new SubForum(reader.GetString(0), reader.GetString(1));
-                else
-                {
-                    return null;
-                }
-                OleDbCommand command2 = new OleDbCommand();
-                command2.Connection = connection;
-                command2.CommandText = "SELECT  * FROM  subForumModerators where subForumModerators.forumName='" + forumName + "' and " +
-                    "subForumModerators.subForumName='" + subForumName + "'";
-
-                OleDbDataReader reader2 = command2.ExecuteReader();
-                while (reader2.Read())
-                {
-                    subForum.moderators.Add(reader2.GetString(2), DateTime.Parse(reader2.GetDateTime(3).ToString("dd MM yyyy")));
-                }
-                OleDbCommand command3 = new OleDbCommand();
-                command3.Connection = connection;
-                command3.CommandText = "SELECT  * FROM  threads where forumName='" + forumName + "' and " +
-                    "subForumName='" + subForumName + "'";
-                OleDbDataReader reader3 = command3.ExecuteReader();
-                while (reader3.Read())
-                {
-                    subForum.threads.Add(reader3.GetInt32(0));
-                }
-                closeConnectionDB();
-                return subForum;
-            }
-            catch
-            {
-                closeConnectionDB();
-                return subForum;
-            }
-            */
         }
         public List<Message> getMessages()
         {
@@ -1387,62 +977,11 @@ namespace Database
         public Post getPost(int postId)
         {
             return cache.getPost(postId);
-            /*
-            Post post = null;
-            try
-            {
-                OpenConnectionDB();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = connection;
-                command.CommandText = "SELECT  * FROM  posts where postID=" + postId + "";
-                OleDbDataReader reader = command.ExecuteReader();
-                reader.Read();
-                post = new Post(reader.GetString(1), reader.GetInt32(0), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), DateTime.Parse(reader.GetDateTime(5).ToString("dd MM yyyy")), reader.GetString(6));
-                closeConnectionDB();
-                return post;
-            }
-            catch
-            {
-                closeConnectionDB();
-                return post;
-            }*/
         }
         public List<Post> getRelatedPosts(int postId)
         {
             return cache.getRelatedPosts(postId);
-            /*
-            if (postId < 0)
-            {
-                return null;
-            }
-            List<Post> curPost = new List<Post>();
-            Post post = null;
-            try
-            {
-                OpenConnectionDB();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = connection;
-                command.CommandText = "SELECT  * FROM  posts where parentPostID=" + postId + "";
-                OleDbDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    post = new Post(reader.GetString(1), reader.GetInt32(0), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), DateTime.Parse(reader.GetDateTime(5).ToString("dd MM yyyy")), reader.GetString(6));
-                    curPost.Add(post);
-                }
-                closeConnectionDB();
-                return curPost;
-            }
-            catch
-            {
-                closeConnectionDB();
-                return curPost;
-            }
-            */
         }
-        /// <summary>
-        /// ///////////////////////////////////////////////////////////////
-        /// </summary>
-        /// <returns></returns>
         public int getAvilableIntOfPost()
         {
             //related too in catch of add post
@@ -1568,7 +1107,6 @@ namespace Database
             }
             catch
             {
-                //////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 avilabelPostIDs.Add(postID);
                 closeConnectionDB();
                 return false;
@@ -1577,24 +1115,6 @@ namespace Database
         public int numOfPostInForum(String forumName)
         {
             return cache.numOfPostInForum(forumName);
-            /*
-            try
-            {
-                OpenConnectionDB();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = connection;
-                command.CommandText = "SELECT  Count(postID) FROM  posts where forumName='" + forumName + "'";
-                OleDbDataReader reader = command.ExecuteReader();
-                reader.Read();
-                closeConnectionDB();
-                return reader.GetInt32(0);
-            }
-            catch
-            {
-                closeConnectionDB();
-                return -1;
-            }
-            */
         }
         public bool removeThread(int id)
         {
@@ -1666,30 +1186,6 @@ namespace Database
         public List<Post> getMemberPosts(String memberName, String forumName)
         {
             return cache.getMemberPosts(memberName,forumName);
-            /*
-            List<Post> posts = new List<Post>();
-            try
-            {
-                OpenConnectionDB();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = connection;
-                command.CommandText = "SELECT  * FROM  posts where forumName='" + forumName + "'" +
-                    " and writerUserName='" + memberName + "'";
-                OleDbDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    Post post = new Post(reader.GetString(1), reader.GetInt32(0), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), DateTime.Parse(reader.GetDateTime(5).ToString("dd MM yyyy")), reader.GetString(6));
-                    posts.Add(post);
-                }
-                closeConnectionDB();
-                return posts;
-            }
-            catch
-            {
-                closeConnectionDB();
-                return null;
-            }
-            */
         }
         /// <summary>
         /// //////////////////////////////
@@ -1698,28 +1194,6 @@ namespace Database
         public List<String> getSuperUserReportOfMembers()
         {
             return cache.getSuperUserReportOfMembers();
-            /*List<String> users = new List<String>();
-            try
-            {
-                OpenConnectionDB();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = connection;
-                command.CommandText = "SELECT  users.email,users.userName,members.forumName FROM  users,members where users.username=members.userName" +
-                    " ORDER BY users.email";
-                OleDbDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    String user = "Email : " + reader.GetString(0) + "  UserName : " + reader.GetString(1) + "  In forum : " + reader.GetString(2);
-                    users.Add(user);
-                }
-                closeConnectionDB();
-                return users;
-            }
-            catch
-            {
-                closeConnectionDB();
-                return null;
-            }*/
         }
         private string enc(string password)
         {
@@ -1849,7 +1323,6 @@ namespace Database
                 commands.Add("DELETE  from policies");
                 commands.Add("DELETE  from forums");
                 
-
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
                 foreach (string commandTXT in commands)
@@ -2044,6 +1517,5 @@ namespace Database
                 return null;
             }
         }
-
     }
 }
