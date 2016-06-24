@@ -18,7 +18,7 @@ namespace ForumBuilder.Common.ClientServiceContracts
         void applyPostModificationNotification(String forumName, String publisherName, String title);
 
         [OperationContract(IsOneWay = true)]
-        void applyPostDelitionNotification(String forumName, String publisherName);
+        void applyPostDelitionNotification(String forumName, String publisherName, bool toSendMessage);
 
         [OperationContract(IsOneWay = true)]
         void sendUserMessage(String senderName, String content);

@@ -120,7 +120,7 @@ namespace ForumBuilder.Controllers
             }
             foreach (String username in usersToBeNotifiedForThreadDelition)
             {
-                this.forumController.sendPostDelitionNotification(sf.forum, deletedPost.writerUserName, username);
+                this.forumController.sendPostDelitionNotification(sf.forum, deletedPost.writerUserName, username, true);
             }
 /////////////////////////
 
