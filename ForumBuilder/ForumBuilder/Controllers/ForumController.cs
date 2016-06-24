@@ -345,7 +345,7 @@ namespace ForumBuilder.Controllers
                 }
                 if (needToChangePassword(user, forumName))
                     return "-5";
-                if (!(loggedInForum.forumPolicy.minLengthOfPassword < pass.Length &&
+                if (!(loggedInForum.forumPolicy.minLengthOfPassword <= pass.Length &&
                 (!loggedInForum.forumPolicy.hasCapitalInPassword || (loggedInForum.forumPolicy.hasCapitalInPassword && hasCapital(pass))) &&
                 (!loggedInForum.forumPolicy.hasNumberInPassword || (loggedInForum.forumPolicy.hasNumberInPassword && hasNumber(pass)))))
                     return "-7";

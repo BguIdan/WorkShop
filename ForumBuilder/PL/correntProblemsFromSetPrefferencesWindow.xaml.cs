@@ -37,7 +37,7 @@ namespace PL
             _forumName = forumName;
             _password = password;
             _whatToDo = whatToDo;
-            if(_whatToDo.Equals("-5")|| _whatToDo.Equals("- 7"))
+            if(_whatToDo.Equals("-5")|| _whatToDo.Equals("-7"))
             {
                 setPassGrid.Visibility = Visibility.Visible;
                 backButton.Visibility = Visibility.Visible;
@@ -94,27 +94,30 @@ namespace PL
 
             if (sessionKey.Contains(","))
             {
-                MessageBox.Show("Login successful! your session code for is " + sessionKey.ToString());
+                MessageBox.Show("Login successful! your session code for is " + sessionKey.Substring(0, sessionKey.IndexOf(",")));
                 ForumData forum = _fMC.getForum(_forumName);
                 ForumWindow fw = new ForumWindow(forum, _userName, new ClientNotificationHost(),sessionKey);
-                this.Close();
                 fw.Show();
+                this.Close();
+                
             }
             else
             {
-                MainWindow newWin = new MainWindow();
+                
                 switch (sessionKey)
                 {
                     case "-1":
                         // TODO: need to explain why the login failed
                         MessageBox.Show("login failed");
+                        MainWindow newWin = new MainWindow();
                         newWin.Show();
                         this.Close();
                         break;
 
                     case "-2":
                         MessageBox.Show("user name or password are invalid");
-                        newWin.Show();
+                        MainWindow newWin2 = new MainWindow();
+                        newWin2.Show();
                         this.Close();
                         break;
 
@@ -145,7 +148,8 @@ namespace PL
                         break;
                     default:
                         MessageBox.Show("login failed");
-                        newWin.Show();
+                        MainWindow newWin6 = new MainWindow();
+                        newWin6.Show();
                         this.Close();
                         break;
                 }

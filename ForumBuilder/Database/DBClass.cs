@@ -165,6 +165,7 @@ namespace Database
                 while (reader2.Read())
                 {
                     user = new User(reader2.GetString(0), dec(reader2.GetString(1)), reader2.GetString(2), DateTime.Parse(reader2.GetDateTime(3).ToString("dd MM yyyy")));
+                    user.lastTimeUpdatePassword = DateTime.Parse(reader2.GetDateTime(6).ToString("dd MM yyyy"));
                     users.Add(user);
                 }
                 closeConnectionDB();
