@@ -1,36 +1,33 @@
-Log Entry : 		24/06/2016 10:31:54
+Log Entry : 		24/06/2016 11:49:31
 Forum contoller created
 -----------------------------------------------
-Log Entry : 		24/06/2016 10:31:54
+Log Entry : 		24/06/2016 11:49:31
 Super user contoller created
 -----------------------------------------------
-Log Entry : 		24/06/2016 10:31:56
+Log Entry : 		24/06/2016 11:49:34
 forum service was initialized under localhost:8081
 -----------------------------------------------
-Log Entry : 		24/06/2016 10:31:56
+Log Entry : 		24/06/2016 11:49:34
 post service was initialized under localhost:8082
 -----------------------------------------------
-Log Entry : 		24/06/2016 10:31:56
+Log Entry : 		24/06/2016 11:49:34
 sub forum service was initialized under localhost:8083
 -----------------------------------------------
-Log Entry : 		24/06/2016 10:31:56
+Log Entry : 		24/06/2016 11:49:34
 super user service was initialized under localhost:8084
 -----------------------------------------------
-Log Entry : 		24/06/2016 10:31:56
+Log Entry : 		24/06/2016 11:49:34
 user service was initialized under localhost:8085
 -----------------------------------------------
-Log Entry : 		24/06/2016 10:31:56
+Log Entry : 		24/06/2016 11:49:34
 The System was initialized successully
 -----------------------------------------------
-Log Entry : 		24/06/2016 10:32:16
+Log Entry : 		24/06/2016 11:49:56
 Sub-forum contoller created
 -----------------------------------------------
-Log Entry : 		24/06/2016 10:32:25
-Remove post 4
+Log Entry : 		24/06/2016 11:50:00
+Create comment 1 to 0
 -----------------------------------------------
-Log Entry : 		24/06/2016 10:32:25
-Remove thread 4
------------------------------------------------
-Log Entry : 		24/06/2016 10:32:39
-Add thread 4
+Log Entry : 		24/06/2016 11:50:36
+Remove post 1
 -----------------------------------------------
