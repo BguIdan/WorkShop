@@ -6,8 +6,8 @@
         <Label Content="Login with session key" FontFamily="Cooper Black" FontSize="22" Margin="10,21,17,0" Height="36" VerticalAlignment="Top" HorizontalAlignment="Center" Width="270"/>
         <Label Name="nameLabel" FontFamily="Cooper Black" Margin="29,68,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="220"/>
         <TextBlock FontFamily="Cooper Black" Text=" Please enter the user session key." Margin="29,100,0,0" Height="22" HorizontalAlignment="Left" VerticalAlignment="Top" Width="220"/>
-        <TextBlock FontFamily="Cooper Black" Text="Session key :" Margin="29,135,0,0" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="111"/>
-        <TextBox Name="userKey" Height="20" Margin="156,135,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Left" Width="119"/>
+        <TextBlock FontFamily="Cooper Black" Text="Session key :" Margin="29,135,0,0" Height="22" HorizontalAlignment="Left" VerticalAlignment="Top" Width="111"/>
+        <TextBox Name="userKey" Height="22" Margin="156,135,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Left" Width="119"/>
         <Button Name="logInButton" Content="Log In" Height="25" Margin="164,208,0,0" VerticalAlignment="Top" FontFamily="cooper" Click="logInButton_Click" HorizontalAlignment="Left" Width="111"/>
         <Button Name="backButton" Content="Back" HorizontalAlignment="Left" Height="25" Margin="29,208,0,0" VerticalAlignment="Top" Width="111" FontFamily="cooper" Click="backButton_Click"/>
     </Grid>

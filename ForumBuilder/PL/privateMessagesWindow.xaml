@@ -11,8 +11,8 @@
         <Label x:Name="privateMsgLabel" FontFamily="cooper black" FontSize="30" Content="Private Messages" Height="46" Margin="30,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="272"/>
         <Label x:Name="usr" FontFamily="cooper black" HorizontalAlignment="Left" Height="24" Margin="8,62,0,0" VerticalAlignment="Top" Width="170"/>
         <Label x:Name="session" FontFamily="cooper black" HorizontalAlignment="Left" Height="24" Margin="183,62,0,0" VerticalAlignment="Top" Width="150"/>
-        <Button x:Name="backButton" FontFamily="cooper black" Content="back" HorizontalAlignment="Left" Height="20" Margin="33,254,0,0" VerticalAlignment="Top" Width="95" Click="backButton_Click"/>
-        <Button x:Name="sengMessageButton" FontFamily="cooper black" Content="send message" HorizontalAlignment="Left" Height="20" Margin="207,254,0,0" VerticalAlignment="Top" Width="95" Click="sengMessageButton_Click"/>
+        <Button x:Name="backButton" FontFamily="cooper black" Content="back" HorizontalAlignment="Left" Height="22" Margin="33,254,0,0" VerticalAlignment="Top" Width="95" Click="backButton_Click"/>
+        <Button x:Name="sengMessageButton" FontFamily="cooper black" Content="send message" HorizontalAlignment="Left" Height="22" Margin="207,254,0,0" VerticalAlignment="Top" Width="95" Click="sengMessageButton_Click"/>
 
     </Grid>
 </Window>

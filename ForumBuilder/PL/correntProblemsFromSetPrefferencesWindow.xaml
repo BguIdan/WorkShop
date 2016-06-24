@@ -15,8 +15,8 @@
         </Grid>
         <Grid Name="setIdentifyingQuestionsGrid" Visibility="Collapsed">
             <Label x:Name="label2" FontSize="26" FontFamily="cooper black" Content="Add Identifying&#xD;&#xA;      Questions" HorizontalAlignment="Left" Height="74" Margin="76,42,0,0" VerticalAlignment="Top" Width="231"/>
-            <TextBlock Name="q1" FontFamily="Cooper Black" TextWrapping="Wrap" Text="Who was your favorite teacher? :" Height="20" Margin="15,174,0,0" HorizontalAlignment="Left" Width="258" VerticalAlignment="Top"/>
-            <TextBlock Name="q2" FontFamily="Cooper Black" Margin="15,202,0,0" TextWrapping="Wrap" Text="What is your favorite pet? :" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="229"/>
+            <TextBlock Name="q1" FontFamily="Cooper Black" TextWrapping="Wrap" Text="Who was your favorite teacher? :" Height="22" Margin="15,174,0,0" HorizontalAlignment="Left" Width="258" VerticalAlignment="Top"/>
+            <TextBlock Name="q2" FontFamily="Cooper Black" Margin="15,202,0,0" TextWrapping="Wrap" Text="What is your favorite pet? :" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="229"/>
             <TextBox Name="ansToq1"  Height="23" Margin="245,171,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="133"/>
             <TextBox Name="ansToq2" Height="23" Margin="245,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="133"/>
             <Button x:Name="addIdentifyingQuestionsButton" FontFamily="cooper black" Content="Add Questions" HorizontalAlignment="Left" Height="24" Margin="249,264,0,0" VerticalAlignment="Top" Width="114" Click="addIdentifyingQuestionsButton_Click"/>
