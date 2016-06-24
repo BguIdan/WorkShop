@@ -599,6 +599,13 @@ namespace ForumBuilder.Controllers
                 logger.logPrint("Set forum preferences failed, one or more of the arguments is null", 2);
                 return "Set forum preferences failed, one or more of the arguments is null";
             }
+            else if(fp.minLengthOfPassword<1||fp.minNumOfModerators<1||fp.notificationsType>3||fp.notificationsType<0||
+                fp.seniorityInForum < 0 || fp.timeToPassExpiration < 0)
+            {
+                logger.logPrint("Set forum preferences failed, forum policy is not logic", 0);
+                logger.logPrint("Set forum preferences failed, forum policy is not logic", 2);
+                return "Set forum preferences failed, forum policy is not logic";
+            }
             else if (DB.setForumPreferences(forumName, newDescription, fp))
             {
                 logger.logPrint(forumName + "preferences had changed successfully", 0);
@@ -644,14 +651,13 @@ namespace ForumBuilder.Controllers
 
         }
 
-
         private int generateRandomSessionKey()
         {
             Random random = new Random();
-            int result = random.Next(0, 100000000);
+            int result = random.Next(10000000, 100000000);
             while (occupied.Contains(result))
             {
-                result = random.Next(1, 100000000);
+                result = random.Next(10000000, 100000000);
             }
             return result;
         }

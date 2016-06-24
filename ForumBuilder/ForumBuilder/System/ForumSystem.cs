@@ -120,7 +120,7 @@ namespace ForumBuilder.Systems
             String email = "d@d.d";//getEmail();
 
             initialize(username, password, email);            
-            //setUpDB();
+            setUpDB();
             runServer(username, password, email);
             //DBClass.getInstance.clear();
             return 0;

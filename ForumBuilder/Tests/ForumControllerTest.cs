@@ -329,7 +329,7 @@ namespace Tests
         }
 
 
-        
+        [TestMethod]
         public void test_setForumPreferences_with_null()
         {
             String forumName = this.forum.forumName;
@@ -351,9 +351,54 @@ namespace Tests
             String oldDescr = this.forumController.getForumDescription(forumName);
             String adminName = this.userAdmin.userName;
             ForumPolicy fp = new ForumPolicy("", true, 0, true, 180, 1, true, true, 5, 0, new List<string>());
-            Assert.IsTrue(this.forumController.setForumPreferences(forumName, "", fp, adminName).Equals("preferences had changed successfully"), "policy change with null should not be successful");
+            Assert.IsTrue(this.forumController.setForumPreferences(forumName, "", fp, adminName).Equals("preferences had changed successfully"), "policy change with empty should not be successful");
             Assert.AreEqual(this.forumController.getForumPolicy(forumName), "", false, "after an unsuccessful change, the old policy should be returned");
             Assert.AreEqual(this.forumController.getForumDescription(forumName), "", false, "after an unsuccessful change, the old description should be returned");
+        }
+        [TestMethod]
+        public void test_setForumPreferences_wrong_value_negative_seniority()
+        {
+            String forumName = this.forum.forumName;
+            String oldPolicy = this.forumController.getForumPolicy(forumName);
+            String oldDescr = this.forumController.getForumDescription(forumName);
+            String adminName = this.userAdmin.userName;
+            ForumPolicy fp = new ForumPolicy("", true,-5, true, 180, 1, true, true, 5, 0, new List<string>());
+            Assert.IsFalse(this.forumController.setForumPreferences(forumName, "", fp, adminName).Equals("preferences had changed successfully"), "policy change with negative should not be successful");
+            Assert.IsTrue(0==forumController.getForum(forumName).forumPolicy.seniorityInForum,"after an unsuccessful change, the old policy should be returned");
+        }
+        [TestMethod]
+        public void test_setForumPreferences_wrong_value_negative_time_password_expired()
+        {
+            String forumName = this.forum.forumName;
+            String oldPolicy = this.forumController.getForumPolicy(forumName);
+            String oldDescr = this.forumController.getForumDescription(forumName);
+            String adminName = this.userAdmin.userName;
+            ForumPolicy fp = new ForumPolicy("", true, 0, true, -3, 1, true, true, 5, 0, new List<string>());
+            Assert.IsFalse(this.forumController.setForumPreferences(forumName, "", fp, adminName).Equals("preferences had changed successfully"), "policy change with negative should not be successful");
+            Assert.IsTrue(180 == forumController.getForum(forumName).forumPolicy.timeToPassExpiration, "after an unsuccessful change, the old policy should be returned");
+
+        }
+        [TestMethod]
+        public void test_setForumPreferences_wrong_value_negative_num_of_moderators()
+        {
+            String forumName = this.forum.forumName;
+            String oldPolicy = this.forumController.getForumPolicy(forumName);
+            String oldDescr = this.forumController.getForumDescription(forumName);
+            String adminName = this.userAdmin.userName;
+            ForumPolicy fp = new ForumPolicy("", true, 0, true, 180,-1, true, true, 5, 0, new List<string>());
+            Assert.IsFalse(this.forumController.setForumPreferences(forumName, "", fp, adminName).Equals("preferences had changed successfully"), "policy change with negative should not be successful");
+            Assert.IsTrue(1== forumController.getForum(forumName).forumPolicy.minNumOfModerators, "after an unsuccessful change, the old policy should be returned");
+        }
+        [TestMethod]
+        public void test_setForumPreferences_wrong_value_negative_length_of_password()
+        {
+            String forumName = this.forum.forumName;
+            String oldPolicy = this.forumController.getForumPolicy(forumName);
+            String oldDescr = this.forumController.getForumDescription(forumName);
+            String adminName = this.userAdmin.userName;
+            ForumPolicy fp = new ForumPolicy("", true, 0, true, 180, 1, true, true, -1, 0, new List<string>());
+            Assert.IsFalse(this.forumController.setForumPreferences(forumName, "", fp, adminName).Equals("preferences had changed successfully"), "policy change with negative should not be successful");
+            Assert.IsTrue(5 == forumController.getForum(forumName).forumPolicy.minLengthOfPassword, "after an unsuccessful change, the old policy should be returned");
         }
 
         /******************************end of change policy***********************************/
