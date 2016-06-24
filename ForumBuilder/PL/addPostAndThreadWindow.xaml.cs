@@ -55,9 +55,10 @@ namespace PL
             _userName = userName;
             _postToEdit = null;
         }
-        public addPostAndThreadWindow(PostData postToEdit, string userName, string forumName, string subForumName)
+        public addPostAndThreadWindow(PostData postToEdit, string userName, string forumName, string subForumName, SubForumWindow prevWindow)
         {
             InitializeComponent();
+            _prevWindow = prevWindow;
             _postToEdit = postToEdit;
             _userName = userName;
             _sf = new SubForumManagerClient();
@@ -109,9 +110,10 @@ namespace PL
             else
             {
                 _pm.updatePost(_postToEdit.id, title.Text, content.Text, _userName);
-                SubForumWindow newWin = new SubForumWindow(_forumName, _subForumName, _userName, _prevWindow.Sessionkey, _cnh);
-                _prevWindow.Close();
-                newWin.Show();
+                /*   SubForumWindow newWin = new SubForumWindow(_forumName, _subForumName, _userName, _prevWindow.Sessionkey, _cnh);
+                   _prevWindow.Close();
+                   newWin.Show();*/
+                _prevWindow.showAgain();
                 this.Close();
             }
         }

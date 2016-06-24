@@ -148,6 +148,13 @@ namespace PL
             x++;
         }
 
+        internal void showAgain()
+        {
+            listBox.Items.Clear();
+            selectionChangedHelp(_selected);
+            this.Visibility = Visibility.Visible;
+        }
+
         private void InitializePermissons(string userName)
         {
             ForumData fd = _fm.getForum(_forumName);
@@ -430,9 +437,9 @@ namespace PL
             }
             if (postToEdit != null)//if the wanted post exists
             {
-                addPostAndThreadWindow newWin = new addPostAndThreadWindow(postToEdit, _userName, _forumName, _subName);
+                addPostAndThreadWindow newWin = new addPostAndThreadWindow(postToEdit, _userName, _forumName, _subName, this);
                 newWin.Show();
-                this.Close();
+                this.Hide();
             }
             else
             {
