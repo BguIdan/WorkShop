@@ -29,6 +29,8 @@ namespace Tests
         private String forumName = "forum";
         private String subForumName = "subForum";
         private int postId;
+        private String sk ;
+        private String sk2;
 
 
         [TestInitialize]
@@ -65,18 +67,16 @@ namespace Tests
             List<Post> posts = PostController.getInstance.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(posts.Count, 1);
             this.postId = posts[0].id;
-            int result = this.forumManager.login(userMember.userName, forum.forumName, userMember.password);
-            Assert.IsTrue(result > 0);
-            result = this.forumManager.login(userAdmin.userName, forum.forumName, userAdmin.password);
-            Assert.IsTrue(result > 0);
+            Assert.IsTrue((sk=this.forumManager.login(userMember.userName, forum.forumName, userMember.password)).Contains(","));
+            Assert.IsTrue((sk2=this.forumManager.login(userAdmin.userName, forum.forumName, userAdmin.password)).Contains(","));
         }
 
         [TestCleanup]
         public void cleanUp()
         {
             this.subForumManager.deleteThread(postId, this.userMember.userName);
-            this.forumManager.logout(this.userMember.userName, this.forum.forumName);
-            this.forumManager.logout(this.userAdmin.userName, this.forum.forumName);
+            this.forumManager.logout(this.userMember.userName, this.forum.forumName,sk);
+            this.forumManager.logout(this.userAdmin.userName, this.forum.forumName,sk2);
             this.forumManager = null;
             this.subForumManager = null;
             this.postManager = null;

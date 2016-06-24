@@ -51,7 +51,7 @@ namespace Service
             return forumController.registerUser(newUser, password, mail, ans1, ans2, forumName);
         }
 
-        public int login(String user, String forumName,string password)
+        public String login(String user, String forumName,string password)
         {
             return forumController.login(user, forumName, password);
         }
@@ -61,14 +61,14 @@ namespace Service
             return forumController.loginBySessionKey(sessionKey, user, forumName);
         }
 
-        public Boolean logout(String user, String forumName)
+        public Boolean logout(String user, String forumName, String allSession)
         {
             /*OperationContext.Current.OperationCompleted += delegate(object sender, EventArgs e) 
             {
                 OperationContext.Current.Channel.Close();
                 OperationContext.Current.GetCallbackChannel<IUserNotificationsService>().
                 };*/
-            return forumController.logout(user, forumName);
+            return forumController.logout(user, forumName,allSession);
         }
 
         public String addSubForum(String forumName, String name, Dictionary<String, DateTime> moderators, String userNameAdmin)

@@ -57,7 +57,7 @@ namespace WebClient.proxies
             return Channel.registerUser(newUser, password, mail,ans1,ans2, forumName);
         }
 
-        public int login(String user, String forumName, string password)
+        public String login(String user, String forumName, string password)
         {
             return Channel.login(user, forumName, password);
         }
@@ -67,9 +67,9 @@ namespace WebClient.proxies
             return Channel.loginBySessionKey(sessionKey, user, forumName);
         }
         
-        public Boolean logout(String user, String forumName)
+        public Boolean logout(String user, String forumName, String allSession)
         {
-            return Channel.logout(user, forumName);
+            return Channel.logout(user, forumName, allSession);
         }
 
         public String addSubForum(String forumName, String name, Dictionary<String, DateTime> moderators, String userNameAdmin)

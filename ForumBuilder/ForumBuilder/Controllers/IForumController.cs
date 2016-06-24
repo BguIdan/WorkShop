@@ -12,9 +12,9 @@ namespace ForumBuilder.Controllers
         String nominateAdmin(String newAdmin, String nominatorName, string forumName);
         String registerUser(String newUser, String password, String mail, string ans1, string ans2, string forumName);
         Boolean addForum(String forumName);
-        int login(String newUser, String forumName, string pass);
+        String login(String newUser, String forumName, string pass);
         String loginBySessionKey(int sessionKey, String user, String forumName);
-        Boolean logout(String user, String forumName);
+        Boolean logout(String user, String forumName, String allSession);
         Boolean sendThreadCreationNotification(String headLine, String content, String publisherName, String forumName, String subForumName);
         Boolean sendPostModificationNotification(String forumName, String publisherName, String title, String notifiedUser);
         Boolean sendPostDelitionNotification(String forumName, String publisherName, String notifiedUser);

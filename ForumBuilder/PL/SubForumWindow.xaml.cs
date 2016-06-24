@@ -69,7 +69,7 @@ namespace PL
         private string _userName;
         private int _patentId;//used for adding post;
         private List<dataContainer> dataOfEachPost;
-        private int _sessionKey;
+        private String _sessionKey;
         private string _forumName;
         private string _subName;
         private ClientNotificationHost _cnh;
@@ -77,7 +77,7 @@ namespace PL
         private int _myFlage;
         private dataContainer _selected;
 
-        public SubForumWindow(string fName, string sfName, string userName, int skey, ClientNotificationHost cnh)//forum subforum names and userName
+        public SubForumWindow(string fName, string sfName, string userName, String skey, ClientNotificationHost cnh)//forum subforum names and userName
         {
             InitializeComponent();
             _cnh = cnh;
@@ -90,7 +90,7 @@ namespace PL
             sForumName.Content = "Sub-ForumName: " + sfName;
             _userName = userName;
             UsrMenu.Header = "UserName: " + userName;
-            sessionMenu.Header = "Session key: " + skey;
+            sessionMenu.Header = "Session key: " + skey.Substring(0, skey.IndexOf(","));
             _sessionKey = skey;
             _forumName = fName;
             _subName = sfName;
@@ -288,7 +288,7 @@ namespace PL
             }
             else//needs to go back to previous page
             {
-                ForumWindow newWin = new ForumWindow(_fm.getForum(_forumName), _userName, _cnh);
+                ForumWindow newWin = new ForumWindow(_fm.getForum(_forumName), _userName, _cnh,_sessionKey);
                 newWin.Show();
                 this.Close();
             }
@@ -455,13 +455,13 @@ namespace PL
 
         private void logOut(object sender, RoutedEventArgs e)
         {
-            _fm.logout(_userName, _forumName);
+            _fm.logout(_userName, _forumName,_sessionKey);
             MainWindow newWin = new MainWindow();
             newWin.Show();
             this.Close();
         }
 
-        public int Sessionkey
+        public String Sessionkey
         {
             get { return _sessionKey; }
         }

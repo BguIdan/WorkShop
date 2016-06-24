@@ -25,11 +25,11 @@ namespace PL
         private string _userName;
         private string _subforum;
         private string _forum;
-        private int _sKey;
+        private String _sKey;
         private SubForumManagerClient _sm;
         private ForumManagerClient _fMC;
 
-        public AddModerator(string subForum, string userName, string forum, int sKey)
+        public AddModerator(string subForum, string userName, string forum, String sKey)
         {
             InitializeComponent();
             _userName = userName;
@@ -39,7 +39,7 @@ namespace PL
             _sm = new SubForumManagerClient();
             _fMC = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
             usrLabel.Content = "UserName:  " + userName;
-            sKeyLabel.Content = "Session key:  " + sKey;
+            sKeyLabel.Content = "Session key:  " + sKey.Substring(0, sKey.IndexOf(","));
         }
 
         private void addButton_Click(object sender, RoutedEventArgs e)

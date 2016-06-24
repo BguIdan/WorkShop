@@ -31,10 +31,10 @@ namespace PL
         private ForumManagerClient _fMC;
         private string _userName;
         private SuperUserManagerClient _sUMC;
-        private int _sessionKey;
+        private String _sessionKey;
         private ClientNotificationHost _cnh;
 
-        public ForumWindow(ForumData forum, string userName ,ClientNotificationHost cnh)
+        public ForumWindow(ForumData forum, string userName ,ClientNotificationHost cnh, String sessionKey)
         {
             InitializeComponent();
             _cnh = cnh;
@@ -43,9 +43,9 @@ namespace PL
             _userName = userName;
             if (_userName != "Guest")
             {
-                _sessionKey = _fMC.getUserSessionKey(_userName);
-                session.Content = "Session key:  " + _sessionKey;
-                sessionMenu.Header = "Session key: " + _sessionKey;
+                _sessionKey = sessionKey;
+                session.Content = "Session key:  " + _sessionKey.Substring(0,_sessionKey.IndexOf(","));
+                sessionMenu.Header = "Session key: " + _sessionKey.Substring(0, _sessionKey.IndexOf(","));
             }
             if (_userName == "Guest")
             {
@@ -186,7 +186,7 @@ namespace PL
             // an fourom member
             else
             {
-                _fMC.logout(nameLogout, _myforum.forumName);
+                _fMC.logout(nameLogout, _myforum.forumName,_sessionKey);
                 mw.Show();
                 this.Close();
             }
@@ -403,7 +403,7 @@ namespace PL
             else
             {
                 MessageBox.Show("Sub-Forum " + sub_ForumName + " was successfully created and " + moderators + " are the Sub-Forum moderators.");
-                ForumWindow newWin = new ForumWindow(_fMC.getForum(_myforum.forumName), _userName, _cnh);
+                ForumWindow newWin = new ForumWindow(_fMC.getForum(_myforum.forumName), _userName, _cnh, _sessionKey);
                 this.Close();
                 newWin.Show();
             }
@@ -430,7 +430,7 @@ namespace PL
 
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
-            ForumWindow newWin = new ForumWindow(_myforum, _userName, _cnh);
+            ForumWindow newWin = new ForumWindow(_myforum, _userName, _cnh, _sessionKey);
             newWin.Show();
             this.Close();
         }

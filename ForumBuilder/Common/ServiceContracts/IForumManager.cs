@@ -28,13 +28,13 @@ namespace ForumBuilder.Common.ServiceContracts
         String registerUser(String newUser, String password, String mail, String ans1, String ans2, String forumName);
 
         [OperationContract]
-        int login(String newUser, String forumName,string password);
+        String login(String newUser, String forumName,string password);
 
         [OperationContract]
         String loginBySessionKey(int sessionKey, String user, String forumName);
 
         [OperationContract]
-        Boolean logout(String newUser, String forumName);
+        Boolean logout(String newUser, String forumName, String allSession);
 
         [OperationContract]
         String addSubForum(String forumName, String name, Dictionary<String, DateTime> moderators, String userNameAdmin);

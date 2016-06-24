@@ -26,7 +26,7 @@ namespace PL
         private Window _prevWindow;
         private String forumName;
 
-        public privateMessagesWindow(String forum, string userName, Window prevWindow, int key)
+        public privateMessagesWindow(String forum, string userName, Window prevWindow, String key)
         {
             InitializeComponent();
             _userName = userName;

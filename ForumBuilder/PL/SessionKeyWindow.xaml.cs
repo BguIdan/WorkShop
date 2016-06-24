@@ -48,10 +48,10 @@ namespace PL
             {
                 MessageBox.Show("invalid session key!, digits only");
             }
-            if (result == "success")
+            if (result.Contains(","))
             {
                 ForumData toSend = _fMC.getForum(_forumName);
-                ForumWindow fw = new ForumWindow(toSend, _userName, new ClientNotificationHost());
+                ForumWindow fw = new ForumWindow(toSend, _userName, new ClientNotificationHost(), result);
                 this.Close();
                 fw.Show();
             }

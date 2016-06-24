@@ -24,14 +24,15 @@ namespace PL
     {
         private string _userName;
         private ForumData _forumData;
-
-        public AddFriendWindow(string userName, ForumData forumData, int key)
+        private string _sessionKey;
+        public AddFriendWindow(string userName, ForumData forumData, String key)
         {
             InitializeComponent();
             _userName = userName;
             _forumData = forumData;
             usr.Content = "UserName:  " + userName;
-            session.Content = "Session key:  " + key;
+            session.Content = "Session key:  " + key.Substring(0,key.IndexOf(","));
+            _sessionKey = key;
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
@@ -40,7 +41,7 @@ namespace PL
             if (uc.addFriend(_userName, friendName.Text).Equals("friend was added successfuly"))
             {
                 MessageBox.Show("friend was added successfuly");
-                ForumWindow newWin = new ForumWindow(_forumData, _userName, new notificationHost.ClientNotificationHost());
+                ForumWindow newWin = new ForumWindow(_forumData, _userName, new notificationHost.ClientNotificationHost(), _sessionKey);
                 newWin.Show();
                 this.Close();
             }
@@ -57,7 +58,7 @@ namespace PL
 
         private void button_back(object sender, RoutedEventArgs e)
         {
-            ForumWindow mw = new ForumWindow(_forumData, _userName, new notificationHost.ClientNotificationHost());
+            ForumWindow mw = new ForumWindow(_forumData, _userName, new notificationHost.ClientNotificationHost(), _sessionKey);
             mw.Show();
             this.Close();
         }

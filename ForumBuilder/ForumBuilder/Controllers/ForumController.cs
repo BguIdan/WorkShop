@@ -13,9 +13,11 @@ namespace ForumBuilder.Controllers
         DBClass DB = DBClass.getInstance;
         Systems.Logger logger = Systems.Logger.getInstance;
         Dictionary<String, List<String>> loggedInUsersByForum = new Dictionary<String, List<String>>();
-        Dictionary<String, List<IUserNotificationsService>> channelsByLoggedInUsers = new Dictionary<String, List<IUserNotificationsService>>();
-        Dictionary<String, int> clientSessionKeyByUser = new Dictionary<String, int>();
+        Dictionary<String, IUserNotificationsService> channelsByLoggedInUsers = new Dictionary<String, IUserNotificationsService>();
+        Dictionary<String, int> Sessions = new Dictionary<String, int>();
+        Dictionary<String, List<string>> clientSessionKeyByUser = new Dictionary<String, List<string>>();
         Dictionary<String, int> openConnectionsCounterByUser = new Dictionary<String, int>();
+        List<int> occupied=new List<int>();
 
         public static ForumController getInstance
         {
@@ -327,7 +329,7 @@ namespace ForumBuilder.Controllers
 
         }
 
-        public int login(String user, String forumName, string pass)
+        public String login(String user, String forumName, string pass)
         {
             if (!loggedInUsersByForum.ContainsKey(forumName))
             {
@@ -339,36 +341,51 @@ namespace ForumBuilder.Controllers
             {
                 if (needsToAddQuestions(user, forumName))
                 {
-                    return -6;
+                    return "-6";
                 }
                 if (needToChangePassword(user, forumName))
-                    return -5;
+                    return "-5";
                 if (!(loggedInForum.forumPolicy.minLengthOfPassword < pass.Length &&
                 (!loggedInForum.forumPolicy.hasCapitalInPassword || (loggedInForum.forumPolicy.hasCapitalInPassword && hasCapital(pass))) &&
                 (!loggedInForum.forumPolicy.hasNumberInPassword || (loggedInForum.forumPolicy.hasNumberInPassword && hasNumber(pass)))))
-                    return -7;
+                    return "-7";
+                int sessionKey = generateRandomSessionKey();
                 if (!this.loggedInUsersByForum[forumName].Contains(user))
                 {
                     this.loggedInUsersByForum[forumName].Add(user);
-                    this.channelsByLoggedInUsers[user] = new List<IUserNotificationsService>();
                     this.openConnectionsCounterByUser[user] = 1;
                 }
                 else
                 {
-                    return -3;//the error code for a login while a session key exists
+                    return "-3";//the error code for a login while a session key exists
                     //one the user is logged in with one or more client the future logins should be made only by the session key
                     //requirement 1-d in assignment 4 version 3 document
                 }
-                this.channelsByLoggedInUsers[user].Add(OperationContext.Current.GetCallbackChannel<IUserNotificationsService>());
-                int sessionKey = generateRandomSessionKey();
-                this.clientSessionKeyByUser[user] = sessionKey;
-                return sessionKey;
+                this.channelsByLoggedInUsers[user+ "," + sessionKey]=OperationContext.Current.GetCallbackChannel<IUserNotificationsService>();
+                string session;
+                //this.clientSessionKeyByUser[user] = sessionKey;
+                if (!clientSessionKeyByUser.ContainsKey(user) )
+                {
+                    clientSessionKeyByUser[user] = new List<string>();
+                }
+                if (clientSessionKeyByUser[user].Count == 0)
+                {
+                    session=sessionKey + "," + sessionKey;
+                }
+                else
+                {
+                    session=clientSessionKeyByUser[user][0].Substring(clientSessionKeyByUser[user][0].IndexOf(",")) + "," + sessionKey;
+                }
+                clientSessionKeyByUser[user].Add(session);
+                Sessions[user]=(sessionKey);
+                occupied.Add(sessionKey);
+                return session;
             }
             else
             {//TODO apply error codes
                 logger.logPrint("could not login, wrong credentials", 0);
                 logger.logPrint("could not login, wrong credentials", 2);
-                return -1;//TODO gal client session -1 means the login failed
+                return "-1";//TODO gal client session -1 means the login failed
             }
         }
 
@@ -393,15 +410,19 @@ namespace ForumBuilder.Controllers
                     logger.logPrint("login error, the user was not logged in when using session key", 2);
                     return "invalid session key: you logged out hence this session key is invalid";
                 }
-                if (sessionKey != this.clientSessionKeyByUser[user])
+                if (sessionKey != this.Sessions[user])
                 {
                     logger.logPrint("login error, invalid session key", 0);
                     logger.logPrint("login error, invalid session key", 2);
                     return "invalid session key";
                 }
-                this.channelsByLoggedInUsers[user].Add(OperationContext.Current.GetCallbackChannel<IUserNotificationsService>());
+                int sessionKey2 = generateRandomSessionKey();
+                this.channelsByLoggedInUsers[user+ "," + sessionKey2]=OperationContext.Current.GetCallbackChannel<IUserNotificationsService>();
                 this.openConnectionsCounterByUser[user]++;
-                return "success";
+                string session = sessionKey + "," + sessionKey2;
+                clientSessionKeyByUser[user].Add(session);
+                return session;//GUY
+            //return "success";
             }
             else
             {//TODO apply error codes
@@ -413,7 +434,7 @@ namespace ForumBuilder.Controllers
 
         }
 
-        public Boolean logout(String user, String forumName)
+        public Boolean logout(String user, String forumName,String allSession)
         {   //TODO gal what about the open channels?
             if (!this.loggedInUsersByForum.ContainsKey(forumName))
                 return false;
@@ -422,11 +443,17 @@ namespace ForumBuilder.Controllers
             if (this.openConnectionsCounterByUser[user] == 1)
             {//last open connection, session key will be discarded
                 this.loggedInUsersByForum[forumName].Remove(user);
-                this.channelsByLoggedInUsers[user].Clear();
+                this.channelsByLoggedInUsers.Remove(user+ allSession.Substring(allSession.IndexOf(",")));
+                Sessions.Remove(user);
+                clientSessionKeyByUser.Remove(user);
+                openConnectionsCounterByUser.Remove(user);
             }
             else
             {
+                //GUY
                 this.openConnectionsCounterByUser[user]--;
+                this.channelsByLoggedInUsers.Remove(user+ allSession.Substring(allSession.IndexOf(",")));
+                clientSessionKeyByUser[user].Remove(allSession);
             }
             return true;
         }
@@ -441,18 +468,19 @@ namespace ForumBuilder.Controllers
                 return false;
             foreach (String userName in loggedInUsers)
             {
-                if (channelsByLoggedInUsers[userName] != null &&
-                    (forumPolicy.notificationsType == ForumPolicy.SELECTIVE_NOTIFICATIONS_TPYE && 
+                if (//channelsByLoggedInUsers[userName] != null &&
+                    (forumPolicy.notificationsType == ForumPolicy.SELECTIVE_NOTIFICATIONS_TPYE &&
                                 forumPolicy.selectiveNotificationsUsers.Contains(userName)
-                      //selective notifications is enabled and the current user is included
+                     //selective notifications is enabled and the current user is included
                      ||
                      forumPolicy.notificationsType != ForumPolicy.SELECTIVE_NOTIFICATIONS_TPYE)
-                     //offline/online notifications are enabled so all of the online users will be notified
+                    //offline/online notifications are enabled so all of the online users will be notified
                     )
                 {
-                    foreach (IUserNotificationsService channel in channelsByLoggedInUsers[userName])
+                    foreach (IUserNotificationsService channel in getUserChannels(userName))
                     {
-                        channel.applyPostPublishedInForumNotification(forumName, subForumName, publisherName);
+                        if(channel != null)
+                            channel.applyPostPublishedInForumNotification(forumName, subForumName, publisherName);
                     }
                 }
             }
@@ -482,7 +510,7 @@ namespace ForumBuilder.Controllers
                 return false;
             if (loggedInUsers.Contains(notifiedUser))
             {
-                List<IUserNotificationsService> channels = this.channelsByLoggedInUsers[notifiedUser];
+                List<IUserNotificationsService> channels = this.getUserChannels(notifiedUser);
                 if (channels != null)
                 {
                     foreach (IUserNotificationsService channel in channels)
@@ -509,7 +537,7 @@ namespace ForumBuilder.Controllers
                 return false;
             if (loggedInUsers.Contains(notifiedUser))
             {
-                List<IUserNotificationsService> channels = this.channelsByLoggedInUsers[notifiedUser];
+                List<IUserNotificationsService> channels = this.getUserChannels(notifiedUser);
                 if (channels != null)
                 {
                     foreach (IUserNotificationsService channel in channels)
@@ -596,7 +624,7 @@ namespace ForumBuilder.Controllers
         {
             Random random = new Random();
             int result = random.Next(0, 100000000);
-            while (this.clientSessionKeyByUser.ContainsValue(result))
+            while (occupied.Contains(result))
             {
                 result = random.Next(1, 100000000);
             }
@@ -610,7 +638,7 @@ namespace ForumBuilder.Controllers
             List<String> currentlyLoggedInUsers = this.loggedInUsersByForum[forumName];
             if (currentlyLoggedInUsers == null || !currentlyLoggedInUsers.Contains(addressee))
                 return;
-            List<IUserNotificationsService> addresseeChannels = this.channelsByLoggedInUsers[addressee];
+            List<IUserNotificationsService> addresseeChannels = this.getUserChannels(addressee);
             if (addresseeChannels != null)
             {
                 foreach (IUserNotificationsService channel in addresseeChannels)
@@ -627,7 +655,7 @@ namespace ForumBuilder.Controllers
 
         public int getUserSessionKey(string username)
         {
-            return clientSessionKeyByUser[username];
+            return Sessions[username];
         }
 
 
@@ -664,10 +692,22 @@ namespace ForumBuilder.Controllers
             {
                 return new List<string>();
             }
-            if (sessionKey == clientSessionKeyByUser[userName])//authentication succeeded
+            if (sessionKey == Sessions[userName])//authentication succeeded
                 return DB.clearOfflineNotifications(forumName, userName);
             else 
                 return new List<string>();
+        }
+        private List<IUserNotificationsService> getUserChannels(String userName)
+        {
+            List<IUserNotificationsService> channels = new List<IUserNotificationsService>();
+            foreach (String chanName in channelsByLoggedInUsers.Keys)
+            {
+                if (chanName.Substring(0, chanName.IndexOf(",")).Equals(userName))
+                {
+                    channels.Add(channelsByLoggedInUsers[chanName]);
+                }
+            }
+            return channels;
         }
     }
 }
