@@ -235,6 +235,16 @@ namespace PL
             deleteMessages.IsChecked = _myforum.forumPolicy.deletePostByModerator;
             Capital.IsChecked = _myforum.forumPolicy.hasCapitalInPassword;
             Number.IsChecked = _myforum.forumPolicy.hasNumberInPassword;
+            ForumDescToSet.Text = _myforum.description;
+            ForumPolicyToSet.Text = _myforum.forumPolicy.policy;
+            PassCombo.Items.Add(_myforum.forumPolicy.timeToPassExpiration);
+            PassCombo.SelectedItem = _myforum.forumPolicy.timeToPassExpiration;
+            TimeCombo.Items.Add(_myforum.forumPolicy.seniorityInForum);
+            TimeCombo.SelectedItem = _myforum.forumPolicy.seniorityInForum;
+            NumberCombo.Items.Add(_myforum.forumPolicy.minNumOfModerator);
+            NumberCombo.SelectedItem = _myforum.forumPolicy.minNumOfModerator;
+            LengthCombo.Items.Add(_myforum.forumPolicy.minLengthOfPassword);
+            LengthCombo.SelectedItem = _myforum.forumPolicy.minLengthOfPassword;
         }
 
         private void SignUP()
@@ -283,12 +293,6 @@ namespace PL
 
             if (isDone.Equals("Yes"))
             {
-                ForumDescToSet.Text = _myforum.description;
-                ForumPolicyToSet.Text = _myforum.forumPolicy.policy;
-                PassCombo.Items.Add(_myforum.forumPolicy.timeToPassExpiration);
-                TimeCombo.Items.Add(_myforum.forumPolicy.seniorityInForum);
-                NumberCombo.Items.Add(_myforum.forumPolicy.minNumOfModerator);
-                LengthCombo.Items.Add(_myforum.forumPolicy.minLengthOfPassword);
                 bool toChange = descCheck.IsChecked.Value;
                 if (toChange)
                 {
