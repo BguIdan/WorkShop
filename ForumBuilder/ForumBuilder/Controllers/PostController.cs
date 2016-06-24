@@ -216,6 +216,7 @@ namespace ForumBuilder.Controllers
                 {
                     this.forumController.sendPostModificationNotification(modifiedPost.forumName, modifiedPost.writerUserName, modifiedPost.title, username);
                 }
+                this.forumController.sendPostDelitionNotification(modifiedPost.forumName, modifiedPost.writerUserName, null, false);
         /////////////////////////
                 return DB.updatePost(postID, title, content);
             }
