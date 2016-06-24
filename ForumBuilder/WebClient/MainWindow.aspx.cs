@@ -218,7 +218,7 @@ namespace WebClient
             //MessageBox.Show(publisherName + "'s post you were following in " + forumName + "was modified (" + title + ")", "post modified");
         }
 
-        public void applyPostDelitionNotification(String forumName, String publisherName)
+        public void applyPostDelitionNotification(String forumName, String publisherName, bool toSendMessage)
         {
             //MessageBox.Show(publisherName + "'s post you were following in " + forumName + "was deleted", "post deleted");
         }

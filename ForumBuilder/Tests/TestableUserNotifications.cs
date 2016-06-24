@@ -25,7 +25,7 @@ namespace Tests
             modifiedCounter++;
         }
 
-        public void applyPostDelitionNotification(String forumName, String publisherName)
+        public void applyPostDelitionNotification(String forumName, String publisherName, bool toSendMessage)
         {
             deletedCounter++;
         }

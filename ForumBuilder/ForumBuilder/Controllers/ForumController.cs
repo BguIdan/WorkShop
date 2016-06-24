@@ -527,31 +527,54 @@ namespace ForumBuilder.Controllers
             return true;
         }
 
-        public Boolean sendPostDelitionNotification(String forumName, String publisherName, String notifiedUser)
+        public Boolean sendPostDelitionNotification(String forumName, String publisherName, String notifiedUser, bool toSendMessage)
         {
-            ForumPolicy forumPolicy = DB.getforumByName(forumName).forumPolicy;
-            if (loggedInUsersByForum == null)
-                return false;
-            List<String> loggedInUsers = this.loggedInUsersByForum[forumName];
-            if (loggedInUsers == null)
-                return false;
-            if (loggedInUsers.Contains(notifiedUser))
+            if (toSendMessage)
             {
-                List<IUserNotificationsService> channels = this.getUserChannels(notifiedUser);
-                if (channels != null)
+                ForumPolicy forumPolicy = DB.getforumByName(forumName).forumPolicy;
+                if (loggedInUsersByForum == null)
+                    return false;
+                List<String> loggedInUsers = this.loggedInUsersByForum[forumName];
+                if (loggedInUsers == null)
+                    return false;
+                if (loggedInUsers.Contains(notifiedUser))
                 {
-                    foreach (IUserNotificationsService channel in channels)
+                    List<IUserNotificationsService> channels = this.getUserChannels(notifiedUser);
+                    if (channels != null)
                     {
-                        channel.applyPostDelitionNotification(forumName, publisherName);
+                        foreach (IUserNotificationsService channel in channels)
+                        {
+                            channel.applyPostDelitionNotification(forumName, publisherName, toSendMessage);
+                        }
                     }
                 }
+                else if (forumPolicy.notificationsType == ForumPolicy.OFFLINE_NOTIFICATIONS_TPYE)
+                {
+                    DB.NotifyOfflineUser(forumName, notifiedUser,
+                        publisherName + "'s post you were following in " + forumName + " was deleted");
+                }
+                return true;
             }
-            else if (forumPolicy.notificationsType == ForumPolicy.OFFLINE_NOTIFICATIONS_TPYE)
+            else /// refresh to all users
             {
-                DB.NotifyOfflineUser(forumName, notifiedUser,
-                    publisherName + "'s post you were following in " + forumName + " was deleted");
+                ForumPolicy forumPolicy = DB.getforumByName(forumName).forumPolicy;
+                if (loggedInUsersByForum == null)
+                    this.loggedInUsersByForum = new Dictionary<String, List<String>>();
+                List<String> loggedInUsers = this.loggedInUsersByForum[forumName];
+                if (loggedInUsers == null)
+                    return false;
+                foreach (String userName in loggedInUsers)
+                {
+
+                        foreach (IUserNotificationsService channel in getUserChannels(userName))
+                        {
+                            if (channel != null)
+                                channel.applyPostDelitionNotification(forumName, publisherName, false);
+                        }
+                }
+              
+                return true;
             }
-            return true;
         }
 
         public String setForumPreferences(String forumName, String newDescription, ForumPolicy fp, string setterUserName)

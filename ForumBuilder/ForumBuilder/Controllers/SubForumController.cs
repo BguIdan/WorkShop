@@ -222,8 +222,9 @@ namespace ForumBuilder.Controllers
                 }
                 foreach (String username in usersToBeNotifiedForThreadDelition)
                 {
-                    this.forumController.sendPostDelitionNotification(sf.forum, deletedPost.writerUserName, username);
+                    this.forumController.sendPostDelitionNotification(sf.forum, deletedPost.writerUserName, username, true);
                 }
+                this.forumController.sendPostDelitionNotification(sf.forum, deletedPost.writerUserName, null, false);
                 logger.logPrint("Remove thread " + firstPostId,0);
                 logger.logPrint("Remove thread " + firstPostId,1);
                 return "Thread removed";

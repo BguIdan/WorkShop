@@ -73,15 +73,18 @@ namespace PL
         private string _forumName;
         private string _subName;
         private ClientNotificationHost _cnh;
-        public static int _generalFlag = 0;
-        private int _myFlage;
+        public static int _generalAddedPostThreadFlag = 0;
+        private int _myAddedPostThreadFlag;
+        public static int _generalDeletedPostThreadFlag = 0;
+        private int _myDeletedPostThreadFlag;
         private dataContainer _selected;
 
         public SubForumWindow(string fName, string sfName, string userName, String skey, ClientNotificationHost cnh)//forum subforum names and userName
         {
             InitializeComponent();
             _cnh = cnh;
-            _myFlage = _generalFlag;
+            _myAddedPostThreadFlag = _generalAddedPostThreadFlag;
+            _myDeletedPostThreadFlag = _generalDeletedPostThreadFlag;
             _fm = new ForumManagerClient(new InstanceContext(_cnh));
             _pm = new PostManagerClient();
             _sfm = new SubForumManagerClient();
@@ -97,6 +100,47 @@ namespace PL
             _patentId = -1;
             dataOfEachPost = new List<dataContainer>();
             InitializePermissons(userName);
+            makeRefresh();
+        }
+
+        private void makeRefresh()
+        {
+            _cnh.updateWindow(this);
+            Window window = this;
+            _selected = null;
+
+            BackgroundWorker wrk = new BackgroundWorker();
+            wrk.WorkerReportsProgress = true;
+            wrk.DoWork += (a, b) =>
+            {
+                while (_generalAddedPostThreadFlag <= _myAddedPostThreadFlag && _generalDeletedPostThreadFlag<= _myDeletedPostThreadFlag)
+                {
+
+                }
+            };
+            wrk.RunWorkerCompleted += (s, e) =>
+            {
+                if (_generalAddedPostThreadFlag > _myAddedPostThreadFlag)
+                {
+                    _myAddedPostThreadFlag++;
+                }
+                else
+                {
+                    _myDeletedPostThreadFlag++;
+                }
+                if (listBox.Visibility == Visibility.Collapsed)
+                {
+                    DataGrid_Loaded(this, null);
+                }
+                else
+                {
+                    listBox.Items.Clear();
+                    selectionChangedHelp(_selected);
+                }
+                wrk.RunWorkerAsync();
+                
+            };
+            wrk.RunWorkerAsync();
         }
 
         private void InitializePermissons(string userName)
@@ -123,69 +167,8 @@ namespace PL
             {
                 // all open
             }
-            _cnh.updateWindow(this);
-            Window window = this;
-            _selected = null;
-
-            BackgroundWorker wrk = new BackgroundWorker();
-            wrk.WorkerReportsProgress = true;
-            wrk.DoWork += (a, b) =>
-            {
-                while (_generalFlag <= _myFlage)
-                {
-
-                }
-            };
-
-            wrk.RunWorkerCompleted += (s, e) =>
-            {
-
-                //               Thread.Sleep(500);
-                _myFlage++;
-                if (listBox.Visibility == Visibility.Collapsed)
-                {
-                    DataGrid_Loaded(this, null);
-                }
-                else
-                {
-                    listBox.Items.Clear();
-                    selectionChangedHelp(_selected);
-                }
-                wrk.RunWorkerAsync();
-
-            };
-            wrk.RunWorkerAsync();
-      /*      Thread thread = new Thread(() =>
-            {
-                while (_generalFlag <= _myFlage)
-                {
-
-                }
-                _myFlage++;
-                SubForumWindow newWin = new SubForumWindow(_forumName, _subName, _userName, _sessionKey, _cnh);
-                newWin.Show();
-                //this.Hide();
-
-                //newWin.Closed += (sender2, e2) =>
-                //newWin.Dispatcher.InvokeShutdown();
-
-                System.Windows.Threading.Dispatcher.Run();
-            });
-
-            thread.SetApartmentState(ApartmentState.STA);
-
-            thread.Start();*/
-
         }
-        public void doTask()
-        {
-            while (_generalFlag <= _myFlage)
-            {
-
-            }
-            DataGrid_Loaded(this, null);
-        }
-
+       
         private void ThreadView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var grid = sender as DataGrid;
@@ -477,7 +460,7 @@ namespace PL
             MessageBox.Show(publisherName + "'s post you were following in " + forumName + " was modified (" + title + ")", "post modified");
         }
 
-        public void applyPostDelitionNotification(String forumName, String publisherName)
+        public void applyPostDelitionNotification(String forumName, String publisherName, bool toSendMessage)
         {
             MessageBox.Show(publisherName + "'s post you were following in " + forumName + " was deleted", "post deleted");
         }
