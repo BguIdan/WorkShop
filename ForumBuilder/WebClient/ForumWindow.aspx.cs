@@ -40,10 +40,19 @@ namespace WebClient
             _userName = (String)Session["userName"];
             if (!_userName.Equals("Guest"))
             {
-                int sessionKey = (int)Session["sessionKey"];
-                if (sessionKey > 0)
+                int realSession = -1;
+                string sessionKey = (string)Session["sessionKey"];
+                try
+                {
+                    realSession = Int32.Parse((sessionKey.Substring(0, sessionKey.IndexOf(","))));
+                }
+                catch
+                {
+                    realSession = -1;
+                }
+                if (realSession > 0)
                     //showAlert("Login successful! your session code for is " + sessionKey.ToString());
-                    mySessionKey.Text = "your session key is: "+sessionKey.ToString();
+                    mySessionKey.Text = "your session key is: "+ realSession.ToString();
             }
             _sUMC = new SuperUserManagerClient();
             InitializePermissons(_userName);
@@ -132,8 +141,7 @@ namespace WebClient
             // an fourom member
             else
             {
-                ///TODO shouldnt be null
-                _fMC.logout(nameLogout, _myforum.forumName, null);//TODO shouldnt be null
+                _fMC.logout(nameLogout, _myforum.forumName, Session["sessionKey"].ToString());
                 Response.Redirect("MainWindow.aspx");
             }
         }
