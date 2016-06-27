@@ -20,7 +20,7 @@ namespace WebClient
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(3000);
 
             _fMC = new ForumManagerClient(new InstanceContext(this));
             _forumsList = _fMC.getForums();
@@ -39,7 +39,7 @@ namespace WebClient
                 Session["Password"] = Password.Text;
                 try
                 {
-                    _choosenForum = forum_dropList.SelectedItem.Text;
+                    _choosenForum  = forum_dropList.SelectedItem.Text;
                 }
                 catch
                 {
@@ -80,6 +80,13 @@ namespace WebClient
                             case "-3":
                                 showAlert("you already connected via another client, " +
                                             "please login using your session key");
+                                SessionKeyTextField.Visible = true;
+                                sessionKeyLabel.Visible = true;
+                                Password.Visible = false;
+                                passwordLabel.Visible = false;
+                                ID.Visible = false;
+                                userNameLabel.Visible = false;
+                                LogInWithDiffUserButton.Visible = true;
                                 break;
 
                             default:
@@ -94,7 +101,7 @@ namespace WebClient
                     showAlert("choose a forum");
                 }
             }
-            else if (Password.Text != "" && SessionKeyTextField.Text != "")
+            else if (SessionKeyTextField.Text != "")
             {
                 int insertedSessionKeyByInt = -1;
                 String result = "";
@@ -123,12 +130,12 @@ namespace WebClient
                         showAlert("please clear the session key field");
                         return;
                     }
-                    else if ((result = _fMC.loginBySessionKey(insertedSessionKeyByInt, Session["UserName"].ToString(), _choosenForum)) == "success")
+                    else if ((result = _fMC.loginBySessionKey(insertedSessionKeyByInt, Session["UserName"].ToString(), _choosenForum)).Contains(","))
                     {
                         Session["forumName"] = _choosenForum;
                         Session["userName"] = Session["UserName"];
                         Session["ForumManagerClient"] = _fMC;
-                        Session["sessionKey"] = -1;
+                        Session["sessionKey"] = SessionKeyTextField.Text;
                         Response.Redirect("ForumWindow.aspx");
                     }
                     else
@@ -208,6 +215,16 @@ namespace WebClient
             while (_forumsList == null) { Thread.Sleep(20); }
             foreach (String forumName in this._forumsList)
                 forum_dropList.Items.Add(forumName);
+        }
+
+        protected void LogInWithDiffUserButton_Click(object sender, EventArgs e)
+        {
+            sessionKeyLabel.Visible = false;
+            SessionKeyTextField.Visible = false;
+            Password.Visible = true;
+            passwordLabel.Visible = true;
+            ID.Visible = true;
+            userNameLabel.Visible = true;
         }
     }
 }
