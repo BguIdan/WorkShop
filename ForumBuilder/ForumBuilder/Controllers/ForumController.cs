@@ -434,8 +434,12 @@ namespace ForumBuilder.Controllers
 
         }
 
-        public Boolean logout(String user, String forumName,String allSession)
-        {
+        public Boolean logout(String user, String forumName,String allSession){
+        {   //TODO gal what about the open channels?
+            if (allSession.IndexOf(",") <= 0)
+            {
+                return false;
+            }
             if (!this.loggedInUsersByForum.ContainsKey(forumName))
                 return false;
             if (!this.loggedInUsersByForum[forumName].Contains(user))
