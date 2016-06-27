@@ -7,7 +7,6 @@ using System.Web.UI.WebControls;
 using System.Threading;
 using ForumBuilder.Common.DataContracts;
 using WebClient.proxies;
-using WebClient.notificationHost;
 using System.ServiceModel;
 using ForumBuilder.Common.ClientServiceContracts;
 
@@ -72,7 +71,7 @@ namespace WebClient
         private void InitializePermissons(string userName)
         {
             if (userName == null)
-                return;//TODO userName was not passed in the session, how should we handle
+                return;
             // a guest
             if (userName.Equals("Guest"))
             {
@@ -123,8 +122,8 @@ namespace WebClient
                 } break;
                 case "privateMessages": 
                 {
-                 //   Session["userName"] = this._userName;
-                   // Response.Redirect("PrivateMessagesWindow.aspx");
+                //a stab for web client notification. there was no requirement for this feature 
+                    //so we muted it for the time being                
                 } break;
             }
         }
@@ -156,64 +155,25 @@ namespace WebClient
         }
 
         protected void clickOnSubForum(Object sender, EventArgs e)
-        {   //showAlert(((Button)sender).Text + _userName);
-            //Session["forumName"] = lbl_forumName.Text;
+        {  
             Session["subForumName"] = ((Button)sender).Text;
             Response.Redirect("subForumWebPage.aspx");
         }
-        /*
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {//TODO gal
-            // Get SelectedItems from DataGrid.
-            var grid = sender as DataGrid;
-            var selected = grid.SelectedItems;
-            _subForumChosen = selected.ToString();
-            SubForumWindow sfw = new SubForumWindow(_myforum.forumName, _subForumChosen, _userName);
-            sfw.ShowDialog();
-        }
-
-
-
-        
-        private void subForumsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            // Get SelectedItems from DataGrid.
-
-            _subForumChosen = subForumsListBox.SelectedItem.ToString();
-            SubForumWindow sfw = new SubForumWindow(_myforum.forumName, _subForumChosen, _userName);
-            sfw.Show();
-            this.Close();
-        }
-*/
-
-
-        /*back button back to the forum window
-        protected void backButton_Click(object sender, EventArgs e)
-        {
-            Session["forumData"] = _myforum;
-            ForumWindow newWin = new ForumWindow(_myforum, _userName);
-            newWin.Show();
-            this.Close();
-        }*/
 
         public void applyPostPublishedInForumNotification(String forumName, String subForumName, String publisherName)
-        {
-            //TODO failed to effect the web page dynamically (gal)
+        {//a stab for web client notification. there was no requirement for this feature so we muted it for the time being
         }
 
         public void applyPostModificationNotification(String forumName, String publisherName, String title)
-        {
-            //MessageBox.Show(publisherName + "'s post you were following in " + forumName + "was modified (" + title + ")", "post modified");
+        {//a stab for web client notification. there was no requirement for this feature so we muted it for the time being
         }
 
         public void applyPostDelitionNotification(String forumName, String publisherName, bool toSendMessage)
-        {
-            //MessageBox.Show(publisherName + "'s post you were following in " + forumName + "was deleted", "post deleted");
+        {//a stab for web client notification. there was no requirement for this feature so we muted it for the time being
         }
 
         public void sendUserMessage(String senderName, String content)
-        {
-            //MessageBox.Show(content, senderName + " set you a message");
+        {//a stab for web client notification. there was no requirement for this feature so we muted it for the time being
         }
 
         private void showAlert(String content)

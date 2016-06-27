@@ -67,6 +67,7 @@
     <Compile Include="SubForumControllerTest.cs" />
     <Compile Include="SubForumManagerTest.cs" />
     <Compile Include="TestableUserNotifications.cs" />
+    <Compile Include="OfflineInteractivityTests.cs" />
     <Compile Include="UserControllerTest.cs" />
     <Compile Include="UserManagerTest.cs" />
   </ItemGroup>

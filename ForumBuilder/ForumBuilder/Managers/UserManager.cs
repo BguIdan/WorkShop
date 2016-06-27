@@ -48,8 +48,11 @@ namespace Service
         }
         public List<String> getFriendList(String userName)
         {
-            //TODO: complete function
-            return null;
+            List<string> result = userController.getFriendList(userName);
+            if (result == null)
+                result = new List<string>();
+
+            return result;
         }
 
         public string restorePassword(string userName, string ans1, string ans2)

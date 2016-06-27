@@ -75,7 +75,9 @@
     <Content Include="Styles\bootstrap.css" />
     <Content Include="subForumWebPage.aspx" />
     <Content Include="SuperUserLoginWindow.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="MainWindow.aspx" />
     <Content Include="worker.js" />
   </ItemGroup>
@@ -115,7 +117,6 @@
     <Compile Include="ForumWindow.aspx.designer.cs">
       <DependentUpon>ForumWindow.aspx</DependentUpon>
     </Compile>
-    <Compile Include="notificationHost\ClientNotificationHost.cs" />
     <Compile Include="PostsPage.aspx.cs">
       <DependentUpon>PostsPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

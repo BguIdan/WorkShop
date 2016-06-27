@@ -110,8 +110,6 @@ namespace ForumBuilder.Systems
 
         public static int Main(string[] args)
         {
-            //TODO gal: remove later
-            //DBClass.getInstance.clear();
             var item = DBClass.getInstance;
             Console.WriteLine(  "welcome to your forum builder!\n" +
                                 "please insert your desired user name:");

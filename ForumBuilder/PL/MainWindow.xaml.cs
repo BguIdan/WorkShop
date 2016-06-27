@@ -72,29 +72,7 @@ namespace PL
                     this.Close();
                     fw.Show();
                 }
-                /*else if (pass == "" && sessionKeyField != "")
-                {
-                    String result = "";
-                    try
-                    {
-                        result = _fMC.loginBySessionKey(Int32.Parse(sessionKeyField), userName, _choosenForum);
-                    }
-                    catch
-                    {
-                        MessageBox.Show("invalid session key!, digits only");
-                    }
-                    if (result == "success")
-                    {
-                        ForumWindow fw = new ForumWindow(toSend, userName);
-                        this.Close();
-                        fw.Show();
-                    }
-                    else
-                    {
-                        MessageBox.Show(result);
-                    }
-                }*/
-                else if (pass == "" ) //&& sessionKeyField == "")
+                else if (pass == "" )
                 {
                     MessageBox.Show("please fill the required fields");
                 }

@@ -22,7 +22,7 @@ namespace WebClient
         {
             if (_su.login(textBox_userName.Text, textBox_password.Text, textBox_email.Text))
             {
-                //TODO gal: open super user window
+                //the concrete requirements for a web client were for basic user operations. the user functionality is muted for the time being
             }
             else
             {

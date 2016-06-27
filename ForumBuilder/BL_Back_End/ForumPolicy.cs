@@ -32,7 +32,7 @@ namespace BL_Back_End
              _isQuestionIdentifying=isQuestionIdentifying;
              _seniorityInForum=seniorityInForum;
              _deletePostByModerator=deletePostByModerator;
-             _timeToPasswordExpiration=timeToPasswordExpiration;//TODO: not impl
+             _timeToPasswordExpiration=timeToPasswordExpiration;
              _minNumOfModerators=minNumOfModerators;
              _hasCapitalInPassword=hasCapitalInPassword;
              _hasNumberInPassword=hasNumberInPassword;

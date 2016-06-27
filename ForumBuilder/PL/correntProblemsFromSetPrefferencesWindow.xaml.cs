@@ -107,7 +107,6 @@ namespace PL
                 switch (sessionKey)
                 {
                     case "-1":
-                        // TODO: need to explain why the login failed
                         MessageBox.Show("login failed");
                         MainWindow newWin = new MainWindow();
                         newWin.Show();

@@ -13,7 +13,7 @@
             <div class="col-sm-offset-2 col-sm-10">
         <p>
             <asp:label AssociatedControlID="forum_dropList" runat="server" Cssclass="control-label">choose forum:</asp:label>
-            <asp:DropDownList ID="forum_dropList" runat="server" OnDataBinding="refreshForumList" OnSelectedIndexChanged="forum_dropList_SelectedIndexChanged" OnLoad="forum_dropList_Load">
+            <asp:DropDownList ID="forum_dropList" runat="server" OnSelectedIndexChanged="forum_dropList_SelectedIndexChanged" OnLoad="forum_dropList_Load">
             </asp:DropDownList>
         </p>
                 </div>
@@ -23,7 +23,7 @@
                         <asp:label AssociatedControlID="ID" runat="server" Cssclass="control-label">please log in:</asp:label>
             <asp:label AssociatedControlID="ID" runat="server">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;As Guest:</asp:label>
 
-            <asp:CheckBox ID="CheckBox_Guest" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged" />
+            <asp:CheckBox ID="CheckBox_Guest" runat="server"/>
         </p>
                              </div>
         <p>
@@ -40,7 +40,6 @@
         </p>
              <div class="col-sm-offset-2 col-sm-10">
         <p>
-            <asp:Button ID="Btn_ImSuperUser" class="btn btn-default" runat="server" Text="Im A Super User" OnClick="Btn_ImSuperUser_Click" />
             <asp:Button ID="Btn_Login" class="btn btn-default" runat="server" Text="Login" OnClick="Btn_Login_Click" />
             <asp:Button ID="Btn_signUp" class="btn btn-default" runat="server" Text="Sign up" OnClick="Btn_signUp_Click" />
         </p>

@@ -382,10 +382,10 @@ namespace ForumBuilder.Controllers
                 return session;
             }
             else
-            {//TODO apply error codes
+            {
                 logger.logPrint("could not login, wrong credentials", 0);
                 logger.logPrint("could not login, wrong credentials", 2);
-                return "-1";//TODO gal client session -1 means the login failed
+                return "-1";
             }
         }
 
@@ -425,7 +425,7 @@ namespace ForumBuilder.Controllers
             //return "success";
             }
             else
-            {//TODO apply error codes
+            {
                 logger.logPrint("could not login, wrong user name", 0);
                 logger.logPrint("could not login, wrong user name", 2);
                 return "wrong user name";
@@ -435,7 +435,7 @@ namespace ForumBuilder.Controllers
         }
 
         public Boolean logout(String user, String forumName,String allSession)
-        {   //TODO gal what about the open channels?
+        {
             if (!this.loggedInUsersByForum.ContainsKey(forumName))
                 return false;
             if (!this.loggedInUsersByForum[forumName].Contains(user))
