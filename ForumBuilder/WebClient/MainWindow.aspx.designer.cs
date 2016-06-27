@@ -31,6 +31,15 @@ namespace WebClient {
         protected global::System.Web.UI.WebControls.CheckBox CheckBox_Guest;
         
         /// <summary>
+        /// userNameLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label userNameLabel;
+        
+        /// <summary>
         /// ID control.
         /// </summary>
         /// <remarks>
@@ -40,6 +49,15 @@ namespace WebClient {
         protected global::System.Web.UI.WebControls.TextBox ID;
         
         /// <summary>
+        /// passwordLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label passwordLabel;
+        
+        /// <summary>
         /// Password control.
         /// </summary>
         /// <remarks>
@@ -47,6 +65,15 @@ namespace WebClient {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Password;
+        
+        /// <summary>
+        /// sessionKeyLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label sessionKeyLabel;
         
         /// <summary>
         /// SessionKeyTextField control.
@@ -74,5 +101,14 @@ namespace WebClient {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Btn_signUp;
+        
+        /// <summary>
+        /// LogInWithDiffUserButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button LogInWithDiffUserButton;
     }
 }

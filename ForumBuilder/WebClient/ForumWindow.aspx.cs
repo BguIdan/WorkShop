@@ -37,28 +37,13 @@ namespace WebClient
             this._myforum = _fMC.getForum(_chosenForum);
             lbl_forumName.Text = "ForumName:  " + _chosenForum;
             _userName = (String)Session["userName"];
-            if (!_userName.Equals("Guest"))
-            {
-                int realSession = -1;
-                string sessionKey = (string)Session["sessionKey"];
-                try
-                {
-                    realSession = Int32.Parse((sessionKey.Substring(0, sessionKey.IndexOf(","))));
-                }
-                catch
-                {
-                    realSession = -1;
-                }
-                if (realSession > 0)
-                    //showAlert("Login successful! your session code for is " + sessionKey.ToString());
-                    mySessionKey.Text = "your session key is: "+ realSession.ToString();
-            }
             _sUMC = new SuperUserManagerClient();
             InitializePermissons(_userName);
-            TableRow row = new TableRow();
-            TableCell cell = new TableCell();
+            
             foreach (string subForum in _myforum.subForums)
             {
+                TableRow row = new TableRow();
+                TableCell cell = new TableCell();
                 Button btn = new Button();
                 btn.Text = subForum;
                 btn.Click += new EventHandler(clickOnSubForum);
@@ -141,6 +126,7 @@ namespace WebClient
             else
             {
                 _fMC.logout(nameLogout, _myforum.forumName, Session["sessionKey"].ToString());
+                Session["sessionKey"] = "";
                 Response.Redirect("MainWindow.aspx");
             }
         }

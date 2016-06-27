@@ -27,22 +27,23 @@
         </p>
                              </div>
         <p>
-            <asp:label AssociatedControlID="ID" runat="server" Cssclass="col-sm-2 control-label">User Name</asp:label>
+            <asp:label ID="userNameLabel" AssociatedControlID="ID" runat="server" Cssclass="col-sm-2 control-label">User Name</asp:label>
             <asp:TextBox ID="ID" runat="server" class="myText-control"></asp:TextBox>
         </p>
         <p>
-            <asp:label AssociatedControlID="Password" runat="server" Cssclass="col-sm-2 control-label">Password</asp:label>
+            <asp:label ID="passwordLabel" AssociatedControlID="Password" runat="server" Cssclass="col-sm-2 control-label">Password</asp:label>
             <asp:TextBox ID="Password" TextMode="Password" runat="server" class="myText-control"></asp:TextBox>
         </p>
         <p>
-            <asp:label AssociatedControlID="SessionKeyTextField" runat="server" Cssclass="col-sm-2 control-label">Session Key:</asp:label>
-            <asp:TextBox ID="SessionKeyTextField" TextMode="Number" runat="server" class="myText-control"></asp:TextBox>
+            <asp:label ID="sessionKeyLabel" AssociatedControlID="SessionKeyTextField" Visible="false" runat="server" Cssclass="col-sm-2 control-label">Session Key:</asp:label>
+            <asp:TextBox ID="SessionKeyTextField" TextMode="Number" Visible="false" runat="server" class="myText-control"></asp:TextBox>
         </p>
              <div class="col-sm-offset-2 col-sm-10">
-        <p>
+        
             <asp:Button ID="Btn_Login" class="btn btn-default" runat="server" Text="Login" OnClick="Btn_Login_Click" />
             <asp:Button ID="Btn_signUp" class="btn btn-default" runat="server" Text="Sign up" OnClick="Btn_signUp_Click" />
-        </p>
+            <asp:Button ID="LogInWithDiffUserButton" Visible="false" class="btn btn-default" runat="server" Text="log in with a different user" OnClick="LogInWithDiffUserButton_Click" />
+
             </div>
         </div>
 

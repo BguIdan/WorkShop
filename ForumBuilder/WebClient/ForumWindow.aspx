@@ -66,9 +66,7 @@
             </Items>
         </asp:menu>
 
-        <p>
-            <asp:Label ID="mySessionKey" runat="server" Text=""></asp:Label>
-    </p>
+        
         <p>
         <asp:Label ID="lbl_forumName" runat="server" Text="Label"></asp:Label>
     </p>
