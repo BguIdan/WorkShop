@@ -490,6 +490,35 @@ namespace Tests
 
 
         /******************************end of is member***********************************/
+        [TestMethod]
+        public void test_get_Admin_Report_Post_Of_member_no_post()
+        {
+            String forumName = this.forum.forumName;
+            Assert.AreEqual(this.forumController.getAdminReportPostOfmember(userAdmin.userName, forumName, userMember.userName).Count, 0);
+        }
+
+        [TestMethod]
+        public void test_get_Admin_Report_Post_Of_member_not_admin()
+        {
+            String forumName = this.forum.forumName;
+            Assert.IsNull(this.forumController.getAdminReportPostOfmember(userMember.userName, forumName, userMember.userName),"user is not admin and not allowed to get report, didn't return null");
+        }
+        [TestMethod]
+        public void test_get_Admin_Report_Post_Of_member()
+        {
+            String forumName = this.forum.forumName;
+            Dictionary<String,DateTime> mods=new Dictionary<String,DateTime>();
+            mods.Add(userAdmin.userName, new DateTime (2017,8,8));
+            Assert.IsTrue(this.forumController.addSubForum(this.forum.forumName, "sub",mods , this.userAdmin.userName).Equals("sub-forum added"));
+            SubForumController.getInstance.createThread("head", "content", userMember.userName, forumName, "sub");
+            Assert.AreEqual(this.forumController.getAdminReportPostOfmember(userAdmin.userName, forumName, userMember.userName).Count, 1);
+            Post s=this.forumController.getAdminReportPostOfmember(userAdmin.userName, forumName, userMember.userName)[0];
+            Assert.AreEqual(s.title, "head");
+            Assert.AreEqual(s.content, "content");
+        }
+
+
+
 
         /******************************dismiss member***********************************/
 /*
