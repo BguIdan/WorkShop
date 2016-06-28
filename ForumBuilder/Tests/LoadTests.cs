@@ -1,13 +1,15 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ForumBuilder.Controllers;
 using BL_Back_End;
+using Database;
+using ForumBuilder.Controllers;
 using ForumBuilder.Systems;
 using System.Collections.Generic;
-using Database;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-
-namespace LoadTest
+namespace Tests
 {
     [TestClass]
     public class LoadTests
@@ -77,6 +79,8 @@ namespace LoadTest
             DBClass db = DBClass.getInstance;
             db.clear();
         }
+
+
 
 
         [TestMethod]
@@ -174,18 +178,18 @@ namespace LoadTest
         private void sendThreadTask()
         {
             int p = System.Threading.Thread.CurrentThread.ManagedThreadId;
-            this.forumController.registerUser("userName" + p, "idanA1", "d@d.d", "", "", forumName);
-            subForumController.createThread("" + p, "" + p, "userName" + p, forumName, subForumName);
+            this.forumController.registerUser("userName" + p, "idanA1", "d@d.d", "tomer", "tomer", forum.forumName);
+            subForumController.createThread("" + p, "" + p, "userName" + p, forum.forumName, subForumName);
         }
         private void sendPostTask()
         {
             int p = System.Threading.Thread.CurrentThread.ManagedThreadId;
-            this.forumController.registerUser("userName" + p, "idanA1", "d@d.d", "", "", forumName);
+            this.forumController.registerUser("userName" + p, "idanA1", "d@d.d", "tomer", "tomer", forum.forumName);
             this.postController.addComment(p.ToString(), p.ToString(), "userName" + p, postId);
         }
         private void readPostTask()
         {
-            List<Post> posts = this.postController.getAllPosts(this.forumName, this.subForumName);
+            List<Post> posts = this.postController.getAllPosts(this.forum.forumName, this.subForumName);
         }
     }
 }

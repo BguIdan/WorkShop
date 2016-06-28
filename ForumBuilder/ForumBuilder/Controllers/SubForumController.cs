@@ -14,6 +14,8 @@ namespace ForumBuilder.Controllers
         ForumController forumController = ForumController.getInstance;
         DBClass DB = DBClass.getInstance;
         Logger logger = Logger.getInstance;
+        public static Object sysLock = new Object();
+
 
         public static SubForumController getInstance
         {
@@ -138,41 +140,43 @@ namespace ForumBuilder.Controllers
 
         public String createThread(String headLine, String content, String writerName,  String forumName, String subForumName)
         {
-            DateTime timePublished = DateTime.Now;
-            if (headLine==null || content==null||(headLine.Equals("")&& content.Equals("")))
+            lock (PostController.sysLock)
             {
-                logger.logPrint("Create tread failed, there is no head or content in tread",0);
-                logger.logPrint("Create tread failed, there is no head or content in tread",2);
-                return "Create tread failed, there is no head or content in tread";
+                DateTime timePublished = DateTime.Now;
+                if (headLine == null || content == null || (headLine.Equals("") && content.Equals("")))
+                {
+                    logger.logPrint("Create tread failed, there is no head or content in tread", 0);
+                    logger.logPrint("Create tread failed, there is no head or content in tread", 2);
+                    return "Create tread failed, there is no head or content in tread";
+                }
+                else if (DB.getUser(writerName) == null)
+                {
+                    logger.logPrint("Create tread failed, user does not exist", 0);
+                    logger.logPrint("Create tread failed, user does not exist", 2);
+                    return "Create tread failed, user does not exist";
+                }
+                else if (DB.getSubForum(subForumName, forumName) == null)
+                {
+                    logger.logPrint("Create tread failed, sub-forum does not exist", 0);
+                    logger.logPrint("Create tread failed, sub-forum does not exist", 2);
+                    return "Create tread failed, sub-forum does not exist";
+                }
+                else if (!ForumController.getInstance.isMember(writerName, forumName))
+                {
+                    logger.logPrint("Create tread failed, user " + writerName + " is not memberin forum " + forumName, 0);
+                    logger.logPrint("Create tread failed, user " + writerName + " is not memberin forum " + forumName, 2);
+                    return "Create tread failed, user " + writerName + " is not memberin forum " + forumName;
+                }
+                int id = DB.getAvilableIntOfPost();
+                logger.logPrint("Add thread " + id, 0);
+                logger.logPrint("Add thread " + id, 1);
+                if (DB.addPost(writerName, id, headLine, content, -1, timePublished, forumName) && DB.addThread(forumName, subForumName, id))
+                {
+                    this.forumController.sendThreadCreationNotification(headLine, content, writerName, forumName, subForumName);
+                    return "Create tread succeed";
+                }
+                return "Create tread failed";
             }
-            else if (DB.getUser(writerName) == null)
-            {
-                logger.logPrint("Create tread failed, user does not exist",0);
-                logger.logPrint("Create tread failed, user does not exist",2);
-                return "Create tread failed, user does not exist";
-            }
-            else if (DB.getSubForum(subForumName,forumName)== null)
-            {
-                logger.logPrint("Create tread failed, sub-forum does not exist",0);
-                logger.logPrint("Create tread failed, sub-forum does not exist",2);
-                return "Create tread failed, sub-forum does not exist";
-            }
-            else if (!ForumController.getInstance.isMember(writerName, forumName))
-            {
-                logger.logPrint("Create tread failed, user "+ writerName+" is not memberin forum "+ forumName,0);
-                logger.logPrint("Create tread failed, user " + writerName + " is not memberin forum " + forumName,2);
-                return "Create tread failed, user " + writerName + " is not memberin forum " + forumName;
-            }
-            int id = DB.getAvilableIntOfPost();
-            logger.logPrint("Add thread " + id,0);
-            logger.logPrint("Add thread " + id,1);
-            if (DB.addPost(writerName, id, headLine, content, -1, timePublished, forumName) && DB.addThread(forumName, subForumName, id))
-            {
-                this.forumController.sendThreadCreationNotification(headLine, content, writerName, forumName, subForumName);
-                return "Create tread succeed";
-            }
-            return "Create tread failed";
-
         }
 
         public String deleteThread(int firstPostId,string removerName)
