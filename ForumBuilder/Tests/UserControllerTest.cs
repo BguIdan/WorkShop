@@ -256,5 +256,20 @@ namespace Tests
             Assert.AreEqual(newFriendList.Count, 0, "unsuccessful friend addition should not change the friend list");
         }
 
+        /******************************restore password*****************************************/
+        [TestMethod]
+        public void test_restore_password_on_member_where_no_answers()
+        {
+            string password = userController.restorePassword(userMember.userName, "", "");
+            Assert.AreEqual(password, null);
+        }
+        [TestMethod]
+        public void test_restore_password_on_member_with_answers()
+        {
+            forumController.setAnswers(ForumName, userMember.userName, "tomer", "tomer");
+            string password = userController.restorePassword(userMember.userName, "tomer", "tomer");
+            Assert.AreEqual(password, userMember.password);
+        }
+
     }
 }
