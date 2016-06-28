@@ -53,6 +53,7 @@ namespace PL
 
         private void showList()
         {
+            memberListBox.Items.Clear();
             setPreferencesWin.Visibility = System.Windows.Visibility.Collapsed;
             createUserWin.Visibility = System.Windows.Visibility.Collapsed;
             createForum.Visibility = System.Windows.Visibility.Collapsed;

@@ -193,6 +193,10 @@ namespace PL
                 {
                     restore.IsEnabled = false;
                 }
+                else
+                {
+                    restore.IsEnabled = true;
+                }
             }
             catch (Exception)
             {
