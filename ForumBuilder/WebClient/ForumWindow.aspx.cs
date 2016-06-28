@@ -32,7 +32,14 @@ namespace WebClient
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            _mySessionKey = Session["sessionKey"].ToString();
+            try
+            {
+                _mySessionKey = Session["sessionKey"].ToString();
+            }
+            catch
+            {
+
+            }
             _fMC = (ForumManagerClient)Session["ForumManagerClient"];
             _fMC.InnerDuplexChannel.CallbackInstance = new InstanceContext(this);
             String _chosenForum = (String)Session["forumName"];
@@ -41,6 +48,12 @@ namespace WebClient
             _userName = (String)Session["userName"];
             _sUMC = new SuperUserManagerClient();
             InitializePermissons(_userName);
+            foreach(MenuItem item in menu.Items)
+            {
+                if (item.Text.Equals("Logout"))
+                    item.Enabled = true;
+            }
+            
             
             foreach (string subForum in _myforum.subForums)
             {
@@ -122,6 +135,7 @@ namespace WebClient
             // a guest
             if (nameLogout.Equals("Guest"))
             {
+                Session["sessionKey"] = "";
                 Response.Redirect("MainWindow.aspx");
             }
             // an fourom member

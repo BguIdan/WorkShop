@@ -27,6 +27,10 @@ namespace WebClient
             {
 
             }
+            if (Session["userName"].ToString().Equals("Guest"))
+            {
+                Button1.Visible = false;
+            }
             _forumName = Session["forumName"].ToString();
             _subForumName = Session["subForumName"].ToString();
             _thread = (PostData)Session["thread"];

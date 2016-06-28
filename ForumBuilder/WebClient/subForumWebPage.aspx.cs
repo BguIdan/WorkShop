@@ -29,6 +29,10 @@ namespace WebClient
             {
 
             }
+            if (Session["userName"].ToString().Equals("Guest"))
+            {
+                addThreadButton.Visible = false;
+            }
             _forumName = Session["forumName"].ToString();
             _subForumName = Session["subForumName"].ToString();
             forumNameLabel.Text = _forumName;

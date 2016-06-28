@@ -33,6 +33,7 @@ namespace WebClient
 
         protected void Btn_Login_Click(object sender, EventArgs e)
         {
+            _choosenForum = forum_dropList.SelectedItem.ToString();
             Session["UserName"] = ID.Text;
             if (Password.Text != "" && SessionKeyTextField.Text == "")
             {
@@ -87,6 +88,8 @@ namespace WebClient
                                 ID.Visible = false;
                                 userNameLabel.Visible = false;
                                 LogInWithDiffUserButton.Visible = true;
+                                SessionKeyTextField.Text = "";
+
                                 break;
 
                             default:
@@ -206,12 +209,13 @@ namespace WebClient
 
         protected void forum_dropList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _choosenForum = forum_dropList.SelectedItem.ToString();
+            //_choosenForum = forum_dropList.SelectedItem.ToString();
         }
 
         protected void forum_dropList_Load(object sender, EventArgs e)
         {
-            forum_dropList.Items.Clear();
+            if (forum_dropList.Items.Count > 0)
+                return;
             while (_forumsList == null) { Thread.Sleep(20); }
             foreach (String forumName in this._forumsList)
                 forum_dropList.Items.Add(forumName);
@@ -225,6 +229,9 @@ namespace WebClient
             passwordLabel.Visible = true;
             ID.Visible = true;
             userNameLabel.Visible = true;
+            LogInWithDiffUserButton.Visible = false;
+            Session["sessionKey"] = "";
+            SessionKeyTextField.Text = "";
         }
     }
 }

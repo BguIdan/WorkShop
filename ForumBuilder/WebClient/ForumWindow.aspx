@@ -59,9 +59,9 @@
     <div id="nav">
         <asp:menu ID="menu" Orientation="Horizontal" runat="server" Enabled="true" onmenuitemclick="NavigationMenu_MenuItemClick">
             <Items>
-                <asp:MenuItem Text="Create Sub-Forum-stub" Value="AddSub" Enabled="true"/>
-                <asp:MenuItem Text="View Private Messages-stub" Value="privateMessages" Enabled="true"/>
-                <asp:MenuItem Text="Set\Change Preferences-sutb" Value="Set" Enabled="true"/>
+                <asp:MenuItem Text="Create Sub-Forum-stub" Value="AddSub" Enabled="false"/>
+                <asp:MenuItem Text="View Private Messages-stub" Value="privateMessages" Enabled="false"/>
+                <asp:MenuItem Text="Set\Change Preferences-sutb" Value="Set" Enabled="false"/>
                 <asp:MenuItem Text="Logout" Value="menuLogout" Enabled="true"/>
             </Items>
         </asp:menu>
