@@ -20,17 +20,31 @@ namespace Tests
     public class UserManagerTest
     {
 
-        private IUserManager userManager = new UserManagerClient();
         private IForumManager forumManager;
+        private IPostManager postManager;
+        private ISubForumManager subForumManager;
+        private IUserManager userManager;
         private UserData userNonMember;
-        private UserData userMember;
+        private UserData userMember1;
+        private UserData userMember2;
+        private UserData userMod;
         private UserData userAdmin;
+        private UserData superUser;
+        private ForumData forum;
         private String forumName = "testForum";
+        private String subForumName = "sub-forum";
+        private String threadHeadline = "head";
+
+        private String skmem1;
+        private String skmem2;
+        private String skmod;
+        private String skadmin;
+
 
         [TestInitialize]
         public void setUp()
         {
-            SuperUserController superUserController = SuperUserController.getInstance;
+    /*        SuperUserController superUserController = SuperUserController.getInstance;
             UserData superUser = new UserData("tomer", "1qW", "fkfkf@wkk.com");
             superUserController.addSuperUser(superUser.email, superUser.password, superUser.userName);
             this.forumManager = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
@@ -45,18 +59,69 @@ namespace Tests
                                                         fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword, 0, new List<string>());
             ForumData forum = new ForumData(forumName, "descr", fpd, new List<String>(), new List<String>());
             superUserController.createForum(forumName, "descr", fp, adminList, superUser.userName);
-            Assert.IsTrue(this.forumManager.registerUser(userMember.userName, userMember.password, userMember.email, "ansss", "anssss", forumName).Equals("Register user succeed"));
+            Assert.IsTrue(this.forumManager.registerUser(userMember.userName, userMember.password, userMember.email, "ansss", "anssss", forumName).Equals("Register user succeed"));*/
+
+            DBClass db = DBClass.getInstance;
+            db.clear();
+
+
+            SuperUserController superUserController = SuperUserController.getInstance;
+            this.superUser = new UserData("tomer", "1qW", "fkfkf@wkk.com");
+            ForumSystem.initialize(superUser.userName, superUser.password, superUser.email);
+
+            this.forumManager = new ForumManagerClient(new InstanceContext(new ClientNotificationHost()));
+
+            this.userNonMember = new UserData("nonMem", "nonMempass1", "nonmem@gmail.com");
+            this.userMember1 = new UserData("mem", "Mempass1", "mem@gmail.com");
+            this.userMember2 = new UserData("mem2", "Mempass1", "mem2@gmail.com");
+            this.userAdmin = new UserData("admin", "Adminpass1", "admin@gmail.com");
+            superUserController.addUser(userAdmin.userName, userAdmin.password, userAdmin.email, superUser.userName);
+            List<string> adminList = new List<string>();
+            adminList.Add(this.userAdmin.userName);
+            ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5, ForumPolicyData.OFFLINE_NOTIFICATIONS_TPYE, new List<string>());
+            ForumPolicyData fpd = new ForumPolicyData(fp.policy, fp.isQuestionIdentifying, fp.seniorityInForum, fp.deletePostByModerator, fp.timeToPassExpiration, fp.minNumOfModerators,
+                                                        fp.hasCapitalInPassword, fp.hasNumberInPassword, fp.minLengthOfPassword, ForumPolicyData.OFFLINE_NOTIFICATIONS_TPYE, new List<string>());
+            this.forum = new ForumData(this.forumName, "descr", fpd, new List<String>(), new List<string>());
+            superUserController.createForum(this.forum.forumName, "descr", fp, adminList, superUser.userName);
+            Assert.AreEqual(this.forumManager.registerUser(userMember1.userName, userMember1.password, userMember1.email, "ansss", "anssss", this.forum.forumName), "Register user succeed");
+            Assert.AreEqual(this.forumManager.registerUser(userMember2.userName, userMember2.password, userMember2.email, "ansss", "anssss", this.forum.forumName), "Register user succeed");
+
+            this.postManager = new PostManagerClient();
+            this.subForumManager = new SubForumManagerClient();
+            this.userManager = new UserManagerClient();
+            this.userMod = new UserData("mod", "Modpass1", "mod@gmail.com");
+            Dictionary<String, DateTime> modList = new Dictionary<String, DateTime>();
+            modList.Add(this.userMod.userName, new DateTime(2030, 1, 1));
+            Assert.IsTrue(ForumController.getInstance.registerUser(userMod.userName, userMod.password, userMod.email, "ansss", "anssss", this.forumName).Equals("Register user succeed"));
+            Assert.IsTrue(this.forumManager.addSubForum(this.forumName, this.subForumName, modList, this.userAdmin.userName).Equals("sub-forum added"));
+            Assert.IsTrue(SubForumController.getInstance.createThread(this.threadHeadline, "content", this.userMember2.userName, this.forumName, this.subForumName).Equals("Create tread succeed"));
+            List<Post> posts = PostController.getInstance.getAllPosts(this.forumName, this.subForumName);
+            Assert.AreEqual(posts.Count, 1);
+            Assert.IsTrue((skmem1 = this.forumManager.login(userMember1.userName, forum.forumName, userMember1.password)).Contains(","));
+            Assert.IsTrue((skmem2 = this.forumManager.login(userMember2.userName, forum.forumName, userMember2.password)).Contains(","));
+            Assert.IsTrue((skmod = this.forumManager.login(userMod.userName, forum.forumName, userMod.password)).Contains(","));
+            Assert.IsTrue((skadmin = this.forumManager.login(userAdmin.userName, forum.forumName, userAdmin.password)).Contains(","));
+
         }
 
         [TestCleanup]
         public void cleanUp()
         {
+            this.forumManager.logout(this.userMember1.userName, this.forum.forumName, skmem1);
+            this.forumManager.logout(this.userMember2.userName, this.forum.forumName, skmem2);
+            this.forumManager.logout(this.userMod.userName, this.forum.forumName, skmod);
+            this.forumManager.logout(this.userAdmin.userName, this.forum.forumName, skadmin);
+            this.forumManager = null;
+            this.subForumManager = null;
+            this.postManager = null;
+            this.forum = null;
+            this.userNonMember = null;
+            this.userMember1 = null;
+            this.userMember2 = null;
+            this.userMod = null;
+            this.userAdmin = null;
             DBClass db = DBClass.getInstance;
             db.clear();
-            this.forumManager = null;
-            this.userNonMember = null;
-            this.userMember = null;
-            this.userAdmin = null;
         }
 
 
@@ -65,32 +130,32 @@ namespace Tests
         public void test_addFriend_nonMember_with_nonMember()
         {
             List<String> friends = this.userManager.getFriendList(this.userNonMember.userName);
-            Assert.AreEqual(friends, null, "");
+            Assert.AreEqual(0, friends.Count, "");
             Assert.IsFalse(this.userManager.addFriend(this.userNonMember.userName, "heIsNotAMember").Equals("friend was added successfuly"), "non member cannot add a friend");
             List<String> newFriendList = this.userManager.getFriendList(this.userNonMember.userName);
-            Assert.AreEqual(newFriendList, null, "unsuccessful friend addition should not change the friend list");
+            Assert.AreEqual(0, newFriendList.Count, "unsuccessful friend addition should not change the friend list");
         }
 
         [TestMethod]
         public void test_addFriend_nonMember_with_member()
         {
             List<String> friends = this.userManager.getFriendList(this.userNonMember.userName);
-            Assert.AreEqual(friends, null, "");
-            Assert.IsFalse(this.userManager.addFriend(this.userNonMember.userName, this.userMember.userName).Equals("friend was added successfuly"), "non member cannot add a friend");
+            Assert.AreEqual(0, friends.Count, "");
+            Assert.IsFalse(this.userManager.addFriend(this.userNonMember.userName, this.userMember1.userName).Equals("friend was added successfuly"), "non member cannot add a friend");
             List<String> newFriendList = this.userManager.getFriendList(this.userNonMember.userName);
-            Assert.AreEqual(newFriendList, null, "unsuccessful friend addition should not change the friend list");
+            Assert.AreEqual(0, newFriendList.Count, "unsuccessful friend addition should not change the friend list");
         }
 
         [TestMethod]
         public void test_addFriend_nonMember_with_admin()
         {
             List<String> friends = this.userManager.getFriendList(this.userNonMember.userName);
-            Assert.AreEqual(friends, null, "");
+            Assert.AreEqual(0, friends.Count, "");
             Assert.IsFalse(this.userManager.addFriend(this.userNonMember.userName, this.userAdmin.userName).Equals("friend was added successfuly"), "non member cannot add a friend");
             List<String> newFriendList = this.userManager.getFriendList(this.userNonMember.userName);
-            Assert.AreEqual(newFriendList, null, "unsuccessful friend addition should not change the friend list");
+            Assert.AreEqual(0, newFriendList.Count, "unsuccessful friend addition should not change the friend list");
         }
-/*
+/*//TODO gal let them live!
         [TestMethod]
         public void test_addFriend_member_with_nonMember()
         {

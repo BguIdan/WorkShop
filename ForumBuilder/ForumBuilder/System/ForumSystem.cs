@@ -134,12 +134,6 @@ namespace ForumBuilder.Systems
             if (!SuperUserController.getInstance.createForum("Music", "all about music", fp2, list, "idan").Equals("Forum " + "Music" + " creation success"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!2");
             
-            if (!ForumController.getInstance.registerUser("g1", "gG1234", "g@g.g", "sad", "bad", "Sport").Equals("Register user succeed"))
-                Console.WriteLine("!!!!!!!!!!!!!!!!!!!3");
-            if (!ForumController.getInstance.registerUser("g2", "gG1234", "g@g.g", "good", "awesome", "Sport").Equals("Register user succeed"))
-                Console.WriteLine("!!!!!!!!!!!!!!!!!!!4");
-            if (!ForumController.getInstance.registerUser("g3", "gG1234", "g@g.g", "good", "awesome", "Sport").Equals("Register user succeed"))
-                Console.WriteLine("!!!!!!!!!!!!!!!!!!!5");      
             if (!ForumController.getInstance.registerUser("admin_sport", "gG1234", "as@as.as", "sad", "bad", "Sport").Equals("Register user succeed"))
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!6");
             if (!ForumController.getInstance.registerUser("user_sport", "gG1234", "us@us.us", "sad", "bad", "Sport").Equals("Register user succeed"))

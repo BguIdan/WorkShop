@@ -214,8 +214,8 @@ namespace WebClient
 
         protected void forum_dropList_Load(object sender, EventArgs e)
         {
-            if (forum_dropList.Items.Count > 0)
-                return;
+            forum_dropList.ClearSelection();
+            forum_dropList.Items.Clear();
             while (_forumsList == null) { Thread.Sleep(20); }
             foreach (String forumName in this._forumsList)
                 forum_dropList.Items.Add(forumName);

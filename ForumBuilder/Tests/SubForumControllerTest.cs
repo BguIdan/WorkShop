@@ -18,6 +18,7 @@ namespace Tests
         private User userNonMember;
         private User userMember;
         private User userModerator;
+        private User userModerator2;
         private User userAdmin;
         private User superUser;
         private ISubForumController subForum;
@@ -40,10 +41,12 @@ namespace Tests
             this.userNonMember = new User("nonMem", "nonMempass1", "nonmem@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
             this.userMember = new User("mem", "Mempass1", "mem@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
             this.userModerator = new User("mod", "Modpass1", "mod@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
+            this.userModerator2 = new User("mod2", "Modpass1", "mod2@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
             this.userAdmin = new User("admin", "Adminpass1", "admin@gmail.com", new DateTime(DateTime.Today.Year - 1, DateTime.Today.Month, DateTime.Today.Day));
             superUser.addUser("admin", "Adminpass1", "admin@gmail.com", "tomer");
             Dictionary<String, DateTime> modList = new Dictionary<String, DateTime>();
             modList.Add(this.userModerator.userName, new DateTime(2030, 1, 1));
+            modList.Add(this.userModerator2.userName, new DateTime(2030, 1, 1));
             List<string> adminList = new List<string>();
             adminList.Add("admin");
             ForumPolicy fp = new ForumPolicy("p", true, 0, true, 180, 1, true, true, 5, 0, new List<string>());
@@ -55,6 +58,7 @@ namespace Tests
             //Assert.IsTrue(this.forumController.registerUser("admin", "adminpass", "admin@gmail.com", this.forumName));
             Assert.IsTrue(this.forumController.registerUser("mem", "Mempass1", "mem@gmail.com", "ansss", "anssss", this.forumName).Equals("Register user succeed"));
             Assert.IsTrue(this.forumController.registerUser("mod", "Modpass1", "mod@gmail.com", "ansss", "anssss", this.forumName).Equals("Register user succeed"));
+            Assert.IsTrue(this.forumController.registerUser(userModerator2.userName, userModerator2.password, userModerator2.email, "ansss", "anssss", this.forumName).Equals("Register user succeed"));
             Assert.IsTrue(this.forumController.addSubForum(this.forum.forumName, this.subForumName, modList, this.userAdmin.userName).Equals("sub-forum added"));
             this.subForum = SubForumController.getInstance;
 
@@ -79,11 +83,10 @@ namespace Tests
         [TestMethod]
         public void test_dismissModerator_on_valid_moderator()
         {
-            String userModeratorName = this.userModerator.userName;
+            String userModeratorName = this.userModerator2.userName;
             Assert.IsTrue(this.subForum.isModerator(userModeratorName, this.subForumName, this.forumName), "user moderator should be a moderator");
-            //TODO: should not work because there is not enough moderators
-            //Assert.IsTrue(this.subForum.dismissModerator(userModeratorName, this.userAdmin.userName, this.subForumName, this.forumName), "the dismissal of user moderator should be successful");
-            //Assert.IsFalse(this.subForum.isModerator(userModeratorName, this.subForumName, this.forumName), "user moderator should not be a moderator after his dismissal");
+            Assert.AreEqual("Moderator dismissed", this.subForum.dismissModerator(userModeratorName, this.userAdmin.userName, this.subForumName, this.forumName));
+            Assert.IsFalse(this.subForum.isModerator(userModeratorName, this.subForumName, this.forumName), "user moderator should not be a moderator after his dismissal");
         }
 
         [TestMethod]

@@ -18,7 +18,7 @@ namespace Tests
     public class OfflineInteractivityTests
     {
 
-        public const int INITIAL_OFFLINE_PENDING_NOTS = 1;
+        public const int INITIAL_OFFLINE_THREAD_CREAT_PENDING_NOTS = 1;
 
         private TestableUserNotifications mem1Notifications;
         private TestableUserNotifications mem2Notifications;
@@ -32,6 +32,7 @@ namespace Tests
 
         private IPostManager postManager;
         private ISubForumManager subForumManager;
+        private IUserManager userManager;
         private ForumData forum;
         private UserData userNonMember;
         private UserData userMember1;
@@ -41,6 +42,7 @@ namespace Tests
         private UserData superUser;
         private String forumName = "forum";
         private String subForumName = "subForum";
+        private String threadHeadline = "headLine";
         private int postId;
         private String skmem1;
         private String skmem2;
@@ -90,12 +92,13 @@ namespace Tests
 
             this.postManager = new PostManagerClient();
             this.subForumManager = new SubForumManagerClient();
+            this.userManager = new UserManagerClient();
             this.userMod = new UserData("mod", "Modpass1", "mod@gmail.com");
             Dictionary<String, DateTime> modList = new Dictionary<String, DateTime>();
             modList.Add(this.userMod.userName, new DateTime(2030, 1, 1));
             Assert.IsTrue(ForumController.getInstance.registerUser(userMod.userName, userMod.password, userMod.email, "ansss", "anssss", this.forumName).Equals("Register user succeed"));
             Assert.IsTrue(this.adminForumManager.addSubForum(this.forumName, this.subForumName, modList, this.userAdmin.userName).Equals("sub-forum added"));
-            Assert.IsTrue(SubForumController.getInstance.createThread("headLine", "content", this.userMember1.userName, this.forumName, this.subForumName).Equals("Create tread succeed"));
+            Assert.IsTrue(SubForumController.getInstance.createThread(this.threadHeadline, "content", this.userMember2.userName, this.forumName, this.subForumName).Equals("Create tread succeed"));
             List<Post> posts = PostController.getInstance.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(posts.Count, 1);
             this.postId = posts[0].id;
@@ -130,26 +133,429 @@ namespace Tests
 
 
         [TestMethod]
-        public void offline_interactivity_test_mem_gets_offline_notification()
+        public void offline_interactivity_test_mem_gets_offline_notification_thread_creation_by_mem()
         {
             this.mem1ForumManager.logout(this.userMember1.userName, this.forum.forumName, skmem1);
             this.subForumManager.createThread("head", "cont", userMember2.userName, this.forum.forumName, this.subForumName);
             Assert.IsTrue((skmem1 = this.mem1ForumManager.login(userMember1.userName, forum.forumName, userMember1.password)).Contains(","));
             List<string> offlineNotifications = this.mem1ForumManager.getOfflineNotifications(this.forum.forumName, this.userMember1.userName, Int32.Parse(skmem1.Substring(0, skmem1.IndexOf(","))));
-            Assert.AreEqual(INITIAL_OFFLINE_PENDING_NOTS + 1, offlineNotifications.Count);
+            Assert.AreEqual(INITIAL_OFFLINE_THREAD_CREAT_PENDING_NOTS + 1, offlineNotifications.Count);
+            Assert.IsTrue(offlineNotifications.Contains(threadCreationScheme(userMember2.userName, this.forum.forumName, this.subForumName)));
 
         }
 
         [TestMethod]
-        public void TestMethod2()
+        public void offline_interactivity_test_mod_gets_offline_notification_thread_creation_by_mem()
         {
-            Assert.IsTrue(true);
+            this.modForumManager.logout(this.userMod.userName, this.forum.forumName, skmod);
+            this.subForumManager.createThread("head", "cont", userMember2.userName, this.forum.forumName, this.subForumName);
+            Assert.IsTrue((skmod = this.modForumManager.login(userMod.userName, forum.forumName, userMod.password)).Contains(","));
+            List<string> offlineNotifications = this.modForumManager.getOfflineNotifications(this.forum.forumName, this.userMod.userName, Int32.Parse(skmod.Substring(0, skmod.IndexOf(","))));
+            Assert.AreEqual(INITIAL_OFFLINE_THREAD_CREAT_PENDING_NOTS + 1, offlineNotifications.Count);
+            Assert.IsTrue(offlineNotifications.Contains(threadCreationScheme(userMember2.userName, this.forum.forumName, this.subForumName)));
         }
 
         [TestMethod]
-        public void TestMethod3()
+        public void offline_interactivity_test_admin_gets_offline_notification_thread_creation_by_mem()
         {
-            Assert.IsTrue(true);
+            this.adminForumManager.logout(this.userAdmin.userName, this.forum.forumName, skadmin);
+            this.subForumManager.createThread("head", "cont", userMember2.userName, this.forum.forumName, this.subForumName);
+            Assert.IsTrue((skadmin = this.adminForumManager.login(userAdmin.userName, forum.forumName, userAdmin.password)).Contains(","));
+            List<string> offlineNotifications = this.adminForumManager.getOfflineNotifications(this.forum.forumName, this.userAdmin.userName, Int32.Parse(skadmin.Substring(0, skadmin.IndexOf(","))));
+            Assert.AreEqual(INITIAL_OFFLINE_THREAD_CREAT_PENDING_NOTS + 1, offlineNotifications.Count);
+            Assert.IsTrue(offlineNotifications.Contains(threadCreationScheme(userMember2.userName, this.forum.forumName, this.subForumName)));
         }
+
+
+        [TestMethod]
+        public void offline_interactivity_test_mem_gets_offline_notification_thread_creation_by_mod()
+        {
+            this.mem1ForumManager.logout(this.userMember1.userName, this.forum.forumName, skmem1);
+            this.subForumManager.createThread("head", "cont", userMod.userName, this.forum.forumName, this.subForumName);
+            Assert.IsTrue((skmem1 = this.mem1ForumManager.login(userMember1.userName, forum.forumName, userMember1.password)).Contains(","));
+            List<string> offlineNotifications = this.mem1ForumManager.getOfflineNotifications(this.forum.forumName, this.userMember1.userName, Int32.Parse(skmem1.Substring(0, skmem1.IndexOf(","))));
+            Assert.AreEqual(INITIAL_OFFLINE_THREAD_CREAT_PENDING_NOTS + 1, offlineNotifications.Count);
+            Assert.IsTrue(offlineNotifications.Contains(threadCreationScheme(userMod.userName, this.forum.forumName, this.subForumName)));
+
+        }
+
+        [TestMethod]
+        public void offline_interactivity_test_mod_gets_offline_notification_thread_creation_by_mod()
+        {
+            this.modForumManager.logout(this.userMod.userName, this.forum.forumName, skmod);
+            this.subForumManager.createThread("head", "cont", userMod.userName, this.forum.forumName, this.subForumName);
+            Assert.IsTrue((skmod = this.modForumManager.login(userMod.userName, forum.forumName, userMod.password)).Contains(","));
+            List<string> offlineNotifications = this.modForumManager.getOfflineNotifications(this.forum.forumName, this.userMod.userName, Int32.Parse(skmod.Substring(0, skmod.IndexOf(","))));
+            Assert.AreEqual(INITIAL_OFFLINE_THREAD_CREAT_PENDING_NOTS + 1, offlineNotifications.Count);
+            Assert.IsTrue(offlineNotifications.Contains(threadCreationScheme(userMod.userName, this.forum.forumName, this.subForumName)));
+        }
+
+        [TestMethod]
+        public void offline_interactivity_test_admin_gets_offline_notification_thread_creation_by_mod()
+        {
+            this.adminForumManager.logout(this.userAdmin.userName, this.forum.forumName, skadmin);
+            this.subForumManager.createThread("head", "cont", userMod.userName, this.forum.forumName, this.subForumName);
+            Assert.IsTrue((skadmin = this.adminForumManager.login(userAdmin.userName, forum.forumName, userAdmin.password)).Contains(","));
+            List<string> offlineNotifications = this.adminForumManager.getOfflineNotifications(this.forum.forumName, this.userAdmin.userName, Int32.Parse(skadmin.Substring(0, skadmin.IndexOf(","))));
+            Assert.AreEqual(INITIAL_OFFLINE_THREAD_CREAT_PENDING_NOTS + 1, offlineNotifications.Count);
+            Assert.IsTrue(offlineNotifications.Contains(threadCreationScheme(userMod.userName, this.forum.forumName, this.subForumName)));
+        }
+
+
+        [TestMethod]
+        public void offline_interactivity_test_mem_gets_offline_notification_thread_creation_by_admin()
+        {
+            this.mem1ForumManager.logout(this.userMember1.userName, this.forum.forumName, skmem1);
+            this.subForumManager.createThread("head", "cont", userAdmin.userName, this.forum.forumName, this.subForumName);
+            Assert.IsTrue((skmem1 = this.mem1ForumManager.login(userMember1.userName, forum.forumName, userMember1.password)).Contains(","));
+            List<string> offlineNotifications = this.mem1ForumManager.getOfflineNotifications(this.forum.forumName, this.userMember1.userName, Int32.Parse(skmem1.Substring(0, skmem1.IndexOf(","))));
+            Assert.AreEqual(INITIAL_OFFLINE_THREAD_CREAT_PENDING_NOTS + 1, offlineNotifications.Count);
+            Assert.IsTrue(offlineNotifications.Contains(threadCreationScheme(userAdmin.userName, this.forum.forumName, this.subForumName)));
+
+        }
+
+        [TestMethod]
+        public void offline_interactivity_test_mod_gets_offline_notification_thread_creation_by_admin()
+        {
+            this.modForumManager.logout(this.userMod.userName, this.forum.forumName, skmod);
+            this.subForumManager.createThread("head", "cont", userAdmin.userName, this.forum.forumName, this.subForumName);
+            Assert.IsTrue((skmod = this.modForumManager.login(userMod.userName, forum.forumName, userMod.password)).Contains(","));
+            List<string> offlineNotifications = this.modForumManager.getOfflineNotifications(this.forum.forumName, this.userMod.userName, Int32.Parse(skmod.Substring(0, skmod.IndexOf(","))));
+            Assert.AreEqual(INITIAL_OFFLINE_THREAD_CREAT_PENDING_NOTS + 1, offlineNotifications.Count);
+            Assert.IsTrue(offlineNotifications.Contains(threadCreationScheme(userAdmin.userName, this.forum.forumName, this.subForumName)));
+        }
+
+        [TestMethod]
+        public void offline_interactivity_test_admin_gets_offline_notification_thread_creation_by_admin()
+        {
+            this.adminForumManager.logout(this.userAdmin.userName, this.forum.forumName, skadmin);
+            this.subForumManager.createThread("head", "cont", userAdmin.userName, this.forum.forumName, this.subForumName);
+            Assert.IsTrue((skadmin = this.adminForumManager.login(userAdmin.userName, forum.forumName, userAdmin.password)).Contains(","));
+            List<string> offlineNotifications = this.adminForumManager.getOfflineNotifications(this.forum.forumName, this.userAdmin.userName, Int32.Parse(skadmin.Substring(0, skadmin.IndexOf(","))));
+            Assert.AreEqual(INITIAL_OFFLINE_THREAD_CREAT_PENDING_NOTS + 1, offlineNotifications.Count);
+            Assert.IsTrue(offlineNotifications.Contains(threadCreationScheme(userAdmin.userName, this.forum.forumName, this.subForumName)));
+        }
+
+        [TestMethod]
+        public void offline_interactivity_test_mem_gets_offline_notification_private_msg_by_mem()
+        {
+            this.mem1ForumManager.logout(this.userMember1.userName, this.forum.forumName, skmem1);
+            String msgContent = "hey";
+            this.userManager.sendPrivateMessage(this.forum.forumName, userMember2.userName, userMember1.userName, msgContent);
+            Assert.IsTrue((skmem1 = this.mem1ForumManager.login(userMember1.userName, forum.forumName, userMember1.password)).Contains(","));
+            List<string> offlineNotifications = this.mem1ForumManager.getOfflineNotifications(this.forum.forumName, this.userMember1.userName, Int32.Parse(skmem1.Substring(0, skmem1.IndexOf(","))));
+            Assert.AreEqual(INITIAL_OFFLINE_THREAD_CREAT_PENDING_NOTS + 1, offlineNotifications.Count);
+            Assert.IsTrue(offlineNotifications.Contains(privateMsgScheme(userMember2.userName, this.forum.forumName)));
+        }
+
+        [TestMethod]
+        public void offline_interactivity_test_mod_gets_offline_notification_private_msg_by_mem()
+        {
+            this.modForumManager.logout(this.userMod.userName, this.forum.forumName, skmod);
+            String msgContent = "hey";
+            this.userManager.sendPrivateMessage(this.forum.forumName, userMember2.userName, userMod.userName, msgContent);
+            Assert.IsTrue((skmod = this.modForumManager.login(userMod.userName, forum.forumName, userMod.password)).Contains(","));
+            List<string> offlineNotifications = this.modForumManager.getOfflineNotifications(this.forum.forumName, this.userMod.userName, Int32.Parse(skmod.Substring(0, skmod.IndexOf(","))));
+            Assert.AreEqual(INITIAL_OFFLINE_THREAD_CREAT_PENDING_NOTS + 1, offlineNotifications.Count);
+            Assert.IsTrue(offlineNotifications.Contains(privateMsgScheme(userMember2.userName, this.forum.forumName)));
+        }
+
+        [TestMethod]
+        public void offline_interactivity_test_admin_gets_offline_notification_private_msg_by_mem()
+        {
+            this.adminForumManager.logout(this.userAdmin.userName, this.forum.forumName, skadmin);
+            String msgContent = "hey";
+            this.userManager.sendPrivateMessage(this.forum.forumName, userMember2.userName, userAdmin.userName, msgContent);
+            Assert.IsTrue((skadmin = this.adminForumManager.login(userAdmin.userName, forum.forumName, userAdmin.password)).Contains(","));
+            List<string> offlineNotifications = this.adminForumManager.getOfflineNotifications(this.forum.forumName, this.userAdmin.userName, Int32.Parse(skadmin.Substring(0, skadmin.IndexOf(","))));
+            Assert.AreEqual(INITIAL_OFFLINE_THREAD_CREAT_PENDING_NOTS + 1, offlineNotifications.Count);
+            Assert.IsTrue(offlineNotifications.Contains(privateMsgScheme(userMember2.userName, this.forum.forumName)));
+        }
+
+        [TestMethod]
+        public void offline_interactivity_test_mem_gets_offline_notification_private_msg_by_mod()
+        {
+            this.mem1ForumManager.logout(this.userMember1.userName, this.forum.forumName, skmem1);
+            String msgContent = "hey";
+            this.userManager.sendPrivateMessage(this.forum.forumName, userMod.userName, userMember1.userName, msgContent);
+            Assert.IsTrue((skmem1 = this.mem1ForumManager.login(userMember1.userName, forum.forumName, userMember1.password)).Contains(","));
+            List<string> offlineNotifications = this.mem1ForumManager.getOfflineNotifications(this.forum.forumName, this.userMember1.userName, Int32.Parse(skmem1.Substring(0, skmem1.IndexOf(","))));
+            Assert.AreEqual(INITIAL_OFFLINE_THREAD_CREAT_PENDING_NOTS + 1, offlineNotifications.Count);
+            Assert.IsTrue(offlineNotifications.Contains(privateMsgScheme(userMod.userName, this.forum.forumName)));
+        }
+
+
+        [TestMethod]
+        public void offline_interactivity_test_admin_gets_offline_notification_private_msg_by_mod()
+        {
+            this.adminForumManager.logout(this.userAdmin.userName, this.forum.forumName, skadmin);
+            String msgContent = "hey";
+            this.userManager.sendPrivateMessage(this.forum.forumName, userMod.userName, userAdmin.userName, msgContent);
+            Assert.IsTrue((skadmin = this.adminForumManager.login(userAdmin.userName, forum.forumName, userAdmin.password)).Contains(","));
+            List<string> offlineNotifications = this.adminForumManager.getOfflineNotifications(this.forum.forumName, this.userAdmin.userName, Int32.Parse(skadmin.Substring(0, skadmin.IndexOf(","))));
+            Assert.AreEqual(INITIAL_OFFLINE_THREAD_CREAT_PENDING_NOTS + 1, offlineNotifications.Count);
+            Assert.IsTrue(offlineNotifications.Contains(privateMsgScheme(userMod.userName, this.forum.forumName)));
+        }
+
+        [TestMethod]
+        public void offline_interactivity_test_mem_gets_offline_notification_private_msg_by_admin()
+        {
+            this.mem1ForumManager.logout(this.userMember1.userName, this.forum.forumName, skmem1);
+            String msgContent = "hey";
+            this.userManager.sendPrivateMessage(this.forum.forumName, userMember2.userName, userMember1.userName, msgContent);
+            Assert.IsTrue((skmem1 = this.mem1ForumManager.login(userMember1.userName, forum.forumName, userMember1.password)).Contains(","));
+            List<string> offlineNotifications = this.mem1ForumManager.getOfflineNotifications(this.forum.forumName, this.userMember1.userName, Int32.Parse(skmem1.Substring(0, skmem1.IndexOf(","))));
+            Assert.AreEqual(INITIAL_OFFLINE_THREAD_CREAT_PENDING_NOTS + 1, offlineNotifications.Count);
+            Assert.IsTrue(offlineNotifications.Contains(privateMsgScheme(userMember2.userName, this.forum.forumName)));
+        }
+
+        [TestMethod]
+        public void offline_interactivity_test_mod_gets_offline_notification_private_msg_by_admin()
+        {
+            this.modForumManager.logout(this.userMod.userName, this.forum.forumName, skmod);
+            String msgContent = "hey";
+            this.userManager.sendPrivateMessage(this.forum.forumName, userAdmin.userName, userMod.userName, msgContent);
+            Assert.IsTrue((skmod = this.modForumManager.login(userMod.userName, forum.forumName, userMod.password)).Contains(","));
+            List<string> offlineNotifications = this.modForumManager.getOfflineNotifications(this.forum.forumName, this.userMod.userName, Int32.Parse(skmod.Substring(0, skmod.IndexOf(","))));
+            Assert.AreEqual(INITIAL_OFFLINE_THREAD_CREAT_PENDING_NOTS + 1, offlineNotifications.Count);
+            Assert.IsTrue(offlineNotifications.Contains(privateMsgScheme(userAdmin.userName, this.forum.forumName)));
+        }
+
+
+        [TestMethod]
+        public void offline_interactivity_test_mem_gets_offline_notification_postModification_by_mem()
+        {
+            this.postManager.addPost("head comment", "cont", this.userMember1.userName, this.postId);
+            this.mem1ForumManager.logout(this.userMember1.userName, this.forum.forumName, skmem1);
+            String newTitle = "new";
+            this.postManager.updatePost(this.postId, newTitle, "new cont", this.userMember2.userName);
+            Assert.IsTrue((skmem1 = this.mem1ForumManager.login(userMember1.userName, forum.forumName, userMember1.password)).Contains(","));
+            List<string> offlineNotifications = this.mem1ForumManager.getOfflineNotifications(this.forum.forumName, this.userMember1.userName, Int32.Parse(skmem1.Substring(0, skmem1.IndexOf(","))));
+            Assert.AreEqual(INITIAL_OFFLINE_THREAD_CREAT_PENDING_NOTS + 1, offlineNotifications.Count);
+            Assert.IsTrue(offlineNotifications.Contains(postModificationScheme(this.userMember2.userName, this.forum.forumName, this.threadHeadline)));
+        }
+
+        [TestMethod]
+        public void offline_interactivity_test_mod_gets_offline_notification_postModification_by_mem()
+        {
+            this.postManager.addPost("head comment", "cont", this.userMod.userName, this.postId);
+            this.modForumManager.logout(this.userMod.userName, this.forum.forumName, skmod);
+            String newTitle = "new";
+            this.postManager.updatePost(this.postId, newTitle, "new cont", this.userMember2.userName);
+            Assert.IsTrue((skmod = this.modForumManager.login(userMod.userName, forum.forumName, userMod.password)).Contains(","));
+            List<string> offlineNotifications = this.modForumManager.getOfflineNotifications(this.forum.forumName, this.userMod.userName, Int32.Parse(skmod.Substring(0, skmod.IndexOf(","))));
+            Assert.AreEqual(INITIAL_OFFLINE_THREAD_CREAT_PENDING_NOTS + 1, offlineNotifications.Count);
+            Assert.IsTrue(offlineNotifications.Contains(postModificationScheme(this.userMember2.userName, this.forum.forumName, this.threadHeadline)));
+        }
+
+        [TestMethod]
+        public void offline_interactivity_test_admin_gets_offline_notification_postModification_by_mem()
+        {
+            this.postManager.addPost("head comment", "cont", this.userAdmin.userName, this.postId);
+            this.adminForumManager.logout(this.userAdmin.userName, this.forum.forumName, skadmin);
+            String newTitle = "new";
+            this.postManager.updatePost(this.postId, newTitle, "new cont", this.userMember2.userName);
+            Assert.IsTrue((skadmin = this.adminForumManager.login(userAdmin.userName, forum.forumName, userAdmin.password)).Contains(","));
+            List<string> offlineNotifications = this.adminForumManager.getOfflineNotifications(this.forum.forumName, this.userAdmin.userName, Int32.Parse(skadmin.Substring(0, skadmin.IndexOf(","))));
+            Assert.AreEqual(INITIAL_OFFLINE_THREAD_CREAT_PENDING_NOTS + 1, offlineNotifications.Count);
+            Assert.IsTrue(offlineNotifications.Contains(postModificationScheme(this.userMember2.userName, this.forum.forumName, this.threadHeadline)));
+        }
+
+        [TestMethod]
+        public void offline_interactivity_test_mem_gets_offline_notification_postModification_by_mod()
+        {
+            String newThreadHeadline = "new";
+            this.subForumManager.createThread(newThreadHeadline, "cont", userMod.userName, this.forum.forumName, this.subForumName);
+            List<Post> posts = PostController.getInstance.getAllPosts(this.forumName, this.subForumName);
+            int newPostId = posts[1].id;
+            this.postManager.addPost("head comment", "cont", this.userMember1.userName, newPostId);
+            this.mem1ForumManager.logout(this.userMember1.userName, this.forum.forumName, skmem1);
+            String newTitle = "new";
+            this.postManager.updatePost(newPostId, newTitle, "new cont", this.userMod.userName);
+            Assert.IsTrue((skmem1 = this.mem1ForumManager.login(userMember1.userName, forum.forumName, userMember1.password)).Contains(","));
+            List<string> offlineNotifications = this.mem1ForumManager.getOfflineNotifications(this.forum.forumName, this.userMember1.userName, Int32.Parse(skmem1.Substring(0, skmem1.IndexOf(","))));
+            Assert.AreEqual(INITIAL_OFFLINE_THREAD_CREAT_PENDING_NOTS + 1, offlineNotifications.Count);
+            Assert.IsTrue(offlineNotifications.Contains(postModificationScheme(this.userMod.userName, this.forum.forumName, newThreadHeadline)));
+        }
+
+        [TestMethod]
+        public void offline_interactivity_test_admin_gets_offline_notification_postModification_by_mod()
+        {
+            String newThreadHeadline = "new";
+            this.subForumManager.createThread(newThreadHeadline, "cont", userMod.userName, this.forum.forumName, this.subForumName);
+            List<Post> posts = PostController.getInstance.getAllPosts(this.forumName, this.subForumName);
+            int newPostId = posts[1].id;
+            this.postManager.addPost("head comment", "cont", this.userAdmin.userName, newPostId);
+            this.adminForumManager.logout(this.userAdmin.userName, this.forum.forumName, skadmin);
+            String newTitle = "new";
+            this.postManager.updatePost(newPostId, newTitle, "new cont", this.userMod.userName);
+            Assert.IsTrue((skadmin = this.adminForumManager.login(userAdmin.userName, forum.forumName, userAdmin.password)).Contains(","));
+            List<string> offlineNotifications = this.adminForumManager.getOfflineNotifications(this.forum.forumName, this.userAdmin.userName, Int32.Parse(skadmin.Substring(0, skadmin.IndexOf(","))));
+            Assert.AreEqual(INITIAL_OFFLINE_THREAD_CREAT_PENDING_NOTS + 1, offlineNotifications.Count);
+            Assert.IsTrue(offlineNotifications.Contains(postModificationScheme(this.userMod.userName, this.forum.forumName, newThreadHeadline)));
+        }
+
+        [TestMethod]
+        public void offline_interactivity_test_mem_gets_offline_notification_postModification_by_admin()
+        {
+            String newThreadHeadline = "new";
+            this.subForumManager.createThread(newThreadHeadline, "cont", userAdmin.userName, this.forum.forumName, this.subForumName);
+            List<Post> posts = PostController.getInstance.getAllPosts(this.forumName, this.subForumName);
+            int newPostId = posts[1].id;
+            this.postManager.addPost("head comment", "cont", this.userMember1.userName, newPostId);
+            this.mem1ForumManager.logout(this.userMember1.userName, this.forum.forumName, skmem1);
+            String newTitle = "new";
+            this.postManager.updatePost(newPostId, newTitle, "new cont", this.userAdmin.userName);
+            Assert.IsTrue((skmem1 = this.mem1ForumManager.login(userMember1.userName, forum.forumName, userMember1.password)).Contains(","));
+            List<string> offlineNotifications = this.mem1ForumManager.getOfflineNotifications(this.forum.forumName, this.userMember1.userName, Int32.Parse(skmem1.Substring(0, skmem1.IndexOf(","))));
+            Assert.AreEqual(INITIAL_OFFLINE_THREAD_CREAT_PENDING_NOTS + 1, offlineNotifications.Count);
+            Assert.IsTrue(offlineNotifications.Contains(postModificationScheme(this.userAdmin.userName, this.forum.forumName, newThreadHeadline)));
+        }
+
+        [TestMethod]
+        public void offline_interactivity_test_mod_gets_offline_notification_postModification_by_admin()
+        {
+            String newThreadHeadline = "new";
+            this.subForumManager.createThread(newThreadHeadline, "cont", userAdmin.userName, this.forum.forumName, this.subForumName);
+            List<Post> posts = PostController.getInstance.getAllPosts(this.forumName, this.subForumName);
+            int newPostId = posts[1].id;
+            this.postManager.addPost("head comment", "cont", this.userMod.userName, newPostId);
+            this.modForumManager.logout(this.userMod.userName, this.forum.forumName, skmod);
+            String newTitle = "new";
+            this.postManager.updatePost(newPostId, newTitle, "new cont", this.userAdmin.userName);
+            Assert.IsTrue((skmod = this.modForumManager.login(userMod.userName, forum.forumName, userMod.password)).Contains(","));
+            List<string> offlineNotifications = this.modForumManager.getOfflineNotifications(this.forum.forumName, this.userMod.userName, Int32.Parse(skmod.Substring(0, skmod.IndexOf(","))));
+            Assert.AreEqual(INITIAL_OFFLINE_THREAD_CREAT_PENDING_NOTS + 1, offlineNotifications.Count);
+            Assert.IsTrue(offlineNotifications.Contains(postModificationScheme(this.userAdmin.userName, this.forum.forumName, newThreadHeadline)));
+        }
+
+
+        [TestMethod]
+        public void offline_interactivity_test_mem_gets_offline_notification_postDelition_by_mem()
+        {
+            this.postManager.addPost("head comment", "cont", this.userMember1.userName, this.postId);
+            this.mem1ForumManager.logout(this.userMember1.userName, this.forum.forumName, skmem1);
+            this.postManager.deletePost(this.postId, this.userMember2.userName);
+            Assert.IsTrue((skmem1 = this.mem1ForumManager.login(userMember1.userName, forum.forumName, userMember1.password)).Contains(","));
+            List<string> offlineNotifications = this.mem1ForumManager.getOfflineNotifications(this.forum.forumName, this.userMember1.userName, Int32.Parse(skmem1.Substring(0, skmem1.IndexOf(","))));
+            Assert.AreEqual(INITIAL_OFFLINE_THREAD_CREAT_PENDING_NOTS + 1, offlineNotifications.Count);
+            Assert.IsTrue(offlineNotifications.Contains(postDelitionScheme(this.userMember2.userName, this.forum.forumName)));
+        }
+
+        [TestMethod]
+        public void offline_interactivity_test_mod_gets_offline_notification_postDelition_by_mem()
+        {
+            this.postManager.addPost("head comment", "cont", this.userMod.userName, this.postId);
+            this.modForumManager.logout(this.userMod.userName, this.forum.forumName, skmod);
+            this.postManager.deletePost(this.postId, this.userMember2.userName);
+            Assert.IsTrue((skmod = this.modForumManager.login(userMod.userName, forum.forumName, userMod.password)).Contains(","));
+            List<string> offlineNotifications = this.modForumManager.getOfflineNotifications(this.forum.forumName, this.userMod.userName, Int32.Parse(skmod.Substring(0, skmod.IndexOf(","))));
+            Assert.AreEqual(INITIAL_OFFLINE_THREAD_CREAT_PENDING_NOTS + 1, offlineNotifications.Count);
+            Assert.IsTrue(offlineNotifications.Contains(postDelitionScheme(this.userMember2.userName, this.forum.forumName)));
+        }
+
+        [TestMethod]
+        public void offline_interactivity_test_admin_gets_offline_notification_postDelition_by_mem()
+        {
+            this.postManager.addPost("head comment", "cont", this.userAdmin.userName, this.postId);
+            this.adminForumManager.logout(this.userAdmin.userName, this.forum.forumName, skadmin);
+            this.postManager.deletePost(this.postId, this.userMember2.userName);
+            Assert.IsTrue((skadmin = this.adminForumManager.login(userAdmin.userName, forum.forumName, userAdmin.password)).Contains(","));
+            List<string> offlineNotifications = this.adminForumManager.getOfflineNotifications(this.forum.forumName, this.userAdmin.userName, Int32.Parse(skadmin.Substring(0, skadmin.IndexOf(","))));
+            Assert.AreEqual(INITIAL_OFFLINE_THREAD_CREAT_PENDING_NOTS + 1, offlineNotifications.Count);
+            Assert.IsTrue(offlineNotifications.Contains(postDelitionScheme(this.userMember2.userName, this.forum.forumName)));
+        }
+
+        [TestMethod]
+        public void offline_interactivity_test_mem_gets_offline_notification_postDelition_by_mod()
+        {
+            String newThreadHeadline = "new";
+            this.subForumManager.createThread(newThreadHeadline, "cont", userMod.userName, this.forum.forumName, this.subForumName);
+            List<Post> posts = PostController.getInstance.getAllPosts(this.forumName, this.subForumName);
+            int newPostId = posts[1].id;
+            this.postManager.addPost("head comment", "cont", this.userMember1.userName, newPostId);
+            this.mem1ForumManager.logout(this.userMember1.userName, this.forum.forumName, skmem1);
+            this.postManager.deletePost(newPostId, this.userMod.userName);
+            Assert.IsTrue((skmem1 = this.mem1ForumManager.login(userMember1.userName, forum.forumName, userMember1.password)).Contains(","));
+            List<string> offlineNotifications = this.mem1ForumManager.getOfflineNotifications(this.forum.forumName, this.userMember1.userName, Int32.Parse(skmem1.Substring(0, skmem1.IndexOf(","))));
+            Assert.AreEqual(INITIAL_OFFLINE_THREAD_CREAT_PENDING_NOTS + 1, offlineNotifications.Count);
+            Assert.IsTrue(offlineNotifications.Contains(postDelitionScheme(this.userMod.userName, this.forum.forumName)));
+        }
+
+        [TestMethod]
+        public void offline_interactivity_test_admin_gets_offline_notification_postDelition_by_mod()
+        {
+            String newThreadHeadline = "new";
+            this.subForumManager.createThread(newThreadHeadline, "cont", userMod.userName, this.forum.forumName, this.subForumName);
+            List<Post> posts = PostController.getInstance.getAllPosts(this.forumName, this.subForumName);
+            int newPostId = posts[1].id;
+            this.postManager.addPost("head comment", "cont", this.userAdmin.userName, newPostId);
+            this.adminForumManager.logout(this.userAdmin.userName, this.forum.forumName, skadmin);
+            this.postManager.deletePost(newPostId, this.userMod.userName);
+            Assert.IsTrue((skadmin = this.adminForumManager.login(userAdmin.userName, forum.forumName, userAdmin.password)).Contains(","));
+            List<string> offlineNotifications = this.adminForumManager.getOfflineNotifications(this.forum.forumName, this.userAdmin.userName, Int32.Parse(skadmin.Substring(0, skadmin.IndexOf(","))));
+            Assert.AreEqual(INITIAL_OFFLINE_THREAD_CREAT_PENDING_NOTS + 1, offlineNotifications.Count);
+            Assert.IsTrue(offlineNotifications.Contains(postDelitionScheme(this.userMod.userName, this.forum.forumName)));
+        }
+
+        [TestMethod]
+        public void offline_interactivity_test_mem_gets_offline_notification_postDelition_by_admin()
+        {
+            String newThreadHeadline = "new";
+            this.subForumManager.createThread(newThreadHeadline, "cont", userAdmin.userName, this.forum.forumName, this.subForumName);
+            List<Post> posts = PostController.getInstance.getAllPosts(this.forumName, this.subForumName);
+            int newPostId = posts[1].id;
+            this.postManager.addPost("head comment", "cont", this.userMember1.userName, newPostId);
+            this.mem1ForumManager.logout(this.userMember1.userName, this.forum.forumName, skmem1);
+            this.postManager.deletePost(newPostId, this.userAdmin.userName);
+            Assert.IsTrue((skmem1 = this.mem1ForumManager.login(userMember1.userName, forum.forumName, userMember1.password)).Contains(","));
+            List<string> offlineNotifications = this.mem1ForumManager.getOfflineNotifications(this.forum.forumName, this.userMember1.userName, Int32.Parse(skmem1.Substring(0, skmem1.IndexOf(","))));
+            Assert.AreEqual(INITIAL_OFFLINE_THREAD_CREAT_PENDING_NOTS + 1, offlineNotifications.Count);
+            Assert.IsTrue(offlineNotifications.Contains(postDelitionScheme(this.userAdmin.userName, this.forum.forumName)));
+        }
+
+        [TestMethod]
+        public void offline_interactivity_test_mod_gets_offline_notification_postDelition_by_admin()
+        {
+            String newThreadHeadline = "new";
+            this.subForumManager.createThread(newThreadHeadline, "cont", userAdmin.userName, this.forum.forumName, this.subForumName);
+            List<Post> posts = PostController.getInstance.getAllPosts(this.forumName, this.subForumName);
+            int newPostId = posts[1].id;
+            this.postManager.addPost("head comment", "cont", this.userMod.userName, newPostId);
+            this.modForumManager.logout(this.userMod.userName, this.forum.forumName, skmod);
+            this.postManager.deletePost(newPostId, this.userAdmin.userName);
+            Assert.IsTrue((skmod = this.modForumManager.login(userMod.userName, forum.forumName, userMod.password)).Contains(","));
+            List<string> offlineNotifications = this.modForumManager.getOfflineNotifications(this.forum.forumName, this.userMod.userName, Int32.Parse(skmod.Substring(0, skmod.IndexOf(","))));
+            Assert.AreEqual(INITIAL_OFFLINE_THREAD_CREAT_PENDING_NOTS + 1, offlineNotifications.Count);
+            Assert.IsTrue(offlineNotifications.Contains(postDelitionScheme(this.userAdmin.userName, this.forum.forumName)));
+        }
+
+
+
+      
+
+
+        private String threadCreationScheme(String publisherName, String forumName, String subForumName)
+        {
+            return publisherName + " published a post in " + forumName + "'s sub-forum " + subForumName;
+        }
+
+        private String privateMsgScheme(String sender, String forumName)
+        {
+            return sender + "'s post you were following in " + forumName + " was deleted";
+        }
+
+        private String postModificationScheme(String publisherName, String forumName, String title)
+        {
+            String res = publisherName + "'s post you were following in " + forumName + " was modified (" + title + ")";
+            return res;
+        }
+
+        private String postDelitionScheme(String publisherName, String forumName)
+        {
+            String res = publisherName + "'s post you were following in " + forumName + " was deleted";
+            return res;
+        }
+
     }
 }

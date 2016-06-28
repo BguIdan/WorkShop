@@ -205,6 +205,8 @@ namespace ForumBuilder.Controllers
                 List<String> usersToBeNotifiedForThreadModification = new List<String>();
                 Post modifiedPost = getPost(postID);
                 List<Post> siblingPosts = DB.getRelatedPosts(modifiedPost.parentId);
+                if (modifiedPost.parentId == -1)
+                    siblingPosts = DB.getRelatedPosts(modifiedPost.id);
                 foreach (Post post in siblingPosts)
                 {
                     if (!usersToBeNotifiedForThreadModification.Contains(post.writerUserName))

@@ -435,7 +435,7 @@ namespace ForumBuilder.Controllers
         }
 
         public Boolean logout(String user, String forumName,String allSession)
-        {   //TODO gal what about the open channels?
+        { 
             if (allSession.IndexOf(",") <= 0)
             {
                 return false;
@@ -671,10 +671,10 @@ namespace ForumBuilder.Controllers
         {
             ForumPolicy forumPolicy = DB.getforumByName(forumName).forumPolicy;
             List<String> currentlyLoggedInUsers = this.loggedInUsersByForum[forumName];
-            if (currentlyLoggedInUsers == null || !currentlyLoggedInUsers.Contains(addressee))
+            if (currentlyLoggedInUsers == null) //|| !currentlyLoggedInUsers.Contains(addressee))
                 return;
             List<IUserNotificationsService> addresseeChannels = this.getUserChannels(addressee);
-            if (addresseeChannels != null)
+            if (addresseeChannels != null && addresseeChannels.Count > 0)
             {
                 foreach (IUserNotificationsService channel in addresseeChannels)
                 {
