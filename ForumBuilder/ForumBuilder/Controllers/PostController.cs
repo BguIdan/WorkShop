@@ -12,6 +12,8 @@ namespace ForumBuilder.Controllers
         DBClass DB = DBClass.getInstance;
         ForumController forumController = ForumController.getInstance;
         Systems.Logger logger = Systems.Logger.getInstance;
+        public static Object sysLock = new Object();
+
         public static PostController getInstance
         {
             get
@@ -44,41 +46,45 @@ namespace ForumBuilder.Controllers
 
         public String addComment(String headLine, String content, String writerName, int commentedPost)
         {
-            SubForum sf= getSubforumByPost(commentedPost);
-            if (getPost(commentedPost) == null)
+            lock (sysLock)
             {
-                logger.logPrint("Add comment failed, there is no post to comment at",0);
-                logger.logPrint("Add comment failed, there is no post to comment at",2);
-                return "Add comment failed, there is no post to comment at";
-            }
-            if (headLine.Equals("") && content.Equals(""))
-            {
-                logger.logPrint("Add comment failed, there is no head or content in tread",0);
-                logger.logPrint("Add comment failed, there is no head or content in tread",2);
-                return "Add comment failed, there is no head or content in tread";
-            }
-            else if (DB.getUser(writerName) == null)
-            {
-                logger.logPrint("Add comment failed, user does not exist",0);
-                logger.logPrint("Add comment failed, user does not exist",2);
-                return "Add comment failed, user does not exist";
-            }
-            else if(sf==null|| !ForumController.getInstance.isMember(writerName, sf.forum))
-            {
-                logger.logPrint("Add comment failed, user is not a member in forum",0);
-                logger.logPrint("Add comment failed, user is not a member in forum",2);
-                return "Add comment failed, user is not a member in forum";
-            }
-            else
-            {
-                int id = DB.getAvilableIntOfPost();
-                logger.logPrint("Create comment "+ id+" to "+commentedPost,0);
-                logger.logPrint("Create comment " + id + " to " + commentedPost,1);
-                if (DB.addPost(writerName, id, headLine, content, commentedPost, DateTime.Now, sf.forum)){
-                	this.forumController.sendThreadCreationNotification(headLine, content, writerName, sf.forum, sf.name);
-                    return "comment created";
-				}
-                return "Create comment failed";
+                SubForum sf = getSubforumByPost(commentedPost);
+                if (getPost(commentedPost) == null)
+                {
+                    logger.logPrint("Add comment failed, there is no post to comment at", 0);
+                    logger.logPrint("Add comment failed, there is no post to comment at", 2);
+                    return "Add comment failed, there is no post to comment at";
+                }
+                if (headLine.Equals("") && content.Equals(""))
+                {
+                    logger.logPrint("Add comment failed, there is no head or content in tread", 0);
+                    logger.logPrint("Add comment failed, there is no head or content in tread", 2);
+                    return "Add comment failed, there is no head or content in tread";
+                }
+                else if (DB.getUser(writerName) == null)
+                {
+                    logger.logPrint("Add comment failed, user does not exist", 0);
+                    logger.logPrint("Add comment failed, user does not exist", 2);
+                    return "Add comment failed, user does not exist";
+                }
+                else if (sf == null || !ForumController.getInstance.isMember(writerName, sf.forum))
+                {
+                    logger.logPrint("Add comment failed, user is not a member in forum", 0);
+                    logger.logPrint("Add comment failed, user is not a member in forum", 2);
+                    return "Add comment failed, user is not a member in forum";
+                }
+                else
+                {
+                    int id = DB.getAvilableIntOfPost();
+                    logger.logPrint("Create comment " + id + " to " + commentedPost, 0);
+                    logger.logPrint("Create comment " + id + " to " + commentedPost, 1);
+                    if (DB.addPost(writerName, id, headLine, content, commentedPost, DateTime.Now, sf.forum))
+                    {
+                        this.forumController.sendThreadCreationNotification(headLine, content, writerName, sf.forum, sf.name);
+                        return "comment created";
+                    }
+                    return "Create comment failed";
+                }
             }
         }
         public String removeComment(int postId, String removerName)
@@ -153,35 +159,38 @@ namespace ForumBuilder.Controllers
         }
         public List<Post> getAllPosts(String forumName, String subforumName)
         {
-            List <Post> list = new List<Post>();
-            SubForum sf= SubForumController.getInstance.getSubForum(subforumName, forumName);
-            if (sf.threads == null)
+            lock (sysLock)
             {
-                return new List<Post>();
-            }
-            foreach(int t in sf.threads)
-            {
-                List<Post> donePosts = new List<Post>();
-                List<Post> undonePosts = new List<Post>();
-                undonePosts.Add(DB.getPost(t));
-                while (undonePosts.Count != 0)
+                List<Post> list = new List<Post>();
+                SubForum sf = SubForumController.getInstance.getSubForum(subforumName, forumName);
+                if (sf.threads == null)
                 {
-                    Post post = undonePosts.ElementAt(0);
-                    undonePosts.RemoveAt(0);
-                    List<Post> related = DB.getRelatedPosts(post.id);
-                    while (related != null && related.Count != 0)
+                    return new List<Post>();
+                }
+                foreach (int t in sf.threads)
+                {
+                    List<Post> donePosts = new List<Post>();
+                    List<Post> undonePosts = new List<Post>();
+                    undonePosts.Add(DB.getPost(t));
+                    while (undonePosts.Count != 0)
                     {
-                        undonePosts.Add(related.ElementAt(0));
-                        related.RemoveAt(0);
+                        Post post = undonePosts.ElementAt(0);
+                        undonePosts.RemoveAt(0);
+                        List<Post> related = DB.getRelatedPosts(post.id);
+                        while (related != null && related.Count != 0)
+                        {
+                            undonePosts.Add(related.ElementAt(0));
+                            related.RemoveAt(0);
+                        }
+                        donePosts.Add(post);
                     }
-                    donePosts.Add(post);
+                    foreach (Post p in donePosts)
+                    {
+                        list.Add(p);
+                    }
                 }
-                foreach (Post p in donePosts)
-                {
-                    list.Add(p);
-                }
+                return list;
             }
-            return list;
         }
         public Boolean updatePost(int postID, String title, String content,String userName)
         {

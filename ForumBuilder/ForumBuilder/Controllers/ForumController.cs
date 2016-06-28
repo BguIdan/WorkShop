@@ -7,7 +7,7 @@ using ForumBuilder.Common.ClientServiceContracts;
 
 namespace ForumBuilder.Controllers
 {
-    public class ForumController : IForumController
+    public class ForumController :IForumController
     {
         private static ForumController singleton;
         DBClass DB = DBClass.getInstance;
@@ -18,6 +18,7 @@ namespace ForumBuilder.Controllers
         Dictionary<String, List<string>> clientSessionKeyByUser = new Dictionary<String, List<string>>();
         Dictionary<String, int> openConnectionsCounterByUser = new Dictionary<String, int>();
         List<int> occupied=new List<int>();
+        public static Object sysLock = new Object();
 
         public static ForumController getInstance
         {
@@ -229,70 +230,73 @@ namespace ForumBuilder.Controllers
 
         public String registerUser(string userName, string password, String mail, string ans1, string ans2, string forumName)
         {
-            Forum f = DB.getforumByName(forumName);
-            if (f == null)
+            lock (PostController.sysLock)
             {
-                logger.logPrint("Register user faild, the forum, " + forumName + " does not exist", 0);
-                logger.logPrint("Register user faild, the forum, " + forumName + " does not exist", 2);
-                return "Register user faild, the forum, " + forumName + " does not exist";
-            }
-            if(mail.Length ==0|| mail.IndexOf('@')<=0|| mail.Substring(mail.IndexOf('@')+1).IndexOf('.')<= 0)
-            {
-                logger.logPrint("Register user faild, mail format is wrong", 0);
-                logger.logPrint("Register user faild, mail format is wrong", 2);
-                return "Register user faild, mail format is wrong";
-            }
-            if(!((ans1 != null && ans2 != null) &&
-                ((!f.forumPolicy.isQuestionIdentifying && ans1.Equals("") && ans2.Equals("")) ||
-                (f.forumPolicy.isQuestionIdentifying && !ans1.Equals("") && !ans2.Equals("")))))
-            {
-                logger.logPrint("Register user faild, ansers are worng acording to forum policy", 0);
-                logger.logPrint("Register user faild, ansers are worng acording to forum policy", 2);
-                return "Register user faild, ansers are worng acording to forum policy";
-            }
-            if (userName.Length > 0 && f.forumPolicy.minLengthOfPassword <= password.Length && mail.Length > 0 &&
-                (!f.forumPolicy.hasCapitalInPassword || (f.forumPolicy.hasCapitalInPassword && hasCapital(password))) &&
-                (!f.forumPolicy.hasNumberInPassword || (f.forumPolicy.hasNumberInPassword && hasNumber(password)))) //&&
-                //(ans1 != null && ans2 != null) &&
-                //((!f.forumPolicy.isQuestionIdentifying && ans1.Equals("") && ans2.Equals("")) ||
-                //(f.forumPolicy.isQuestionIdentifying && !ans1.Equals("") && !ans2.Equals(""))))
-            {
-                User user = DB.getUser(userName);
-                /*
-                if (user !=null)
+                Forum f = DB.getforumByName(forumName);
+                if (f == null)
                 {
-                    if (user.userName.Equals(userName) && user.password.Equals(password))
+                    logger.logPrint("Register user faild, the forum, " + forumName + " does not exist", 0);
+                    logger.logPrint("Register user faild, the forum, " + forumName + " does not exist", 2);
+                    return "Register user faild, the forum, " + forumName + " does not exist";
+                }
+                if (mail.Length == 0 || mail.IndexOf('@') <= 0 || mail.Substring(mail.IndexOf('@') + 1).IndexOf('.') <= 0)
+                {
+                    logger.logPrint("Register user faild, mail format is wrong", 0);
+                    logger.logPrint("Register user faild, mail format is wrong", 2);
+                    return "Register user faild, mail format is wrong";
+                }
+                if (!((ans1 != null && ans2 != null) &&
+                    ((!f.forumPolicy.isQuestionIdentifying && ans1.Equals("") && ans2.Equals("")) ||
+                    (f.forumPolicy.isQuestionIdentifying && !ans1.Equals("") && !ans2.Equals("")))))
+                {
+                    logger.logPrint("Register user faild, ansers are worng acording to forum policy", 0);
+                    logger.logPrint("Register user faild, ansers are worng acording to forum policy", 2);
+                    return "Register user faild, ansers are worng acording to forum policy";
+                }
+                if (userName.Length > 0 && f.forumPolicy.minLengthOfPassword <= password.Length && mail.Length > 0 &&
+                    (!f.forumPolicy.hasCapitalInPassword || (f.forumPolicy.hasCapitalInPassword && hasCapital(password))) &&
+                    (!f.forumPolicy.hasNumberInPassword || (f.forumPolicy.hasNumberInPassword && hasNumber(password)))) //&&
+                                                                                                                        //(ans1 != null && ans2 != null) &&
+                                                                                                                        //((!f.forumPolicy.isQuestionIdentifying && ans1.Equals("") && ans2.Equals("")) ||
+                                                                                                                        //(f.forumPolicy.isQuestionIdentifying && !ans1.Equals("") && !ans2.Equals(""))))
+                {
+                    User user = DB.getUser(userName);
+                    /*
+                    if (user !=null)
                     {
-                        return DB.addMemberToForum(userName, forumName);
+                        if (user.userName.Equals(userName) && user.password.Equals(password))
+                        {
+                            return DB.addMemberToForum(userName, forumName);
+                        }
+                        logger.logPrint("Register user failed, " + userName + " is already taken", 0);
+                        logger.logPrint("Register user failed, " + userName + " is already taken", 2);
+                        return false;
+                    }*/
+                    if (user != null)
+                    {
+                        logger.logPrint("Register user failed, " + userName + " is already taken", 0);
+                        logger.logPrint("Register user failed, " + userName + " is already taken", 2);
+                        return "Register user failed, " + userName + " is already taken";
                     }
-                    logger.logPrint("Register user failed, " + userName + " is already taken", 0);
-                    logger.logPrint("Register user failed, " + userName + " is already taken", 2);
-                    return false;
-                }*/
-                if (user != null)
-                {
-                    logger.logPrint("Register user failed, " + userName + " is already taken", 0);
-                    logger.logPrint("Register user failed, " + userName + " is already taken", 2);
-                    return "Register user failed, " + userName + " is already taken";
+                    if (userName.Equals(""))
+                    {
+                        logger.logPrint("Register user failed, no name entered", 0);
+                        logger.logPrint("Register user failed, no name entered", 2);
+                        return "Register user failed, no name entered";
+                    }
+                    if (DB.addUser(userName, password, mail, ans1, ans2))
+                    {
+                        DB.addMemberToForum(userName, forumName);
+                        logger.logPrint("Register user succeed", 0);
+                        logger.logPrint("Register user succeed", 1);
+                        return "Register user succeed";
+                    }
+                    return "Register user failed, there was problem to conecting DB";
                 }
-                if (userName.Equals(""))
-                {
-                    logger.logPrint("Register user failed, no name entered", 0);
-                    logger.logPrint("Register user failed, no name entered", 2);
-                    return "Register user failed, no name entered";
-                }
-                if (DB.addUser(userName, password, mail, ans1, ans2))
-                {
-                    DB.addMemberToForum(userName, forumName);
-                    logger.logPrint("Register user succeed", 0);
-                    logger.logPrint("Register user succeed", 1);
-                    return "Register user succeed";
-                }
-                return "Register user failed, there was problem to conecting DB"; 
+                logger.logPrint("Register user failed, password is not good enough acording to forum policy", 0);
+                logger.logPrint("Register user failed, password is not good enough acording to forum policy", 2);
+                return "Register user failed, password is not good enough acording to forum policy";
             }
-            logger.logPrint("Register user failed, password is not good enough acording to forum policy", 0);
-            logger.logPrint("Register user failed, password is not good enough acording to forum policy", 2);
-            return "Register user failed, password is not good enough acording to forum policy";
         }
 
         public bool hasNumber(string password)

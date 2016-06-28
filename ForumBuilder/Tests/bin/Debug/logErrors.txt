@@ -1,27 +1,15 @@
-Log Entry : 				28/06/2016 17:44:32
-Add friend faild, nonMemis not a user
+Log Entry : 				28/06/2016 20:10:58
+Post contoller created
 -------------------------------------------------------------------------------------
-Log Entry : 				28/06/2016 17:44:32
-Add friend faild, nonMemis not a user
+Log Entry : 				28/06/2016 20:10:58
+Add sub-forum failed
 -------------------------------------------------------------------------------------
-Log Entry : 				28/06/2016 17:44:33
-Add friend faild, nonMemis not a user
+Log Entry : 				28/06/2016 20:11:27
+Add sub-forum failed
 -------------------------------------------------------------------------------------
-Log Entry : 				28/06/2016 17:44:33
-Add friend faild, heIsNotAMemberis not a user
+Log Entry : 				28/06/2016 20:12:04
+Add sub-forum failed
 -------------------------------------------------------------------------------------
-Log Entry : 				28/06/2016 17:44:36
-Add friend faild, heIsNotAMemberis not a user
--------------------------------------------------------------------------------------
-Log Entry : 				28/06/2016 17:44:38
-Add friend faild, is not a user
--------------------------------------------------------------------------------------
-Log Entry : 				28/06/2016 17:44:40
-Remove friend faild, mem and admin are not friends
--------------------------------------------------------------------------------------
-Log Entry : 				28/06/2016 17:44:42
-Remove friend faild, admin and admin2 are not friends
--------------------------------------------------------------------------------------
-Log Entry : 				28/06/2016 17:44:43
-Remove friend faild, is not a user
+Log Entry : 				28/06/2016 20:12:37
+Add sub-forum failed
 -------------------------------------------------------------------------------------
