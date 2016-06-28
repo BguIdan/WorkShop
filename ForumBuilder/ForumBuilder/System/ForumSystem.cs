@@ -118,9 +118,9 @@ namespace ForumBuilder.Systems
             String email = "d@d.d";//getEmail();
 
             initialize(username, password, email);            
-            setUpDB();
             runServer(username, password, email);
-            //DBClass.getInstance.clear();
+            DBClass.getInstance.clear();
+            setUpDB();
             return 0;
         }
         private static void setUpDB()

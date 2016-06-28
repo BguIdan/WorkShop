@@ -14,7 +14,7 @@
                 <MenuItem Header="Logout" x:Name="menuLogout"/>
             </MenuItem>
             <MenuItem Header="View" Name="View" Click="MenuItem_View">
-                <MenuItem Header="View Forum Report" Name="viewReports"/>
+                <MenuItem Header="View Moderators in Forum Report" Name="viewReports"/>
                 <MenuItem Header="View Posts of User Report" Name="viewUserPosts"/>
             </MenuItem>
             <Separator Width="40" />

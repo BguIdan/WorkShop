@@ -32,13 +32,16 @@ namespace WebClient
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            _mySessionKey = Session["sessionKey"].ToString();
+            _userName = (String)Session["userName"];
+            if (_userName != "Guest")
+            {
+                _mySessionKey = Session["sessionKey"].ToString();
+            }
             _fMC = (ForumManagerClient)Session["ForumManagerClient"];
             _fMC.InnerDuplexChannel.CallbackInstance = new InstanceContext(this);
             String _chosenForum = (String)Session["forumName"];
             this._myforum = _fMC.getForum(_chosenForum);
             lbl_forumName.Text = "ForumName:  " + _chosenForum;
-            _userName = (String)Session["userName"];
             _sUMC = new SuperUserManagerClient();
             InitializePermissons(_userName);
             
