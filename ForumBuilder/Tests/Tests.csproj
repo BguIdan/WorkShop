@@ -62,7 +62,6 @@
     <Compile Include="ForumControllerTest.cs" />
     <Compile Include="ForumManagerTest.cs" />
     <Compile Include="InteractivityTest.cs" />
-    <Compile Include="loadTest.cs" />
     <Compile Include="LoadTests.cs" />
     <Compile Include="PostControllerTest.cs" />
     <Compile Include="PostManagerTest.cs" />
