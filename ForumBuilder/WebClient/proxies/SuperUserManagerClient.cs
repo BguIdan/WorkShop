@@ -41,10 +41,6 @@ namespace WebClient.proxies
             return Channel.createForum(forumName, descrption,fpd, administrators, superUserName);
         }
 
-        public Boolean initialize(String name, String password, String email)
-        {
-            return Channel.initialize(name, password, email);
-        }
         public Boolean login(string name, string pass, string email)
         {
             return Channel.login(name, pass, email);

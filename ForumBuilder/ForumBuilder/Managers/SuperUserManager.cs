@@ -41,11 +41,6 @@ namespace Service
                     fpd.minLengthOfPassword, 0, new List<string>()), administrators, superUserName);
         }
 
-        public Boolean initialize(String name, String password, String email)
-        {
-            ForumSystem.initialize(name, password, email);
-            return true;
-        }
         public Boolean login(String user, String forumName, string email)
         {
             return superUserController.login(user, forumName, email);

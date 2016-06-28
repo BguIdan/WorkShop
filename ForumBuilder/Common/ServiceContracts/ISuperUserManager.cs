@@ -16,9 +16,6 @@ namespace ForumBuilder.Common.ServiceContracts
         String createForum(String forumName, String descrption, ForumPolicyData fpd, List<String> administrators, String superUserName);
 
         [OperationContract]
-        Boolean initialize(String name, String password, String email);
-
-        [OperationContract]
         Boolean login(String newUser, String forumName, string email);
 
         [OperationContract]

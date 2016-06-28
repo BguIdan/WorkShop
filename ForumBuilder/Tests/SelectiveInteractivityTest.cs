@@ -95,7 +95,7 @@ namespace Tests
             Assert.IsTrue(ForumController.getInstance.registerUser(userMod1.userName, userMod1.password, userMod1.email, "ansss", "anssss", this.forumName).Equals("Register user succeed"));
             Assert.IsTrue(ForumController.getInstance.registerUser(userMod2.userName, userMod2.password, userMod2.email, "ansss", "anssss", this.forumName).Equals("Register user succeed"));
             Assert.AreEqual("sub-forum added", this.forumManager.addSubForum(this.forumName, this.subForumName, modList, this.userAdmin1.userName));
-            Assert.IsTrue(SubForumController.getInstance.createThread(this.threadHeadline, "content", this.userMember2.userName, this.forumName, this.subForumName).Equals("Create tread succeed"));
+            Assert.IsTrue(SubForumController.getInstance.createThread(this.threadHeadline, "content", this.userMember1.userName, this.forumName, this.subForumName).Equals("Create tread succeed"));
             List<Post> posts = PostController.getInstance.getAllPosts(this.forumName, this.subForumName);
             Assert.AreEqual(posts.Count, 1);
             this.postId = posts[0].id;
@@ -136,15 +136,15 @@ namespace Tests
         }
 
         [TestMethod]
-        public void interactivity_test_thread_creation_by_member()
+        public void selective_interactivity_test_thread_creation_by_member()
         {
             this.subForumManager.createThread("head", "content", this.userMember1.userName, forum.forumName, this.subForumName);
             System.Threading.Thread.Sleep(100);
-            Assert.AreEqual(2, notifications.publishedCounter);
+            Assert.AreEqual(3, notifications.publishedCounter);
         }
 
         [TestMethod]
-        public void interactivity_test_thread_creation_by_NonMember()
+        public void selective_interactivity_test_thread_creation_by_NonMember()
         {
             this.subForumManager.createThread("head", "content", this.userNonMember.userName, forum.forumName, this.subForumName);
             System.Threading.Thread.Sleep(100);
@@ -152,80 +152,75 @@ namespace Tests
         }
 
         [TestMethod]
-        public void interactivity_test_thread_creation_by_admin()
+        public void selective_interactivity_test_thread_creation_by_admin()
         {
             this.subForumManager.createThread("head", "content", this.userAdmin1.userName, forum.forumName, this.subForumName);
             System.Threading.Thread.Sleep(100);
-            Assert.AreEqual(2, notifications.publishedCounter);
+            Assert.AreEqual(3, notifications.publishedCounter);
         }
 
         [TestMethod]
-        public void interactivity_test_thread_delition_by_member()
+        public void selective_interactivity_test_thread_delition_by_member()
         {
-            //interactivity_test_thread_creation_by_member();
             Assert.AreEqual("Thread removed", this.subForumManager.deleteThread(postId, this.userMember1.userName));
             System.Threading.Thread.Sleep(100);
-            Assert.AreEqual(1, notifications.deletedCounter - 2);
+            Assert.AreEqual(1, notifications.deletedCounter);
         }
 
         [TestMethod]
-        public void interactivity_test_thread_delition_by_Non_Member()
+        public void selective_interactivity_test_thread_delition_by_Non_Member()
         {
-            //interactivity_test_thread_creation_by_member();
             Assert.AreNotEqual("Thread removed", this.subForumManager.deleteThread(postId, this.userNonMember.userName));
             System.Threading.Thread.Sleep(100);
             Assert.AreEqual(0, notifications.deletedCounter);
         }
 
         [TestMethod]
-        public void interactivity_test_thread_delition_by_admin()
+        public void selective_interactivity_test_thread_delition_by_admin()
         {
-            //interactivity_test_thread_creation_by_admin();
             Assert.AreEqual("Thread removed", this.subForumManager.deleteThread(postId, this.userAdmin1.userName));
             System.Threading.Thread.Sleep(100);
-            Assert.AreEqual(1, notifications.deletedCounter - 2);
+            Assert.AreEqual(1, notifications.deletedCounter);
         }
 
         [TestMethod]
-        public void interactivity_test_post_delition_by_member()
+        public void selective_interactivity_test_post_delition_by_member()
         {
-            //interactivity_test_thread_creation_by_member();
             Assert.AreEqual("Post removed", this.postManager.deletePost(postId, this.userMember1.userName));
             System.Threading.Thread.Sleep(100);
-            Assert.AreEqual(1, notifications.deletedCounter - 2);
+            Assert.AreEqual(1, notifications.deletedCounter);
         }
 
         [TestMethod]
-        public void interactivity_test_post_delition_by_admin()
+        public void selective_interactivity_test_post_delition_by_admin()
         {
-            //interactivity_test_thread_creation_by_admin();
             Assert.AreEqual("Post removed", this.postManager.deletePost(postId, this.userAdmin1.userName));
             System.Threading.Thread.Sleep(500);
-            Assert.AreEqual(1, notifications.deletedCounter - 2);
+            Assert.AreEqual(1, notifications.deletedCounter);
         }
 
         [TestMethod]
-        public void interactivity_test_post_delition_by_member_with_comenter()
+        public void selective_interactivity_test_post_delition_by_member_with_comenter()
         {
             notifications.clearCounters();
             this.postManager.addPost("head", "cont", this.userAdmin1.userName, this.postId);
             Assert.AreEqual("Post removed", this.postManager.deletePost(postId, this.userMember1.userName));
             System.Threading.Thread.Sleep(100);
-            Assert.AreEqual(2, notifications.deletedCounter - 2);
+            Assert.AreEqual(2, notifications.deletedCounter);
         }
 
         [TestMethod]
-        public void interactivity_test_post_delition_by_admin_with_comenter()
+        public void selective_interactivity_test_post_delition_by_admin_with_comenter()
         {
             notifications.clearCounters();
             this.postManager.addPost("head", "cont", this.userMember1.userName, this.postId);
             Assert.AreEqual("Post removed", this.postManager.deletePost(postId, this.userAdmin1.userName));
             System.Threading.Thread.Sleep(100);
-            Assert.AreEqual(2, notifications.deletedCounter - 2);
+            Assert.AreEqual(2, notifications.deletedCounter);
         }
 
         [TestMethod]
-        public void interactivity_test_post_delition_by_non_member_with_comenter()
+        public void selective_interactivity_test_post_delition_by_non_member_with_comenter()
         {
             notifications.clearCounters();
             this.postManager.addPost("head", "cont", this.userMember1.userName, this.postId);
@@ -236,7 +231,7 @@ namespace Tests
 
 
         [TestMethod]
-        public void interactivity_test_post_modification_by_NonMember()
+        public void selective_interactivity_test_post_modification_by_NonMember()
         {
             this.postManager.updatePost(postId, "new", "new", this.userNonMember.userName);
             System.Threading.Thread.Sleep(100);
@@ -244,27 +239,27 @@ namespace Tests
         }
 
         [TestMethod]
-        public void interactivity_test_post_modification_by_admin()
+        public void selective_interactivity_test_post_modification_by_admin()
         {
-            interactivity_test_thread_creation_by_admin();
+            selective_interactivity_test_thread_creation_by_admin();
             this.postManager.updatePost(1, "new", "new", this.userAdmin1.userName);
             System.Threading.Thread.Sleep(100);
             Assert.AreEqual(0, notifications.modifiedCounter);
         }
 
         [TestMethod]
-        public void interactivity_test_post_modification_by_member_with_comenter()
+        public void selective_interactivity_test_post_modification_by_member_with_comenter()
         {
             this.postManager.addPost("head", "cont", this.userAdmin1.userName, this.postId);
             this.postManager.updatePost(postId, "new", "new", this.userMember1.userName);
-            System.Threading.Thread.Sleep(100);
+            System.Threading.Thread.Sleep(200);
             Assert.AreEqual(1, notifications.modifiedCounter);
         }
 
         [TestMethod]
-        public void interactivity_test_post_modification_by_admin_with_comenter()
+        public void selective_interactivity_test_post_modification_by_admin_with_comenter()
         {
-            interactivity_test_thread_creation_by_admin();
+            selective_interactivity_test_thread_creation_by_admin();
             this.postManager.addPost("head", "cont", this.userMember1.userName, 1);
             this.postManager.updatePost(1, "new", "new", this.userAdmin1.userName);
             System.Threading.Thread.Sleep(100);
@@ -272,9 +267,9 @@ namespace Tests
         }
 
         [TestMethod]
-        public void interactivity_test_post_modification_by_no_member()
+        public void selective_interactivity_test_post_modification_by_no_member()
         {
-            interactivity_test_thread_creation_by_admin();
+            selective_interactivity_test_thread_creation_by_admin();
             this.postManager.addPost("head", "cont", this.userNonMember.userName, 1);
             this.postManager.updatePost(1, "new", "new", this.userNonMember.userName);
             System.Threading.Thread.Sleep(100);
@@ -282,7 +277,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void interactivity_test_privateMessage_member_to_admin()
+        public void selective_interactivity_test_privateMessage_member_to_admin()
         {
             UserController.getInstance.sendPrivateMessage(this.forumName, this.userMember1.userName, this.userAdmin1.userName, "hey");
             System.Threading.Thread.Sleep(100);
@@ -290,14 +285,14 @@ namespace Tests
         }
 
         [TestMethod]
-        public void interactivity_test_privateMessage_admin_to_member()
+        public void selective_interactivity_test_privateMessage_admin_to_member()
         {
             UserController.getInstance.sendPrivateMessage(this.forumName, this.userAdmin1.userName, this.userMember1.userName, "hey");
             System.Threading.Thread.Sleep(100);
             Assert.AreEqual(1, notifications.privateMessage);
         }
         [TestMethod]
-        public void interactivity_test_privateMessage_member_to_NonMember()
+        public void selective_interactivity_test_privateMessage_member_to_NonMember()
         {
             UserController.getInstance.sendPrivateMessage(this.forumName, this.userMember1.userName, this.userNonMember.userName, "hey");
             System.Threading.Thread.Sleep(100);
@@ -305,7 +300,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void interactivity_test_privateMessage_Nomember_to_Member()
+        public void selective_interactivity_test_privateMessage_Nomember_to_Member()
         {
             UserController.getInstance.sendPrivateMessage(this.forumName, this.userNonMember.userName, this.userMember1.userName, "hey");
             System.Threading.Thread.Sleep(100);
@@ -313,14 +308,14 @@ namespace Tests
         }
 
         [TestMethod]
-        public void interactivity_test_privateMessage_NoMember_to_Admin()
+        public void selective_interactivity_test_privateMessage_NoMember_to_Admin()
         {
             UserController.getInstance.sendPrivateMessage(this.forumName, this.userNonMember.userName, this.userAdmin1.userName, "hey");
             System.Threading.Thread.Sleep(100);
             Assert.AreEqual(0, notifications.privateMessage);
         }
         [TestMethod]
-        public void interactivity_test_privateMessage_Member_to_Member()
+        public void selective_interactivity_test_privateMessage_Member_to_Member()
         {
             UserController.getInstance.sendPrivateMessage(this.forumName, this.userMember1.userName, this.userMember1.userName, "hey");
             System.Threading.Thread.Sleep(100);
