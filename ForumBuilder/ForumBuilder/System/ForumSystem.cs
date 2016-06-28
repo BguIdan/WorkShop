@@ -119,12 +119,17 @@ namespace ForumBuilder.Systems
 
             initialize(username, password, email);            
             runServer(username, password, email);
-            DBClass.getInstance.clear();
             setUpDB();
             return 0;
         }
         private static void setUpDB()
         {
+            DBClass.getInstance.clear();
+            String username = "idan";//getUserName();
+            String password = "idanA1";//getUserPassword();
+            String email = "d@d.d";//getEmail();
+
+            initialize(username, password, email);
             ForumPolicy fp1 = new ForumPolicy("policy sport", true, 0, true, 30, 1, true, true, 5, 0, new List<string>());
             ForumPolicy fp2 = new ForumPolicy("polocy music", false, 0, false, 180, 2, false, false, 5, 1, new List<string>());
             List<String> list = new List<String>();
