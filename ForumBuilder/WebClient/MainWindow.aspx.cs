@@ -135,7 +135,7 @@ namespace WebClient
                         Session["forumName"] = _choosenForum;
                         Session["userName"] = Session["UserName"];
                         Session["ForumManagerClient"] = _fMC;
-                        Session["sessionKey"] = SessionKeyTextField.Text;
+                        Session["sessionKey"] = result;
                         Response.Redirect("ForumWindow.aspx");
                     }
                     else
@@ -211,7 +211,7 @@ namespace WebClient
 
         protected void forum_dropList_Load(object sender, EventArgs e)
         {
-            forum_dropList.ClearSelection();
+            forum_dropList.Items.Clear();
             while (_forumsList == null) { Thread.Sleep(20); }
             foreach (String forumName in this._forumsList)
                 forum_dropList.Items.Add(forumName);

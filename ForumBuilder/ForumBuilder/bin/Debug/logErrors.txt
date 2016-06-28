@@ -1,60 +1,15 @@
-Log Entry : 				28/06/2016 00:52:51
-Register user failed, g1 is already taken
+Log Entry : 				28/06/2016 12:12:56
+Add sub-forum failed
 -------------------------------------------------------------------------------------
-Log Entry : 				28/06/2016 00:52:51
-Register user failed, g2 is already taken
+Log Entry : 				28/06/2016 12:12:56
+Add sub-forum failed
 -------------------------------------------------------------------------------------
-Log Entry : 				28/06/2016 00:52:51
-Register user failed, g3 is already taken
+Log Entry : 				28/06/2016 12:12:56
+Add sub-forum failed
 -------------------------------------------------------------------------------------
-Log Entry : 				28/06/2016 00:52:51
-Register user failed, admin_sport is already taken
+Log Entry : 				28/06/2016 12:12:56
+Add sub-forum failed
 -------------------------------------------------------------------------------------
-Log Entry : 				28/06/2016 00:52:51
-Register user failed, user_sport is already taken
--------------------------------------------------------------------------------------
-Log Entry : 				28/06/2016 00:52:51
-Register user failed, mod_basketball is already taken
--------------------------------------------------------------------------------------
-Log Entry : 				28/06/2016 00:52:51
-Register user failed, mod_football is already taken
--------------------------------------------------------------------------------------
-Log Entry : 				28/06/2016 00:52:51
-Register user failed, admin_music is already taken
--------------------------------------------------------------------------------------
-Log Entry : 				28/06/2016 00:52:51
-Register user failed, user_music is already taken
--------------------------------------------------------------------------------------
-Log Entry : 				28/06/2016 00:52:51
-Register user failed, mod1_guitar is already taken
--------------------------------------------------------------------------------------
-Log Entry : 				28/06/2016 00:52:51
-Register user failed, mod2_guitar is already taken
--------------------------------------------------------------------------------------
-Log Entry : 				28/06/2016 00:52:51
-Register user failed, mod1_concert is already taken
--------------------------------------------------------------------------------------
-Log Entry : 				28/06/2016 00:52:51
-Register user failed, mod2_concert is already taken
--------------------------------------------------------------------------------------
-Log Entry : 				28/06/2016 00:52:51
-nominate admin fail, admin_sportis already admin
--------------------------------------------------------------------------------------
-Log Entry : 				28/06/2016 00:52:51
-nominate admin fail, admin_musicis already admin
--------------------------------------------------------------------------------------
-Log Entry : 				28/06/2016 00:52:51
-Add sub-forum failed, basketball already exist
--------------------------------------------------------------------------------------
-Log Entry : 				28/06/2016 00:52:51
-Add sub-forum failed, football already exist
--------------------------------------------------------------------------------------
-Log Entry : 				28/06/2016 00:52:51
-Add sub-forum failed, guitar already exist
--------------------------------------------------------------------------------------
-Log Entry : 				28/06/2016 00:52:51
-Add sub-forum failed, concert already exist
--------------------------------------------------------------------------------------
-Log Entry : 				28/06/2016 00:52:51
+Log Entry : 				28/06/2016 12:12:58
 Post contoller created
 -------------------------------------------------------------------------------------

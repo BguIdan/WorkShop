@@ -434,7 +434,7 @@ namespace ForumBuilder.Controllers
 
         }
 
-        public Boolean logout(String user, String forumName,String allSession){
+        public Boolean logout(String user, String forumName,String allSession)
         {   //TODO gal what about the open channels?
             if (allSession.IndexOf(",") <= 0)
             {

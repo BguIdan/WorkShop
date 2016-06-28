@@ -26,11 +26,13 @@ namespace WebClient
         private ForumManagerClient _fMC;
         private string _userName;
         private SuperUserManagerClient _sUMC;
+        private string _mySessionKey;
 
         public Boolean newPostNotification = false;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            _mySessionKey = Session["sessionKey"].ToString();
             _fMC = (ForumManagerClient)Session["ForumManagerClient"];
             _fMC.InnerDuplexChannel.CallbackInstance = new InstanceContext(this);
             String _chosenForum = (String)Session["forumName"];
@@ -125,7 +127,7 @@ namespace WebClient
             // an fourom member
             else
             {
-                _fMC.logout(nameLogout, _myforum.forumName, Session["sessionKey"].ToString());
+                _fMC.logout(nameLogout, _myforum.forumName, _mySessionKey);
                 Session["sessionKey"] = "";
                 Response.Redirect("MainWindow.aspx");
             }
